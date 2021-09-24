@@ -1,1 +1,1 @@
-My [GitHab](https://github.com/juanjoruiz93)
+My [GitHub](https://github.com/juanjoruiz93)
