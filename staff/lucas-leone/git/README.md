@@ -47,3 +47,5 @@ $ git commit -m "add bash doc"
 ```
 
 -`git branch -D" 
+
+if you have problems with log press :q 
