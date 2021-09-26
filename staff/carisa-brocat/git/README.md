@@ -71,3 +71,5 @@ git branch -a
 ```
 
 - `git branch -m` (rename the current branch)
+
+- `git checkout -b` (create new branch and check it at the same time)  
