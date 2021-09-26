@@ -27,3 +27,4 @@ $ touch staff/julio-serra/git/README.md
 ```
 
 - `clear` (clear output console, ctrl + L)
+```
