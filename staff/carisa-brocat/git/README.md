@@ -34,7 +34,7 @@ Aborting
 
 ```
 
-- `git branch -D` (delete a branch)
+- `git branch -D` (force delete the specific branch)
 
 ```sh
 $ git branch -D feature/test
@@ -54,6 +54,20 @@ Deleted branch feature/test (was b7bc51e).
 $ git add carisa-brocat/git/
 ```
 
--git commit -m (commit the change)
+- `git commit -m` (commit the change)
 
--git push (push the changes to github)
+- `git push` (push the changes to github)
+
+- `git branch -a` (list all remote brranch)
+
+```sh
+git branch -a
+* feature/landing
+  main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/develop
+  remotes/origin/feature/landing
+  remotes/origin/main
+```
+
+- `git branch -m` (rename the current branch)
