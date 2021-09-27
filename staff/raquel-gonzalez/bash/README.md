@@ -1,21 +1,39 @@
-"pwd" (path to working directory
+# BASH commands
 
-´´´´ sh
+- `pwd` (path to working directory)
 
-"ls" (list files and folders)
+```sh
+$ pwd
+/Users/manuelbarzi/parttime/neoland-parttime-202109
+```
 
+- `ls` (list files and folders)
+
+```sh
 $ ls
+README.md	staff		stuff
+```
 
-"mkdir" (make directory)
+- `mkdir` (make directory)
 
-"cd" (change directory)
+```sh
+$ mkdir parttime
+```
 
-"clear" (clear terminal outout)
+- `cd` (change directory)
 
-´´´ sh
+```sh
+$ cd parttime
+```
+
+- `clear` (clear console output, equivalent to CTRL + L)
+
+```sh
 $ clear
-´´´´
+```
 
-"touch"
+- `touch` (creates an empty file)
 
-touch staff/Raquel-gonzalez/git/README.md
+```sh
+$ touch staff/manuel-barzi/git/README.md
+```
