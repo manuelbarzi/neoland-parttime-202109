@@ -54,11 +54,11 @@ Deleted branch feature/test (was b7bc51e).
 $ git add carisa-brocat/git/
 ```
 
-- `git commit -m` (commit the change)
+- `git commit -m` (commit the changes and add a message)
 
 - `git push` (push the changes to github)
 
-- `git branch -a` (list all remote brranch)
+- `git branch -a` (list all remote branch)
 
 ```sh
 git branch -a
