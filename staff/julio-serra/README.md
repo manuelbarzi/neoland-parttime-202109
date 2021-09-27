@@ -1,1 +1,1 @@
-My [GitHub](https://github.com/codejules)
+My [GitHub link](https://github.com/codejules) personal
