@@ -103,9 +103,17 @@
     
     <blockquote>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia labore non nostrum ipsum sit, excepturi quo exercitationem aperiam dolor? Omnis modi laborum tempora id! Voluptatum nesciunt veniam nulla facilis? Dolores.</blockquote>
 
-    <h4>iFrame</h4>
+    <h4>iFrame/Embeds</h4>
 
-    <iframe src="https://www.youtube.com/watch?v=QNTZbJSQVis&ab_channel=JohnMcClan" frameborder="0">La he liado parda</iframe>
+    <iframe src="https://www.pluscoders.com" height="200" width="300" title="Iframe Example"></iframe>
+    <br>
+    <br>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d502195.452074532!2d-67.17123614492095!3d10.46894403990347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2a58adcd824807%3A0x93dd2eae0a998483!2sCaracas%2C%20Distrito%20Capital%2C%20Venezuela!5e0!3m2!1ses!2ses!4v1632851999782!5m2!1ses!2ses" width="300" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <br><br>
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/Nu__TzWfpss" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    <br><br>
 
     <h3>Text Forms</h3>
 
@@ -139,7 +147,68 @@
         <label for="youlike">Me gusta el whiskey</label>
     </form>
       
+    <h3>Forms Part 2</h3>
     
+    <form action="https://www.google.com/search" target="_blank">
+        <fieldset>
+            <legend>Search in Google</legend>
+            <input type="text" name="query" id="" placeholder="Write something">
+            <button type="submit">Submit</button>
+        </fieldset>
+    </form>
+    <br>
+    <br>
+    <form action="https://www.ecosia.org/search" target="_blank">
+        <fieldset>
+            <legend>Search in Ecosia</legend>
+            <input type="text" name="query" id="" placeholder="Write something">
+            <button type="submit">Submit </button>
+        </fieldset>
+    </form>
+    <br>
+    <br>
+    <fieldset>
+        <legend>Login</legend>
+    <form action="">
+        <input type="text" name="username" id="" placeholder="Username">
+        <input type="password" name="password" id="" placeholder="Password">
+        <button type="submit">Submit</button>
+    </form>
+    </fieldset>
+    <br>
+    <br>
+    <fieldset>
+        <legend>Data</legend>
+    <form action="">
+        <label for="name">Name</label>
+        <input type="text" name="" id="name" required>
+        <br><br>
+        <label for="phone">Phone</label>
+        <input type="number" name="phone" id="phone" required>
+        <br><br>
+        <label for="dob">Date of Birth</label>
+        <input type="date" name="dob" id="dob" required>
+        <br><br>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required>
+        <br><br>
+        <button type="submit">Send</button>
+    </form>
+    </fieldset>
 
+
+    <h3>Audio</h3>
+    <audio controls>
+        <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
+        <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+    </audio>
+    <br><br>
+    <h3>Video</h3>
+
+    <video width="400" controls>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        <source src="https://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
+       
+    </video>
 </body>
 </html>
