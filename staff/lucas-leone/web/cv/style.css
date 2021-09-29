@@ -1,0 +1,17 @@
+
+:root{--color_primario:red;
+    --color_secundario:blue;
+    --fuente_primaria: arial;
+    
+}
+
+.rojo{background-color: rgb(19, 49, 49);
+}
+
+.rojo{background-color: crimson;
+    color:var(--color_secundario);
+    font-family: var(--fuente_primaria);
+    font-weight:bold
+    ;
+}
+
