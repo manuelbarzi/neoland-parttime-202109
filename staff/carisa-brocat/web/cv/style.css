@@ -1,0 +1,94 @@
+/**{
+    padding: 0;
+    margin: 0;
+}
+(para dar magene  a todo)
+ */
+
+:root{
+    --color_primario: red;
+    --color_secundario: orange;
+    --fuente_primaria: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: silver;
+    font-size: 16px;
+}
+
+
+h1{
+    font-size: 28px;
+    color: green;
+    background-color: gainsboro;
+    text-align: center;
+}
+h2{
+    text-decoration-line: underline;
+    color: var(--color_primario);
+    display: block;
+   line-height: 1;
+    font-size: 22px;
+}
+
+li{
+    line-height: 1.5;
+}
+
+dt{
+    line-height: 2;
+    font-weight:bold;
+}
+
+dd{
+line-height: 1.5;
+}
+
+h3{
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    font-weight: 300;
+    font-size: 20px;
+}
+
+footer{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: peachpuff;
+}
+
+.button{
+    border-radius: 5px;
+border-bottom: gray;
+background-color: gray;
+}
+
+form{
+    width: max-content;
+}
+
+form fieldset {
+    border-radius: 7px;
+    background-color: gainsboro;
+    margin-bottom: 10px;
+}
+
+footer address{
+font-family: 'Courier New', Courier, monospace;
+padding-top: 20px;
+text-align: center;
+background-color: yellowgreen;
+}
+
+
+button.button{
+background-color: greenyellow;
+}
+
+
+
+
+
+
+
