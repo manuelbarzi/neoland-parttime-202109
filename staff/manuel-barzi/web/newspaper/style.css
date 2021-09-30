@@ -1,0 +1,69 @@
+html, body {
+    height: 100%;
+}
+
+header, footer {
+    background-color: aqua;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    background-color: yellow;
+}
+
+main {
+    height: 500%;
+    background-color: aquamarine;
+}
+
+.international {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 1rem;
+    background-color: bisque;
+    padding: 1rem;
+}
+
+p {
+    background-color: burlywood;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.highlights {
+    display: flex;
+    background-color: cadetblue;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.culture {
+    display: grid;
+    grid-template-areas: 
+    'main main aside-1'
+    'main main aside-2'
+    'main main aside-3';
+    grid-gap: 1rem;
+    padding: 1rem;
+    background-color: cornflowerblue;
+}
+
+.culture__main {
+    grid-area: main;
+}
+
+.culture__aside-1 {
+    grid-area: aside-1;
+}
+
+.culture__aside-2 {
+    grid-area: aside-2;
+}
+
+.culture__aside-3 {
+    grid-area: aside-3;
+}
