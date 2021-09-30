@@ -31,8 +31,8 @@ body {
     font-family: 'Nunito', sans-serif;    
     font-size: 18px;
     font-weight: 300;
-    margin: 0 auto;
-    width: 1600px;
+    margin: 0 50px;
+    width: auto;
 }
 strong {
     font-weight: 700;
