@@ -1,17 +1,37 @@
+*, *:before, *:after {
+    box-sizing: inherit;
+}
 
-:root{--color_primario:red;
-    --color_secundario:blue;
+:root{--color_primario: #AA6DA3;
+    --color_secundario:#CDD3CE;
     --fuente_primaria: arial;
     
 }
 
-.rojo{background-color: rgb(19, 49, 49);
-}
-
-.rojo{background-color: crimson;
-    color:var(--color_secundario);
+section{
     font-family: var(--fuente_primaria);
-    font-weight:bold
-    ;
+   
+}
+body{
+    background-color: var(--color_secundario);
+}
+.titulo{
+    text-align: center;
 }
 
+.cuerpo{
+    display: grid;
+    grid-template-columns:30% 70% ;
+    column-gap: 1rem;
+}
+
+.barra_lateral{
+    grid-column: 1 / 2;
+    background-color: var(--color_primario);
+
+}
+
+.contenido_principal{
+    background-color: var(--color_secundario);
+    font-family: var(--fuente_primaria);
+}
