@@ -15,8 +15,10 @@ section{
 body{
     background-color: var(--color_secundario);
 }
-.titulo{
-    text-align: center;
+.encabezado{
+    display: flex;
+    justify-content: center;
+    align-items:center ;
 }
 
 .cuerpo{
