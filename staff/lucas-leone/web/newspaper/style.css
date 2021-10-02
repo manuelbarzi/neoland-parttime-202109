@@ -135,6 +135,7 @@ span{
     margin-bottom: 3rem;  
     margin-right: 0;
     margin-top:5rem;
+    align-items:inherit;
 
 }
 .main{
@@ -167,11 +168,13 @@ span{
     margin-top: 0;
     height: 50%;
     font-size: 7rem;
+    text-align: left;
 }
 
 .principal__text{
     font-size: 2rem;
     margin-top: 1rem;
+    text-align: left;
 }
 
 
