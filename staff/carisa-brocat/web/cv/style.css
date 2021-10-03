@@ -1,9 +1,138 @@
-/**{
-    padding: 0;
+*{
     margin: 0;
 }
-(para dar magene  a todo)
- */
+
+html, body{
+    height: 100%;
+    width: 95%; 
+    margin: auto;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+header{
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    background-color: #2d3761;
+    color:white;
+    height: 20%;
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+}
+
+.header{
+    padding-right: 50px;
+}
+
+h1{
+    font-size: 60px;
+    margin: 5px;
+}
+
+.header h2{
+    margin: 5px;
+}
+
+.img-cropped {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: -110px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.img {
+  height: 100%;
+  margin-left: -25%;
+}
+
+.align-center{
+    text-align: center;
+}
+
+.section--margin{
+    margin-top: 30px;
+}
+
+main {
+    line-height: 1.5;
+    display: flex;
+    height:auto;
+}
+
+.main--border{
+    border-left-style:solid;
+    border-left-color: #2d3761;
+    border-left-width: 1px;
+    border-right-style:solid;
+    border-right-color: #2d3761;
+    border-right-width: 1px;
+}
+
+.main__rigth{
+background-color:rgb(235, 232, 232);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+
+.main__left{
+padding-right: 30px;
+padding-left: 30px;
+    }
+    
+.graphic-bar{
+       display: flex;
+       width: 100%;
+       height: 10px;
+       background-color: gray;
+    }
+  
+.graphic-bar__photoshop{
+    width: 90%;
+    background-color: #2d3761;
+} 
+    
+.graphic-bar__msoffice{
+    width: 100%;
+    background-color: #2d3761;
+} 
+  
+.graphic-bar__html-css{
+    width: 65%;
+    background-color: #2d3761;
+} 
+  
+.graphic-bar__indesign{
+    width: 80%;
+    background-color: #2d3761;
+} 
+
+.graphic-bar__ilustrator{
+    width: 30%;
+    background-color: #2d3761;
+} 
+  
+.graphic-bar__wordpress{
+    width: 50%;
+    background-color: #2d3761;
+} 
+
+address{
+font-size: 20px;
+}
+
+footer{
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    background-color: #2d3761;
+}
+
+
+/*
 
 :root{
     --color_primario: red;
@@ -11,84 +140,47 @@
     --fuente_primaria: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+{
+    padding: 0;
+    margin: 0;
+}
+(para dar margene  a todo)
+ 
 
-body{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: silver;
-    font-size: 16px;
+h1 - es un selector en css, es un elemento de bloque que ocupa todo el ancho. 
+
+padding -  lo que encuandra el contenido
+
+h1{} - lo q esta dentro de las llaves son las reglas q aplican a ese selector. El valor de la regla
+es la propiedad
+
+-las paginas tienen, secciones, bloques o componentes(el termino mas usado)
+-ej de bloques: footer, header, main (son block elements)
+
+- main: contenido principal
+
+-SEO: SEARCH ENGINE OPTIMIZATION
+
+-cuando hay elementos de bloques del mismo ancho y das background a los dos se pueden solapar
+por ocupar lo mismo. Ej, cuando se tiene 
+
+html, body{
+    height: 100% 
 }
 
+rem( unidad de ancho de una fuente)
 
-h1{
-    font-size: 28px;
-    color: green;
-    background-color: gainsboro;
-    text-align: center;
-}
-h2{
-    text-decoration-line: underline;
-    color: var(--color_primario);
-    display: block;
-   line-height: 1;
-    font-size: 22px;
-}
+-LAYOUT-
+Siempre hay un contenedor(se encarga de distribuir contenido q tiene dentro) y un contenido.
 
-li{
-    line-height: 1.5;
-}
+-flexbox (trabaja con filas y columnas)
+-grid (grid layout trabaja con matrices) (grid-template-areas / para distribuir en una cuadricula)
 
-dt{
-    line-height: 2;
-    font-weight:bold;
-}
+-display: flex; (esto permite q se puede 
+-justify-content: center;(trabaja perpendicular al align-items en caunto a eje)
+-align-items: center
 
-dd{
-line-height: 1.5;
-}
+-break points (adaptar app o web a distintos dispositivos)
 
-h3{
-    margin-block-start: 0em;
-    margin-block-end: 0em;
-    font-weight: 300;
-    font-size: 20px;
-}
-
-footer{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: peachpuff;
-}
-
-.button{
-    border-radius: 5px;
-border-bottom: gray;
-background-color: gray;
-}
-
-form{
-    width: max-content;
-}
-
-form fieldset {
-    border-radius: 7px;
-    background-color: gainsboro;
-    margin-bottom: 10px;
-}
-
-footer address{
-font-family: 'Courier New', Courier, monospace;
-padding-top: 20px;
-text-align: center;
-background-color: yellowgreen;
-}
-
-
-button.button{
-background-color: greenyellow;
-}
-
-
-
-
-
-
+-los parrafos <p> tienen margen arriba y abajo
 
