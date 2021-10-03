@@ -3,8 +3,8 @@
 }
 
 html, body{
-    height: 100%;
-    width: 95%; 
+    height: 356mm;
+    width: 216mm; 
     margin: auto;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -14,7 +14,7 @@ header{
     border-top-right-radius: 40px;
     background-color: #2d3761;
     color:white;
-    height: 20%;
+    height: 10%;
     display: flex;
     justify-content:flex-end;
     align-items: center;
@@ -32,7 +32,6 @@ h1{
 .header h2{
     margin: 5px;
 }
-
 .img-cropped {
     width: 200px;
     height: 200px;
@@ -48,6 +47,12 @@ h1{
   margin-left: -25%;
 }
 
+main {
+    line-height: 1.5;
+    display: flex;
+    height:80%;
+}
+
 .align-center{
     text-align: center;
 }
@@ -56,10 +61,9 @@ h1{
     margin-top: 30px;
 }
 
-main {
-    line-height: 1.5;
-    display: flex;
-    height:auto;
+h3{
+    font-style: normal;
+    font-size: 18px;
 }
 
 .main--border{
@@ -80,9 +84,21 @@ justify-content: center;
 }
 
 .main__left{
-padding-right: 30px;
+padding-right: 50px;
 padding-left: 30px;
+text-align: justify;
     }
+
+.section-title{
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.section-title__img{
+    width: 30px;
+    margin-right: 6px;
+}  
     
 .graphic-bar{
        display: flex;
@@ -102,7 +118,7 @@ padding-left: 30px;
 } 
   
 .graphic-bar__html-css{
-    width: 65%;
+    width: 85%;
     background-color: #2d3761;
 } 
   
@@ -112,14 +128,29 @@ padding-left: 30px;
 } 
 
 .graphic-bar__ilustrator{
-    width: 30%;
+    width: 60%;
     background-color: #2d3761;
 } 
   
 .graphic-bar__wordpress{
-    width: 50%;
+    width: 80%;
     background-color: #2d3761;
 } 
+.exper-title, .study-tit{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    padding-top: 15px;
+}
+
+.exper-title--nopadd, .study-tit--nopadd{
+    padding-top: 0;
+}
+
+dd{
+    color: rgb(87, 85, 85);
+}
 
 address{
 font-size: 20px;
@@ -128,59 +159,35 @@ font-size: 20px;
 footer{
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
+    height: 10%;
     background-color: #2d3761;
+    color: white;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-
-/*
-
-:root{
-    --color_primario: red;
-    --color_secundario: orange;
-    --fuente_primaria: Verdana, Geneva, Tahoma, sans-serif;
+.footer__form{
+    display: flex;
+    margin-top: 10px;
 }
 
-{
-    padding: 0;
-    margin: 0;
-}
-(para dar margene  a todo)
- 
-
-h1 - es un selector en css, es un elemento de bloque que ocupa todo el ancho. 
-
-padding -  lo que encuandra el contenido
-
-h1{} - lo q esta dentro de las llaves son las reglas q aplican a ese selector. El valor de la regla
-es la propiedad
-
--las paginas tienen, secciones, bloques o componentes(el termino mas usado)
--ej de bloques: footer, header, main (son block elements)
-
-- main: contenido principal
-
--SEO: SEARCH ENGINE OPTIMIZATION
-
--cuando hay elementos de bloques del mismo ancho y das background a los dos se pueden solapar
-por ocupar lo mismo. Ej, cuando se tiene 
-
-html, body{
-    height: 100% 
+#message{
+    width: 100mm;
 }
 
-rem( unidad de ancho de una fuente)
+button{
+    background-color:rgb(175, 171, 171);
+    color: black;
+    border-radius: 10px;
+    width: 20mm;
+    margin: 2px;
+    border-color: unset;
+}
 
--LAYOUT-
-Siempre hay un contenedor(se encarga de distribuir contenido q tiene dentro) y un contenido.
-
--flexbox (trabaja con filas y columnas)
--grid (grid layout trabaja con matrices) (grid-template-areas / para distribuir en una cuadricula)
-
--display: flex; (esto permite q se puede 
--justify-content: center;(trabaja perpendicular al align-items en caunto a eje)
--align-items: center
-
--break points (adaptar app o web a distintos dispositivos)
-
--los parrafos <p> tienen margen arriba y abajo
-
+input{
+    margin: 2px;
+    border-radius: 5px;
+    border-color: unset;
+}
