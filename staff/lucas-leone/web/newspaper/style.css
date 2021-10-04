@@ -202,6 +202,7 @@ span{
 .finanzas__titulo{
     font-family: var(--fuente_secundaria);
     font-size: 6rem;
+    margin-bottom: 0;
 }
 @media (min-width: 768px) {
     
