@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre&display=swap');
+* {
+    box-sizing: content-box;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    color: #eaeaea;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+img {
+    border-radius: 50% 50%;
+}
+
+li {
+    display: inline-flex;
+    list-style-type: none;
+    padding: 0 1rem;
+}
+
+h2 {
+    font-family: 'Gemunu Libre', sans-serif;
+    margin: 15px 0;
+}
+
+.header {
+    background-color: rgb(30, 35, 55);
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100px;
+    justify-items: center;
+}
+
+.header__logo {
+    color: #ff5733;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 32px;
+}
+
+.header--flex {
+    align-items: center;
+    display: flex;
+}
+
+.header__search {
+    align-self: center;
+    display: flex;
+    height: 35px;
+}
+
+.header__search:before {
+    align-self: center;
+    content: '\01F50D';
+    display: flex;
+    left: 1.7rem;
+    position: relative;
+}
+
+input {
+    background-color: rgb(99, 102, 116);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    padding: 1rem .5rem 1rem 2rem;
+}
+
+.header__nav--join {
+    border-radius: 5px;
+    background-color: #dbdfb1;
+    color: rgb(30, 35, 55);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    padding: 10px 20px;
+}
+
+.header__left {
+    gap: 1.5rem
+}
+
+.section {
+    background-color: #820cb9;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 100%;
+    justify-content: center;
+    padding: 100px 0;
+}
+
+.section__cards {
+    background-color: #fff;
+    color: #000;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+.section__cards-styles {
+    padding: 25px 0;
+}
+
+.section__cards-styles span {
+    border: 1px solid #000;
+    border-radius: 14px;
+    font-size: 14px;
+    padding: 5px;
+}
+
+@media screen and (min-width: 768px) {
+    .header {
+        grid-template-columns: 1fr 1fr;
+    }
+    .section {
+        grid-template-columns: 45% 45%;
+    }
+}
+
+@media screen and (min-width: 414px) {
+    .header {
+        grid-template-columns: 100%;
+    }
+    .section {
+        grid-template-columns: 45% 45%;
+    }
+}
