@@ -189,6 +189,9 @@ input {
     .header__nav--dnone {
         display: inline-flex;
     }
+    .portada {
+        background-image: url('https://picsum.photos/2000/1400.webp');
+    }
     .portada__button {
         margin: 0 auto;
     }
