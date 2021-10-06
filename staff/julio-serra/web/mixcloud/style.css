@@ -32,11 +32,11 @@ h2 {
 input {
     border: 1px solid #000;
     border-radius: 5px;
-    color: #fff;
+    color: #000;
     padding: 1rem .5rem 1rem 2rem;
 }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=date] {
     color: #000;
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
@@ -114,18 +114,30 @@ input[type=text], input[type=password] {
     padding: 40px 20px;
 }
 
-.content-signin{
+.content-access {
     position: relative;
     justify-content: center;
     display: flex;
 }
 
-.portada__content {
+.content-access__body {
+    background-color: white;
+    border-radius: 5px;
+    color: #000;
+    /* height: 45vh; */
+    padding: 40px;
+    position: fixed;
+    top: 15vh;
+    width: 20vw;
+    z-index: 1;
+}
+
+.content-access__content {
     display: grid;
     gap: 1.5rem;
 }
 
-.portada__button {
+.content-access__button {
     margin: 0 auto;
     text-align: center;
     border-radius: 5px;
@@ -137,19 +149,11 @@ input[type=text], input[type=password] {
     width: 100%;
 }
 
-.content-signin__profile {
-    background-color: white;
-    border-radius: 5px;
-    color: #000;
-    height: 45vh;
-    padding: 40px;
-    position: fixed;
-    top: 15vh;
-    width: 60vw;
-    z-index: 1;
+.content-access__body--height {
+    /* height: 60vh; */
 }
 
-.content-signin__profile-footer {
+.content-access__footer {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -158,22 +162,22 @@ input[type=text], input[type=password] {
     margin-top: 3rem;
 }
 
-.content-signin__profile-item {
+.content-access__buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
 
-.portada__profile-item-signin {
+.content-access__item-underline {
     border-bottom: 3px solid #000;
     padding-bottom: 15px;
 }
 
-.portada__profile-item-signup {
+.content-access__item-opaque {
     color: rgba(0, 0, 0, 0.65)
 }
 
-.content-signin__profile-rrss {
+.content-access__rrss {
     background-color: rgb(0, 93, 200);
     border-radius: 5px;
     color: #fff;
@@ -184,12 +188,13 @@ input[type=text], input[type=password] {
     text-align: center;
 }
 
-.content-signin__profile-form {
+.content-access__form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
-.content-signin__profile-form-button {
+
+.content-access__form-button {
     background-color: #333;
     border: none;
     border-radius: 5px;
@@ -201,10 +206,14 @@ input[type=text], input[type=password] {
     padding: 1rem 0;
 }
 
-
 .content-modal {
     background: radial-gradient(#34495e, #0a1e2c);
+    cursor: not-allowed;
     opacity: .7;
+}
+
+.content-modal a {
+    cursor: not-allowed;
 }
 
 .section {
@@ -270,6 +279,14 @@ input[type=text], input[type=password] {
     .portada__button {
         width: 40%;
     }
+    .content-access__profile {
+        height: 37vh;
+        top: 10vh;
+        width: 40vw;
+    }
+    .content-access__body--height {
+        height: 48vh;
+    }
 }
 
 @media screen and (min-width: 1100px) {
@@ -293,5 +310,13 @@ input[type=text], input[type=password] {
     }
     .section {
         grid-template-columns: 30% 30% 30%;
+    }
+    .content-access__profile {
+        height: 45vh;
+        width: 20vw;
+    }
+    .content-access__body--height {
+        /* height: 60vh;
+        width: 20vw; */
     }
 }
