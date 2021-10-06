@@ -5,12 +5,76 @@
     padding: 0;
 }
 
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo{
+    width: 50%;
+}
+
+.logo--centered{
+    display: block;
+    margin: 0 auto;
+ }
+
+.logo--width{
+    width: 10%;
+}
+
+.menu__button{
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 30px;
+}
+
+.menu__list{
+    display: none;
+}
+
+.menu__list--on{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 5rem;
+    left: 9rem;
+}
+
+.nav-bar{
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.98);
+}
+
+.nav-bar__item{
+    color: #000;
+    text-decoration: none;
+    background-color: rgb(201, 201, 201);
+    padding: 10px 20px;
+    margin-bottom: 10px;
+}
+
+.nav-bar__button-gradient{
+    background: linear-gradient(45deg,#ffaa00, #ec62fb);
+    padding: 10px 15px;
+    border-radius: 100px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 40px;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
 .main{
     background: linear-gradient(45deg, rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.50)), url(https://images.pexels.com/photos/697243/pexels-photo-697243.jpeg?auto=compress&cs=tinysrgb&h=650&w=940);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 100px 50px;
+    padding: 20px 50px;
 }
 
 .main__title{
@@ -19,6 +83,7 @@
     line-height: 1.2;
     color: #fff;
     margin-bottom: 30px;
+    padding-top: 100px;
 }
 
 .main__options{
@@ -26,6 +91,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.main__warning{
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    font-size: 14px;
 }
 
 .button{
@@ -61,20 +132,10 @@
     margin: 20px 0;
 }
 
-.main__warning{
-    color: rgba(255, 255, 255, 0.6);
-    text-align: center;
-    font-size: 14px;
-}
-
 .footer{
     display: flex;
     flex-direction: column;
     padding: 20px;
-}
-
-.footer__content {
-    
 }
 
 .footer__content-title {
@@ -87,4 +148,10 @@
     list-style: none;
     font-size: 14px;
     line-height: 1.4;
+    color: #000;
+}
+
+.footer__content-list-item:hover{
+    color: #ec62fb;
+    cursor: pointer;
 }
