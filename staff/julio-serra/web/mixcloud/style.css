@@ -89,6 +89,14 @@ input[type=text], input[type=password], input[type=date] {
     display: flex;
 }
 
+.header__nav-button {
+    border: none;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    font-size: 36px;
+}
+
 .header__nav-item-join {
     border-radius: 5px;
     background-color: #dbdfb1;
@@ -98,8 +106,18 @@ input[type=text], input[type=password], input[type=date] {
     font-size: 16px;
 }
 
-.header__logo-long, .header__search, .header__nav-item {
+.header__logo-long, .header__search, .header__nav-menu {
     display: none;
+}
+
+.header__nav-menu--on {
+    display: inline-flex;
+    flex-direction: column;
+    background-color: black;
+    position: absolute;
+    top: 50px;
+    gap: 1rem;
+    padding: 10px;
 }
 
 .portada {
@@ -112,6 +130,15 @@ input[type=text], input[type=password], input[type=date] {
     justify-content: flex-end;
     height: 550px;
     padding: 40px 20px;
+}
+
+.portada__button {
+    border-radius: 5px;
+    background-color: #dbdfb1;
+    color: rgb(30, 35, 55);
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 auto;
+    padding: 1rem;
 }
 
 .content-access {
@@ -276,9 +303,6 @@ input[type=text], input[type=password], input[type=date] {
     .header__logo-short {
         display: none;
     }
-    .portada__button {
-        width: 40%;
-    }
     .content-access__profile {
         height: 37vh;
         top: 10vh;
@@ -294,7 +318,7 @@ input[type=text], input[type=password], input[type=date] {
         justify-content: space-around;
         padding: 0;
     }
-    .header__search, .header__nav-item {
+    .header__search, .header__nav-item, .header__nav-item-join {
         display: inline-flex;
     }
     .portada {
@@ -304,9 +328,6 @@ input[type=text], input[type=password], input[type=date] {
         padding-right: 40vw;
         background-image: url('./img/bg-cabecera.png');
         background-size: cover;
-    }
-    .portada__button {
-        margin: 0 auto;
     }
     .section {
         grid-template-columns: 30% 30% 30%;
@@ -318,5 +339,8 @@ input[type=text], input[type=password], input[type=date] {
     .content-access__body--height {
         /* height: 60vh;
         width: 20vw; */
+    }
+    .header__nav-button {
+        display: none;
     }
 }
