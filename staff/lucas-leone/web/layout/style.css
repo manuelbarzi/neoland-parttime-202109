@@ -1,0 +1,80 @@
+:root{
+    --color-primario:#BD37DD;
+    --color-secundario:#0F9CBC;
+    --blanco: white;
+    --fuente-primaria: 'Staatliches', cursive;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; 
+    height: 100%;
+    margin:0;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body{
+    background-image: url("1.png");
+    background-position: center;
+    background-size:fill;
+    background-repeat:no-repeat;
+    position: relative;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    margin: 0rem;
+}
+
+.sing{
+    margin-top: 20rem;
+    background-color: #DBDBDB;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem ;
+    border-radius: 2rem;
+}
+
+.sing__title{
+    font-family: var(--fuente-primaria);
+    color: var(--color-secundario);
+    font-size:4rem ;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.sing__description{
+    font-family: var(--fuente-primaria);
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 0;
+}
+.sing__botom{
+    background-color: var(--color-primario);
+    color: var(--blanco);
+    margin-top: .5rem;
+    padding: .5rem 3rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 3rem;
+    border: none;
+    font-family: var(--fuente-primaria);
+
+}
+.card{
+    display: inline-flex;
+    flex-direction: column;
+    background-color: yellow;
+    width: 100%;
+    border-radius: 1rem;
+    padding: 0;
+    position: absolute;
+    bottom:-5rem;
+    transition: bottom .5s ;
+}
+
+
