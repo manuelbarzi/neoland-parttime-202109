@@ -125,17 +125,40 @@ var spaces = countSpaces('adios mundo cruel')
 console.log(spaces) // 2
 
 var spaces = countSpaces('flipo con js, me encanta! es chachi piruli, chuli chili guai')
-console.log(spaces) // 8
+console.log(spaces) // 10
 
-console.log('DEMO countVocals')
 
 
 //Ejercicios finde
 
+console.log('DEMO countVocals')
 
 
 function countVocals(text) {
-    // TODO
+
+    var count = 0
+
+    for (var i = 0; i < text.length; i++) {
+        var voc = text[i]
+
+        if (voc === 'a') {
+            count++
+        }
+        else if (voc === 'e') {
+            count++
+        }
+        else if (voc === 'i') {
+            count++
+        }
+        else if (voc === 'o') {
+            count++
+        }
+        else if (voc === 'u') {
+            count++
+        }
+    }
+
+    return count
 }
 
 var vocals = countVocals('hola mundo')
@@ -147,14 +170,29 @@ console.log(vocals) // 7
 var vocals = countVocals('pasito a pasito, suave, suavecito')
 console.log(vocals) // 15
 
+
+
+
 console.log('DEMO countPositiveNumbers')
 
 function countPositiveNumbers(numbers) {
-    // TODO
+
+    var pos = 0
+
+    for (var i = 0; i < numbers.length; i++) {
+        var num = numbers[i]
+
+        if (num >= '0') {
+            pos++
+        }
+    }
+
+    return pos
+
 }
 
 var positives = countPositiveNumbers([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-console.log(positives) // 9
+console.log(positives) // 10
 
 var positives = countPositiveNumbers([234, -897, 562, -958, 951])
 console.log(positives) // 3
@@ -162,10 +200,24 @@ console.log(positives) // 3
 var positives = countPositiveNumbers([-101, 2, 13, 20, 21, -35, 80])
 console.log(positives) // 5
 
+
+
+
 console.log('DEMO countNegativeNumbers')
 
 function countNegativeNumbers(numbers) {
-    // TODO
+
+    var neg = 0
+
+    for (var i = 0; i < numbers.length; i++) {
+        var num = numbers[i]
+
+        if (num < '0') {
+            neg++
+        }
+    }
+
+    return neg
 }
 
 var negatives = countNegativeNumbers([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
@@ -177,10 +229,24 @@ console.log(negatives) // 2
 var negatives = countNegativeNumbers([-101, 2, 13, 20, 21, -35, 80])
 console.log(negatives) // 2
 
+
+
+
 console.log('DEMO countEvenNumbers')
 
 function countEvenNumbers(numbers) {
-    // TODO
+
+    var even = 0
+
+    for (var i = 0; i < numbers.length; i++) {
+        var par = numbers[i]
+
+        if (par % 2 == 0) {
+            even++
+        }
+    }
+
+    return even
 }
 
 var evens = countEvenNumbers([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
@@ -192,10 +258,27 @@ console.log(evens) // 3
 var evens = countEvenNumbers([-101, 2, 13, -20, 21, -35, 80])
 console.log(evens) // 3
 
+
+
+
+
 console.log('DEMO countOddNumbers')
 
 function countOddNumbers(numbers) {
-    // TODO
+
+    var odd = 0
+
+    for (var i = 0; i < numbers.length; i++) {
+        var impar = numbers[i]
+
+        if (impar % 2 == 0) {
+
+        }
+        else odd++
+    }
+
+    return odd
+
 }
 
 var odds = countOddNumbers([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
@@ -207,10 +290,75 @@ console.log(odds) // 2
 var odds = countOddNumbers([-101, 2, 13, -20, 21, -35, 80])
 console.log(odds) // 4
 
+
+
+
+
 console.log('DEMO countNumbers')
 
 function countNumbers(numbers, what) {
-    // TODO
+
+    if (what == 'positive') {
+        var pos = 0
+
+        for (var i = 0; i < numbers.length; i++) {
+            var num = numbers[i]
+
+            if (num >= '0') {
+                pos++
+            }
+        }
+
+
+        return pos
+
+    } else if (what == 'negative') {
+        var neg = 0
+
+        for (var i = 0; i < numbers.length; i++) {
+            var num = numbers[i]
+
+            if (num < '0') {
+                neg++
+            }
+        }
+
+
+        return neg
+
+    } else if (what == 'even') {
+        var even = 0
+
+        for (var i = 0; i < numbers.length; i++) {
+            var par = numbers[i]
+
+            if (par % 2 == 0) {
+                even++
+            }
+        }
+
+        return even
+
+    } else if (what == 'odd') {
+
+        var odd = 0
+
+        for (var i = 0; i < numbers.length; i++) {
+            var impar = numbers[i]
+    
+            if (impar % 2 == 0) {
+    
+            }
+            else odd++
+        }
+    
+        return odd
+    
+    } else {
+
+        return numbers.length
+    }
+
 }
 
 var positives = countNumbers([-101, 2, 13, -20, 0, 21, -35, 80], 'positive')
