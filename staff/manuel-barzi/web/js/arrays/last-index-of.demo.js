@@ -11,3 +11,9 @@ console.log(index) // 4
 var array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 var index = lastIndexOf(array, 3)
 console.log(index) // 13
+
+// DEMO 3
+
+var array = ['un', 'nuevo', 'caso']
+var index = lastIndexOf(array, 'cruel')
+console.log(index) // -1

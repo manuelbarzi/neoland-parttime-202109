@@ -11,3 +11,9 @@ console.log(index) // 2
 var array = ['adios', 'mundo', 'cruel']
 var index = indexOf(array, 'cruel')
 console.log(index) // 2
+
+// DEMO 3
+
+var array = ['un', 'nuevo', 'caso']
+var index = indexOf(array, 'cruel')
+console.log(index) // -1

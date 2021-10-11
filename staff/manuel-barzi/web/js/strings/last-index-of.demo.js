@@ -14,3 +14,8 @@ console.log(index) // 14
 
 var index = lastIndexOf('012345678901234567890123456789', '7')
 console.log(index) // 27
+
+// DEMO 4
+
+var index = lastIndexOf('un nuevo caso', 'w')
+console.log(index) // -1
