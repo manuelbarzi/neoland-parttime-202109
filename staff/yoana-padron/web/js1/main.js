@@ -4,42 +4,42 @@ var z = y
 
 console.log('DEMO add')
 
-    var add = function (a, b) {
-        return a + b
-    }
+var add = function (a, b) {
+    return a + b
+}
 
-    console.log(add(4, 5))
+console.log(add(4, 5))
 
 console.log('DEMO languages')
 
-    var lang = 'ru'
+var lang = 'ru'
 
-    if (lang === 'en') {
-        console.log('Hello, World!')
-    } else if (lang === 'es') {
-        console.log('Hola, Mundo!')
-    } else if (lang === 'it') {
-        console.log('Ciao, Mondo!')
-    } else if (lang === 'ru') {
-        console.log('Privet, Mir!')
-    }
+if (lang === 'en') {
+    console.log('Hello, World!')
+} else if (lang === 'es') {
+    console.log('Hola, Mundo!')
+} else if (lang === 'it') {
+    console.log('Ciao, Mondo!')
+} else if (lang === 'ru') {
+    console.log('Privet, Mir!')
+}
 
 console.log('DEMO ages')
 
-    var age = 20
+var age = 20
 
-    if (age < 3)
-        console.log('baby')
-    else if (age < 10)
-        console.log('kid')
-    else if (age < 18)
-        console.log('teen')
-    else if (age < 30)
-        console.log('young adult')
-    else if (age < 60)
-        console.log('mature adult')
-    else
-        console.log('old adult')
+if (age < 3)
+    console.log('baby')
+else if (age < 10)
+    console.log('kid')
+else if (age < 18)
+    console.log('teen')
+else if (age < 30)
+    console.log('young adult')
+else if (age < 60)
+    console.log('mature adult')
+else
+    console.log('old adult')
 
 
 console.log('DEMO fruits')
@@ -62,7 +62,7 @@ while (count < fruits.length) {
 
     //count = count + 1
     count++
-   
+
 }
 
 console.log('DEMO spell name')
@@ -81,7 +81,7 @@ var name = 'John Doe'
 //     i++
 // }
 
-for (var i = 0; i < name.length; i++){
+for (var i = 0; i < name.length; i++) {
     var char = name[i]
     console.log(char)
 }
@@ -89,8 +89,8 @@ for (var i = 0; i < name.length; i++){
 console.log('DEMO spell (funtion)')
 
 //var spell = funtion(){
-function spell(text){
-    for (var i = 0; i < text.length; i++){
+function spell(text) {
+    for (var i = 0; i < text.length; i++) {
         var char = text[i]
         console.log(char)
     }
@@ -104,17 +104,17 @@ spell('abcdefghijk')
 
 console.log('DEMO countSpaces')
 
-function countSpaces(text){
+function countSpaces(text) {
     /*
     iterar en el texto, todos sus caracteres y detectar los espacios y contarlos
     */
 
     var count = 0
 
-    for (var i = 0; i <text.length; i++){
+    for (var i = 0; i < text.length; i++) {
         var char = text[i]
 
-        if (char=== ' ') {
+        if (char === ' ') {
             count++ //count = count + 1
         }
     }
@@ -133,43 +133,43 @@ console.log(spaces) //3
 
 
 
-console.log ('DEMO countVocals')
+console.log('DEMO countVocals')
 
-function countVocals(vocals){
+function countVocals(vocals) {
 
     var count = 0
 
-    for (var i = 0; i < vocals.length; i++){
+    for (var i = 0; i < vocals.length; i++) {
         var char = vocals[i]
 
         if (char === 'a') {
             count++
         }
-        else if (char === 'e'){
+        else if (char === 'e') {
             count++
         }
-        else if (char ==='i'){
+        else if (char === 'i') {
             count++
         }
-        else if (char === 'o'){
+        else if (char === 'o') {
             count++
         }
-        else if (char === 'u'){
+        else if (char === 'u') {
             count++
         }
-        else if (char === 'A'){
+        else if (char === 'A') {
             count++
         }
-        else if (char ==='E'){
+        else if (char === 'E') {
             count++
         }
-        else if (char === 'I'){
+        else if (char === 'I') {
             count++
         }
-        else if (char === 'O'){
+        else if (char === 'O') {
             count++
         }
-        else if (char === 'U'){
+        else if (char === 'U') {
             count++
         }
     }
@@ -192,16 +192,16 @@ console.log(vocals) // 15
 
 console.log('DEMO countPositiveNumbers')
 
-function countPositiveNumbers(positives){
+function countPositiveNumbers(positives) {
 
     var count = 0
 
-    for (var i = 0; i <positives.length; i++){
+    for (var i = 0; i < positives.length; i++) {
 
         var number = positives[i]
 
         if (number > 0) {
-            count++ 
+            count++
         }
     }
 
@@ -223,13 +223,13 @@ console.log(positives) // 5
 console.log('DEMO countNegativeNumbers')
 
 function countNegativeNumbers(negatives) {
-    
+
     var count = 0
 
-    for (var i = 0; i < negatives.length; i++){
+    for (var i = 0; i < negatives.length; i++) {
         var numbers = negatives[i]
 
-        if (numbers < 0){
+        if (numbers < 0) {
             count++
         }
     }
@@ -252,16 +252,16 @@ console.log(negatives) // 2
 console.log('DEMO countEvenNumbers')
 
 function countEvenNumbers(evenNumbers) {
-    
+
     var count = 0
 
-    for (var i = 0; i < evenNumbers.length; i++){
+    for (var i = 0; i < evenNumbers.length; i++) {
         var evenNum = evenNumbers[i]
 
-        if(evenNum %2 == 0){
+        if (evenNum % 2 == 0) {
             count++
         }
-        else{
+        else {
             //Do nothing
         }
 
@@ -283,16 +283,16 @@ console.log(evens) // 3
 console.log('DEMO countOddNumbers')
 
 function countOddNumbers(oddNumbers) {
-   
+
     var count = 0
 
-    for (var i = 0; i < oddNumbers.length; i++){
+    for (var i = 0; i < oddNumbers.length; i++) {
         var oddNum = oddNumbers[i]
 
-        if (oddNum %2 == 0){
+        if (oddNum % 2 == 0) {
             // Do nothing
         }
-        else{
+        else {
             count++
         }
     }
@@ -313,27 +313,26 @@ console.log(odds) // 4
 
 console.log('DEMO countNumbers')
 
-    function countNumbers(numbers, what) {
+function countNumbers(numbers, what) {
 
-        if (what == 'positive') {
-            var result =  countPositiveNumbers(numbers)
-        }
-        else if (what == 'negative'){
-            var result = countNegativeNumbers(numbers)
-        }
-        else if (what == 'even'){
-            var result = countEvenNumbers(numbers)
-        }
-        else if (what == 'odd'){
-            var result = countOddNumbers(numbers)
-        }
-        else {
-            var result = numbers.length
-        }
-        
-        return result
+    if (what == 'positive') {
+        var result = countPositiveNumbers(numbers)
     }
-    
+    else if (what == 'negative') {
+        var result = countNegativeNumbers(numbers)
+    }
+    else if (what == 'even') {
+        var result = countEvenNumbers(numbers)
+    }
+    else if (what == 'odd') {
+        var result = countOddNumbers(numbers)
+    }
+    else {
+        var result = numbers.length
+    }
+    return result
+}
+
 
 var positives = countNumbers([-101, 2, 13, -20, 0, 21, -35, 80], 'positive')
 console.log(positives) // 4
