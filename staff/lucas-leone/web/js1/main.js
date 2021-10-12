@@ -183,9 +183,9 @@ console.log('DEMO countPositiveNumbers')
 
 
 function countPositiveNumbers(numbers) {
-    var count=0
-    for (var i =0;i<numbers.length;i++) {
-        var num =numbers[i]
+    var count = 0
+    for (var i = 0; i < numbers.length; i++) {
+        var num = numbers[i]
         if (num > 0) {
             count++
         }
@@ -203,10 +203,10 @@ console.log(vocals) // 15
 
 console.log('DEMO countNegativeNumbers')
 
-function countNegativeNumbers(numbers){
-    var count=0
-    for (var i =0;i<numbers.length;i++) {
-        var num =numbers[i]
+function countNegativeNumbers(numbers) {
+    var count = 0
+    for (var i = 0; i < numbers.length; i++) {
+        var num = numbers[i]
         if (num < 0) {
             count++
         }
@@ -230,14 +230,14 @@ function countEvenNumbers(numbers) {
 
     var count = 0
 
-    for (var i=0;i<numbers.length;i++){
-        var num= numbers[i]
-        if (num==0){
+    for (var i = 0; i < numbers.length; i++) {
+        var num = numbers[i]
+        if (num == 0) {
             count++
-        }else if (num%2==0){
+        } else if (num % 2 == 0) {
             count++
         }
-        
+
     }
     return count
 }
@@ -256,16 +256,16 @@ console.log('DEMO countOddNumbers')
 function countOddNumbers(numbers) {
     var count = 0
 
-    for (var i=0;i<numbers.length;i++){
-        var num= numbers[i]
-        if (num%2!=0){
+    for (var i = 0; i < numbers.length; i++) {
+        var num = numbers[i]
+        if (num % 2 != 0) {
             count++
         }
-        
+
     }
     return count
 }
-    
+
 var odds = countOddNumbers([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 console.log(odds) // 5
 
@@ -278,17 +278,17 @@ console.log(odds) // 4
 console.log('DEMO countNumbers')
 
 function countNumbers(numbers, what) {
-    if (what=='positive'){
-      var result =  countPositiveNumbers(numbers)
-    }else if (what=="negative"){
+    if (what == 'positive') {
+        var result = countPositiveNumbers(numbers)
+    } else if (what == "negative") {
         var result = countNegativeNumbers(numbers)
-    }else if (what=="even"){
+    } else if (what == "even") {
         var result = countEvenNumbers(numbers)
     }
-    else if (what=="odd"){
+    else if (what == "odd") {
         var result = countOddNumbers(numbers)
-    }else {
-        var result= numbers.length
+    } else {
+        var result = numbers.length
     }
     return result
 }
