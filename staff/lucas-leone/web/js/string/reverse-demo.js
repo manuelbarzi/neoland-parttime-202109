@@ -9,3 +9,4 @@ console.log(reverted) // 'odnum aloh'
 
 var reverted = reverse('0123456789')
 console.log(reverted) // '9876543210'
+
