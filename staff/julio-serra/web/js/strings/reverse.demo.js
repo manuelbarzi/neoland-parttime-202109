@@ -1,4 +1,4 @@
-console.log('DEMO reverse')
+console.log('DEMO reverse STRING')
 
 // DEMO 1
 

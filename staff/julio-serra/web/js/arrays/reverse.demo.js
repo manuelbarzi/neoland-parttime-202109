@@ -1,11 +1,7 @@
-console.log('DEMO reverse')
+console.log('DEMO reverse Array')
 
 // DEMO 1
 
-var reverted = reverse('hola mundo')
-console.log(reverted) // 'odnum aloh'
-
-// DEMO 2
-
-var reverted = reverse('0123456789')
-console.log(reverted) // '9876543210'
+var array = [1, 2, 3, 4, 5]
+var reverted = reverse(array)
+console.log(reverted) // [5, 4, 3, 2, 1]

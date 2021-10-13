@@ -2,10 +2,12 @@ console.log('DEMO indexOf')
 
 // DEMO 1
 
-var index = indexOf('hola mundo', 'm')
-console.log(index) // 5
+var array = ['ant', 'bison', 'camel', 'duck', 'bison']
+var index = indexOf(array, 'camel')
+console.log(index) // 2
 
 // DEMO 2
 
-var index = indexOf('adios mundo cruel', 'c')
-console.log(index) // 12
+var array = ['adios', 'mundo', 'cruel']
+var index = indexOf('cruel')
+console.log(index) // 2

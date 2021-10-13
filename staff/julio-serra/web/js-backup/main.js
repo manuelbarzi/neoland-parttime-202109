@@ -168,7 +168,7 @@ function countVocals(texto) {
 
     for (var i = 0; i < texto.length; i++) {
 
-        var caracteres = texto[i] // declaramos la varibale para que itere en el texto
+        var caracteres = texto[i] // declaramos la variable para que itere en el texto
 
         if (caracteres === 'a')
             contador++
@@ -203,7 +203,7 @@ function countPositiveNumbers(numeros) {
 
     for (var i = 0; i < numeros.length; i++) {
 
-        var num = numeros[i] // declaramos la variable para guardar la iteracion de numeros
+        var num = numeros[i] // te da la posicion del array, en que posicion está la [i] 
 
         if (num > 0)
             contador++
@@ -385,11 +385,12 @@ console.log(all) // 7
 
 // DEMO REVERSE
 
-const a = ['hola'];
+// DEMO REVERSE
+
+var a = ['hola'];
 
 console.log(a); // [1, 2, 3]
 
 a.reverse();
 
 console.log(a); // [3, 2, 1]
-
