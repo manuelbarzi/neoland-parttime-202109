@@ -1,10 +1,11 @@
-function split(string, separator) {
-    array = []
-    text = ''
-    r = 0
+function split(string, separator) { //'nu deseo feliz', ' '
+     var array = []
+     var text = ''
+     var r = 0
     for (let i = 0; i < string.length; i++) {
         if (string[i] != separator) {
-            text = text + string[i]
+            text = text + string[i] //text=''
+                                    //Array=[nu,deseo, ]
         } else{
             array[r]=text
             text=''

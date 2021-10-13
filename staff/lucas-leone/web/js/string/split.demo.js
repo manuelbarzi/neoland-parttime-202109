@@ -1,5 +1,4 @@
 console.log('DEMO split')
-
-var splot = split('udn nuedvo cadso',"d")
-console.log(splot) 
+var splot = split('un nuevo caso '," ")
+console.log(splot) // [u, n nue, ]
 
