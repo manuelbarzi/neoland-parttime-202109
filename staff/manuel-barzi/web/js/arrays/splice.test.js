@@ -24,6 +24,7 @@ var res = splice(array, 4, 1, 'May')
 
 if (res instanceof Array
     && res.length === 1
+    && res[0] === 'June'
     && array.length === 5
     && array[0] === 'Jan'
     && array[1] === 'Feb'
