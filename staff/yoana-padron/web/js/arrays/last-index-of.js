@@ -1,5 +1,5 @@
 function lastIndexOf(array, element) {
-    debugger
+ 
     var result = 0
 
     for (var i = 0; i < array.length; i++) {
