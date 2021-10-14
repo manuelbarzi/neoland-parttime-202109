@@ -40,6 +40,3 @@ else
     console.log('Dolor terrible')
 
 
-    console.log('Caso 3')
-var array = ['3','hola', 'asco', 'bueno', 'parda'];
-var res = splice(array, 4, 1, 'dolor')
