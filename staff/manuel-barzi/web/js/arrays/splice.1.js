@@ -7,7 +7,17 @@ function splice(array, start, deleteCount, item1) {
         array[start] = item1
 
         return []
-    } else if (deleteCount > 0 && item1) {
+    } else if (deleteCount === 1 && item1) {
+        var removed = []
+
+        for (var i = start; i < start + deleteCount; i++) {
+            removed[removed.length] = array[i]
+
+            array[i] = item1
+        }
+
+        return removed
+    } else if (deleteCount > 1 && item1) {
         var removed = [array[start]]
         
         array[start] = item1
@@ -25,6 +35,7 @@ function splice(array, start, deleteCount, item1) {
         }
         
         array.length = array.length - deleteCount + 1
+
 
         return removed
     }
