@@ -36,7 +36,6 @@ function splice(array, start, deleteCount, item1) {
         
         array.length = array.length - deleteCount + 1
 
-
         return removed
     }
 }

@@ -1,7 +1,7 @@
-function includes(string, search, position) {
+function includes(string, search) {
     var j = 0
 
-    for (var i = position? position : 0; i < string.length; i++) {
+    for (var i = 0; i < string.length; i++) {
         var char = string[i]
         var target = search[j]
 
