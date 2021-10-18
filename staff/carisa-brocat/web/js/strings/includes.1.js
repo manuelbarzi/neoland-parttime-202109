@@ -9,7 +9,7 @@ function includes(string, element) {
 
             if (words === element) {
                 return true
-           }
+            }
         }
 
         else {
