@@ -1,3 +1,32 @@
+// function splice(array, start, deleteCount, item1) {
+//     if (deleteCount === 0 && item1) {
+//         for (var i = array.length; i > start; i--) {
+//             array[i] = array[i - 1]
+//         }
+
+//         array[start] = item1
+
+//         return []
+//     } else if (deleteCount > 0) {
+//         var delIndex = (start + deleteCount)
+
+//         for (var i = array.length; i > start; i--){
+//            // array[i] = array[i - 1]
+
+//             if(delIndex === i){
+//                 i = start
+//                 array[i] = item1
+//             }
+//         }
+//         return [array[delIndex]]
+//     }
+// }
+
+
+
+// FUNCION MANUEL
+
+
 function splice(array, start, deleteCount, item1) {
     if (deleteCount === 0 && item1) {
         for (var i = array.length; i > start; i--) {
@@ -7,17 +36,36 @@ function splice(array, start, deleteCount, item1) {
         array[start] = item1
 
         return []
-    } else if (deleteCount > 0) {
-        var delIndex = (start + deleteCount)
+    } else if (deleteCount === 1 && item1) {
+        var removed = []
 
-        for (var i = array.length; i > start; i--){
-           // array[i] = array[i - 1]
+        for (var i = start; i < start + deleteCount; i++) {
+            removed[removed.length] = array[i]
 
-            if(delIndex === i){
-                i = start
-                array[i] = item1
+            array[i] = item1
+        }
+
+        return removed
+    } else if (deleteCount > 1 && item1) {
+        var removed = [array[start]]
+
+        array[start] = item1
+
+        for (var i = start + deleteCount; i < array.length; i++) {
+            removed[removed.length] = array[i - deleteCount + 1]
+
+            array[i - deleteCount + 1] = array[i]
+        }
+
+        if (removed.length < deleteCount) {
+            for (var i = start + removed.length; i < start + deleteCount; i++) {
+                removed[removed.length] = array[i]
             }
         }
-        return [array[delIndex]]
+
+        array.length = array.length - deleteCount + 1
+
+
+        return removed
     }
-}
+} 
