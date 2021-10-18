@@ -1,6 +1,5 @@
 function reverse(reverted) {
     // TODO
-    
     var reverted = [] // para almacenar los datos
     var count = 0 // que empiece desde 0
 

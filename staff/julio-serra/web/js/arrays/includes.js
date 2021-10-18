@@ -8,11 +8,13 @@ function includes(array, element) {
     // } else {
     //     console.log('es falso') // si words no incluye la palabra el resultado es false o -1
     // }
-        for (var i = 0; i < array.length; i++) {
-            var content = array[i] // declaramos la variable con la que iterara el array
-            if (content === element) {
-                return true
-            } 
+    var result = 0
+    for (var i = 0; i < array.length; i++) {
+        if (element !== array[i]) {
+            result = false
+        } else {
+            return true
         }
-        return false
     }
+    return result
+}

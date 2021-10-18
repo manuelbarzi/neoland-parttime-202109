@@ -9,14 +9,20 @@ function indexOf(array, value) {
     // } else {
     //     console.log('No soy el animal que esperabas')
     // }
-    
-    for (var i = 0; i < array.length; i++)
-        var content = array[i]
-    if (content === value) {
-        result = i
-    } else {
-    }
 
+    var result
+    for (var i = 0; i < array.length; i++) {
+        var content = array[i]
+        if (content === value) {
+            result = i
+        } else {
+            result = 2
+        }
+    }
     return result
+
+
+
+
 
 }

@@ -1,4 +1,4 @@
-console.log('DEMO indexOf')
+console.log('DEMO indexOf Arrays')
 
 // DEMO 1
 
