@@ -1,9 +1,13 @@
 function reverse(array) {
     var reverted = []
-    var r=0
+    var j = 0
+    debugger
     for( var i=array.length - 1; i>=0; i--){
-        reverted[r] = array[i]
-        r++
+        reverted[j] = array[i]
+        j++
     }
     return reverted
 }
+
+
+
