@@ -1,7 +1,10 @@
 function includes(string, search, position) {
-    var j = 0
+    var i = 0, j = 0
 
-    for (var i = position? position : 0; i < string.length; i++) {
+    if (position)    //es para indicar si tenemos un parametro con position iniciar desde ahi, si no desde 0 
+        i = position // en el otro ejemplo se uso un operador ternario
+
+    for (; i < string.length; i++) {
         var char = string[i]
         var target = search[j]
 
@@ -18,5 +21,3 @@ function includes(string, search, position) {
 
     return false
 }
-
-
