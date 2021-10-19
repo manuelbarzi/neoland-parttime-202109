@@ -10,25 +10,36 @@ function slice(array, start, end){
     debugger
     if (start >= 0 && end > 0) {
         for(var i =start; i<end; i++){
-            newArray[newArray.length] = array[i]
+            var element = array[i]
+            newArray[newArray.length] = element
         }
         return newArray
-    }
+    }  
+    else if(start >= 0 && end > array.length){
+        for(var i =start; i<=end; i++){
+            var element = array[i]
+            newArray[newArray.length] = element
+        }
+        return newArray
+    }  
     else if (start >= 0 && end < 0) {
         for (var i = start; i<(array.length + end); i++) {
-            newArray[newArray.length] = array[i]
+            var element = array[i]
+            newArray[newArray.length] = element
         }
         return newArray
     }
     else if (start >= 0 && end === undefined) {
         for (var i = start; i < array.length; i++) {
-            newArray[newArray.length] = array[i]
+            var element = array[i]
+            newArray[newArray.length] = element
         }
         return newArray
     }
     else if (start < 0 && end === undefined) {
         for (var i = (array.length + start); i < array.length; i++) {
-            newArray[newArray.length] = array[i]
+            var element = array[i]
+            newArray[newArray.length] = element
         }
         return newArray
     }
