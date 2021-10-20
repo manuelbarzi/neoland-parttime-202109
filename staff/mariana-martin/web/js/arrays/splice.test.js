@@ -17,6 +17,8 @@ if (res instanceof Array
 else
     console.error('❌ 🤡')
 
+    
+
     console.log('case 2')
 
 var array = ['Jan', 'Feb', 'March', 'April', 'June']
