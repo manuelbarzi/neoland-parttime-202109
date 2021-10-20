@@ -9,7 +9,7 @@ console.log(result) // true
 // DEMO 2
 
 var string = 'adios mundo cruel'
-var result = includes(string, 'hola')
+var result = includes(string, 'mundo')
 console.log(result) // false
 
 // DEMO 3

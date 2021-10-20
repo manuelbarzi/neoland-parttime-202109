@@ -4,7 +4,7 @@ console.log('case 1')
 
 var array = [1, 2, 3, 4, 5]
 
-var sliced = slice(array,1,-1)
+var sliced = slice(array,7,3)
 debugger
 if (sliced instanceof Array
     && sliced.length === 3

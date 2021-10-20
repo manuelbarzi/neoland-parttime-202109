@@ -1,5 +1,5 @@
 function includes(string, element) {
-
+debugger
     var result=false
     for (let i = 0; i < string.length; i++) {
         if (element[0] == string[i]) {
