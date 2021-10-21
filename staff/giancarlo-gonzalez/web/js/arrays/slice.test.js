@@ -64,7 +64,7 @@ if (res instanceof Array
         console.log ('test ok')
 else
     console.error('test ko')
-
+console.log(res)
 
 //CASO 4
 console.log('Caso 4')
@@ -86,7 +86,7 @@ else
 
 
 //CASO 5
-console.log('Caso 5')
+console.log('Case 5')
 
 var animals = ['ant', 'bison', 'camel', 'duck', 'elephant']
 var res = slice(animals, -2)
@@ -101,10 +101,12 @@ if (res instanceof Array
     && animals [2] === 'camel'
     && animals [3] === 'duck'
     && animals [4] === 'elephant')
+    
         console.log ('test ok')
 else
     console.error('test ko')
 console.log(res)
+
 
 //CASO 6
 console.log('Caso 6')
@@ -128,7 +130,7 @@ if (res instanceof Array
         console.log ('test ok')
 else
     console.error('test ko')
-
+console.log(res)
 
 //CASO 7
 console.log('Caso 7')
@@ -149,7 +151,7 @@ if (res instanceof Array
         console.log ('test ok')
 else
     console.error('test ko')
-
+console.log(res)
 
 
 
@@ -170,3 +172,5 @@ if (res instanceof Array
         console.log ('test ok')
 else
     console.error('test ko')
+
+    console.log(res)

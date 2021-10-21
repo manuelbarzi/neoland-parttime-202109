@@ -24,14 +24,6 @@ function slice(array, start, end) {
             }
         }
     }
-    else if (end < 0 && start > 0) {
-        for (var i = start; i < array.length + end; i++) {
-            var element = array[i]
-            if (element != undefined) {
-                result[result.length] = element
-            }
-        }
-    }
         else {
         var result = []
         return result
