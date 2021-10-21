@@ -10,7 +10,7 @@
 function slice(array, start, end){
     var newArray = []
 
-    debugger
+  
     if (start >= 0 && end > 0) {
         for(var i =start; i<end; i++){
             var element = array[i]
@@ -40,6 +40,7 @@ function slice(array, start, end){
         return newArray
     }
     else if (start < 0 && end === undefined) {
+
         for (var i = (array.length + start); i < array.length; i++) {
             var element = array[i]
             newArray[newArray.length] = element
