@@ -1,6 +1,7 @@
 console.log ('Test fill')
 
 console.log ("Case 1")
+
 var elements = [1, 2, 3, 4]
 var res = fill(elements, 4)
 if (res instanceof Array
@@ -19,6 +20,8 @@ if (res instanceof Array
 else
     console.error('Dolor Terrible')
 console.log(res)
+
+
 
 console.log ("Case 2")
 
@@ -40,6 +43,7 @@ if (res instanceof Array
 else
     console.error('Dolor Terrible')
 console.log(res)
+
 
 console.log ("Case 3")
 
