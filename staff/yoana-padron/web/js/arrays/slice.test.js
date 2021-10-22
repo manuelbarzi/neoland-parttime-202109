@@ -40,7 +40,7 @@ if (res instanceof Array
     && animals [4] === 'elephant')
         console.log ('test ok')
 else
-    console.log('test ko')
+    console.error('test ko')
 
     
 //CASO 3

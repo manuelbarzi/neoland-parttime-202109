@@ -35,3 +35,8 @@ console.log(array1) // ['camel', 'duck']
 var array = ['ant', 'bison', 'camel', 'duck', 'elephant']
 var array1 = slice(array, -100)
 console.log(array1) // ['ant', 'bison', 'camel', 'duck', 'elephant']
+
+//DEMO 7
+var array = ['ant', 'bison', 'camel', 'duck', 'elephant']
+var array1 = slice(array, 2, 0)
+console.log(array1) // []
