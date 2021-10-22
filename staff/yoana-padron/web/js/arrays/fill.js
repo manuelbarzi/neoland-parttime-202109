@@ -35,7 +35,7 @@
 // }
 
 
-//CASO 1 + CASO 2 + CASO 3 + CASO 4
+//CASO 1 + CASO 2 + CASO 3 + CASO 4 + CASO 5 + CASO 6
 
 function fill(array, value, start, end) {
     var filled = []
@@ -45,14 +45,23 @@ function fill(array, value, start, end) {
             if (i < start || i > end) {
                 filled[i] = array[i]
             }
-            else if(start<0){
-                //aqui caso 6
-            }
+
             else {
                 filled[i] = value
             }
         }
-        else{
+
+        else if (start < 0) {
+            for (i = 0; i < array.length; i++) {
+                if (i < array.length + start) {
+                    filled[i] = array[i]
+                }
+                else {
+                    filled[i] = value
+                }
+            }
+        }
+        else {
             filled[i] = value
         }
 
