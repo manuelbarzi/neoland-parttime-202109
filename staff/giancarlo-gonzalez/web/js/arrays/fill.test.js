@@ -41,13 +41,13 @@ console.log(res)
 
 console.log ("Case 3")
 var elements = [1, 2, 3, 4]
-var res = fill(elements, 0, 2, 4)
+var res = fill(elements, 0, 1, 2)
 if (res instanceof Array
     && res.length === 4
     && res [0] === 1
-    && res [1] === 2
+    && res [1] === 0
     && res [2] === 0
-    && res [3] === 0
+    && res [3] === 4
     && elements.length === 4
     && elements [0] === 1
     && elements [1] === 2
