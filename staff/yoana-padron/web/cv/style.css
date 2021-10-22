@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100;1,300;1,400;1,500;1,600&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;  
+}
+
+body{
+    background: linear-gradient(130deg, #f9a5a8, transparent);
+}
+
+/* HEADER*/
+
+header{
+    background: white;
+}
+.main-menu{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}
+
+.menu-navegación{
+    padding: 30px 50px;
+    overflow: hidden;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.main-menu a{
+    text-decoration: none;
+    color: black;
+    padding: 0 20px;
+}
+
+.main-menu a:hover{
+    color: #ee565b;
+}
+
+
+/* DATOS PERSONALES INICIO */
+.datos-personales-inicio {
+    padding: 150px 100px 0 100px;
+}
+
+marquee{
+    padding-top: 30px;
+    font-size: 40px;
+    color: #ee565b;
+    font-weight: 500;
+}
+
+
+.titulo-1{
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 40px;
+    color: #333c4e;
+    font-weight: 200;
+}
+
+.nombre-cv{
+    font-weight: 600;
+}
+
+img{
+    box-shadow: 5px 5px 6px #505050;
+    transform: rotate(-8deg);
+    margin-bottom: 20px;
+    animation: movimiento 5s infinite;
+}
+
+@keyframes movimiento {
+    from{
+        left: 400px;
+    }
+    to{
+        left: 300px;
+    }
+}
+
+.titulo-2{
+    color: #ee565b;
+}
+
+.columnas-2{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+.bloque-datos, .imagen{
+    padding: 20px;
+}
+
+/* FIN SECCION DATOS PERSONALES*/
+
+/* ESTILOS TABLAS */
+
+.datos-personales{
+    padding-bottom: 10px;
+}
+
+th{
+    color:#881d21;
+    text-align: left;
+    font-weight: 300;
+    padding-right: 20px;
+    padding-bottom: 5px;
+}
+
+
+
+/* FIN ESTILOS TABLAS */
+
+/* EXPERIENCIA LABORAL */
+
+.experiencia-laboral{
+    padding: 60px 100px 10px 100px;
+    background: rgba(255, 255, 255, 0.646);
+}
+
+li{
+    list-style: none;
+    padding-left: 20px;
+    font-weight: 300;
+    line-height: 1.4;
+    color: #666;
+}
+
+li time{
+    font-weight: 600;
+    color: #881d21;
+}
+
+mark{
+    background: none;
+    text-decoration: underline;
+    color: black;
+}
+
+ul{
+    padding-bottom: 30px;
+}
+
+.titulo-2.experiencia{
+    padding-bottom: 20px;
+}
+
+/* FIN EXPERIENCIA LABORAL */
+
+/* FORMACIÓN ACADÉMICA*/
+
+.formacion-academica{
+    padding: 50px 100px;
+    background: #333c4e;
+    color: white;
+}
+
+.formacion-academica p{
+    color: white;
+    font-weight: 100;
+    line-height: 1.4;
+    padding-bottom: 20px;
+}
+
+.formacion-academica h2{
+    padding-bottom: 20px;
+}
+
+.formacion-academica .titulos-4{
+    color: #ee565b;
+}
+
+/* FIN FORMACIÓN ACADÉMICA*/
+
+/* VIDEO*/
+
+.video{
+        padding: 60px 100px;
+        background: rgba(255, 255, 255, 0.646);
+}
+
+.video .titulo-2{
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.iframe-video{
+   display: flex;
+   justify-content: center;
+}
+
+/*FIN VIDEO*/
+
+/*FORMULARIO*/
+
+.formulario{
+    padding: 60px 100px;
+    background: #333c4e;
+    color: white;
+}
+
+.formulario-flex{
+    display: flex;
+    justify-content: center;
+}
+
+.formulario .titulo-2{
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+label{
+    font-size: 20px;
+    padding-bottom: 5px;
+    display: inline-block;
+    padding-left: 30px;
+}
+
+input#name, input#phone {
+    border: none;
+    margin-left: 10px;
+    padding: 15px 10px;
+    border-radius: 10px;
+}
+
+.formulario p.titulo-2{
+    font-size: 20px;
+    color: white;
+    padding-top: 30px;
+    padding-left: 30px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.label-no-padding{
+    padding-left: 0;
+}
+
+
+.btn-submit{
+    border: none;
+    padding: 20px 25px;
+    font-size: 18px;
+    background: #ee565b;
+    color: white;
+    border-radius: 100px;
+    display: block;
+    margin: 0 auto;
+}
+
+.btn-submit:hover{
+    background: #881d21;
+    transition: 1s;
+}
+
