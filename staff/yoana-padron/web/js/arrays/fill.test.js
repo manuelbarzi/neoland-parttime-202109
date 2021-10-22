@@ -10,12 +10,7 @@ if (res instanceof Array
     && res [1] === 4
     && res [2] === 4
     && res [3] === 4
-    && elements.length === 4
-    && elements [0] === 1
-    && elements [1] === 2
-    && elements [2] === 3
-    && elements [3] === 4
-    )
+    && res === elements)
     console.log('TEST OK')
 else
     console.error('Dolor Terrible')
@@ -33,12 +28,7 @@ if (res instanceof Array
     && res [1] === 5
     && res [2] === 5
     && res [3] === 5
-    && elements.length === 4
-    && elements [0] === 1
-    && elements [1] === 2
-    && elements [2] === 3
-    && elements [3] === 4
-    )
+    && res === elements)
     console.log('TEST OK')
 else
     console.error('Dolor Terrible')
@@ -55,12 +45,7 @@ if (res instanceof Array
     && res [1] === 2
     && res [2] === 0
     && res [3] === 0
-    && elements.length === 4
-    && elements [0] === 1
-    && elements [1] === 2
-    && elements [2] === 3
-    && elements [3] === 4
-    )
+    && res === elements)
     console.log('TEST OK')
 else
     console.error('Dolor Terrible')
@@ -75,14 +60,9 @@ if (res instanceof Array
     && res.length === 4
     && res [0] === 1
     && res [1] === 0
-    && res [2] === 0
+    && res [2] === 3
     && res [3] === 4
-    && elements.length === 4
-    && elements [0] === 1
-    && elements [1] === 2
-    && elements [2] === 3
-    && elements [3] === 4
-    )
+    && res === elements)
     console.log('TEST OK')
 else
     console.error('Dolor Terrible')
@@ -99,12 +79,7 @@ if (res instanceof Array
     && res [1] === 2
     && res [2] === 3
     && res [3] === 4
-    && elements.length === 4
-    && elements [0] === 1
-    && elements [1] === 2
-    && elements [2] === 3
-    && elements [3] === 4
-    )
+    && res === elements)
     console.log('TEST OK')
 else
     console.error('Dolor Terrible')
@@ -121,6 +96,41 @@ if (res instanceof Array
     && res [1] === 2
     && res [2] === 0
     && res [3] === 0
+    && res === elements)
+    console.log('TEST OK')
+else
+    console.error('Dolor Terrible')
+console.log(res)
+
+
+console.log ("Case 7")
+
+var elements = [1, 2, 3, 4]
+var res = fill(elements, 2, 'perro', 'gato')
+if (res instanceof Array
+    && res.length === 4
+    && res [0] === 1
+    && res [1] === 2
+    && res [2] === 3
+    && res [3] === 4
+    && res === elements)
+    console.log('TEST OK')
+else
+    console.error('Dolor Terrible')
+console.log(res)
+
+
+
+console.log ("Case 8")
+
+var elements = [1, 2, 3, 4]
+var res = fill(elements, 2, 'perro', 5)
+if (res instanceof Array
+    && res.length === 4
+    && res [0] === 2
+    && res [1] === 2
+    && res [2] === 2
+    && res [3] === 2
     && elements.length === 4
     && elements [0] === 1
     && elements [1] === 2
@@ -132,6 +142,27 @@ else
     console.error('Dolor Terrible')
 console.log(res)
 
+
+console.log ("Case 9")
+
+var elements = [1, 2, 3, 4]
+var res = fill(elements, 2, 3, 'gato')
+if (res instanceof Array
+    && res.length === 4
+    && res [0] === 1
+    && res [1] === 2
+    && res [2] === 3
+    && res [3] === 4
+    && elements.length === 4
+    && elements [0] === 1
+    && elements [1] === 2
+    && elements [2] === 3
+    && elements [3] === 4
+    )
+    console.log('TEST OK')
+else
+    console.error('Dolor Terrible')
+console.log(res)
 
 
 
