@@ -7,5 +7,8 @@ function indexOf(array, element) {
             index = i
         }
     }
+    if (index == 0){
+        index = -1
+    }
     return index
 }

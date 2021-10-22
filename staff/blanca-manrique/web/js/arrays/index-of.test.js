@@ -12,13 +12,24 @@ if (typeof index === 'number'
 else
     console.error('❌ 🤡')
 
-console.log('case 2')
+// console.log('case 2')
+
+// var array = ['adios', 'mundo', 'cruel']
+// var index = indexOf(array, 'cruel')
+
+// if (typeof index === 'number'
+//     && index === 2)
+//     console.log('✅ 😉')
+// else
+//     console.error('❌ 🤡')
+
+console.log('case 3')
 
 var array = ['adios', 'mundo', 'cruel']
-var index = indexOf(array, 'cruel')
+var index = indexOf(array, 'agua')
 
 if (typeof index === 'number'
-    && index === 2)
+    && index === -1)
     console.log('✅ 😉')
 else
     console.error('❌ 🤡')
