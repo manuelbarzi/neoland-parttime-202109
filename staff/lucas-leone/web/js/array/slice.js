@@ -1,4 +1,4 @@
-function slice(array, inicio, fin) {
+function slice(array, inicio, fin) {//[0,1,2,3,4]
   debugger
     var newArray = []
 
