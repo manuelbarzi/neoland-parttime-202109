@@ -1,21 +1,17 @@
-function includes(string, element) {
-    var words = ''
+function includes(string, search) {
+    var j = 0
 
     for (var i = 0; i < string.length; i++) {
         var elementString = string[i]
+        var elementSearch = search[j]
 
-        if (elementString !== ' ') {
-            words = words + elementString
-
-            if (words === element) {
+        if (elementString === elementSearch) {
+            j++
+            
+            if (j === search.length) {
                 return true
-           }
+            }
         }
-
-        else {
-            words = ''
-        }
-
     }
     return false
 }
