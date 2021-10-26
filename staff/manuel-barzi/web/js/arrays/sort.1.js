@@ -1,13 +1,13 @@
 //var count = 0
 
-function sort(array, callback) {
+function sort(array) {
     for (var i = 0; i < array.length - 1; i++) {
         var min = array[i], k = i
 
         for (var j = i + 1; j < array.length; j++) {
             var current = array[j]
 
-            if (callback? callback(current, min) < 0 : current + '' < min + '') {
+            if (current + '' < min + '') {
                 k = j
 
                 min = current

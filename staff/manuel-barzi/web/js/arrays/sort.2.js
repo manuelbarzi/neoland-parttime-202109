@@ -7,10 +7,18 @@ function sort(array, callback) {
         for (var j = i + 1; j < array.length; j++) {
             var current = array[j]
 
-            if (callback? callback(current, min) < 0 : current + '' < min + '') {
-                k = j
+            if (!callback) {
+                if (current + '' < min + '') {
+                    k = j
 
-                min = current
+                    min = current
+                }
+            } else {
+                if (callback(current, min) < 0) {
+                    k = j
+
+                    min = current
+                }
             }
 
             // count++
