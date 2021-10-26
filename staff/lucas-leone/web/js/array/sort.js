@@ -1,20 +1,29 @@
-function sort(array) {
-    newArray = []
-    debugger
+
+function sort(array, criterio) {
+  for (var j = 0; j < array.length; j++) {
     for (var i = 0; i < array.length; i++) {
-        if (newArray.length === 0) {
-            newArray[newArray.length] = array[i]
-        } else {
-            for (var j = newArray.length; j >= 0; j--)
-                if (newArray[j-1] < array[i]) {
-                    newArray[j] = array[i]
-                } else if (newArray[j-1] > array[i])
-                { newArray[j] = newArray[j-1]
-                newArray[j-1]=array[i] }
+      var elementBase = array[i];
+      var elementCompare = array[i + 1];
+
+      criterio = criterio ? criterio : 1;
+      if (criterio > 0) {
+        if (elementCompare + '' < elementBase + '') {
+          array[i] = elementCompare;
+          array[i + 1] = elementBase;
         }
+      } else if (criterio < 0) {
+        if (elementCompare + '' > elementBase + '') {
+          array[i] = elementCompare;
+          array[i + 1] = elementBase;
+        }
+      }
+
     }
-    array=newArray
-    return array
+  }
+
+
+  return array;
+}
 }
 
 
