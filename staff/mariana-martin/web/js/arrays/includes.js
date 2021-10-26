@@ -2,8 +2,9 @@ function includes(array, element) {
     // TODO
     
     for (var i = 0; i < array.length; i++){
+    var current = array[i]
 
-        if (array[i] === element) 
+        if ( current === element ) 
            return true
     }
     return false  

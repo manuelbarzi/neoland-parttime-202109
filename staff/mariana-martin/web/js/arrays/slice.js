@@ -14,23 +14,25 @@ function slice(array, start, end) {
     // estos dos ternarios de arriba se pueden juntar en un solo:
     // en este caso se tendría que agregar otro ternario y acomodar el código de manera legible:
 
-    start = start < 0 ?  // si esto es true es igual a lo de los parentesis
-        (array.length + start < 0 ?
-            0
-            : array.length + start)
-        :
-        start
+   if (start < 0){
+       start = array.length + start
 
-
-    end = end === undefined ?
-        array.length
-        :
-        (end > array.length ?
-            array.length
-            :
-            (end < 0 ? 
-                array.length + end
-                : end))
+       if(start < 0){
+           start = 0
+       }
+   } else if (start > array.length ){
+       start = array.length
+   }
+   
+   if (end || !isNaN(end)){
+       if (end < 0){
+           end = array.length + end
+       } else if (end > array.length){
+           end = array.length
+       }
+   } else {
+       end = array.length
+   }
 
 
     for (var i = start; i < end; i++) { //var i que empeice con start, i tiene que ser menor para iterar hasta el final, comparamos i con el end
