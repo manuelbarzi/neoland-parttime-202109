@@ -1,11 +1,11 @@
 function fill(array, value, start, end) {
     // TODO
-    if (typeof start === 'string' || typeof end === 'string') {
-        array[i] = array[i]
+    if (typeof start === 'string' && typeof end === 'string' || typeof end === 'string') {
+        return array
     }
 
-    else {
 
+    else {
     
     for (var i = 0; i < array.length; i++) {
 
@@ -32,10 +32,8 @@ function fill(array, value, start, end) {
             array[i] = value
         }
         
-        
     }
     return array
 }   
-    
-    return array
+
 }

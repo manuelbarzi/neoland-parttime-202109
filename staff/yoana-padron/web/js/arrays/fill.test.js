@@ -148,7 +148,7 @@ if (res instanceof Array
     && res [1] === 2
     && res [2] === 3
     && res [3] === 4
-    && elements.length === 4
+    && res === elements
     )
     console.log('TEST OK')
 else
