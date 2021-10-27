@@ -59,3 +59,38 @@ if (res.length === nums.length
     console.log('test ok')
 else
     console.error('test ko')
+
+console.log('case 3')
+
+var nums = [1, 2, 3]
+var indexes = []
+var arrays = []
+var elements = []
+
+forEach(nums, function (element, index, array) {
+    elements[elements.length] = element
+    indexes[indexes.length] = index
+    arrays[arrays.length] = array
+})
+
+if (elements instanceof Array
+    && elements.length === nums.length
+    && elements[0] === nums[0]
+    && elements[1] === nums[1]
+    && elements[2] === nums[2]
+    && indexes.length === nums.length
+    && indexes[0] === 0
+    && indexes[1] === 1
+    && indexes[2] === 2
+    && arrays.length === nums.length
+    && arrays[0] === nums
+    && arrays[1] === nums
+    && arrays[2] === nums
+    && nums.length === 3
+    && nums[0] === 1
+    && nums[1] === 2
+    && nums[2] === 3)
+    console.log('test ok')
+else
+    console.error('test ko')
+
