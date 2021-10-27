@@ -25,7 +25,12 @@ function fill(array, value, start, end) {
             start = 0
         }
         else if(start < 0){
-            start = array.length + start
+            if(array.length +start <0){
+                start = 0
+            }else{
+                start = array.length + start
+            }
+
         }
     }else{
         start = 0

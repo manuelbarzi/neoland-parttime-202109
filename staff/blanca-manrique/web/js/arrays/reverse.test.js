@@ -34,18 +34,18 @@ else
 
 console.log('case 3')
 
-var array = ['a', 1, true, null, undefined, {name:'Peter'}, [1, 2, 3]]
+var noEmpty =[1,2,3]
+var array = ['a', 1, true, null, undefined, noEmpty]
 var reverted = reverse(array)
 
 if (reverted instanceof Array
-    && reverted.length === 7
-    && reverted[0] === [1,2,3]
-    && reverted[1] === {name:'Peter'}
-    && reverted[2] === undefined
-    && reverted[3] === null
-    && reverted[4] === true
-    && reverted[5] === 1
-    && reverted[6] === 'a')
+    && reverted.length === 6
+    && reverted[0] === noEmpty
+    && reverted[1] === undefined
+    && reverted[2] === null
+    && reverted[3] === true
+    && reverted[4] === 1
+    && reverted[5] === 'a')
     console.log('✅ 😉')
 else
     console.error('❌ 🤡')

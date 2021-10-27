@@ -80,6 +80,27 @@ if (res instanceof Array
 else
     console.error('❌ 🤡')
 
+
+//     console.log("Case 8")
+
+// var array1 = [1, 2, 3, 4]
+// var res = fill(array1, 4, -10, 2)
+
+// if (res instanceof Array
+//     && res.length === 4
+//     && res[0] === 1
+//     && res[1] === 4
+//     && res[2] === 3
+//     && res[3] === 4
+//     && array1.length === 4
+//     && array1[0] === 1
+//     && array1[1] === 4
+//     && array1[2] === 3
+//     && array1[3] === 4)
+//     console.log('✅ 😉')
+// else
+//     console.error('❌ 🤡')
+
 console.log("Case 5")
 
 var array1 = [1, 2, 3]

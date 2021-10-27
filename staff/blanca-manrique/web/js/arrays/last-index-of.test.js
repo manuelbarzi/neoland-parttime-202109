@@ -33,3 +33,36 @@ if (typeof index === 'number'
     console.log('✅ 😉')
 else
     console.error('❌ 🤡')
+
+console.log('case 4')
+
+var array = [2, 6, 2, 5, 6, 1, 2, 5]
+var index = lastIndexOf(array, 2, -1)
+
+if (typeof index === 'number'
+    && index === 6)
+    console.log('✅ 😉')
+else
+    console.error('❌ 🤡')
+
+console.log('case 5')
+
+var array = [2, 6, 2, 5, 6, 1, 2, 5]
+var index = lastIndexOf(array, 2, -3)
+
+if (typeof index === 'number'
+    && index === 2)
+    console.log('✅ 😉')
+else
+    console.error('❌ 🤡')
+
+console.log('case 6') //Este caso ya está incluido porque si index es mayor o igual que la longitud del array, nos sacará por pantalla el último elemento dentro del array que coincida con element. 
+
+var array = [2, 6, 2, 5, 6, 1, 2, 5]
+var index = lastIndexOf(array, 2, 11)
+
+if (typeof index === 'number'
+    && index === 6)
+    console.log('✅ 😉')
+else
+    console.error('❌ 🤡')
