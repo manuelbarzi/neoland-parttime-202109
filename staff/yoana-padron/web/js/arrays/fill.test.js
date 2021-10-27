@@ -131,12 +131,7 @@ if (res instanceof Array
     && res [1] === 2
     && res [2] === 2
     && res [3] === 2
-    && elements.length === 4
-    && elements [0] === 1
-    && elements [1] === 2
-    && elements [2] === 3
-    && elements [3] === 4
-    )
+    && res === elements)
     console.log('TEST OK')
 else
     console.error('Dolor Terrible')
@@ -154,10 +149,6 @@ if (res instanceof Array
     && res [2] === 3
     && res [3] === 4
     && elements.length === 4
-    && elements [0] === 1
-    && elements [1] === 2
-    && elements [2] === 3
-    && elements [3] === 4
     )
     console.log('TEST OK')
 else
