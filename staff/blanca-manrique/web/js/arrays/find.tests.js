@@ -1,6 +1,6 @@
-console.log('TEST find')
+describe('TEST find')
 
-console.log('Case 1')
+describe('Case 1')
 //Cuidado a la hora de poner en el test indexes[] y arrays[], en filter() va a entrar a iterar toda la longitud de words. Pero en find(), una vez que encuentra el primer elemento que cumple element > 10 deja de iterar. Por eso en find() indexes.length === 2, arrays.length === 2
 
 var indexes = []
@@ -27,11 +27,11 @@ if (typeof res === 'number'
     && arrays.length === 2
     && arrays[0] === array
     && arrays[1] === array)
-    console.log('test ok')
+    success('test ok')
 else
-    console.error('test ko')
+    fail('test ko')
 
-console.log('Case 2')
+describe('Case 2')
 
 var indexes = []
 var arrays = []
@@ -62,11 +62,11 @@ if (typeof res === 'undefined'
     && arrays[2] === array
     && arrays[3] === array
     && arrays[4] === array)
-    console.log('test ok')
+    success('test ok')
 else
-    console.error('test ko')
+    fail('test ko')
 
-console.log('case 3')
+describe('case 3')
 
 var numbers = [10, -10, 20, -20, 30, -30, 40, -40]
 var indexes = []
@@ -102,6 +102,6 @@ if (typeof res === 'number'
     && arrays[3] === numbers
     && arrays[4] === numbers
     )
-    console.log('test OK')
+    success('test OK')
 else
-    console.error('test KO')
+    fail('test KO')
