@@ -49,3 +49,25 @@ if (res instanceof Array
     success('test ok')
 else
     fail('test ko')
+
+describe('case 3')
+
+var numbers = [10, -10, 20, -20, 30, -30, 40, -40]
+var res = filter(numbers, function (number) {
+    return number > 100
+})
+
+if (res instanceof Array
+    && res.length === 0
+    && numbers.length === 8
+    && numbers[0] === 10
+    && numbers[1] === -10
+    && numbers[2] === 20
+    && numbers[3] === -20
+    && numbers[4] === 30
+    && numbers[5] === -30
+    && numbers[6] === 40
+    && numbers[7] === -40)
+    success('test ok')
+else
+    fail('test ko')
