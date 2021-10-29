@@ -1,9 +1,9 @@
-describe('TEST pop')
+describe('> pop')
 
 describe('case 1')
 
-var plants = ['broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato']
-var res = pop(plants)
+var plants = new Chachay('broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato')
+var res = plants.pop()
 
 if (typeof res === 'string'
     && res === 'tomato'
@@ -18,8 +18,8 @@ else
 
 describe('case 2')
 
-var nums = [1, 2, 3, 4, 5]
-var res = pop(nums)
+var nums = new Chachay(1, 2, 3, 4, 5)
+var res = nums.pop()
 
 if (typeof res === 'number'
     && res === 5

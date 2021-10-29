@@ -1,9 +1,9 @@
-describe('TEST push')
+describe('> push')
 
 describe('case 1')
 
-var animals = ['pigs', 'goats', 'sheep']
-var res = push(animals, 'cows')
+var animals = new Chachay('pigs', 'goats', 'sheep')
+var res = animals.push('cows')
 
 if (typeof res === 'number'
     && res === animals.length
@@ -18,8 +18,8 @@ else
 
 describe('case 2')
 
-var animals = ['pigs', 'goats', 'sheep']
-var res = push(animals, 'cows', 'chickens', 'cats', 'dogs')
+var animals = new Chachay('pigs', 'goats', 'sheep')
+var res = animals.push('cows', 'chickens', 'cats', 'dogs')
 
 if (typeof res === 'number'
     && res === animals.length
