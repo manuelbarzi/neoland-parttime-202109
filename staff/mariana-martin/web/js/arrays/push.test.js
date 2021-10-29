@@ -1,40 +1,38 @@
-console.log('TEST push ARRAY')
+describe('TEST push ARRAY')
 
-console.log('CASE 1')
+describe('case 1')
 
-var array = ['pigs', 'goats', 'sheep']
-var res = push(array, 'cows')
+var animals = ['pigs', 'goats', 'sheep']
+var res = push(animals, 'cows')
 
 if (typeof res === 'number'
     && res === 4
-    && array.length === 4
-    && array[0] === 'pigs'
-    && array[1] === 'goats'
-    && array[2] === 'sheep'
-    && array[3] === 'cows')
-    console.log('test ok :)')
-    else
-        console.error('test ko :(')
-    
+    && animals.length === 4
+    && animals[0] === 'pigs'
+    && animals[1] === 'goats'
+    && animals[2] === 'sheep'
+    && animals[3] === 'cows'
+   )
+    success('test ok')
+else
+    fail('test ko')
 
+    describe('case 2')
 
-        console.log('CASE 2')
-
-
-var array = ['pigs', 'goats', 'sheep']
-var res = push(array, 'cows', 'chickens', 'cats', 'dogs', 'mouses')
+var animals = ['pigs', 'goats', 'sheep']
+var res = push(animals, 'chickens', 'cats', 'dogs')
 
 if (typeof res === 'number'
-    && res === 8
-    && array.length === 8
-    && array[0] === 'pigs'
-    && array[1] === 'goats'
-    && array[2] === 'sheep'
-    && array[3] === 'cows'
-    && array[4] === 'chickens'
-    && array[5] === 'cats'
-    && array[6] === 'dogs'
-    && array[7] === 'mouses')
-    console.log('test ok :)')
+    && res === 6
+    && animals.length === 6
+    && animals[0] === 'pigs'
+    && animals[1] === 'goats'
+    && animals[2] === 'sheep'
+    && animals[3] === 'chickens'
+    && animals[4] === 'cats'
+    && animals[5] === 'dogs'
+   )
+    success('test ok')
 else
-    console.error('test ko :(')
+    fail('test ko')
+

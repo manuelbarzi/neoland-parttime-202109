@@ -1,86 +1,89 @@
-console.log('TEST map ARRAY')
+console.log('TEST map')
 
 console.log('case 1')
 
-var array1 = [1, 4, 9, 16];
-var res = map(array1, function (a) { return a * 2 })
+var cars = ['fiat', 'renault', 'peugeot', 'ford', 'opel', 'rimac']
+var toUpperCase = function (string) {
+    return string.toUpperCase()
+}
+
+var res = map(cars, toUpperCase)
 
 if (res instanceof Array
-    && res.length === array1.length
-    && res.length === 4
-    && res[0] === 2
-    && res[1] === 8
-    && res[2] === 18
-    && res[3] === 32
-    && array1[0] === 1
-    && array1[1] === 4
-    && array1[2] === 9
-    && array1[3] === 16
-)
-    console.log('test ok :)')
+    && res.length === cars.length
+    && res[0] === cars[0].toUpperCase()
+    && res[1] === cars[1].toUpperCase()
+    && res[2] === cars[2].toUpperCase()
+    && res[3] === cars[3].toUpperCase()
+    && res[4] === cars[4].toUpperCase()
+    && res[5] === cars[5].toUpperCase()
+    && cars.length === 6
+    && cars[0] === 'fiat'
+    && cars[1] === 'renault'
+    && cars[2] === 'peugeot'
+    && cars[3] === 'ford'
+    && cars[4] === 'opel'
+    && cars[5] === 'rimac')
+    console.log('test ok')
 else
-    console.error('test ko :(')
+    console.error('test ko')
 
 console.log('case 2')
 
-var array1 = [1, 4, 9, 16];
-var res = map(array1, function (a) { return Math.sqrt(a) })
+var nums = [1, 4, 9, 16]
+
+var multiplyBy2 = function (num) {
+    return num * 2
+}
+
+var res = map(nums, multiplyBy2)
 
 if (res instanceof Array
-    && res.length === array1.length
-    && res.length === 4
-    && res[0] === 1
-    && res[1] === 2
-    && res[2] === 3
-    && res[3] === 4
-    && array1[0] === 1
-    && array1[1] === 4
-    && array1[2] === 9
-    && array1[3] === 16
-)
-    console.log('test ok :)')
+    && res.length === nums.length
+    && res[0] === nums[0] * 2
+    && res[1] === nums[1] * 2
+    && res[2] === nums[2] * 2
+    && res[3] === nums[3] * 2
+    && nums.length === 4
+    && nums[0] === 1
+    && nums[1] === 4
+    && nums[2] === 9
+    && nums[3] === 16)
+    console.log('test ok')
 else
-    console.error('test ko :(')
+    console.error('test ko')
 
 console.log('case 3')
 
-var array1 = [1, 4, 9, 16];
-var res = map(array1, function (a) { return a + ' manzanas' })
+var nums = [1, 2, 3]
+var indexes = []
+var arrays = []
+
+var res = map(nums, function (element, index, array) {
+    indexes[indexes.length] = index
+    arrays[arrays.length] = array
+
+    return element
+})
 
 if (res instanceof Array
-    && res.length === array1.length
-    && res.length === 4
-    && res[0] === '1 manzanas'
-    && res[1] === '4 manzanas'
-    && res[2] === '9 manzanas'
-    && res[3] === '16 manzanas'
-    && array1[0] === 1
-    && array1[1] === 4
-    && array1[2] === 9
-    && array1[3] === 16
-)
-    console.log('test ok :)')
+    && res.length === nums.length
+    && res[0] === nums[0]
+    && res[1] === nums[1]
+    && res[2] === nums[2]
+    && res !== nums
+    && indexes.length === nums.length
+    && indexes[0] === 0
+    && indexes[1] === 1
+    && indexes[2] === 2
+    && arrays.length === nums.length
+    && arrays[0] === nums
+    && arrays[1] === nums
+    && arrays[2] === nums
+    && nums.length === 3
+    && nums[0] === 1
+    && nums[1] === 2
+    && nums[2] === 3)
+    console.log('test ok')
 else
-    console.error('test ko :(')
-
-console.log('case 4')
-
-var array1 = [1, 4, 9, 16];
-var res = map(array1, function (a) { return [a, a * 2] })
-
-if (res instanceof Array
-    && res.length === array1.length
-    && res.length === 4
-    && res[0] === [1, 2]
-    && res[1] === [4, 8]
-    && res[2] === [9, 18]
-    && res[3] === [16, 32]
-    && array1[0] === 1
-    && array1[1] === 4
-    && array1[2] === 9
-    && array1[3] === 16
-)
-    console.log('test ok :)')
-else
-    console.error('test ko :(')
-
+    console.error('test ko')
