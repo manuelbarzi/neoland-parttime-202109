@@ -1,4 +1,4 @@
-console.log('TEST slice')
+console.log('------------------------ TEST slice')
 
 console.log('case 1')
 

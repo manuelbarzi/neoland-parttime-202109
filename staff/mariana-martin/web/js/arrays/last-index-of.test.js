@@ -1,4 +1,4 @@
-console.log('TEST lastIndexOf ARRAY')
+console.log('------------------------ TEST lastIndexOf ARRAY')
 
 console.log('case 1')
 

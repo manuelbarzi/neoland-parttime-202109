@@ -1,4 +1,4 @@
-console.log('TEST splice')
+console.log('------------------------ TEST splice')
 
 console.log('case 1')
 

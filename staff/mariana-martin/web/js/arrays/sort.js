@@ -1,28 +1,31 @@
-function sort(array){
+//var count = 0
 
+function sort(array, callback) {
+    for (var i = 0; i < array.length - 1; i++) {
+        var min = array[i], k = i
 
-    var temp;
-    for (var j = 0; j < array.length; i++){
+        for (var j = i + 1; j < array.length; j++) {
+            var current = array[j]
 
+            if (callback? callback(current, min) < 0 : current + '' < min + '') {
+                k = j
 
-        for ( var i = 0; i < array.length; i++){
-            var a = array[i]
-            var compare = array[i +1] 
-        
+                min = current
+            }
 
-        if (compare < a){
-            temp = array[i]
-            array[i] = array[i +1]
-            array[i +1] = temp
-            
-  
-        } else {
-            array[i] 
-            array[i +1]
-            
-        }}
-        return array
-}
+            // count++
+        }
 
+        if (k !== i) {
+            var temp = array[i]
 
+            array[i] = array[k]
+            array[k] = temp
+        }
+
+    }
+
+    //console.log('count', count)
+
+    return array
 }

@@ -1,4 +1,4 @@
-console.log('TEST fill ARRAY')
+console.log('------------------------ TEST fill ARRAY')
 
 console.log('case 1')
 

@@ -1,4 +1,4 @@
-console.log('TEST includes ARRAY')
+console.log('------------------------ TEST includes ARRAY')
 
 console.log('case 1')
 

@@ -1,4 +1,4 @@
-console.log('TEST map')
+console.log('------------------------ TEST map')
 
 console.log('case 1')
 

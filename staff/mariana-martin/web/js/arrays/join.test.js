@@ -1,4 +1,4 @@
-console.log('TEST join')
+console.log('------------------------ TEST join')
 
 console.log('case 1')
 

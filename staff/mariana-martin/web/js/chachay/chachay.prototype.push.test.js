@@ -1,9 +1,9 @@
-describe('------------------------ TEST push ARRAY')
+describe('>>>> push <<<<')
 
 describe('case 1')
 
 var animals = ['pigs', 'goats', 'sheep']
-var res = push(animals, 'cows')
+var res = animals.push('cows')
 
 if (typeof res === 'number'
     && res === 4
@@ -20,7 +20,7 @@ else
     describe('case 2')
 
 var animals = ['pigs', 'goats', 'sheep']
-var res = push(animals, 'chickens', 'cats', 'dogs')
+var res = animals.push('chickens', 'cats', 'dogs')
 
 if (typeof res === 'number'
     && res === 6
