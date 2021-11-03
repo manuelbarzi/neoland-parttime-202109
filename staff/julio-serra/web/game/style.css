@@ -1,0 +1,24 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-color: black;
+}
+
+.title {
+    color: lightgray;
+}
+
+.cohete {
+    position: absolute;
+    width: 150px;
+    /* background-color: red; */
+}
+
+.asteroide {
+    position: absolute;
+    width: 150px;
+    /* background-color: yellow; */
+}

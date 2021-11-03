@@ -4,6 +4,32 @@ function includes(phrase, search, position) {
 
     // for (var i = 0; i < phrase.length; i++) {
 
+    // Queremos ir indice por indice del array para saber si la phrase está en ese array
+
+    for (var i = 0; i < phrase.length; i++)
+
+    var char = phrase[i] // cada indice de la phrase que se guarde en la variable
+    var element = search[c] // cada indice del search que buscamos que se guarde en la variable
+    // como no puede ser el propio indice, creamos antes la variable c para que vaya "indice por indice"
+    // de la palabra search
+
+    if (char === element) {
+        c++ // tiene que ir sumando para volver a ir al siguiente caracter
+    }
+    if (c === search.length) {
+        return true
+    }
+    else 
+    c = 0
+
+
+
+
+
+
+
+
+
     for (var i = position? position : 0; i < phrase.length; i++) {
         //variable para guardar cada iteracion de la frase
         var char = phrase[i]
