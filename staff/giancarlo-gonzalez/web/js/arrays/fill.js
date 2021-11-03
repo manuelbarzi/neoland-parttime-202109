@@ -1,28 +1,15 @@
 function fill(array, value, start, end) {
-    var filled = []
-    var isNan
-    if (typeof start !== 'string' && typeof end !== 'string'){
-        filled[i] = array[i]
-    }
-    else{
-    for (var i = 0; i < array.length; i++) {
-    
-     if (start >= 0) {
-            if (i < start || i > end) {
-                filled[i] = array[i]
-            }
-            else if(start<0){
-                //aqui caso 6
-            }
-            else {
-                filled[i] = value
-            }
-        }
-        else{
-            filled[i] = value
-        }
+    if (start < 0)
+        if ((start = array.length + start) < 0)
+            start = 0
+            
+    if (end > array.length)
+        end = array.length
+    else if (end < 0)
+        end = array.length + end
 
-    }
-    return filled
-}
+    for (var i = start; i < end; i++)
+        array[i] = value
+
+    return array
 }
