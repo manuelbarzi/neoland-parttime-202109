@@ -1,0 +1,13 @@
+body{
+    background-color: rgb(210, 241, 179);
+}
+h1{
+    color: rgb(120, 18, 204);
+    font-size: xx-large;
+    font-weight: 900;
+}
+li{color:olive }
+strong{color:orangered
+}
+p{color: darkred;
+font-size: xx-large;}
