@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  --color: lightgray;
+  --back-color: black;
+}
+
+* {
+    font-family: 'Press Start 2P', cursive;
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -7,18 +18,48 @@ body {
     background-color: black;
 }
 
-.title {
-    color: lightgray;
+.field {
+    border: 1px solid var(--color);
+    border-radius: .3rem;
+    margin: .25rem;
+    padding: .5rem;
 }
 
-.spaceship {
-    position: absolute;
-    width: 100px;
-    /* background-color: red; */
+.button {
+    border: 1px solid var(--color);
+    border-radius: .3rem;
+    margin: .25rem;
+    padding: .5rem;
+    cursor: pointer;
 }
 
-.asteroid {
-    position: absolute;
-    width: 100px;
-    /* background-color: yellow; */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color);
+}
+
+.container--vertical {
+    flex-direction: column;
+}
+
+.container--gapped {
+    margin: .25rem;
+}
+
+.panel {
+    border: 1px solid var(--color);
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.off {
+    display: none;
+}
+
+/* custom */
+
+.signin__feedback {
+    color: red;
 }
