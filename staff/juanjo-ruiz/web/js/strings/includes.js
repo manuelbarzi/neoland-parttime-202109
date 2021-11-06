@@ -1,3 +1,3 @@
-function includes(array, element) {
-    // TODO
+function includes(string, element) {
+
 } 
