@@ -1,0 +1,24 @@
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    cursor: pointer;
+    background-image: url(./vinilo.png);
+    background-repeat: no-repeat ;
+}
+
+.box--blue {
+    background-color: blue;
+}
+
+.box--yellow {
+    background-color: yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box--big {
+    width: 500px;
+    height: 500px;
+}

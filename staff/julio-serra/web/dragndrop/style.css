@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10rem;
+}
+.mixer{
+    background-image: url(./mixer.jpg);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    height: 298px;
+    width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: space-evenly;
+}
+
+.decka, .deckb {
+    background-image: url(./vinilo.png);
+    background-repeat: no-repeat ;
+    height: 100px;
+    width: 100px;
+}

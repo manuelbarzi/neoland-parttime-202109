@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
+:root {
+    --color: rgb(162, 162, 162);
+    --back-color: black;
+}
+
+* {
+    font-family: 'DM Sans', sans-serif;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+h2 {
+    color: var(--back-color);
+    font-size: 3rem;
+    text-align: center;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100%;
+}
+
+.main__bg {
+    background-image: url('bg.png');
+}
+
+.field {
+    border: 1px solid var(--color);
+    border-radius: 1rem;
+    margin: .25rem;
+    padding: .5rem;
+    width: 300px;
+}
+
+.field--user {
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABT0lEQVRIieWV3XGDMBCEvxIogRLoIOrAlOAOQgdOJ6YD6AB3EHeAOjAdkAevhkOR5DjJU3IzN8Dqbu9HhwT/QVrgDEzAKp2EHX5C7IDZkOZ0lu1T0hkCr+/GrDfCvLF7/Q5599v2zhi3Bq+BAbhJB2FBWuPnSgF8IpNapHHvb1GQUMmcIw9Z+AgfhfdAJe2FjZkEWxISnOI+LsIrg1WmCiuhij4V4KrFJsJLAdbI1gm7pAKkHGBr0ZmtRWfSLSrxZBdqtiqsLnyuthjgQrpFIcgo0kXvdcKuodCinvzP0nA/d07SQyaR4iaHMbVzXLE/5GKd2G++pzCm1qCT4ztbv0fgTRratcqmMtn7HDnsj4pBz2uUpa0ujLat0pUCwP7weuTgItvjI/IgR+M0c9/Yl4j4xP6++DK5JfHkN9jeF+5Zcist97Gzwbyw7LT8HfkAChCrXjTGWgsAAAAASUVORK5CYII=') right no-repeat;
+}
+
+.field--username {
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAnUlEQVRIid2UwQ2FIBAFpxRLoARKoTPtwBbsRDuQDr4XjBujKyIbf5xkL7C8CRCAr+GBEfgV1pgyTpkehEvJKWtTKZfrXxUEYE4VLARRzM/WgmghCCk4YnREORQLHNCzXXIPNLUETozvy9UQDIpgqCG4+hoeC+7wvkA+pn21oi8ofZMm8OhfdpsR7vVNHnMU2pUE5Uqqh0uJWfh/sgBwvaLtBXrgtgAAAABJRU5ErkJggg==') right no-repeat;
+}
+
+.field--password {
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAiUlEQVRIie2S0QmAMAxE3wiO4CgZyQ3MRrqBbqQb6IctBklRqShIH+Sjae+OpoVC4dcI0AETsABD6D2CBlOvNNdcjFkD1KFsqOQE9Mb8SAwZU+LUtb2qHH1t9r8JwDlwXMcRqaPVsNfnBIjpteyP3Jq+3AnwUNKj0xPtZYRtFDP7z5GnzAuFF1kB9OJODmJz+tcAAAAASUVORK5CYII=') right no-repeat;
+}
+
+.button {
+    border: 1px solid var(--color);
+    border-radius: .3rem;
+    margin: .25rem;
+    padding: .5rem;
+    cursor: pointer;
+}
+
+.panel__paragraph {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color);
+}
+
+.container--vertical {
+    flex-direction: column;
+}
+
+.container--gapped {
+    margin: .25rem;
+}
+
+.off {
+    display: none;
+}
+
+/* custom */
+
+.feedback__inicio {
+    color: red;
+    margin: 2rem 0;
+}

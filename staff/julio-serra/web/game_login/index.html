@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logins</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+
+<section class="main">
+
+<div class="main__bg"></div>
+<div class="main__section">
+    <div class="registro container">
+        <div class="panel">
+            <h2>Únete ahora y mira lo que está pasando</h2>
+            <form class="container container--vertical">
+                
+                <input class="field field--user" type="text" name="name" placeholder="Nombre">              
+                <input class="field field--username" type="text" name="username" placeholder="Username">
+                <input class="field field--password" type="password" name="password" placeholder="Password">
+                <button type="submit" class="button">Regístrate</button class="button">
+            </form>
+
+           <p class="panel__paragraph">¿Ya tienes una cuenta? <button class="registro__inicio button">Inicia sesión</button class="button"></p>
+        </div>
+    </div>
+
+    <div class="panel-registrado container off">
+        <div class="panel">
+            Usuario registrado correctamente, ahora puedes <button class="button">iniciar sesión</button class="button">
+        </div>
+    </div>
+
+    <div class="inicio container off">
+        <div class="panel">
+            <h2>Inicia sesión</h2>
+            <form class="container container--vertical">
+                <input class="field" type="text" name="username" placeholder="username">
+                <input class="field" type="password" name="password" placeholder="password">
+                <button class="button">Iniciar sesión</button class="button">
+            </form>
+
+            <span class="feedback__inicio container container--gapped off">WTF!</span>
+
+            ¿Todavía no tienes una cuenta? <button class="inicio__registro button">Regístrate</button class="button">
+        </div>
+    </div>
+
+    <div class="game container container--vertical off">
+        <span class="game__user">Hello, World!</span>
+        <!-- <img class="asteroid" src="asteroid-423x369.png" alt="">
+            <img class="spaceship" src="spaceship-514x792.png" alt=""> -->
+    </div>
+</div>
+</section>
+
+
+
+    
+
+    <script src="main.js"></script>
+
+
+</body>
+
+</html>
