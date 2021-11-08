@@ -1,0 +1,20 @@
+html, body{
+    height:100%;
+    margin:0;
+}
+body{
+    background-color:rgb(178, 199, 192);
+}
+
+.spaceship{
+    position: absolute;
+    width: 100px;
+    
+    /* display: block; margin: auto; */
+   
+}
+
+.asteroid{
+    position: absolute;
+    width: 100px;
+}

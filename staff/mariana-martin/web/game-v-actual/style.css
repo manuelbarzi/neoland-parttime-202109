@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+
+:root {
+  --color: rgb(255, 255, 255);
+  --back-color: rgb(167, 192, 184);
+}
+
+* {
+    font-family: 'Quicksand', sans-serif;
+}
+html, body{
+    height:100%;
+    margin:0;
+}
+
+h1{
+    color: white;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 3rem;
+    
+
+}
+.field {
+    border: 1px solid var(--color);
+    border-radius: .3rem;
+    margin: .25rem;
+    padding: .5rem;
+}
+
+.button {
+    border: 1px solid var(--color);
+    border-radius: .3rem;
+    margin: .25rem;
+    padding: .5rem;
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color);
+}
+
+.container--vertical {
+    flex-direction: column;
+}
+
+.container--gapped {
+    margin: .25rem;
+}
+
+
+.panel{
+    border: 1px solid var(--color);
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.off{
+    display: none;
+}
+
+
+/*Juego*/
+
+body{
+    background-color:rgb(167, 192, 184);
+    background-color: var(--back-color);
+}
+
+.fruits{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+   
+}
+
+.blender{
+
+ margin-top: 90px;
+ margin-left: 300px;
+}
+
+
+    
+/*Juego*/
+
+body{
+    background-color:rgb(167, 192, 184);
+ 
+}
+
+.fruits{
+    display: flex;
+    justify-content: center;
+}
+
+.blender{
+ display: flex;
+ margin-top: 130px;
+ align-items: center;
+ justify-content: center;
+}
+
+.blender-smoothie{
+    display: flex;
+ margin-top: 130px;
+ align-items: center;
+ justify-content: center;
+}
+    
+
+/* Indivual Fruits */
+
+.pear{
+    cursor: pointer;
+   
+}
+
+.blender > .pear {
+    position: absolute;
+}
+
+
+
+.cherries{
+    cursor: pointer;
+}
+
+.blender > .cherries {
+    position: absolute;
+}
+
+
+
+.coco{
+    cursor: pointer;
+} 
+
+.blender > .coco {
+    position: absolute;
+}
+
+
+
+.pineapple{
+    cursor: pointer;
+}
+
+.blender > .pineapple {
+    position: absolute;
+}
+
+
+
+.orange{
+    cursor: pointer;
+}
+
+.blender > .orange {
+    position: absolute;
+}
+
+
+
+.apple{
+    cursor: pointer;
+}
+
+.blender > .apple {
+    position: absolute;
+}
+
+
+
+.peach{
+    cursor: pointer;
+}
+.blender > .peach {
+    position: absolute;
+}
