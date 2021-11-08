@@ -63,3 +63,19 @@ body {
 .signin__feedback {
     color: red;
 }
+
+.title {
+    color: lightgray;
+}
+
+.spaceship {
+    position: absolute;
+    width: 100px;
+    /* background-color: red; */
+}
+
+.asteroid {
+    position: absolute;
+    width: 100px;
+    /* background-color: yellow; */
+}
