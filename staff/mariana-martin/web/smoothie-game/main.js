@@ -181,9 +181,14 @@ blender.addEventListener('drop', function (event) {
     
 })
 
-document.querySelector('.blender-smoothie')
-blender.addEventListener('click', function(blender){
+ var smoothie = document.querySelector('.blender-smoothie-off')
    
-    blender.target.classList.toggle('.blender-smoothie')
-})
+ blender.addEventListener('click', function(){
+     smoothie.style.display = 'inline'
+     blender.style.display = 'none'
+
+ })
+   
+
+
 }

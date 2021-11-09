@@ -67,28 +67,6 @@ h1{
 
 body{
     background-color:rgb(167, 192, 184);
-    background-color: var(--back-color);
-}
-
-.fruits{
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-   
-}
-
-.blender{
-
- margin-top: 90px;
- margin-left: 300px;
-}
-
-
-    
-/*Juego*/
-
-body{
-    background-color:rgb(167, 192, 184);
  
 }
 
@@ -99,16 +77,18 @@ body{
 
 .blender{
  display: flex;
- margin-top: 130px;
+ margin-top: 90px;
  align-items: center;
  justify-content: center;
+ cursor: pointer;
 }
 
-.blender-smoothie{
-    display: flex;
- margin-top: 130px;
- align-items: center;
- justify-content: center;
+.blender-smoothie-off{    /*con smoothie*/
+    display: none;
+    
+    margin-top: 90px;
+    align-items: center;
+    justify-content: center;
 }
     
 
