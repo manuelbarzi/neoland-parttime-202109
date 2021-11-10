@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="container--vertical">
+   
+
+<header class="container--horizontal">
+    <h1 class="title">Matching colors</h1>
+    <span class="username">Please, sign in</span>
+</header>
+
+    <div class="signin container container--vertical ">
+        <div class="panel">
+            <h2>Sign-in</h2>
+            <form class=" container--vertical">
+                <input class="field" type="text" name="username" placeholder="username">
+                <input class="field" type="password" name="password" placeholder="password">
+                <button class="button">Sign in</button >
+            </form>
+
+            <span class="signin__feedback off error">Ups! Incorrect username or password </span>
+
+            Don’t have an account? <button class="signin_signup-text-link link">Sign up</button >
+        </div>
+    </div>
+
+
+    <div class="signup container container--vertical off">
+        <div class="panel">
+            <h2>Sign-up</h2>
+            <form class=" container--vertical">
+               
+                <input class="field" type="text" name="username" placeholder="username">
+                <input class="field" type="email" name="email" placeholder="email">
+                <input class="field" type="password" name="password" placeholder="password">
+                <button class="button">Sign up</button>
+            </form>
+
+            <p class="signin-text">
+                Already have an account? 
+                <button class="signup_signin-text-link link">Sign in</button>
+            </p>
+            
+        </div>
+    </div>
+
+    <div class="post-signup container container--vertical off">
+        <div class="panel-text">
+            <h2>Welcome</h2>
+            <h3 class="post-signup-username"></h3>
+        </div>
+        <div class="panel">
+            
+             <button class="button button--special">START</button class="button">
+        </div>
+    </div>
+
+    <div class="game container container--vertical off">
+        
+      <div class="game_screen"></div>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="game.js"></script>
+    
+  </body>
+</html>
