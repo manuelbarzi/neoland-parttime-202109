@@ -1,0 +1,1 @@
+//stringify para convertir a string un objeto

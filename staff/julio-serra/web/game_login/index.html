@@ -13,60 +13,60 @@
 <body>
 
 
-<section class="main">
+    <section class="main">
 
-<div class="main__bg"></div>
-<div class="main__section">
-    <div class="registro container">
-        <div class="panel">
-            <h2>Únete ahora y mira lo que está pasando</h2>
-            <form class="container container--vertical">
-                
-                <input class="field field--user" type="text" name="name" placeholder="Nombre">              
-                <input class="field field--username" type="text" name="username" placeholder="Username">
-                <input class="field field--password" type="password" name="password" placeholder="Password">
-                <button type="submit" class="button">Regístrate</button class="button">
-            </form>
+        <div class="main__bg"></div>
+        <div class="main__section">
+            <div class="registro container">
+                <div class="panel">
+                    <h2>Únete ahora y mira lo que está pasando</h2>
+                    <form action="https://b00tc4mp.herokuapp.com/api/v2/users" method="post" class="container container--vertical">
 
-           <p class="panel__paragraph">¿Ya tienes una cuenta? <button class="registro__inicio button">Inicia sesión</button class="button"></p>
-        </div>
-    </div>
+                        <input class="field field--user" type="text" name="name" placeholder="Nombre" required>
+                        <input class="field field--username" type="text" name="username" placeholder="Username" required>
+                        <input class="field field--password" type="password" name="password" placeholder="Password" required>
+                        <button type="submit" class="button">Regístrate</button>
+                    </form>
 
-    <div class="panel-registrado container off">
-        <div class="panel">
-            Usuario registrado correctamente, ahora puedes <button class="button">iniciar sesión</button class="button">
-        </div>
-    </div>
+                    <p class="panel__paragraph">¿Ya tienes una cuenta? <button class="registro__inicio button">Inicia sesión</button></p>
+                </div>
+            </div>
 
-    <div class="inicio container off">
-        <div class="panel">
-            <h2>Inicia sesión</h2>
-            <form class="container container--vertical">
-                <input class="field" type="text" name="username" placeholder="username">
-                <input class="field" type="password" name="password" placeholder="password">
-                <button class="button">Iniciar sesión</button class="button">
-            </form>
+            <div class="panel-registrado container off">
+                <div class="panel">
+                    Usuario registrado correctamente, ahora puedes <button class="button">Iniciar sesión</button>
+                </div>
+            </div>
 
-            <span class="feedback__inicio container container--gapped off">WTF!</span>
+            <div class="inicio container off">
+                <div class="panel">
+                    <h2>Inicia sesión</h2>
+                    <form class="container container--vertical">
+                        <input class="field" type="text" name="username" placeholder="username" required>
+                        <input class="field" type="password" name="password" placeholder="password" required>
+                        <button class="button">Iniciar sesión</button>
+                    </form>
 
-            ¿Todavía no tienes una cuenta? <button class="inicio__registro button">Regístrate</button class="button">
-        </div>
-    </div>
+                    <span class="feedback__inicio container container--gapped off">WTF!</span> ¿Todavía no tienes una cuenta? <button class="inicio__registro button">Regístrate</button>
+                </div>
+            </div>
 
-    <div class="game container container--vertical off">
-        <span class="game__user">Hello, World!</span>
-        <!-- <img class="asteroid" src="asteroid-423x369.png" alt="">
+            <div class="game container container--vertical off">
+                <img class="game__img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAACoUlEQVRoge2awbHiMAyGU8JPB5RAB0sHjw4eHSwdQAfLjZFyCB1AB6ED6AA6IGcrM94DIQmQR0hsJ9lZ/zO65ODosxRZthMEXl5eXl5eXl5e/4EQpl9gFYElBss1sxisIoTp10djRBqu/TQWQpmC1HnEot8ZSJ0RyrRyjI0eg1UEUgszZ1hil7OGUJZ1oK/g8icIMkhKv0GyG7HoEUli5CsonY1YNFgdXUCDZd0Uthzt12fpzMwhUtt8MMvQ98m0ZSC1zcdu6ydYDg+Dsjpio8d2gOu/2QYpvkKkkRc9klUrpyoHZ7n+VDg+huV0bg2W5VqePLDsDRxTl7rC0W5c2dtM51Jan8yK1lNKVxWONoUCLFfrsCwH4xpTLlo1L4ubpLmDyG6NQHNg1pOGLz6D0u+6mbYNbAW2gP75O34fdXVEKEuw/PrHgJtF+e0EsMQg2dlckqwDB0EQgGRlOyqDBAbJ7r5LAalF32CVRpJYAx6RJE8paX05MTWwHKwBu2oQrALbWpKCYMBp/BDhdG4PONIop/UQzdZmpoAecIUGq4tV2AJanfqGqwaWtRvgSGOI0GA9cQKcgxscyTiI7sEpbA690WOQ2vZdzKxW50rQUKa382FZgmQHVsf+YB0VqwfgAS1RxqeTH0MPoBHp7NvNoftsN0kS641GLXCkUXfW5S66jgvVW/COOzCrm4TW0Bs9Bsu67TFQA9hT36wvyuBjF7CDuwIF64mLdXlwsBlo5KZAyX4QsNnF828X6VtEtuVlWGuoUKYIZZnb/TcEy8erlSnsegf0Frqr9ZYk6XWNLQuczp3d9rG6gNRiEN/qs7Jt4cL0IACsLmBZm94xd67bnzeyAsseLIebFQ1I8Uz2IFmB0lnnfbCXl5eXl5eXl1eH+gv6fKXD5coEkwAAAABJRU5ErkJggg=="
+                /> <span class="game__user">Serás redireccionado hacia la aplicación en unos segundos...</span>
+                <!-- <img class="asteroid" src="asteroid-423x369.png" alt="">
             <img class="spaceship" src="spaceship-514x792.png" alt=""> -->
-    </div>
-</div>
-</section>
+            </div>
+        </div>
+    </section>
 
 
 
-    
+
+    <!-- <script src="./logic/register-user.js"></script> -->
+    <script src="./logic/authenticate-user.js"></script>
 
     <script src="main.js"></script>
-
 
 </body>
 

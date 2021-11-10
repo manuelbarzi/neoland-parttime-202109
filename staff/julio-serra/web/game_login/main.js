@@ -1,4 +1,3 @@
-
 var users = [
     { name: 'julio', username: 'julio', password: '123' }
 ]
@@ -11,14 +10,14 @@ var panelRegistrado = document.querySelector('.panel-registrado')
 var gamePanel = document.querySelector('.game')
 
 
-botonRegistroInicio.addEventListener('click', function () {
+botonRegistroInicio.addEventListener('click', function() {
     panelRegistro.classList.add('off') // añade al panel de registro la clase off (lo oculta, display: none)
     panelInicioSesion.classList.remove('off') // elimina la clase display none, por lo que muestra el panel de inicio de sesión
 })
 
 var botonInicioRegistro = panelInicioSesion.querySelector('.inicio__registro')
 
-botonInicioRegistro.addEventListener('click', function(){
+botonInicioRegistro.addEventListener('click', function() {
     panelInicioSesion.classList.add('off')
     panelRegistro.classList.remove('off')
 })
@@ -26,32 +25,32 @@ botonInicioRegistro.addEventListener('click', function(){
 
 var formRegistro = panelRegistro.querySelector('form')
 
-formRegistro.addEventListener('submit', function(event){
+formRegistro.addEventListener('submit', function(event) {
     event.preventDefault() // para que no recargue la pagina
 
-var inputNombre = formRegistro.name
-var inputUsername = formRegistro.username
-var inputPassword = formRegistro.password
+    var inputNombre = formRegistro.name
+    var inputUsername = formRegistro.username
+    var inputPassword = formRegistro.password
 
-var name = inputNombre.value
-var username = inputUsername.value
-var password = inputPassword.value
+    var name = inputNombre.value
+    var username = inputUsername.value
+    var password = inputPassword.value
 
-var user = {}
-user.name = name
-user.username = username
-user.password = password
+    var user = {}
+    user.name = name
+    user.username = username
+    user.password = password
 
-users.push(user)
+    users.push(user)
 
-panelRegistro.classList.add('off')
-panelRegistrado.classList.remove('off')
+    panelRegistro.classList.add('off')
+    panelRegistrado.classList.remove('off')
 
 })
 
- var botonPanelRegistroInicio  = panelRegistrado.querySelector('button')
+var botonPanelRegistroInicio = panelRegistrado.querySelector('button')
 
-botonPanelRegistroInicio.addEventListener('click', function(){
+botonPanelRegistroInicio.addEventListener('click', function() {
     panelRegistrado.classList.add('off')
     panelInicioSesion.classList.remove('off')
 })
@@ -59,7 +58,7 @@ botonPanelRegistroInicio.addEventListener('click', function(){
 
 var formInicioSesion = panelInicioSesion.querySelector('form')
 
-formInicioSesion.addEventListener('submit', function(event){
+formInicioSesion.addEventListener('submit', function(event) {
     event.preventDefault()
 
     var inputUsername = formInicioSesion.username
@@ -68,7 +67,7 @@ formInicioSesion.addEventListener('submit', function(event){
     var username = inputUsername.value
     var password = inputPassword.value
 
-    var user = users.find(function (user) {
+    var user = users.find(function(user) {
         return user.username === username && user.password === password
     })
 
@@ -78,18 +77,22 @@ formInicioSesion.addEventListener('submit', function(event){
         feedbackInicioSesion.classList.remove('off')
 
     } else {
-        var gameUser = gamePanel.querySelector('.game__user')
 
-        gameUser.innerText =  'Hello, ' + user.name + '!' 
+
+        // var gameUser = gamePanel.querySelector('.game__user')
+
+        window.setTimeout(function() { // funcion setTimeout para añadir unos segs antes de mostrarse la URL
+
+            window.location.href = 'https://twitter.com'
+
+        }, 3000000);
+
+
+
+        // gameUser.innerText = 'Hello, ' + user.name + '!'
 
         panelInicioSesion.classList.add('off')
         gamePanel.classList.remove('off')
     }
 
 })
-
-
-    
-  
-
-

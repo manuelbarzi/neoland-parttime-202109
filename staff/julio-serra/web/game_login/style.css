@@ -8,7 +8,8 @@
     font-family: 'DM Sans', sans-serif;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
 }
@@ -68,6 +69,18 @@ h2 {
     color: var(--color);
 }
 
+.panel-registrado {
+    color: var(--back-color);
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-top: 10rem;
+}
+
+.registro,
+.game__img {
+    margin-top: 10rem;
+}
+
 .container--vertical {
     flex-direction: column;
 }
@@ -76,9 +89,17 @@ h2 {
     margin: .25rem;
 }
 
+.game__user {
+    color: var(--back-color);
+    margin-top: 2rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
 .off {
     display: none;
 }
+
 
 /* custom */
 

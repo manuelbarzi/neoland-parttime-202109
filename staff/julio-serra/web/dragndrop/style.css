@@ -18,7 +18,12 @@
    align-items: center;
    justify-content: space-evenly;
 }
-
+.dnone {
+    display: none;
+}
+.text{
+    position: fixed;
+}
 .decka, .deckb {
     background-image: url(./vinilo.png);
     background-repeat: no-repeat ;
