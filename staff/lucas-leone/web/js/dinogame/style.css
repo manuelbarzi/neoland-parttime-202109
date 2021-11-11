@@ -1,8 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+:root {
+    --color: black;
+    --back-color: #e3e4e5;
+    overflow: hidden;
+  }
+
 html, body {
-height: 100%;
+max-height: 100%;
+max-width: 100%;
 margin: 0;
+padding: 0;
 }
 * {
     font-family: 'Press Start 2P', cursive;
@@ -10,14 +18,64 @@ margin: 0;
 
 body{
     background-color: #e3e4e5;
+    
+}
+.tittle{
+    margin-left: 40%;
+}
+
+.dino3{
+    position: absolute;
+    margin-left: 60%;
+    top:3%;
+    z-index: 1;
+    width: 60px;
+    
+}
+.mirror{
+    transform: scaleX(-1)
+}
+.field {
+    border: 1px solid var(--color);
+    border-radius: .3rem;
+    margin: .25rem;
+    padding: .5rem;
+}
+
+.button {
+    border: 1px solid var(--color);
+    border-radius: .3rem;
+    margin: .25rem;
+    padding: .5rem;
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color);
+}
+
+.container--vertical {
+    flex-direction: column;
+}
+.container--general{
+    position: absolute;
+    right: 30%;
+    top: 30%;
+}
+.container--gapped {
+    margin: .25rem;
+}
+
+.panel {
+    border: 1px solid var(--color);
+    border-radius: 1rem;
+    padding: 1rem;
 }
 
 
-.text{
-display:flex;
-justify-content: flex-end;
-margin: 2rem;
-}
 .final{
     display:flex;
     flex-direction: column;
@@ -29,8 +87,10 @@ margin: 2rem;
 }
 
 .final__press{
+    position: absolute;
     font-size: 1rem;
     margin-top: 5rem;
+    top:30%
 }
 .score{
    justify-self: flex-end;
@@ -40,15 +100,39 @@ margin: 2rem;
     width: 30px;
 
 }
-.canvas{
+.cloud1,.cloud2{
     position: absolute;
+    width: 4%;
+
 }
+
 
 .dino{
     position: absolute;
     width: 60px;
 }
 
+.signin__feedback {
+    color: red;
+}
 .off{
     display:none
 }
+
+.canvas1, .canvas2{
+    position:absolute;
+    z-index: 1;
+    top:133px
+}
+
+.canvas1{
+    margin-bottom: 2px;
+}
+
+.text{
+    display:flex;
+    justify-content: flex-end;
+    margin: 2rem;
+    }
+
+

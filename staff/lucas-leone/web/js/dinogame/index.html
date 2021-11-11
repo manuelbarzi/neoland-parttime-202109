@@ -11,20 +11,75 @@
 </head>
 
 <body>
-    <h1 class="title">Dino Run</h1>
-    <img class="dino" src="dino.png" alt="">
-    <img class="cactus1" src="cactus1.png" alt="">
-    <img class="cactus2" src="cactus2.png" alt="">
-    <div class="text">
-        <span class="score">score</span>   
+    <div class="tittle__container">
+        <h1 class="tittle">Dino Run</h1>
+        <img class="dino3" src="dino3.png" alt="">
     </div>
-    <div class="final">
-        <span class="final__lose off">You lose! :(</span>
-        <span class="final__press off">press enter</span>
-        
-    </div>
-    <canvas class="canvas" id="myCanvas" width="6000" height="400"></canvas>
+    <div class="container--general">
+        <div class="signup container">
+            <div class="panel">
+                <form class="container container--vertical">
+                    <h2>Sing up</h2>
+                    <input class="field" type="text" name="name" placeholder="name">
+                    <input class="field" type="text" name="username" placeholder="username">
+                    <input class="field" type="password" name="password" placeholder="password">
+                    <button class="button">Sign up</button class="button">
+                </form>
 
+                Already have an account? <button class="signup__signin button">Sign in</button class="button">
+            </div>
+        </div>
+
+        <div class="post-signup container off">
+            <div class="panel">
+                User successfully registered, now you can proceed to <button class="button">Sign in</button
+                    class="button">
+            </div>
+        </div>
+
+        <div class="signin container off">
+            <div class="panel">
+                <form class="container container--vertical">
+                    <h2>Sing in</h2>
+                    <input class="field" type="text" name="username" placeholder="username">
+                    <input class="field" type="password" name="password" placeholder="password">
+                    <button class="button">Sign in</button>
+                </form>
+
+                <span class="signin__feedback container container--gapped off">WTF!</span>
+
+                Don’t have an account? <button class="signin__signup button">Sign up</button class="button">
+            </div>
+        </div>
+
+    </div>
+    <div class="game off">
+
+        <span class="game__user off">Hello, World!</span>
+        <img class="dino1 dino" src="dino1.png" alt="">
+        <img class="dino2 dino off" src="dino2.png" alt="">
+        <img class="cloud1" src="cloud1.png" alt="">
+        <img class="cloud2" src="cloud2.png" alt="">
+        <img class="cactus1" src="cactus1.png" alt="">
+        <img class="cactus2" src="cactus2.png" alt="">
+        <div class="text">
+            <span class="score">score</span>
+        </div>
+        <canvas class="canvas1" id="canvas1" width="6000" height="300"></canvas>
+        <canvas class="canvas2" id="canvas2" width="6000" height="300"></canvas>
+
+        <div class="final">
+            <span class="final__lose off">GAME OVER! :(</span>
+            <span class="final__press off">press enter</span>
+
+        </div>
+    </div>
+    
+    <script src="logic/register-user.js"></script>
+    <script src="logic/authenticate-user.js"></script>
+    <script src="logic/retrieve-user.js"></script>
+    <script src="logic/modify-user.js"></script>
+    <script src="logic/unregister-user.js"></script>
     <script src="main.js"></script>
 </body>
 
