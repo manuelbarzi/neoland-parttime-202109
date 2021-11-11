@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+:root {
+    --color: rgb(29, 63, 138);
+}
+
+html, body {
+    height: 100%;
+}
+
+* {
+    font-family: 'Caveat Brush', cursive;
+    margin: 0
+}
+
+body {
+    background-image: url("sky.png");
+    background-size: cover;
+}
+
+.change-background{
+    background-image: url("sky_earth.png");
+}
+
+.game-title {
+    font-size: 50px;
+    color: var(--color);
+    margin: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.container--vertical {
+    flex-direction: column;
+}
+
+.box {
+    margin-top: 70px;
+    border: var(--color) 2.5px solid;
+    padding: 25px;
+    border-radius: 15px
+}
+
+.field {
+    border-radius: 6px;
+    border-style: solid;
+    height: 25px;
+    width: 110px;
+    margin-bottom: 5px;
+}
+
+.landing {
+    margin-top: 70px;
+}
+
+.landing__text {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    font-size: 25px;
+}
+
+.landing__text-signIn {
+    margin-top: 30px;
+}
+
+.starting {
+    margin-top: 70px;
+}
+
+.starting__text {
+    font-size: 30px;
+}
+
+.button {
+    border-radius: 6px;
+    background-color: var(--color);
+    font-size: 20px;
+    color: white;
+    border: none;
+    height: 30px;
+    margin-top: 3px;
+}
+
+.button--long {
+    width: 100px;
+    margin-bottom: 5px
+}
+
+.button--big {
+    font-size: 30px;
+    width: 80px;
+    height: 40px;
+    border-radius: 10px
+}
+
+.off {
+    display: none;
+}
+
+.signIn__feedback {
+    color: red
+}
+
+/* game */
+
+.bird{
+    width: 60px
+}
+
+.person{
+    width: 100px
+}

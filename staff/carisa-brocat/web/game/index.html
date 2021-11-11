@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShitDAy</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class='container container--vertical'>
+    <h1 class='game-title'>ShitDAy</h1>
+
+    <div class="landing container container--vertical">
+        <h3 class='landing__text'>The Shit DAy game. Come to relax and let the shit fall down.</h3>
+        <button class='button landing__signUp button--long'>Sign up</button>
+        <div class='landing__text-signIn'>
+            Already have an account? <button class='button landing__signIn'>Sign in</button>
+        </div>
+    </div>
+
+    <div class='box signUp container container--vertical off'>
+        <form class='container container--vertical'>
+            <input class='field' type='text' name='name' placeholder='name' required>
+            <input class='field' type='email' name='email' placeholder='email' required>
+            <input class='field' type='password' name='password' placeholder='password' required>
+            <button class='button button--long'>Sign up</button>
+        </form>
+
+        Already have an account? <button class='button signUp__signIn'>Sign in</button>
+    </div>
+
+    <div class='box signIn container container--vertical off'>
+        <form class='container container--vertical'>
+            <input class='field' type='text' name='name' placeholder='name' required>
+            <input class='field' type='password' name='password' placeholder='password' required>
+            <button class='button button--long'>Sign in</button>
+        </form>
+        <span class='signIn__feedback off'>WRONG</span>
+
+        Have not an account yet?<button class='button signIn__signUp'>Sign up</button>
+    </div>
+
+    <div class=' post-signUp container container--vertical off'>
+        <h2 class='post-signUP__text'>
+            User successfully registered
+        </h2>
+
+        <button class='button button--long post-signUp__signIn'>Sign in</button>
+    </div>
+
+    <div class='starting container container--vertical off'>
+        <span class="starting__text">
+            Wellcome . Are you ready, ?
+        </span>
+        <button class='button button--big starting__start'>Start</button>
+    </div>
+
+    <img class='bird off' src='bird.png' alt='bird'>
+    <img class='person off' id='person' src='person.png' alt=''>
+
+    <script src="logic/register-user.js"></script>
+    <script src="logic/authentic-user.js"></script>
+    <script src="logic/retriever-user.js"></script>
+    <script src="logic/unregister-user.js"></script>
+    <script src="main.js"></script>
+
+
+</body>
+
+</html>
