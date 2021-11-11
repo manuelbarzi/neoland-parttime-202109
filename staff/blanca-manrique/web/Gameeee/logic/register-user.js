@@ -20,7 +20,15 @@ function registerUser(name, username, password, callback) {
    xhr.setRequestHeader('Content-type', 'application/json')
 
    //Construyo un json
-   var json = '{"name": "' + name + '", "username": "' + username + '", "password": "' + password + '"}'
+   //var json = '{"name": "' + name + '", "username": "' + username + '", "password": "' + password + '"}'
+   var data = {}
+
+   data.name = name
+   data.username = username
+   data.password = password
+
+   var json = JSON.stringify(data)
+   
    // Envio el json
    xhr.send(json)
 }

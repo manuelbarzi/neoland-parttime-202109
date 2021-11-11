@@ -5,9 +5,10 @@ function authenticateUser(username, password, callback) {
      if(this.status === 401){
         var res = JSON.parse(this.responseText)
         var error = res.error
-        callback(new Error(error))
+        callback(new Error(error))   
      }else if( this.status === 200){
-        return this.responseText
+        var res = JSON.parse(this.responseText)
+        callback(null, res.token)
      }
  })
     xhr.setRequestHeader('Content-type', 'application/json')
