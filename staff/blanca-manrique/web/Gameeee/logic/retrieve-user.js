@@ -14,8 +14,16 @@ function retrieveUser(token, callback) {
 
     xhr.setRequestHeader('Authorization', 'Bearer '+ token)
 
-
-
     xhr.send()
-
 }
+
+// retrieveUser('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MThlOTgwZWUzZjU2ZTAwMTc5MTBjMGEiLCJpYXQiOjE2MzY3MzUwMjUsImV4cCI6MTYzNjczODYyNX0.0hR1yKDrjsA9lKyb2vRJINgmBi4k8cIv-PPKVoB9aoc', function (error) {
+//         debugger
+//         if (error) {
+//             alert(error.message)
+//            return
+//         }
+//          alert('todo OK')
+//     })
+
+

@@ -1,6 +1,6 @@
-var users = [
-    { name: 'Blanca', username: 'blancamanrique', password: '121212' }
-]
+// var users = [
+//     { name: 'Blanca', username: 'blancamanrique', password: '121212' }
+// ]
 
 var signupPanel = document.querySelector('.signup')
 var postSignupPanel = document.querySelector('.post-signup')
@@ -34,16 +34,23 @@ signupForm.addEventListener('submit', function (event) {
     var username = usernameInput.value
     var password = passwordInput.value
 
-    var user = {}
+    // var user = {}
 
-    user.name = name
-    user.username = username
-    user.password = password
+    // user.name = name
+    // user.username = username
+    // user.password = password
 
-    users.push(user)
+    // users.push(user)
 
-    signupPanel.classList.add('off')
-    postSignupPanel.classList.remove('off')
+    registerUser(name, username, password, function (error) {
+        if (error) {
+            alert(error.message)
+        }
+        //Esto no puede pasar hasta que no compruebe si el usuario está o no registrado
+        signupPanel.classList.add('off')
+        postSignupPanel.classList.remove('off')
+    })
+
 })
 
 var postSignupSigninButton = postSignupPanel.querySelector('button')

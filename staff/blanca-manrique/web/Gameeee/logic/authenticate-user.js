@@ -21,3 +21,6 @@ function authenticateUser(username, password, callback) {
 
     xhr.send(json)
 }
+// registerUser('blancamanrique13', '121212', function(error, token) {
+// console.log(error, token)
+// })

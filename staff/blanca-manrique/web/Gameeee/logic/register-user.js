@@ -32,3 +32,12 @@ function registerUser(name, username, password, callback) {
    // Envio el json
    xhr.send(json)
 }
+
+// registerUser('Blanca Manrique', 'blancamanrique13', '121212', function(error) {
+//    debugger
+//    if (error) {
+//        alert(error.message)
+//        return
+//    }
+//    alert('user successfully registered')
+// })
