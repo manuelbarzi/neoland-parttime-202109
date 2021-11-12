@@ -1,11 +1,9 @@
-var users = [
-    { name: 'Manu', username: 'manuelbarzi', password: '123123123' }
-]
-
 var signupPanel = document.querySelector('.signup')
 var postSignupPanel = document.querySelector('.post-signup')
 var signinPanel = document.querySelector('.signin')
 var gamePanel = document.querySelector('.game')
+
+var _token
 
 var signupSigninButton = signupPanel.querySelector('.signup__signin')
 
@@ -34,16 +32,16 @@ signupForm.addEventListener('submit', function (event) {
     var username = usernameInput.value
     var password = passwordInput.value
 
-    var user = {}
+    registerUser(name, username, password, function (error) {
+        if (error) {
+            alert(error.message)
 
-    user.name = name
-    user.username = username
-    user.password = password
+            return
+        }
 
-    users.push(user)
-
-    signupPanel.classList.add('off')
-    postSignupPanel.classList.remove('off')
+        signupPanel.classList.add('off')
+        postSignupPanel.classList.remove('off')
+    })
 })
 
 var postSignupSigninButton = postSignupPanel.querySelector('button')
@@ -64,26 +62,39 @@ signinForm.addEventListener('submit', function (event) {
     var username = usernameInput.value
     var password = passwordInput.value
 
-    var user = users.find(function (user) {
-        return user.username === username && user.password === password
+    authenticateUser(username, password, function (error, token) {
+        if (error) {
+            var siginFeedback = signinPanel.querySelector('.signin__feedback')
+
+            siginFeedback.innerText = error.message
+
+            siginFeedback.classList.remove('off')
+        } else {
+            retrieveUser(token, function (error, user) {
+                if (error) {
+                    var siginFeedback = signinPanel.querySelector('.signin__feedback')
+        
+                    siginFeedback.innerText = error.message
+        
+                    siginFeedback.classList.remove('off')
+
+                    return 
+                }
+
+                _token = token
+
+                var gameUser = gamePanel.querySelector('.game__user')
+
+                gameUser.innerText = 'Hello, ' + user.name + '!'
+
+                signinPanel.classList.add('off')
+                gamePanel.classList.remove('off')
+
+                start()
+            })
+        }
     })
 
-    if (!user) {
-        var siginFeedback = signinPanel.querySelector('.signin__feedback')
-
-        siginFeedback.innerText = 'wrong credentials'
-
-        siginFeedback.classList.remove('off')
-    } else {
-        var gameUser = gamePanel.querySelector('.game__user')
-
-        gameUser.innerText = 'Hello, ' + user.name + '!'
-
-        signinPanel.classList.add('off')
-        gamePanel.classList.remove('off')
-
-        start()
-    }
 })
 
 function start() {
