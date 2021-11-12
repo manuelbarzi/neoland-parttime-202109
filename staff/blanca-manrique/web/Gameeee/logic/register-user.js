@@ -5,7 +5,7 @@ function registerUser(name, username, password, callback) {
    //Configuarar qué va a hacer cuando haya respuesta de la API
    //'load' se dispara cuando hay respuesta de la API
    xhr.addEventListener('load', function () {
-      if (this.status === 409) {
+      if (this.status === 401 || this.status === 409) {
          var res = JSON.parse(this.responseText) // me va a sacar un objeto
 
          var error = res.error

@@ -2,7 +2,7 @@ function authenticateUser(username, password, callback) {
  var xhr = new XMLHttpRequest
  xhr.open('POST','https://b00tc4mp.herokuapp.com/api/v2/users/auth')
  xhr.addEventListener('load', function(){
-     if(this.status === 401){
+     if(this.status === 400 || this.status === 401){
         var res = JSON.parse(this.responseText)
         var error = res.error
         callback(new Error(error))   

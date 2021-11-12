@@ -25,3 +25,10 @@ xhr.send(password)
 //     }else{alert('todo OK')}
 // })
 
+modifyUser('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MThlYzE5ZmUzZjU2ZTAwMTc5MTBjMTEiLCJpYXQiOjE2MzY3NDU2MzYsImV4cCI6MTYzNjc0OTIzNn0.2sCVOWX0-xlR1gqSdIKLSP03eeT_Xsb9AusUaO3N7Ho', { "colors": ["red", "pink", "green"], "score": 1970 }, function (error, token) {
+    if (error) {
+        alert(error.message)
+        return
+    }
+    alert('todo OK')
+})
