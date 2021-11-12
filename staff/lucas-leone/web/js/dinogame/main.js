@@ -263,8 +263,7 @@ function start() {
     var inter3 = setInterval(function () {
         points += 1
         score = "Score: " + points
-
-        console.log(points)
+        
         scoreText.innerText = score
         if (points === 1000) {
             stepc = stepc * 1.2
