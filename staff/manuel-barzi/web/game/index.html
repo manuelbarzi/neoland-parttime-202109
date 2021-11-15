@@ -13,36 +13,40 @@
 <body class="container container--vertical">
     <h1 class="title">Space Chachy</h1>
 
-    <div class="signup container">
+    <div class="signup container _off">
         <div class="panel">
             <form class="container container--vertical">
+                <h2>Sign up</h2>
+
                 <input class="field" type="text" name="name" placeholder="name">
                 <input class="field" type="text" name="username" placeholder="username">
                 <input class="field" type="password" name="password" placeholder="username">
-                <button class="button">Sign up</button class="button">
+                <button class="button">Sign up</button>
             </form>
 
-            Already have an account? <button class="signup__signin button">Sign in</button class="button">
+            Already have an account? <button class="signup__signin button">Sign in</button>
         </div>
     </div>
 
     <div class="post-signup container off">
         <div class="panel">
-            User successfully registered, now you can proceed to <button class="button">Sign in</button class="button">
+            User successfully registered, now you can proceed to <button class="button">Sign in</button>
         </div>
     </div>
 
     <div class="signin container off">
         <div class="panel">
             <form class="container container--vertical">
+                <h2>Sign up</h2>
+
                 <input class="field" type="text" name="username" placeholder="username">
                 <input class="field" type="password" name="password" placeholder="username">
-                <button class="button">Sign in</button class="button">
+                <button class="button">Sign in</button>
             </form>
 
             <span class="signin__feedback container container--gapped off">WTF!</span>
 
-            Don’t have an account? <button class="signin__signup button">Sign up</button class="button">
+            Don’t have an account? <button class="signin__signup button">Sign up</button>
         </div>
     </div>
 
@@ -50,6 +54,43 @@
         <span class="game__user">Hello, World!</span>
         <img class="asteroid" src="asteroid-423x369.png" alt="">
         <img class="spaceship" src="spaceship-514x792.png" alt="">
+    </div>
+
+    <div class="profile container off">
+        <div class="panel container container--vertical">
+            <h2>Profile</h2>
+
+            <button class="button">Change username...</button>
+            <button class="button">Change password...</button>
+        </div>
+    </div>
+
+    <div class="change-username container off">
+        <div class="panel container container--vertical">
+            <h2>Change username</h2>
+
+            <form class="container container--vertical">
+                <input class="field" type="text" name="username" placeholder="current username">
+                <input class="field" type="text" name="username" placeholder="new username">
+                <button class="button">Proceed</button>
+            </form>
+
+            <span class="change-username__feedback container container--gapped off">WTF!</span>
+        </div>
+    </div>
+
+    <div class="change-password container off">
+        <div class="panel container container--vertical">
+            <h2>Change password</h2>
+
+            <form class="container container--vertical">
+                <input class="field" type="text" name="password" placeholder="current password">
+                <input class="field" type="text" name="password" placeholder="new password">
+                <button class="button">Proceed</button>
+            </form>
+
+            <span class="change-password__feedback container container--gapped off">WTF!</span>
+        </div>
     </div>
 
     <script src="logic/register-user.js"></script>
