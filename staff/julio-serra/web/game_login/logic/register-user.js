@@ -1,5 +1,5 @@
 function registerUser(name, username, password, callback) {
-
+// registerUser('Julio', 'julio', '123', console.log)
     var xhr = new XMLHttpRequest
 
     xhr.open('POST', 'https://b00tc4mp.herokuapp.com/api/v2/users')
@@ -26,6 +26,8 @@ function registerUser(name, username, password, callback) {
     data.name = name
     data.username = username
     data.password = password
+
+    var json = JSON.stringify(data)
 
     xhr.send(json)
 

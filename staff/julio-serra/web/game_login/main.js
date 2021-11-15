@@ -83,9 +83,9 @@ formInicioSesion.addEventListener('submit', function(event) {
 
         window.setTimeout(function() { // funcion setTimeout para añadir unos segs antes de mostrarse la URL
 
-            window.location.href = 'https://twitter.com'
+            window.location.href = '../dragndrop/index.html'
 
-        }, 3000000);
+        }, 3000);
 
 
 

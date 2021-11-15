@@ -7,27 +7,30 @@ function authenticateUser (username, password, callback) {
     //lanzamos el callback
 
     xhr.addEventListener('load', function (){
-debugger
         // si hay un error en la autenticacion
 
-        if (this.status === 401) {
+        if (this.status === 400 || this.status === 401) {
             var res = JSON.parse(this.responseText) // hacemos el parse para que cambie a STRING el OBJETO ?
             var error = res.error
 
             callback(new Error (error))
         }
         else if (this.status === 200) {
-            alert ('Atenticación correcta')
+            var res = JSON.parse(this.responseText)
+            var token = res.token
+            callback(null, token)
         }
     })
 
 
-xhr.setRequestHeader('Content-type', 'aplication/json')
+xhr.setRequestHeader('Content-type', 'application/json')
 
     var data = {} // creamos una variable para guardar los datos en forma de string
 
     data.username = username
     data.password = password
+
+    var json = JSON.stringify(data)
 
 xhr.send(json)
 }
