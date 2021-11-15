@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="container container--vertical">
+
+    <h1 class='title'>Galaxy Attack</h1>
+
+    <div class="signin container">
+        <div class="panel">
+            <form class="container container--vertical">
+                <input class="field" type="text" name='username' placeholder="usuario">
+                <input class="field" type="password" name='password' placeholder="contraseña">
+                <button class="button">Inicia sesión</button>
+            </form>
+
+            <span class="signin__error panel--span container off"> Usuario o contraseña erroneo. Vuelva a intentarlo.</span>
+
+            Aún no tienes tu cuenta <button class="signin__signup button--link">Registrate</button>
+        </div>
+    </div>
+
+    <div class="signup container off">
+        <div class="panel">
+            <form class="container container--vertical">
+                <input class="field" type="email" name='name' placeholder="email">
+                <input class="field" type="text" name='username' placeholder="usuario">
+                <input class="field" type="password" name='password' placeholder="contraseña">
+                <button class="button">Regístrate</button>
+            </form>
+
+            Ya tienes tu cuenta <button class="signup__signin button--link">Inicia sesión</button>
+        </div>
+    </div>
+
+    <div class="post-signup container off">
+        <div class="panel">
+            Usuario registrado correctamente <button class="button--link">Inicia sesión</button>
+        </div>
+    </div>
+
+
+    <div class="game container container__vertical off">
+        <span class="game__user">Hola</span>
+        <img class="spaceship" src="spaceship.png" alt="">
+    </div>
+
+    <script src="logic/register-user.js"></script>
+    <script src="logic/authenticate-user.js"></script>
+    <script src="logic/retrieve-user.js"></script>
+    <script src="logic/modify-user.js"></script>
+    <script src="logic/unregister-user.js"></script>
+
+    <script src="main.js"> </script>
+</body>
+
+</html>
