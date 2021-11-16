@@ -13,7 +13,7 @@ function registerUser(name, username, password, callback) {
     if(password !== 'string') throw new TypeError ('El password no es un string')
     if(!password.trim()) throw new Error ('El campo de password no puede estar vacío, ingresa tu contraseña')
 
-    if(callback !=== 'function') throw new TypeError ('El ' + callback + 'no es una función')
+    if(callback !== 'function') throw new TypeError ('El ' + callback + 'no es una función')
 
 
     // registerUser('Julio', 'julio', '123', console.log)
