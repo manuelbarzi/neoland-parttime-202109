@@ -1,26 +1,31 @@
 //USUARIO
-var users = [
-    { name: 'Lucas', username: 'lucasmleone', password: '1111' }
-]
 
 var signupPanel = document.querySelector('.signup')
 var postSignupPanel = document.querySelector('.post-signup')
 var signinPanel = document.querySelector('.signin')
 var gamePanel = document.querySelector('.game')
 
+var _token
+var userData
+
+var tokenDino=""
+var maxUser
+var maxscore
+
 var signupSigninButton = signupPanel.querySelector('.signup__signin')
 
-var dino3Image=document.querySelector('.dino3')
-var rot=false
+var dino3Image = document.querySelector('.dino3')
+var rot = false
 
-InterR=setInterval(function(){
-if(!rot){
-dino3Image.classList.add('mirror')
-rot=true
-}else{
-    dino3Image.classList.remove('mirror')
-    rot=false
-}},2000)
+InterR = setInterval(function () {
+    if (!rot) {
+        dino3Image.classList.add('mirror')
+        rot = true
+    } else {
+        dino3Image.classList.remove('mirror')
+        rot = false
+    }
+}, 2000)
 
 signupSigninButton.addEventListener('click', function () {
     signupPanel.classList.add('off')
@@ -46,17 +51,15 @@ signupForm.addEventListener('submit', function (event) {
     var name = nameInput.value
     var username = usernameInput.value
     var password = passwordInput.value
+    registerUser(name, username, password, function (error) {
+        if (error) {
+            alert(error.message)
+            return
+        }
 
-    var user = {}
-
-    user.name = name
-    user.username = username
-    user.password = password
-
-    users.push(user)
-
-    signupPanel.classList.add('off')
-    postSignupPanel.classList.remove('off')
+        signupPanel.classList.add('off')
+        postSignupPanel.classList.remove('off')
+    })
 })
 
 var postSignupSigninButton = postSignupPanel.querySelector('.button')
@@ -77,26 +80,57 @@ signinForm.addEventListener('submit', function (event) {
     var username = usernameInput.value
     var password = passwordInput.value
 
-    var user = users.find(function (user) {
-        return user.username === username && user.password === password
+
+    authenticateUser(username, password, function (error, token) {
+        if (error) {
+            var siginFeedback = signinPanel.querySelector('.signin__feedback')
+
+            siginFeedback.innerText = 'wrong credentials'
+
+            siginFeedback.classList.remove('off')
+        } else {
+            
+            retrieveUser(token, function (error, user) {
+                if (error) {
+                    var siginFeedback = signinPanel.querySelector('.signin__feedback')
+
+                    siginFeedback.innerText = error.message
+
+                    siginFeedback.classList.remove('off')
+
+                    return
+                }
+                _token=token
+                var gameUser = gamePanel.querySelector('.game__user')
+
+                gameUser.innerText = 'Hello, ' + user.name + '!'
+
+                signinPanel.classList.add('off')
+                gamePanel.classList.remove('off')
+                userData=user
+
+                authenticateUser("dinorun","1111",function(error,token){ 
+                    if (error)  {
+                        console.log(error)
+                        return
+                    }
+                    retrieveUser(token, function (error, user) {
+                        if (error) {
+                            console.log(error)
+                            
+                            return
+                        }
+                        tokenDino = token
+                        maxData=user
+                        start()
+                    })
+                
+                })
+                               
+
+            })
+        }
     })
-
-    if (!user) {
-        var siginFeedback = signinPanel.querySelector('.signin__feedback')
-
-        siginFeedback.innerText = 'wrong credentials'
-
-        siginFeedback.classList.remove('off')
-    } else {
-        var gameUser = gamePanel.querySelector('.game__user')
-
-        gameUser.innerText = 'Hello, ' + user.name + '!'
-
-        signinPanel.classList.add('off')
-        gamePanel.classList.remove('off')
-
-        start()
-    }
 })
 
 function start() {
@@ -194,7 +228,7 @@ function start() {
     // DINO TECLADO 
 
     document.addEventListener('keydown', function (event) {
-        if (event.key === ' ') {
+        if (event.key === ' ' && dino.y > 230) {
 
             var inter1 = setInterval(function () {
                 cicle++
@@ -210,7 +244,7 @@ function start() {
                 dino.y += direction * step
                 dinoImage1.style.transform = translate(dino.x, dino.y)
                 dinoImage2.style.transform = translate(dino.x, dino.y)
-            }, 20)
+            }, 15)
         }
 
 
@@ -255,15 +289,18 @@ function start() {
     var score = 0
     var points = 0
     var scoreText = document.querySelector('.score')
+    var maxScoreText = document.querySelector('.maxscore')
     var pressText = document.querySelector('.final__press')
     var loseText = document.querySelector('.final__lose')
 
 
-//SCORE
+    //SCORE
+
+    maxscore= "RECORD: "+ maxData.maxuser + ": "+ maxData.maxscore 
+    maxScoreText.innerText = maxscore
     var inter3 = setInterval(function () {
         points += 1
         score = "Score: " + points
-        
         scoreText.innerText = score
         if (points === 1000) {
             stepc = stepc * 1.2
@@ -274,6 +311,11 @@ function start() {
 
         if (cactus1.x - cactus1.w / 2 < dino.x + dino.w / 2 && cactus1.y - cactus1.h / 2 <= dino.y + dino.h / 2) {
             clearInterval(inter3)
+
+            if(points>userData.score){
+                score = "NEW RECORD! Score: " + points
+            scoreText.innerText = score
+            }
             loseText.classList.remove('off')
             var inter4 = setInterval(function () {
 
@@ -296,6 +338,10 @@ function start() {
         // GAME OVER INTERVALO
         if (cactus2.x - cactus2.w / 2 < dino.x + dino.w / 2 && cactus2.y - cactus2.h / 2 <= dino.y + dino.h / 2) {
             clearInterval(inter3)
+            if(points>userData.score){
+                score = "NEW RECORD! Score: " + points
+            scoreText.innerText = score
+            }
             loseText.classList.remove('off')
             var inter4 = setInterval(function () {
 
@@ -339,9 +385,26 @@ function start() {
 
     document.addEventListener('keydown', function (event) {
         if (event.key === 'Enter') {
+            if (points>userData.score){
+            userData.score=points
+            var json = JSON.stringify(userData)
+            modifyUser(_token,json,function(error){
+                console.log(error)
+            })}
+            if(points>maxData.maxscore){
+            maxData.maxscore = points
+            maxData.maxuser =userData.username
+            var jsonMax = JSON.stringify(userData)
 
+            modifyUser(tokenDino,jsonMax,function(error){
+                console.log(error)
+            })}
+            
             location.reload()
-        }
-    })
-
-}
+            // clearInterval(inter4)
+            // clearInterval(inter2c)
+            // loseText.classList.add('off')
+            // pressText.classList.add('off')
+            //start()
+            
+}})}

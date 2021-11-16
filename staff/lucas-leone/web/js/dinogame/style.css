@@ -18,6 +18,7 @@ padding: 0;
 
 body{
     background-color: #e3e4e5;
+    background-image: url(/staff/lucas-leone/web/js/dinogame/Mesa\ de\ trabajo\ 1.png);
     
 }
 .tittle{
@@ -131,8 +132,15 @@ body{
 
 .text{
     display:flex;
+    flex-direction: column;
+    align-items: flex-end;
     justify-content: flex-end;
     margin: 2rem;
+    gap: 1rem;
     }
+
+.maxscore{
+    font-size: rem;
+}
 
 
