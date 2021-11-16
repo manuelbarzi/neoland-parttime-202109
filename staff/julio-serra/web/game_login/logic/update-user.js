@@ -2,15 +2,15 @@
 
 function updateUser(token, data, callback) {
 
-    if (token !== 'string') throw new TypeError('El token no es un string')
-    if (token.trim()) throw new Error('El token no puede estar vacío')
+    if (typeof token !== 'string') throw new TypeError('El token no es un string')
+    if (!token.trim()) throw new Error('El token no puede estar vacío')
     //el token siempre esta separado por 2 puntos, hacemos un split del token completo
     if (token.split('.').length !== 3) throw new Error('El token no es el correcto o está corrupto')
 
-    if (data !== 'string') throw new TypeError (data + ' no es un string')
-    if (data.trim()) throw new Error(data + ' no puede estar vacío')
+    if (typeof data !== 'string') throw new TypeError (data + ' no es un string')
+    if (!data.trim()) throw new Error(data + ' no puede estar vacío')
 
-    if(callback !== 'function') throw new TypeError ('El ' + callback + ' no es una función')
+    if(typeof callback !== 'function') throw new TypeError ('El ' + callback + ' no es una función')
 
 
 

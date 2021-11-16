@@ -2,6 +2,7 @@ var users = [
     { name: 'julio', username: 'julio', password: '123' }
 ]
 
+var _token
 
 var panelRegistro = document.querySelector('.registro')
 var panelInicioSesion = document.querySelector('.inicio')
@@ -41,10 +42,17 @@ formRegistro.addEventListener('submit', function(event) {
     user.username = username
     user.password = password
 
-    users.push(user)
+    // users.push(user)
+    registerUser(name, username, password, function(error) {
 
-    panelRegistro.classList.add('off')
-    panelRegistrado.classList.remove('off')
+        if (error) {
+            alert(error.message)
+
+            return
+        }
+        panelRegistro.classList.add('off')
+        panelRegistrado.classList.remove('off')
+    })
 
 })
 
@@ -67,32 +75,44 @@ formInicioSesion.addEventListener('submit', function(event) {
     var username = inputUsername.value
     var password = inputPassword.value
 
-    var user = users.find(function(user) {
-        return user.username === username && user.password === password
+    // var user = users.find(function(user) {
+    //     return user.username === username && user.password === password
+    // })
+
+    authenticateUser(username, password, function(error, token) {
+        if (error) {
+            var siginFeedback = signinPanel.querySelector('.feedback__inicio')
+
+            siginFeedback.innerText = error.message
+
+            siginFeedback.classList.remove('off')
+        } else {
+            retrieveUser(token, function(error, user) {
+
+                if (error) {
+                    var siginFeedback = panelInicioSesion.querySelector('.feedback__inicio')
+                    siginFeedback.innerText = error.message
+                    siginFeedback.classList.remove('off')
+
+                    return
+                }
+
+                _token = token
+                var gameUser = gamePanel.querySelector('.game__user')
+
+                window.setTimeout(function() { // funcion setTimeout para añadir unos segs antes de mostrarse la URL
+
+                    window.location.href = '../dragndrop/index.html'
+
+                }, 3000);
+
+                gameUser.innerText = 'Aquí comienza tu aventura, ' + user.name + '!'
+
+                panelInicioSesion.classList.add('off')
+                gamePanel.classList.remove('off')
+            })
+
+        }
     })
-
-    if (!user) {
-        var feedbackInicioSesion = panelInicioSesion.querySelector('.feedback__inicio')
-        feedbackInicioSesion.innerText = "Algo no ha salido bien, inténtalo de nuevo"
-        feedbackInicioSesion.classList.remove('off')
-
-    } else {
-
-
-        // var gameUser = gamePanel.querySelector('.game__user')
-
-        window.setTimeout(function() { // funcion setTimeout para añadir unos segs antes de mostrarse la URL
-
-            window.location.href = '../dragndrop/index.html'
-
-        }, 3000);
-
-
-
-        // gameUser.innerText = 'Hello, ' + user.name + '!'
-
-        panelInicioSesion.classList.add('off')
-        gamePanel.classList.remove('off')
-    }
 
 })
