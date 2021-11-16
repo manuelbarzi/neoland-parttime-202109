@@ -32,16 +32,28 @@ signupForm.addEventListener('submit', function (event) {
     var username = usernameInput.value
     var password = passwordInput.value
 
-    registerUser(name, username, password, function (error) {
-        if (error) {
-            alert(error.message)
+    try {
+        registerUser(name, username, password, function (error) {
+            if (error) {
+                var signupFeedback = signupPanel.querySelector('.signup__feedback')
 
-            return
-        }
+                signupFeedback.innerText = error.message
 
-        signupPanel.classList.add('off')
-        postSignupPanel.classList.remove('off')
-    })
+                signupFeedback.classList.remove('off')
+
+                return
+            }
+
+            signupPanel.classList.add('off')
+            postSignupPanel.classList.remove('off')
+        })
+    } catch (error) {
+        var signupFeedback = signupPanel.querySelector('.signup__feedback')
+
+        signupFeedback.innerText = error.message
+
+        signupFeedback.classList.remove('off')
+    }
 })
 
 var postSignupSigninButton = postSignupPanel.querySelector('button')
@@ -62,23 +74,27 @@ signinForm.addEventListener('submit', function (event) {
     var username = usernameInput.value
     var password = passwordInput.value
 
-    authenticateUser(username, password, function (error, token) {
-        if (error) {
-            var siginFeedback = signinPanel.querySelector('.signin__feedback')
+    try {
+        authenticateUser(username, password, function (error, token) {
+            if (error) {
+                var signinFeedback = signinPanel.querySelector('.signin__feedback')
 
-            siginFeedback.innerText = error.message
+                signinFeedback.innerText = error.message
 
-            siginFeedback.classList.remove('off')
-        } else {
+                signinFeedback.classList.remove('off')
+
+                return
+            }
+
             retrieveUser(token, function (error, user) {
                 if (error) {
-                    var siginFeedback = signinPanel.querySelector('.signin__feedback')
-        
-                    siginFeedback.innerText = error.message
-        
-                    siginFeedback.classList.remove('off')
+                    var signinFeedback = signinPanel.querySelector('.signin__feedback')
 
-                    return 
+                    signinFeedback.innerText = error.message
+
+                    signinFeedback.classList.remove('off')
+
+                    return
                 }
 
                 _token = token
@@ -92,9 +108,14 @@ signinForm.addEventListener('submit', function (event) {
 
                 start()
             })
-        }
-    })
+        })
+    } catch (error) {
+        var signinFeedback = signinPanel.querySelector('.signin__feedback')
 
+        signinFeedback.innerText = error.message
+
+        signinFeedback.classList.remove('off')
+    }
 })
 
 function start() {

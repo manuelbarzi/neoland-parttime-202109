@@ -60,6 +60,10 @@ body {
 
 /* custom */
 
+.signup__feedback {
+    color: red;
+}
+
 .signin__feedback {
     color: red;
 }
