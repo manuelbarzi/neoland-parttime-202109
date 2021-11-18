@@ -40,14 +40,6 @@ body{
 
     flex-direction: column;
 }
-
-.container--top {
-    justify-content: flex-start;
-}
-
-.container--gapped {
-    margin: .25rem;
-}
  .panel{
 
     border: 2px solid var(--color);

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,12 +9,105 @@
 
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+
+<body class="container container--vertical container--top">
     <h1 class="title">Space Chachy</h1>
 
-    <img class="asteroid" src="asteroid-423x369.png" alt="">
-    <img class="spaceship" src="spaceship-514x792.png" alt="">
+    <div class="signup container off">
+        <div class="panel">
+            <form class="container container--vertical">
+                <h2>Sign up</h2>
 
+                <input class="field" type="text" name="name" placeholder="name">
+                <input class="field" type="text" name="username" placeholder="username">
+                <input class="field" type="password" name="password" placeholder="password">
+                <button class="button">Sign up</button>
+            </form>
+
+            <span class="feedback container container--gapped off">WTF!</span>
+
+            Already have an account? <button class="signup__signin button">Sign in</button>
+        </div>
+    </div>
+
+    <div class="post-signup container off">
+        <div class="panel">
+            User successfully registered, now you can proceed to <button class="button">Sign in</button>
+        </div>
+    </div>
+
+    <div class="signin container _off">
+        <div class="panel">
+            <form class="container container--vertical">
+                <h2>Sign in</h2>
+
+                <input class="field" type="text" name="username" placeholder="username">
+                <input class="field" type="password" name="password" placeholder="password">
+                <button class="button">Sign in</button>
+            </form>
+
+            <span class="feedback container container--gapped off">WTF!</span>
+
+            Don’t have an account? <button class="signin__signup button">Sign up</button>
+        </div>
+    </div>
+
+    <div class="home container container--vertical off">
+        <span class="home__user">Hello, World!</span>
+
+        <div class="container">
+            <button class="button home__game">Game</button>
+            <button class="button home__profile">Profile</button>
+        </div>
+
+        <div class="game container container--vertical off">
+            <img class="asteroid" src="asteroid-423x369.png" alt="">
+            <img class="spaceship" src="spaceship-514x792.png" alt="">
+        </div>
+
+        <div class="profile container off">
+            <div class="panel container container--vertical">
+                <h2>Profile</h2>
+
+                <button class="button profile__change-username">Change username...</button>
+                <button class="button profile__change-password">Change password...</button>
+            </div>
+        </div>
+
+        <div class="change-username container off">
+            <div class="panel container container--vertical">
+                <h2>Change username</h2>
+
+                <form class="container container--vertical">
+                    <input class="field" type="text" name="username" placeholder="new username">
+                    <button class="button">Proceed</button>
+                </form>
+
+                <span class="feedback container container--gapped off">WTF!</span>
+            </div>
+        </div>
+
+        <div class="change-password container off">
+            <div class="panel container container--vertical">
+                <h2>Change password</h2>
+
+                <form class="container container--vertical">
+                    <input class="field" type="text" name="password" placeholder="current password">
+                    <input class="field" type="text" name="password" placeholder="new password">
+                    <button class="button">Proceed</button>
+                </form>
+
+                <span class="feedback container container--gapped off">WTF!</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="logic/register-user.js"></script>
+    <script src="logic/authenticate-user.js"></script>
+    <script src="logic/retrieve-user.js"></script>
+    <script src="logic/modify-user.js"></script>
+    <script src="logic/unregister-user.js"></script>
     <script src="main.js"></script>
 </body>
+
 </html>
