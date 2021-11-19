@@ -6,6 +6,7 @@ var gamePanel = document.querySelector('.game')
 var profilePanel = document.querySelector('.profile')
 var changeUsernamePanel = document.querySelector('.change-username')
 var changePasswordPanel = document.querySelector('.change-password')
+var spinner = document.querySelector('.spinner')
 
 var _token
 
@@ -28,6 +29,8 @@ var signupForm = signupPanel.querySelector('form')
 signupForm.addEventListener('submit', function (event) {
     event.preventDefault()
 
+    spinner.classList.remove('off')
+
     var nameInput = signupForm.name
     var usernameInput = signupForm.username
     var passwordInput = signupForm.password
@@ -39,7 +42,12 @@ signupForm.addEventListener('submit', function (event) {
     try {
         registerUser(name, username, password, function (error) {
             if (error) {
-                var signupFeedback = signupPanel.querySelector('.signup__feedback')
+                spinner.classList.add('off')
+
+                var signupFeedback = signupPanel.querySelector('.feedback')
+
+                signupFeedback.classList.remove('feedback--warning')
+                signupFeedback.classList.add('feedback--error')
 
                 signupFeedback.innerText = error.message
 
@@ -48,11 +56,18 @@ signupForm.addEventListener('submit', function (event) {
                 return
             }
 
+            spinner.classList.add('off')
+
             signupPanel.classList.add('off')
             postSignupPanel.classList.remove('off')
         })
     } catch (error) {
-        var signupFeedback = signupPanel.querySelector('.signup__feedback')
+        spinner.classList.add('off')
+
+        var signupFeedback = signupPanel.querySelector('.feedback')
+
+        signupFeedback.classList.remove('feedback--error')
+        signupFeedback.classList.add('feedback--warning')
 
         signupFeedback.innerText = error.message
 
@@ -88,6 +103,8 @@ signInPasswordInput.onfocus = function() {
 signinForm.addEventListener('submit', function (event) {
     event.preventDefault()
 
+    spinner.classList.remove('off')
+
     var usernameInput = signinForm.username
     var passwordInput = signinForm.password
 
@@ -97,6 +114,8 @@ signinForm.addEventListener('submit', function (event) {
     try {
         authenticateUser(username, password, function (error, token) {
             if (error) {
+                spinner.classList.add('off')
+
                 var signinFeedback = signinPanel.querySelector('.feedback')
 
                 signinFeedback.innerText = error.message
@@ -110,6 +129,8 @@ signinForm.addEventListener('submit', function (event) {
 
             retrieveUser(token, function (error, user) {
                 if (error) {
+                    spinner.classList.add('off')
+
                     var signinFeedback = signinPanel.querySelector('.signin__feedback')
 
                     signinFeedback.innerText = error.message
@@ -118,6 +139,8 @@ signinForm.addEventListener('submit', function (event) {
 
                     return
                 }
+
+                spinner.classList.add('off')
 
                 _token = token
 
@@ -132,6 +155,8 @@ signinForm.addEventListener('submit', function (event) {
             })
         })
     } catch (error) {
+        spinner.classList.add('off')
+
         var signinFeedback = signinPanel.querySelector('.feedback')
 
         signinFeedback.innerText = error.message
