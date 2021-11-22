@@ -13,7 +13,7 @@ function modifyUser(token, data, callback) {
     xhr.open('PATCH', 'https://b00tc4mp.herokuapp.com/api/v2/users')
 
     xhr.addEventListener('load', function () {
-        if (this.status === 401) {
+        if (this.status === 400 || this.status === 401 || this.status === 409) {
             res = JSON.parse(this.responseText)
             error = res.error
             callback(Error(error))

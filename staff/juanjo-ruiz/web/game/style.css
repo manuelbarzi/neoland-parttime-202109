@@ -78,14 +78,26 @@ body {
     display: none;
 }
 
-
 /* Personalizado */
+
+.feedback {
+    color: var(--color);
+}
+
+.feedback--error {
+    color: red;
+}
+
+.feedback--alert {
+    color: yellow;
+}
+
+.feedback--ok {
+    color: green;
+}
 
 .spaceship {
     position: absolute;
     width: 100px;
 }
 
-.panel--span {
-    color: red;
-}
