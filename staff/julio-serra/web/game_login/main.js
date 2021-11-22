@@ -6,9 +6,11 @@ var _token
 
 var panelRegistro = document.querySelector('.registro')
 var panelInicioSesion = document.querySelector('.inicio')
+var botonInicioSesion = panelInicioSesion.querySelector('.inicio__sesion')
 var botonRegistroInicio = panelRegistro.querySelector('.registro__inicio')
 var panelRegistrado = document.querySelector('.panel-registrado')
-var gamePanel = document.querySelector('.game')
+var panelGame = document.querySelector('.game')
+
 
 
 botonRegistroInicio.addEventListener('click', function() {
@@ -98,21 +100,25 @@ formInicioSesion.addEventListener('submit', function(event) {
                 }
 
                 _token = token
-                var gameUser = gamePanel.querySelector('.game__user')
+                
 
-                window.setTimeout(function() { // funcion setTimeout para añadir unos segs antes de mostrarse la URL
+                botonInicioSesion.addEventListener('click', function(){
+                    panelInicioSesion.classList.add('off')
+                    panelGame.classList.remove('off')
+                    })
+                // window.setTimeout(function() { // funcion setTimeout para añadir unos segs antes de mostrarse la URL
 
-                    window.location.href = '../dragndrop/index.html'
+                //     window.location.href = '/dragndrop/index.html'
 
-                }, 3000);
+                // }, 3000);
 
-                gameUser.innerText = 'Aquí comienza tu aventura, ' + user.name + '!'
-
-                panelInicioSesion.classList.add('off')
-                gamePanel.classList.remove('off')
+                // gameUser.innerText = 'Aquí comienza tu aventura, ' + user.name + '!'
+                var siginFeedback = panelInicioSesion.querySelector('.feedback__inicio')
+                siginFeedback.innerText = error.message
+                siginFeedback.classList.remove('off')
             })
 
         }
     })
-
 })
+

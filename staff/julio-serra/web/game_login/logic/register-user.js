@@ -1,21 +1,4 @@
-
 function registerUser(name, username, password, callback) {
-    
-    if(typeof name !== 'string') throw new TypeError ('El nombre no es un string')
-    if(!name.trim()) throw new Error ('El campo nombre no puede estar vacío')
-    
-    if(typeof username !== 'string') throw new TypeError ('El usuario no es un string')
-    if(!username.trim()) throw new Error ('El campo usuario no puede estar vacío')
-    
-    
-    if(!password.trim().length < 8) throw new Error ('El password tiene que tener más de 8 caracteres') 
-    //propiedad trim para que quite los espacios
-    if(typeof password !== 'string') throw new TypeError ('El password no es un string')
-    if(!password.trim()) throw new Error ('El campo de password no puede estar vacío, ingresa tu contraseña')
-
-    if(typeof callback !== 'function') throw new TypeError ('El ' + callback + 'no es una función')
-
-
     // registerUser('Julio', 'julio', '123', console.log)
     var xhr = new XMLHttpRequest
 

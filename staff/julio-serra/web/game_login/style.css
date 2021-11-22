@@ -107,3 +107,65 @@ h2 {
     color: red;
     margin: 2rem 0;
 }
+
+.mixer {
+    background-image: url(./mixer.jpg);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    height: 298px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.dnone {
+    display: none;
+}
+
+.text {
+    position: fixed;
+}
+
+.decka,
+.deckb {
+    background-image: url(./vinilo.png);
+    background-repeat: no-repeat;
+    height: 100px;
+    width: 100px;
+}
+
+.profile {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    font-weight: 700;
+    gap: 1rem;
+    justify-content: end;
+    padding-top: 2rem;
+}
+
+.profile__button {
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: .7rem 2rem;
+}
+
+.container--center {
+    display: flex;
+    justify-content: center;
+}
+.game__header {
+    display: flex;
+    justify-content: space-evenly;
+}
+.game__main {
+    display: flex;
+    flex-direction: column;
+}
+.main__changes {
+    display: flex;
+    flex-direction: column;
+}
