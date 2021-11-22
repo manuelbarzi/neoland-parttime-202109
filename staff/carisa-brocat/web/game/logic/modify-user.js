@@ -1,4 +1,35 @@
 function modifyUser(token, data, callback) {
-    // { colors: ['red', 'green', 'blue' ], score: 1000 }
-    // TODO
+    if( typeof token !== 'string') throw new TypeError(token + 'is not string')
+    if(!token.trim()) throw new Error('token is empty or blank')
+    if(token.split('.').length !== 3) throw new Error('invalid token')
+
+    if(typeof data !== 'object')  throw new TypeError(data + 'is not an object')
+    if( Object.keys(data).length === 0) throw new Error( 'data objec is empty')
+
+    if(typeof callback !== 'function') throw new TypeError(callback + 'is not a function')
+
+    var xhr = new XMLHttpRequest
+
+    xhr.open('PATCH', 'https://b00tc4mp.herokuapp.com/api/v2/users')
+
+    xhr.onload = function () {
+        if (this.status === 401 || this.status === 400) {
+            var res = JSON.parse(this.responseText)
+
+            var error = res.error
+
+            callback (new Error(error))
+        } else if (this.status === 204) {
+            callback(null)
+        }
+    }
+
+
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.setRequestHeader('Authorization', 'Bearer ' + token)
+
+
+    var json = JSON.stringify(data)
+
+    xhr.send(json)
 }

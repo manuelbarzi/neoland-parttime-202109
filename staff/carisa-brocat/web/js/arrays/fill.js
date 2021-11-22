@@ -1,0 +1,5 @@
+function fill(array, element){
+
+    
+
+}

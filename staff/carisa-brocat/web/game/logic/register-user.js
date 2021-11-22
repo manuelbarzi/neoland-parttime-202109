@@ -1,4 +1,17 @@
 function registerUser(name, username, password, callback) {
+    if(typeof name!== 'string') throw new TypeError(name + 'is not string')
+    if(!name.trim()) throw new Error('name is empty or blank')
+
+    if(typeof username !== 'string') throw new TypeError(username + 'is not string')
+    if(!username.trim()) throw new Error('username is empty or blank')
+    
+    if(typeof password !== 'string') throw new TypeError(password + 'is not string')
+    if(!password.trim()) throw new Error ('password is empty or blank')
+    if(password.trim().length < 8) throw new Error ('password length is smaller than 8 characters')
+
+    if(typeof callback !== 'function') throw new TypeError(callback + 'is not a function')
+
+
     var xhr = new XMLHttpRequest //crea objeto en memoria para comunicar con servidor
     
     //con q maquina tiene q abrirlo
@@ -6,7 +19,7 @@ function registerUser(name, username, password, callback) {
 
     //decir q hacer luego q cargue
     xhr.addEventListener('load', function () {
-        if (this.status === 409) {
+        if (this.status === 409 || this.status === 400) {
             var res = JSON.parse(this.responseText)
 
             var error = res.error

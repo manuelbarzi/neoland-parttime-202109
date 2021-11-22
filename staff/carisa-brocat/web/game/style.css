@@ -17,14 +17,33 @@ body {
     background-size: cover;
 }
 
-.change-background{
+.change-background {
     background-image: url("sky_earth.png");
 }
 
 .game-title {
     font-size: 50px;
     color: var(--color);
-    margin: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.header {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.img-profile {
+    width: 40px
+}
+
+.profile-button {
+    background-color:transparent;
+    border-radius: 20px;
+    border-style: none;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .container {
@@ -36,6 +55,13 @@ body {
 .container--vertical {
     flex-direction: column;
 }
+
+.container--hztal {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 
 .box {
     margin-top: 70px;
@@ -85,6 +111,10 @@ body {
     margin-top: 3px;
 }
 
+.button__changes {
+    margin-bottom: 10px;
+}
+
 .button--long {
     width: 100px;
     margin-bottom: 5px
@@ -97,20 +127,26 @@ body {
     border-radius: 10px
 }
 
+.box--header{
+    color: var(--color);
+    font-size: 35px;
+}
+
 .off {
     display: none;
 }
 
-.signIn__feedback {
+.signIn__feedback, .signUp__feedback, 
+.change-name__feedback, .passwor__feedback {
     color: red
 }
 
 /* game */
 
-.bird{
+.bird {
     width: 60px
 }
 
-.person{
+.person {
     width: 100px
 }

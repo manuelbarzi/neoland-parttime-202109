@@ -1,8 +1,8 @@
 console.log('>Case 1')
  
 var array = [1, 4, 9, 16]
-var res = map(array, function(value, index){
-  value = value*2   
+var res = map(array, function(value, index, array){
+  value*2   
     return value
 })
 

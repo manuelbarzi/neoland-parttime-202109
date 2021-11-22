@@ -11,7 +11,10 @@
 </head>
 
 <body class='container container--vertical'>
-    <h1 class='game-title'>ShitDAy</h1>
+    <header class='header container container--vertical'>
+        <h1 class='game-title'>ShitDAy</h1>
+       <button class='profile-button off' ><img src='profile.png' alt= 'profile' class='img-profile'></button> 
+    </header>
 
     <div class="landing container container--vertical">
         <h3 class='landing__text'>The Shit DAy game. Come to relax and let the shit fall down.</h3>
@@ -22,19 +25,22 @@
     </div>
 
     <div class='box signUp container container--vertical off'>
+        <h2 class='box--header'>Sign Up</h2>
         <form class='container container--vertical'>
             <input class='field' type='text' name='name' placeholder='name' required>
             <input class='field' type='email' name='email' placeholder='email' required>
             <input class='field' type='password' name='password' placeholder='password' required>
             <button class='button button--long'>Sign up</button>
         </form>
+        <span class='signUp__feedback off'>WRONG</span>
 
         Already have an account? <button class='button signUp__signIn'>Sign in</button>
     </div>
 
     <div class='box signIn container container--vertical off'>
+        <h2 class='box--header'>Sign In</h2>
         <form class='container container--vertical'>
-            <input class='field' type='text' name='name' placeholder='name' required>
+            <input class='field' type='email' name='email' placeholder='email' required>
             <input class='field' type='password' name='password' placeholder='password' required>
             <button class='button button--long'>Sign in</button>
         </form>
@@ -43,7 +49,7 @@
         Have not an account yet?<button class='button signIn__signUp'>Sign up</button>
     </div>
 
-    <div class=' post-signUp container container--vertical off'>
+    <div class='box post-signUp container container--vertical off'>
         <h2 class='post-signUP__text'>
             User successfully registered
         </h2>
@@ -58,6 +64,31 @@
         <button class='button button--big starting__start'>Start</button>
     </div>
 
+    <div class='box profile container container--vertical off'>
+        <h2 class='box--header'>Profile</h2>
+        <form class='container container--vertical'>
+            <button class='button button__changes button__changes--name'>Change name</button>
+            <button class='button button__changes button__changes--password'>Change password</button>
+        </form>
+    </div>
+
+    <div class='box profile__change-name container container--vertical off'>
+        <form class='container container--vertical'>
+            <input class='field' type='text' name='newName' placeholder=' new name' required>
+            <button class='button button--long'>Change</button>
+        </form>
+        <span class='change-name__feedback off'>WRONG</span>
+    </div>
+
+    <div class='box profile__change-password container container--vertical off'>
+        <form class='container container--vertical'>
+            <input class='field' type='password' name='current-password' placeholder='Current Password' required>
+            <input class='field' type='password' name='new-password' placeholder='New Password' required>
+            <button class='button button--long'>Change</button>
+        </form>
+        <span class='change-password__feedback off'>WRONG</span>
+    </div>
+
     <img class='bird off' src='bird.png' alt='bird'>
     <img class='person off' id='person' src='person.png' alt=''>
 
@@ -65,6 +96,7 @@
     <script src="logic/authentic-user.js"></script>
     <script src="logic/retriever-user.js"></script>
     <script src="logic/unregister-user.js"></script>
+    <script src="logic/modify-user.js"></script>
     <script src="main.js"></script>
 
 
