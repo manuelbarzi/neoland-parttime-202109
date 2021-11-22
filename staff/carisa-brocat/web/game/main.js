@@ -171,7 +171,7 @@ startingStartButton.addEventListener('click', function (event) {
         changeProfileName.classList.remove('off')
     })
 
-    changeProfileNameForm.addEventListener('clcik', function (event) {
+    changeProfileNameForm.addEventListener('submit', function (event) {
         event.preventDefault()
 
         var newNameInput = changeProfileNameForm.newName
@@ -181,7 +181,9 @@ startingStartButton.addEventListener('click', function (event) {
         try {
             modifyUser(_token, data, function (error) {
                 if (error) {
+
                     if (error.includes('invalid token')) {
+
                         signInView.classList.remove('off')
                         headerPerform.classList.remove('container--hztal')
                         headerprofileButton.classList.add('off')
