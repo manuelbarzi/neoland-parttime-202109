@@ -1,11 +1,11 @@
-console.log('TEST forEach')
+describe('> forEach')
 
-console.log('case 1')
+describe('case 1')
 
-var animals = ['zebra', 'lion', 'kangoroo', 'hypo', 'elephant', 'dog', 'coco', 'cat']
+var animals = new Chachay('zebra', 'lion', 'kangoroo', 'hypo', 'elephant', 'dog', 'coco', 'cat')
 var res = []
 
-forEach(animals, function (element, index) {
+animals.forEach(function (element, index) {
     res[index] = element
 })
 
@@ -27,20 +27,20 @@ if (res.length === animals.length
     && animals[5] === 'dog'
     && animals[6] === 'coco'
     && animals[7] === 'cat')
-    console.log('test ok')
+    success('test ok')
 else
-    console.error('test ko')
+    fail('test ko')
 
-console.log('case 2')
+describe('case 2')
 
-var nums = [1, 2, 3, 4, 5, 6]
+var nums = new Chachay(1, 2, 3, 4, 5, 6)
 var res = []
 
 function pow(num, index) {
     return res[index] = num * num
 }
 
-forEach(nums, pow)
+nums.forEach(pow)
 
 if (res.length === nums.length
     && res[0] === 1
@@ -56,18 +56,18 @@ if (res.length === nums.length
     && nums[3] === 4
     && nums[4] === 5
     && nums[5] === 6)
-    console.log('test ok')
+    success('test ok')
 else
-    console.error('test ko')
+    fail('test ko')
 
-console.log('case 3')
+describe('case 3')
 
-var nums = [1, 2, 3]
+var nums = new Chachay(1, 2, 3)
 var indexes = []
 var arrays = []
 var elements = []
 
-forEach(nums, function (element, index, array) {
+nums.forEach(function (element, index, array) {
     elements[elements.length] = element
     indexes[indexes.length] = index
     arrays[arrays.length] = array
@@ -90,6 +90,6 @@ if (elements instanceof Array
     && nums[0] === 1
     && nums[1] === 2
     && nums[2] === 3)
-    console.log('test ok')
+    success('test ok')
 else
-    console.error('test ko')
+    fail('test ko')

@@ -1,0 +1,18 @@
+html, body{
+    height: 100%;
+    margin: 0;
+}
+body{
+    background: linear-gradient(45deg, rgba(188,34,195,1) 0%, rgba(64,45,253,1) 100%);
+    background-repeat: no-repeat;
+}
+
+.spaceship{
+    position: absolute;
+    width: 100px;
+}
+
+.asteroid{
+    position: absolute;
+    width: 100px;
+}
