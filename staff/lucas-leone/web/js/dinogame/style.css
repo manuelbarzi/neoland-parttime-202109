@@ -50,6 +50,9 @@ body{
     padding: .5rem;
     cursor: pointer;
 }
+.button:hover{
+    background-color:white;
+}
 
 .container {
     display: flex;
@@ -57,14 +60,20 @@ body{
     align-items: center;
     color: var(--color);
 }
+.signup, .signin {
+    margin-top: 7%;
+}
 
 .container--vertical {
     flex-direction: column;
 }
 .container--general{
-    position: absolute;
+    /* position: absolute;
     right: 30%;
-    top: 30%;
+    top: 30%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .container--gapped {
     margin: .25rem;
@@ -75,24 +84,23 @@ body{
     border-radius: 1rem;
     padding: 1rem;
 }
-
-
 .final{
     display:flex;
     flex-direction: column;
     align-items: center;
 }
 .final__lose{
-    font-size: 3rem;
+    font-size: 2rem;
     margin-top: 2rem;
 }
 
 .final__press{
     position: absolute;
     font-size: 1rem;
-    margin-top: 5rem;
+    margin-top: 10rem;
     top:30%
 }
+
 .score{
    justify-self: flex-end;
 }
@@ -106,8 +114,6 @@ body{
     width: 4%;
 
 }
-
-
 .dino{
     position: absolute;
     width: 60px;
@@ -116,9 +122,7 @@ body{
 .signin__feedback {
     color: red;
 }
-.off{
-    display:none
-}
+
 
 .canvas1, .canvas2{
     position:absolute;
@@ -135,12 +139,43 @@ body{
     flex-direction: column;
     align-items: flex-end;
     justify-content: flex-end;
-    margin: 2rem;
+    margin: 0.8rem;
     gap: 1rem;
     }
 
 .maxscore{
-    font-size: rem;
+    font-size: 0.7rem;
+    margin-top: 0.5rem;
+    
 }
 
+.profile__logo{
+    position: absolute;
+    top:2rem;
+    width:2.5rem;
+}
 
+.profile__logo:hover{
+    background-color: white;
+    border-radius: 3rem;
+    cursor: pointer;
+}
+
+.profile{
+   
+    margin-top: 10%;
+}
+
+.off{
+    display:none
+}
+
+.close{
+    align-self: flex-end;
+    cursor:pointer ;
+
+}
+
+.close:hover{
+    background-color: white;
+}

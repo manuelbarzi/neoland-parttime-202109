@@ -5,10 +5,13 @@ var postSignupPanel = document.querySelector('.post-signup')
 var signinPanel = document.querySelector('.signin')
 var gamePanel = document.querySelector('.game')
 
+var inter4a=""
+var inter4b=""
+
 var _token
 var userData
 
-var tokenDino=""
+var tokenDino = ""
 var maxUser
 var maxscore
 
@@ -89,7 +92,7 @@ signinForm.addEventListener('submit', function (event) {
 
             siginFeedback.classList.remove('off')
         } else {
-            
+
             retrieveUser(token, function (error, user) {
                 if (error) {
                     var siginFeedback = signinPanel.querySelector('.signin__feedback')
@@ -100,38 +103,54 @@ signinForm.addEventListener('submit', function (event) {
 
                     return
                 }
-                _token=token
+                _token = token
                 var gameUser = gamePanel.querySelector('.game__user')
 
                 gameUser.innerText = 'Hello, ' + user.name + '!'
 
                 signinPanel.classList.add('off')
                 gamePanel.classList.remove('off')
-                userData=user
+                userData = user
 
-                authenticateUser("dinorun","1111",function(error,token){ 
-                    if (error)  {
+                authenticateUser("dinorun", "1111", function (error, token) {
+                    if (error) {
                         console.log(error)
                         return
                     }
                     retrieveUser(token, function (error, user) {
                         if (error) {
                             console.log(error)
-                            
+
                             return
                         }
                         tokenDino = token
-                        maxData=user
+                        maxData = user
                         start()
                     })
-                
+
                 })
-                               
+
 
             })
         }
     })
 })
+//PANEL PROFILE
+var profileLogo = document.querySelector('.profile__logo')
+var profilePanel = document.querySelector(".profile")
+
+profileLogo.addEventListener('click', function () {
+    profilePanel.classList.remove('off')
+    gamePanel.classList.add('off')
+})
+
+
+var closeButton=document.querySelector('.close')
+
+closeButton.addEventListener("click",function(){
+    location.reload()
+})
+
 
 function start() {
     //GAME
@@ -156,14 +175,13 @@ function start() {
     var din = true
     var inter4 = setInterval(function () {
         if (din) {
-            var dinoImage = dinoImage2
             dinoImage2.classList.remove('off')
             dinoImage1.classList.add('off')
 
             din = !din
         }
         else {
-            var dinoImage = dinoImage1
+
             dinoImage1.classList.remove('off')
             dinoImage2.classList.add('off')
 
@@ -244,11 +262,9 @@ function start() {
                 dino.y += direction * step
                 dinoImage1.style.transform = translate(dino.x, dino.y)
                 dinoImage2.style.transform = translate(dino.x, dino.y)
-            }, 15)
+            }, 12)
         }
 
-
-        dinoImage.style.transform = translate(dino.x, dino.y)
     })
     // MOVIMIENTO CACTUS
     var inter2 = setInterval(function () {
@@ -270,7 +286,7 @@ function start() {
         cactus2Image.style.transform = translate(cactus2.x, cactus2.y)
     }, 20)
     //MOVIMIENTO CLOUD
-    var inter2c = setInterval(function () {
+    var interval2c = setInterval(function () {
         cloud1.x = cloud1.x - stepc - 3
         cloud2.x = cloud2.x - stepc - 3
         if (cloud1.x < 0) {
@@ -282,6 +298,7 @@ function start() {
         cloud1Image.style.transform = translate(cloud1.x, cloud1.y)
         cloud2Image.style.transform = translate(cloud2.x, cloud2.y)
     }, 40)
+    
 
 
     //PANTALLA FINAL
@@ -296,7 +313,7 @@ function start() {
 
     //SCORE
 
-    maxscore= "RECORD: "+ maxData.maxuser + ": "+ maxData.maxscore 
+    maxscore = "RECORD: " + maxData.maxuser + ": " + maxData.maxscore
     maxScoreText.innerText = maxscore
     var inter3 = setInterval(function () {
         points += 1
@@ -312,12 +329,12 @@ function start() {
         if (cactus1.x - cactus1.w / 2 < dino.x + dino.w / 2 && cactus1.y - cactus1.h / 2 <= dino.y + dino.h / 2) {
             clearInterval(inter3)
 
-            if(points>userData.score){
+            if (points > userData.score) {
                 score = "NEW RECORD! Score: " + points
-            scoreText.innerText = score
+                scoreText.innerText = score
             }
             loseText.classList.remove('off')
-            var inter4 = setInterval(function () {
+            var inter4a = setInterval(function () {
 
 
 
@@ -335,15 +352,36 @@ function start() {
             }, 500)
 
         }
+
+
+        var canvas1 = document.getElementById("canvas1");
+        var ctx = canvas1.getContext("2d");
+
+        ctx.moveTo(1, 268);
+        ctx.lineTo(1400, 268);
+        ctx.lineWidth = 5
+        ctx.strokeStyle = "black";
+        ctx.stroke();
+
+        var canvas2 = document.getElementById("canvas2");
+        var ctx2 = canvas2.getContext("2d");
+
+        ctx2.moveTo(1, 275);
+        ctx2.lineTo(1400, 275);
+        ctx2.lineWidth = 3
+        ctx2.strokeStyle = "black";
+        ctx2.stroke();
+
         // GAME OVER INTERVALO
         if (cactus2.x - cactus2.w / 2 < dino.x + dino.w / 2 && cactus2.y - cactus2.h / 2 <= dino.y + dino.h / 2) {
             clearInterval(inter3)
-            if(points>userData.score){
+
+            if (points > userData.score) {
                 score = "NEW RECORD! Score: " + points
-            scoreText.innerText = score
+                scoreText.innerText = score
             }
             loseText.classList.remove('off')
-            var inter4 = setInterval(function () {
+            var inter4b = setInterval(function () {
 
 
 
@@ -362,49 +400,40 @@ function start() {
         }
     })
 
-    var canvas1 = document.getElementById("canvas1");
-    var ctx = canvas1.getContext("2d");
-
-    ctx.moveTo(1, 268);
-    ctx.lineTo(1400, 268);
-    ctx.lineWidth = 5
-    ctx.strokeStyle = "black";
-    ctx.stroke();
-
-    var canvas2 = document.getElementById("canvas2");
-    var ctx2 = canvas2.getContext("2d");
-
-    ctx2.moveTo(1, 275);
-    ctx2.lineTo(1400, 275);
-    ctx2.lineWidth = 3
-    ctx2.strokeStyle = "black";
-    ctx2.stroke();
-
 
 
 
     document.addEventListener('keydown', function (event) {
         if (event.key === 'Enter') {
-            if (points>userData.score){
-            userData.score=points
-            var json = JSON.stringify(userData)
-            modifyUser(_token,json,function(error){
-                console.log(error)
-            })}
-            if(points>maxData.maxscore){
-            maxData.maxscore = points
-            maxData.maxuser =userData.username
-            var jsonMax = JSON.stringify(userData)
+            if (points > userData.score) {
+                userData.score = points
+                var json = JSON.stringify(userData)
+                modifyUser(_token, json, function (error) {
+                    console.log(error)
+                })
+            }
+            if (points > maxData.maxscore) {
+                maxData.maxscore = points
+                maxData.maxuser = userData.username
+                var jsonMax = JSON.stringify(maxData)
 
-            modifyUser(tokenDino,jsonMax,function(error){
-                console.log(error)
-            })}
-            
-            location.reload()
+                modifyUser(tokenDino, jsonMax, function (error) {
+                    console.log(error)
+                    location.reload()
+                })
+            } else { location.reload() }
+
+
+
+
             // clearInterval(inter4)
             // clearInterval(inter2c)
             // loseText.classList.add('off')
             // pressText.classList.add('off')
             //start()
-            
-}})}
+
+        }
+    })
+}
+
+
