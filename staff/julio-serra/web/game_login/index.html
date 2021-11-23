@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logins</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+
+    <section class="main">
+        <div class="main__bg"></div>
+        <div class="main__section">
+            <div class="registro container">
+                <div class="panel">
+                    <h2>Únete ahora y mira lo que está pasando</h2>
+                    <form action="https://b00tc4mp.herokuapp.com/api/v2/users" method="post" class="container container--vertical">
+
+                        <input class="field field--user" type="text" name="name" placeholder="Nombre">
+                        <input class="field field--username" type="text" name="username" placeholder="Username">
+                        <input class="field field--password" type="password" name="password" placeholder="Password">
+                        <button type="submit" class="button">Regístrate</button>
+                    </form>
+
+                    <p class="panel__paragraph">¿Ya tienes una cuenta? <button class="registro__inicio button">Inicia sesión</button></p>
+                </div>
+            </div>
+
+            <div class="panel-registrado container off">
+                <div class="panel">
+                    Usuario registrado correctamente, ahora puedes <button class="button">Iniciar sesión</button>
+                </div>
+            </div>
+
+            <div class="inicio container off">
+                <div class="panel">
+                    <h2>Inicia sesión</h2>
+                    <form class="container container--vertical">
+                        <input class="field" type="text" name="username" placeholder="username">
+                        <input class="field" type="password" name="password" placeholder="password">
+                        <button class="button inicio__sesion">Iniciar sesión</button>
+                    </form>
+
+                    <span class="feedback__inicio container container--gapped off">WTF!</span> ¿Todavía no tienes una cuenta? <button class="inicio__registro button">Regístrate</button>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+    <div class="game game__user off">
+        <section class="game__main">
+            <div class="game__container">
+                <header class="game__header">
+                    <div class="decka">
+                    </div>
+                    <div class="deckb">
+                    </div>
+                </header>
+                <section class="mixer">
+                    <p class="dnone text">La canción que está sonando es</p>
+                </section>
+            </div>
+    
+            <div class="main__profile off container--center">
+                <section class="main__changes">
+                    <button class="main__username-button">Change Username</button>
+                    <button class="main__password-button">Change Password</button>
+                </section>
+            </div>
+    
+            <div class="main__username off container--center">
+                <section class="main__changes">
+                    <input type="text" placeholder="Escribe tu nuevo usuario...">
+                    <button type="submit">Cambiar</button>
+                    </section>
+            </div>
+            </section>
+    <header class="profile">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAB+0lEQVRYhe2X4XHDIAyF3wiMwgZhhGxQb2BvUDZINgib1BvEG9gbOBu0P4IbocggEueud827010CQnwIgW3grX8iC+AA4Cvad7Tl/yH6vFwfAEYCULIxjtlcrhJEAnNbwTTCBBcAAcAe6dbY2BaiDx/XPAtzEkB8xXgvgJ0ehWlYoAGAeSCOiWOfypRjAcLKRJ8AzsTvHNsk8MBiuhogWsCD0G8ZCLcz5GNPMzVqYRqkNcNXawowFEoaS2uq0QDR7Hih3zPgLk5k4u9LxfhiliybTBJNeyf0d0izJIlCZ2/0I3EMKz50W6TiNcxHUkA+i7/qieP+hUB70t/ngGixrqWyZsukEwqk10oWqLQyIC3KGUCLW1G3sU2zHZq5VE7SzStZ6WZXAWmr3xagBsX40mkGoCvqRQbXLaFgQ2wrPfPURa059lwWwC6a9i0xkHmOOUdHHOcVn6V4S8+ypdgl0cJ3JfqJOHvWZ1mwks24z5on/VMJBkjvkRm3Va7BTLjWQc8WI0EZFkO6x0TRwMvziG7RBfkndYP0xEoxJi0McP+CxmE0xWsFKBrT1QAB6V5TU6cZ6fZT87Uwi4IQrK0Y3wrjw6Mwi6RVjrh+ne6QHm0T2w6Qv+NqspuVg3yCtDZhww9Fqq4SbMKGWcnJ4VqYPQOcYpvHizLy1p/TD1lShtbGOzuIAAAAAElFTkSuQmCC"
+        />
+        <button class="profile__button" type="submit">Profile</button>
+    </header>
+
+
+    </div>
+
+
+
+
+
+
+
+    <script src="./logic/register-user.js"></script>
+    <script src="./logic/authenticate-user.js"></script>
+    <script src="./logic/unregister-user.js"></script>
+    <script src="./logic/retrieve-user.js"></script>
+    <script src="./logic/update-user.js"></script>
+    <script src="./logic/game.js"></script>
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>

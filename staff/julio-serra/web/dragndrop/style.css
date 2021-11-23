@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Quattrocento+Sans:wght@400;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    font-family: 'Quattrocento Sans', sans-serif;
+    font-weight: 400;
+    margin: auto;
+    width: 1400px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10rem;
+}
+
+.mixer {
+    background-image: url(./mixer.jpg);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    height: 298px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.dnone {
+    display: none;
+}
+
+.text {
+    position: fixed;
+}
+
+.decka,
+.deckb {
+    background-image: url(./vinilo.png);
+    background-repeat: no-repeat;
+    height: 100px;
+    width: 100px;
+}
+
+.profile {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    font-weight: 700;
+    gap: 1rem;
+    justify-content: end;
+    padding-top: 2rem;
+}
+
+.profile__button {
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: .7rem 2rem;
+}
+
+.container--center {
+    display: flex;
+    justify-content: center;
+}
+
+.off {
+    display: none;
+}
+
+.main__changes {
+    display: flex;
+    flex-direction: column;
+}
