@@ -5,7 +5,8 @@ var homePanel = document.querySelector('.home')
 var gamePanel = document.querySelector('.game')
 var profilePanel = document.querySelector('.profile')
 var changeUsernamePanel = document.querySelector('.change-username')
-var changePasswordPanel = document.queryCommandIndeterm('.change-password)')
+var changePasswordPanel = document.querySelector('.change-password')
+var spinner = document.querySelector('.spinner')
 
 var _token
 
@@ -28,6 +29,8 @@ var signupForm = signupPanel.querySelector('form')
 signupForm.addEventListener('submit', function (event) {
     event.preventDefault()
 
+    spinner.classList.remove('off')
+
     var nameInput = signupForm.name
     var usernameInput = signupForm.username
     var passwordInput = signupForm.password
@@ -39,7 +42,12 @@ signupForm.addEventListener('submit', function (event) {
     try {
         registerUser(name, username, password, function (error) {
             if (error) {
-                var signupFeedback = signupPanel.querySelector('.signup__feedback')
+                spinner.classList.add('off')
+
+                var signupFeedback = signupPanel.querySelector('.feedback')
+
+                signupFeedback.classList.remove('feedback--warning')
+                signupFeedback.classList.add('feedback--error')
 
                 signupFeedback.innerText = error.message
 
@@ -48,11 +56,18 @@ signupForm.addEventListener('submit', function (event) {
                 return
             }
 
+            spinner.classList.add('off')
+
             signupPanel.classList.add('off')
             postSignupPanel.classList.remove('off')
         })
     } catch (error) {
-        var signupFeedback = signupPanel.querySelector('.signup__feedback')
+        spinner.classList.add('off')
+
+        var signupFeedback = signupPanel.querySelector('.feedback')
+
+        signupFeedback.classList.remove('feedback--error')
+        signupFeedback.classList.add('feedback--warning')
 
         signupFeedback.innerText = error.message
 
@@ -71,7 +86,7 @@ var signinForm = signinPanel.querySelector('form')
 
 var signInUsernameInput = signinForm.username
 
-signInUsernameInput.onfocus = function () {
+signInUsernameInput.onfocus = function() {
     var signinFeedback = signinPanel.querySelector('.feedback')
 
     signinFeedback.classList.add('off')
@@ -79,7 +94,7 @@ signInUsernameInput.onfocus = function () {
 
 var signInPasswordInput = signinForm.password
 
-signInPasswordInput.onfocus = function () {
+signInPasswordInput.onfocus = function() {
     var signinFeedback = signinPanel.querySelector('.feedback')
 
     signinFeedback.classList.add('off')
@@ -87,6 +102,8 @@ signInPasswordInput.onfocus = function () {
 
 signinForm.addEventListener('submit', function (event) {
     event.preventDefault()
+
+    spinner.classList.remove('off')
 
     var usernameInput = signinForm.username
     var passwordInput = signinForm.password
@@ -97,7 +114,9 @@ signinForm.addEventListener('submit', function (event) {
     try {
         authenticateUser(username, password, function (error, token) {
             if (error) {
-                var signinFeedback = signinPanel.querySelector('.signin__feedback')
+                spinner.classList.add('off')
+
+                var signinFeedback = signinPanel.querySelector('.feedback')
 
                 signinFeedback.innerText = error.message
                 signinFeedback.classList.remove('feedback--warning')
@@ -110,6 +129,8 @@ signinForm.addEventListener('submit', function (event) {
 
             retrieveUser(token, function (error, user) {
                 if (error) {
+                    spinner.classList.add('off')
+
                     var signinFeedback = signinPanel.querySelector('.signin__feedback')
 
                     signinFeedback.innerText = error.message
@@ -119,19 +140,23 @@ signinForm.addEventListener('submit', function (event) {
                     return
                 }
 
+                spinner.classList.add('off')
+
                 _token = token
 
-                var homeUser = gamePanel.querySelector('.home__user')
+                var homeUser = homePanel.querySelector('.home__user')
 
                 homeUser.innerText = 'Hello, ' + user.name + '!'
 
                 signinPanel.classList.add('off')
-                gamePanel.classList.remove('off')
+                homePanel.classList.remove('off')
 
                 //start()
             })
         })
     } catch (error) {
+        spinner.classList.add('off')
+
         var signinFeedback = signinPanel.querySelector('.feedback')
 
         signinFeedback.innerText = error.message
@@ -146,20 +171,85 @@ var homeGameButton = homePanel.querySelector('.home__game')
 
 homeGameButton.onclick = function () {
     profilePanel.classList.add('off')
-    gamePanel.classList.remove('.off')    
+    gamePanel.classList.remove('off')
 }
 
-var homeProfileButton = homePanel.querySelector('.home:__profile')
+var homeProfileButton = homePanel.querySelector('.home__profile')
 
- //homeProfileButton.addEventListener('click', function(){})
- homeProfileButton.onclick = function () {
-     gamePanel.classList.add('.off')
-     changeUsernamePanel.classList.add('.off')
-     changePasswordPanel.classList.remove('.off')
-     profilePanel.classList.remove ('.off')
- }
+//homeProfileButton.addEventListener('click', function() {})
+homeProfileButton.onclick = function () {
+    gamePanel.classList.add('off')
+    changeUsernamePanel.classList.add('off')
+    changePasswordPanel.classList.add('off')
+    profilePanel.classList.remove('off')
+}
 
- 
+
+var profileChangeUsernameButton = profilePanel.querySelector('.profile__change-username')
+
+profileChangeUsernameButton.onclick = function () {
+    profilePanel.classList.add('off')
+    changeUsernamePanel.classList.remove('off')
+}
+
+var profileChangePasswordButton = profilePanel.querySelector('.profile__change-password')
+
+profileChangePasswordButton.onclick = function () {
+    profilePanel.classList.add('off')
+    changePasswordPanel.classList.remove('off')
+}
+
+var changeUsernameForm = changeUsernamePanel.querySelector('form')
+
+var changeUsernameUsernameInput = changeUsernameForm.username
+
+changeUsernameUsernameInput.onfocus = function() {
+    var changeUsernameFeedback = changeUsernamePanel.querySelector('.feedback')
+
+    changeUsernameFeedback.classList.add('off')
+}
+
+//changeUsernameForm.addEventListener('submit', function() {})
+changeUsernameForm.onsubmit = function (event) {
+    event.preventDefault()
+
+    //var usernameInput = changeUsernameForm.username
+    //var usernameInput = event.target.username
+    var usernameInput = this.username
+
+    var username = usernameInput.value
+
+    var data = { username: username }
+
+    try {
+        modifyUser(_token, data, function (error) {
+            var changeUsernameFeedback = changeUsernamePanel.querySelector('.feedback')
+            
+            if (error) {
+                changeUsernameFeedback.innerText = error.message
+                changeUsernameFeedback.classList.remove('feedback--success')
+                changeUsernameFeedback.classList.add('feedback--error')
+
+                changeUsernameFeedback.classList.remove('off')
+
+                return
+            }
+
+            changeUsernameFeedback.innerText = 'Username correctly updated'
+            changeUsernameFeedback.classList.add('feedback--success')
+
+            changeUsernameFeedback.classList.remove('off')
+        })
+    } catch (error) {
+        var changeUsernameFeedback = changeUsernamePanel.querySelector('.feedback')
+
+        changeUsernameFeedback.innerText = error.message
+        changeUsernameFeedback.classList.remove('feedback--success')
+        changeUsernameFeedback.classList.add('feedback--error')
+
+        changeUsernameFeedback.classList.remove('off')
+    }
+}
 
 function start() {
     var step = 10, margin = 0, points = 0

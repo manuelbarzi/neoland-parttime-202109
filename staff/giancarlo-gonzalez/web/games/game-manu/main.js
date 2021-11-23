@@ -159,7 +159,6 @@ homeProfileButton.onclick = function () {
     profilePanel.classList.remove('off')
 }
 
-
 var profileChangeUsernameButton = profilePanel.querySelector('.profile__change-username')
 
 profileChangeUsernameButton.onclick = function () {
