@@ -15,15 +15,31 @@ function slice(string, start, end){
     var newString = ""
     debugger
     if (start >= 0 && end > 0) {
-        for (var i = start; i < end; i++) {
+        if(end>string.length){
+            for(var i= start; i< string.length; i++){
+                var stringIndex = string[i]
+                newString = newString + stringIndex
+            }
+            return newString
+        }else{
+            for (var i = start; i < end; i++) {
+                var stringIndex = string[i]
+                newString = newString + stringIndex
+            }
+            return newString
+        }
+    }
+
+    else if (start >= 0 && end === undefined) {
+        for (var i = start; i < string.length; i++) {
             var stringIndex = string[i]
             newString = newString + stringIndex
         }
         return newString
     }
 
-    else if (start >= 0 && end === undefined) {
-        for (var i = start; i < string.length; i++) {
+    else if (start >= 0 && end <0) {
+        for (var i = start; i < string.length+end; i++) {
             var stringIndex = string[i]
             newString = newString + stringIndex
         }
@@ -45,6 +61,12 @@ function slice(string, start, end){
         }
         return newString
     }
+
+    else if(start>string.length){
+        return newString
+    }
+
+
 }
 
 

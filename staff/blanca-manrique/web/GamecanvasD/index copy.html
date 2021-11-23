@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1 class='title'>Catch The KING</h1>
+
+    <!-- REGISTRO -->
+    <div class='signup container'>
+        <div class="panel">
+            <form class="container container--vertical">
+                <input class="field" type="text" name="name" placeholder="name">
+                <input class="field" type="text" name="username" placeholder="username">
+                <input class="field" type="password" name="password" placeholder="password">
+                <button class="button">Sign up</button>
+            </form>
+            Already have an account? <button class="signup__signin button">Sign in</button>
+        </div>
+    </div>
+
+    <!-- PANEL DESPUÉS DEL REGISTRO -->
+    <div class='post-signup container off'>
+        <div class="panel">
+            User successfully registered, now you can proceed to <button class="button">Sign in</button>
+        </div>
+    </div>
+
+    <!-- YA TIENES CUENTA: ACCESO AL JUEGO-->
+    <div class='signin container off'>
+        <div class="panel">
+            <form class="container container--vertical">
+                <input class="field" type="text" name="username" placeholder="username">
+                <input class="field" type="password" name="password" placeholder="password">
+                <button class="button">Sign in</button>
+            </form>
+
+            <span class="signin__feedback container container--spacing off">K ase loco</span>
+            Don't have an account? <button class="signin__signup button">Sign up</button>
+        </div>
+    </div>
+
+    <!-- PANEL DE NIVELES -->
+
+    <div class="level container container--vertical off">
+        <span class="level__user">Hello, user</span>
+        <div>
+            <h3 class="level__choose">Choose the level you want to play</h3>
+            <div class="container container--vertical container--spacing">
+                <button class="button level--one level__button">Level 1</button>
+                <button class="button level--two level__button">Level 2</button>
+                <button class="button level--three level__button">Level 3</button>
+                <button class="button level--four level__button">Level 4</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- GAME LEVEL 1 -->
+    <div class='game off'>
+        <img src="./img/chips-1431x1149.png" class="chips off" alt="">
+        <img src="./img/Rey-573x800.png" class="king off" alt="">
+        <img src="./img/Reina-573x800.png" class="queen off" alt="">
+        <img src="./img/J-2000x2900.png" class="jack off" alt="">
+        <canvas class="canvas" width="800" height="400"></canvas>
+        <div class="auxiliar container">
+            <button class="button button--auxiliar restart ">Play Again</button>
+            <button class="button button--auxiliar auxiliar__change">Change the Level</button>
+            <button class="button button--auxiliar auxiliar__exit">Exit</button>
+        </div>
+    </div>
+
+    <!-- SALIDA DEL JUEGO -->
+    <div class="exit container off">
+        <span class="exit__info">Are you sure you want to quit the game?</span>
+        <button class="button button--back">Back to the game</button>
+        <button class="button button--exit">Exit</button>
+    </div>
+
+
+    <script src="./logic/unregister-user.js"></script>
+    <script src="./logic/modify-user.js"></script> 
+    <script src="./logic/retrieve-user.js"></script>
+    <script src="./logic/authenticate-user.js"></script>
+    <script src="./logic/register-user.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

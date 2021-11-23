@@ -1,0 +1,31 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-color:rgb(193, 18, 31);
+}
+
+.board{
+    height: 80%;
+    width: 90%;
+    margin:250px auto;
+    background-color: seagreen;
+}
+.four, .queen, .king, .jack{
+    position:absolute;
+    width:150px;
+    height: 230px;
+}
+.chips{
+    position: absolute;
+    width:140px;
+    height: 180px;
+}
+/* .jack{
+    transform: rotate(40deg);
+    transform-origin: bottom center;
+    width:350px;
+    height: 500px;
+} */

@@ -65,8 +65,9 @@ h4{
 }
 .invitation{
     background-color: var(--oscuro);
+    width:60%;
 }
-.invitation-title{
+.invitation__title{
     color:white;
     text-transform: uppercase;
 }
@@ -74,9 +75,35 @@ h4{
     background-color: var(--color_formulario);
     padding: 20px;
     font-size: 20px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+    "name surname"
+    "email email"
+    "phone phone"
+    "choose choose";
+}
+.form__name{
+    grid-area: name;
+}
+.form__surname{
+    grid-area: surname;
+}
+.form__email{
+    grid-area: email;
+}
+.form__phone{
+    grid-area: phone;
+}
+.form__choose{
+    grid-area: choose;
+}
+.form__input{
+    width:100%;
 }
 .enviar{
     color:white;
     background-color: var(--oscuro);
     font-size: 22px;
+    grid-area: enviar;
 }

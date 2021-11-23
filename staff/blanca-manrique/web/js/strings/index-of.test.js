@@ -2,8 +2,8 @@ console.log("TEST indexOf")
 
 console.log("caso 1")
 
-var phrase = 'hola mundo'
-var index = indexOf(phrase, 'm')
+var string = 'hola mundo'
+var index = indexOf(string, 'm')
 
 if (typeof index === 'number'
     && index === 5)
@@ -15,8 +15,8 @@ else
 
 console.log("caso 2")
 
-var phrase = 'adios mundo cruel'
-var index = indexOf(phrase, 'mundo')
+var string = 'adios mundo cruel'
+var index = indexOf(string, 'mundo')
 
 if (typeof index === 'number'
     && index === 6)
