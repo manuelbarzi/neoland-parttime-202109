@@ -74,16 +74,16 @@ var smile = {
 }
 
 document.addEventListener('keydown', function (event) {
-    if (event.key === 'd')
+    if (event.key === 'd' || event.key === 'ArrowRight')
         smile.x += step // smile.x = smile.x + step
 
-    if (event.key === 'a')
+    if (event.key === 'a' || event.key === 'ArrowLeft')
         smile.x -= step
 
-    if (event.key === 's')
+    if (event.key === 's' || event.key === 'ArrowDown')
         smile.y += step
 
-    if (event.key === 'w')
+    if (event.key === 'w' || event.key === 'ArrowUp')
         smile.y -= step
 
     canvas.style.transform = translate(smile.x, smile.y)
