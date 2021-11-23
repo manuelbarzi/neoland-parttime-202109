@@ -6,19 +6,19 @@ function Human(name, age, gender) {
     this.gender = gender
 }
 
-Human.prototype.breath = function() {
+Human.prototype.breath = function () {
     return '🌬'
 }
 
-Human.prototype.eat = function() {
+Human.prototype.eat = function () {
     return '🍔'
 }
 
-Human.prototype.pee = function() {
+Human.prototype.pee = function () {
     return '🚰'
 }
 
-Human.prototype.poo = function() {
+Human.prototype.poo = function () {
     return '💩'
 }
 
@@ -32,11 +32,11 @@ function Female(name, age) {
 Female.prototype = Object.create(Human.prototype)
 Female.prototype.constructor = Female
 
-Female.prototype.giveBirth = function() {
+Female.prototype.giveBirth = function () {
     return '🐣'
 }
 
-Female.prototype.menstruate = function() {
+Female.prototype.menstruate = function () {
     return '🩸'
 }
 
@@ -47,7 +47,7 @@ function Male(name, age) {
 Male.prototype = Object.create(Human.prototype)
 Male.prototype.constructor = Male
 
-Male.prototype.doNothing = function() {
+Male.prototype.doNothing = function () {
     return '...'
 }
 
@@ -62,4 +62,4 @@ console.log(cara instanceof Object) // true
 console.log(coco instanceof Human) // true
 console.log(coco instanceof Female) // false
 console.log(coco instanceof Male) // true
-console.log(cara instanceof Object) // true
+console.log(coco instanceof Object) // true
