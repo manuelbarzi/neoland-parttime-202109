@@ -1,0 +1,11 @@
+.box {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    cursor: pointer;
+}
+
+.box--blue {
+    background-color: blue;
+} 

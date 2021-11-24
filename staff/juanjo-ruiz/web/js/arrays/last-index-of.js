@@ -1,0 +1,4 @@
+function lastIndexOf(array, element) {
+
+
+}

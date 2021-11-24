@@ -1,0 +1,51 @@
+h1 {
+    background-color: blue;
+    color: #000;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h2 {
+    background-color: blueviolet;
+    color: crimson;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+} 
+
+.firstSection {
+    background-color: darkcyan;
+    color: darkgrey;
+} 
+
+.secondSection {
+    background-color: darkkhaki;
+    color: darkslateblue;
+    font-size: larger;
+    line-height: 3;
+    text-align: center;
+} 
+
+.thirdSection {
+    background-color: darkslategray;
+    color: blanchedalmond;
+    line-height: 2;
+} 
+
+.fernandoImg {
+    width: 100px;
+    background-size: auto;
+    display: block;
+    margin: auto;
+    border-radius: 50px;
+} 
+
+#formation {
+    background-color: coral;
+    color: cornsilk;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 100;
+}
+
+#list {
+    list-style-type: lower-roman;
+    text-align: justify;
+    color: darkgreen;
+}

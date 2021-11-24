@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Yesteryear&display=swap');
+
+:root {
+    --color: blue;
+    --back-color: black;
+} 
+
+* {
+    font-family: 'Roboto Mono', monospace;
+    color: white;
+}
+
+img {
+    width: 100%;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-image: url(https://i.blogs.es/5012d8/screenshot-1/840_560.jpg);
+}
+
+.title {
+    color: white;
+    margin-bottom: 70px;
+    font-size: 70px;
+}
+
+
+.panel {
+    border: 3px solid var(--color);
+    border-radius: 10px;
+    padding: 70px;
+}
+
+.button {
+    border: 2px solid var(--color);
+    background-color: var(--color);
+    border-radius: 10px;
+    margin: 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.button--link {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 17px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.field {
+    border: 2px solid var(--color);
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    width: 20rem;
+    color: black;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color);
+}
+
+.container--vertical {
+    flex-direction: column;
+}
+
+.off {
+    display: none;
+}
+
+/* Personalizado */
+
+.feedback {
+    color: var(--color);
+}
+
+.feedback--error {
+    color: red;
+}
+
+.feedback--alert {
+    color: yellow;
+}
+
+.feedback--ok {
+    color: green;
+}
+
+.spaceship {
+    position: absolute;
+    width: 100px;
+}
+
