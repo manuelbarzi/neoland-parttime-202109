@@ -32,7 +32,7 @@
 
     <div class="post-signup container off">
         <div class="panel">
-            User successfully registered :), now you can proceed to <button class="button">Sign in</button class="button">
+            User successfully registered, now you can proceed to <button class="button">Sign in</button class="button">
         </div>
     </div>
 
@@ -46,11 +46,11 @@
 
             <span class="signin__feedback container container--gapped off">WTF!</span>
 
-            Don’t have an account??? <button class="signin__signup button">Sign up</button>
+            Don’t have an account? <button class="signin__signup button">Sign up</button>
         </div>
     </div>
 
-    <!-- Panel de HOME con botones Game y Profile -->
+    <!-- Panel de HOME -->
 
     <div class="home container container--vertical off">
         <span class="home__user">* Welcome *</span>
@@ -61,33 +61,35 @@
             <button class="button home__game">Game</button>
             <button class="button home__profile">Profile</button>
 
+
+        </div>
+
+        <!-- //Contenedor Juego -->
+
+
+        <div class="game container container--vertical off">
+            <span class="game__user">Welcome!</span>
+            <div class="fruits">
+
+                <img class="pear" src="pear-01.png" alt="">
+
+                <img class="cherries" src="cherries-01.png" alt="">
+
+                <img class="coco" src="coco-01.png" alt="">
+
+                <img class="pineapple" src="pineapple-01.png" alt="">
+
+                <img class="orange" src="orange-01.png" alt="">
+
+                <img class="apple" src="apple-01.png" alt="">
+
+                <img class="peach" src="peach-01.png" alt="">
+            </div>
+            <div class="blender"><img class="blender" src="blender-01.png" alt=""> </div>
+            <img class="blender-smoothie-off" src="blender-smoothie-01.png" alt="">
         </div>
     </div>
 
-
-    
-     <!-- //Contenedor Juego -->
-    <div class="game container container--vertical off">
-        <!-- <span class="game__user">Welcome!</span> -->
-        <div class="fruits">
-
-            <img class="pear" src="pear-01.png" alt="">
-
-            <img class="cherries" src="cherries-01.png" alt="">
-
-            <img class="coco" src="coco-01.png" alt="">
-
-            <img class="pineapple" src="pineapple-01.png" alt="">
-
-            <img class="orange" src="orange-01.png" alt="">
-
-            <img class="apple" src="apple-01.png" alt="">
-
-            <img class="peach" src="peach-01.png" alt="">
-        </div>
-        <div class="blender"><img class="blender" src="blender-01.png" alt=""> </div>
-        <img class="blender-smoothie-off" src="blender-smoothie-01.png" alt="">
-    </div>
 
     <!-- ------------ Contenedor de PROFILE -->
 
@@ -132,10 +134,7 @@
     </div>
     </div>
 
-    <div class="spinner container off">
-        <img class="spinner__image" src="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif" alt="" />
-    </div>
-    
+
     <script src="logic/register-user.js"></script>
     <script src="logic/authenticate-user.js"></script>
     <script src="logic/modify-user.js"></script>

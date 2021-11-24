@@ -34,3 +34,7 @@ edward.mostrarDatos(); //invocar el método de instancia
 var daniela = new Persona ('Daniela', 'Ortiz', 26, 'daniela@mail.co');
 
 daniela.mostrarDatos();  //y en consola nos dará los datos de esa instancia de la clase constructora "persona"
+
+
+
+
