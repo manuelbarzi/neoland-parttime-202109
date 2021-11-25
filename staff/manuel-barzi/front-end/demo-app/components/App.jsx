@@ -12,7 +12,12 @@ class App extends React.Component {
                 onLoggedIn={token => this.setState({ view: 'home', token })}
             />
         else if (this.state.view === 'register')
-            return <Register onLoginClick={() => this.setState({ view: 'login' })} />
+            return <Register 
+                onLoginClick={() => this.setState({ view: 'login' })} 
+                onRegistered={() => this.setState({ view: 'register-success' })}
+            />
+        else if (this.state.view === 'register-success')
+            return <RegisterSuccess onLoginClick={() => this.setState({ view: 'login' })}/>
         else if (this.state.view === 'home')
             return <Home />
     }
