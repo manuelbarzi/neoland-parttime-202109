@@ -7,7 +7,7 @@ class Login extends React.Component {
 
     render() {
         return <div>
-            <form onSubmit={event => {
+            <form  className="form" onSubmit={event => {
                 event.preventDefault()
 
                 const username = event.target.username.value
@@ -27,8 +27,8 @@ class Login extends React.Component {
                     this.setState({ feedback: error.message })
                 }
             }}>
-                <input type="text" name="username" placeholder="username" />
-                <input type="password" name="password" placeholder="password" />
+                <input className="form__input" type="text" name="username" placeholder="username" />
+                <input className="form__input" type="password" name="password" placeholder="password" />
 
                 <button>Login</button>
 
