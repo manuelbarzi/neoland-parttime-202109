@@ -23,6 +23,13 @@ class App extends React.Component {
                 onPostRegisterClick={() => this.setState({ view: 'login' })}
             />
         else if (this.state.view === 'home')
-            return <Home />
+            return <Home 
+                onUserSettingClick = {()=> this.setState({view: 'userSetting'})}
+            />
+        else if ( this.state.view === 'userSetting')
+            return <UserSetting 
+                token = {this.state.token}
+                CloseSetting ={() => this.setState ({view:'home'})}
+            />
     }
 }
