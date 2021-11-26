@@ -1,11 +1,15 @@
 class Login extends React.Component {
     constructor() {
+        logger.debug('Login -> constructor')
+
         super()
 
         this.state = { feedback: null }
     }
 
     render() {
+        logger.debug('Login -> render')
+
         return <div>
             <form onSubmit={event => {
                 event.preventDefault()
