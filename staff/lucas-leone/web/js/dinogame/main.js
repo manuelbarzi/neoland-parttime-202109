@@ -54,6 +54,7 @@ signupForm.addEventListener('submit', function (event) {
     var name = nameInput.value
     var username = usernameInput.value
     var password = passwordInput.value
+    
     registerUser(name, username, password, function (error) {
         if (error) {
             alert(error.message)
