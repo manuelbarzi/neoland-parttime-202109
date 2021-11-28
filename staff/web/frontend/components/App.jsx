@@ -24,9 +24,11 @@ class App extends React.Component {
             />
         else if (this.state.view === 'home')
             return <Home token={this.state.token}
-                    onClicked={()=> this.setState({view:'changeuser', username })} 
+                    onClicked={()=> this.setState({view:'changeuser' })} 
             />
         else if (this.state.view === 'changeuser')
-            return <ChangeUser token={this.state.token} username={this.state.username}/>
+            return <ChangeUser token={this.state.token}
+            onModifyed={()=> this.setState({view:'login'})}
+            />
     }
 }

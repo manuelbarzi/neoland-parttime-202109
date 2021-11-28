@@ -7,7 +7,7 @@ class Home extends React.Component {
 
         super()
 
-        this.state = { name: null, username: null }
+        this.state = { name: null}
 
     }
 
@@ -19,7 +19,6 @@ class Home extends React.Component {
                 if (error) return alert(error.message)
 
                 this.setState({ name: user.name })
-                this.setState({ username: user.username })
 
             })
         } catch (error) {
@@ -33,7 +32,7 @@ class Home extends React.Component {
                 <h1>hello, {this.state.name ? this.state.name : 'World'}!</h1>
                 <p>For change your username</p> <a href="" onClick={event => {
                     event.preventDefault()
-                    this.props.onClicked(this.state.username)
+                    this.props.onClicked()
                 }}>click here</a>
             </div>
         }
