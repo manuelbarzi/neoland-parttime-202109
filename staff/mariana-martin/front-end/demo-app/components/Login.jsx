@@ -1,11 +1,17 @@
 class Login extends React.Component {
     constructor() {
+
+        logger.debug('Login --> constructor') //indica en consola cuando el login se construye
+
         super()
 
         this.state = { feedback: null}
     }
 
     render() {
+
+        logger.debug('Login --> render')
+
         return <div>
             <form onSubmit={event => { //autenticar 
                 event.preventDefault()  //prevent, para manejarlo con javascript y no se comporte como submit normal,
@@ -13,7 +19,7 @@ class Login extends React.Component {
                 const username = event.target.username.value //recupero los datos de los inputs
                 const password = event.target.password.value
 
-                try { //llamar a la lógica del authenticate, sise produce un error sincrono
+                try { //llamar a la lógica del authenticate, si se produce un error sincrono
                     authenticateUser(username, password, (error, token) => {
                         if (error) {
                             this.setState({ feedback: error.message })
@@ -21,7 +27,7 @@ class Login extends React.Component {
                             return
                         }
                         
-                        this.props.onLoggedIn(token) //le paso callback atraves de props a la app y la app, en el callback recibe el token y lo setea
+                        this.props.onLoggedIn(token) //le paso callback através de props a la app y la app, en el callback recibe el token y lo setea
                     })
                 } catch (error) {
                     this.setState ({ feedback: error.message}) 
