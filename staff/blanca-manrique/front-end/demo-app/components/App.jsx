@@ -24,6 +24,7 @@ class App extends React.Component {
             />
         else if (this.state.view === 'home')
             return <Home 
+                token={this.state.token}
                 onUserSettingClick = {()=> this.setState({view: 'userSetting'})}
             />
         else if ( this.state.view === 'userSetting')
