@@ -16,22 +16,12 @@ class Home extends React.Component {
 
         try {
             retrieveUser(this.props.token, (error, user) => {
-                if (error) {
-                    alert(error.message)
-
-                    delete sessionStorage.token
-
-                    this.props.onLoggedOut()
-                }
+                if (error) return alert(error.message)
 
                 this.setState({ name: user.name })
             })
         } catch (error) {
             alert(error.message)
-
-            delete sessionStorage.token
-
-            this.props.onLoggedOut()
         }
     }
 
@@ -43,14 +33,7 @@ class Home extends React.Component {
         logger.debug('Home -> render')
 
         if (this.state.name)
-            return <div>
-                <h1>Hello, {this.state.name ? this.state.name : 'World'}!</h1>
-                <button onClick={() => {
-                    delete sessionStorage.token
-
-                    this.props.onLoggedOut()
-                }}>Logout</button>
-            </div>
+            return <h1>Hello, {this.state.name ? this.state.name : 'World'}!</h1>
         else return null
     }
 }
