@@ -2,7 +2,12 @@ class App extends React.Component {
     constructor() {
         super()
 
-        this.state = { view: 'login', token: null }
+        // cuando arranca la APp muestra:
+        this.state = {
+            view: sessionStorage.token ? 'home' : 'login', // si hay token muestra la pagina home y sino login
+
+            token: sessionStorage.token ? sessionStorage.token : null // si hay token me lo guardas en token y sino null
+        }
     }
 
     render() {
@@ -11,7 +16,7 @@ class App extends React.Component {
                 onRegisterClick={() => this.setState({ view: 'register' })}
                 onLoggedIn={token => this.setState({ view: 'home', token })}
             />
-            
+
         else if (this.state.view === 'register')
             return <Register
                 onLoginClick={() => this.setState({ view: 'login' })}
@@ -23,7 +28,11 @@ class App extends React.Component {
                 onLoginClick={() => this.setState({ view: 'login' })} />
 
         else if (this.state.view === 'home')
-            return <Home token={this.state.token} />
+            return <Home token={this.state.token}
+                logOut={() => {
+                    this.setState({ view: 'login' })
+                }}    //creamos el callback para que llame al componente Home
+            />
 
 
     }

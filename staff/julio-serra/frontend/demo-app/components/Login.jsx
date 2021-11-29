@@ -20,8 +20,8 @@ class Login extends React.Component {
 
                             return
                         }
-
-                        this.props.onLoggedIn(token)
+                        sessionStorage.token = token // guardo el token
+                        this.props.onLoggedIn(token) //le decimos a la App si hay algún cambio en el token
                     })
                 } catch (error) {
                     this.setState({ feedback: error.message })

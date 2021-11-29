@@ -15,6 +15,8 @@ class Home extends React.Component {
             })
         } catch (error) {
             alert(error.message)
+
+
         }
 
     }
@@ -22,7 +24,14 @@ class Home extends React.Component {
 
     render() {
         if (this.state.name)
-            return <h1>Hello, {this.state.name ? this.state.name : 'World'}</h1>
+            return <div>
+                <h1>Hello, {this.state.name ? this.state.name : 'World'}</h1>
+                <button onClick={() => {
+                delete sessionStorage.token // borramos la cookie de la contraseña para que vuelva a 0
+
+                this.props.logOut()    //añadimos el prop creado en la App
+                }}>Log Out</button>
+            </div>
         else return null
     }
 
