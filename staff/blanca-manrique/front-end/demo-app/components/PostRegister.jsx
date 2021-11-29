@@ -1,5 +1,7 @@
 class PostRegister extends React.Component{
     constructor(){
+        logger.debug('PostRegister -> "render"')
+
         super()
     }
     render(){

@@ -1,10 +1,25 @@
 class Login extends React.Component{
     constructor(){
+        logger.debug('Login -> constructor')
         super()
 
         this.state = {feedback:null} //estado inicial
     }
+    componentWillMount() {
+        logger.debug('Login -> will mount')
+    }
+
+    componentDidMount() {
+        logger.debug('Login -> did mount')
+    }
+
+    componentWillUnmount() {
+        logger.debug('Login -> will unmount')
+    }
+
     render(){
+        logger.debug('Login -> render')
+        
         return <div>
             <form onSubmit={event =>{
                 event.preventDefault()
@@ -18,6 +33,8 @@ class Login extends React.Component{
 
                             return //Para que pare ahí
                         }
+                        sessionStorage.token = token
+
                         this.props.onLoggedIn(token)
                     })
                     //le estoy pasando el username, password y el callback--si va mal me devuelve error:Pero me gustaría settear el feedback dentro del componente de Login, es decir, que el feedback cambie de estado y que me saque por pantalla en algún lugar que algo va mal 

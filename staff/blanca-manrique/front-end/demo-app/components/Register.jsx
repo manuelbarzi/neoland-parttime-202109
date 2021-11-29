@@ -1,10 +1,23 @@
 class Register extends React.Component {
     constructor() {
+        logger.debug('Register -> constructor')
         super()
 
         this.state = { feedback: null } //estado inicial
     }
+    componentWillMount() {
+        logger.debug('Register -> will mount')
+    }
+
+    componentDidMount() {
+        logger.debug('Register -> did mount')
+    }
+
+    componentWillUnmount() {
+        logger.debug('Register -> will unmount')
+    }
     render() {
+        logger.debug('Register -> render')
         return <div>
             <form onSubmit ={event =>{
                 event.preventDefault()

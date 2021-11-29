@@ -1,10 +1,26 @@
 class App extends React.Component {
     constructor() {
+        logger.debug('App -> constructor')
         super()
 
-        this.state = { view: 'login', token: null } //estado inicial
+        this.state = { 
+            view: sessionStorage.token? 'home' :'login', 
+            token: sessionStorage.token? 'token' :null } //estado inicial
+    }
+    componentWillMount() {
+        logger.debug('App -> will mount')
+    }
+
+    componentDidMount() {
+        logger.debug('App -> did mount')
+    }
+
+    componentWillUnmount() {
+        logger.debug('App -> will unmount')
     }
     render() {
+        logger.debug('App -> render')
+        
         if (this.state.view === 'login')
             return <Login
                 // Ambos callbacks son props que va a recibir Login 
@@ -26,11 +42,19 @@ class App extends React.Component {
             return <Home 
                 token={this.state.token}
                 onUserSettingClick = {()=> this.setState({view: 'userSetting'})}
+                onLoggedOut={() => this.setState({ view: 'login', token: null })}
+                modifiedPassword = {() => this.setState({view:'modifiedPassword'})}
             />
         else if ( this.state.view === 'userSetting')
             return <UserSetting 
                 token = {this.state.token}
                 CloseSetting ={() => this.setState ({view:'home'})}
             />
+        else if(this.state.view === 'modifiedPassword')
+            return <ChangePassword
+                token = {this.state.token}
+                onAllDone={() => this.setState ({view: 'login'})}
+            />
     }
 }
+

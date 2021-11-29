@@ -7,12 +7,22 @@ class Home extends React.Component {
     componentWillMount() { 
         try {
             retrieveUser(this.props.token, (error, user) => {
-                if (error) return alert(error.message)
+                if (error){
+                    alert(error.message)
+
+                    delete sessionStorage.token
+
+                    this.props.onLoggedOut()
+                } 
                 
                 this.setState({ name: user.name })
             })
         } catch (error) {
             alert(error.message)
+
+            delete sessionStorage.token
+
+            this.props.onLoggedOut()
         }
     }
     render() {
@@ -22,9 +32,20 @@ class Home extends React.Component {
                 <h1>hello, {this.state.name ? this.state.name : 'World'}!</h1>
 
                 <button onClick={event => {
+                    delete sessionStorage.token
+                    
+                    this.props.onLoggedOut()
+                }}>Logout</button>
+
+                <button onClick={event => {
                     event.preventDefault()
                     this.props.onUserSettingClick()
                 }}>Change name</button>
+
+                <button onClick = {event =>{
+                    event.preventDefault()
+                    this.props.modifiedPassword()
+                }}>Change password</button>
             </div>
         }
         else { return null }
