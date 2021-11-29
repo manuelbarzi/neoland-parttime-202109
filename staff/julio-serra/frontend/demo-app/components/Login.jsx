@@ -7,7 +7,7 @@ class Login extends React.Component {
 
     render() {
         return <div>
-            <form  className="form" onSubmit={event => {
+            <form className="form" onSubmit={event => {
                 event.preventDefault()
 
                 const username = event.target.username.value
@@ -37,7 +37,6 @@ class Login extends React.Component {
 
             <a href="" onClick={event => {
                 event.preventDefault()
-
                 this.props.onRegisterClick()
             }}>Register</a>
         </div>

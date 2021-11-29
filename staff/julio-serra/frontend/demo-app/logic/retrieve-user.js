@@ -6,12 +6,12 @@ function retrieveUser(token, callback) {
     // lanzamos el callback
 
     xhr.addEventListener('load', function() {
-        if (this.state === 401) {
+        if (this.status === 401) {
             var res = JSON.parse(this.responseText)
             var error = res.error
             callback(new Error(error))
-        } else if (this.state === 200) {
-            var res = JSON.parse(this.responseText)
+        } else if (this.status === 200) {
+            var user = JSON.parse(this.responseText)
 
             callback(null, user)
         }
