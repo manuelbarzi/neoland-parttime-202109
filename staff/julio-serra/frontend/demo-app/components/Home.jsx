@@ -58,7 +58,12 @@ class Home extends React.Component {
                         <img src={vehicle.thumbnail} />
                         <span>{vehicle.price} €</span>
                     </li>)}
-                </ul>}
+                </ul>
+                }
+
+                {!this.state.vehicles.length && <h1>somos unos fuckers</h1>}
+
+
             </div>
         else return null
     }
