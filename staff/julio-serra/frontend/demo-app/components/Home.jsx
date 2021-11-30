@@ -2,7 +2,10 @@ class Home extends React.Component {
     constructor() {
         super()
         //ponemos el nombre a null
-        this.state = { name: null }
+        this.state = {
+            name: null,
+            vehicles: []
+        }
     }
 
     componentDidMount() {
@@ -27,10 +30,35 @@ class Home extends React.Component {
             return <div>
                 <h1>Hello, {this.state.name ? this.state.name : 'World'}</h1>
                 <button onClick={() => {
-                delete sessionStorage.token // borramos la cookie de la contraseña para que vuelva a 0
+                    delete sessionStorage.token // borramos la cookie de la contraseña para que vuelva a 0
 
-                this.props.logOut()    //añadimos el prop creado en la App
+                    this.props.logOut()    //añadimos el prop creado en la App
                 }}>Log Out</button>
+                <form onSubmit={event => {
+                    event.preventDefault()
+
+                    var query = event.target.query.value
+
+                    try {
+                        searchVehicles(query, (error, vehicles) => {
+                            if (error) return alert(error.message)
+                            this.setState({ vehicles })
+                        })
+                    } catch (error) {
+                        alert(error.message)
+                    }
+
+                }}>
+                    <input type="text" name="query" placeholder="Encuentra tu coche" />
+                    <button>Search</button>
+                </form>
+                {!!this.state.vehicles.length && <ul>
+                    {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
+                        <h2>{vehicle.name}</h2>
+                        <img src={vehicle.thumbnail} />
+                        <span>{vehicle.price} €</span>
+                    </li>)}
+                </ul>}
             </div>
         else return null
     }
