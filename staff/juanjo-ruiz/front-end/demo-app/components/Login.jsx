@@ -21,16 +21,18 @@ class Login extends React.Component {
                             return
                         }
 
+                        sessionStorage.token = token
+                        
                         this.props.onLoggedIn(token)
                     })
                 } catch (error) {
                     this.setState({ feedback: error.message })
                 }
             }}>
-                <input type="text" name="username" placeholder="username" />
-                <input type="password" name="password" placeholder="password" />
+                <input className="input" type="text" name="username" placeholder="username" />
+                <input className="input" type="password" name="password" placeholder="password" />
 
-                <button>Login</button>
+                <button className="cool-button">Login</button>
 
                 {this.state.feedback ? <p>{this.state.feedback}</p> : null }
             </form>
