@@ -1,22 +1,5 @@
-.button{
-    background: red;
-}
-
-.main__button{
-    background-color: rgb(230, 87, 111);
-    padding: 1rem 2rem;
-    border-radius: 2rem;
-    border: none;
-    font-family: 'Courier New', Courier, monospace;
-    color: white;
-    font-weight: 600;
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    text-decoration: underline;
-    display: block;
-    margin: 20px auto;
-}
-
-.main__button--reset{
-    background-color: grey;
+.flex-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }

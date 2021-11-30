@@ -4,7 +4,7 @@ class Home extends React.Component {
 
         super()
 
-        this.state = { name: null }
+        this.state = { name: null, vehicles:[]  }
     }
 
     componentWillMount() {
@@ -50,6 +50,38 @@ class Home extends React.Component {
 
                     this.props.onLoggedOut()
                 }}>Logout</button>
+
+
+                <form onSubmit={event => {
+                    event.preventDefault()
+
+                    var query  = event.target.query.value
+
+                    try{
+                        searchVehicles( query, (error, vehicles) =>{
+                            if (error) return alert(error.message)
+
+                            this.setState({vehicles})
+                        })
+                    } catch(error){
+                        alert(error.message)
+                    }
+                }}>
+                    <input type="text" name="query" placeholder="Buscar vehiculos" />
+                    <button>Search</button>
+                </form>
+
+                {!!this.state.vehicles.length && <ul className="flex-list">
+                    {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
+                        <h2>{vehicle.name}</h2>
+                        <img src={vehicle.thumbnail} />
+                        <span>{vehicle.price} €</span>
+                    </li>)}
+                    </ul>}
+
+                
+
+
             </div>
         else return null
     }
