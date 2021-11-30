@@ -1,10 +1,25 @@
 class Login extends React.Component{
     constructor(){
+        logger.debug('Login -> constructor')
         super()
 
         this.state={ feedback:null }
     }
+
+    componentWillMount() {
+        logger.debug('Login -> will mount')
+    }
+
+    componentDidMount() {
+        logger.debug('Login -> did mount')
+    }
+
+    componentWillUnmount() {
+        logger.debug('Login -> will unmount')
+    }
+
 render(){
+    logger.debug('Login -> render')
     return <div>
         <form onSubmit={ event =>{
             event.preventDefault()
@@ -18,7 +33,7 @@ render(){
 
                         return
                     }
-
+                    sessionStorage.token = token
                     this.props.onLoggedIn(token)
                 })
             } catch (error) {
