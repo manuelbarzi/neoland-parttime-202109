@@ -4,6 +4,8 @@ class Home extends React.Component {
         //ponemos el nombre a null
         this.state = {
             name: null,
+            query: null,
+            vehicleId: null,
             vehicles: []
         }
     }
@@ -34,37 +36,31 @@ class Home extends React.Component {
 
                     this.props.logOut()    //añadimos el prop creado en la App
                 }}>Log Out</button>
-                <form onSubmit={event => {
-                    event.preventDefault()
 
-                    var query = event.target.query.value
+                <Search onQuery={query => this.setState({ query, view: 'results'})} />
 
-                    try {
-                        searchVehicles(query, (error, vehicles) => {
-                            if (error) return alert(error.message)
-                            this.setState({ vehicles })
-                        })
-                    } catch (error) {
-                        alert(error.message)
-                    }
+                {this.state.view === 'results' && <Results 
+                    query={this.state.query}
+                    onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail'})}
+                />}
 
-                }}>
-                    <input type="text" name="query" placeholder="Encuentra tu coche" />
-                    <button>Search</button>
-                </form>
-                {!!this.state.vehicles.length && <ul>
-                    {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
-                        <h2>{vehicle.name}</h2>
-                        <img src={vehicle.thumbnail} />
-                        <span>{vehicle.price} €</span>
-                    </li>)}
-                </ul>
-                }
-
-                {!this.state.vehicles.length && <h1>somos unos fuckers</h1>}
-
-
-            </div>
+                {this.state.view === 'detail' && <Detail 
+                    itemId={this.state.vehicleId}
+                />}
+                </div>
+            //    if (this.state.vehicles) {
+            //        if (this.state.vehicles.length) 
+            //            return <ul>
+            //         {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
+            //             <h2>{vehicle.name}</h2>
+            //             <img src={vehicle.thumbnail} />
+            //             <span>{vehicle.price} €</span>
+            //         </li>)}
+            //     </ul>
+            // else 
+            // return <h1>somos unos fuckers</h1>
+            //    } 
+ 
         else return null
     }
 
