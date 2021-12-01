@@ -10,10 +10,8 @@ class Results extends React.Component {
     componentDidMount() {
         logger.debug('Results -> component did mount')
 
-        const query = this.props.query
-
         try {
-            searchVehicles(query, (error, vehicles) => {
+            searchVehicles(this.props.query, (error, vehicles) => {
                 if (error) return alert(error.message)
 
                 this.setState({ vehicles })
@@ -26,10 +24,8 @@ class Results extends React.Component {
     componentWillReceiveProps(props) {
         logger.debug('Results -> component will receive props')
 
-        const query = props.query
-
         try {
-            searchVehicles(query, (error, vehicles) => {
+            searchVehicles(props.query, (error, vehicles) => {
                 if (error) return alert(error.message)
 
                 this.setState({ vehicles })
