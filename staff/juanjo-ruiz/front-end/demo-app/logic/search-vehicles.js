@@ -1,5 +1,5 @@
 function searchVehicles(query, callback) {
-    if (typeof query !== 'string') throw new TypeError(query + ' is not string')
+    if (typeof query !== 'string') throw new TypeError('query is not string')
     if (!query.trim()) throw new Error('token is empty or blank')
 
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')
@@ -10,9 +10,9 @@ function searchVehicles(query, callback) {
 
     xhr.onload = function () {
         if (this.status === 200) {
-            var user = JSON.parse(this.responseText)
+            var vehicle = JSON.parse(this.responseText)
 
-            callback(null, user)
+            callback(null, vehicle)
 
         } else {
             var res = JSON.parse(this.responseText)
