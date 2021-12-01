@@ -2,7 +2,7 @@ class App extends React.Component {
     constructor() {
         super()
 
-        // cuando arranca la APp muestra:
+        // cuando arranca la App muestra:
         this.state = {
             view: sessionStorage.token ? 'home' : 'login', // si hay token muestra la pagina home y sino login
 
@@ -29,9 +29,9 @@ class App extends React.Component {
 
         else if (this.state.view === 'home')
             return <Home token={this.state.token}
-                logOut={() => {
-                    this.setState({ view: 'login' })
-                }}    //creamos el callback para que llame al componente Home
+                logOut={() => { //creamos el callback para que llame al componente Home
+                    this.setState({ view: 'login', token: null }) // mostramos vista login y ponemos el token a nulo
+                }}    
             />
 
 
