@@ -6,9 +6,7 @@ class Home extends React.Component {
 
         this.state = {
             name: null,
-            query: null,
-            vehicleId: null,
-            view: null
+            query: null
         }
     }
 
@@ -56,14 +54,9 @@ class Home extends React.Component {
                     this.props.onLoggedOut()
                 }}>Logout</button>
 
-                <Search onQuery={query => this.setState({ query, view: 'results' })} />
+                <Search onQuery={query => this.setState({ query })} />
 
-                {this.state.view === 'results' && <Results
-                    query={this.state.query}
-                    onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })}
-                />}
-
-                {this.state.view === 'detail' && <Detail itemId={this.state.vehicleId} />}
+                {this.state.query && <Results query={this.state.query} />}
             </div>
         else return null
     }

@@ -1,18 +1,18 @@
-function searchVehicles(query, callback) {
-    if (typeof query !== 'string') throw new TypeError('query is not string')
-    if (!query.trim()) throw new Error('query is empty or blank')
+function retrieveVehicle(id, callback) {
+    if (typeof id !== 'string') throw new TypeError('id is not string')
+    if (!id.trim()) throw new Error('id is empty or blank')
 
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')
 
     var xhr = new XMLHttpRequest
 
-    xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles?q=' + query)
+    xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles/' + id)
 
     xhr.onload = function () {
         if (this.status === 200) {
-            var vehicles = JSON.parse(this.responseText)
+            var vehicle = JSON.parse(this.responseText)
 
-            callback(null, vehicles)
+            callback(null, vehicle)
         } else {
             var res = JSON.parse(this.responseText)
 

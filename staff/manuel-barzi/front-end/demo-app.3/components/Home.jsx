@@ -6,9 +6,7 @@ class Home extends React.Component {
 
         this.state = {
             name: null,
-            query: null,
-            vehicleId: null,
-            view: null
+            vehicles: []
         }
     }
 
@@ -56,14 +54,32 @@ class Home extends React.Component {
                     this.props.onLoggedOut()
                 }}>Logout</button>
 
-                <Search onQuery={query => this.setState({ query, view: 'results' })} />
+                <form onSubmit={event => {
+                    event.preventDefault()
 
-                {this.state.view === 'results' && <Results
-                    query={this.state.query}
-                    onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })}
-                />}
+                    var query = event.target.query.value
 
-                {this.state.view === 'detail' && <Detail itemId={this.state.vehicleId} />}
+                    try {
+                        searchVehicles(query, (error, vehicles) => {
+                            if (error) return alert(error.message)
+
+                            this.setState({ vehicles })
+                        })
+                    } catch (error) {
+                        alert(error.message)
+                    }
+                }}>
+                    <input type="text" name="query" placeholder="criteria" />
+                    <button>Search</button>
+                </form>
+
+                {!!this.state.vehicles.length && <ul>
+                    {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
+                        <h2>{vehicle.name}</h2>
+                        <img src={vehicle.thumbnail} />
+                        <span>{vehicle.price} $</span>
+                    </li>)}
+                </ul>}
             </div>
         else return null
     }
