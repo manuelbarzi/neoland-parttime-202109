@@ -4,7 +4,12 @@ class Home extends React.Component {
 
         super()
 
-        this.state = { name: null, vehicles:[]  }
+        this.state = { 
+            name: null, 
+            query: null,
+            vehicleId: null,
+            view: null  
+        }
     }
 
     componentWillMount() {
@@ -51,11 +56,17 @@ class Home extends React.Component {
                     this.props.onLoggedOut()
                 }}>Logout</button>
 
+                <Search onQuery ={query => this.setState({query, view:'result'})} />
 
-                <form onSubmit={event => {
+                {this.state.view === 'results' && <Results query={this.state.query}
+                onItemClick={vehicleId => this.setState({vehicleId, view: 'detail'})}/>}
+
+                {this.state.view === 'detail' && <Detail itemId={this.state.vehicleId}/>}
+
+                {/* <form onSubmit={event => {
                     event.preventDefault()
 
-                    var query  = event.target.query.value
+                    var query = event.target.query.value
 
                     try{
                         searchVehicles( query, (error, vehicles) =>{
@@ -68,19 +79,18 @@ class Home extends React.Component {
                     }
                 }}>
                     <input type="text" name="query" placeholder="Buscar vehiculos" />
-                    <button>Search</button>
+                    <button>Buscar</button>
                 </form>
 
                 {!!this.state.vehicles.length && <ul className="flex-list">
                     {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
-                        <h2>{vehicle.name}</h2>
                         <img src={vehicle.thumbnail} />
+                        <h2>{vehicle.name}</h2>
                         <span>{vehicle.price} €</span>
                     </li>)}
-                    </ul>}
+                    </ul>} */}
 
-                
-
+            
 
             </div>
         else return null
