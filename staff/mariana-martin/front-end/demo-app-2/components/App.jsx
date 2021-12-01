@@ -1,8 +1,9 @@
+//compo general de clase, maneja las vistas, que nos permite apagar y prender vistas
 
 class App extends React.Component {
     constructor() {
         logger.debug('App --> constructor')
-        super() 
+        super()//con super invocas al constructor o a la clase
 
         this.state = { view: sessionStorage.token ? 'home' : 'login', 
         token: sessionStorage.token ? sessionStorage.token : null }
@@ -19,7 +20,7 @@ class App extends React.Component {
         logger.debug('App --> did mount')
     }
 
-    render() { 
+    render() {  //el render devuelve lo que hay que pintar, el return decide que pintar:
         
         
         logger.debug('App --> render')
@@ -42,24 +43,8 @@ class App extends React.Component {
             />
 
         else if (this.state.view === 'home')
-            return <Home 
-                 token={this.state.token} 
-                 onLoggedOut = {() => this.setState({view: 'login', token: null})}   //pasar como prop el token, para que home lo reciba y llame  ala lógica de recuperar usuario, retrieve
-                 onClicked={()=> this.setState({view:'changeuser' })}
-           />
-        
-
-        //    else if (this.state.view === 'home')
-        //    return <Home 
-        //             token={this.state.token}
-        //             onClicked={()=> this.setState({view:'changeuser' })}
-        //    />
-
-            else if (this.state.view === 'changeuser')
-           return <ChangeUser 
-                 token={this.state.token}
-                 onModify={()=> this.setState({view:'login'})}
-           />
+            return <Home token={this.state.token} 
+            onLoggedOut = {() => this.setState({view: 'login', token: null})} />  //pasar como prop el token, para que home lo reciba y llame  ala lógica de recuperar usuario, retrieve
 
 
         //////agregue yo esto:

@@ -45,23 +45,8 @@ class Home extends React.Component {
         if (this.state.name){  
             return <div> 
                 <h1>Hello, {this.state.name ? this.state.name : 'World' }!</h1>
-                
-                
-              
-                <button onClick={event =>{
-                    event.preventDefault()
-                    this.props.onClicked()
-                }}>Change User</button>
-
-                {/* <p>Change your username</p> <a href="" onClick={event => {
-                    event.preventDefault()
-                    this.props.onClicked()
-                }}>Click here</a> */}
-
-                
-                <button onClick={() => 
-                    {delete sessionStorage.token 
-                    this.props.onLoggedOut()}} > Logout </button>
+                <button onClick={() => {delete sessionStorage.token 
+                    this.props.onLoggedOut()}} >Logout</button>
                 </div>
 
         } else {
