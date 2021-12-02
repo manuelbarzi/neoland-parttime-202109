@@ -39,6 +39,9 @@ class App extends React.Component {
             return <PostRegister onLoginClick={() => this.setState({ view: 'login' })}
             />
         else if (this.state.view === 'home')
-            return <Home token={this.state.token} onLoggedOut={() => this.setState({ view: 'login', token: null})} />
+            return <Home 
+                token={this.state.token} 
+                onLoggedOut={() => this.setState({ view: 'login', token: null})} 
+            />
     }
 }

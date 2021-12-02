@@ -1,18 +1,20 @@
 class Home extends React.Component {
     constructor() {
         logger.debug('Home -> constructor')
-        
+
         super()
 
         this.state = {
             name: null,
-            vehicles: []
+            query: null,
+            vehicleId: null,
+            view: null
         }
     }
 
-    componetWillMount() {
+    componentWillMount() {
         logger.debug('Home -> will mount')
-    } 
+    }
 
     componentDidMount() {
         logger.debug('Home -> did mount')
@@ -38,10 +40,14 @@ class Home extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        logger.debug('Home -> component will unmount')
+    }
+
     render() {
         logger.debug('Home -> render')
 
-        if (this.state.name)
+        if (this.state.name) {
             return <div>
                 <h1>Hello, {this.state.name ? this.state.name : 'World'}</h1>
                 <button onClick={() => {
@@ -50,35 +56,16 @@ class Home extends React.Component {
                     this.props.onLoggedOut()
                 }}>Logout</button>
 
-                <form onSubmit={event => {
-                    event.preventDefault()
+                <Search onQuery={query => this.setState({ query, view: 'results' })} />
 
-                    var query = event.target.query.value
+                {this.state.view === 'results' && <Results
+                    query={this.state.query}
+                    onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })}
+                />}
 
-                    try {
-                        searchVehicles(query, (error, vehicles) => {
-                            if (error) return alert(error.message)
-
-                            this.setState({ vehicles })
-                        })
-                    } catch (error) {
-                        alert(error.message)
-                }
-                }} >
-
-                <input type="text" name="query" placeholder="criteria" />
-                <button>Search</button>
-            </form>
-
-            {!!this.state.vehicles.length && <ul>
-                {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
-                    <h2>{vehicle.name}</h2>
-                    <img src={vehicle.thumbnail} />
-                    <span>{vehicle.price} €</span>
-                </li> )}
-            </ul> }
-        </div >
-        else 
+                {this.state.view === 'detail' && <Detail itemId={this.state.vehicleId} />}
+            </div>
+        } else 
             return null
     }
 }
