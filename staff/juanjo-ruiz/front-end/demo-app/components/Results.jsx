@@ -43,7 +43,7 @@ class Results extends React.Component {
                 return <ul>
                     {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
                         <h2>{vehicle.name}</h2>
-                        <img src={vehicle.thumbnail} onClick={() => this.props.onItemClick(vehicle.Id) } />
+                        <img src={vehicle.thumbnail} onClick={() => this.props.onItemClick(vehicle.id) } />
                         <span>{vehicle.price} €</span>
                     </li>)}
                 </ul>
