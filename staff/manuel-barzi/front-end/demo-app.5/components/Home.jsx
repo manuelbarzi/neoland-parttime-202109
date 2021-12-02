@@ -6,13 +6,10 @@ class Home extends React.Component {
 
         this.state = {
             name: null,
-            city: 'Barcelona',
             query: null,
             vehicleId: null,
             view: null
         }
-
-        this.apiKey = '73KP3CVXGQF33DT6QHF9JVD7B'
     }
 
     componentWillMount() {
@@ -58,8 +55,6 @@ class Home extends React.Component {
 
                     this.props.onLoggedOut()
                 }}>Logout</button>
-
-                <Forecast apiKey={this.apiKey} city={this.state.city} />
 
                 <Search onQuery={query => this.setState({ query, view: 'results' })} />
 
