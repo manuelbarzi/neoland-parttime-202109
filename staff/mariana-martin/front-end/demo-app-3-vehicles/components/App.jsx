@@ -19,10 +19,6 @@ class App extends React.Component {
         logger.debug('App --> did mount')
     }
 
-    componentWillUnmount(){
-        logger.debug('App --> will unmount')
-    }
-
     render() { 
         
         
@@ -52,7 +48,12 @@ class App extends React.Component {
                  onClicked={()=> this.setState({view:'changeuser' })}
            />
         
-     
+
+        //    else if (this.state.view === 'home')
+        //    return <Home 
+        //             token={this.state.token}
+        //             onClicked={()=> this.setState({view:'changeuser' })}
+        //    />
 
             else if (this.state.view === 'changeuser')
            return <ChangeUser 

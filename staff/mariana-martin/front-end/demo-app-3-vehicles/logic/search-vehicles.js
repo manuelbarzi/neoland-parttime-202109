@@ -9,9 +9,9 @@ function searchVehicles(query, callback){
 
     xhr.onload= function(){
         if(this.status === 200){
-            var vehicles = JSON.parse(this.responseText)
+            var user = JSON.parse(this.responseText)
             
-            callback(null, vehicles)
+            callback(null, user)
 
         }else {
             var res = JSON.parse(this.responseText)

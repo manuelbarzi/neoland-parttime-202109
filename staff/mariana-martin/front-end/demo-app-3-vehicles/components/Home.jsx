@@ -9,18 +9,18 @@ class Home extends React.Component {
 
         this.state = {
             name: null,
-            query: null,
-            vehicles: null,
-            view: null
+            vehicles: {}
         }
     }
 
-    componentWillMount() {
+    componentWillMount(){
         logger.debug('Home --> will mount')
     }
 
     //uso el método didMount, (ciclo de vida)
     componentDidMount() {  //método cuando ya se ha montado el componente en el DOM virtual, aparece después de pintar la 1era vez
+
+
 
         logger.debug('Home --> did mount')
 
@@ -31,9 +31,12 @@ class Home extends React.Component {
                     delete sessionStorage.token
 
                     this.props.onLoggedOut()
+
                 }
 
                 this.setState({ name: user.name })
+
+
             })
         } catch (error) {
             alert(error.message)
@@ -43,7 +46,7 @@ class Home extends React.Component {
         }
     }
 
-    componentWillUnmount() {
+    componentWillUnmount(){
         logger.debug('Home --> will unmount')
     }
 
@@ -62,6 +65,11 @@ class Home extends React.Component {
                     this.props.onClicked()
                 }}>Change User</button>
 
+                {/* <p>Change your username</p> <a href="" onClick={event => {
+                    event.preventDefault()
+                    this.props.onClicked()
+                }}>Click here</a> */}
+
 
                 <button onClick={() => {
                     delete sessionStorage.token
@@ -69,21 +77,45 @@ class Home extends React.Component {
                 }} > Logout </button>
 
 
-                <Search onQuery={query => this.setState({ query, view: 'results' })} />
+                <form onSubmit={event => {
+                    event.preventDefault()
+                    var query = event.target.query.value
 
-                {this.state.view === 'results' && <Results
-                    query={this.state.query}
-                    onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })}
-                />}
+                    try {
+                        searchVehicles(query, (error, vehicles) => {
+                            if (error) return alert(error.message)
+                            this.setState({vehicles})
+                        })
+                    } catch (error) {
+                        alert(error.message)
 
-                {this.state.view === 'detail' && <Detail itemId={this.state.vehicleId}
-                />}
+                    }
+                }}
+                >
+                    <input type="text" name="query" placeholder="criteria" />
+                    <button>Search</button>
+
+                </form>
+
+                {!!this.state.vehicles.length && <ul>
+                    {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
+                        <h2>{vehicle.name}</h2>
+                        <img src={vehicle.thumbnail} />
+                        <span>{vehicle.price} $ </span>
+
+                    </li>)}
+
+                </ul>}
 
             </div>
+
+
+
 
         } else {
             return null
         }
+
 
     }
 }
