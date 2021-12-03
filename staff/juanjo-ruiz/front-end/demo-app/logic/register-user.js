@@ -1,6 +1,9 @@
-function registerUser(name, username, password, callback) {
+function registerUser(name, city, username, password, callback) {
     if (typeof name !== 'string') throw new TypeError(name + ' is not string')
     if (!name.trim()) throw new Error('name is empty or blank')
+
+    if (typeof city !== 'string') throw new TypeError(city + ' is not string')
+    if (!city.trim()) throw new Error('name is empty or blank')
 
     if (typeof username !== 'string') throw new TypeError(username + ' is not string')
     if (!username.trim()) throw new Error('username is empty or blank')
@@ -29,7 +32,7 @@ function registerUser(name, username, password, callback) {
 
     xhr.setRequestHeader('Content-type', 'application/json')
 
-    var data = { name: name, username: username, password: password }
+    var data = { name: name, city: city, username: username, password: password }
 
     var json = JSON.stringify(data)
 

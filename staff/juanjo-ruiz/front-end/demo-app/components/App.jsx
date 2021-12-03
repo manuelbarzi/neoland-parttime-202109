@@ -33,7 +33,7 @@ class App extends React.Component {
         else if (this.state.view === 'register')
             return <Register 
                 onLoginClick={() => this.setState({ view: 'login' })} 
-                onRegistered={() => this.setState({ view: 'postregister'})}
+                onRegistered={() => this.setState({ view: 'postregister' })}
             />
         else if (this.state.view === 'postregister')
             return <PostRegister onLoginClick={() => this.setState({ view: 'login' })}
@@ -41,7 +41,7 @@ class App extends React.Component {
         else if (this.state.view === 'home')
             return <Home 
                 token={this.state.token} 
-                onLoggedOut={() => this.setState({ view: 'login', token: null})} 
+                onLoggedOut={() => this.setState({ view: 'login', token: null })} 
             />
     }
 }

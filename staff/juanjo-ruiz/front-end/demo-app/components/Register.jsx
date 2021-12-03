@@ -11,11 +11,12 @@ class Register extends React.Component {
                 event.preventDefault()
 
                 const name = event.target.name.value
+                const city = event.target.city.value
                 const username = event.target.username.value
                 const password = event.target.password.value
 
                 try {
-                    registerUser(name, username, password, error => {
+                    registerUser(name, city, username, password, error => {
                         if (error) {
                             this.setState({ feedback: error.message })
 
@@ -30,6 +31,7 @@ class Register extends React.Component {
                 }
             }}>
                 <input className="input" type="text" name="name" placeholder="name" />
+                <input className="input" type="text" name="city" placeholder="city" />
                 <input className="input" type="text" name="username" placeholder="username" />
                 <input className="input" type="password" name="password" placeholder="password" />
                 
