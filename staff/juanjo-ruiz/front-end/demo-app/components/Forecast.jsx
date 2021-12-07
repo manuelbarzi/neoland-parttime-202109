@@ -28,7 +28,7 @@ class Forecast extends React.Component {
             return <div>
                 <h3>Forecast in {this.props.city}</h3>
                 <ul>
-                    {this.state.values.map(value => <li key={value.datetimeStr}>{value.temp} ºC</li>)}
+                    {this.state.values.map(value => <li key={value.datetimeStr}>{value.temp} ºC {value.datetimeStr.slice(0, 10)}</li>)}
                 </ul>
             </div>
         } else

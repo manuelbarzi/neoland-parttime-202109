@@ -6,8 +6,8 @@ class Login extends React.Component {
     }
 
     render() {
-        return <div>
-            <form onSubmit={event => {
+        return <div className="container">
+            <form className="form form-container" onSubmit={event => {
                 event.preventDefault()
 
                 const username = event.target.username.value
@@ -29,19 +29,21 @@ class Login extends React.Component {
                     this.setState({ feedback: error.message })
                 }
             }}>
-                <input className="input" type="text" name="username" placeholder="username" />
-                <input className="input" type="password" name="password" placeholder="password" />
+                <h2 className="title title-form">Inicia Sesión</h2>
 
-                <button className="cool-button">Login</button>
+                <input className="input input-form" type="text" name="username" placeholder="usuario" />
+                <input className="input input-form" type="password" name="password" placeholder="contraseña" />
+
+                <button className="button button-form">Inicia Sesión</button>
 
                 {this.state.feedback ? <p>{this.state.feedback}</p> : null }
             </form>
 
-            <a href="" onClick={event => {
+            <p><a href="" onClick={event => {
                 event.preventDefault()
 
                 this.props.onRegisterClick()
-            }}>Register</a>
+            }}>Registrate</a> si aún no tienes cuenta </p>
         </div>
     }
 }

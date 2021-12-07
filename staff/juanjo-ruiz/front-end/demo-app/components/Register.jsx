@@ -6,8 +6,8 @@ class Register extends React.Component {
     }
 
     render() {
-        return <div>
-            <form onSubmit={event => {
+        return <div className="container">
+            <form className="form form-container" onSubmit={event => {
                 event.preventDefault()
 
                 const name = event.target.name.value
@@ -30,21 +30,23 @@ class Register extends React.Component {
                     this.setState({ feedback: error.message})
                 }
             }}>
-                <input className="input" type="text" name="name" placeholder="name" />
-                <input className="input" type="text" name="city" placeholder="city" />
-                <input className="input" type="text" name="username" placeholder="username" />
-                <input className="input" type="password" name="password" placeholder="password" />
+                <h2 className="title title-form ">Registrate</h2>
+
+                <input className="input input-form" type="text" name="name" placeholder="nombre" />
+                <input className="input input-form" type="text" name="city" placeholder="ciudad" />
+                <input className="input input-form" type="text" name="username" placeholder="usuario" />
+                <input className="input input-form" type="password" name="password" placeholder="contraseña" />
                 
-                <button className="cool-button">Register</button>
+                <button className="button button-form">Registrate</button>
 
                 {this.state.feedback ? <p>{this.state.feedback}</p> : null }
             </form>
 
-            <a href="" onClick={event => {
+            <p><a href="" onClick={event => {
                 event.preventDefault()
 
                 this.props.onLoginClick()
-            }}>Login</a>
+            }}>Inicia sesión</a> si ya estas registrado</p>
         </div>
     }
 }

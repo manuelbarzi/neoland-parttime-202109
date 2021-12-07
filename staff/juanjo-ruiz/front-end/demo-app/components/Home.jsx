@@ -53,12 +53,12 @@ class Home extends React.Component {
 
         if (this.state.name) {
             return <div>
-                <h1>Hello, {this.state.name ? this.state.name : 'World'}</h1>
-                <button onClick={() => {
+                <h1>Hola, {this.state.name ? this.state.name : 'World'}</h1>
+                <button className="button" onClick={() => {
                     delete sessionStorage.token
 
                     this.props.onLoggedOut()
-                }}>Logout</button>
+                }}>Cierra sesión</button>
 
                 <Forecast apiKey={this.apiKey} city={this.state.city} />
 

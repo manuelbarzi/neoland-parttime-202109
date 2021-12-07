@@ -6,8 +6,8 @@ function Search(props) {
 
         props.onQuery(query)
     }} >
-        <h4>Search your car</h4>
-        <input type="text" name="query" placeholder="criteria" />
-        <button>Search</button>
+        <h4>Busca tu coche</h4>
+        <input className="input" type="text" name="query" placeholder="criterio" />
+        <button className="button">Buscar</button>
     </form>
 }
