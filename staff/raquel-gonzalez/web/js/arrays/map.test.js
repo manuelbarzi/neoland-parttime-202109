@@ -25,4 +25,11 @@ else
 console.error("antiguay")
 console.log(res)
 
+console.log ("case 2")
 
+var numbers = [1, 4, 9];
+var res = []
+
+function double(num, index) {
+    return res[index]= num*2
+}
