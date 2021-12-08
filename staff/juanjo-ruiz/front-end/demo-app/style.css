@@ -78,3 +78,8 @@ body, html, #root {
     padding: 1rem;
     width: 22rem;
 }
+
+.feedback {
+    color: rgb(7, 179, 7);
+    font-size: 3rem;
+}
