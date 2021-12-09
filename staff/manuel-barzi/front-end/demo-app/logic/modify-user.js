@@ -1,5 +1,5 @@
 function modifyUser(token, data, callback) {
-    if (typeof token !== 'string') throw new TypeError(token + ' is not string')
+    if (typeof token !== 'string') throw new TypeError('token is not string')
     if (!token.trim()) throw new Error('token is empty or blank')
     if (token.split('.').length !== 3) throw new Error('invalid token')
 

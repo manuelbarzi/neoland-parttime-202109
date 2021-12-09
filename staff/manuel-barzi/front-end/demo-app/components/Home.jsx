@@ -6,10 +6,12 @@ class Home extends React.Component {
 
         this.state = {
             name: null,
-            city: 'Barcelona',
-            query: null,
+            city: null,
+            // query: null,
+            query: 'hulk',
             vehicleId: null,
-            view: null
+            // view: null
+            view: 'results'
         }
 
         this.apiKey = '73KP3CVXGQF33DT6QHF9JVD7B'
@@ -30,9 +32,11 @@ class Home extends React.Component {
                     delete sessionStorage.token
 
                     this.props.onLoggedOut()
+
+                    return
                 }
 
-                this.setState({ name: user.name })
+                this.setState({ name: user.name, city: user.city })
             })
         } catch (error) {
             alert(error.message)
@@ -59,7 +63,7 @@ class Home extends React.Component {
                     this.props.onLoggedOut()
                 }}>Logout</button>
 
-                <Forecast apiKey={this.apiKey} city={this.state.city} />
+                {this.state.city && <Forecast apiKey={this.apiKey} city={this.state.city} />}
 
                 <Search onQuery={query => this.setState({ query, view: 'results' })} />
 
