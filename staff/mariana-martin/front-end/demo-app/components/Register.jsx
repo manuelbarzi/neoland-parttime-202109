@@ -39,6 +39,7 @@ class Register extends React.Component {
             }}>
                 <input type="text" name="name" placeholder="name"/>
                 <input type="text" name="username" placeholder="username"/>
+                <input type="text" name="city" placeholder="city"/>
                 <input type="password" name="password" placeholder="password" />
 
                 <button>Register</button>

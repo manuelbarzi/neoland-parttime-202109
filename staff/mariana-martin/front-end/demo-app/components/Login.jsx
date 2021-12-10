@@ -7,7 +7,18 @@ class Login extends React.Component {
 
         this.state = { feedback: null}
     }
+    componentWillMount() {
+        logger.debug('Login -> will mount')
+    }
 
+    componentDidMount() {
+        logger.debug('Login -> did mount')
+    }
+
+    componentWillUnmount() {
+        logger.debug('Login -> will unmount')
+    }
+    
     render() {
 
         logger.debug('Login --> render')

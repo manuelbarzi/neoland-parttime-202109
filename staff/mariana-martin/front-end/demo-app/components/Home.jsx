@@ -9,17 +9,20 @@ class Home extends React.Component {
 
         this.state = {
             name: null,
+            city: 'Amsterdam',
             query: null,
             vehicles: null,
             view: null
         }
+
+        this.apiKey = 'K5P9HDPKFJ53G43DH7RXU5V6N'
     }
 
     componentWillMount() {
         logger.debug('Home --> will mount')
     }
 
-    //uso el método didMount, (ciclo de vida)
+  
     componentDidMount() {  //método cuando ya se ha montado el componente en el DOM virtual, aparece después de pintar la 1era vez
 
         logger.debug('Home --> did mount')
@@ -67,6 +70,8 @@ class Home extends React.Component {
                     delete sessionStorage.token
                     this.props.onLoggedOut()
                 }} > Logout </button>
+
+                <Forecast apiKey={this.apiKey} city={this.state.city} />
 
 
                 <Search onQuery={query => this.setState({ query, view: 'results' })} />
