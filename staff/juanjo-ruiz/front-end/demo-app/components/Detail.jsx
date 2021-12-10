@@ -25,7 +25,7 @@ class Detail extends React.Component {
         logger.debug('Detail -> render')
 
         if (this.state.vehicle) 
-            return <di>
+            return <div>
                 <h2>{this.state.vehicle.name}</h2>
                 <img src={this.state.vehicle.image} />
                 <p>{this.state.vehicle.description}</p>
@@ -34,7 +34,7 @@ class Detail extends React.Component {
                 <p>{this.state.vehicle.style}</p>
                 <p>{this.state.vehicle.year}</p>
                 <a href={this.state.vehicle.url}>original item</a>
-            </di>
+            </div>
         else 
             return null
     }

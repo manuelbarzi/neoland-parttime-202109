@@ -26,20 +26,20 @@ class Register extends React.Component {
                         this.props.onRegistered()
 
                     })
-                }   catch (error) {
-                    this.setState({ feedback: error.message})
+                } catch (error) {
+                    this.setState({ feedback: error.message })
                 }
             }}>
-                <h2 className="title title-form ">Registrate</h2>
+                <h2 className="title title-form">Registrate</h2>
 
-                <input className="input input-form" type="text" name="name" placeholder="nombre" />
-                <input className="input input-form" type="text" name="city" placeholder="ciudad" />
-                <input className="input input-form" type="text" name="username" placeholder="usuario" />
-                <input className="input input-form" type="password" name="password" placeholder="contraseña" />
-                
+                <input className="input input-form" type="text" name="name" placeholder="nombre" requerid/>
+                <input className="input input-form" type="text" name="city" placeholder="ciudad" requerid/>
+                <input className="input input-form" type="text" name="username" placeholder="usuario" requerid/>
+                <input className="input input-form" type="password" name="password" placeholder="contraseña" requerid/>
+
                 <button className="button button-form">Registrate</button>
 
-                {this.state.feedback ? <p>{this.state.feedback}</p> : null }
+                {this.state.feedback ? <p>{this.state.feedback}</p> : null}
             </form>
 
             <p><a href="" onClick={event => {

@@ -36,7 +36,7 @@ class Login extends React.Component {
 
                 <button className="button button-form">Inicia Sesión</button>
 
-                {this.state.feedback ? <p>{this.state.feedback}</p> : null }
+                {this.state.feedback ? <p className="feedback-error">{this.state.feedback}</p> : null }
             </form>
 
             <p><a href="" onClick={event => {

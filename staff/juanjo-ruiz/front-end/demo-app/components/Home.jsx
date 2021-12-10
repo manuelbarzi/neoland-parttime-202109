@@ -60,6 +60,12 @@ class Home extends React.Component {
                     this.props.onLoggedOut()
                 }}>Cierra sesión</button>
 
+                <button className="button" onClick={event => {
+                    event.preventDefault()
+
+                    this.props.onModifyClick()
+                }}>Modificar datos</button>
+
                 <Forecast apiKey={this.apiKey} city={this.state.city} />
 
                 <Search onQuery={query => this.setState({ query, view: 'results' })} />

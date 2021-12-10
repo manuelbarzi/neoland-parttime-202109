@@ -48,7 +48,7 @@ class Results extends React.Component {
                     </li>)}
                 </ul>
             } else
-                return <p>No results</p>
+                return <p className="feedback-error">No hay resultados con estos criterios</p>
         } else
             return null
     }
