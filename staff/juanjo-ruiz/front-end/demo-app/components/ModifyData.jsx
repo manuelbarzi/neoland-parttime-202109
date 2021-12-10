@@ -16,7 +16,7 @@ class ModifyData extends React.Component {
             <form className="form form-container" onSubmit={event => {
                 event.preventDefault()
 
-                const data = []
+                const data = {}
 
                 const name = event.target.name.value
                 const username = event.target.username.value
@@ -44,7 +44,7 @@ class ModifyData extends React.Component {
                 <h2 className="title-form">Cambia tus datos</h2>
 
                 <input className="input input-form" type="text" name="name" placeholder="Nuevo nombre" />
-                <input className="input input-form" type="text" name="username" placeholder="Nuevo contraseña" />
+                <input className="input input-form" type="text" name="username" placeholder="Nuevo usuario" />
                 <input className="input input-form" type="text" name="city" placeholder="Nuevo ciudad" />
 
                 <button className="button button-form">Enviar</button>
