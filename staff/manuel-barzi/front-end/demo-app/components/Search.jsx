@@ -4,9 +4,9 @@ function Search(props) {
 
         const query = event.target.query.value
 
-        props.onQuery(query)
+        props.onQueryChange(query)
     }}>
-        <input type="text" name="query" placeholder="criteria" />
+        <input type="text" name="query" placeholder="criteria" defaultValue={props.query} />
         <button>Search</button>
     </form>
 }

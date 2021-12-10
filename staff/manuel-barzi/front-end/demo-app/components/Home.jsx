@@ -7,7 +7,7 @@ class Home extends React.Component {
         this.state = {
             name: null,
             city: null,
-            // query: null,
+            query: null,
             query: 'hulk',
             vehicleId: null,
             // view: null
@@ -65,7 +65,7 @@ class Home extends React.Component {
 
                 {this.state.city && <Forecast apiKey={this.apiKey} city={this.state.city} />}
 
-                <Search onQuery={query => this.setState({ query, view: 'results' })} />
+                <Search query={this.state.query} onQueryChange={query => this.setState({ query, view: 'results' })} />
 
                 {this.state.view === 'results' && <Results
                     query={this.state.query}
