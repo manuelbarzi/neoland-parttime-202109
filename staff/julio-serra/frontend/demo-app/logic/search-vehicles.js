@@ -13,8 +13,8 @@ function searchVehicles(query, callback) {
     xhr.addEventListener('load', function () {
 
         if (this.status === 200) {
-            var user = JSON.parse(this.responseText)
-            callback(null, user)
+            var vehicles = JSON.parse(this.responseText)
+            callback(null, vehicles)
         } else {
             var res = JSON.parse(this.responseText)
 

@@ -1,16 +1,16 @@
-function retrieveVehicle(id, callback) {
+function retrieveForecast(apiKey, city, callback) {
     var xhr = new XMLHttpRequest
 
-    xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles/' + id)
+    xhr.open('GET', 'http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=' + apiKey)
 
     // lanzamos el callback
 
     xhr.addEventListener('load', function() {
 
         if (this.status === 200) {
-            var vehicle = JSON.parse(this.responseText)
+            var res = JSON.parse(this.responseText)
 
-            callback(null, vehicle)
+            callback(null, res.list.slice(0, 2))
         }
         else {
             var res = JSON.parse(this.responseText)
@@ -24,10 +24,11 @@ function retrieveVehicle(id, callback) {
         //     var res = JSON.parse(this.responseText)
         //     var error = res.error
         //     callback(new Error(error))
-        // } else if (this.status === 200) {
-        //     var user = JSON.parse(this.responseText)
+        // } else 
+        // if (this.status === 200) {
+        //     var res = JSON.parse(this.responseText)
 
-        //     callback(null, user)
+        //     callback(null, res.list.slice(0, 3))
         // }
     })
 

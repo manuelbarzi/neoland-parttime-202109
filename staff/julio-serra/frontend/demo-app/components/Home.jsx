@@ -4,10 +4,12 @@ class Home extends React.Component {
         //ponemos el nombre a null
         this.state = {
             name: null,
+            city: 'Valencia',
             query: null,
             vehicleId: null,
-            vehicles: []
+            view: null
         }
+        this.apiKey = '0e3fac04b8c505afea5b016ba076f412'
     }
 
     componentDidMount() {
@@ -37,31 +39,35 @@ class Home extends React.Component {
                     this.props.logOut()    //añadimos el prop creado en la App
                 }}>Log Out</button>
 
-                <Search onQuery={query => this.setState({ query, view: 'results'})} />
+                {/* <Forecast apiKey={this.apiKey} city={this.state.city} /> */}
 
-                {this.state.view === 'results' && <Results 
-                    query={this.state.query}
-                    onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail'})}
-                />}
+                <Search onQuery={query => this.setState({ query, view: 'results' })} />
 
-                {this.state.view === 'detail' && <Detail 
+
+
+                {this.state.view === 'detail' && <Detail
                     itemId={this.state.vehicleId}
                 />}
-                </div>
-            //    if (this.state.vehicles) {
-            //        if (this.state.vehicles.length) 
-            //            return <ul>
-            //         {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
-            //             <h2>{vehicle.name}</h2>
-            //             <img src={vehicle.thumbnail} />
-            //             <span>{vehicle.price} €</span>
-            //         </li>)}
-            //     </ul>
-            // else 
-            // return <h1>somos unos fuckers</h1>
-            //    } 
- 
+
+                {/* //si la primera condición es true pasa a la siguiente condicion
+                // si es true me pinta un ul, hace un mapeo de todos los vehiculos y me los pinta en un listado */}
+
+
+                {/* {this.state.query && <Results  //Si hay query le paso a results la query mediante props
+                    query={this.state.query}
+                    onItemClick={vehicleId => this.setState({ vehicleId })}
+                />} */}
+
+                {this.state.view === 'results' && <Results
+                    query={this.state.query}
+                    onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })}
+                />}
+
+            </div>
+
         else return null
+
+
     }
 
 }
