@@ -5,7 +5,7 @@ function retrieveVehicle(id, callback) {
 
     // lanzamos el callback
 
-    xhr.addEventListener('load', function() {
+    xhr.addEventListener('load', function () {
 
         if (this.status === 200) {
             var vehicle = JSON.parse(this.responseText)
@@ -16,7 +16,7 @@ function retrieveVehicle(id, callback) {
             var res = JSON.parse(this.responseText)
             var error = res.error
 
-            callback(new Error(error ))
+            callback(new Error(error))
         }
 
 
