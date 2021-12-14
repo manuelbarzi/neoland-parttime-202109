@@ -19,17 +19,17 @@ function toggleFavVehicle(token, id, callback) {
 
             callback(new Error(error))
         } else if (this.status === 200) {
-            const user = JSON.parse(this.responseText)
+            const user = JSON.parse(this.responseText) // recogemos los datos del usuario
 
-            const favs = user.favs || []
+            const favs = user.favs || [] // mostramos los favoritos que tiene el usuario y los guardamos en favs OR si no tiene pasamos un array vacio
 
-            const index = favs.indexOf(id)
+            const index = favs.indexOf(id) // indexOf retorna el primer id, y si no hay elemento retorna -1
 
-            if (index < 0)
+            if (index < 0) // si el indice es menor que 0 te lo pushea (añade)
                 favs.push(id)
 
             else
-                favs.splice(index, 1)
+                favs.splice(index, 1) 
 
             const xhr = new XMLHttpRequest
 
