@@ -1,0 +1,150 @@
+:root {
+	--color: lightgray;
+	--back-color: black;
+	--error-color: red;
+	--warning-color: yellow;
+	--success-color: greenyellow;
+  }
+  
+  * {
+	  font-family: 'Press Start 2P', cursive;
+  }
+  
+  html, body {
+	  height: 100%;
+	  margin: 0;
+  }
+  
+  body {
+	  background-color: black;
+  }
+  
+  .field {
+	  border: 1px solid var(--color);
+	  border-radius: .3rem;
+	  margin: .25rem;
+	  padding: .5rem;
+  }
+  
+  .button {
+	  border: 1px solid var(--color);
+	  border-radius: .3rem;
+	  margin: .25rem;
+	  padding: .5rem;
+	  cursor: pointer;
+  }
+  
+  .container {
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  color: var(--color);
+  }
+  
+  .container--vertical {
+	  flex-direction: column;
+  }
+  
+  .container--gapped {
+	  margin: .25rem;
+  }
+  
+  .container--top {
+	  justify-content: flex-start;
+  }
+  
+  .panel {
+	  border: 1px solid var(--color);
+	  border-radius: 1rem;
+	  padding: 1rem;
+  }
+  
+  .off {
+	  display: none;
+  }
+  
+  /* custom */
+  
+  .feedback {
+	  color: var(--color);
+  }
+  
+  .feedback--error {
+	  color: var(--error-color)
+  }
+  
+  .feedback--warning {
+	  color: var(--warning-color)
+  }
+  
+  .feedback--success {
+	  color: var(--success-color)
+  }
+  
+  .title {
+	  color: lightgray;
+  }
+  
+  .spaceship {
+	  position: absolute;
+	  width: 100px;
+	  /* background-color: red; */
+  }
+  
+  .asteroid {
+	  position: absolute;
+	  width: 100px;
+	  /* background-color: yellow; */
+  }
+  
+  .spinner {
+	  width: 100%;
+	  height: 100%;
+	  background-color: rgba(0, 0, 0, 0.3);
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+  }
+  
+  .spinner__image {
+	  width: 10vw;
+	  height: 10vw;
+  }
+
+
+
+
+#juego {
+	opacity: 0.3;
+	width: 600px;
+	height: 600px;
+  }
+  
+  table {
+	width: 100%;
+	height: 100%;
+  }
+  
+  td {
+	width: 25%;
+	height: 25%;
+	background-color: black;
+	border: 3px solid black;
+	border-radius: 5px;
+  }
+  
+  .letra {
+	color: white;
+	font-size: 40px;
+	text-align: center;
+	font-style: italic;
+  }
+  
+  input {
+	width: 90px;
+	height: 30px;
+  }
+  
+  .centrar {
+	margin-left: 210px;
+  }
