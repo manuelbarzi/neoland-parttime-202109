@@ -88,3 +88,7 @@ body, html, #root {
     color:rgb(236, 14, 14);
     text-align: center;
 }
+
+.fav {
+    cursor: pointer;
+}

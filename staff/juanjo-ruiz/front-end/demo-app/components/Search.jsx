@@ -7,7 +7,7 @@ function Search(props) {
         props.onQuery(query)
     }} >
         <h4>Busca tu coche</h4>
-        <input className="input" type="text" name="query" placeholder="criterio" />
+        <input className="input" type="text" name="query" placeholder="criterio" defaultValue={props.value} />
         <button className="button">Buscar</button>
     </form>
 }

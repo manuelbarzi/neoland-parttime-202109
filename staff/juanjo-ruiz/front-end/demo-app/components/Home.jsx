@@ -68,7 +68,10 @@ class Home extends React.Component {
 
                 <Forecast apiKey={this.apiKey} city={this.state.city} />
 
-                <Search onQuery={query => this.setState({ query, view: 'results' })} />
+                <Search 
+                    query={this.state.query} 
+                    onQuery={query => this.setState({ query, view: 'results' })} 
+                />
 
                 {this.state.view === 'results' && <Results
                     query={this.state.query}
