@@ -49,7 +49,7 @@ function toggleFavVehicle(token, id, callback) {
             })
 
             xhr.setRequestHeader('Authorization', 'Bearer ' + token)
-            xhr.setRequestHeader('Content-type', 'aplication/json')
+            xhr.setRequestHeader('Content-type', 'application/json')
 
             const data = { favs: favs }
 
