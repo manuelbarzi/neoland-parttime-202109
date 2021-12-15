@@ -1,0 +1,51 @@
+:root {
+    --border-width: 2px;
+  }
+
+html, body, #root {
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container--column {
+    flex-direction: column;
+}
+
+.container--border {
+    border: var(--border-width) solid black;
+}
+
+.container--border-sides {
+    border-left: var(--border-width) solid black;
+    border-right: var(--border-width) solid black;
+    border-top: 0;
+    border-bottom: 0;
+}
+
+.container--border-head-foot {
+    border-top: var(--border-width) solid black;
+    border-bottom: var(--border-width) solid black;
+    border-right: 0;
+    border-left: 0;
+}
+
+.container--margin-xs {
+    margin: .1rem;
+}
+
+.container--margin-m {
+    margin: .5rem;
+}
+
+.container--padding-m {
+    padding: .5rem;
+}
+
+.button {
+    cursor: pointer;
+}
