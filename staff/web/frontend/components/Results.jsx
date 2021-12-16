@@ -5,7 +5,7 @@ class Results extends React.Component {
 
         super()
 
-        this.state = { vehicles: null, }
+        this.state = { vehicles: null }
     }
 
     componentDidMount() {

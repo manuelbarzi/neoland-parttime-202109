@@ -65,6 +65,12 @@ class Home extends React.Component {
 
                 {this.state.city && <Forecast apiKey={this.apiKey} city={this.state.city} />}
 
+                <button onClick={event =>{
+                    event.preventDefault()
+                    this.props.onClickedFav()
+                }
+                } ></button>
+
                 <Search onQuery={query => this.setState({ query, view: 'results' })} />
                 {this.state.view === 'results' && <Results
                     query={this.state.query}
