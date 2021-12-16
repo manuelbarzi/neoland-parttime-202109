@@ -12,18 +12,15 @@ function retrieveVehicle(id, callback) {
         if (this.status === 200) {
             var vehicle = JSON.parse(this.responseText)
 
-
-
             callback(null, vehicle)
-        } else  {
+        } else {
             var res = JSON.parse(this.responseText)
 
-           var error = res.error
-           callback(new Error(error))
+            var error = res.error
+
+            callback(new Error(error))
         }
     }
 
-
     xhr.send()
 }
-

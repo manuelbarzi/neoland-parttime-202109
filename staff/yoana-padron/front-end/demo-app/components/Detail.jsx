@@ -1,25 +1,30 @@
-class Detail extends React.Component{
-    constructor(){
+class Detail extends React.Component {
+    constructor() {
+        logger.debug('Detail -> constructor')
+
         super()
 
-        this.state = {vehicle: null}
+        this.state = { vehicle: null }
     }
 
     componentDidMount() {
+        logger.debug('Detail -> component did mount')
+
         try {
-            retrieveVehicle(this.props.itemId, (error, vehicle) =>{
+            retrieveVehicle(this.props.itemId, (error, vehicle) => {
                 if (error) return alert(error.message)
 
                 this.setState({ vehicle })
             })
         } catch (error) {
             alert(error.message)
-            
         }
     }
 
     render() {
-        if(this.state.vehicle){
+        logger.debug('Detail -> render')
+
+        if (this.state.vehicle)
             return <div>
                 <h2>{this.state.vehicle.name}</h2>
                 <img src={this.state.vehicle.image} />
@@ -30,8 +35,7 @@ class Detail extends React.Component{
                 <p>{this.state.vehicle.year}</p>
                 <a href={this.state.vehicle.url}>original item</a>
             </div>
-        }else 
-        return null
+        else
+            return null
     }
-
 }

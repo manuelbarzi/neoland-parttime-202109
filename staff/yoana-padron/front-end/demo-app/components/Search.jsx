@@ -4,7 +4,7 @@ function Search(props){
 
         var query = event.target.query.value
 
-        props.onQuery(query)
+        props.onQueryChange(query)
 
     }}>
 

@@ -4,12 +4,16 @@ class Home extends React.Component {
 
         super()
 
-        this.state = { 
-            name: null, 
+        this.state = {
+            name: null,
+            city: null,
             query: null,
             vehicleId: null,
-            view: null  
+            view: null
+            
         }
+
+        this.apiKey = '6ER4TDLAG59UXZC6988YCYS2J'
     }
 
     componentWillMount() {
@@ -27,9 +31,11 @@ class Home extends React.Component {
                     delete sessionStorage.token
 
                     this.props.onLoggedOut()
-                }
 
-                this.setState({ name: user.name })
+                    return
+                }
+                logger.debug('Home -> ' + JSON.stringify(user))
+                this.setState({ name: user.name, city: user.city })
             })
         } catch (error) {
             alert(error.message)
@@ -56,42 +62,16 @@ class Home extends React.Component {
                     this.props.onLoggedOut()
                 }}>Logout</button>
 
-                <Search onQuery ={query => this.setState({query, view:'result'})} />
+                {this.state.city && <Forecast apiKey={this.apiKey} city={this.state.city} />}
 
-                {this.state.view === 'results' && <Results query={this.state.query}
-                onItemClick={vehicleId => this.setState({vehicleId, view: 'detail'})}/>}
+                <Search query={this.state.query} onQueryChange={query => this.setState({ query, view: 'results' })} />
 
-                {this.state.view === 'detail' && <Detail itemId={this.state.vehicleId}/>}
+                {this.state.view === 'results' && <Results
+                    query={this.state.query}
+                    onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })}
+                />}
 
-                {/* <form onSubmit={event => {
-                    event.preventDefault()
-
-                    var query = event.target.query.value
-
-                    try{
-                        searchVehicles( query, (error, vehicles) =>{
-                            if (error) return alert(error.message)
-
-                            this.setState({vehicles})
-                        })
-                    } catch(error){
-                        alert(error.message)
-                    }
-                }}>
-                    <input type="text" name="query" placeholder="Buscar vehiculos" />
-                    <button>Buscar</button>
-                </form>
-
-                {!!this.state.vehicles.length && <ul className="flex-list">
-                    {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
-                        <img src={vehicle.thumbnail} />
-                        <h2>{vehicle.name}</h2>
-                        <span>{vehicle.price} €</span>
-                    </li>)}
-                    </ul>} */}
-
-            
-
+                {this.state.view === 'detail' && <Detail itemId={this.state.vehicleId} />}
             </div>
         else return null
     }
