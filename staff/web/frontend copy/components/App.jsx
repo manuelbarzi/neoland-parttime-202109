@@ -3,7 +3,7 @@ class App extends React.Component {
         logger.debug('App -> constructor') 
         super()
 
-        this.state = { view: sessionStorage.token ? 'home' : "login", token: sessionStorage.token? sessionStorage.token : null, username: null} //estado inicial
+        this.state = { view: sessionStorage.token ? 'home' : "login", token: sessionStorage.token? sessionStorage.token : null, username: null,id: 'FYG51' } //estado inicial
     }
 
     componentWillMount() {
@@ -42,13 +42,14 @@ class App extends React.Component {
             return <Home token={this.state.token}
                     onClicked={()=> this.setState({view:'changeuser' })} 
                     onLoggedOut={()=> this.setState({view:'login'})}
-                   
+                    onClickedDetail={id => {this.setState({view:'detail',id:id.id}), console.log(id.id)}}
                     
             />
         else if (this.state.view === 'changeuser')
             return <ChangeUser token={this.state.token}
             onModifyed={()=> this.setState({view:'login'})}
             />
-   
+        // else if (this.state.view === 'detail')
+        // return <Detail id={this.state.id} />        
     }
 }

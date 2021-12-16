@@ -1,40 +1,41 @@
 class Detail extends React.Component {
     constructor() {
+        logger.debug('Detail -> constructor')
+
         super()
 
-        this.state = {
-            feedback: null,
-            vehicles: []
-        }
+        this.state = { vehicle: null }
+    }
 
+    componentDidMount() {
+        logger.debug('Detail -> component did mount')
+
+        try {
+            retrieveVehicle(this.props.itemId, (error, vehicle) => {
+                if (error) return alert(error.message)
+
+                this.setState({ vehicle })
+            })
+        } catch (error) {
+            alert(error.message)
+        }
     }
 
     render() {
-            try {
-                searchVehicles(this.props.id, (error, vehicles) => {
-                    if (error) return alert(error.menssage)
+        logger.debug('Detail -> render')
 
-                    this.setState({vehicles})
-
-                })
-            } catch (error) {
-                alert(error.menssage)
-            }
-        return <div>
-            {
-                !!this.state.vehicles.length && <ul>
-                    {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
-                        <h2>{vehicle.name}</h2>
-
-                        <img src={vehicle.thumbnail} />
-                        <span>{vehicle.price} $</span>
-
-                    </li>)}
-                </ul>
-
-            }
-        </div>
+        if (this.state.vehicle)
+            return <div>
+                <h2>{this.state.vehicle.name}</h2>
+                <img src={this.state.vehicle.image} />
+                <p>{this.state.vehicle.description}</p>
+                <p>{this.state.vehicle.price} $</p>
+                <p>{this.state.vehicle.color}</p>
+                <p>{this.state.vehicle.style}</p>
+                <p>{this.state.vehicle.year}</p>
+                <a href={this.state.vehicle.url}>original item</a>
+            </div>
+        else
+            return null
     }
-
-
 }

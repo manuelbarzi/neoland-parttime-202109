@@ -9,12 +9,10 @@ class Home extends React.Component {
 
         this.state = {
             name: null,
-            city: null,
-            query: 'hulk',
-            vehicles: [],
-            view: 'results'
+            city:null,
+            vehicles: []
         }
-        this.apiKey = 'JAFQ7QZWLP9LPYBJ5PXTYSMAX'
+
     }
 
     componentWillMount() {
@@ -32,7 +30,7 @@ class Home extends React.Component {
                     this.props.onLoggedOut()
                 }
 
-                this.setState({ name: user.name,city:user.city })
+                this.setState({ name: user.name })
 
             })
         } catch (error) {
@@ -62,15 +60,45 @@ class Home extends React.Component {
                     delete sessionStorage.token
                     this.props.onLoggedOut()
                 }}>Logout</button>
+                <form onSubmit={event => {
+                    event.preventDefault()
 
-                {this.state.city && <Forecast apiKey={this.apiKey} city={this.state.city} />}
 
-                <Search onQuery={query => this.setState({ query, view: 'results' })} />
-                {this.state.view === 'results' && <Results
-                    query={this.state.query}
-                    onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })}
-                />}
-                {this.state.view === 'detail' && <Detail itemId={this.state.vehicleId} />}
+                    var query = event.target.query.value
+
+                    try {
+                        searchVehicles(query, (error, vehicles) => {
+                            if (error)  return alert(error.menssage)
+
+                            this.setState({ vehicles })
+                            
+                        })
+                    }
+                    catch (error) {
+                        alert(error.menssage)
+                    }
+                }}>
+                    <input type="text" name="query" placeholder="search" />
+                    <button>Search</button>
+                </form>
+                {!! this.state.vehicles.length && <ul>
+                    {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
+                            <a onClick = {event=>{
+                                event.preventDefault()
+                                const id = vehicle.id
+                                this.props.onClickedDetail({id})
+                                
+                            }
+                                
+                            }>{vehicle.name}</a>
+                            <img src={vehicle.thumbnail} />
+                            <span>{vehicle.price} $</span>
+
+                    </li>)}
+                </ul>
+
+                }
+
             </div>
         }
         else { return null }
