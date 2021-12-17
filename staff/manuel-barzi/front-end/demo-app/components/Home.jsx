@@ -8,10 +8,10 @@ class Home extends React.Component {
             name: null,
             city: null,
             query: null,
-            query: 'hulk',
+            // query: 'hulk',
             vehicleId: null,
-            // view: null
-            view: 'results'
+            view: null
+            // view: 'results'
         }
 
         this.apiKey = '73KP3CVXGQF33DT6QHF9JVD7B'
