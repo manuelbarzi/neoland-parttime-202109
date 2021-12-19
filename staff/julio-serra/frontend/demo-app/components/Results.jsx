@@ -9,7 +9,7 @@ class Results extends React.Component {
     componentDidMount() {
 
         try {
-            searchVehicles(this.props.query, (error, vehicles) => {
+            searchVehicles(sessionStorage.token, this.props.query, (error, vehicles) => {
                 if (error) return alert(error.message)
 
                 this.setState({ vehicles })
@@ -24,7 +24,7 @@ class Results extends React.Component {
 
         //recibimos la query por props, de la home
         try {
-            searchVehicles(this.props.query, (error, vehicles) => {
+            searchVehicles(sessionStorage.token, this.props.query, (error, vehicles) => {
                 if (error) return alert(error.message)
 
                 this.setState({ vehicles })
@@ -41,6 +41,28 @@ class Results extends React.Component {
                 return <ul>
                     {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
                         <h2>{vehicle.name}</h2>
+
+                        {/* <Fav selected={vehicle.isFav} onClick={() => {
+                            try {
+                                toggleFavVehicle(sessionStorage.token, vehicle.id, error => {
+                                    if (error) return alert(error.message)
+                                    const update = {} // guardamos los nuevos datos
+                                    for (const key in vehicle) // cada propiedad del objetivo vehiculo (name, id, price...)
+                                        update[key] = vehicle[key] // lo guardamos en update
+
+                                    vehicle.isFav // almacenamos esos valores del objeto en update.isFav
+                                    const vehicles = this.state.vehicles.map(_vehicle => {
+                                        if (_vehicle.id === vehicle.id) // hago un recorrido de todos los vehicules y si son iguales devuelvo el update con esos nuevos datos
+                                            return update
+                                        else return _vehicle
+                                    })
+                                    this.setState ({ vehicles : vehicles })
+                                })
+                            } catch (error) {
+                                alert (error.message)
+                            }
+                        }} /> */}
+
 
                         <Fav selected={vehicle.isFav} onClick={() => {
                             try {
@@ -60,7 +82,8 @@ class Results extends React.Component {
 
                                         return _vehicle
                                     })
-                                    this.setState({ vehicles: vehicles })
+                                    this.setState({ vehicles: vehicles }) // setState hace una solicitud para actualizar el componente. 
+                                    // Hace cambios al estado del componente y le dice a React que este componente y sus elementos secundarios deben volverse a procesar con el estado actualizado.
                                 })
                             } catch (error) {
                                 alert(error.message)

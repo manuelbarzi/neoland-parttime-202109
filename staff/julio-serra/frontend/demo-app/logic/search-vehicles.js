@@ -1,43 +1,76 @@
-function searchVehicles(query, callback) {
+function searchVehicles(token, query, callback) {
+    if (typeof token !== 'string') throw new TypeError(token + ' is not string')
+    if (!token.trim()) throw new Error('token is empty or blank')
+    if (token.split('.').length !== 3) throw new Error('invalid token')
+
     if (typeof query !== 'string') throw new TypeError(query + ' is not string')
     if (!query.trim()) throw new Error('query is empty or blank')
 
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')
 
-    var xhr = new XMLHttpRequest
 
-    xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles?q=' + query)
+    const xhr = new XMLHttpRequest
+
+    xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/v2/users')
 
     // lanzamos el callback
 
     xhr.addEventListener('load', function () {
+        if (this.status === 401) {
+            const res = JSON.parse(this.responseText)
+            callback(new Error(error))
 
-        if (this.status === 200) {
-            var vehicles = JSON.parse(this.responseText)
-            callback(null, vehicles)
-        } else {
-            var res = JSON.parse(this.responseText)
+        } else if (this.status >= 400 && this.status < 500) {
+            callback(new Error('client error'))
+        }
+        else if (this.status >= 500) {
+            callback(new Error('server error'))
+        }
+        else if (this.status === 200) {
+            const user = JSON.parse(this.responseText)
 
-            //declaramos la variable error 
-            var error = res.error
-            callback(new Error, error)
+            const { favs } = user // creamos una constante fav que es igual a los favs del usuario ES6 // const favs = user.favs
+
+
+            const xhr = new XMLHttpRequest
+
+            xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles?q=' + query)
+
+            // lanzamos el callback
+
+            xhr.addEventListener('load', function () {
+                if (this.status === 401) {
+                    const res = JSON.parse(this.responseText)
+                    callback(new Error(error))
+
+                } else if (this.status >= 400 && this.status < 500) {
+                    callback(new Error('client error'))
+                }
+                else if (this.status >= 500) {
+                    callback(new Error('server error'))
+
+                } else if (this.status === 200) {
+                    const vehicles = JSON.parse(this.responseText)
+
+                    // recorrer cada vehiculo
+                    vehicles.forEach(vehicle => 
+                       vehicle.isFav = favs.includes(vehicle.id) //es un array de primitivos. incluye este string este vehiculo, lo que devuelva, si es true o false lo pone en isFav          
+                    )
+                    callback(null, vehicles)
+                } 
+            })
+
+            xhr.send()
+
+
         }
 
-
-
-        // if (this.status === 401) {
-        //     var res = JSON.parse(this.responseText)
-        //     var error = res.error
-        //     callback(new Error(error))
-        // } else if (this.status === 200) {
-        //     var user = JSON.parse(this.responseText)
-
-        //     callback(null, user)
-        // }
     })
 
     // xhr.setRequestHeader('Content-type', 'application/json')
+    xhr.setRequestHeader('Authorization', 'Bearer ' + token)
 
     xhr.send()
+
 
 }
