@@ -43,11 +43,16 @@ class App extends React.Component {
                 token={this.state.token}
                 onModifyClick={() => this.setState({ view: 'modify' })}
                 onLoggedOut={() => this.setState({ view: 'login', token: null })}
+                onClickedFav={() => this.setState({ view: 'favorites' })}
             />
         else if (this.state.view === 'modify')
             return <ModifyData
                 token={this.state.token}
                 onModifyed={() => this.setState({ view: 'home' })}
+            />
+        else if (this.state.view === 'favorites')
+            return <Favorites
+                onClickedHome={() => this.setState({ view: 'home' })}
             />
     }
 }

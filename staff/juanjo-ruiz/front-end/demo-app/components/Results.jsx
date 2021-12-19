@@ -11,7 +11,7 @@ class Results extends React.Component {
         logger.debug('Results -> component did mount')
 
         try {
-            searchVehicles(this.props.query, (error, vehicles) => {
+            searchVehicles(sessionStorage.token, this.props.query, (error, vehicles) => {
                 if (error) return alert(error.message)
 
                 this.setState({ vehicles })
@@ -25,7 +25,7 @@ class Results extends React.Component {
         logger.debug('Results -> component will receive props')
 
         try {
-            searchVehicles(props.query, (error, vehicles) => {
+            searchVehicles(sessionStorage.token, props.query, (error, vehicles) => {
                 if (error) return alert(error.message)
 
                 this.setState({ vehicles })
@@ -68,7 +68,7 @@ class Results extends React.Component {
                                 alert(error.message)
                             }
                         }} />
-                        < img src={vehicle.thumbnail} onClick={() => this.props.onItemClick(vehicle.id)} />
+                        <img src={vehicle.thumbnail} onClick={() => this.props.onItemClick(vehicle.id)} />
                         <span>{vehicle.price} €</span>
                     </li>)}
                 </ul>
