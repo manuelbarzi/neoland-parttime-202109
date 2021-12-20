@@ -1,10 +1,28 @@
 class App extends React.Component {
     constructor() {
+        logger.debug('App -> constructor')
         super()
 
-        this.state = { view: 'login', token: null }
+        this.state = {
+            view: sessionStorage.token ? 'home' : 'login',
+            token: sessionStorage.token ? sessionStorage.token : null
+        }
     }
+    componentWillMount() {
+        logger.debug('App -> will mount')
+    }
+
+    componentDidMount() {
+        logger.debug('App -> did mount')
+    }
+
+    componentWillUnmount() {
+        logger.debug('App -> will unmount')
+    }
+
     render() {
+        logger.debug('App -> render')
+        
         if (this.state.view === 'login')
             return <Login
                 onRegisterClick={() => this.setState({ view: 'register' })}
@@ -22,7 +40,11 @@ class App extends React.Component {
             />
 
         else if (this.state.view === 'home')
-            return <Home />
+            return <Home
+            token={this.state.token}
+            onLoggedOut={()=>this.setState({view: 'login', token:null})}
+            />
+
     }
 }
 
