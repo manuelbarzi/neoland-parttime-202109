@@ -14,7 +14,7 @@ class PostRegister extends React.Component{
 
         <button onClick={event =>{
             event.preventDefault()
-            this.props.onPostRegisterClick()
+            this.props.onLoginClick()
             }}>Login</button>
     </div>
     } 

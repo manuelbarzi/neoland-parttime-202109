@@ -1,4 +1,4 @@
-class UserSetting extends React.Component{
+class ChangeName extends React.Component{
     constructor(){
         super()
 

@@ -18,6 +18,7 @@ class App extends React.Component {
     componentWillUnmount() {
         logger.debug('App -> will unmount')
     }
+    
     render() {
         logger.debug('App -> render')
         

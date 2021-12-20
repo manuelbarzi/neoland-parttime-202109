@@ -18,6 +18,7 @@ class App extends React.Component {
     componentWillUnmount() {
         logger.debug('App -> will unmount')
     }
+    
     render() {
         logger.debug('App -> render')
         
@@ -36,24 +37,13 @@ class App extends React.Component {
 
         else if (this.state.view === 'postregister')
             return <PostRegister
-                onPostRegisterClick={() => this.setState({ view: 'login' })}
+                onLoginClick={() => this.setState({ view: 'login' })}
             />
         else if (this.state.view === 'home')
             return <Home 
                 token={this.state.token}
-                onUserSettingClick = {()=> this.setState({view: 'changename'})}
+                onProfileIn ={() => this.setState({view: 'profile'})}
                 onLoggedOut={() => this.setState({ view: 'login', token: null })}
-                modifiedPassword = {() => this.setState({view:'changepassword'})}
-            />
-        else if ( this.state.view === 'changename')
-            return <ChangeName
-                token = {this.state.token}
-                CloseSetting ={() => this.setState ({view:'home'})}
-            />
-        else if(this.state.view === 'changepassword')
-            return <ChangePassword
-                token = {this.state.token}
-                onAllDone={() => this.setState ({view: 'login'})}
             />
     }
 }
