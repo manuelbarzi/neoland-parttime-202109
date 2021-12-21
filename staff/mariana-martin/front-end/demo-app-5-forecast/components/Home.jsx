@@ -9,7 +9,7 @@ class Home extends React.Component {
 
         this.state = {
             name: null,
-            city: null,
+            city: 'Amsterdam',
             query: null,
             vehicles: null,
             view: null
@@ -34,11 +34,9 @@ class Home extends React.Component {
                     delete sessionStorage.token
 
                     this.props.onLoggedOut()
-
-                    return
                 }
 
-                this.setState({ name: user.name, city: user.city})
+                this.setState({ name: user.name })
             })
         } catch (error) {
             alert(error.message)
@@ -73,7 +71,7 @@ class Home extends React.Component {
                     this.props.onLoggedOut()
                 }} > Logout </button>
 
-               {this.state.city && <Forecast apiKey={this.apiKey} city={this.state.city} />}
+                <Forecast apiKey={this.apiKey} city={this.state.city} />
 
 
                 <Search onQuery={query => this.setState({ query, view: 'results' })} />

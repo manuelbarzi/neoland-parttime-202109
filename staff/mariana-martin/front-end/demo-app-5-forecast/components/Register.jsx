@@ -8,18 +8,6 @@ class Register extends React.Component {
         this.state = {feedback: null}
     }
 
-    componentWillMount() {
-        logger.debug('Register -> will mount')
-    }
-
-    componentDidMount() {
-        logger.debug('Register -> did mount')
-    }
-
-    componentWillUnmount() {
-        logger.debug('Register -> will unmount')
-    }
-
     render() {
 
         logger.debug('Register --> render')
@@ -29,13 +17,11 @@ class Register extends React.Component {
                 event.preventDefault()
 
                 const name = event.target.name.value  //evento del Submit -> el target es el form -> el name y su valor dentro del form
-                const city = event.target.city.value
-                const country = event.target.city.value
                 const username = event.target.username.value
                 const password = event.target.password.value
 
                 try { //llamo a la lógica del register
-                    registerUser(name, city, country, username, password, error => {
+                    registerUser(name, username, password, error => {
                         if (error){
                         this.setState({ feedback: error.message}) //cambia el this.state de arriba
 
@@ -52,9 +38,8 @@ class Register extends React.Component {
 
             }}>
                 <input type="text" name="name" placeholder="name"/>
-                <input type="text" name="city" placeholder="city"/>
-                <input type="text" name="country" placeholder="country"/>
                 <input type="text" name="username" placeholder="username"/>
+                <input type="text" name="city" placeholder="city"/>
                 <input type="password" name="password" placeholder="password" />
 
                 <button>Register</button>

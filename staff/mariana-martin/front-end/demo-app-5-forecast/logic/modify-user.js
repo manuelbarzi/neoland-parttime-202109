@@ -3,8 +3,6 @@ function modifyUser(token, data, callback) {
     if (!token.trim()) throw new Error('token is empty or blank')
     if (token.split('.').length !== 3) throw new Error('invalid token')
 
-    if(data === data) throw new Error ('data is the same')
-
     if (typeof data !== 'object') throw new TypeError(data + ' is not an object')
     if (Object.keys(data).length === 0) throw new Error('data object is empty')
 

@@ -26,12 +26,8 @@ class ChangeUser extends React.Component {
                 event.preventDefault()
 
                 const username = event.target.username.value
-                const name = event.target.name.value
-
                 const data = {}
-                
                 data.username = username
-                data.name = name
 
                 try {
                     modifyUser(this.props.token,data,(error) => {
@@ -55,15 +51,10 @@ class ChangeUser extends React.Component {
 
             }} >    
             <input type="text" name="username" placeholder="new username" />
-            <input type="text" name="name" placeholder="new name" />
             <button>Confirm</button>
-
-         
 
                                     {/* p para que me mande el feedback en parrafo */}
             {this.state.feedback ? <p> {this.state.feedback} </p> : null} 
-
-            <button onClick={() => this.props.goBack()}>Go Back</button>
                                 
             </form>
 

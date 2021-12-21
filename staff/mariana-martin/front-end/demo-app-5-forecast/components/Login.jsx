@@ -23,8 +23,8 @@ class Login extends React.Component {
 
         logger.debug('Login --> render')
 
-        return <div className='login'>
-            <form className='container' onSubmit={event => { //autenticar 
+        return <div>
+            <form onSubmit={event => { //autenticar 
                 event.preventDefault()  
 
                 const username = event.target.username.value 

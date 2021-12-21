@@ -58,7 +58,6 @@ class App extends React.Component {
            return <ChangeUser 
                  token={this.state.token}
                  onModify={()=> this.setState({view:'login'})}
-                 goBack={()=> this.setState({view: 'home'})}
            />
 
 
