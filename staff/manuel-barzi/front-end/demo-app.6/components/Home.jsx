@@ -56,7 +56,7 @@ class Home extends React.Component {
 
         if (this.state.name)
             return <div>
-                <h1>Hello, {this.state.name ? this.state.name : 'World'}!</h1>
+                <h1>Hello, {this.state.name}!</h1>
                 <button onClick={() => {
                     delete sessionStorage.token
 

@@ -27,7 +27,7 @@ function searchVehicles(token, query, callback) {
             const user = JSON.parse(this.responseText)
 
             //const favs = user.favs
-            const { favs } = user // es6++
+            const { favs = [] } = user // es6++
 
             const xhr = new XMLHttpRequest
 
