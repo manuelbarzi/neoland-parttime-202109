@@ -1,12 +1,12 @@
-function searchVehicles(token, query, callback) {
+function retrieveVehicle(token, id, callback) {
     if (typeof token !== 'string') throw new TypeError('token is not string')
     if (!token.trim()) throw new Error('token is empty or blank')
     if (token.split('.').length !== 3) throw new Error('invalid token')
 
-    if (typeof query !== 'string') throw new TypeError('query is not string')
-    if (!query.trim()) throw new Error('query is empty or blank')
+    if (typeof id !== 'string') throw new TypeError('id is not string')
+    if (!id.trim()) throw new Error('id is empty or blank')
 
-    validateCallback(callback)
+    if (typeof callback !== 'function') throw new TypeError('callback is not a function')
 
     const xhr = new XMLHttpRequest
 
@@ -26,12 +26,11 @@ function searchVehicles(token, query, callback) {
         } else if (this.status === 200) {
             const user = JSON.parse(this.responseText)
 
-            //const favs = user.favs
-            const { favs } = user // es6++
+            const { favs } = user
 
             const xhr = new XMLHttpRequest
 
-            xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles?q=' + query)
+            xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles/' + id)
 
             xhr.onload = function () {
                 if (this.status >= 400 && this.status < 500) {
@@ -39,13 +38,11 @@ function searchVehicles(token, query, callback) {
                 } else if (this.status >= 500) {
                     callback(new Error('server error'))
                 } else if (this.status === 200) {
-                    const vehicles = JSON.parse(this.responseText)
+                    const vehicle = JSON.parse(this.responseText)
 
-                    vehicles.forEach(vehicle =>
-                        vehicle.isFav = favs.includes(vehicle.id)
-                    )
+                    vehicle.isFav = favs.includes(vehicle.id)
 
-                    callback(null, vehicles)
+                    callback(null, vehicle)
                 }
             }
 

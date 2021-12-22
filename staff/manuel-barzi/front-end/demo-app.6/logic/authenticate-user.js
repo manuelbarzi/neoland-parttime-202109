@@ -1,7 +1,12 @@
 function authenticateUser(username, password, callback) {
-    validateUsername(username)
-    validatePassword(password)
-    validateCallback(callback)
+    if (typeof username !== 'string') throw new TypeError('username is not string')
+    if (!username.trim()) throw new Error('username is empty or blank')
+
+    if (typeof password !== 'string') throw new TypeError('password is not string')
+    if (!password.trim()) throw new Error('password is empty or blank')
+    if (password.trim().length < 8) throw new Error('password length is smaller than 8 characters')
+
+    if (typeof callback !== 'function') throw new TypeError('callback is not a function')
 
     var xhr = new XMLHttpRequest
 

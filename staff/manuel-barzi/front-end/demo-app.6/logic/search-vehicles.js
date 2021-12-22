@@ -6,7 +6,7 @@ function searchVehicles(token, query, callback) {
     if (typeof query !== 'string') throw new TypeError('query is not string')
     if (!query.trim()) throw new Error('query is empty or blank')
 
-    validateCallback(callback)
+    if (typeof callback !== 'function') throw new TypeError('callback is not a function')
 
     const xhr = new XMLHttpRequest
 

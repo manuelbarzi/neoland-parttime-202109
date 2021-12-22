@@ -3,7 +3,7 @@ function retrieveUser(token, callback) {
     if (!token.trim()) throw new Error('token is empty or blank')
     if (token.split('.').length !== 3) throw new Error('invalid token')
 
-    validateCallback(callback)
+    if (typeof callback !== 'function') throw new TypeError('callback is not a function')
 
     var xhr = new XMLHttpRequest
 

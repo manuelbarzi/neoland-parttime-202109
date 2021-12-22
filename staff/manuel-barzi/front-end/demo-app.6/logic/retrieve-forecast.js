@@ -5,7 +5,7 @@ function retrieveForecast(apiKey, city, callback) {
     if (typeof city !== 'string') throw new TypeError('city is not string')
     if (!city.trim()) throw new Error('city is empty or blank')
 
-    validateCallback(callback)
+    if (typeof callback !== 'function') throw new TypeError('callback is not a function')
 
     var xhr = new XMLHttpRequest
 

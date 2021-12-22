@@ -6,7 +6,7 @@ function toggleFavVehicle(token, id, callback) {
     if (typeof id !== 'string') throw new TypeError('id is not string')
     if (!id.trim()) throw new Error('id is empty or blank')
 
-    validateCallback(callback)
+    if (typeof callback !== 'function') throw new TypeError('callback is not a function')
 
     const xhr = new XMLHttpRequest
 
