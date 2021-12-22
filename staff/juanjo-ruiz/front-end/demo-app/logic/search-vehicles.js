@@ -22,16 +22,14 @@ function searchVehicles(token, query, callback) {
 
         } else if (this.status >= 400 && this.status < 500) {
             callback(new Error('Client error'))
-
         } else if (this.status >= 500) {
             callback(new Error('Server error'))
-
         } else if (this.status === 200) {
             const user = JSON.parse(this.responseText)
 
             // const favs = user.favs
 
-            const { favs } = user // jv6
+            const { favs = [] } = user // jv6
 
             const xhr = new XMLHttpRequest
 
@@ -40,23 +38,18 @@ function searchVehicles(token, query, callback) {
             xhr.onload = function () {
                 if (this.status >= 400 && this.status < 500) {
                     callback(new Error('Client error'))
-
                 } else if (this.status >= 500) {
                     callback(new Error('Server error'))
-
                 } else if (this.status === 200) {
                     var vehicles = JSON.parse(this.responseText)
 
                     vehicles.forEach(vehicle =>
                         vehicle.isFav = favs.includes(vehicle.id))
 
-
                     callback(null, vehicles)
                 }
             }
-
             xhr.send()
-
         }
 
     })

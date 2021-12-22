@@ -26,11 +26,13 @@ class Home extends React.Component {
         try {
             retrieveUser(this.props.token, (error, user) => {
                 if (error) {
-                    return alert(error.message)
+                    alert(error.message)
 
                     delete sessionStorage.token
 
                     this.props.onLoggedOut()
+
+                    return
                 }
 
                 this.setState({ name: user.name, city: user.city })
@@ -53,10 +55,10 @@ class Home extends React.Component {
 
         if (this.state.name) {
             return <div>
-                <h1>Hola, {this.state.name ? this.state.name : 'World'}</h1>
+                <h1>Hola, {this.state.name} !</h1>
                 <button className="button" onClick={() => {
                     delete sessionStorage.token
-
+                             
                     this.props.onLoggedOut()
                 }}>Cierra sesión</button>
 
