@@ -8,3 +8,11 @@
     border: 2px solid purple;
     border-radius: .5rem;
 }
+h3 {
+    font-size: 50px;
+    background-color: rgb(2, 197, 171);
+    color: rgb(255, 0, 0);
+}
+ul{
+    font-size: 30px;
+}

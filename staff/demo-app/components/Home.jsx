@@ -4,12 +4,22 @@ class Home extends React.Component {
 
         super()
 
-        this.state = { name: null, vehicles: {}
+        this.state = {
+            name: null,
+            city: null,
+            query: null,
+            // query: 'hulk',
+            vehicleId: null,
+            view: null,
+            // view: 'results'
+            
+        }
+        this.apiKey = '73KP3CVXGQF33DT6QHF9JVD7B'
+        
     }
 
-    }
     componentWillMount() {
-        logger.debug('Home-> will mount')
+        logger.debug('Home -> will mount')
     }
 
     componentDidMount() {
@@ -21,21 +31,25 @@ class Home extends React.Component {
                     alert(error.message)
 
                     delete sessionStorage.token
-                    this.props.onLoggedOut()
-                }
-                this.setState({ name: user.name })
 
+                    this.props.onLoggedOut()
+
+                    return
+                }
+
+                this.setState({ name: user.name, city: user.city })
             })
         } catch (error) {
             alert(error.message)
 
             delete sessionStorage.token
+
             this.props.onLoggedOut()
         }
     }
 
     componentWillUnmount() {
-        logger.debug('Home -> Will Unmount')
+        logger.debug('Home -> will unmount')
     }
 
     render() {
@@ -44,52 +58,28 @@ class Home extends React.Component {
         if (this.state.name)
             return <div>
                 <h1>Hello, {this.state.name ? this.state.name : 'World'}!</h1>
-                <button onClick={event => {
-                    event.preventDefault()
-                    this.props.onModified()
 
-                }}>Modify Username</button>
-
-
+                <button onClick={(event) => {
+                     event.preventDefault()
+                            this.props.onFavs()
+                }}>Favorites</button>
                 <button onClick={() => {
                     delete sessionStorage.token
+
                     this.props.onLoggedOut()
-
                 }}>Logout</button>
+                
+                {this.state.city && <Forecast apiKey={this.apiKey} city={this.state.city} />}
 
-                <form onSubmit={event => {
-                    event.preventDefault()
-                    var query = event.target.query.value
+                <Search query={this.state.query} onQueryChange={query => this.setState({ query, view: 'results' })} />
 
-                    try {
-                        searchVehicles(query, (error, vehicles) => {
-                            if (error) return alert(error.message)
-                            this.setState({ vehicles })
-                        })
+                {this.state.view === 'results' && <Results
+                    query={this.state.query}
+                    onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })}
+                />}
 
-                    }
-                    catch (error) {
-                        alert(error.message)
-
-                    }
-                }}>
-                    <input type='text' name='query' placeholder='criteria' />
-
-
-                    <button> Search</button>
-                </form>
-                {!!this.state.vehicles.length && <ul>
-                    {this.state.vehicles.map(vehicle => <li key={vehicle.id} >
-                        <h2>{vehicle.name}</h2>
-                        <img src={vehicle.thumbnail} />
-                        <span>{vehicle.price} €</span>
-                    </li>)}
-
-                </ul>
-                }
-
+                {this.state.view === 'detail' && <Detail itemId={this.state.vehicleId} />}
             </div>
-
         else return null
     }
 }

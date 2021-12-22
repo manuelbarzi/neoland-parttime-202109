@@ -5,7 +5,7 @@ function retrieveUser(token, callback) {
 
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')
 
-    var xhr = new XMLHttpRequest
+    var xhr = new XMLHttpRequest // TODO
 
     xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/v2/users')
 

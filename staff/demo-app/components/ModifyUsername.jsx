@@ -1,4 +1,4 @@
-class Modify extends React.Component {
+class ModifyUsername extends React.Component {
     constructor() {
         logger.debug('Modify ->constructor')
         super()
@@ -28,7 +28,7 @@ class Modify extends React.Component {
                             this.setState ({feedback : error.message})
                             return
                         }
-                        alert ('Username succesfully modifed')
+                        alert ('Username succesfully modified')
                         this.props.onModifyClick ()
                     })
                 } catch (error){
@@ -38,6 +38,12 @@ class Modify extends React.Component {
                 <input type="text" name="username" placeholder="New username" />
                 <button>Confirm</button>
                 {this.state.feedback ? <p>{this.state.feedback}</p> : null}
+
+                <button onClick={() => {
+
+
+                    this.props.onGoBack()
+                }}>Go back</button>
 
             </form>
 
