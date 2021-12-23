@@ -50,6 +50,7 @@ class App extends React.Component {
                  token={this.state.token} 
                  onLoggedOut = {() => this.setState({view: 'login', token: null})}   //pasar como prop el token, para que home lo reciba y llame  ala lógica de recuperar usuario, retrieve
                  onClicked={()=> this.setState({view:'changeuser' })}
+                 onClickedFav={()=> this.setState({view: 'favsvehicles'})}
            />
         
      
@@ -59,6 +60,11 @@ class App extends React.Component {
                  token={this.state.token}
                  onModify={()=> this.setState({view:'login'})}
                  goBack={()=> this.setState({view: 'home'})}
+           />
+
+           else if (this.state.view === 'favsvehicles')
+           return <FavsVehicles
+                onClickedFavHome={()=> this.setState({view: 'home'})}
            />
 
 

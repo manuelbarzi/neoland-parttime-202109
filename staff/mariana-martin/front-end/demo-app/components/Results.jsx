@@ -25,7 +25,7 @@ class Results extends React.Component {
         }
     }
 
-    componentWillReceiveProps(props) {
+    componentWillReceiveProps(props) {  // TODO aclarar por qué hay 2 lógicas de searchVehicle línea 18 y esta
         logger.debug('Results --> component will recieve props')
 
         try {
@@ -71,7 +71,7 @@ class Results extends React.Component {
                                         return _vehicle //devuelvo el que esta iterando
                                     })
 
-                                    this.setState({ vehicles: vehicles }) //seteo el mismo array excepto uno que ha cambiado
+                                    this.setState({ vehicles: vehicles }) //TODO ?????    seteo el mismo array excepto uno que ha cambiado
 
                                 })
 

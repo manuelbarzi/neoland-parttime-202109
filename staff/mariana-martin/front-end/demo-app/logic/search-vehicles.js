@@ -38,7 +38,7 @@ function searchVehicles(token, query, callback) {
             xhr.open('GET', "https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles?q=" + query)
 
             xhr.onload = function () {
-              if (this.status >= 400 && this.status < 500) {
+                if (this.status >= 400 && this.status < 500) {
                     callback(new Error('client error'))
                 } else if (this.status >= 500) {
                     callback(new Error('server error'))
@@ -53,15 +53,15 @@ function searchVehicles(token, query, callback) {
 
                     callback(null, vehicles)
 
-                } 
                 }
-
-
-                xhr.send()
             }
 
+
+            xhr.send()
         }
-    
+
+    }
+
     xhr.setRequestHeader('Authorization', 'Bearer ' + token)
 
     xhr.send()

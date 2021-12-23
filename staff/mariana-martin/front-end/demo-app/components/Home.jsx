@@ -60,7 +60,10 @@ class Home extends React.Component {
             return <div>
                 <h1>Hello, {this.state.name ? this.state.name : 'World'}!</h1>
 
-
+                <button onClick={event => {
+                    event.preventDefault()
+                    this.props.onClickedFav()
+                }}>Favorites</button>
 
                 <button onClick={event => {
                     event.preventDefault()
