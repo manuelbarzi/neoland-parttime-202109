@@ -52,7 +52,7 @@ class Home extends React.Component {
         logger.debug('Home -> render')
 
         if (this.state.name) {
-            return <div>
+            return <div className='contenedor_home'>
                 <h1>hello, {this.state.name ? this.state.name : 'World'}!</h1>
                 <p>For change your username</p> <a href="" onClick={event => {
                     event.preventDefault()

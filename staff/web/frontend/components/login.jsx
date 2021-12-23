@@ -20,8 +20,8 @@ class Login extends React.Component{
 
 render(){
     logger.debug('Login -> render')
-    return <div>
-        <form onSubmit={ event =>{
+    return <div className='contenedor' >
+        <form className='contenedor_credentials' onSubmit={ event =>{
             event.preventDefault()
             const username = event.target.username.value
             const password = event.target.password.value

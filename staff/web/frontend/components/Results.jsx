@@ -54,7 +54,7 @@ class Results extends React.Component {
 
         if (this.state.vehicles) {
             if (this.state.vehicles.length)
-                return <ul>
+                return <ul className='results'>
                     {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
                         <h2>{vehicle.name}</h2>
                         <Fav selected={vehicle.isFav} onClick={() => {
@@ -65,15 +65,15 @@ class Results extends React.Component {
                                     const update = {}
 
                                     for (const key in vehicle)
-                                        update[key] = vehicle[key]
+                                        update[key] = vehicle[key] 
 
-                                    update.isFav = !update.isFav
+                                    update.isFav = !update.isFav 
 
                                     const vehicles = this.state.vehicles.map(_vehicle => {
                                         if (_vehicle.id === vehicle.id)
-                                            return update
+                                            return update 
 
-                                        return _vehicle
+                                        return _vehicle 
                                     })
 
                                     this.setState({ vehicles: vehicles })

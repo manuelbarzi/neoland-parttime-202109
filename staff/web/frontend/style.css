@@ -1,10 +1,32 @@
 .title {
     color: red;
 }
+ body{
+     background-color: #3C79BD;
 
-.cool-button {
-    background-color: pink;
-    padding: 1rem;
-    border: 2px solid purple;
-    border-radius: .5rem;
-}
+ }
+
+ .contenedor{
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+
+ }
+
+ .contenedor_credentials{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    align-content: center;
+    margin-top: 50%;
+ }
+
+ .results{
+     background-color: white;
+     border-radius: 1rem;
+     border: 0.3rem;
+     border-style: solid;
+     border-color: #D7272A;
+ }

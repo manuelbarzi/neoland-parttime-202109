@@ -6,7 +6,7 @@ function modifyUser(token, data, callback) {
     if (typeof data !== 'object') throw new TypeError(data + ' is not an object')
     if (Object.keys(data).length === 0) throw new Error('data object is empty')
 
-    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')
+    ValidateCallback(callback)
 
     var xhr = new XMLHttpRequest
 

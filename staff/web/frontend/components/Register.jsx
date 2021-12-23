@@ -20,8 +20,8 @@ class Register extends React.Component {
 
     render() {
         logger.debug('Register -> render')
-        return <div>
-            <form onSubmit ={ event =>{
+        return <div className='contenedor'>
+            <form className='contenedor_credentials' onSubmit ={ event =>{
                 event.preventDefault()
                 const name= event.target.name.value
                 const city = event.target.city.value

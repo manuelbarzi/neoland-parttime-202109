@@ -7,7 +7,7 @@ function unregisterUser(token, password, callback) {
     if (!password.trim()) throw new Error('password is empty or blank')
     if (password.trim().length < 8) throw new Error('password length is smaller than 8 characters')
 
-    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')
+    ValidateCallback(callback)
 
     var xhr = new XMLHttpRequest
 
