@@ -9,7 +9,7 @@ class Detail extends React.Component{
         logger.debug('Detail-> component did mount')
 
         try {
-            retrieveVehicle(this.props.itemId, (error, vehicle)=>{
+            retrieveVehicle(sessionStorage.token, this.props.itemId, (error, vehicle)=>{
                 if (error) return alert(error.message)
 
                 this.setState({vehicle})
@@ -25,6 +25,25 @@ class Detail extends React.Component{
         if(this.state.vehicle)
         return <div>
             <h2>{this.state.vehicle.name}</h2>
+            <Fav selected={this.state.vehicle.isFav} onClick={() => {
+                    try {
+                        toggleFavVehicle(sessionStorage.token, this.state.vehicle.id, error => {
+                            if (error) return alert(error.message)
+
+                            const update = {}
+
+                            for (const key in this.state.vehicle)
+                                update[key] = this.state.vehicle[key]
+
+                            update.isFav = !update.isFav
+
+                            this.setState({ vehicle: update })
+
+                        })
+                    } catch (error) {
+                        alert(error.message)
+                    }
+                }} />
             <img src={this.state.vehicle.image} />
             <p>{this.state.vehicle.description}</p>
             <p>{this.state.vehicle.price}</p>

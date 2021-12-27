@@ -11,7 +11,7 @@ class Home extends React.Component {
             city: 'madrid',
             vehicles: [],
         }
-        this.apiKey = 'KT4VXZB23YF5HY2MZA328NVWT'
+        this.apiKey = 'KT4VXZB23YF5HY2MZA328NVWT' //TODO
     }
     componentWillMount() {
         logger.debug('Home -> will mount')
@@ -48,7 +48,8 @@ class Home extends React.Component {
 
         if (this.state.name)
             return <div>
-                <h1>hello, {this.state.name ? this.state.name : 'World'}!</h1>
+                {/* <h1>hello, {this.state.name ? this.state.name : 'World'}!</h1>  */}
+                <h1>hello, {this.state.name} !</h1> //TODO
 
                 <button onClick={() => {
                     delete sessionStorage.token

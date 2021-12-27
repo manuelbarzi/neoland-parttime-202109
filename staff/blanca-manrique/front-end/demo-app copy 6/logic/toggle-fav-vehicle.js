@@ -1,15 +1,13 @@
-function toggleFavVehicle(token, id, callback) {
-    if (typeof token !== 'string') throw new TypeError('token is not string')
-    if (!token.trim()) throw new Error('token is empty or blank')
-    if (token.split('.').length !== 3) throw new Error('invalid token')
-
+function toggleFavVehicle(id, token, callback) {
+    
     if (typeof id !== 'string') throw new TypeError('id is not string')
     if (!id.trim()) throw new Error('id is empty or blank')
 
-    if (typeof callback !== 'function') throw new TypeError('callback is not a function')
+    validateToken(token)
+    validateCallback(callback)
 
     //Primera llamada a la API para recuperar los favoritos del usuario (retrieveUser) 
-    
+
     //OBJETIVO: si todo ha ido bien (200), quiero que me recuperar el array de favoritos-- mirar si el coche está o no-- si no lo encuentra en el array, lo añado(push)-- si lo encuentra en el array, lo quito(splice)
     const xhr = new XMLHttpRequest
 
@@ -31,7 +29,7 @@ function toggleFavVehicle(token, id, callback) {
             else // si lo encuentra
                 favs.splice(index, 1) //te quita 1 valor del array a partir del index...me eliminas ese id del array
 
-            
+
             //Segunda llamada a la API para actualizar modifyUser (quiero modificar las propiedades del usuario)
             const xhr = new XMLHttpRequest
 
@@ -53,7 +51,7 @@ function toggleFavVehicle(token, id, callback) {
             xhr.setRequestHeader('Authorization', 'Bearer ' + token) // le digo a la API que le voy a mandar un token
             xhr.setRequestHeader('Content-type', 'application/json') // le digo a la API que le voy a mandar un json
 
-            const data = {favs:favs} //el segundo favs es un array que guarda el id del vehiculo
+            const data = { favs: favs } //el segundo favs es un array que guarda el id del vehiculo
             //estoy construyendo un objeto nuevo con las llaves
             //que tiene una propiedad favs que apunta al array de favoritos
             //el nuevo objeto se referencia en data

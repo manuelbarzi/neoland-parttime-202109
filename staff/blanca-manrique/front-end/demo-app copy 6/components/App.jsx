@@ -1,14 +1,15 @@
 class App extends React.Component {
     constructor() {
         logger.debug('App -> constructor')
-        super()
+        super() 
 
         this.state = {
             view: sessionStorage.token ? 'home' : 'login',
             token: sessionStorage.token ? sessionStorage.token : null
         } //estado inicial
     }
-    componentWillMount() {
+
+    componentWillMount() { 
         logger.debug('App -> will mount')
     }
 
@@ -16,7 +17,7 @@ class App extends React.Component {
         logger.debug('App -> did mount')
     }
 
-    componentWillUnmount() {
+    componentWillUnmount() { 
         logger.debug('App -> will unmount')
     }
 

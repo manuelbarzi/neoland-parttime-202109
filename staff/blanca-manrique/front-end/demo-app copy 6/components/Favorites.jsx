@@ -1,7 +1,7 @@
 class Favorites extends React.Component {
     constructor() {
         super()
-        this.state = { favs: null }
+        this.state = { favs: [] }
     }
 
     componentDidMount() {
