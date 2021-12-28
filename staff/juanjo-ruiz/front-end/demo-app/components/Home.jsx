@@ -58,7 +58,7 @@ class Home extends React.Component {
                 <h1>Hola, {this.state.name} !</h1>
                 <button className="button" onClick={() => {
                     delete sessionStorage.token
-                             
+
                     this.props.onLoggedOut()
                 }}>Cierra sesión</button>
 
@@ -68,11 +68,17 @@ class Home extends React.Component {
                     this.props.onModifyClick()
                 }}>Modificar datos</button>
 
+                <button className="button" onClick={event => {
+                    event.preventDefault()
+
+                    this.props.onClickedFav()
+                }}>Favoritos</button>
+
                 <Forecast apiKey={this.apiKey} city={this.state.city} />
 
-                <Search 
-                    query={this.state.query} 
-                    onQuery={query => this.setState({ query, view: 'results' })} 
+                <Search
+                    query={this.state.query}
+                    onQuery={query => this.setState({ query, view: 'results' })}
                 />
 
                 {this.state.view === 'results' && <Results
@@ -82,7 +88,7 @@ class Home extends React.Component {
 
                 {this.state.view === 'detail' && <Detail itemId={this.state.vehicleId} />}
             </div>
-        } else 
+        } else
             return null
     }
 }

@@ -8,17 +8,13 @@ class Favorites extends React.Component {
 
     componentDidMount() {
         try {
-            retrieveUser(sessionStorage.token, (error, user) => {
-                if (error) {
-                    return alert(error.message)
-                }
-                favs = user.favs
-
+            retrieveFavVehicles(sessionStorage.token, (error, favs) => {
+                if (error) return alert(error.message)
+                
                 this.setState({ favs })
             })
         } catch (error) {
             alert(error.message)
-
         }
     }
 
