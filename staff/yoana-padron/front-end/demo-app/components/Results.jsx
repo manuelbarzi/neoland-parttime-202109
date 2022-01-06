@@ -1,17 +1,18 @@
+var favs = []
 class Results extends React.Component {
     constructor() {
         logger.debug('Results -> constructor')
 
         super()
 
-        this.state = { vehicles: null }
+        this.state = { vehicles: null, }
     }
 
     componentDidMount() {
         logger.debug('Results -> component did mount')
 
         try {
-            searchVehicles(this.props.query, (error, vehicles) => {
+            searchVehicles(this.props.query, sessionStorage.token, (error, vehicles) => {
                 if (error) return alert(error.message)
 
                 this.setState({ vehicles })
@@ -19,13 +20,26 @@ class Results extends React.Component {
         } catch (error) {
             alert(error.message)
         }
-    }
 
+        try {
+            retrieveUser(sessionStorage.token, (error, user) => {
+                if (error) {
+                    return alert(error.message)
+                }
+                favs = user.favs
+
+            }
+            )
+        }
+        catch (error) {
+            alert(error.message)
+        }
+    }
     componentWillReceiveProps(props) {
         logger.debug('Results -> component will receive props')
 
         try {
-            searchVehicles(props.query, (error, vehicles) => {
+            searchVehicles(props.query,sessionStorage.token, (error, vehicles) => {
                 if (error) return alert(error.message)
 
                 this.setState({ vehicles })
