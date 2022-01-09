@@ -59,14 +59,6 @@ class Home extends React.Component {
                     this.props.onLoggedOut()
                 }}>Logout</button>
 
-                <button
-                    onClick={() => this.setState({ view: 'clientFavs' })}
-                >Favs</button>
-
-                <button
-                    onClick={() => this.setState({ view: 'cart' })}
-                >Cart</button>
-
                 {this.state.city && <Forecast apiKey={this.apiKey} city={this.state.city} />}
 
                 <Search onQuery={query => this.setState({ query, view: 'results' })} />
@@ -79,12 +71,6 @@ class Home extends React.Component {
                 {this.state.view === 'detail' && <Detail
                     itemId={this.state.vehicleId}
                 />}
-
-                {this.state.view === 'clientFavs' && <ClientFavs 
-                onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })}/>}
-
-                {this.state.view === 'cart' && <Cart
-                onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })}/>}
 
             </div>
         }

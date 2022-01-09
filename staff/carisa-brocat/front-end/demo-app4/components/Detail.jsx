@@ -62,18 +62,6 @@ class Detail extends React.Component {
                 <p>{this.state.vehicle.color}</p>
                 <p>{this.state.vehicle.style}</p>
                 <a href={this.state.vehicle.url}>original link</a>
-                <button onClick={() => {
-                            try {
-                                toggleCartVehicle(sessionStorage.token, this.state.vehicle.id, error => {
-                                    if (error) return alert(error.message)
-
-                                    return alert('Car Added successfully')
-                                })
-                            } catch (error) {
-                                alert(error.message)
-                            }
-                        }}
-                        >Add to Cart</button>
             </div>
         }
         else {

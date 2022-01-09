@@ -1,10 +1,12 @@
 function toggleFavVehicle(token, id, callback) {
-    validateToken(token)
+    if (typeof token !== 'string') throw new TypeError('token is not a string')
+    if (!token.trim()) throw new Error('token is emptyor blank')
+    if (token.split('.').length !== 3) throw new Error('invalid token')
 
     if (typeof id !== 'string') throw new TypeError('id is not a string')
     if (!id.trim()) throw new Error('id is empty or blank')
 
-    validateCallback(callback)
+    if (typeof callback !== 'function') throw new TypeError('callback is not a fucntion')
 
     const xhr = new XMLHttpRequest
 
@@ -49,7 +51,7 @@ function toggleFavVehicle(token, id, callback) {
 
             xhr.setRequestHeader('Content-type', 'application/json')
 
-            const data = { favs: favs }
+            const data ={favs: favs}
 
             const json = JSON.stringify(data)
 

@@ -14,7 +14,7 @@ class Results extends React.Component {
         logger.debug('Results -> component did mount')
 
         try {
-            searchVehicles(sessionStorage.token, this.props.query, (error, vehicles) => {
+            searchVehicles(this.props.query, (error, vehicles) => {
                 if (error) {
                     return this.setState({ feedback: error.message })
                 }
@@ -33,7 +33,7 @@ class Results extends React.Component {
         logger.debug('Results -> component will receive props')
 
         try {
-            searchVehicles(sessionStorage.token, props.query, (error, vehicles) => {
+            searchVehicles(props.query, (error, vehicles) => {
                 if (error) {
                     return this.setState({ feedback: error.message })
                 }

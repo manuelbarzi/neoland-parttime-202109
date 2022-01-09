@@ -1,10 +1,12 @@
 function modifyUser(token, data, callback) {
-    validateToken(token)
+    if (typeof token !== 'string') throw new TypeError(token + ' is not string')
+    if (!token.trim()) throw new Error('token is empty or blank')
+    if (token.split('.').length !== 3) throw new Error('invalid token')
 
     if (typeof data !== 'object') throw new TypeError(data + ' is not an object')
     if (Object.keys(data).length === 0) throw new Error('data object is empty')
 
-    validateCallback(callback)
+    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')
 
     var xhr = new XMLHttpRequest
 

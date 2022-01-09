@@ -52,20 +52,12 @@ class Home extends React.Component {
 
         if (this.state.name) {
             return <div>
-                <h1>Hello, {this.state.name}</h1>
+                <h1>Hello, {this.state.name ? this.state.name : 'World'}</h1>
                 <button onClick={() => {
                     delete sessionStorage.token
 
                     this.props.onLoggedOut()
                 }}>Logout</button>
-
-                <button
-                    onClick={() => this.setState({ view: 'clientFavs' })}
-                >Favs</button>
-
-                <button
-                    onClick={() => this.setState({ view: 'cart' })}
-                >Cart</button>
 
                 {this.state.city && <Forecast apiKey={this.apiKey} city={this.state.city} />}
 
@@ -79,12 +71,6 @@ class Home extends React.Component {
                 {this.state.view === 'detail' && <Detail
                     itemId={this.state.vehicleId}
                 />}
-
-                {this.state.view === 'clientFavs' && <ClientFavs 
-                onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })}/>}
-
-                {this.state.view === 'cart' && <Cart
-                onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })}/>}
 
             </div>
         }

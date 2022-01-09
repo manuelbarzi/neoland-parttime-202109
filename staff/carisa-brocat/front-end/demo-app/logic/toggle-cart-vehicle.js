@@ -1,4 +1,4 @@
-function toggleFavVehicle(token, id, callback) {
+function toggleCartVehicle(token, id, callback) {
     validateToken(token)
 
     if (typeof id !== 'string') throw new TypeError('id is not a string')
@@ -20,14 +20,14 @@ function toggleFavVehicle(token, id, callback) {
         } else if (this.status === 200) {
             const user = JSON.parse(this.responseText)
 
-            const favs = user.favs || []
+            const cart = user.cart || []
 
-            const index = favs.indexOf(id)
+            const index = cart.indexOf(id)
 
             if (index < 0)
-                favs.push(id)
+                cart.push(id)
             else
-                favs.splice(index, 1)
+                cart.push(id)
 
             const xhr = new XMLHttpRequest
 
@@ -49,7 +49,7 @@ function toggleFavVehicle(token, id, callback) {
 
             xhr.setRequestHeader('Content-type', 'application/json')
 
-            const data = { favs: favs }
+            const data = { cart: cart }
 
             const json = JSON.stringify(data)
 
