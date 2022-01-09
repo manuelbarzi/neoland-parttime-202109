@@ -1,4 +1,8 @@
 function retrieveVehicle(id, callback) {
+
+    validateId(id)
+    validateCallback(callback)
+    
     var xhr = new XMLHttpRequest
 
     xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles/' + id)

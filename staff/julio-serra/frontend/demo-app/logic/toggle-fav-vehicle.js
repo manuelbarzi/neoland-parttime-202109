@@ -1,18 +1,14 @@
 function toggleFavVehicle(token, id, callback) {
-    if (typeof token !== 'string') throw new TypeError('token is not string')
-    if (!token.trim()) throw new Error('token is empty or blank')
-    if (token.split('.').length !== 3) throw new Error('invalid token')
 
-    if (typeof id !== 'string') throw new TypeError('id is not string')
-    if (!id.trim()) throw new Error('id is empty or blank')
-
-    if (typeof callback !== 'function') throw new TypeError('callback is not a function')
+    validateToken(token)
+    validateId(id)
+    validateCallback(callback)
 
     const xhr = new XMLHttpRequest
 
     xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/v2/users') // obtiene la info del usuario, id, name, price...
 
-    xhr.addEventListener('load', function() {
+    xhr.addEventListener('load', function () {
         if (this.status === 401) {
             const res = JSON.parse(this.responseText)
             const error = res.error
@@ -33,9 +29,9 @@ function toggleFavVehicle(token, id, callback) {
 
             const xhr = new XMLHttpRequest
 
-            xhr.open ('PATCH', 'https://b00tc4mp.herokuapp.com/api/v2/users') // modifica el usuario, si ha añadido o quitado favs
+            xhr.open('PATCH', 'https://b00tc4mp.herokuapp.com/api/v2/users') // modifica el usuario, si ha añadido o quitado favs
 
-            xhr.addEventListener('load', function() {
+            xhr.addEventListener('load', function () {
                 if (this.status === 400 || this.status === 401 || this.status === 409) {
                     const res = JSON.parse(this.responseText)
 

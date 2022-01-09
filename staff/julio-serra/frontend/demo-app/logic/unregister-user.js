@@ -1,5 +1,9 @@
 function unregisterUser(token, password, callback) {
 
+    validateToken(token)
+    validatePassword(password)
+    validateCallback(callback)
+
     var xhr = new XMLHttpRequest
 
     xhr.open('DELETE', 'https://b00tc4mp.herokuapp.com/api/v2/users')

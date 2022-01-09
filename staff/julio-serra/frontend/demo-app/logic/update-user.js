@@ -2,6 +2,10 @@
 
 function updateUser(token, data, callback) {
 
+    validateToken(token)
+    validateData(data)
+    validateCallback(callback)
+
     var xhr = new XMLHttpRequest
 
     xhr.open('PATCH', 'https://b00tc4mp.herokuapp.com/api/v2/users')

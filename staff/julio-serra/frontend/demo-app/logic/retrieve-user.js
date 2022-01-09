@@ -1,5 +1,8 @@
 function retrieveUser(token, callback) {
     
+validateToken(token)
+validateCallback(callback)
+
     var xhr = new XMLHttpRequest
 
     xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/v2/users')

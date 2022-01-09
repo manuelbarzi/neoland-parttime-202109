@@ -1,4 +1,10 @@
 function registerUser(name, username, password, callback) {
+
+        validateName(name)
+        validateUsername(username)
+        validateUsername(password)
+        validateCallback(callback)
+
     // registerUser('Julio', 'julio', '123', console.log)
     var xhr = new XMLHttpRequest
 
