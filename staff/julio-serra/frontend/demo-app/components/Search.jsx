@@ -1,8 +1,8 @@
 function Search(props) {
     return <form onSubmit={event => {
-        event.preventDefault()
+        event.preventDefault() 
 
-        var query = event.target.query.value
+        var query = event.target.query.value //parametro event accede a la propiedad target (del formulario), para acceder al valor del input
 
         props.onQuery(query)
 
