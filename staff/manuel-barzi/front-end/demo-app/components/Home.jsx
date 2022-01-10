@@ -57,7 +57,11 @@ class Home extends React.Component {
         if (this.state.name)
             return <div>
                 <h1>Hello, {this.state.name}!</h1>
-                <button>Favs</button>
+
+                <button onClick={() => {
+                    this.setState({ view: 'favs' })
+                }}>Favs</button>
+
                 <button onClick={() => {
                     delete sessionStorage.token
 
@@ -74,6 +78,8 @@ class Home extends React.Component {
                 />}
 
                 {this.state.view === 'detail' && <Detail itemId={this.state.vehicleId} />}
+
+                {this.state.view === 'favs' && <Favs onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })} />}
             </div>
         else return null
     }
