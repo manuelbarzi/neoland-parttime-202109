@@ -4,7 +4,7 @@ function RegisterSuccess(props) {
 
         event.preventDefault()
 
-        props.onLoginClick() //callback al Login
+        props.onLoginClick() //callback que viene por props, al Login que le pasaré desde la app
 
-    }}>Login</a> </p>
+    }}> Login </a> </p>
 }

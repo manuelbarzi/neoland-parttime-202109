@@ -33,7 +33,7 @@ class Home extends React.Component {
                     alert(error.message)
                     delete sessionStorage.token
 
-                    this.props.onLoggedOut()
+                    this.props.onLoggedOut() //cuando me borre el token, llamo al callback de onLoggedOut (aunque no sea boton)
 
                     return
                 }
@@ -42,9 +42,9 @@ class Home extends React.Component {
             })
         } catch (error) {
             alert(error.message)
-            delete sessionStorage.token
+            delete sessionStorage.token  //error sincrono, al catch, no llamo a la api, hubo un error antes de y :
 
-            this.props.onLoggedOut()
+            this.props.onLoggedOut() //llamo al callback onLoggedOut, para salir de ahí e ir a Login que es lo que indica este callabck,porque si no me dejaría la página en blanco
         }
     }
 
@@ -58,7 +58,13 @@ class Home extends React.Component {
 
         if (this.state.name) {
             return <div>
-                <h1>Hello, {this.state.name ? this.state.name : 'World'}!</h1>
+                <h1>Hello, { this.state.name }!</h1>
+
+
+                <button onClick={event => {
+                    event.preventDefault()
+                    this.props.onClickedCart()
+                }}>Shopping Cart</button>
 
                 <button onClick={event => {
                     event.preventDefault()
@@ -76,18 +82,28 @@ class Home extends React.Component {
                     this.props.onLoggedOut()
                 }} > Logout </button>
 
+    
+
+
+
                {this.state.city && <Forecast apiKey={this.apiKey} city={this.state.city} />}
 
 
                 <Search onQuery={query => this.setState({ query, view: 'results' })} />
-
+                                 {/* //si la propiedad view del state del compo es igual a results */}
                 {this.state.view === 'results' && <Results
                     query={this.state.query}
-                    onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })}
+                    onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })} //vehicleId recibe el id de results y lo setearlo en state de home, LÍNEA 83 (DE RESULTS)
+                />}             
+
+                
+
+                {this.state.view === 'detail' && <Detail itemId={this.state.vehicleId} //recibirá un id para cuando carga el compo llamar a la api, pedirle el dettale y pintanrlo
                 />}
 
-                {this.state.view === 'detail' && <Detail itemId={this.state.vehicleId}
-                />}
+                
+
+
 
             </div>
 

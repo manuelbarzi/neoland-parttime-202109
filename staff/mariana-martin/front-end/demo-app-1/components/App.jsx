@@ -28,7 +28,7 @@ class App extends React.Component {
             return <Login
                 onRegisterClick={() => this.setState({ view: 'register' })}  //se genera una props, que es onRegisterClick , envío un callback que cambiara el view state
                 onLoggedIn={token => this.setState({ view: 'home', token })}  //si se ha hecho bien el authenticate, irá a la home
-            />                                                      //token:token
+            />                                                      //token:token, si se llama igual la variable y la propiedad
 
         else if (this.state.view === 'register')
             return <Register 

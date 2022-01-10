@@ -8,24 +8,25 @@ class Results extends React.Component {
 
         super()
 
-        this.state = { vehicles: null }
+        this.state = { vehicles: null,
+                       }
     }
 
-    componentDidMount() {
+    componentDidMount() { //método de clase del ciclo de vida, se dispara cuando es la primera búsqueda
         logger.debug('Results --> component did mount')
 
         try {
             searchVehicles(sessionStorage.token, this.props.query, (error, vehicles) => {
-                if (error) return alert(error.message)
+                if (error) return alert(error.message) //primero dispara la alerta , leerlo al revés 
 
-                this.setState({ vehicles })
+                this.setState({ vehicles }) //setea el state de vehicles, results, cuando react setea estado este compo se renderiza de nuevo
             })
         } catch (error) {
             alert(error.message)
         }
     }
 
-    componentWillReceiveProps(props) {  // TODO aclarar por qué hay 2 lógicas de searchVehicle línea 18 y esta
+    componentWillReceiveProps(props) {  //se monta cuando es la 2da búsqueda en adelante
         logger.debug('Results --> component will recieve props')
 
         try {
@@ -49,6 +50,7 @@ class Results extends React.Component {
                     {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
                         <h2>{vehicle.name}</h2>
 
+                    
                         <Fav selected={vehicle.isFav} onClick={() => { //al hacer click vamos a actualizar el estado al buscar el id del vehiculo
                             //en react no se puede modificar objetos en estados, la propiedad de un objeto no se puede modificar
 
@@ -56,7 +58,7 @@ class Results extends React.Component {
                                 toggleFavVehicle(sessionStorage.token, vehicle.id, error => {
                                     if (error) return alert(error.message)
 
-                                    const update = {}  //las propiedades nuevas de este objeto de isFav se guardar aquí 
+                                    const update = {}  //la propiedad nueva de este objeto de isFav se guardar aquí 
 
                                     for (const key in vehicle)  //para cada propiedad    
                                         update[key] = vehicle[key]  //la misma propiedad de vehicle se pone en el objeto update (una forma de clonar el objeto)
@@ -66,23 +68,52 @@ class Results extends React.Component {
 
                                     const vehicles = this.state.vehicles.map(_vehicle => {  //el map itera sobre el array y cada valor lo envía al callabck , el _vehcile es lo que recibes en el iterador del map
                                         if (_vehicle.id === vehicle.id) //comparo con el vehiculo del toggle (el seleccionado)
-                                            return update //devuelvo el nuevo
+                                            return update //devuelvo el que tiene la prop isFav
 
                                         return _vehicle //devuelvo el que esta iterando
                                     })
 
-                                    this.setState({ vehicles: vehicles }) //TODO ?????    seteo el mismo array excepto uno que ha cambiado
+                                    this.setState({ vehicles }) //setea un array nuevo, que he obtenido del map, menos el que tiene la propiedad cambiada que es el isFav
 
                                 })
-
+                      
                             } catch (error) {
                                 alert(error.message)
                             }
                         }} />
 
-                        <img src={vehicle.thumbnail} onClick={() => this.props.onItemClick(vehicle.id)} />
-                        <span>{vehicle.price} $ </span>
+                       <Cart selectedcart={vehicle.isCart} onClickCart={() => {
 
+                           try {
+                               toggleCart(sessionStorage.token, vehicle.id, error => {
+                                if (error) return alert(error.message)
+
+                                const shopcart = {}
+
+                                for (const key in vehicle) 
+                                shopcart[key] = vehicle[key] 
+
+                                shopcart.isCart = !shopcart.isCart
+
+                                const vehicles = this.state.vehicles.map(vvehicle => {  
+                                    if (vvehicle.id === vehicle.id) 
+                                        return shopcart
+
+                                    return vvehicle 
+                                })
+
+                                this.setState({ vehicles })
+                             } )
+                           } catch (error) {
+                            alert(error.message)
+                           }
+
+                       }}/>
+
+
+                                                      {/* el onClick, tiene un callback, aquí llama a la prop onItemClick (otro cllback que envia home), que envia el id, LINEA 86 */}
+                        <img src={vehicle.thumbnail} onClick={() => this.props.onItemClick(vehicle.id)} /> 
+                        <span>{vehicle.price} $ </span>
                     </li>)}
                 </ul>
             else

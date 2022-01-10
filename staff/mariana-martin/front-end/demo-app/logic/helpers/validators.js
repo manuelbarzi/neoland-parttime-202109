@@ -33,3 +33,8 @@ function validateCountry(country){
     if(typeof country !== 'string') throw new TypeError('country is not a string')
     if(!city.trim()) throw new Error ('cpuntry is empty or blank')
 }
+
+function validateId(id){
+    if(typeof id !== 'string') throw new TypeError('id is not a string')
+    if(!id.trim()) throw new Error('id is empty or blank')
+}

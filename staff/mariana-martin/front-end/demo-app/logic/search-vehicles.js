@@ -30,7 +30,11 @@ function searchVehicles(token, query, callback) {
 
             //2. Extraer los favoritos del usuario
             //const favs = user.favs   //destructuring:
-            const { favs } = user  //id de los coches que me gustan
+            const { favs = [] } = user  //id de los coches que me gustan. 
+                                        //al inicio puede ser que el user no tenga favs(undefined) en caso que no tenga propiedades fav, por default será un array vacío
+
+                //defino shoppingcart y destructuro
+            const { shoppingcart = [] } = user
 
             //SEGUNDA LLAMADA: pido a la Api de coches los coches que estoy buscando
             var xhr = new XMLHttpRequest
@@ -50,6 +54,11 @@ function searchVehicles(token, query, callback) {
                     vehicles.forEach(vehicle => {  //para c/vehiculo revsar si está dentro de favs con el includes para ver si ese id está dentro de ese array
                         vehicle.isFav = favs.includes(vehicle.id) //lo que devuelva el includes true or false lo pone en isFav
                     })
+
+                    vehicles.forEach(vehicle => {  //para c/vehiculo revsar si está dentro de favs con el includes para ver si ese id está dentro de ese array
+                        vehicle.isCart = shoppingcart.includes(vehicle.id) //lo que devuelva el includes true or false lo pone en isFav
+                    })
+
 
                     callback(null, vehicles)
 

@@ -12,7 +12,7 @@ class Detail extends React.Component {
 
         try {
             retrieveVehicle(sessionStorage.token, this.props.itemId, (error, vehicle) => {
-                if(error) return alert(error.message)
+                if(error) return alert(error.message)  //early return
 
                 this.setState({ vehicle })
             })
@@ -57,6 +57,9 @@ class Detail extends React.Component {
                 <p>{this.state.vehicle.style}</p>
                 <p>{this.state.vehicle.year}</p>
                 <a href={this.state.vehicle.url}> Original Item</a>
+
+{/* //boton de cart: */}
+           
             </div>
 
             else

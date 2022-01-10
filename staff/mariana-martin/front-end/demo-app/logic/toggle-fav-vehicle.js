@@ -35,7 +35,7 @@ function toggleFavVehicle(token,id, callback){
             if(index < 0)
                 favs.push(id)
             else
-            favs.splice(index, 1)
+            favs.splice(index, 1) //del index quitame 1, sólo tengo 1
 
 
             //segunda llamada: para modificar
@@ -57,7 +57,7 @@ function toggleFavVehicle(token,id, callback){
             xhr.setRequestHeader('Authorization', 'Bearer ' + token)
             xhr.setRequestHeader('Content-type', 'application/json')
 
-            const data = { favs: favs}
+            const data = { favs: favs }
 
             const json = JSON.stringify(data)
 

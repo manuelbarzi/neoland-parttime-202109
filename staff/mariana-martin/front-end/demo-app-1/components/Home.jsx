@@ -16,7 +16,7 @@ class Home extends React.Component {
         logger.debug('Home --> did mount')
 
         try {
-            retrieveUser(this.props.token, (error, user) => {
+            retrieveUser(this.props.token, (error, user) => { //como parametro : si hay error o si no el usuario
                 if (error)  {
                     alert(error.message)
                     delete sessionStorage.token
@@ -42,7 +42,7 @@ class Home extends React.Component {
 
         logger.debug('Home --> constructor')
 
-        if (this.state.name){  
+        if (this.state.name){  //para evitar el blanking
             return <div> 
                 <h1>Hello, {this.state.name ? this.state.name : 'World' }!</h1>
                 
