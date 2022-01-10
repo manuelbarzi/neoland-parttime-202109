@@ -1,3 +1,6 @@
+const { render } = ReactDOM
+const { BrowserRouter } = ReactRouterDOM
+
 class Counter extends React.Component {
     constructor() {
         super()
@@ -12,6 +15,14 @@ class Counter extends React.Component {
     }
 }
 
-ReactDOM.render([
-    <Counter /> // new Counter
-], document.getElementById('root'))
+function App() {
+    return <>
+        <h1>React Router DOM DEMO</h1>
+        
+        <Counter />
+    </>
+}
+
+render(<BrowserRouter>
+    <App />
+</BrowserRouter>, document.getElementById('root'))
