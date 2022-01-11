@@ -26,7 +26,7 @@ function retrieveFavVehicles(token, callback) {
                 let count = 0
                 const vehicles = []
 
-                favs.foreach((id, index) => {
+                favs.forEach((id, index) => {
                     const xhr = new XMLHttpRequest
 
                     xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles/' + id)
