@@ -45,7 +45,7 @@ class ModifyData extends React.Component {
 
                 <input className="input input-form" type="text" name="name" placeholder="Nuevo nombre" />
                 <input className="input input-form" type="text" name="username" placeholder="Nuevo usuario" />
-                <input className="input input-form" type="text" name="city" placeholder="Nuevo ciudad" />
+                <input className="input input-form" type="text" name="city" placeholder="Nueva ciudad" />
 
                 <button className="button button-form">Enviar</button>
             </form>
