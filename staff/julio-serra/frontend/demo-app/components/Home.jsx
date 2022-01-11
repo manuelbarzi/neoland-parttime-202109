@@ -34,6 +34,9 @@ class Home extends React.Component {
             return <div>
                 <h1>Hello, {this.state.name ? this.state.name : 'World'}</h1>
                 <button onClick={() => {
+                    this.setState({ view: 'favs' })
+                }}>FAVS</button>
+                <button onClick={() => {
                     delete sessionStorage.token // borramos la cookie de la contraseña para que vuelva a 0
 
                     this.props.logOut()    //añadimos el prop creado en la App
@@ -42,30 +45,29 @@ class Home extends React.Component {
                 {/* <Forecast apiKey={this.apiKey} city={this.state.city} /> */}
 
                 <Search onQuery={query => this.setState({ query, view: 'results' })} />
-
-
-
-                {this.state.view === 'detail' && <Detail
-                    itemId={this.state.vehicleId}
-                />}
-
-                {/* //si la primera condición es true pasa a la siguiente condicion
-                // si es true me pinta un ul, hace un mapeo de todos los vehiculos y me los pinta en un listado */}
-
-
-                {/* {this.state.query && <Results  //Si hay query le paso a results la query mediante props
-                    query={this.state.query}
-                    onItemClick={vehicleId => this.setState({ vehicleId })}
-                />} */}
+                {/* <Search query={this.state.query} onQueryChange={query => this.setState({ query, view: 'results' })} /> */}
 
                 {this.state.view === 'results' && <Results
                     query={this.state.query}
                     onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })}
                 />}
 
+                {this.state.view === 'detail' && <Detail itemId={this.state.vehicleId} />}
+
+                {this.state.view === 'favs' && <Favs onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })} />}
             </div>
 
         else return null
+
+
+        {/* //si la primera condición es true pasa a la siguiente condicion
+                // si es true me pinta un ul, hace un mapeo de todos los vehiculos y me los pinta en un listado */}
+
+
+        {/* {this.state.query && <Results  //Si hay query le paso a results la query mediante props
+                    query={this.state.query}
+                    onItemClick={vehicleId => this.setState({ vehicleId })}
+                />} */}
 
 
     }

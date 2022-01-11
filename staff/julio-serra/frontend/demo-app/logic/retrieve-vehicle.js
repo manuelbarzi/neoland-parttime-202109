@@ -1,41 +1,51 @@
-function retrieveVehicle(id, callback) {
-
+function retrieveVehicle(token, id, callback) {
+    validateToken(token)
     validateId(id)
     validateCallback(callback)
-    
-    var xhr = new XMLHttpRequest
 
-    xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles/' + id)
+    const xhr = new XMLHttpRequest
 
-    // lanzamos el callback
+    xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/v2/users')
 
-    xhr.addEventListener('load', function () {
+    xhr.onload = function () {
+        if (this.status === 401) {
+            const res = JSON.parse(this.responseText)
 
-        if (this.status === 200) {
-            var vehicle = JSON.parse(this.responseText)
-
-            callback(null, vehicle)
-        }
-        else {
-            var res = JSON.parse(this.responseText)
-            var error = res.error
+            const error = res.error
 
             callback(new Error(error))
+        } else if (this.status >= 400 && this.status < 500) {
+            callback(new Error('client error'))
+        } else if (this.status >= 500) {
+            callback(new Error('server error'))
+        } else if (this.status === 200) {
+            const user = JSON.parse(this.responseText)
+
+            const { favs } = user
+
+            const xhr = new XMLHttpRequest
+
+            xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles/' + id)
+
+            xhr.onload = function () {
+                if (this.status >= 400 && this.status < 500) {
+                    callback(new Error('client error'))
+                } else if (this.status >= 500) {
+                    callback(new Error('server error'))
+                } else if (this.status === 200) {
+                    const vehicle = JSON.parse(this.responseText)
+
+                    vehicle.isFav = favs.includes(vehicle.id)
+
+                    callback(null, vehicle)
+                }
+            }
+
+            xhr.send()
         }
+    }
 
-
-        // if (this.status === 401) {
-        //     var res = JSON.parse(this.responseText)
-        //     var error = res.error
-        //     callback(new Error(error))
-        // } else if (this.status === 200) {
-        //     var user = JSON.parse(this.responseText)
-
-        //     callback(null, user)
-        // }
-    })
-
+    xhr.setRequestHeader('Authorization', 'Bearer ' + token)
 
     xhr.send()
-
 }
