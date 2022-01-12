@@ -1,4 +1,3 @@
-var favs = []
 class Results extends React.Component {
     constructor() {
         logger.debug('Results -> constructor')
@@ -12,7 +11,7 @@ class Results extends React.Component {
         logger.debug('Results -> component did mount')
 
         try {
-            searchVehicles(this.props.query, sessionStorage.token, (error, vehicles) => {
+            searchVehicles(sessionStorage.token, this.props.query, (error, vehicles) => {
                 if (error) return alert(error.message)
 
                 this.setState({ vehicles })
@@ -20,26 +19,14 @@ class Results extends React.Component {
         } catch (error) {
             alert(error.message)
         }
-
-        try {
-            retrieveUser(sessionStorage.token, (error, user) => {
-                if (error) {
-                    return alert(error.message)
-                }
-                favs = user.favs
-
-            }
-            )
-        }
-        catch (error) {
-            alert(error.message)
-        }
     }
+
+
     componentWillReceiveProps(props) {
         logger.debug('Results -> component will receive props')
 
         try {
-            searchVehicles(props.query,sessionStorage.token, (error, vehicles) => {
+            searchVehicles(props.query, sessionStorage.token, (error, vehicles) => {
                 if (error) return alert(error.message)
 
                 this.setState({ vehicles })

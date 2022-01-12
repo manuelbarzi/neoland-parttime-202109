@@ -5,19 +5,19 @@ function retrieveUser(token, callback) {
 
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')
 
-    var xhr = new XMLHttpRequest
+    const xhr = new XMLHttpRequest
 
     xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/v2/users')
 
     xhr.onload = function () {
         if (this.status === 401) {
-            var res = JSON.parse(this.responseText)
+            const res = JSON.parse(this.responseText)
 
-            var error = res.error
+            const error = res.error
 
             callback(new Error(error))
         } else if (this.status === 200) {
-            var user = JSON.parse(this.responseText)
+            const user = JSON.parse(this.responseText)
 
             callback(null, user)
         }

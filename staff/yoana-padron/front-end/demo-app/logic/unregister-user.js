@@ -9,15 +9,15 @@ function unregisterUser(token, password, callback) {
 
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')
 
-    var xhr = new XMLHttpRequest
+    const xhr = new XMLHttpRequest
 
     xhr.open('DELETE', 'https://b00tc4mp.herokuapp.com/api/v2/users')
 
     xhr.addEventListener('load', function () {
         if (this.status === 400 || this.status === 401) {
-            var res = JSON.parse(this.responseText)
+            const res = JSON.parse(this.responseText)
 
-            var error = res.error
+            const error = res.error
 
             callback(new Error(error))
         } else if (this.status === 204) {
@@ -28,9 +28,9 @@ function unregisterUser(token, password, callback) {
     xhr.setRequestHeader('Authorization', 'Bearer ' + token)
     xhr.setRequestHeader('Content-type', 'application/json')
 
-    var data = { password: password }
+    const data = { password: password }
 
-    var json = JSON.stringify(data)
+    const json = JSON.stringify(data)
 
     xhr.send(json)
 }

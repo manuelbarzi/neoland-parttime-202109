@@ -17,15 +17,15 @@ function registerUser(name, city, country, username, password, callback) {
 
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')
 
-    var xhr = new XMLHttpRequest
+    const xhr = new XMLHttpRequest
 
     xhr.open('POST', 'https://b00tc4mp.herokuapp.com/api/v2/users')
 
     xhr.addEventListener('load', function() {
         if (this.status === 400 || this.status === 409) {
-            var res = JSON.parse(this.responseText)
+            const res = JSON.parse(this.responseText)
 
-            var error = res.error
+            const error = res.error
 
             callback(new Error(error))
         } else if (this.status === 201) {
@@ -35,9 +35,9 @@ function registerUser(name, city, country, username, password, callback) {
 
     xhr.setRequestHeader('Content-type', 'application/json')
 
-    var data = { name: name, city: city, country: country, username: username, password: password }
+    const data = { name: name, city: city, country: country, username: username, password: password }
 
-    var json = JSON.stringify(data)
+    const json = JSON.stringify(data)
 
     xhr.send(json)
 }

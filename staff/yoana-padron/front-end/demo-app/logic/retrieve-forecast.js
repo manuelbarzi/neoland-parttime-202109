@@ -7,12 +7,12 @@ function retrieveForecast(apiKey, city, callback) {
 
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')
 
-    var xhr = new XMLHttpRequest
+    const xhr = new XMLHttpRequest
 
     xhr.open('GET', 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/forecast?aggregateHours=24&combinationMethod=aggregate&contentType=json&unitGroup=metric&locationMode=single&key=' + apiKey + '&dataElements=default&locations=' + city)
 
     xhr.onload = function () {
-        var res = JSON.parse(this.responseText)
+        const res = JSON.parse(this.responseText)
 
         if (res.errorCode) return callback(new Error(res.message))
 

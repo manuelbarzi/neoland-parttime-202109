@@ -8,21 +8,21 @@ function authenticateUser(username, password, callback) {
 
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')
 
-    var xhr = new XMLHttpRequest
+    const xhr = new XMLHttpRequest
 
     xhr.open('POST', 'https://b00tc4mp.herokuapp.com/api/v2/users/auth')
 
     xhr.onload = function () {
         if (this.status === 400 || this.status === 401) {
-            var res = JSON.parse(this.responseText)
+            const res = JSON.parse(this.responseText)
 
-            var error = res.error
+            const error = res.error
 
             callback(new Error(error))
         } else if (this.status === 200) {
-            var res = JSON.parse(this.responseText)
+            const res = JSON.parse(this.responseText)
 
-            var token = res.token
+            const token = res.token
 
             callback(null, token)
         }
@@ -30,12 +30,12 @@ function authenticateUser(username, password, callback) {
 
     xhr.setRequestHeader('Content-type', 'application/json')
 
-    var data = {
+    const data = {
         username: username,
         password: password
     }
 
-    var json = JSON.stringify(data)
+    const json = JSON.stringify(data)
 
     xhr.send(json)
 }

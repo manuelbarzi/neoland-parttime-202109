@@ -5,9 +5,22 @@ class Login extends React.Component {
         this.state = { feedback: null }
     }
 
+    componentWillMount() {
+        logger.debug('Login -> will mount')
+    }
+
+    componentDidMount() {
+        logger.debug('Login -> did mount')
+    }
+
+    componentWillUnmount() {
+        logger.debug('Login -> will unmount')
+    }
+
     render() {
-        return <div>
-            <form  className="form" onSubmit={event => {
+        return <div className="container">
+            <h1 className="container__titleh1">¡Bienvenido!</h1>
+            <form className="container container--columnFlex" onSubmit={event => {
                 event.preventDefault()
 
                 const username = event.target.username.value
