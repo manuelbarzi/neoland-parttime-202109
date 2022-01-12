@@ -44,6 +44,7 @@ class App extends React.Component {
                 onModifyClick={() => this.setState({ view: 'modify' })}
                 onLoggedOut={() => this.setState({ view: 'login', token: null })}
                 onClickedFav={() => this.setState({ view: 'favorites' })}
+                onClickedCart={() => this.setState({ view: 'shoppingcart' })}
             />
         else if (this.state.view === 'modify')
             return <ModifyData
@@ -52,6 +53,10 @@ class App extends React.Component {
             />
         else if (this.state.view === 'favorites')
             return <Favorites
+                onClickedHome={() => this.setState({ view: 'home' })}
+            />
+        else if (this.state.view === 'shoppingcart')
+            return <ShoppingCart
                 onClickedHome={() => this.setState({ view: 'home' })}
             />
     }

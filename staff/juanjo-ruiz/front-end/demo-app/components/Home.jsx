@@ -56,23 +56,30 @@ class Home extends React.Component {
         if (this.state.name) {
             return <div>
                 <h1>Hola, {this.state.name} !</h1>
-                <button className="button" onClick={() => {
-                    delete sessionStorage.token
-
-                    this.props.onLoggedOut()
-                }}>Cierra sesión</button>
-
                 <button className="button" onClick={event => {
                     event.preventDefault()
 
                     this.props.onModifyClick()
                 }}>Modificar datos</button>
 
+                <button className="button" onClick={() => {
+                    delete sessionStorage.token
+
+                    this.props.onLoggedOut()
+                }}>Cierra sesión</button>
+
+
                 <button className="button" onClick={event => {
                     event.preventDefault()
 
                     this.props.onClickedFav()
                 }}>Favoritos</button>
+
+                <button className="button" onClick={event => {
+                    event.preventDefault()
+
+                    this.props.onClickedCart()
+                }}>Cesta</button>
 
                 <Forecast apiKey={this.apiKey} city={this.state.city} />
 

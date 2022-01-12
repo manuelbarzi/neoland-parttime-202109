@@ -27,6 +27,7 @@ class Detail extends React.Component {
         if (this.state.vehicle)
             return <div>
                 <h2>{this.state.vehicle.name}</h2>
+                <Cart />
                 <Fav selected={this.state.vehicle.isFav} onClick={() => {
                     try {
                         toggleFavVehicle(sessionStorage.token, this.state.vehicle.id, error => {

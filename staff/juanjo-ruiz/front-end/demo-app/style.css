@@ -1,5 +1,5 @@
 :root {
-    --color:rgb(255, 153, 0);
+    --color:rgb(187,112,0);
     --color-text: seashell;
     --color-back: rgb(33, 33, 41)
 }
@@ -79,6 +79,14 @@ body, html, #root {
     width: 22rem;
 }
 
+.button-cart {
+    background-color: #c0a000;
+    text-decoration: var(--color-text);
+    border-radius: .3rem;
+    border: none;
+    cursor: pointer;
+}
+
 .feedback-ok {
     color: rgb(7, 179, 7);
     font-size: 3rem;
@@ -91,4 +99,14 @@ body, html, #root {
 
 .fav {
     cursor: pointer;
+}
+
+.list-fav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.img-list {
+    max-width: 60%;
+    max-height: 60%;
 }
