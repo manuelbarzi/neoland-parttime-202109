@@ -15,14 +15,14 @@ function addVehiclesToCart(token, id, callback) {
             callback(new Error(error))
         }
         else if (this.status === 200) {
-            const user = JSON.parse(this.responseText)
-            const addCart = user.addCart || [] // 
-            const index = addCart.indexOf(id)
+            const user = JSON.parse(this.responseText) // recogemos los datos del usuario
+            const addCart = user.addCart || [] // añadimos el vehiculo y lo guardamos en addCart OR si no tiene pasamos un array vacio
+            const index = addCart.indexOf(id) // busca el valor en el array y si lo encuentra devuelde el ID
 
             if (index < 0)
-            addCart.push(id)
+                addCart.push(id)
             else
-            addCart.splice(index, 1)
+                addCart.splice(index, 1)
 
             const xhr = new XMLHttpRequest
 
@@ -43,7 +43,7 @@ function addVehiclesToCart(token, id, callback) {
             xhr.setRequestHeader('Content-type', 'application/json')
 
             const data = { addCart: addCart }
-            const json =JSON.stringify(data)
+            const json = JSON.stringify(data)
 
             xhr.send(json)
         }
