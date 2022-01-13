@@ -22,42 +22,44 @@ class Login extends React.Component {
     render() {
         logger.debug('Login -> render')
 
-        return <div className="login container container--column container--border-head-foot container--padding-m">
-            <form className="container container--column container--margin-m" onSubmit={event => {
-                event.preventDefault()
+        return <div className="container container--max-height">
+            <div className="login container panel container--column container--padding-m">
+                <form className="container container--column container--margin-m" onSubmit={event => {
+                    event.preventDefault()
 
-                const username = event.target.username.value
-                const password = event.target.password.value
+                    const username = event.target.username.value
+                    const password = event.target.password.value
 
-                try {
-                    authenticateUser(username, password, (error, token) => {
-                        if (error) {
-                            this.setState({ feedback: error.message })
+                    try {
+                        authenticateUser(username, password, (error, token) => {
+                            if (error) {
+                                this.setState({ feedback: error.message })
 
-                            return
-                        }
+                                return
+                            }
 
-                        sessionStorage.token = token
+                            sessionStorage.token = token
 
-                        this.props.onLoggedIn(token)
-                    })
-                } catch (error) {
-                    this.setState({ feedback: error.message })
-                }
-            }}>
-                <input className="container container--margin-m container--border-sides" type="text" name="username" placeholder="username" />
-                <input className="container container--margin-m container--border-sides" type="password" name="password" placeholder="password" />
+                            this.props.onLoggedIn(token)
+                        })
+                    } catch (error) {
+                        this.setState({ feedback: error.message })
+                    }
+                }}>
+                    <input className="container panel__input login__input container--margin-m" type="text" name="username" placeholder="username" />
+                    <input className="container panel__input login__input container--margin-m" type="password" name="password" placeholder="password" />
 
-                <button className="button container container--margin-m container--border-sides">Login</button>
+                    <button className="button login__button panel__button container container--margin-m">Login</button>
 
-                {this.state.feedback ? <p>{this.state.feedback}</p> : null}
-            </form>
+                    {this.state.feedback ? <p>{this.state.feedback}</p> : null}
+                </form>
 
-            <a href="" onClick={event => {
-                event.preventDefault()
+                <a className="login__link" href="" onClick={event => {
+                    event.preventDefault()
 
-                this.props.onRegisterClick()
-            }}>Register</a>
+                    this.props.onRegisterClick()
+                }}>Register</a>
+            </div>
         </div>
     }
 }

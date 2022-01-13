@@ -1,9 +1,9 @@
-:root {
-    --border-width: 2px;
-  }
-
 html, body, #root {
     height: 100%;
+}
+
+body {
+    margin: 0;
 }
 
 .container {
@@ -16,22 +16,8 @@ html, body, #root {
     flex-direction: column;
 }
 
-.container--border {
-    border: var(--border-width) solid black;
-}
-
-.container--border-sides {
-    border-left: var(--border-width) solid black;
-    border-right: var(--border-width) solid black;
-    border-top: 0;
-    border-bottom: 0;
-}
-
-.container--border-head-foot {
-    border-top: var(--border-width) solid black;
-    border-bottom: var(--border-width) solid black;
-    border-right: 0;
-    border-left: 0;
+.container--max-height {
+    height: 100%;
 }
 
 .container--margin-xs {
@@ -48,4 +34,21 @@ html, body, #root {
 
 .button {
     cursor: pointer;
+}
+
+.panel {
+    border-radius: .5rem;
+    background-color: lightgray;
+}
+
+.panel__input {
+    border-radius: .5rem;
+    border-style: none;
+    padding: .5rem;
+}
+
+.panel__button {
+    border-radius: .5rem;
+    border-style: none;
+    padding: .5rem;
 }

@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 .login {
-    background-color: lightgray;
+    background-color: dodgerblue;
+    font-family: Poppins;
+}
+
+.login__input {
+    font-family: inherit;
+}
+
+.login__button {
+    font-family: inherit;
+}
+
+.login__link {
+    color: whitesmoke;
 }
