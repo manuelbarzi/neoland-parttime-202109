@@ -26,7 +26,7 @@ function retrieveVehicle(token, id, callback) {
         } else if (this.status === 200) {
             const user = JSON.parse(this.responseText)
 
-            const { favs } = user
+            const { favs = [] } = user
 
             const xhr = new XMLHttpRequest
 
