@@ -43,3 +43,8 @@ function validateId(id) {
     if (typeof id !== 'string') throw new TypeError('id is not string')
     if (!id.trim()) throw new Error('id is empty or blank')
 }
+
+function validateQuery(query) {
+    if (typeof query !== 'string') throw new TypeError('query is not string')
+    if (!query.trim()) throw new Error('token is empty or blank')
+}
