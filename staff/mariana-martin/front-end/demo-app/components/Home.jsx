@@ -12,6 +12,7 @@ class Home extends React.Component {
             city: null,
             query: null,
             vehicles: null,
+            vehicleId: null,
             view: null
         }
 
@@ -60,16 +61,12 @@ class Home extends React.Component {
             return <div>
                 <h1>Hello, { this.state.name }!</h1>
 
-
-                <button onClick={event => {
-                    event.preventDefault()
-                    this.props.onClickedCart()
-                }}>Shopping Cart</button>
-
-                <button onClick={event => {
-                    event.preventDefault()
-                    this.props.onClickedFav()
+                <button onClick={() => {
+                    this.setState({ view: 'favs' })
                 }}>Favorites</button>
+
+                <button>Shopping Cart</button>
+
 
                 <button onClick={event => {
                     event.preventDefault()
@@ -82,10 +79,6 @@ class Home extends React.Component {
                     this.props.onLoggedOut()
                 }} > Logout </button>
 
-    
-
-
-
                {this.state.city && <Forecast apiKey={this.apiKey} city={this.state.city} />}
 
 
@@ -96,15 +89,10 @@ class Home extends React.Component {
                     onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })} //vehicleId recibe el id de results y lo setearlo en state de home, LÍNEA 83 (DE RESULTS)
                 />}             
 
-                
-
                 {this.state.view === 'detail' && <Detail itemId={this.state.vehicleId} //recibirá un id para cuando carga el compo llamar a la api, pedirle el dettale y pintanrlo
                 />}
 
-                
-
-
-
+                {this.state.view === 'favs' && <Favs onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })} />}
             </div>
 
         } else {
