@@ -33,7 +33,7 @@ class Favorites extends React.Component {
                     }}>Inicio</a></p>
                     <h1 className='title-form'>Favoritos</h1>
                     <ul>
-                        {this.state.vehicles.map(vehicle => <li className='list-fav' key={vehicle.id}>
+                        {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
                             <h2>{vehicle.name}</h2>
                             <Fav selected={vehicle.isFav} onClick={() => {
                                 try {
