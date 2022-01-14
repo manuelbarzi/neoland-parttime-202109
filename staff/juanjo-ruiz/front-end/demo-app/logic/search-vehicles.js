@@ -1,12 +1,7 @@
 function searchVehicles(token, query, callback) {
-    if (typeof token !== 'string') throw new TypeError('token is not string')
-    if (!token.trim()) throw new Error('token is empty or blank')
-    if (token.split('.').length !== 3) throw new Error('invalid token')
-
-    if (typeof query !== 'string') throw new TypeError('query is not string')
-    if (!query.trim()) throw new Error('token is empty or blank')
-
-    if (typeof callback !== 'function') throw new TypeError('callback is not a function')
+    validateToken(token)
+    validateQuery(query)
+    validateCallback(callback)
 
     const xhr = new XMLHttpRequest
 
