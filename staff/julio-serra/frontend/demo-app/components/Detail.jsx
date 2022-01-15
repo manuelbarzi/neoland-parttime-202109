@@ -43,6 +43,7 @@ class Detail extends React.Component {
                         alert(error.message)
                     }
                 }} />
+                <button>Add to cart</button>
                 <img src={this.state.vehicle.image} />
                 <p>{this.state.vehicle.description}</p>
                 <p>{this.state.vehicle.price} $</p>
