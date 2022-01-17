@@ -1,0 +1,13 @@
+html,body, #root {
+    height: 100%; /*para que ocupe toda la pantalla */
+}
+
+._container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+._container-bordes {
+    border: 1px solid black;
+}
