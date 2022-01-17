@@ -1,4 +1,4 @@
-function toggleCartVehicle(token, id, callback) {
+function addCartVehicle(token, id, callback) {
     validateToken(token)
 
     if (typeof id !== 'string') throw new TypeError('id is not a string')
@@ -22,12 +22,7 @@ function toggleCartVehicle(token, id, callback) {
 
             const cart = user.cart || []
 
-            const index = cart.indexOf(id)
-
-            if (index < 0)
-                cart.push(id)
-            else
-                cart.push(id)
+            cart.push(id)
 
             const xhr = new XMLHttpRequest
 

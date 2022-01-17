@@ -36,22 +36,7 @@ class ClientFavs extends React.Component {
                                 toggleFavVehicle(sessionStorage.token, vehicle.id, error => {
                                     if (error) return alert(error.message)
 
-                                    const update = {}
-
-                                    for (const key in vehicle) {
-
-                                        update[key] = vehicle[key]
-                                    }
-
-                                    update.isFav = !update.isFav
-
-                                    const vehicles = this.state.favsVehicles.map(_vehicle => {
-                                        if (_vehicle.id === vehicle.id) {
-
-                                            return update
-                                        }
-                                        return _vehicle
-                                    })
+                                    const vehicles = this.state.favsVehicles.filter(_vehicle => _vehicle.id !== vehicle.id)
 
                                     this.setState({ favsVehicles: vehicles })
 
@@ -64,7 +49,7 @@ class ClientFavs extends React.Component {
                         <span>{vehicle.price} $</span>
                         <button onClick={() => {
                             try {
-                                toggleCartVehicle(sessionStorage.token, vehicle.id, error => {
+                                addCartVehicle(sessionStorage.token, vehicle.id, error => {
                                     if (error) return alert(error.message)
 
                                     return alert('Car Added successfully')

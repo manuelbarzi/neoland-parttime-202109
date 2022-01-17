@@ -12,10 +12,10 @@ class Cart extends React.Component {
         logger.debug('Cart -> Component did Mount')
 
         try {
-            retrieveCartVehicles(sessionStorage.token, (error, cartVehicles) => {
+            retrieveCartVehicles(sessionStorage.token, (error, vehicles) => {
                 if (error) alert(error.message)
 
-                this.setState({ cartVehicles })
+                this.setState({ cartVehicles: vehicles })
             })
 
         } catch (error) {
@@ -42,14 +42,43 @@ class Cart extends React.Component {
                         <h2>{vehicle.name}</h2>
                         <img src={vehicle.image} onClick={() => this.props.onItemClick(vehicle.id)} />
                         <span>{vehicle.price} $</span>
-                        <button>Delete</button>
+                        <button onClick={()=> {
+                            try{ 
+                                removeCartVehicle( sessionStorage.token, vehicle.id, error  => {
+                                    if(error) return alert(error.message)
+
+                                    const vehicles = this.state.cartVehicles
+
+                                    const _vehicles = []
+                                    let foundOnce = false
+
+                                    for(let i = 0; i < vehicles.length; i++){
+                                        const _vehicle = vehicles[i]
+
+                                        if (!foundOnce) {
+                                            if (_vehicle.id === vehicle.id) {
+                                                foundOnce = true
+                                            } else {
+                                                _vehicles.push(_vehicle)
+                                            }
+                                        } else _vehicles.push(_vehicle)
+                                    }
+                        
+                                    this.setState({ cartVehicles: _vehicles })
+
+                                })
+                            }catch(error){
+                                alert(error.message)
+                            }
+                        }
+                        }>Delete</button>
                     </li>
                 )}
                 </ul>
                 <h2>Total price = {totalPrice}</h2>
                 </div>
             }else{
-                return <p>You dont have any car to the trolley</p>  
+                return <p>You dont have any car on your Cart</p>  
             }
         }
         return null
