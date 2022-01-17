@@ -9,7 +9,7 @@ class Detail extends React.Component{
         logger.debug('Detail-> component did mount')
 
         try {
-            retrieveVehicle(sessionStorage.token, this.props.itemId, (error, vehicle)=>{
+            retrieveVehicle(this.props.itemId, sessionStorage.token, (error, vehicle)=>{
                 if (error) return alert(error.message)
 
                 this.setState({vehicle})
@@ -24,10 +24,14 @@ class Detail extends React.Component{
 
         if(this.state.vehicle)
         return <div>
+            <button onClick={(event)=>{
+                event.preventDefault()
+                this.props.onReturnClick()
+            }}>Return</button>
             <h2>{this.state.vehicle.name}</h2>
             <Fav selected={this.state.vehicle.isFav} onClick={() => {
                     try {
-                        toggleFavVehicle(sessionStorage.token, this.state.vehicle.id, error => {
+                        toggleFavVehicle(this.state.vehicle.id, sessionStorage.token, error => {
                             if (error) return alert(error.message)
 
                             const update = {}

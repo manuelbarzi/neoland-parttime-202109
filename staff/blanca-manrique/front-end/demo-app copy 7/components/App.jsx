@@ -1,7 +1,7 @@
 class App extends React.Component {
     constructor() {
         logger.debug('App -> constructor')
-        super() 
+        super()
 
         this.state = {
             view: sessionStorage.token ? 'home' : 'login',
@@ -9,7 +9,7 @@ class App extends React.Component {
         } //estado inicial
     }
 
-    componentWillMount() { 
+    componentWillMount() {
         logger.debug('App -> will mount')
     }
 
@@ -17,7 +17,7 @@ class App extends React.Component {
         logger.debug('App -> did mount')
     }
 
-    componentWillUnmount() { 
+    componentWillUnmount() {
         logger.debug('App -> will unmount')
     }
 
@@ -47,17 +47,15 @@ class App extends React.Component {
                 onProfileIn={() => this.setState({ view: 'profile' })}
                 onLoggedOut={() => this.setState({ view: 'login', token: null })}
                 onFavClick={() => this.setState({ view: 'favorites' })}
+                onCartClick={() => this.setState({ view: 'card' })}
             />
         else if (this.state.view === 'profile')
             return <Profile
                 onUserSettingClick={() => this.setState({ view: 'changename' })}
                 modifiedPassword={() => this.setState({ view: 'changepassword' })}
-                onReturnClick={()=> this.setState({view:'home'})}
+                onReturnClick={() => this.setState({ view: 'home' })}
             />
 
-        else if (this.state.view === 'favorites')
-            return <Favorites
-                onClickedHome={() => this.setState({ view: 'home' })} />
 
         else if (this.state.view === 'changename')
             return <ChangeName

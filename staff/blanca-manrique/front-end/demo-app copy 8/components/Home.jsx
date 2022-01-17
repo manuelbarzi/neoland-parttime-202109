@@ -8,8 +8,7 @@ class Home extends React.Component {
             query: 'hulk',
             vehicleId: null,
             view: 'results',
-            city: 'madrid',
-            // vehicles: [],
+            city: 'Madrid',
         }
         this.apiKey = 'KT4VXZB23YF5HY2MZA328NVWT' //TODO
     }
@@ -47,33 +46,36 @@ class Home extends React.Component {
         logger.debug('Home -> render')
 
         if (this.state.name)
-            return <div>
+            return <div className='home'>
                 {/* <h1>hello, {this.state.name ? this.state.name : 'World'}!</h1>  */}
-                <h1>hello, {this.state.name} !</h1> 
-
-                <button onClick={() => {
-                    delete sessionStorage.token
-
-                    this.props.onLoggedOut()
-                }}>Logout</button>
-
-                <button onClick={event => {
-                    event.preventDefault()
-                    
-                    this.props.onFavClick()
-                }} >Favorites</button>
-
-                <button onClick={() => {
-
-                    this.props.onProfileIn()
-                }}>Profile</button>
-
-                <button onClick={()=>{
-                    
-                    this.props.onCardClick()
-                }}>Card</button>
+                <h1 className='home__title'>Hello, {this.state.name} !</h1>
 
                 <Forecast apiKey={this.apiKey} city={this.state.city} />
+
+                <div className='home__nav'>
+                    <button className='btn' onClick={() => {
+                        delete sessionStorage.token
+
+                        this.props.onLoggedOut()
+                    }}>Logout</button>
+
+                    <button className='btn' onClick={() => {
+
+                        // this.props.onFavClick()
+                        this.setState({ view: 'favorites' })
+                    }} >Favorites</button>
+
+                    <button className='btn' onClick={() => {
+
+                        this.props.onProfileIn()
+                    }}>Profile</button>
+
+                    <button className='btn' onClick={() => {
+
+                        // this.props.onCartClick()
+                        this.setState({ view: 'cart' })
+                    }}>Cart</button>
+                </div>
 
                 <Search
                     query={this.state.query}
@@ -87,7 +89,15 @@ class Home extends React.Component {
 
                 {this.state.view === 'detail' && <Detail
                     itemId={this.state.vehicleId}
-                    onReturnClick={()=>this.setState({view:'results'})}
+                    onReturnClick={() => this.setState({ view: 'results' })}
+                />}
+
+                {this.state.view === 'favorites' && <Favorites
+                    // onReturnClick={() => this.setState({ view: 'home' })}
+                />}
+
+                {this.state.view === 'cart' && <Cart
+                    // onReturnClick={() => this.setState({ view: 'home' })}
                 />}
 
             </div>
