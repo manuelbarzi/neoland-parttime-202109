@@ -42,7 +42,9 @@ class Home extends React.Component {
                     this.props.logOut()    //añadimos el prop creado en la App
                 }}>Log Out</button>
 
-                <button>CART</button>
+                <button onClick={() => {
+                    this.setState({ view: 'cart'})
+                }}>CART</button>
 
                 {/* <Forecast apiKey={this.apiKey} city={this.state.city} /> */}
 

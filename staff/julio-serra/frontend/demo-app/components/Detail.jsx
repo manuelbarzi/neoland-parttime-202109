@@ -43,7 +43,18 @@ class Detail extends React.Component {
                         alert(error.message)
                     }
                 }} />
-                <button>Add to cart</button>
+                <button onClick={() => {
+                    try {
+                        addVehiclesToCart(sessionStorage.token, this.state.vehicle.id, error => {
+
+                            if (error) return alert(error.message)
+                            return alert('Vehiculo añadido')
+
+                        })
+                    } catch (error) {
+                        alert(error.message)
+                    }
+                }}>Add to Cart</button>
                 <img src={this.state.vehicle.image} />
                 <p>{this.state.vehicle.description}</p>
                 <p>{this.state.vehicle.price} $</p>
