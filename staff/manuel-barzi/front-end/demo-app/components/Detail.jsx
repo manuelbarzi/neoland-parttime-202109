@@ -46,6 +46,17 @@ class Detail extends React.Component {
                         alert(error.message)
                     }
                 }} />
+                <button onClick={() => {
+                    try {
+                        addVehicleToCart(sessionStorage.token, this.state.vehicle.id, error => {
+                            if (error) return alert(error.message)
+
+                            // TODO provide feedback to user (ex: number of items in the upper side menu, where the cart icon)
+                        })
+                    } catch(error) {
+                        alert(error.message)
+                    }
+                }}>Add to cart</button>
                 <img src={this.state.vehicle.image} />
                 <p>{this.state.vehicle.description}</p>
                 <p>{this.state.vehicle.price} $</p>

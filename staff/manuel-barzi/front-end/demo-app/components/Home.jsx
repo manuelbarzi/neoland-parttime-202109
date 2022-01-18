@@ -63,6 +63,10 @@ class Home extends React.Component {
                 }}>Favs</button>
 
                 <button onClick={() => {
+                    this.setState({ view: 'cart' })
+                }}>Cart</button>
+
+                <button onClick={() => {
                     delete sessionStorage.token
 
                     this.props.onLoggedOut()
@@ -80,6 +84,8 @@ class Home extends React.Component {
                 {this.state.view === 'detail' && <Detail itemId={this.state.vehicleId} />}
 
                 {this.state.view === 'favs' && <Favs onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })} />}
+
+                {this.state.view === 'cart' && <Cart onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })} />}
             </div>
         else return null
     }
