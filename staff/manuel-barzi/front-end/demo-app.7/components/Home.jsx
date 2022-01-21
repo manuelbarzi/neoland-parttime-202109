@@ -51,24 +51,6 @@ class Home extends React.Component {
         logger.debug('Home -> will unmount')
     }
 
-    showFavs = () => {
-        this.setState({ view: 'favs' })
-    }
-
-    showCart = () => {
-        this.setState({ view: 'cart' })
-    }
-
-    logout = () => {
-        delete sessionStorage.token
-
-        this.props.onLoggedOut()
-    }
-
-    showResults = query => this.setState({ query, view: 'results' })
-
-    showDetail = vehicleId => this.setState({ vehicleId, view: 'detail' })
-
     render() {
         logger.debug('Home -> render')
 
@@ -76,26 +58,34 @@ class Home extends React.Component {
             return <div>
                 <h1>Hello, {this.state.name}!</h1>
 
-                <button onClick={this.showFavs}>Favs</button>
+                <button onClick={() => {
+                    this.setState({ view: 'favs' })
+                }}>Favs</button>
 
-                <button onClick={this.showCart}>Cart</button>
+                <button onClick={() => {
+                    this.setState({ view: 'cart' })
+                }}>Cart</button>
 
-                <button onClick={this.logout}>Logout</button>
+                <button onClick={() => {
+                    delete sessionStorage.token
+
+                    this.props.onLoggedOut()
+                }}>Logout</button>
 
                 {this.state.city && <Forecast apiKey={this.apiKey} city={this.state.city} />}
 
-                <Search query={this.state.query} onQueryChange={this.showResults} />
+                <Search query={this.state.query} onQueryChange={query => this.setState({ query, view: 'results' })} />
 
                 {this.state.view === 'results' && <Results
                     query={this.state.query}
-                    onItemClick={this.showDetail}
+                    onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })}
                 />}
 
                 {this.state.view === 'detail' && <Detail itemId={this.state.vehicleId} />}
 
-                {this.state.view === 'favs' && <Favs onItemClick={this.showDetail} />}
+                {this.state.view === 'favs' && <Favs onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })} />}
 
-                {this.state.view === 'cart' && <Cart onItemClick={this.showDetail} />}
+                {this.state.view === 'cart' && <Cart onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })} />}
             </div>
         else return null
     }

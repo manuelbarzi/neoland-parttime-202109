@@ -22,32 +22,22 @@ class App extends React.Component {
         logger.debug('App -> will unmount')
     }
 
-    goToRegister = () => this.setState({ view: 'register' })
-
-    goToHome = token => this.setState({ view: 'home', token })
-
-    goToLogin = () => this.setState({ view: 'login' })
-
-    goToRegisterSuccess = () => this.setState({ view: 'register-success' })
-
-    logout = () => this.setState({ view: 'login', token: null })
-
     render() {
         logger.debug('App -> render')
 
         if (this.state.view === 'login')
             return <Login
-                onRegisterClick={this.goToRegister}
-                onLoggedIn={this.goToHome}
+                onRegisterClick={() => this.setState({ view: 'register' })}
+                onLoggedIn={token => this.setState({ view: 'home', token })}
             />
         else if (this.state.view === 'register')
             return <Register
-                onLoginClick={this.goToLogin}
-                onRegistered={this.goToRegisterSuccess}
+                onLoginClick={() => this.setState({ view: 'login' })}
+                onRegistered={() => this.setState({ view: 'register-success' })}
             />
         else if (this.state.view === 'register-success')
-            return <RegisterSuccess onLoginClick={this.goToLogin} />
+            return <RegisterSuccess onLoginClick={() => this.setState({ view: 'login' })} />
         else if (this.state.view === 'home')
-            return <Home token={this.state.token} onLoggedOut={this.logout} />
+            return <Home token={this.state.token} onLoggedOut={() => this.setState({ view: 'login', token: null })} />
     }
 }
