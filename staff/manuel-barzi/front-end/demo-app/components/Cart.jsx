@@ -21,7 +21,7 @@ class Cart extends React.Component {
         }
     }
 
-    toggleFav = () => {
+    toggleFav = vehicle => {
         try {
             toggleFavVehicle(sessionStorage.token, vehicle.id, error => {
                 if (error) return alert(error.message)
@@ -42,7 +42,7 @@ class Cart extends React.Component {
         }
     }
 
-    addToCart = () => {
+    addToCart = vehicle => {
         try {
             addVehicleToCart(sessionStorage.token, vehicle.id, error => {
                 if (error) return alert(error.message)
@@ -63,7 +63,7 @@ class Cart extends React.Component {
         }
     }
 
-    removeFromCart = () => {
+    removeFromCart = vehicle => {
         try {
             removeVehicleFromCart(sessionStorage.token, vehicle.id, error => {
                 if (error) return alert(error.message)
@@ -89,7 +89,7 @@ class Cart extends React.Component {
         }
     }
 
-    clickItem = () => this.props.onItemClick(vehicle.id)
+    clickItem = id => this.props.onItemClick(id)
 
     render() {
         logger.debug('Cart -> render')
@@ -100,13 +100,13 @@ class Cart extends React.Component {
                     <ul>
                         {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
                             <h2>{vehicle.name}</h2>
-                            <Fav selected={vehicle.isFav} onClick={this.toggleFav} />
+                            <Fav selected={vehicle.isFav} onClick={() => this.toggleFav(vehicle)} />
 
-                            <button onClick={this.addToCart}>Add to cart</button>
+                            <button onClick={() => this.addToCart(vehicle)}>Add to cart</button>
 
-                            <button onClick={this.removeFromCart}>Remove cart</button>
+                            <button onClick={() => this.removeFromCart(vehicle)}>Remove cart</button>
 
-                            <img src={vehicle.image} onClick={this.clickItem} />
+                            <img src={vehicle.image} onClick={() => this.clickItem(vehicle.id)} />
                             <span>{vehicle.qty} x {vehicle.price} $ </span>
                             <hr></hr>
                             <span>Subtotal {vehicle.qty * vehicle.price} $</span>
