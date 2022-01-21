@@ -22,8 +22,8 @@ class Login extends React.Component {
         logger.debug('Login -> will unmount')
     }
 
-    // submit(event) { //[1][2]
-    submit = event => { //[3]
+    // login(event) { //[1][2]
+    login = event => { //[3]
         event.preventDefault()
 
         const username = event.target.username.value
@@ -57,7 +57,7 @@ class Login extends React.Component {
 
         return <div className="container container--max-height">
             <div className="login container panel container--column container--padding-m">
-                <form className="container container--column container--margin-m" onSubmit={this.submit}>
+                <form className="container container--column container--margin-m" onSubmit={this.login}>
                     <input className="container panel__input login__input container--margin-m" type="text" name="username" placeholder="username" />
                     <input className="container panel__input login__input container--margin-m" type="password" name="password" placeholder="password" />
 

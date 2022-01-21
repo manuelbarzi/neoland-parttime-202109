@@ -21,6 +21,23 @@ class Favs extends React.Component {
         }
     }
 
+    toggleFav = () => {
+        try {
+            toggleFavVehicle(sessionStorage.token, vehicle.id, error => {
+                if (error) return alert(error.message)
+
+                const vehicles = this.state.vehicles.filter(_vehicle => _vehicle.id !== vehicle.id)
+
+                this.setState({ vehicles: vehicles })
+
+            })
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
+    clickItem = () => this.props.onItemClick(vehicle.id)
+
     render() {
         logger.debug('Favs -> render')
 
@@ -29,21 +46,8 @@ class Favs extends React.Component {
                 return <ul>
                     {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
                         <h2>{vehicle.name}</h2>
-                        <Fav selected={vehicle.isFav} onClick={() => {
-                            try {
-                                toggleFavVehicle(sessionStorage.token, vehicle.id, error => {
-                                    if (error) return alert(error.message)
-
-                                    const vehicles = this.state.vehicles.filter(_vehicle => _vehicle.id !== vehicle.id)
-
-                                    this.setState({ vehicles: vehicles })
-
-                                })
-                            } catch (error) {
-                                alert(error.message)
-                            }
-                        }} />
-                        <img src={vehicle.image} onClick={() => this.props.onItemClick(vehicle.id)} />
+                        <Fav selected={vehicle.isFav} onClick={this.toggleFav} />
+                        <img src={vehicle.image} onClick={this.clickItem} />
                         <span>{vehicle.price} $</span>
                     </li>)}
                 </ul>

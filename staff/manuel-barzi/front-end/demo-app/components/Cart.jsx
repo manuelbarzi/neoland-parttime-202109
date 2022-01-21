@@ -21,6 +21,76 @@ class Cart extends React.Component {
         }
     }
 
+    toggleFav = () => {
+        try {
+            toggleFavVehicle(sessionStorage.token, vehicle.id, error => {
+                if (error) return alert(error.message)
+
+                const update = { ...vehicle, isFav: !vehicle.isFav }
+
+                const vehicles = this.state.vehicles.map(_vehicle => {
+                    if (_vehicle.id === vehicle.id)
+                        return update
+
+                    return _vehicle
+                })
+
+                this.setState({ vehicles })
+            })
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
+    addToCart = () => {
+        try {
+            addVehicleToCart(sessionStorage.token, vehicle.id, error => {
+                if (error) return alert(error.message)
+
+                const update = { ...vehicle, qty: vehicle.qty + 1 }
+
+                const vehicles = this.state.vehicles.map(_vehicle => {
+                    if (_vehicle.id === vehicle.id)
+                        return update
+
+                    return _vehicle
+                })
+
+                this.setState({ vehicles })
+            })
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
+    removeFromCart = () => {
+        try {
+            removeVehicleFromCart(sessionStorage.token, vehicle.id, error => {
+                if (error) return alert(error.message)
+
+                const update = { ...vehicle, qty: vehicle.qty - 1 }
+
+                let vehicles
+
+                if (update.qty > 0)
+                    vehicles = this.state.vehicles.map(_vehicle => {
+                        if (_vehicle.id === vehicle.id)
+                            return update
+
+                        return _vehicle
+                    })
+                else
+                    vehicles = this.state.vehicles.filter(_vehicle => _vehicle.id !== vehicle.id)
+
+                this.setState({ vehicles })
+            })
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
+    clickItem = () => this.props.onItemClick(vehicle.id)
+
     render() {
         logger.debug('Cart -> render')
 
@@ -30,75 +100,13 @@ class Cart extends React.Component {
                     <ul>
                         {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
                             <h2>{vehicle.name}</h2>
-                            <Fav selected={vehicle.isFav} onClick={() => {
-                                try {
-                                    toggleFavVehicle(sessionStorage.token, vehicle.id, error => {
-                                        if (error) return alert(error.message)
+                            <Fav selected={vehicle.isFav} onClick={this.toggleFav} />
 
-                                        const update = { ...vehicle, isFav: !vehicle.isFav }
+                            <button onClick={this.addToCart}>Add to cart</button>
 
-                                        const vehicles = this.state.vehicles.map(_vehicle => {
-                                            if (_vehicle.id === vehicle.id)
-                                                return update
+                            <button onClick={this.removeFromCart}>Remove cart</button>
 
-                                            return _vehicle
-                                        })
-
-                                        this.setState({ vehicles })
-                                    })
-                                } catch (error) {
-                                    alert(error.message)
-                                }
-                            }} />
-
-                            <button onClick={() => {
-                                try {
-                                    addVehicleToCart(sessionStorage.token, vehicle.id, error => {
-                                        if (error) return alert(error.message)
-
-                                        const update = { ...vehicle, qty: vehicle.qty + 1 }
-
-                                        const vehicles = this.state.vehicles.map(_vehicle => {
-                                            if (_vehicle.id === vehicle.id)
-                                                return update
-
-                                            return _vehicle
-                                        })
-
-                                        this.setState({ vehicles })
-                                    })
-                                } catch (error) {
-                                    alert(error.message)
-                                }
-                            }}>Add to cart</button>
-
-                            <button onClick={() => {
-                                try {
-                                    removeVehicleFromCart(sessionStorage.token, vehicle.id, error => {
-                                        if (error) return alert(error.message)
-
-                                        const update = { ...vehicle, qty: vehicle.qty - 1 }
-
-                                        let vehicles
-
-                                        if (update.qty > 0)
-                                            vehicles = this.state.vehicles.map(_vehicle => {
-                                                if (_vehicle.id === vehicle.id)
-                                                    return update
-
-                                                return _vehicle
-                                            })
-                                        else
-                                            vehicles = this.state.vehicles.filter(_vehicle => _vehicle.id !== vehicle.id)
-
-                                        this.setState({ vehicles })
-                                    })
-                                } catch (error) {
-                                    alert(error.message)
-                                }
-                            }}>Remove cart</button>
-
-                            <img src={vehicle.image} onClick={() => this.props.onItemClick(vehicle.id)} />
+                            <img src={vehicle.image} onClick={this.clickItem} />
                             <span>{vehicle.qty} x {vehicle.price} $ </span>
                             <hr></hr>
                             <span>Subtotal {vehicle.qty * vehicle.price} $</span>

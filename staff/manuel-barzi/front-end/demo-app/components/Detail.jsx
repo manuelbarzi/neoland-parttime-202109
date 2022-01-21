@@ -21,42 +21,46 @@ class Detail extends React.Component {
         }
     }
 
+    toggleFav = () => {
+        try {
+            toggleFavVehicle(sessionStorage.token, this.state.vehicle.id, error => {
+                if (error) return alert(error.message)
+
+                const update = {}
+
+                for (const key in this.state.vehicle)
+                    update[key] = this.state.vehicle[key]
+
+                update.isFav = !update.isFav
+
+                this.setState({ vehicle: update })
+
+            })
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
+    addToCart = () => {
+        try {
+            addVehicleToCart(sessionStorage.token, this.state.vehicle.id, error => {
+                if (error) return alert(error.message)
+
+                // TODO provide feedback to user (ex: number of items in the upper side menu, where the cart icon)
+            })
+        } catch(error) {
+            alert(error.message)
+        }
+    }
+
     render() {
         logger.debug('Detail -> render')
 
         if (this.state.vehicle)
             return <div>
                 <h2>{this.state.vehicle.name}</h2>
-                <Fav selected={this.state.vehicle.isFav} onClick={() => {
-                    try {
-                        toggleFavVehicle(sessionStorage.token, this.state.vehicle.id, error => {
-                            if (error) return alert(error.message)
-
-                            const update = {}
-
-                            for (const key in this.state.vehicle)
-                                update[key] = this.state.vehicle[key]
-
-                            update.isFav = !update.isFav
-
-                            this.setState({ vehicle: update })
-
-                        })
-                    } catch (error) {
-                        alert(error.message)
-                    }
-                }} />
-                <button onClick={() => {
-                    try {
-                        addVehicleToCart(sessionStorage.token, this.state.vehicle.id, error => {
-                            if (error) return alert(error.message)
-
-                            // TODO provide feedback to user (ex: number of items in the upper side menu, where the cart icon)
-                        })
-                    } catch(error) {
-                        alert(error.message)
-                    }
-                }}>Add to cart</button>
+                <Fav selected={this.state.vehicle.isFav} onClick={this.toggleFav} />
+                <button onClick={this.addToCart}>Add to cart</button>
                 <img src={this.state.vehicle.image} />
                 <p>{this.state.vehicle.description}</p>
                 <p>{this.state.vehicle.price} $</p>
