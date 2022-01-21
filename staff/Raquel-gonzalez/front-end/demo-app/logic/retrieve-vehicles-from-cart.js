@@ -1,4 +1,4 @@
-function retrieveFavVehicles(token, callback) {
+function retrieveVehiclesFromCart(token, callback) {
     validateToken(token)
     validateCallback(callback)
 
@@ -24,13 +24,15 @@ function retrieveFavVehicles(token, callback) {
 
             const payload = JSON.parse(json)
 
-            const { favs = [] } = payload
+            const { cart = [], favs = [] } = payload
 
-            if (favs.length) {
+            if (cart.length) {
                 let count = 0
                 const vehicles = []
 
-                favs.forEach((id, index) => {
+                cart.forEach((item, index) => {
+                    const { id, qty } = item
+
                     const xhr = new XMLHttpRequest
 
                     xhr.open('GET', `https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles/${id}`)
@@ -49,11 +51,12 @@ function retrieveFavVehicles(token, callback) {
 
                             const vehicle = JSON.parse(json)
 
-                            vehicle.isFav = true
+                            vehicle.qty = qty
+                            vehicle.isFav = favs.includes(id)
 
                             vehicles[index] = vehicle
 
-                            if (count === favs.length)
+                            if (count === cart.length)
                                 callback(null, vehicles)
                         }
                     })

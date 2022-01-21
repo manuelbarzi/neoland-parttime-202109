@@ -53,7 +53,7 @@ class Register extends React.Component {
 
                 {this.state.feedback ? <p>{this.state.feedback}</p> : null}
             </form>
-
+eb
             <a href="" onClick={event => {
                 event.preventDefault()
 

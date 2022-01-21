@@ -18,3 +18,8 @@ function validateToken(token) {
     if (!token.trim()) throw new Error('token is empty or blank')
     if (token.split('.').length !== 3) throw new Error('invalid token')
 }
+
+function validateId(id) {
+    if (typeof id !== 'string') throw new TypeError('id is not string')
+    if (!id.trim()) throw new Error('id is empty or blank')
+}
