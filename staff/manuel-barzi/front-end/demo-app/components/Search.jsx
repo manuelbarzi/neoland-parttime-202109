@@ -1,11 +1,13 @@
 function Search(props) {
-    return <form onSubmit={event => {
+    const submit = event => {
         event.preventDefault()
 
         const query = event.target.query.value
 
         props.onQueryChange(query)
-    }}>
+    }
+
+    return <form onSubmit={submit}>
         <input type="text" name="query" placeholder="criteria" defaultValue={props.query} />
         <button>Search</button>
     </form>
