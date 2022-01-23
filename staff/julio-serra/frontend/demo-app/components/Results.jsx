@@ -34,6 +34,32 @@ class Results extends React.Component {
         }
     }
 
+    toggleFav = () => {
+        try {
+            toggleFavVehicle(sessionStorage.token, vehicle.id, error => {
+                if (error) return alert(error.message)
+
+                const update = {} // creamos una constante vacía para guardar los nuevos datos
+
+                for (const key in vehicle) // cada valor del objeto: id, name, thumbnail y precio
+                    update[key] = vehicle[key] // se guardan en update
+
+                update.isFav = !update.isFav //todos los valores del objeto estan almacenados en update isFav
+
+                const vehicles = this.state.vehicles.map(_vehicle => { //se hace un mapeo de los vehiculos que has buscado, ejemplo, batman 36
+                    if (_vehicle.id === vehicle.id)  // si el id del vehiculo es igual, que va ser que si...
+                        return update // si es correcto me retornas update 
+
+                    return _vehicle
+                })
+                this.setState({ vehicles: vehicles }) // setState hace una solicitud para actualizar el componente. 
+                // Hace cambios al estado del componente y le dice a React que este componente y sus elementos secundarios deben volverse a procesar con el estado actualizado.
+            })
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
     render() {
 
         if (this.state.vehicles) {
@@ -64,32 +90,7 @@ class Results extends React.Component {
                         }} /> */}
 
 
-                        <Fav selected={vehicle.isFav} onClick={() => {
-                            try {
-                                toggleFavVehicle(sessionStorage.token, vehicle.id, error => {
-                                    if (error) return alert(error.message)
-
-                                    const update = {} // creamos una constante vacía para guardar los nuevos datos
-
-                                    for (const key in vehicle) // cada valor del objeto: id, name, thumbnail y precio
-                                        update[key] = vehicle[key] // se guardan en update
-
-                                    update.isFav = !update.isFav //todos los valores del objeto estan almacenados en update isFav
-
-                                    const vehicles = this.state.vehicles.map(_vehicle => { //se hace un mapeo de los vehiculos que has buscado, ejemplo, batman 36
-                                        if (_vehicle.id === vehicle.id)  // si el id del vehiculo es igual, que va ser que si...
-                                            return update // si es correcto me retornas update 
-
-                                        return _vehicle
-                                    })
-                                    this.setState({ vehicles: vehicles }) // setState hace una solicitud para actualizar el componente. 
-                                    // Hace cambios al estado del componente y le dice a React que este componente y sus elementos secundarios deben volverse a procesar con el estado actualizado.
-                                })
-                            } catch (error) {
-                                alert(error.message)
-                            }
-
-                        }} />
+                        <Fav selected={vehicle.isFav} onClick={this.toggleFav} />
 
                         <img src={vehicle.thumbnail} onClick={() => this.props.onItemClick(vehicle.id)} />
                         <span>{vehicle.price} €</span>
