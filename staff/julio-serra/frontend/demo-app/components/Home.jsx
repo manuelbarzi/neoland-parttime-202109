@@ -57,8 +57,8 @@ class Home extends React.Component {
                 />}
 
                 {this.state.view === 'detail' && <Detail itemId={this.state.vehicleId} />}
-
                 {this.state.view === 'favs' && <Favs onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })} />}
+                {this.state.view === 'cart' && <Cart onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })}/>}
             </div>
 
         else return null

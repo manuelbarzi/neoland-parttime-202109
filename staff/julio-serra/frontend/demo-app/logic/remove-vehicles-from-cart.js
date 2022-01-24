@@ -63,6 +63,6 @@ function removeVehiclesFromCart(token, id, callback) {
 
         }
     })
-
-
+    xhr.setRequestHeader('Authorization', `Bearer ${token}`)
+    xhr.send()
 }

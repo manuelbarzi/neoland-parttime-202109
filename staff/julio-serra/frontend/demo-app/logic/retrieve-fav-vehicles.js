@@ -6,22 +6,25 @@ function retrieveFavVehicles(token, callback) {
 
     xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/v2/users')
 
-    xhr.onload = function () {
-        if (this.status === 401) {
-            const res = JSON.parse(this.responseText)
-            const error = res.error
-            callback(new Error(error))
-        }
-        else if (this.status >= 400 && this.status < 500) {
-            callback(new Error('client error'))
-        }
-        else if (this.status > 500) {
-            callback(new Error('server error'))
-        }
-        else if (this.status === 200) {
-            const user = JSON.parse(this.responseText)
+    xhr.onload = () => {
+        const { status } = xhr
 
-            const { favs = [] } = user
+        if (status === 401) {
+            const res = JSON.parse(responseText)
+
+            const error = res.error
+
+            callback(new Error(error))
+        } else if (status >= 400 && status < 500) {
+            callback(new Error('client error'))
+        } else if (status >= 500) {
+            callback(new Error('server error'))
+        } else if (status === 200) {
+            const { responseText: json } = xhr
+
+            const payload = JSON.parse(json)
+
+            const { favs = [] } = payload
 
             if (favs.length) {
                 let count = 0
@@ -29,34 +32,42 @@ function retrieveFavVehicles(token, callback) {
 
                 favs.forEach((id, index) => {
                     const xhr = new XMLHttpRequest
-                    xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles/' + id)
-                    xhr.onload = function () {
+
+                    xhr.open('GET', `https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles/${id}`)
+
+                    xhr.addEventListener('load', () => {
+                        const { status } = xhr
+
                         count++
 
-                        if (this.status >= 400 && this.status < 500) {
+                        if (status >= 400 && status < 500) {
                             callback(new Error('client error'))
-                        }
-                        else if (this.status >= 500) {
+                        } else if (status >= 500) {
                             callback(new Error('server error'))
-                        }
-                        else if (this.status === 200) {
-                            const vehicle = JSON.parse(this.responseText)
+                        } else if (status === 200) {
+                            const { responseText: json } = xhr
+
+                            const vehicle = JSON.parse(json)
 
                             vehicle.isFav = true
+
                             vehicles[index] = vehicle
 
                             if (count === favs.length)
                                 callback(null, vehicles)
                         }
-                    }
+                    })
+
                     xhr.send()
                 })
-            }
-            else {
+            } else {
                 callback(null, [])
             }
+
         }
     }
-    xhr.setRequestHeader('Authorization', 'Bearer ' + token)
+
+    xhr.setRequestHeader('Authorization', 'Bearer ${token}')
+
     xhr.send()
 }

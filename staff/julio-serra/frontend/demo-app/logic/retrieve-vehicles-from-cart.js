@@ -22,13 +22,13 @@ function retrieveVehiclesFromCart(token, callback) {
         else if (status === 200) {
             const { responseText: json } = xhr
             const payload = JSON.parse(json)
-            const { addCart = [], favs = [] = payload }
+            const { cart = [], favs = [] } = payload
 
-            if (addCart.length) {
+            if (cart.length) {
                 let count = 0
                 const vehicles = []
 
-                addCart.forEach((item, index) => {
+                cart.forEach((item, index) => {
                     const { id, qty } = item
                     const xhr = new XMLHttpRequest
 
@@ -52,7 +52,7 @@ function retrieveVehiclesFromCart(token, callback) {
                             vehicle.isFav = favs.includes(id)
                             vehicles[index] = vehicle
 
-                            if (count === addCart.length)
+                            if (count === cart.length)
                                 callback(null, vehicles)
                         }
                     })
