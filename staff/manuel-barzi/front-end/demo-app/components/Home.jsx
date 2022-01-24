@@ -1,102 +1,93 @@
-class Home extends React.Component {
-    constructor() {
-        logger.debug('Home -> constructor')
+const { useState, useEffect } = React
 
-        super()
+function Home({ token, onLoggedOut }) {
+    const [name, setName] = useState(null)
+    const [city, setCity] = useState(null)
+    const [query, setQuery] = useState(null)
+    const [vehicleId, setVehicleId] = useState(null)
+    const [view, setView] = useState(null)
 
-        this.state = {
-            name: null,
-            city: null,
-            query: null,
-            // query: 'hulk',
-            vehicleId: null,
-            view: null
-            // view: 'results'
-        }
+    const apiKey = '73KP3CVXGQF33DT6QHF9JVD7B'
 
-        this.apiKey = '73KP3CVXGQF33DT6QHF9JVD7B'
-    }
-
-    componentWillMount() {
-        logger.debug('Home -> will mount')
-    }
-
-    componentDidMount() {
+    useEffect(() => {
         logger.debug('Home -> did mount')
 
         try {
-            retrieveUser(this.props.token, (error, user) => {
+            retrieveUser(token, (error, user) => {
                 if (error) {
                     alert(error.message)
 
                     delete sessionStorage.token
 
-                    this.props.onLoggedOut()
+                    onLoggedOut()
 
                     return
                 }
 
-                this.setState({ name: user.name, city: user.city })
+                const { name, city } = user
+
+                setName(name)
+                setCity(city)
             })
         } catch (error) {
             alert(error.message)
 
             delete sessionStorage.token
 
-            this.props.onLoggedOut()
+            onLoggedOut()
         }
+    }, [])
+
+    const showFavs = () => {
+        setView('favs')
     }
 
-    componentWillUnmount() {
-        logger.debug('Home -> will unmount')
+    const showCart = () => {
+        setView('cart')
     }
 
-    showFavs = () => {
-        this.setState({ view: 'favs' })
-    }
-
-    showCart = () => {
-        this.setState({ view: 'cart' })
-    }
-
-    logout = () => {
+    const logout = () => {
         delete sessionStorage.token
 
-        this.props.onLoggedOut()
+        onLoggedOut()
     }
 
-    showResults = query => this.setState({ query, view: 'results' })
-
-    showDetail = vehicleId => this.setState({ vehicleId, view: 'detail' })
-
-    render() {
-        logger.debug('Home -> render')
-
-        if (this.state.name)
-            return <div>
-                <h1>Hello, {this.state.name}!</h1>
-
-                <button onClick={this.showFavs}>Favs</button>
-
-                <button onClick={this.showCart}>Cart</button>
-
-                <button onClick={this.logout}>Logout</button>
-
-                {this.state.city && <Forecast apiKey={this.apiKey} city={this.state.city} />}
-
-                <Search query={this.state.query} onQueryChange={this.showResults} />
-
-                {this.state.view === 'results' && <Results
-                    query={this.state.query}
-                    onItemClick={this.showDetail}
-                />}
-
-                {this.state.view === 'detail' && <Detail itemId={this.state.vehicleId} />}
-
-                {this.state.view === 'favs' && <Favs onItemClick={this.showDetail} />}
-
-                {this.state.view === 'cart' && <Cart onItemClick={this.showDetail} />}
-            </div>
-        else return null
+    const showResults = query => {
+        setView('results')
+        setQuery(query)
     }
+
+    const showDetail = vehicleId => {
+        setVehicleId(vehicleId)
+        setView('detail')
+    }
+
+    logger.debug('Home -> render')
+
+    if (name)
+        return <div>
+            <h1>Hello, {name}!</h1>
+
+            <button onClick={showFavs}>Favs</button>
+
+            <button onClick={showCart}>Cart</button>
+
+            <button onClick={logout}>Logout</button>
+
+            {city && <Forecast apiKey={apiKey} city={city} />}
+
+            <Search query={query} onQueryChange={showResults} />
+
+            {view === 'results' && <Results
+                query={query}
+                onItemClick={showDetail}
+            />}
+
+            {view === 'detail' && <Detail itemId={vehicleId} />}
+
+            {view === 'favs' && <Favs onItemClick={showDetail} />}
+
+            {view === 'cart' && <Cart onItemClick={showDetail} />}
+        </div>
+    else return null
 }

@@ -1,53 +1,39 @@
-class App extends React.Component {
-    constructor() {
-        logger.debug('App -> constructor')
+const { useState } = React
 
-        super()
+function App() {
+    const [view, setView] = useState(sessionStorage.token ? 'home' : 'login')
+    const [token, setToken] = useState(sessionStorage.token ? sessionStorage.token : null)
 
-        this.state = {
-            view: sessionStorage.token ? 'home' : 'login',
-            token: sessionStorage.token ? sessionStorage.token : null
-        }
+    const goToRegister = () => setView('register')
+
+    const goToHome = token => {
+        setToken(token) 
+        setView('home')
     }
 
-    componentWillMount() {
-        logger.debug('App -> will mount')
+    const goToLogin = () => setView('login')
+
+    const goToRegisterSuccess = () => setView('register-success')
+
+    const logout = () => {
+        setToken(null) 
+        setView('login')
     }
 
-    componentDidMount() {
-        logger.debug('App -> did mount')
-    }
-
-    componentWillUnmount() {
-        logger.debug('App -> will unmount')
-    }
-
-    goToRegister = () => this.setState({ view: 'register' })
-
-    goToHome = token => this.setState({ view: 'home', token })
-
-    goToLogin = () => this.setState({ view: 'login' })
-
-    goToRegisterSuccess = () => this.setState({ view: 'register-success' })
-
-    logout = () => this.setState({ view: 'login', token: null })
-
-    render() {
-        logger.debug('App -> render')
-
-        if (this.state.view === 'login')
-            return <Login
-                onRegisterClick={this.goToRegister}
-                onLoggedIn={this.goToHome}
-            />
-        else if (this.state.view === 'register')
-            return <Register
-                onLoginClick={this.goToLogin}
-                onRegistered={this.goToRegisterSuccess}
-            />
-        else if (this.state.view === 'register-success')
-            return <RegisterSuccess onLoginClick={this.goToLogin} />
-        else if (this.state.view === 'home')
-            return <Home token={this.state.token} onLoggedOut={this.logout} />
-    }
+    logger.debug('App -> render')
+    
+    if (view === 'login')
+        return <Login
+            onRegisterClick={goToRegister}
+            onLoggedIn={goToHome}
+        />
+    else if (view === 'register')
+        return <Register
+            onLoginClick={goToLogin}
+            onRegistered={goToRegisterSuccess}
+        />
+    else if (view === 'register-success')
+        return <RegisterSuccess onLoginClick={goToLogin} />
+    else if (view === 'home')
+        return <Home token={token} onLoggedOut={logout} />
 }
