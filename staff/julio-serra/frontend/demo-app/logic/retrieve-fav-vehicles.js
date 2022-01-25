@@ -67,7 +67,7 @@ function retrieveFavVehicles(token, callback) {
         }
     }
 
-    xhr.setRequestHeader('Authorization', 'Bearer ${token}')
+    xhr.setRequestHeader('Authorization', 'Bearer ' + token)
 
     xhr.send()
 }

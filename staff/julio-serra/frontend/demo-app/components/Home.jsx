@@ -1,79 +1,91 @@
-class Home extends React.Component {
-    constructor() {
-        super()
-        //ponemos el nombre a null
-        this.state = {
-            name: null,
-            city: 'Valencia',
-            query: null,
-            vehicleId: null,
-            view: null
-        }
-        this.apiKey = '0e3fac04b8c505afea5b016ba076f412'
-    }
+const { useState, useEffect } = React
 
-    componentDidMount() {
+function Home({ token, onLoggedOut }) {
+    const [name, setName] = useState(null)
+    const [city, setCity] = useState(null)
+    const [query, setQuery] = useState(null)
+    const [vehicleId, setVehicleId] = useState(null)
+    const [view, setView] = useState(null)
+
+    const apiKey = '73KP3CVXGQF33DT6QHF9JVD7B'
+
+    useEffect(() => {
+
         try {
-            retrieveUser(this.props.token, (error, user) => {
-                if (error)
-                    return alert(error.message)
+            retrieveUser(token, (error, user) => {
+                if (error) {
+                    alert(error.message)
 
-                this.setState({ name: user.name })
+                    delete sessionStorage.token
+
+                    onLoggedOut()
+
+                    return
+                }
+
+                const { name, city } = user
+
+                setName(name)
+                setCity(city)
             })
         } catch (error) {
             alert(error.message)
 
+            delete sessionStorage.token
 
+            onLoggedOut()
         }
+    }, [])
 
-    }
-    //lo pintamos
-
-    render() {
-        if (this.state.name)
-            return <div>
-                <h1>Hello, {this.state.name ? this.state.name : 'World'}</h1>
-                <button onClick={() => {
-                    this.setState({ view: 'favs' })
-                }}>FAVS</button>
-                <button onClick={() => {
-                    delete sessionStorage.token // borramos la cookie de la contraseña para que vuelva a 0
-
-                    this.props.logOut()    //añadimos el prop creado en la App
-                }}>Log Out</button>
-
-                <button onClick={() => {
-                    this.setState({ view: 'cart'})
-                }}>CART</button>
-
-                {/* <Forecast apiKey={this.apiKey} city={this.state.city} /> */}
-
-                <Search onQuery={query => this.setState({ query, view: 'results' })} />
-                {/* <Search query={this.state.query} onQueryChange={query => this.setState({ query, view: 'results' })} /> */}
-
-                {this.state.view === 'results' && <Results
-                    query={this.state.query}
-                    onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })}
-                />}
-
-                {this.state.view === 'detail' && <Detail itemId={this.state.vehicleId} />}
-                {this.state.view === 'favs' && <Favs onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })} />}
-                {this.state.view === 'cart' && <Cart onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })}/>}
-            </div>
-
-        else return null
-
-
-        {/* //si la primera condición es true pasa a la siguiente condicion
-                // si es true me pinta un ul, hace un mapeo de todos los vehiculos y me los pinta en un listado */}
-
-
-        {/* {this.state.query && <Results  //Si hay query le paso a results la query mediante props
-                    query={this.state.query}
-                    onItemClick={vehicleId => this.setState({ vehicleId })}
-                />} */}
-
-
+    const showFavs = () => {
+        setView('favs')
     }
 
+    const showCart = () => {
+        setView('cart')
+    }
+
+    const logout = () => {
+        delete sessionStorage.token
+
+        onLoggedOut()
+    }
+
+    const showResults = query => {
+        setView('results')
+        setQuery(query)
+    }
+
+    const showDetail = vehicleId => {
+        setVehicleId(vehicleId)
+        setView('detail')
+    }
+
+
+    if (name)
+        return <div>
+            <h1>Hello, {name}!</h1>
+
+            <button onClick={showFavs}>Favs</button>
+
+            <button onClick={showCart}>Cart</button>
+
+            <button onClick={logout}>Logout</button>
+
+            {city && <Forecast apiKey={apiKey} city={city} />}
+
+            <Search query={query} onQueryChange={showResults} />
+
+            {view === 'results' && <Results
+                query={query}
+                onItemClick={showDetail}
+            />}
+
+            {view === 'detail' && <Detail itemId={vehicleId} />}
+
+            {view === 'favs' && <Favs onItemClick={showDetail} />}
+
+            {view === 'cart' && <Cart onItemClick={showDetail} />}
+        </div>
+    else return null
 }

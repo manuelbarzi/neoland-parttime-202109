@@ -1,40 +1,37 @@
-class App extends React.Component {
-    constructor() {
-        super()
+const { useState } = React
 
-        // cuando arranca la App muestra:
-        this.state = {
-            view: sessionStorage.token ? 'home' : 'login', // si hay token muestra la pagina home y sino login
+function App() {
+    const [view, setView] = useState(sessionStorage.token ? 'home' : 'login') //al cambiar de vista se añade View
+    const [token, setToken] = useState(sessionStorage.token ? sessionStorage.token : 'null')
 
-            token: sessionStorage.token ? sessionStorage.token : null // si hay token me lo guardas en token y sino null
-        }
+const onRegister = () => setView('register')
+const onLogin = () => {
+    setView('home')
+    setToken(token)
     }
-
-    render() {
-        if (this.state.view === 'login')
+const onLoginClick = () => setView('login')
+const logOut = () => {
+    setView('login')
+    setToken(null)
+}
+        if (view === 'login')
             return <Login
-                onRegisterClick={() => this.setState({ view: 'register' })}
-                onLoggedIn={token => this.setState({ view: 'home', token })}
+                onRegisterClick={onRegister}
+                onLoggedIn={onLogin}
             />
 
-        else if (this.state.view === 'register')
+        else if (view === 'register')
             return <Register
-                onLoginClick={() => this.setState({ view: 'login' })}
-                onRegistered={() => this.setState({ view: 'PostRegister' })}
+                onLoginClick={onLoginClick}
+                onRegistered={onRegister}
             />
 
-        else if (this.state.view === 'PostRegister')
+        else if (view === 'PostRegister')
             return <PostRegister
-                onLoginClick={() => this.setState({ view: 'login' })} />
+                onLoginClick={onLoginClick} />
 
-        else if (this.state.view === 'home')
-            return <Home token={this.state.token}
-                logOut={() => { //creamos el callback para que llame al componente Home
-                    this.setState({ view: 'login', token: null }) // mostramos vista login y ponemos el token a nulo
-                }}    
+        else if (view === 'home')
+            return <Home token={token}
+                logOut={logOut}    
             />
-
-
-    }
-
 }
