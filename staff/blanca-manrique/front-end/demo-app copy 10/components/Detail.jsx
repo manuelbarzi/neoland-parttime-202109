@@ -24,6 +24,11 @@ class Detail extends React.Component {
 
         if (this.state.vehicle)
             return <div>
+
+                <button onClick={() => {
+                    this.props.onReturnClick()
+                }}>Return to results</button>
+
                 <h2>{this.state.vehicle.name}</h2>
                 <Fav selected={this.state.vehicle.isFav} onClick={() => {
                     try {
@@ -43,27 +48,19 @@ class Detail extends React.Component {
                     } catch (error) {
                         alert(error.message)
                     }
-                }} />
-                <button onClick={()=>{
-                    this.props.onReturnClick()
-                }}>Return to results</button>
-                <button onClick={()=>{
+                }} /> 
+
+                <button onClick={() => {
                     try {
-                        addToCart(this.state.vehicle.id, sessionStorage.token, error =>{
-                            if(error) return alert(error.message)
-
-                            const updated ={}
-
-                            for (const key in this.state.vehicle)
-                                updated[key] = this.state.vehicle[key]
-                            
-                            updated.inCart = true
-                            this.setState({ vehicle:updated })
+                        addToCart(this.state.vehicle.id, sessionStorage.token, error => {
+                            if (error) return alert(error.message)
+                            //TODO feedback para que el usuario se entere de que el coche se ha añadido al carrito
                         })
                     } catch (error) {
                         return alert(error.message)
                     }
                 }}>Add to Cart</button>
+
                 <img src={this.state.vehicle.image} />
                 <p>{this.state.vehicle.description}</p>
                 <p>{this.state.vehicle.price}</p>

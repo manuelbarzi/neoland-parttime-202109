@@ -6,7 +6,7 @@ function retrieveFavVehicles(token, callback) {
 
     xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/v2/users')
 
-    xhr.onload = () => {
+    xhr.addEventListener('load', () => {
         const { status } = xhr
 
         if (status === 401) {
@@ -61,7 +61,7 @@ function retrieveFavVehicles(token, callback) {
             }
 
         }
-    }
+    })
 
     xhr.setRequestHeader('Authorization', 'Bearer ' + token)
 

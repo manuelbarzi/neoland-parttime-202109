@@ -39,7 +39,7 @@ class Favorites extends React.Component {
                                 alert(error.message)
                             }
                         }} />
-                        <img src={vehicle.image} />
+                        <img src={vehicle.image} onClick={() => this.props.onItemClick(vehicle.id)}/>
                         <span>{vehicle.price} $</span>
                     </li>)}
                 </ul>

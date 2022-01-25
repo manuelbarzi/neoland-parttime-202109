@@ -55,13 +55,10 @@ class Home extends React.Component {
                 <div className='home__nav'>
                     <button className='btn' onClick={() => {
                         delete sessionStorage.token
-
                         this.props.onLoggedOut()
                     }}>Logout</button>
 
                     <button className='btn' onClick={() => {
-
-                        // this.props.onFavClick()
                         this.setState({ view: 'favorites' })
                     }} >Favorites</button>
 
@@ -71,8 +68,6 @@ class Home extends React.Component {
                     }}>Profile</button>
 
                     <button className='btn' onClick={() => {
-
-                        // this.props.onCartClick()
                         this.setState({ view: 'cart' })
                     }}>Cart</button>
                 </div>

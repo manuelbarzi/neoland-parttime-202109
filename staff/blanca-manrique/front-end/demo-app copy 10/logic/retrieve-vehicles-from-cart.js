@@ -5,6 +5,7 @@ function retrieveVehiclesFromCart(token, callback) {
     const xhr = new XMLHttpRequest
 
     xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/v2/users')
+
     xhr.onload = () => {
         const { status } = xhr
 
@@ -20,7 +21,7 @@ function retrieveVehiclesFromCart(token, callback) {
         } else if (status === 200) {
             const { responseText: json } = xhr
             const payload = JSON.parse(json)
-            
+
             const { cart = [], favs = [] } = payload
 
             if (cart.length) {
@@ -33,10 +34,9 @@ function retrieveVehiclesFromCart(token, callback) {
                     const xhr = new XMLHttpRequest
 
                     xhr.open('GET', `https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles/${id}`)
-
-
-                    xhr.onload = () => {
+                    xhr.addEventListener('load', () => {
                         const { status } = xhr
+
                         count++
 
                         if (status >= 400 && status < 500) {
@@ -45,6 +45,7 @@ function retrieveVehiclesFromCart(token, callback) {
                             callback(new Error('server error'))
                         } else if (status === 200) {
                             const { responseText: json } = xhr
+
                             const vehicle = JSON.parse(json)
 
                             vehicle.qty = qty
@@ -55,7 +56,8 @@ function retrieveVehiclesFromCart(token, callback) {
                             if (count === cart.length)
                                 callback(null, vehicles)
                         }
-                    }
+                    })
+
                     xhr.send()
                 })
             } else {
@@ -64,6 +66,9 @@ function retrieveVehiclesFromCart(token, callback) {
 
         }
     }
+
     xhr.setRequestHeader('Authorization', 'Bearer ' + token)
+
     xhr.send()
 }
+

@@ -10,7 +10,7 @@ function addToCart(id, token, callback) {
 
     xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/v2/users')
 
-    xhr.addEventListener('load', () => {
+    xhr.onload= () => {
         const { status } = xhr
 
         if (status === 401) {
@@ -39,7 +39,7 @@ function addToCart(id, token, callback) {
 
             xhr.open('PATCH', 'https://b00tc4mp.herokuapp.com/api/v2/users')
 
-            xhr.addEventListener('load', () => {
+            xhr.onload=() => {
                 const { status } = xhr
 
                 if (status === 400 || status === 401 || status === 409) {
@@ -51,7 +51,7 @@ function addToCart(id, token, callback) {
                 } else if (status === 204) {
                     callback(null)
                 }
-            })
+            }
 
             xhr.setRequestHeader('Authorization', `Bearer ${token}`)
             xhr.setRequestHeader('Content-type', 'application/json')
@@ -62,7 +62,7 @@ function addToCart(id, token, callback) {
 
             xhr.send(json)
         }
-    })
+    }
 
     xhr.setRequestHeader('Authorization', 'Bearer ' + token)
 
