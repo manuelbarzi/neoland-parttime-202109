@@ -1,4 +1,6 @@
-class App extends React.Component {
+const { Component } = React
+
+class App extends Component {
     constructor() {
         logger.debug('App -> constructor')
 
@@ -22,42 +24,58 @@ class App extends React.Component {
         logger.debug('App -> will unmount')
     }
 
+    goToRegister = () => this.setState ({ view: 'register'})
+
+    goToHome = token => this.setState({ view: 'home', token })
+
+    goToLogin = () => this.setState({ view: 'login' })
+
+    goToPostregister = () => this.setState({ view: 'postregister' })
+
+    goToModify = () => this.setState({ view: 'modify' })
+
+    goToFavorites = () => this.setState({ view: 'favorites' })
+
+    goToShoppingcart = () => this.setState({ view: 'shoppingcart' })
+
+    logout = () => this.setState({ view: 'login', token: null })
+
     render() {
         logger.debug('App -> render')
 
         if (this.state.view === 'login')
             return <Login
-                onRegisterClick={() => this.setState({ view: 'register' })}
-                onLoggedIn={token => this.setState({ view: 'home', token })}
+                onRegisterClick={this.goToRegister}
+                onLoggedIn={this.goToHome}
             />
         else if (this.state.view === 'register')
             return <Register
-                onLoginClick={() => this.setState({ view: 'login' })}
-                onRegistered={() => this.setState({ view: 'postregister' })}
+                onLoginClick={this.goToLogin}
+                onRegistered={this.goToPostregister}
             />
         else if (this.state.view === 'postregister')
-            return <PostRegister onLoginClick={() => this.setState({ view: 'login' })}
+            return <PostRegister onLoginClick={this.goToHome}
             />
         else if (this.state.view === 'home')
             return <Home
                 token={this.state.token}
-                onModifyClick={() => this.setState({ view: 'modify' })}
-                onLoggedOut={() => this.setState({ view: 'login', token: null })}
-                onClickedFav={() => this.setState({ view: 'favorites' })}
-                onClickedCart={() => this.setState({ view: 'shoppingcart' })}
+                onModifyClick={this.goToModify}
+                onLoggedOut={this.logout}
+                onClickedFav={this.goToFavorites}
+                onClickedCart={this.goToShoppingcart}
             />
         else if (this.state.view === 'modify')
             return <ModifyData
                 token={this.state.token}
-                onModifyed={() => this.setState({ view: 'home' })}
+                onModifyed={this.goToHome}
             />
         else if (this.state.view === 'favorites')
             return <Favorites
-                onClickedHome={() => this.setState({ view: 'home' })}
+                onClickedHome={this.goToHome}
             />
         else if (this.state.view === 'shoppingcart')
             return <ShoppingCart
-                onClickedHome={() => this.setState({ view: 'home' })}
+                onClickedHome={this.goToHome}
             />
     }
 }

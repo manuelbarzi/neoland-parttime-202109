@@ -1,8 +1,10 @@
 function PostRegister (props) {
 
-    return <p className="container feedback-ok">Se ha registrado correctamente <a href="" onClick={event => {
+    const goToLogin = event => {
         event.preventDefault()
 
         props.onLoginClick()
-    }}>Login</a></p>
+    }
+    
+    return <p className="container feedback-ok">Se ha registrado correctamente <a href="" onClick={goToLogin}>Login</a></p>
 }

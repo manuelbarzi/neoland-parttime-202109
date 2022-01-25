@@ -1,4 +1,6 @@
-class ModifyData extends React.Component {
+const { Component } = React
+
+class ModifyData extends Component {
     constructor() {
         logger.debug('ModifyData -> constructor')
         super()
@@ -10,37 +12,45 @@ class ModifyData extends React.Component {
         logger.debug('ModifyData -> component did mount')
     }
 
+    modifyDataUser = event => {
+        event.preventDefault()
+
+        const data = {}
+
+        const name = event.target.name.value
+        const username = event.target.username.value
+        const city = event.target.city.value
+
+        data.name = name
+        data.username = username
+        data.city = city
+
+
+        try {
+            modifyUser(this.props.token, data, (error) => {
+                if (error) {
+                    this.setState({ feedback: error.message })
+
+                    return
+                }
+                this.props.onModifyed()
+            })
+
+        } catch (error) {
+            this.setState({ feedback: error.message })
+        }
+    }
+
+    goToHome = event => {
+        event.preventDefault()
+
+        this.props.onModifyed()
+    }
+
     render() {
         logger.debug('ModifyData -> render')
         return <div className="container">
-            <form className="form form-container" onSubmit={event => {
-                event.preventDefault()
-
-                const data = {}
-
-                const name = event.target.name.value
-                const username = event.target.username.value
-                const city = event.target.city.value
-
-                data.name = name
-                data.username = username
-                data.city = city
-
-
-                try {
-                    modifyUser(this.props.token, data, (error) => {
-                        if (error) {
-                            this.setState({ feedback: error.message })
-
-                            return
-                        }
-                        this.props.onModifyed()
-                    })
-
-                } catch (error) {
-                    this.setState({ feedback: error.message })
-                }
-            }}>
+            <form className="form form-container" onSubmit={this.modifyDataUser}>
                 <h2 className="title-form">Cambia tus datos</h2>
 
                 <input className="input input-form" type="text" name="name" placeholder="Nuevo nombre" />
@@ -50,11 +60,7 @@ class ModifyData extends React.Component {
                 <button className="button button-form">Enviar</button>
             </form>
 
-            <p>Vuelve a la <a href="" onClick={event => {
-                event.preventDefault()
-
-                this.props.onModifyed()
-            }}>página principal</a></p>
+            <p>Vuelve a la <a href="" onClick={this.goToHome}>página principal</a></p>
 
             {this.state.feedback ? <p>{this.state.feedback}</p> : null}
 

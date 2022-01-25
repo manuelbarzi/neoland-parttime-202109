@@ -1,4 +1,6 @@
-class Detail extends React.Component {
+const { Componet } = React
+
+class Detail extends Component {
     constructor() {
         logger.debug('Detail -> constructor')
 
@@ -21,6 +23,25 @@ class Detail extends React.Component {
         }
     }
 
+    toggleFav = () => {
+        try {
+            toggleFavVehicle(sessionStorage.token, this.state.vehicle.id, error => {
+                if (error) return alert(error.message)
+
+                const update = {}
+
+                for (const key in this.state.vehicle)
+                    update[key] = this.state.vehicle[key]
+
+                update.isFav = !update.isFav
+
+                this.setState({ vehicle: update })
+            })
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
     render() {
         logger.debug('Detail -> render')
 
@@ -28,24 +49,7 @@ class Detail extends React.Component {
             return <div>
                 <h2>{this.state.vehicle.name}</h2>
                 <Cart />
-                <Fav selected={this.state.vehicle.isFav} onClick={() => {
-                    try {
-                        toggleFavVehicle(sessionStorage.token, this.state.vehicle.id, error => {
-                            if (error) return alert(error.message)
-
-                            const update = {}
-
-                            for (const key in this.state.vehicle)
-                                update[key] = this.state.vehicle[key]
-
-                            update.isFav = !update.isFav
-
-                            this.setState({ vehicle: update })
-                        })
-                    } catch (error) {
-                        alert(error.message)
-                    }
-                }} />
+                <Fav selected={this.state.vehicle.isFav} onClick={this.toggleFav} />
                 <img src={this.state.vehicle.image} />
                 <p>{this.state.vehicle.description}</p>
                 <p>{this.state.vehicle.price}</p>

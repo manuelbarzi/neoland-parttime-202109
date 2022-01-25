@@ -1,4 +1,6 @@
-class Favorites extends React.Component {
+const { Component } = React
+
+class Favorites extends Component {
     constructor() {
         logger.debug('Favs -> constructor')
         super()
@@ -20,35 +22,41 @@ class Favorites extends React.Component {
         }
     }
 
+    goToHome = event => {
+        event.preventDefault()
+
+        this.props.onClickedHome()
+    }
+
+    toogleFav = () => {
+        try {
+            toggleFavVehicle(sessionStorage.token, vehicle.id, error => {
+                if (error) return alert(error.message)
+
+                const vehicles = this.state.vehicles.filter(_vehicle => _vehicle.id !== vehicle.id)
+
+                this.setState({ vehicles: vehicles })
+            })
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
+    showDetail = () => this.props.onItemClick(vehicle.id)
+
     render() {
         logger.debug('Favs -> render')
 
         if (this.state.vehicles) {
             if (this.state.vehicles.length)
                 return <div>
-                    <p><a href="" onClick={event => {
-                        event.preventDefault()
-
-                        this.props.onClickedHome()
-                    }}>Inicio</a></p>
+                    <p><a href="" onClick={this.goToHome}>Inicio</a></p>
                     <h1 className='title-form'>Favoritos</h1>
                     <ul>
                         {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
                             <h2>{vehicle.name}</h2>
-                            <Fav selected={vehicle.isFav} onClick={() => {
-                                try {
-                                    toggleFavVehicle(sessionStorage.token, vehicle.id, error => {
-                                        if (error) return alert(error.message)
-
-                                        const vehicles = this.state.vehicles.filter(_vehicle => _vehicle.id !== vehicle.id)
-
-                                        this.setState({ vehicles: vehicles })
-                                    })
-                                } catch (error) {
-                                    alert(error.message)
-                                }
-                            }} />
-                            <img className='img-list' src={vehicle.image} onClick={() => this.props.onItemClick(vehicle.id)} />
+                            <Fav selected={vehicle.isFav} onClick={this.toogleFav} />
+                            <img className='img-list' src={vehicle.image} onClick={this.showDetail} />
                             <span>{vehicle.price} €</span>
                         </li>)}
                     </ul>

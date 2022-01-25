@@ -1,4 +1,6 @@
-class Forecast extends React.Component {
+const { Component } = React
+
+class Forecast extends Component {
     constructor() {
         logger.debug('Forecast -> constructor')
 

@@ -1,4 +1,6 @@
-class Home extends React.Component {
+const { Component } = React
+
+class Home extends Component {
     constructor() {
         logger.debug('Home -> constructor')
 
@@ -50,47 +52,60 @@ class Home extends React.Component {
         logger.debug('Home -> component will unmount')
     }
 
+    showModifyData = event => {
+        event.preventDefault()
+
+        this.props.onModifyClick()
+    }
+
+    showFavorites = event => {
+        event.preventDefault()
+
+        this.props.onClickedFav()
+    }
+
+    showCart = event => {
+        event.preventDefault()
+
+        this.props.onClickedCart()
+    }
+
+    showResults = query => this.setState({ query, view: 'results' })
+
+    showDetail = vehicleId => this.setState({ vehicleId, view: 'detail' })
+
+    logout = () => {
+        delete sessionStorage.token
+
+        this.props.onLoggedOut()
+    }
+
+
     render() {
         logger.debug('Home -> render')
 
         if (this.state.name) {
             return <div>
                 <h1>Hola, {this.state.name} !</h1>
-                <button className="button" onClick={event => {
-                    event.preventDefault()
+                <button className="button" onClick={this.showModifyData}>Modificar datos</button>
 
-                    this.props.onModifyClick()
-                }}>Modificar datos</button>
-
-                <button className="button" onClick={() => {
-                    delete sessionStorage.token
-
-                    this.props.onLoggedOut()
-                }}>Cierra sesión</button>
+                <button className="button" onClick={this.logout}>Cierra sesión</button>
 
 
-                <button className="button" onClick={event => {
-                    event.preventDefault()
+                <button className="button" onClick={this.showFavorites}>Favoritos</button>
 
-                    this.props.onClickedFav()
-                }}>Favoritos</button>
-
-                <button className="button" onClick={event => {
-                    event.preventDefault()
-
-                    this.props.onClickedCart()
-                }}>Cesta</button>
+                <button className="button" onClick={this.showCart}>Cesta</button>
 
                 <Forecast apiKey={this.apiKey} city={this.state.city} />
 
                 <Search
                     query={this.state.query}
-                    onQuery={query => this.setState({ query, view: 'results' })}
+                    onQuery={this.showResults}
                 />
 
                 {this.state.view === 'results' && <Results
                     query={this.state.query}
-                    onItemClick={vehicleId => this.setState({ vehicleId, view: 'detail' })}
+                    onItemClick={this.showDetail}
                 />}
 
                 {this.state.view === 'detail' && <Detail itemId={this.state.vehicleId} />}
