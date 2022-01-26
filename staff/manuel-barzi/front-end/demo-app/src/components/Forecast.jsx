@@ -1,4 +1,5 @@
-const { Component } = React
+import { Component } from 'react'
+import retrieveForecast from '../logic/retrieve-forecast'
 
 class Forecast extends Component {
     constructor() {
@@ -30,3 +31,5 @@ class Forecast extends Component {
         } else return null
     }
 }
+
+export default Forecast

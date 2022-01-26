@@ -1,3 +1,5 @@
+import { validateToken, validateId, validateCallback } from './helpers/validators'
+
 function toggleFavVehicle(token, id, callback) {
     validateToken(token)
     validateId(id)
@@ -57,3 +59,5 @@ function toggleFavVehicle(token, id, callback) {
 
     xhr.send()
 }
+
+export default toggleFavVehicle

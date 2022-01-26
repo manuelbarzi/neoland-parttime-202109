@@ -1,3 +1,5 @@
+import { validateCallback } from './helpers/validators'
+
 function retrieveForecast(apiKey, city, callback) {
     if (typeof apiKey !== 'string') throw new TypeError('api key is not string')
     if (!apiKey.trim()) throw new Error('api key is empty or blank')
@@ -21,3 +23,5 @@ function retrieveForecast(apiKey, city, callback) {
 
     xhr.send()
 }
+
+export default retrieveForecast

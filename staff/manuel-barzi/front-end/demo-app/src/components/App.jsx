@@ -3,6 +3,7 @@ import logger from '../logger'
 import Login from './Login'
 import Register from './Register'
 import RegisterSuccess from './RegisterSuccess'
+import Home from './Home'
 
 function App() {
     const [view, setView] = useState(sessionStorage.token ? 'home' : 'login')

@@ -23,3 +23,11 @@ function validateId(id) {
     if (typeof id !== 'string') throw new TypeError('id is not string')
     if (!id.trim()) throw new Error('id is empty or blank')
 }
+
+export {
+    validateUsername,
+    validatePassword,
+    validateCallback,
+    validateToken,
+    validateId
+}

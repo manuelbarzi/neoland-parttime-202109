@@ -1,3 +1,5 @@
+import logger from '../logger'
+
 function RegisterSuccess({ onLoginClick }) {
     logger.debug('RegisterSuccess -> "render"')
 

@@ -1,13 +1,6 @@
+import { validateUsername, validatePassword, validateCallback } from './helpers/validators'
+
 function registerUser(name, city, country, username, password, callback) {
-    if (typeof name !== 'string') throw new TypeError('name is not string')
-    if (!name.trim()) throw new Error('name is empty or blank')
-
-    if (typeof city !== 'string') throw new TypeError('city is not string')
-    if (!city.trim()) throw new Error('city is empty or blank')
-
-    if (typeof country !== 'string') throw new TypeError('country is not string')
-    if (!country.trim()) throw new Error('country is empty or blank')
-
     validateUsername(username)
     validatePassword(password)
     validateCallback(callback)
@@ -36,3 +29,5 @@ function registerUser(name, city, country, username, password, callback) {
 
     xhr.send(json)
 }
+
+export default registerUser

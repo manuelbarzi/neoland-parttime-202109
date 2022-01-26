@@ -1,4 +1,6 @@
 import { Component } from 'react'
+import logger from '../logger'
+import registerUser from '../logic/register-user'
 
 class Register extends Component {
     constructor() {

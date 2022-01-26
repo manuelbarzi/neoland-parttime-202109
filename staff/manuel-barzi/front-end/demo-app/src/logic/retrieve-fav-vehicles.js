@@ -1,3 +1,5 @@
+import { validateToken, validateCallback } from './helpers/validators'
+
 function retrieveFavVehicles(token, callback) {
     validateToken(token)
     validateCallback(callback)
@@ -10,7 +12,7 @@ function retrieveFavVehicles(token, callback) {
         const { status } = xhr
 
         if (status === 401) {
-            const res = JSON.parse(responseText)
+            const res = JSON.parse(xhr.responseText)
 
             const error = res.error
 
@@ -71,3 +73,5 @@ function retrieveFavVehicles(token, callback) {
 
     xhr.send()
 }
+
+export default retrieveFavVehicles

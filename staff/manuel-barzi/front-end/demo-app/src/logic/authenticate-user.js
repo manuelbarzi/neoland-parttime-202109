@@ -1,3 +1,5 @@
+import { validateUsername, validatePassword, validateCallback } from './helpers/validators'
+
 function authenticateUser(username, password, callback) {
     validateUsername(username)
     validatePassword(password)
@@ -34,3 +36,5 @@ function authenticateUser(username, password, callback) {
 
     xhr.send(json)
 }
+
+export default authenticateUser

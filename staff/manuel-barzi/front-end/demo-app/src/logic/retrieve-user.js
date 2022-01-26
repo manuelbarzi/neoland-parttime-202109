@@ -1,8 +1,7 @@
-function retrieveUser(token, callback) {
-    if (typeof token !== 'string') throw new TypeError('token is not string')
-    if (!token.trim()) throw new Error('token is empty or blank')
-    if (token.split('.').length !== 3) throw new Error('invalid token')
+import {  validateToken, validateCallback } from './helpers/validators'
 
+function retrieveUser(token, callback) {
+    validateToken(token)
     validateCallback(callback)
 
     var xhr = new XMLHttpRequest
@@ -27,3 +26,5 @@ function retrieveUser(token, callback) {
 
     xhr.send()
 }
+
+export default retrieveUser

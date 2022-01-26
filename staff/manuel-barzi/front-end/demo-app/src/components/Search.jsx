@@ -12,3 +12,5 @@ function Search(props) {
         <button>Search</button>
     </form>
 }
+
+export default Search

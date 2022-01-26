@@ -1,3 +1,5 @@
+import { validateToken, validateId, validateCallback } from './helpers/validators'
+
 function addVehicleToCart(token, id, callback) {
     validateToken(token)
     validateId(id)
@@ -69,5 +71,6 @@ function addVehicleToCart(token, id, callback) {
     xhr.setRequestHeader('Authorization', 'Bearer ' + token)
 
     xhr.send()
-
 }
+
+export default addVehicleToCart

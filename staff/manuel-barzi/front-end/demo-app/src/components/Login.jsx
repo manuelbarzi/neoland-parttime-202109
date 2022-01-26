@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import authenticateUser from '../logic/authenticate-user'
+import logger from '../logger.js'
+import './Login.css'
 
 function Login({ onLoggedIn, onRegisterClick }) {
     const [feedback, setFeedback] = useState(null)

@@ -1,7 +1,7 @@
+import { validateToken, validateCallback } from './helpers/validators'
+
 function searchVehicles(token, query, callback) {
-    if (typeof token !== 'string') throw new TypeError('token is not string')
-    if (!token.trim()) throw new Error('token is empty or blank')
-    if (token.split('.').length !== 3) throw new Error('invalid token')
+    validateToken(token)
 
     if (typeof query !== 'string') throw new TypeError('query is not string')
     if (!query.trim()) throw new Error('query is empty or blank')
@@ -57,3 +57,5 @@ function searchVehicles(token, query, callback) {
 
     xhr.send()
 }
+
+export default searchVehicles

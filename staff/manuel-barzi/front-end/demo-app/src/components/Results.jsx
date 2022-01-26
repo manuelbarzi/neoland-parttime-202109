@@ -1,4 +1,8 @@
-const { useState, useEffect } = React
+import { useState, useEffect } from 'react'
+import logger from '../logger'
+import searchVehicles from '../logic/search-vehicles'
+import toggleFavVehicle from '../logic/toggle-fav-vehicle'
+import Fav from './Fav'
 
 function Results({ query, onItemClick }) {
     const [vehicles, setVehicles] = useState()
@@ -63,3 +67,5 @@ function Results({ query, onItemClick }) {
         } else
             return null
 }
+
+export default Results

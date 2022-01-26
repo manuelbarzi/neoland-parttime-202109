@@ -1,4 +1,10 @@
-const { Component } = React
+import { Component } from 'react'
+import logger from '../logger'
+import retrieveVehiclesFromCart from '../logic/retrieve-vehicles-from-cart'
+import toggleFavVehicle from '../logic/toggle-fav-vehicle'
+import addVehicleToCart from '../logic/add-vehicle-to-cart'
+import removeVehicleFromCart from '../logic/remove-vehicle-from-cart'
+import Fav from './Fav'
 
 class Cart extends Component {
     constructor() {
@@ -124,3 +130,5 @@ class Cart extends Component {
 
     }
 }
+
+export default Cart

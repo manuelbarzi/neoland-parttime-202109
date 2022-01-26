@@ -1,3 +1,5 @@
+import { validateToken, validateId, validateCallback } from './helpers/validators'
+
 function removeVehicleFromCart(token, id, callback) {
     validateToken(token)
     validateId(id)
@@ -72,3 +74,5 @@ function removeVehicleFromCart(token, id, callback) {
 
     xhr.send()
 }
+
+export default removeVehicleFromCart
