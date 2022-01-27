@@ -13,13 +13,17 @@ function Login({ onLoggedIn, onRegisterClick }) {
         const password = event.target.password.value
 
         try {
-            authenticateUser(username, password)
-                .then(token => {
-                    sessionStorage.token = token
+            authenticateUser(username, password, (error, token) => {
+                if (error) {
+                    setFeedback(error.message)
 
-                    onLoggedIn(token)
-                })
-                .catch(error => setFeedback(error.message))
+                    return
+                }
+
+                sessionStorage.token = token
+
+                onLoggedIn(token)
+            })
         } catch (error) {
             setFeedback(error.message)
         }
