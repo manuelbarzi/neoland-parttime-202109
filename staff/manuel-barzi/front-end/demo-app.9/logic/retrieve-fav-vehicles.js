@@ -10,7 +10,7 @@ function retrieveFavVehicles(token, callback) {
         const { status } = xhr
 
         if (status === 401) {
-            const res = JSON.parse(responseText)
+            const res = JSON.parse(xhr.responseText)
 
             const error = res.error
 
