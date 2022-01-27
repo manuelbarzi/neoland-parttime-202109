@@ -1,3 +1,5 @@
+import { validateToken, validateData, validateCallback } from './helpers/validators'
+
 function modifyUser(token, data, callback) {
     validateToken(token)
     validateData(data)
@@ -26,3 +28,5 @@ function modifyUser(token, data, callback) {
 
     xhr.send(json)
 }
+
+export default modifyUser

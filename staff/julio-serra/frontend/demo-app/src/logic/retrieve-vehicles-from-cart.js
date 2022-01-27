@@ -1,3 +1,5 @@
+import { validateToken, validateCallback } from './helpers/validators'
+
 function retrieveVehiclesFromCart(token, callback) {
     validateToken(token)
     validateCallback(callback)
@@ -9,7 +11,7 @@ function retrieveVehiclesFromCart(token, callback) {
         const { status } = xhr
 
         if (status === 401) {
-            const res = JSON.parse(responseText)
+            const res = JSON.parse(xhr.responseText)
             const error = res.error
             callback(new Error(error))
         }
@@ -67,3 +69,5 @@ function retrieveVehiclesFromCart(token, callback) {
     xhr.setRequestHeader('Authorization', `Bearer ${token}`)
     xhr.send()
 }
+
+export default retrieveVehiclesFromCart

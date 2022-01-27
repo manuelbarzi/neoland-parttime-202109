@@ -1,3 +1,5 @@
+import { validateToken, validateQuery, validateCallback} from './helpers/validators'
+
 function searchVehicles(token, query, callback) {
 
     validateToken(token)
@@ -15,7 +17,8 @@ function searchVehicles(token, query, callback) {
     xhr.addEventListener('load', function () {
         if (this.status === 401) {
             const res = JSON.parse(this.responseText)
-            callback(new Error(error))
+            const error = res.error
+            callback(new Error(error.message))
 
         } else if (this.status >= 400 && this.status < 500) {
             callback(new Error('client error'))
@@ -38,7 +41,8 @@ function searchVehicles(token, query, callback) {
             xhr.addEventListener('load', function () {
                 if (this.status === 401) {
                     const res = JSON.parse(this.responseText)
-                    callback(new Error(error))
+                    const error = res.error
+                    callback(new Error(error.message))
 
                 } else if (this.status >= 400 && this.status < 500) {
                     callback(new Error('client error'))
@@ -71,3 +75,5 @@ function searchVehicles(token, query, callback) {
 
 
 }
+
+export default searchVehicles

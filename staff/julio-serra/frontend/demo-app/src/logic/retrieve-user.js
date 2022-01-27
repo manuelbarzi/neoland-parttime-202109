@@ -1,3 +1,5 @@
+import { validateToken, validateCallback } from './helpers/validators'
+
 function retrieveUser(token, callback) {
     
 validateToken(token)
@@ -29,3 +31,5 @@ validateCallback(callback)
     xhr.send()
 
 }
+
+export default retrieveUser

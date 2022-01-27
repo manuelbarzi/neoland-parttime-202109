@@ -1,3 +1,5 @@
+import { validateToken, validateId, validateCallback } from './helpers/validators'
+
 function toggleFavVehicle(token, id, callback) {
 
     validateToken(token)
@@ -59,6 +61,6 @@ function toggleFavVehicle(token, id, callback) {
     xhr.setRequestHeader('Authorization', 'Bearer ' + token)
 
     xhr.send()
-
-
 }
+
+export default toggleFavVehicle

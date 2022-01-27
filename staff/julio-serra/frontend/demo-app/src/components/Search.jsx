@@ -1,3 +1,5 @@
+
+
 function Search(props) {
     return <form onSubmit={event => {
         event.preventDefault() 
@@ -20,3 +22,5 @@ function Search(props) {
         <button>Search</button>
     </form>
 }
+
+export default Search

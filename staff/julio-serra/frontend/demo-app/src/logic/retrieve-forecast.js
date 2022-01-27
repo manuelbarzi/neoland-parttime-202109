@@ -1,3 +1,5 @@
+
+
 function retrieveForecast(apiKey, city, callback) {
     var xhr = new XMLHttpRequest
 

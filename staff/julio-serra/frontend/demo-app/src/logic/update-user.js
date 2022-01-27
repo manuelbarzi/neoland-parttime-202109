@@ -1,5 +1,5 @@
 //stringify para convertir a string un objeto
-
+import { validateToken, validateData, validateCallback } from './helpers/validators'
 function updateUser(token, data, callback) {
 
     validateToken(token)
@@ -37,3 +37,5 @@ function updateUser(token, data, callback) {
     xhr.send(json)
 
 }
+
+export default updateUser

@@ -1,6 +1,5 @@
 import { validateName, validateUsername, validatePassword, validateCallback} from './helpers/validators'
 
-
 function registerUser(name, username, password, callback) {
 
         validateName(name)

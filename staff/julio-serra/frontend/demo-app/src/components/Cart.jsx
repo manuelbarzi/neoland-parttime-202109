@@ -1,4 +1,11 @@
-class Cart extends React.Component {
+import { Component } from 'react'
+import retrieveVehiclesFromCart from '../logic/retrieve-vehicles-from-cart'
+import toggleFavVehicle from '../logic/toggle-fav-vehicle'
+import addVehiclesToCart from '../logic/add-vehicles-to-cart'
+import removeVehiclesFromCart from '../logic/remove-vehicles-from-cart'
+import Fav from './Fav'
+
+class Cart extends Component {
   constructor() {
     super()
     this.state = { vehicles: null }
@@ -97,7 +104,7 @@ class Cart extends React.Component {
 
                   <img
                     src={vehicle.image}
-                    onClick={() => this.props.clickItem(vehicle.id)}
+                    onClick={() => this.props.clickItem(vehicle.id)} alt=""
                   />
                   <span>
                     {vehicle.qty} x {vehicle.price} $
@@ -122,3 +129,5 @@ class Cart extends React.Component {
     } else return null;
   }
 }
+
+export default Cart

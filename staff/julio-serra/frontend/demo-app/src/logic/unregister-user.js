@@ -1,10 +1,12 @@
+import { validateToken, validatePassword, validateCallback } from './helpers/validators'
+
 function unregisterUser(token, password, callback) {
 
     validateToken(token)
     validatePassword(password)
     validateCallback(callback)
 
-    var xhr = new XMLHttpRequest
+    const xhr = new XMLHttpRequest
 
     xhr.open('DELETE', 'https://b00tc4mp.herokuapp.com/api/v2/users')
 
@@ -13,15 +15,14 @@ function unregisterUser(token, password, callback) {
     xhr.addEventListener('load', function() {
 
         if (this.state === 400 || this.status === 401) {
-            var res = JSON.parse(this.responseText)
-            var error = res.error
+            const res = JSON.parse(this.responseText)
+            const error = res.error
 
             callback(new Error(error))
 
 
 
         } else if (this.state === 204) {
-            var res = JSON.parse(this.responseText)
             callback(null)
         }
 
@@ -30,13 +31,13 @@ function unregisterUser(token, password, callback) {
     xhr.setRequestHeader('Content-type', 'Application/json')
     xhr.setRequestHeader('Authorization', 'Bearer ' + token)
 
-    var data = {}
+    const data = {}
 
     data.password = password
 
-    var json = JSON.stringify(data)
+    const json = JSON.stringify(data)
 
     xhr.send(json)
-
-
 }
+
+export default unregisterUser

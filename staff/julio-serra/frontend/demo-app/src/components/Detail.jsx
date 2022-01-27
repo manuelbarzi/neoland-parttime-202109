@@ -1,4 +1,11 @@
-class Detail extends React.Component {
+import { Component } from 'react'
+import retrieveVehicle from '../logic/retrieve-vehicle'
+import toggleFavVehicle from '../logic/toggle-fav-vehicle'
+import addVehiclesToCart from '../logic/add-vehicles-to-cart'
+import Fav from './Fav'
+
+
+class Detail extends Component {
     constructor() {
 
         super()
@@ -58,7 +65,7 @@ class Detail extends React.Component {
                 <h2>{this.state.vehicle.name}</h2>
                 <Fav selected={this.state.vehicle.isFav} onClick={this.toggleFav} />
                 <button onClick={this.addToCart}>Add to Cart</button>
-                <img src={this.state.vehicle.image} />
+                <img src={this.state.vehicle.image} alt="" />
                 <p>{this.state.vehicle.description}</p>
                 <p>{this.state.vehicle.price} $</p>
                 <p>{this.state.vehicle.color}</p>
@@ -70,3 +77,5 @@ class Detail extends React.Component {
             return null
     }
 }
+
+export default Detail

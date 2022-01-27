@@ -1,13 +1,20 @@
-const { useState, useEffect } = 'react'
+import { useState, useEffect } from 'react'
+import retrieveUser from '../logic/retrieve-user'
+import Search from './Search'
+import Results from './Results'
+import Detail from './Detail'
+import Cart from './Cart'
+import Favs from './Favs'
+
 
 function Home({ token, onLoggedOut }) {
     const [name, setName] = useState(null)
-    const [city, setCity] = useState(null)
+    const [city, setCity] = useState(null) // forecast app
     const [query, setQuery] = useState(null)
     const [vehicleId, setVehicleId] = useState(null)
     const [view, setView] = useState(null)
 
-    const apiKey = '73KP3CVXGQF33DT6QHF9JVD7B'
+    const apiKey = '73KP3CVXGQF33DT6QHF9JVD7B' // forecast app
 
     useEffect(() => {
 
@@ -72,7 +79,7 @@ function Home({ token, onLoggedOut }) {
 
             <button onClick={logout}>Logout</button>
 
-            {city && <Forecast apiKey={apiKey} city={city} />}
+            {/* {city && <Forecast apiKey={apiKey} city={city} />} */}
 
             <Search query={query} onQueryChange={showResults} />
 
