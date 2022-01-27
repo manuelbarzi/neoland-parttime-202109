@@ -1,13 +1,10 @@
-function modifyUser(token, data, callback) {
-    if (typeof token !== 'string') throw new TypeError(token + ' is not string')
-    if (!token.trim()) throw new Error('token is empty or blank')
-    if (token.split('.').length !== 3) throw new Error('invalid token')
+function modifyUser(token,callback, data) {
+    validateToken(token)
+    validateCallback(callback)
 
     //data--es un objeto, pero exigimos que no esté vacío. Para ello podemos usar .keys(), que nos dice cuántas propiedades tiene un objeto. si el objeto que estamos mandando tiene 0 propiedades es que está vacío
-    if (typeof data !== 'object') throw new TypeError(data + ' is not an object')
+    if (typeof data !== 'object') throw new TypeError('data is not an object')
     if (Object.keys(data).length === 0) throw new Error('data object is empty')
-
-    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')
 
     var xhr = new XMLHttpRequest
 

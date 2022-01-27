@@ -17,3 +17,5 @@ const logger = {
         (this.level === 'debug' || this.level === 'info' || this.level === 'warn' || this.level === 'error') && console.log('%cERROR %c' + new Date().toISOString() + ' %c' + message, 'color: red;', 'color: lightgray;', 'color: red;')
     }
 }
+
+export default logger
