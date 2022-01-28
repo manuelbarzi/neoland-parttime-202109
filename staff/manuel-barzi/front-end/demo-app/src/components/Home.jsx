@@ -21,22 +21,20 @@ function Home({ token, onLoggedOut }) {
         logger.debug('Home -> did mount')
 
         try {
-            retrieveUser(token, (error, user) => {
-                if (error) {
+            retrieveUser(token)
+                .then(user => {
+                    const { name, city } = user
+
+                    setName(name)
+                    setCity(city)
+                })
+                .catch(error => {
                     alert(error.message)
 
                     delete sessionStorage.token
 
                     onLoggedOut()
-
-                    return
-                }
-
-                const { name, city } = user
-
-                setName(name)
-                setCity(city)
-            })
+                })
         } catch (error) {
             alert(error.message)
 

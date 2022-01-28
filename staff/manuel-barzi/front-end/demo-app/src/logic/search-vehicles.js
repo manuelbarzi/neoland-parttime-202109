@@ -1,61 +1,54 @@
-import { validateToken, validateCallback } from './helpers/validators'
+import { validateToken } from './helpers/validators'
 
-function searchVehicles(token, query, callback) {
+function searchVehicles(token, query) {
     validateToken(token)
 
     if (typeof query !== 'string') throw new TypeError('query is not string')
     if (!query.trim()) throw new Error('query is empty or blank')
 
-    validateCallback(callback)
+    return fetch('https://b00tc4mp.herokuapp.com/api/v2/users', {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+        .then(response => {
+            const { status } = response
 
-    const xhr = new XMLHttpRequest
+            if (status === 200)
+                return response.json()
+            else if (status >= 400 && status < 500)
+                return response.json().then(payload => { throw new Error(payload.error) })
+            else if (status >= 500)
+                throw new Error('server error')
+            else
+                throw new Error('unknown error')
 
-    xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/v2/users')
+        })
+        .then(user => {
+            const { favs = [] } = user
 
-    xhr.onload = function () {
-        if (this.status === 401) {
-            const res = JSON.parse(this.responseText)
+            return fetch(`https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles?q=${query}`)
+                .then(response => {
+                    const { status } = response
 
-            const error = res.error
+                    if (status === 200)
+                        return response.json()
+                    else if (status >= 400 && status < 500)
+                        return response.json().then(payload => { throw new Error(payload.error) })
+                    else if (status >= 500)
+                        throw new Error('server error')
+                    else
+                        throw new Error('unknown error')
 
-            callback(new Error(error))
-        } else if (this.status >= 400 && this.status < 500) {
-            callback(new Error('client error'))
-        } else if (this.status >= 500) {
-            callback(new Error('server error'))
-        } else if (this.status === 200) {
-            const user = JSON.parse(this.responseText)
-
-            //const favs = user.favs
-            const { favs = [] } = user // es6++
-
-            const xhr = new XMLHttpRequest
-
-            xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles?q=' + query)
-
-            xhr.onload = function () {
-                if (this.status >= 400 && this.status < 500) {
-                    callback(new Error('client error'))
-                } else if (this.status >= 500) {
-                    callback(new Error('server error'))
-                } else if (this.status === 200) {
-                    const vehicles = JSON.parse(this.responseText)
-
+                })
+                .then(vehicles => {
                     vehicles.forEach(vehicle =>
                         vehicle.isFav = favs.includes(vehicle.id)
                     )
 
-                    callback(null, vehicles)
-                }
-            }
-
-            xhr.send()
-        }
-    }
-
-    xhr.setRequestHeader('Authorization', 'Bearer ' + token)
-
-    xhr.send()
+                    return vehicles
+                })
+        })
 }
 
 export default searchVehicles

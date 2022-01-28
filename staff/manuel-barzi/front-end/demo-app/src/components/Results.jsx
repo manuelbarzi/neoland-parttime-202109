@@ -11,11 +11,10 @@ function Results({ query, onItemClick }) {
         logger.debug('Results -> component did mount & component will receive props')
 
         try {
-            searchVehicles(sessionStorage.token, query, (error, vehicles) => {
-                if (error) return alert(error.message)
-
-                setVehicles(vehicles)
-            })
+            searchVehicles(sessionStorage.token, query)
+                //.then(vehicles => setVehicles(vehicles))
+                .then(setVehicles)
+                .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }

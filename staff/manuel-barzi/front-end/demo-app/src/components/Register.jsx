@@ -33,19 +33,12 @@ class Register extends Component {
         const password = event.target.password.value
 
         try {
-            registerUser(name, city, country, username, password, error => {
-                if (error) {
-                    this.setState({ feedback: error.message })
-
-                    return
-                }
-
-                this.props.onRegistered()
-            })
+            registerUser(name, city, country, username, password)
+                .then(() => this.props.onRegistered())
+                .catch(error => this.setState({ feedback: error.message }))
         } catch (error) {
             this.setState({ feedback: error.message })
         }
-
     }
 
     goToLogin = event => {
