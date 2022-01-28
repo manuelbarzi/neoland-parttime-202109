@@ -1,9 +1,12 @@
-function PostRegister(props) {
-    return <p>User successfully registered, you may proceed to <a href="" onClick={event => {
-        event.preventDefault()
+function PostRegister(onLoginClick) {
 
-        props.onLoginClick()
-    }}>Login</a></p>
+    const clickToLogin = event => {
+        event.preventDefault()
+        onLoginClick()
+    }
+
+
+    return <p>User successfully registered, you may proceed to <a href="" onClick={clickToLogin}>Login</a></p>
 }
 
 export default PostRegister 

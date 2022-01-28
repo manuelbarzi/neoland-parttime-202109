@@ -4,7 +4,7 @@ function retrieveFavVehicles(token, callback) {
     validateToken(token)
     validateCallback(callback)
 
-    const xhr = new XMLHttpRequest
+    const xhr = new XMLHttpRequest()
 
     xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/v2/users')
 
@@ -33,7 +33,7 @@ function retrieveFavVehicles(token, callback) {
                 const vehicles = []
 
                 favs.forEach((id, index) => {
-                    const xhr = new XMLHttpRequest
+                    const xhr = new XMLHttpRequest()
 
                     xhr.open('GET', `https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles/${id}`)
 

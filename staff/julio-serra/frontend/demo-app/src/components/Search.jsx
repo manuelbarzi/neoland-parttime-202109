@@ -1,26 +1,18 @@
-
-
 function Search(props) {
-    return <form onSubmit={event => {
-        event.preventDefault() 
+  const submit = event => {
+    event.preventDefault();
 
-        var query = event.target.query.value //parametro event accede a la propiedad target (del formulario), para acceder al valor del input
+    const query = event.target.query.value; //parametro event accede a la propiedad target (del formulario), para acceder al valor del input
+    props.onQueryChange(query)
+    // props.onQuery(query);
+  };
 
-        props.onQuery(query)
-
-        // try {
-        //     searchVehicles(query, (error, vehicles) => {
-        //         if (error) return alert(error.message)
-        //         this.setState({ vehicles })
-        //     })
-        // } catch (error) {
-        //     alert(error.message)
-        // }
-
-    }}>
-        <input type="text" name="query" placeholder="Encuentra tu coche" />
-        <button>Search</button>
+  return (
+    <form onSubmit={submit}>
+      <input type="text" name="query" placeholder="Encuentra tu coche" />
+      <button>Search</button>
     </form>
+  );
 }
 
-export default Search
+export default Search;

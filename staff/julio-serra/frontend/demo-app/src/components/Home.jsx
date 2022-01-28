@@ -9,12 +9,12 @@ import Favs from './Favs'
 
 function Home({ token, onLoggedOut }) {
     const [name, setName] = useState(null)
-    const [city, setCity] = useState(null) // forecast app
+    // const [city, setCity] = useState(null) // forecast app
     const [query, setQuery] = useState(null)
     const [vehicleId, setVehicleId] = useState(null)
     const [view, setView] = useState(null)
 
-    const apiKey = '73KP3CVXGQF33DT6QHF9JVD7B' // forecast app
+    // const apiKey = '73KP3CVXGQF33DT6QHF9JVD7B' // forecast app
 
     useEffect(() => {
 
@@ -30,10 +30,10 @@ function Home({ token, onLoggedOut }) {
                     return
                 }
 
-                const { name, city } = user
+            const { name } = user
 
                 setName(name)
-                setCity(city)
+                // setCity(city)
             })
         } catch (error) {
             alert(error.message)

@@ -6,14 +6,17 @@ import Home from './Home'
 
 function App() {
     const [view, setView] = useState(sessionStorage.token ? 'home' : 'login') //al cambiar de vista se añade View
-    const [token, setToken] = useState(sessionStorage.token ? sessionStorage.token : 'null')
+    const [token, setToken] = useState(sessionStorage.token ? sessionStorage.token : null)
 
 const onRegister = () => setView('register')
-const onLogin = () => {
-    setView('home')
+const onLogin = token => {
     setToken(token)
+    setView('home')
     }
 const onLoginClick = () => setView('login')
+
+
+
 const logOut = () => {
     setView('login')
     setToken(null)
