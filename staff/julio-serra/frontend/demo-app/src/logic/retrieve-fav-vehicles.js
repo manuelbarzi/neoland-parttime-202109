@@ -1,77 +1,78 @@
-import { validateToken, validateCallback } from './helpers/validators'
+import { validateToken, validateCallback } from "./helpers/validators";
 
 function retrieveFavVehicles(token, callback) {
-    validateToken(token)
-    validateCallback(callback)
+  validateToken(token);
+  validateCallback(callback);
 
-    const xhr = new XMLHttpRequest()
+  const xhr = new XMLHttpRequest
 
-    xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/v2/users')
+  xhr.open("GET", "https://b00tc4mp.herokuapp.com/api/v2/users");
 
-    xhr.onload = () => {
-        const { status } = xhr
+  xhr.onload = () => {
+    const { status } = xhr;
 
-        if (status === 401) {
-            const res = JSON.parse(xhr.responseText)
+    if (status === 401) {
+      const res = JSON.parse(xhr.responseText);
 
-            const error = res.error
+      const error = res.error;
 
-            callback(new Error(error))
-        } else if (status >= 400 && status < 500) {
-            callback(new Error('client error'))
-        } else if (status >= 500) {
-            callback(new Error('server error'))
-        } else if (status === 200) {
-            const { responseText: json } = xhr
+      callback(new Error(error));
+    } else if (status >= 400 && status < 500) {
+      callback(new Error("client error"));
+    } else if (status >= 500) {
+      callback(new Error("server error"));
+    } else if (status === 200) {
+      const { responseText: json } = xhr;
 
-            const payload = JSON.parse(json)
+      const payload = JSON.parse(json);
 
-            const { favs = [] } = payload
+      const { favs = [] } = payload;
 
-            if (favs.length) {
-                let count = 0
-                const vehicles = []
+      if (favs.length) {
+        let count = 0;
+        const vehicles = [];
 
-                favs.forEach((id, index) => {
-                    const xhr = new XMLHttpRequest()
+        favs.forEach((id, index) => {
+          const xhr = new XMLHttpRequest
 
-                    xhr.open('GET', `https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles/${id}`)
+          xhr.open(
+            "GET",
+            `https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles/${id}`
+          );
 
-                    xhr.addEventListener('load', () => {
-                        const { status } = xhr
+          xhr.addEventListener("load", () => {
+            const { status } = xhr;
 
-                        count++
+            count++;
 
-                        if (status >= 400 && status < 500) {
-                            callback(new Error('client error'))
-                        } else if (status >= 500) {
-                            callback(new Error('server error'))
-                        } else if (status === 200) {
-                            const { responseText: json } = xhr
+            if (status >= 400 && status < 500) {
+              callback(new Error("client error"));
+            } else if (status >= 500) {
+              callback(new Error("server error"));
+            } else if (status === 200) {
+              const { responseText: json } = xhr;
 
-                            const vehicle = JSON.parse(json)
+              const vehicle = JSON.parse(json);
 
-                            vehicle.isFav = true
+              vehicle.isFav = true;
 
-                            vehicles[index] = vehicle
+              vehicles[index] = vehicle;
 
-                            if (count === favs.length)
-                                callback(null, vehicles)
-                        }
-                    })
-
-                    xhr.send()
-                })
-            } else {
-                callback(null, [])
+              if (count === favs.length) callback(null, vehicles);
             }
+          });
 
-        }
+          xhr.send();
+        });
+      } else {
+        callback(null, []);
+      }
     }
+  };
 
-    xhr.setRequestHeader('Authorization', 'Bearer ' + token)
+  xhr.setRequestHeader("Authorization", "Bearer " + token);
 
-    xhr.send()
+  xhr.send();
 }
 
-export default retrieveFavVehicles
+export default retrieveFavVehicles;

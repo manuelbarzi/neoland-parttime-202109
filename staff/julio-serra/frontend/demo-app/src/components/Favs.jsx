@@ -45,7 +45,7 @@ class Favs extends Component {
                 return <ul>
                     {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
                         <h2>{vehicle.name}</h2>
-                        <Fav selected={vehicle.isFav} onClick={this.toggleFav(vehicle.id)} />
+                        <Fav selected={vehicle.isFav} onClick={() => this.toggleFav(vehicle.id)} />
                         <img src={vehicle.image} onClick={() => this.itemClick(vehicle.id)} alt="" />
                         <span>{vehicle.price} $</span>
                     </li>)}

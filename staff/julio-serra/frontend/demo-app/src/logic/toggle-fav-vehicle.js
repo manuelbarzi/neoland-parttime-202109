@@ -34,6 +34,7 @@ function toggleFavVehicle(token, id, callback) {
             xhr.open('PATCH', 'https://b00tc4mp.herokuapp.com/api/v2/users') // modifica el usuario, si ha añadido o quitado favs
 
             xhr.addEventListener('load', function () {
+                
                 if (this.status === 400 || this.status === 401 || this.status === 409) {
                     const res = JSON.parse(this.responseText)
 
