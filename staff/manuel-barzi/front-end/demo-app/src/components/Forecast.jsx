@@ -10,11 +10,9 @@ class Forecast extends Component {
 
     componentDidMount() {
         try {
-            retrieveForecast(this.props.apiKey, this.props.city, (error, values) => {
-                if (error) return alert(error.message)
-
-                this.setState({ values })
-            })
+            retrieveForecast(this.props.apiKey, this.props.city)
+                .then(values => this.setState({ values }))
+                .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
