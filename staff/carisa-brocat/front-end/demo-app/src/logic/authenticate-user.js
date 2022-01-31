@@ -1,0 +1,26 @@
+import { validateUsername, validatePassword, validateCallback } from './helpers/validators'
+
+function authenticateUser(username, password, callback) {
+    validateUsername(username)
+    validatePassword(password)
+    validateCallback(callback)
+
+return fetch('https://b00tc4mp.herokuapp.com/api/v2/users',{
+    method: 'POST',
+    headers: {
+        'Content-type': 'application/json'
+    },
+    body: JSON.stringify({username, password})
+})   
+.then(response => {
+    const{status} = response
+
+    if(status === 200)
+        return response.json().then(payload => payload.token)
+    else if(status === 400 || status === 401)
+        return response.json().then(payload => {throw new Error(payload.error)})
+    else if(status >= 500)
+        throw new Error('server error')
+}) 
+}
+export default authenticateUser

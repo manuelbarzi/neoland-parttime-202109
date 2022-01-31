@@ -21,7 +21,7 @@ function retrieveCartVehicles(token, callback) {
         } else if (this.status === 200) {
             const user = JSON.parse(this.responseText)
 
-            const { cart = [] } = user
+            const { cart = [] } = user //destructuring
 
             if (cart.length) {
                 let count = 0
