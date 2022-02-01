@@ -1,13 +1,113 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --color:rgb(187,112,0);
+  --color-secundary: #c0a000;
+  --color-text: seashell;
+  --color-back: rgb(33, 33, 41)
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  font-family: 'Ubuntu', sans-serif;
+  background: var(--color-back);
+  color: var(--color-text);
+}
+
+body, html, #root {
+  height: 100%;
+  margin: 0;
+}
+
+.title {
+  color: var(--color);
+}
+
+.title-form {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  border: 2px solid var(--color-text);
+  border-radius: 0.5rem;
+  padding: 70px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.input {
+  background-color: var(--color-text);
+  color: var(--color-back);
+  border-radius: .3rem;
+  padding: .2rem;
+  margin-right: .5rem;
+  border: none;
+}
+
+.input-form {
+  margin-bottom: .5rem;
+  padding: 1rem;
+  width: 20rem;
+  margin-bottom: 2rem;
+}
+
+.button {
+  background-color:var(--color);
+  padding: .3rem;
+  width: 5rem;
+  border: 2px solid var(--color-back);
+  border-radius: .3rem;
+  cursor: pointer;
+  border: none;
+}
+
+.button-form {
+  padding: 1rem;
+  width: 22rem;
+}
+
+.button-cart {
+  background-color: var(--color-secundary);
+  text-decoration: var(--color-text);
+  border-radius: .3rem;
+  border: none;
+  cursor: pointer;
+}
+
+.feedback-ok {
+  color: rgb(7, 179, 7);
+  font-size: 3rem;
+}
+
+.feedback-error {
+  color:rgb(236, 14, 14);
+  text-align: center;
+}
+
+.fav {
+  cursor: pointer;
+}
+
+.list-fav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.img-list {
+  max-width: 60%;
+  max-height: 60%;
 }

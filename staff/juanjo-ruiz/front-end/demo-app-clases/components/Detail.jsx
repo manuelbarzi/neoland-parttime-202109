@@ -49,7 +49,7 @@ class Detail extends Component {
             return <div>
                 <h2>{this.state.vehicle.name}</h2>
                 <Cart />
-                <Fav selected={this.state.vehicle.isFav} onClick={this.toggleFav} />
+                <Fav selected={this.state.vehicle.isFav} onClick={() => this.toggleFav(vehicle)} />
                 <img src={this.state.vehicle.image} />
                 <p>{this.state.vehicle.description}</p>
                 <p>{this.state.vehicle.price}</p>

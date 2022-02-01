@@ -5,7 +5,7 @@ class Favorites extends Component {
         logger.debug('Favs -> constructor')
         super()
 
-        this.state = { favs: null }
+        this.state = { vehicles: null }
     }
 
     componentDidMount() {
@@ -22,13 +22,7 @@ class Favorites extends Component {
         }
     }
 
-    goToHome = event => {
-        event.preventDefault()
-
-        this.props.onClickedHome()
-    }
-
-    toogleFav = () => {
+    toogleFav = vehicle => {
         try {
             toggleFavVehicle(sessionStorage.token, vehicle.id, error => {
                 if (error) return alert(error.message)
@@ -42,7 +36,13 @@ class Favorites extends Component {
         }
     }
 
-    showDetail = () => this.props.onItemClick(vehicle.id)
+    showDetail = id => this.props.onItemClick(id)
+
+    goToHome = event => {
+        event.preventDefault()
+
+        this.props.onClickedHome()
+    }
 
     render() {
         logger.debug('Favs -> render')
@@ -55,8 +55,8 @@ class Favorites extends Component {
                     <ul>
                         {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
                             <h2>{vehicle.name}</h2>
-                            <Fav selected={vehicle.isFav} onClick={this.toogleFav} />
-                            <img className='img-list' src={vehicle.image} onClick={this.showDetail} />
+                            <Fav selected={vehicle.isFav} onClick={() => this.toogleFav(vehicle)} />
+                            <img className='img-list' src={vehicle.image} onClick={() => this.showDetail(vehicle.id)} />
                             <span>{vehicle.price} €</span>
                         </li>)}
                     </ul>

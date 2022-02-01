@@ -37,7 +37,7 @@ class Results extends Component {
         }
     }
 
-    toogleFav = () => {
+    toogleFav = vehicle => {
         try {
             toggleFavVehicle(sessionStorage.token, vehicle.id, error => {
                 if (error) return alert(error.message)
@@ -63,7 +63,7 @@ class Results extends Component {
         }
     }
 
-    showDetail = () => this.props.onItemClick(vehicle.id)
+    showDetail = id => this.props.onItemClick(id)
 
     render() {
         logger.debug('Results -> render')
@@ -73,8 +73,8 @@ class Results extends Component {
                 return <ul>
                     {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
                         <h2>{vehicle.name}</h2>
-                        <Fav selected={vehicle.isFav} onClick={this.toogleFav} />
-                        <img src={vehicle.thumbnail} onClick={this.showDetail} />
+                        <Fav selected={vehicle.isFav} onClick={() => this.toogleFav(vehicle)} />
+                        <img src={vehicle.thumbnail} onClick={() => this.showDetail(vehicle.id)} />
                         <span>{vehicle.price} €</span>
                     </li>)}
                 </ul>
