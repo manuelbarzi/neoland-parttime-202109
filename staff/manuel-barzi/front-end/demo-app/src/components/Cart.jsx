@@ -52,20 +52,20 @@ class Cart extends Component {
 
     addToCart = vehicle => {
         try {
-            addVehicleToCart(sessionStorage.token, vehicle.id, error => {
-                if (error) return alert(error.message)
+            addVehicleToCart(sessionStorage.token, vehicle.id)
+                .then(() => {
+                    const update = { ...vehicle, qty: vehicle.qty + 1 }
 
-                const update = { ...vehicle, qty: vehicle.qty + 1 }
+                    const vehicles = this.state.vehicles.map(_vehicle => {
+                        if (_vehicle.id === vehicle.id)
+                            return update
 
-                const vehicles = this.state.vehicles.map(_vehicle => {
-                    if (_vehicle.id === vehicle.id)
-                        return update
+                        return _vehicle
+                    })
 
-                    return _vehicle
+                    this.setState({ vehicles })
                 })
-
-                this.setState({ vehicles })
-            })
+                .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
@@ -73,25 +73,25 @@ class Cart extends Component {
 
     removeFromCart = vehicle => {
         try {
-            removeVehicleFromCart(sessionStorage.token, vehicle.id, error => {
-                if (error) return alert(error.message)
+            removeVehicleFromCart(sessionStorage.token, vehicle.id)
+                .then(() => {
+                    const update = { ...vehicle, qty: vehicle.qty - 1 }
 
-                const update = { ...vehicle, qty: vehicle.qty - 1 }
+                    let vehicles
 
-                let vehicles
+                    if (update.qty > 0)
+                        vehicles = this.state.vehicles.map(_vehicle => {
+                            if (_vehicle.id === vehicle.id)
+                                return update
 
-                if (update.qty > 0)
-                    vehicles = this.state.vehicles.map(_vehicle => {
-                        if (_vehicle.id === vehicle.id)
-                            return update
+                            return _vehicle
+                        })
+                    else
+                        vehicles = this.state.vehicles.filter(_vehicle => _vehicle.id !== vehicle.id)
 
-                        return _vehicle
-                    })
-                else
-                    vehicles = this.state.vehicles.filter(_vehicle => _vehicle.id !== vehicle.id)
-
-                this.setState({ vehicles })
-            })
+                    this.setState({ vehicles })
+                })
+                .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }

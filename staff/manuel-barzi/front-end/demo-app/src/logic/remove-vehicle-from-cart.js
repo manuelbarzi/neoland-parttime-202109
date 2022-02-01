@@ -1,78 +1,79 @@
 import { validateToken, validateId, validateCallback } from './helpers/validators'
 
-function removeVehicleFromCart(token, id, callback) {
+function removeVehicleFromCart(token, id) {
     validateToken(token)
     validateId(id)
-    validateCallback(callback)
 
-    let xhr = new XMLHttpRequest
+    return new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest
 
-    xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/v2/users')
+        xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/v2/users')
 
-    xhr.addEventListener('load', () => {
-        const { status } = xhr
+        xhr.addEventListener('load', () => {
+            const { status } = xhr
 
-        if (status === 401) {
-            const { responseText: json } = xhr
+            if (status === 401) {
+                const { responseText: json } = xhr
 
-            const payload = JSON.parse(json)
+                const payload = JSON.parse(json)
 
-            const { error } = payload
+                const { error } = payload
 
-            callback(new Error(error))
-        } else if (status === 200) {
-            let { responseText: json } = xhr
+                reject(new Error(error))
+            } else if (status === 200) {
+                let { responseText: json } = xhr
 
-            let payload = JSON.parse(json)
+                let payload = JSON.parse(json)
 
-            let { cart = [] } = payload
+                let { cart = [] } = payload
 
-            let item = cart.find(item => item.id === id)
+                let item = cart.find(item => item.id === id)
 
-            if (item) {
-                item.qty--;
+                if (item) {
+                    item.qty--;
 
-                if (item.qty === 0) {
-                    cart = cart.filter(vehicle => vehicle.id !== id)
+                    if (item.qty === 0) {
+                        cart = cart.filter(vehicle => vehicle.id !== id)
+                    }
+                } else {
+                    return reject(new Error(`cannot remove vehicle with id ${id}, not present in cart`))
                 }
-            } else {
-                return callback(new Error(`cannot remove vehicle with id ${id}, not present in cart`))
+
+                xhr = new XMLHttpRequest
+
+                xhr.open('PATCH', 'https://b00tc4mp.herokuapp.com/api/v2/users')
+
+                xhr.addEventListener('load', () => {
+                    const { status } = xhr
+
+                    if (status === 400 || status === 401 || status === 409) {
+                        const { responseText: json } = xhr
+
+                        const payload = JSON.parse(json)
+
+                        const { error } = payload
+
+                        reject(new Error(error))
+                    } else if (status === 204) {
+                        resolve(null)
+                    }
+                })
+
+                xhr.setRequestHeader('Authorization', `Bearer ${token}`)
+                xhr.setRequestHeader('Content-type', 'application/json')
+
+                payload = { cart }
+
+                json = JSON.stringify(payload)
+
+                xhr.send(json)
             }
+        })
 
-            xhr = new XMLHttpRequest
+        xhr.setRequestHeader('Authorization', 'Bearer ' + token)
 
-            xhr.open('PATCH', 'https://b00tc4mp.herokuapp.com/api/v2/users')
-
-            xhr.addEventListener('load', () => {
-                const { status } = xhr
-
-                if (status === 400 || status === 401 || status === 409) {
-                    const { responseText: json } = xhr
-
-                    const payload = JSON.parse(json)
-
-                    const { error } = payload
-
-                    callback(new Error(error))
-                } else if (status === 204) {
-                    callback(null)
-                }
-            })
-
-            xhr.setRequestHeader('Authorization', `Bearer ${token}`)
-            xhr.setRequestHeader('Content-type', 'application/json')
-
-            payload = { cart }
-
-            json = JSON.stringify(payload)
-
-            xhr.send(json)
-        }
+        xhr.send()
     })
-
-    xhr.setRequestHeader('Authorization', 'Bearer ' + token)
-
-    xhr.send()
 }
 
 export default removeVehicleFromCart

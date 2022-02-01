@@ -3,7 +3,6 @@ import logger from '../logger'
 import retrieveFavVehicles from '../logic/retrieve-fav-vehicles'
 import toggleFavVehicle from '../logic/toggle-fav-vehicle'
 import Fav from './Fav'
-import Cart from './Cart'
 
 class Favs extends Component {
     constructor() {
@@ -18,11 +17,9 @@ class Favs extends Component {
         logger.debug('Favs -> component did mount')
 
         try {
-            retrieveFavVehicles(sessionStorage.token, (error, vehicles) => {
-                if (error) return alert(error.message)
-
-                this.setState({ vehicles })
-            })
+            retrieveFavVehicles(sessionStorage.token)
+                .then(vehicles => this.setState({ vehicles }))
+                .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }

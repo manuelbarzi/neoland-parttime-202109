@@ -50,11 +50,8 @@ class Detail extends Component {
 
     addToCart = () => {
         try {
-            addVehicleToCart(sessionStorage.token, this.state.vehicle.id, error => {
-                if (error) return alert(error.message)
-
-                // TODO provide feedback to user (ex: number of items in the upper side menu, where the cart icon)
-            })
+            addVehicleToCart(sessionStorage.token, this.state.vehicle.id)
+                .catch(error => alert(error.message))
         } catch(error) {
             alert(error.message)
         }
