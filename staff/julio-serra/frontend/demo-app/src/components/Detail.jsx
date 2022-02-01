@@ -47,12 +47,9 @@ class Detail extends Component {
 
     addToCart = () => { // arrow functions
         try {
-            addVehiclesToCart(sessionStorage.token, this.state.vehicle.id, error => {
-
-                if (error) return alert(error.message)
-                return alert('Vehiculo añadido')
-
-            })
+            addVehiclesToCart(sessionStorage.token, this.state.vehicle.id) 
+            .catch(error => alert(error.message))
+            
         } catch (error) {
             alert(error.message)
         }

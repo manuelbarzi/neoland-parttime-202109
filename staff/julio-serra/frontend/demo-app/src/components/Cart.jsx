@@ -1,14 +1,14 @@
-import { Component } from 'react'
-import retrieveVehiclesFromCart from '../logic/retrieve-vehicles-from-cart'
-import toggleFavVehicle from '../logic/toggle-fav-vehicle'
-import addVehiclesToCart from '../logic/add-vehicles-to-cart'
-import removeVehiclesFromCart from '../logic/remove-vehicles-from-cart'
-import Fav from './Fav'
+import { Component } from "react";
+import retrieveVehiclesFromCart from "../logic/retrieve-vehicles-from-cart";
+import toggleFavVehicle from "../logic/toggle-fav-vehicle";
+import addVehiclesToCart from "../logic/add-vehicles-to-cart";
+import removeVehiclesFromCart from "../logic/remove-vehicles-from-cart";
+import Fav from "./Fav";
 
 class Cart extends Component {
   constructor() {
-    super()
-    this.state = { vehicles: null }
+    super();
+    this.state = { vehicles: null };
   }
 
   componentDidMount() {
@@ -41,16 +41,18 @@ class Cart extends Component {
 
   addToCart = (vehicle) => {
     try {
-      addVehiclesToCart(sessionStorage.token, vehicle.id, (error) => {
-        if (error) return alert(error.message);
-        const update = { ...vehicle, qty: vehicle.qty + 1 }
+      addVehiclesToCart(sessionStorage.token, vehicle.id)
+        .catch((error) => alert(error.message))
 
-        const vehicles = this.state.vehicles.map((_vehicle) => {
-          if (_vehicle.id === vehicle.id) return update;
-          return _vehicle;
+        .then(() => {
+          const update = { ...vehicle, qty: vehicle.qty + 1 };
+
+          const vehicles = this.state.vehicles.map((_vehicle) => {
+            if (_vehicle.id === vehicle.id) return update;
+            return _vehicle;
+          });
+          this.setState({ vehicles });
         });
-        this.setState({ vehicles });
-      });
     } catch (error) {
       alert(error.message);
     }
@@ -104,7 +106,8 @@ class Cart extends Component {
 
                   <img
                     src={vehicle.image}
-                    onClick={() => this.props.clickItem(vehicle.id)} alt=""
+                    onClick={() => this.props.clickItem(vehicle.id)}
+                    alt=""
                   />
                   <span>
                     {vehicle.qty} x {vehicle.price} $
@@ -130,4 +133,4 @@ class Cart extends Component {
   }
 }
 
-export default Cart
+export default Cart;
