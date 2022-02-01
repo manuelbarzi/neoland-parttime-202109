@@ -20,8 +20,8 @@ function retrieveFavVehicles(token) {
                 return res.json()
             }
         })
-        .then(payload => {
-            const { favs = [] } = payload
+        .then(user => {
+            const { favs = [] } = user
 
             if (favs.length) {
                 const fetches = favs.map(id =>
@@ -46,7 +46,9 @@ function retrieveFavVehicles(token) {
                 )
 
                 return Promise.all(fetches)
-            }
+            } 
+            
+            return []
         })
 }
 
