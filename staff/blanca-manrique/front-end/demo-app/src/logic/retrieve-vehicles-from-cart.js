@@ -1,77 +1,52 @@
-import {validateToken, validateCallback} from './helpers/validators'
+import { validateToken } from './helpers/validators'
 
-function retrieveVehiclesFromCart(token, callback) {
+function retrieveVehiclesFromCart(token) {
     validateToken(token)
-    validateCallback(callback)
 
-    const xhr = new XMLHttpRequest
+    return fetch('https://b00tc4mp.herokuapp.com/api/v2/users', {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+        .then(response => {
+            const { status } = response
 
-    xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/v2/users')
-
-    xhr.onload = () => {
-        const { status } = xhr
-
-        if (status === 401) {
-            const res = JSON.parse(xhr.responseText)
-            const error = res.error
-            callback(new Error(error))
-
-        } else if (status >= 400 && status < 500) {
-            callback(new Error('client error'))
-        } else if (status >= 500) {
-            callback(new Error('server error'))
-        } else if (status === 200) {
-            const { responseText: json } = xhr
-            const payload = JSON.parse(json)
-
-            const { cart = [], favs = [] } = payload
-
+            if (status === 200)
+                return response.json()
+            else if (status >= 400 && status < 500)
+                return response.json().then(payload => { throw new Error(payload.error) })
+            else if (status >= 500)
+                throw new Error('server error')
+        })
+        .then(user => {
+            const { cart = [], favs = [] } = user
             if (cart.length) {
-                let count = 0
-                const vehicles = []
+                // const { id, qty } = item
+                const fetches = cart.map(({id,qty}) => //DESTRUCTURAMOS {id, qty}
+                    fetch(`https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles/${id}`)
+                        .then(response => {
+                            const { status } = response
 
-                cart.forEach((item, index) => {
-                    const { id, qty } = item
+                            if (status >= 400 && status < 500) {
+                                return response.json().then(payload => { throw new Error(payload.error) })
+                            } else if (status >= 500) {
+                                throw new Error('server error')
+                            } else if (status === 200) {
+                                return response.json()
+                                    .then(vehicle => {
+                                        vehicle.qty = qty
+                                        vehicle.isFav = favs.includes(id)
 
-                    const xhr = new XMLHttpRequest
-
-                    xhr.open('GET', `https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles/${id}`)
-                    xhr.addEventListener('load', () => {
-                        const { status } = xhr
-
-                        count++
-
-                        if (status >= 400 && status < 500) {
-                            callback(new Error('client error'))
-                        } else if (status >= 500) {
-                            callback(new Error('server error'))
-                        } else if (status === 200) {
-                            const { responseText: json } = xhr
-
-                            const vehicle = JSON.parse(json)
-
-                            vehicle.qty = qty
-                            vehicle.isFav = favs.includes(id)
-
-                            vehicles[index] = vehicle
-
-                            if (count === cart.length)
-                                callback(null, vehicles)
-                        }
-                    })
-
-                    xhr.send()
-                })
-            } else {
-                callback(null, [])
+                                        // console.log(vehicle)
+                                        return vehicle
+                                    })
+                            }
+                        })
+                )
+                return Promise.all(fetches)
             }
 
-        }
-    }
-
-    xhr.setRequestHeader('Authorization', 'Bearer ' + token)
-
-    xhr.send()
+            return []
+        })
 }
-
 export default retrieveVehiclesFromCart

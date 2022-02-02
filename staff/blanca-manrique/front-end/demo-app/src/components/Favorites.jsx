@@ -11,14 +11,12 @@ function Favorites({ onReturnClick, onItemClick }) {
     useEffect(() => {
         logger.debug(' Favorites -> did mount')
         try {
-            retrieveFavVehicles(sessionStorage.token, (error, vehicles) => {
-                if (error) return alert(error.message)
+            retrieveFavVehicles(sessionStorage.token)
+                .then(vehicles => setVehicles( vehicles ))
+                .catch(error => alert(error.message))
 
-                setVehicles(vehicles)
-
-            })
         } catch (error) {
-            return alert(error.message)
+            alert(error.message)
         }
     }, [])
 
@@ -28,14 +26,13 @@ function Favorites({ onReturnClick, onItemClick }) {
 
     const toggle = id => {
         try {
-            toggleFavVehicle(id, sessionStorage.token, error => {
-                if (error) return alert(error.message)
+            toggleFavVehicle(id, sessionStorage.token)
+                .then(() => {
+                    let _vehicles = vehicles.filter(_vehicle => _vehicle.id !== id)
 
-                const _vehicles = vehicles.filter(_vehicle => _vehicle.id !== id)
-
-                setVehicles(_vehicles)
-            
-            })
+                    setVehicles(_vehicles)
+                })
+                .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
@@ -66,6 +63,7 @@ function Favorites({ onReturnClick, onItemClick }) {
             return <p>You do not currently have any favorite vehicle</p>
     } else
         return null
+
 }
 export default Favorites
 

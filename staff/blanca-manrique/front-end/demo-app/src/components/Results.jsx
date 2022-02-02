@@ -11,11 +11,10 @@ function Results({ query, onItemClick }) {
         logger.debug('Results -> component did mount & component will recive props')
 
         try {
-            searchVehicles(query, sessionStorage.token, (error, vehicles) => {
-                if (error) return alert(error.message)
-
-                setVehicles(vehicles)
-            })
+            searchVehicles(query, sessionStorage.token)
+                //.then(setVehicles)
+                .then(vehicles => setVehicles(vehicles))
+                .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
@@ -27,25 +26,25 @@ function Results({ query, onItemClick }) {
 
     const toggle = vehicle => {
         try {
-            toggleFavVehicle(vehicle.id, sessionStorage.token, error => {
-                if (error) return alert(error.message)
+            toggleFavVehicle(vehicle.id, sessionStorage.token)
+                .then( () => {
+                    const update = {}
 
-                const update = {}
+                    for (const key in vehicle)
+                        update[key] = vehicle[key]
 
-                for (const key in vehicle)
-                    update[key] = vehicle[key]
+                    update.isFav = !update.isFav
 
-                update.isFav = !update.isFav
+                    const _vehicles = vehicles.map(_vehicle => {
+                        if (_vehicle.id === vehicle.id)
+                            return update
 
-                const _vehicles = vehicles.map(_vehicle => {
-                    if (_vehicle.id === vehicle.id)
-                        return update
+                        return _vehicle
+                    })
 
-                    return _vehicle
+                    setVehicles(_vehicles)
                 })
-
-                setVehicles(_vehicles)
-            })
+                .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }

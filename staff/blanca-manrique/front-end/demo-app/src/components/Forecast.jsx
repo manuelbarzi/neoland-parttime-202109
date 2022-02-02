@@ -10,11 +10,9 @@ function Forecast({apiKey, city}) {
         logger.debug('Forecast ->  did mount')
 
         try {
-            retrieveForecast(apiKey, city, (error, values) => {
-                if (error) return alert(error.message)
-
-                setValues(values)
-            })
+            retrieveForecast(apiKey,city)
+            .then((values) => setValues(values))
+            .catch(error => alert(error.message))
 
         } catch (error) {
             alert(error.message)

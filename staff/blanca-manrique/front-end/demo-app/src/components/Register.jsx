@@ -15,14 +15,9 @@ function Register({ onRegisterIn, onLoginClick }) {
         const country = event.target.country.value
 
         try {
-            registerUser(name, username, password, city, country, (error) => {
-                if (error) {
-                    setFeedback(error.message)
-
-                    return
-                }
-                onRegisterIn()
-            })
+            registerUser(name, username, password, city, country)
+                .then(() => onRegisterIn())
+                .catch(error => setFeedback(error.message))
 
         } catch (error) {
             setFeedback(error.message)

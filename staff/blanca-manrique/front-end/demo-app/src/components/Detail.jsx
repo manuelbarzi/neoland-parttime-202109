@@ -12,11 +12,9 @@ function Detail({ itemId, onReturnClick }) {
         logger.debug('Detail-> component did mount')
 
         try {
-            retrieveVehicle(itemId, sessionStorage.token, (error, vehicle) => {
-                if (error) return alert(error.message)
-
-                setVehicle(vehicle)
-            })
+            retrieveVehicle(itemId, sessionStorage.token)
+                .then(vehicle => setVehicle(vehicle))
+                .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
@@ -26,32 +24,30 @@ function Detail({ itemId, onReturnClick }) {
         onReturnClick()
     }
 
-    const toggle = (vehicle) => {
+    const toggle = vehicle => {
         try {
-            toggleFavVehicle(vehicle.id, sessionStorage.token, error => {
-                if (error) return alert(error.message)
+            toggleFavVehicle(vehicle.id, sessionStorage.token)
+                .then(() => {
+                    const update = {}
 
-                const update = {}
+                    for (const key in vehicle)
+                        update[key] = vehicle[key]
 
-                for (const key in vehicle)
-                    update[key] = vehicle[key]
+                    update.isFav = !update.isFav
 
-                update.isFav = !update.isFav
-
-                setVehicle(vehicle)
-
-            })
+                    setVehicle(update)
+                })
+                .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
     }
 
-    const add = (vehicle) => {
+    const add = () => {
         try {
-            addToCart(vehicle.id, sessionStorage.token, error => {
-                if (error) return alert(error.message)
-                //TODO feedback para que el usuario se entere de que el coche se ha añadido al carrito
-            })
+            addToCart(vehicle.id, sessionStorage.token)
+            .catch(error => alert(error.message))
+            //TODO feedback para que el usuario se entere de que el coche se ha añadido al carrito
         } catch (error) {
             return alert(error.message)
         }
@@ -63,10 +59,10 @@ function Detail({ itemId, onReturnClick }) {
         return <div>
             <button onClick={goBack}>Return to results</button>
             <h2>{vehicle.name}</h2>
-            <Fav selected={vehicle.isFav} onClick={()=>toggle(vehicle)} />
-            <button onClick={()=>add(vehicle)}>Add to Cart</button>
+            <Fav selected={vehicle.isFav} onClick={() => toggle(vehicle)} />
+            <button onClick={() => add(vehicle)}>Add to Cart</button>
             <img src={vehicle.image} />
-            <p>{vehicle.price}</p>
+            <p>{vehicle.price} $</p>
             <p>{vehicle.color}</p>
             <p>{vehicle.style}</p>
             <p>{vehicle.year}</p>

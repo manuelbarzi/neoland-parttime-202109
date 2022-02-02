@@ -21,19 +21,17 @@ function Home({ token, onLoggedOut }) {
         logger.debug('Home -> did mount')
 
         try {
-            retrieveUser(token, (error, user) => {
-                if (error) {
+            retrieveUser(token)
+                .then(user => {
+                    const { name } = user
+
+                    setName(name)
+                })
+                .catch(error =>{
                     alert(error.message)
                     delete sessionStorage.token
                     onLoggedOut()
-
-                    return
-                }
-                const { name, city } = user
-
-                setName(name)
-                setCity(city)
-            })
+                })
         } catch (error) {
             alert(error.message)
             delete sessionStorage.token
@@ -75,7 +73,7 @@ function Home({ token, onLoggedOut }) {
         return <div className='home'>
             <h1 className='home__title'>Hello, {name} !</h1>
 
-            {city && <Forecast apiKey={apiKey} city={city} />}
+            <Forecast apiKey={apiKey} city={city} />
 
             <div className='home__nav'>
                 <button className='btn' onClick={logout}>Logout</button>

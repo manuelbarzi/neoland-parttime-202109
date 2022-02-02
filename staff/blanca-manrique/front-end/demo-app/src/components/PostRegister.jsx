@@ -1,16 +1,16 @@
 import logger from '../logger'
 
-function PostRegister(onLoginClick) {
+function PostRegister({onLoginClick}) {
     logger.debug('PostRegister -> render')
 
-    const goToLogin= event => {
+    const clickLogin= event => {
         event.preventDefault()
         onLoginClick()
     }
     
     return <div>
         <h2>User successfully register</h2>
-        <button onClick={goToLogin}>Login</button>
+        <button onClick={clickLogin}>Login</button>
     </div>
 } 
 

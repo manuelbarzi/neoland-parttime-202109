@@ -1,6 +1,6 @@
-import {valideteUsername, validatePassword, validateCallback} from './helpers/validators'
+import {valideteUsername, validatePassword} from './helpers/validators'
 
-function registerUser(name, username, password, city, country, callback) {
+function registerUser(name, username, password, city, country) {
    if (typeof name !== 'string') throw new TypeError('name is not string')
    if (!name.trim()) throw new Error('name is empty or blank')
 
@@ -13,30 +13,23 @@ function registerUser(name, username, password, city, country, callback) {
 
    valideteUsername(username)
    validatePassword(password)
-   validateCallback(callback)
 
-   var xhr = new XMLHttpRequest
-
-   xhr.open('POST', 'https://b00tc4mp.herokuapp.com/api/v2/users')
-
-   xhr.addEventListener('load', function () {
-      if (this.status === 401 || this.status === 409) {
-         var res = JSON.parse(this.responseText)
-         var error = res.error
-         callback(new Error(error))
-
-      } else if (this.status === 201) {
-         callback(null)
-      }
+   return fetch('https://b00tc4mp.herokuapp.com/api/v2/users',{
+      method:'POST',
+      headers:{
+         'Content-type': 'application/json'
+      },
+      body: JSON.stringify({name, username, password, city, country})
    })
+      .then(response =>{
+         const {status} = response
 
-   xhr.setRequestHeader('Content-type', 'application/json')
-
-   var data = { name: name, username: username, password: password, city: city, country: country }
-
-   var json = JSON.stringify(data)
-
-   xhr.send(json)
+         if(status === 200)
+            return // no hay nada que devolver
+         else if(status >= 400 && status < 500)
+            return response.json().then(payload =>{throw new Error(payload.error)})
+         else if(status >=500)
+            throw new Error ('server error')
+      })
 }
-
 export default registerUser

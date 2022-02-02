@@ -12,21 +12,16 @@ function Login({onLoggedIn, onRegisterClick}) {
         const password = event.target.password.value
 
         try {
-            authenticateUser(username, password, (error, token) => {
-                if (error) {
-                    setFeedback(error.message)
+            authenticateUser(username, password)
+                .then(token => {
+                    sessionStorage.token = token
 
-                    return
-                }
-                sessionStorage.token = token
-
-                onLoggedIn(token)
-            })
-
+                    onLoggedIn(token)
+                })
+                .catch (error => setFeedback(error.message))
         } catch (error) {
             setFeedback(error.message)
         }
-
     }
 
     const goToRegister = event => {

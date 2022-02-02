@@ -13,14 +13,11 @@ function Cart({ onReturnClick, onItemClick }) {
     useEffect(() => {
         logger.debug(' Cart -> did mount')
         try {
-            retrieveVehiclesFromCart(sessionStorage.token, (error, vehicles) => {
-                if (error) return alert(error.message)
-
-                setVehicles(vehicles)
-            })
-
+            retrieveVehiclesFromCart(sessionStorage.token)
+            .then(vehicles => setVehicles(vehicles))
+            .catch(error => alert(error.message))
         } catch (error) {
-            return alert(error.message)
+            alert(error.message)
         }
     }, [])
 
@@ -30,20 +27,20 @@ function Cart({ onReturnClick, onItemClick }) {
 
     const add = vehicle => {
         try {
-            addToCart(vehicle.id, sessionStorage.token, error => {
-                if (error) return alert(error.message)
+            addToCart(vehicle.id, sessionStorage.token)
+                .then(() => {
+                    const update = { ...vehicle, qty: vehicle.qty + 1 }
 
-                const update = { ...vehicle, qty: vehicle.qty + 1 }
+                    let _vehicles = vehicles.map(_vehicle => {
+                        if (_vehicle.id === vehicle.id)
+                            return update
 
-                let _vehicles = vehicles.map(_vehicle => {
-                    if (_vehicle.id === vehicle.id)
-                        return update
+                        return _vehicle
+                    })
 
-                    return _vehicle
+                    setVehicles(_vehicles)
                 })
-
-                setVehicles(_vehicles)
-            })
+                .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
@@ -51,25 +48,25 @@ function Cart({ onReturnClick, onItemClick }) {
 
     const remove = vehicle => {
         try {
-            removeFromCart(vehicle.id, sessionStorage.token, error => {
-                if (error) return alert(error.message)
+            removeFromCart(vehicle.id, sessionStorage.token)
+                .then(() => {
+                    const update = { ...vehicle, qty: vehicle.qty - 1 }
 
-                const update = { ...vehicle, qty: vehicle.qty - 1 }
+                    let _vehicles
 
-                let _vehicles
+                    if (update.qty > 0)
+                        _vehicles = vehicles.map(_vehicle => {
+                            if (_vehicle.id === vehicle.id)
+                                return update
 
-                if (update.qty > 0)
-                    _vehicles = vehicles.map(_vehicle => {
-                        if (_vehicle.id === vehicle.id)
-                            return update
+                            return _vehicle
+                        })
+                    else
+                        _vehicles = vehicles.filter(_vehicle => _vehicle.id !== vehicle.id)
 
-                        return _vehicle
-                    })
-                else
-                    _vehicles = vehicles.filter(_vehicle => _vehicle.id !== vehicle.id)
-
-                setVehicles(_vehicles)
-            })
+                    setVehicles(_vehicles)
+                })
+                .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
@@ -77,20 +74,20 @@ function Cart({ onReturnClick, onItemClick }) {
 
     const toggle = vehicle => {
         try {
-            toggleFavVehicle(vehicle.id, sessionStorage.token, error => {
-                if (error) return alert(error.message)
+            toggleFavVehicle(vehicle.id, sessionStorage.token)
+                .then(() => {
+                    const update = { ...vehicle, isFav: !vehicle.isFav }
 
-                const update = { ...vehicle, isFav: !vehicle.isFav }
+                    const _vehicles = vehicles.map(_vehicle => {
+                        if (_vehicle.id === vehicle.id)
+                            return update
 
-                const _vehicles = vehicles.map(_vehicle => {
-                    if (_vehicle.id === vehicle.id)
-                        return update
+                        return _vehicle
+                    })
 
-                    return _vehicle
+                    setVehicles(_vehicles)
                 })
-
-                setVehicles(_vehicles)
-            })
+                .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
@@ -100,6 +97,8 @@ function Cart({ onReturnClick, onItemClick }) {
         onItemClick(id)
     }
 
+    logger.debug('Cart -> render')
+    
     if (vehicles) {
         if (vehicles.length)
             return <div>
@@ -111,7 +110,7 @@ function Cart({ onReturnClick, onItemClick }) {
                         <button onClick={() => add(vehicle)}>Add to cart</button>
                         <button onClick={() => remove(vehicle)}>Remove from cart</button>
                         <Fav selected={vehicle.isFav} onClick={() => toggle(vehicle)} />
-                        <img src={vehicle.image} onClick={() => this.goToItem(vehicle.id)} />
+                        <img src={vehicle.image} onClick={() => goToItem(vehicle.id)} />
                         <span>{vehicle.qty} x {vehicle.price} $ = </span> <span>{vehicle.qty * vehicle.price} $</span>
                     </li>)}
                 </ul>
