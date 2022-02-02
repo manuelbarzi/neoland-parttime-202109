@@ -50,7 +50,6 @@ function App() {
 
     return <Routes>
         <Route path="*" element={token? <Home token={token} onLoggedOut={logout} /> : <Navigate to="login" />} />
-        {/* <Route path="/search" element={token? <Home token={token} onLoggedOut={logout} /> : <Navigate to="login" />} /> */}
         <Route path="login" element={!token ? <Login onRegisterClick={goToRegister} onLoggedIn={goToHome} /> : <Navigate to="/" />} />
         <Route path="register" element={!token ? (view !== 'register-success' ? <Register onLoginClick={goToLogin} onRegistered={goToRegisterSuccess} /> : <RegisterSuccess onLoginClick={goToLogin} />) : <Navigate to="/" />} />
     </Routes>
