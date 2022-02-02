@@ -62,8 +62,8 @@ function Home({ token, onLoggedOut }) {
     }
 
     const showResults = query => {
-        //setView('results')
         setQuery(query)
+        //setView('results')
         navigate(`search?q=${query}`)
     }
 
