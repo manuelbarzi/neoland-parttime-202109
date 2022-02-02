@@ -7,16 +7,13 @@ import Results from './Results'
 import Detail from './Detail'
 import Favs from './Favs'
 import Cart from './Cart'
-import { Routes, Route, useNavigate, useSearchParams } from 'react-router-dom'
 
 function Home({ token, onLoggedOut }) {
     const [name, setName] = useState(null)
     const [city, setCity] = useState(null)
-    const [search, setSearch] = useSearchParams()
-    const [query, setQuery] = useState(search.get('q'))
+    const [query, setQuery] = useState(null)
     const [vehicleId, setVehicleId] = useState(null)
     const [view, setView] = useState(null)
-    const navigate = useNavigate()
 
     const apiKey = '73KP3CVXGQF33DT6QHF9JVD7B'
 
@@ -62,9 +59,8 @@ function Home({ token, onLoggedOut }) {
     }
 
     const showResults = query => {
-        //setView('results')
+        setView('results')
         setQuery(query)
-        navigate(`search?q=${query}`)
     }
 
     const showDetail = vehicleId => {
@@ -88,20 +84,16 @@ function Home({ token, onLoggedOut }) {
 
             <Search query={query} onQueryChange={showResults} />
 
-            {/* {view === 'results' && <Results
+            {view === 'results' && <Results
                 query={query}
                 onItemClick={showDetail}
-            />} */}
+            />}
 
             {view === 'detail' && <Detail itemId={vehicleId} />}
 
             {view === 'favs' && <Favs onItemClick={showDetail} />}
 
             {view === 'cart' && <Cart onItemClick={showDetail} />}
-
-            <Routes>
-                <Route path="search" element={<Results query={query} onItemClick={showDetail} />} />
-            </Routes>
         </div>
     else return null
 }
