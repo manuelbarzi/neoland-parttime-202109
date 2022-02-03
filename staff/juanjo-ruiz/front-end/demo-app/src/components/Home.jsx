@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react'
 import retrieveUser from '../logic/retrieve-user'
 import Forecast from './Forecast'
 import Search from './Search'
+import Results from './Results'
+import Detail from './Detail'
 
-function Home({ token, onLoggedOut }) {
+function Home({ token, onLoggedOut, onModifyClick, onClickedFav, onClickedCart }) {
     const [name, setName] = useState(null)
     const [query, setQuery] = useState(null)
     const [vehicleId, setVehicleId] = useState(null)
@@ -65,12 +67,12 @@ function Home({ token, onLoggedOut }) {
 
     const showResults = query => {
         setView('results')
-        setView(query)
+        setQuery(query)
     }
 
     const showDetail = vehicleId => {
         setView('detail')
-        setView(vehicleId)
+        setVehicleId(vehicleId)
     }
 
     if (name) {

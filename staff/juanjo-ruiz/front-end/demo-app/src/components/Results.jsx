@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 import searchVehicles from '../logic/search-vehicles'
 import toggleFavVehicle from '../logic/toggle-fav-vehicle'
+import Fav from './Fav'
 
 function Results({ query, onItemClick }) {
     const [vehicles, setVehicles] = useState(null)
 
     useEffect(() => {
-        logger.debug('Results -> component did mount')
 
         try {
             searchVehicles(sessionStorage.token, query, (error, vehicles) => {
@@ -38,7 +38,7 @@ function Results({ query, onItemClick }) {
                     return _vehicle
                 })
 
-                setVehicles(_vehicles)
+                setVehicles(vehicles)
             })
         } catch (error) {
             alert(error.message)
@@ -46,8 +46,6 @@ function Results({ query, onItemClick }) {
     }
 
     const showDetail = id => onItemClick(id)
-
-    logger.debug('Results -> render')
 
     if (vehicles) {
         if (vehicles.length)

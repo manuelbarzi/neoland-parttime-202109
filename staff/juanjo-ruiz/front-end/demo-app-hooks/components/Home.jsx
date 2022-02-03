@@ -1,6 +1,6 @@
 const { useState, useEffect } = React
 
-function Home({ token, onLoggedOut }) {
+function Home({ token, onLoggedOut, onModifyClick, onClickedFav, onClickedCart }) {
     const [name, setName] = useState(null)
     const [query, setQuery] = useState(null)
     const [vehicleId, setVehicleId] = useState(null)

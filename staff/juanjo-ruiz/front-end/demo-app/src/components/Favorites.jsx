@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import retrieveFavVehicles from '../logic/retrieve-fav-vehicles'
 import toggleFavVehicle from '../logic/toggle-fav-vehicle'
+import Fav from './Fav'
 
 function Favorites({ onClickedHome, onItemClick }) {
     const [vehicles, setVehicles] = useState(null)
@@ -16,7 +17,7 @@ function Favorites({ onClickedHome, onItemClick }) {
         } catch (error) {
             alert(error.message)
         }
-    }, [query])
+    }, [])
 
 
     const toogleFav = vehicle => {

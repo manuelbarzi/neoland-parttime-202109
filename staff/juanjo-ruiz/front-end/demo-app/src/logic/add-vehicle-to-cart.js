@@ -50,7 +50,9 @@ function addVehicleToCart(token, id, callback) {
                 const { status } = xhr
 
                 if (status === 401) {
-                    const res = JSON.parse(responseText)
+                    const { responseText: json } = xhr
+
+                    const res = JSON.parse(json)
 
                     const error = res.error
 

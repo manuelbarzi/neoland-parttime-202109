@@ -6,6 +6,7 @@ import Home from './Home'
 import ModifyData from './ModifyData'
 import Favorites from './Favorites'
 import ShoppingCart from './ShoppingCart'
+import '../index.css'
 
 function App() {
     const [view, setView] = useState(sessionStorage.token ? 'home' : 'login')

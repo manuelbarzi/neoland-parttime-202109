@@ -3,6 +3,7 @@ import retrieveVehiclesFormCart from '../logic/retrieve-vehicles-from-cart'
 import toggleFavVehicle from '../logic/toggle-fav-vehicle'
 import addVehicleToCart from '../logic/add-vehicle-to-cart'
 import removeVehicleFormCart from '../logic/remove-vehicle-from-cart'
+import Fav from './Fav'
 
 function ShoppingCart({ onClickedHome }) {
     const [vehicles, setVehicles] = useState(null)
@@ -103,13 +104,13 @@ function ShoppingCart({ onClickedHome }) {
                         <h2>{vehicle.name}</h2>
                         <Fav selected={vehicle.isFav} onClick={() => toggleFav(vehicle)} />
 
-                        <button onClick={() => addToCart(vehicle)}>Add to cart</button>
+                        <button onClick={() => addToCart(vehicle)}>Añade al carrito</button>
 
-                        <button onClick={() => removeFromCart(vehicle)}>Remove cart</button>
+                        <button onClick={() => removeFromCart(vehicle)}>Elimina del carrito</button>
 
-                        <img src={vehicle.image} onClick={() => clickItem(vehicle.id)} />
+                        <img src={vehicle.image} />
                         <span>{vehicle.qty} x {vehicle.price} $ </span>
-                        <hr></hr>
+                        <hr />
                         <span>Subtotal {vehicle.qty * vehicle.price} $</span>
                     </li>)}
                 </ul>

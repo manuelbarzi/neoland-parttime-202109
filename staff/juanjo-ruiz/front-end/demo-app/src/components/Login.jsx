@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import authenticateUser from '../logic/authenticate-user'
+import '../index.css'
 
 function Login({ onLoggedIn, onRegisterClick }) {
     const [feedback, setFeedback] = useState(null)
@@ -11,17 +12,14 @@ function Login({ onLoggedIn, onRegisterClick }) {
         const password = event.target.password.value
 
         try {
-            authenticateUser(username, password, (error, token) => {
-                if (error) {
-                    setFeedback(error.message)
+            authenticateUser(username, password)
+                .then(token => {
+                    sessionStorage.token = token
 
-                    return
-                }
+                    onLoggedIn(token)
+                })
+                .catch(error => setFeedback(error.message))
 
-                sessionStorage.token = token
-
-                onLoggedIn(token)
-            })
         } catch (error) {
             setFeedback(error.message)
         }

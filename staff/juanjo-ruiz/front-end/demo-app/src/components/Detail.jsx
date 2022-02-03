@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react'
+import addVehicleToCart from '../logic/add-vehicle-to-cart'
 import retrieveVehicle from '../logic/retrieve-vehicle'
 import toggleFavVehicle from '../logic/toggle-fav-vehicle'
+import Fav from './Fav'
+import Cart from './ShoppingCart'
 
 function Detail() {
     const [vehicle, setVehicle] = useState(null)
 
-    useEffect(() => {
+    useEffect((itemId) => {
         try {
             retrieveVehicle(sessionStorage.token, itemId, (error, vehicle) => {
                 if (error) return alert(error.message)
@@ -36,11 +39,23 @@ function Detail() {
         }
     }
 
+    const addToCart = vehicle => {
+        try {
+            addVehicleToCart(sessionStorage.token, vehicle.id, error => {
+                if (error) return alert(error.message)
+                    //añadir feedback en el que se muestre que se añadio al carrito
+            })
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
     if (vehicle)
         return <div>
             <h2>{vehicle.name}</h2>
             <Cart />
-            <Fav selected={vehicle.isFav} onClick={toggleFav} />
+            <Fav selected={vehicle.isFav} onClick={() => toggleFav(vehicle)} />
+            <button onClick={() => addToCart(vehicle)}>Añade al carrito</button>
             <img src={vehicle.image} />
             <p>{vehicle.description}</p>
             <p>{vehicle.price}</p>

@@ -1,4 +1,4 @@
-function Search(onQuery) {
+function Search({ onQuery }) {
 
     const submit = event => {
         event.preventDefault()
