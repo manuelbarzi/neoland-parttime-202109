@@ -1,0 +1,54 @@
+html, body, #root {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container--column {
+    flex-direction: column;
+}
+
+.container--max-height {
+    height: 100%;
+}
+
+.container--margin-xs {
+    margin: .1rem;
+}
+
+.container--margin-m {
+    margin: .5rem;
+}
+
+.container--padding-m {
+    padding: .5rem;
+}
+
+.button {
+    cursor: pointer;
+}
+
+.panel {
+    border-radius: .5rem;
+    background-color: lightgray;
+}
+
+.panel__input {
+    border-radius: .5rem;
+    border-style: none;
+    padding: .5rem;
+}
+
+.panel__button {
+    border-radius: .5rem;
+    border-style: none;
+    padding: .5rem;
+}
