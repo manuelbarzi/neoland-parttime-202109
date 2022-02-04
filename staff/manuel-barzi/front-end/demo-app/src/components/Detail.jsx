@@ -1,46 +1,42 @@
-import { Component } from 'react'
+import { useState, useEffect } from 'react'
 import logger from '../logger'
 import retrieveVehicle from '../logic/retrieve-vehicle'
 import toggleFavVehicle from '../logic/toggle-fav-vehicle'
 import addVehicleToCart from '../logic/add-vehicle-to-cart'
 import Fav from './Fav'
+import { useParams } from 'react-router-dom'
 
-class Detail extends Component {
-    constructor() {
-        logger.debug('Detail -> constructor')
+function Detail() {
+    const [vehicle, setVehicle] = useState(null)
+    const { vehicleId } = useParams()
 
-        super()
-
-        this.state = { vehicle: null }
-    }
-
-    componentDidMount() {
+    useEffect(() => {
         logger.debug('Detail -> component did mount')
 
         try {
-            retrieveVehicle(sessionStorage.token, this.props.itemId, (error, vehicle) => {
+            retrieveVehicle(sessionStorage.token, vehicleId, (error, vehicle) => {
                 if (error) return alert(error.message)
 
-                this.setState({ vehicle })
+                setVehicle(vehicle)
             })
         } catch (error) {
             alert(error.message)
         }
-    }
+    }, [])
 
-    toggleFav = () => {
+    const toggleFav = () => {
         try {
-            toggleFavVehicle(sessionStorage.token, this.state.vehicle.id, error => {
+            toggleFavVehicle(sessionStorage.token, vehicle.id, error => {
                 if (error) return alert(error.message)
 
                 const update = {}
 
-                for (const key in this.state.vehicle)
-                    update[key] = this.state.vehicle[key]
+                for (const key in vehicle)
+                    update[key] = vehicle[key]
 
                 update.isFav = !update.isFav
 
-                this.setState({ vehicle: update })
+                setVehicle(update)
 
             })
         } catch (error) {
@@ -48,34 +44,33 @@ class Detail extends Component {
         }
     }
 
-    addToCart = () => {
+    const addToCart = () => {
         try {
-            addVehicleToCart(sessionStorage.token, this.state.vehicle.id)
+            addVehicleToCart(sessionStorage.token, vehicle.id)
                 .catch(error => alert(error.message))
-        } catch(error) {
+        } catch (error) {
             alert(error.message)
         }
     }
 
-    render() {
-        logger.debug('Detail -> render')
 
-        if (this.state.vehicle)
-            return <div>
-                <h2>{this.state.vehicle.name}</h2>
-                <Fav selected={this.state.vehicle.isFav} onClick={this.toggleFav} />
-                <button onClick={this.addToCart}>Add to cart</button>
-                <img src={this.state.vehicle.image} />
-                <p>{this.state.vehicle.description}</p>
-                <p>{this.state.vehicle.price} $</p>
-                <p>{this.state.vehicle.color}</p>
-                <p>{this.state.vehicle.style}</p>
-                <p>{this.state.vehicle.year}</p>
-                <a href={this.state.vehicle.url}>original item</a>
-            </div>
-        else
-            return null
-    }
+    logger.debug('Detail -> render')
+
+    if (vehicle)
+        return <div>
+            <h2>{vehicle.name}</h2>
+            <Fav selected={vehicle.isFav} onClick={toggleFav} />
+            <button onClick={addToCart}>Add to cart</button>
+            <img src={vehicle.image} />
+            <p>{vehicle.description}</p>
+            <p>{vehicle.price} $</p>
+            <p>{vehicle.color}</p>
+            <p>{vehicle.style}</p>
+            <p>{vehicle.year}</p>
+            <a href={vehicle.url}>original item</a>
+        </div>
+    else
+        return null
 }
 
 export default Detail

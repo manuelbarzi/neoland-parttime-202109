@@ -14,7 +14,7 @@ function Home({ token, onLoggedOut }) {
     const [city, setCity] = useState(null)
     const [search, setSearch] = useSearchParams()
     const [query, setQuery] = useState(search.get('q'))
-    const [vehicleId, setVehicleId] = useState(null)
+    // const [vehicleId, setVehicleId] = useState(null)
     const [view, setView] = useState(null)
     const navigate = useNavigate()
 
@@ -68,8 +68,9 @@ function Home({ token, onLoggedOut }) {
     }
 
     const showDetail = vehicleId => {
-        setVehicleId(vehicleId)
-        setView('detail')
+        // setVehicleId(vehicleId)
+        //setView('detail')
+        navigate(`vehicles/${vehicleId}`)
     }
 
     logger.debug('Home -> render')
@@ -93,7 +94,7 @@ function Home({ token, onLoggedOut }) {
                 onItemClick={showDetail}
             />} */}
 
-            {view === 'detail' && <Detail itemId={vehicleId} />}
+            {/* {view === 'detail' && <Detail itemId={vehicleId} />} */}
 
             {view === 'favs' && <Favs onItemClick={showDetail} />}
 
@@ -101,6 +102,9 @@ function Home({ token, onLoggedOut }) {
 
             <Routes>
                 <Route path="search" element={<Results query={query} onItemClick={showDetail} />} />
+                <Route path="vehicles/:vehicleId" element={<Detail />} />
+                {/* <Route path="favs" ... /> */}
+                {/* <Route path="cart" ... /> */}
             </Routes>
         </div>
     else return null
