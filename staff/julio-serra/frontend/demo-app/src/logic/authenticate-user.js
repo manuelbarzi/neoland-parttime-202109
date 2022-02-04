@@ -8,6 +8,8 @@ function authenticateUser(username, password, callback) {
     validateCallback(callback)
 
 
+    
+
     var xhr = new XMLHttpRequest
 
     xhr.open('POST', 'https://b00tc4mp.herokuapp.com/api/v2/users/auth')
