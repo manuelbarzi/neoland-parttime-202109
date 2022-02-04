@@ -13,16 +13,9 @@ function Register({ onRegistered, onLoginClick }) {
         const password = event.target.password.value
 
         try {
-            registerUser(name, city, username, password, error => {
-                if (error) {
-                    setFeedback(error.message)
-
-                    return
-                }
-
-                onRegistered()
-
-            })
+            registerUser(name, city, username, password)
+                .then(() => onRegistered())
+                .catch(error => setFeedback(error.message))
         } catch (error) {
             setFeedback(error.message)
         }

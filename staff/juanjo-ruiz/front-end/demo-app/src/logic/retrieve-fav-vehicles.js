@@ -1,68 +1,53 @@
-import { validateToken, validateCallback} from './helpers/validators'
+import { validateToken, validateCallback } from './helpers/validators'
+import searchVehicles from './search-vehicles'
 
 function retrieveFavVehicles(token, callback) {
     validateToken(token)
     validateCallback(callback)
 
-    const xhr = new XMLHttpRequest
+    return fetch('https://b00tc4mp.herokuapp.com/api/v2/users', {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
 
-    xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/v2/users')
+        .then(response => {
+            const { status } = response
 
-    xhr.onload = function () {
-        if (this.status === 401) {
-            const res = JSON.parse(this.responseText)
+            if (status === 200)
+                return response.json()
+            else if (status >= 400 && status < 500)
+                return response.json().then(payload => { throw new Error(payload.error) })
+            else if (status > 500)
+                throw new Error('server error')
 
-            const error = res.error
+        })
 
-            callback(new Error(error))
-        } else if (this.status >= 400 && this.status < 500) {
-            callback(new Error('client error'))
-        } else if (this.status >= 500) {
-            callback(new Error('server error'))
-        } else if (this.status === 200) {
-            const user = JSON.parse(this.responseText)
-
+        .then(user => {
             const { favs = [] } = user
 
             if (favs.length) {
-                let count = 0
-                const vehicles = []
-
-                favs.forEach((id, index) => {
-                    const xhr = new XMLHttpRequest
-
-                    xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles/' + id)
-
-                    xhr.onload = function () {
-                        count++
-
-                        if (this.status >= 400 && this.status < 500) {
-                            callback(new Error('client error'))
-                        } else if (this.status >= 500) {
-                            callback(new Error('server error'))
-                        } else if (this.status === 200) {
-                            const vehicle = JSON.parse(this.responseText)
-
+                const fetches = favs.map(id =>
+                    fetch(`https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles/${id}`)
+                        .then(response => {
+                            const { status } = response
+                            if (status === 200)
+                                return response.json()
+                            else if (status >= 400 && status < 500)
+                                return response.json().then(payload => { throw new Error(payload.error) })
+                            else if (status > 500)
+                                throw new Error('server error')
+                        })
+                        .then(vehicle => {
                             vehicle.isFav = true
 
-                            vehicles[index] = vehicle
-
-                            if (count === favs.length)
-                                callback(null, vehicles)
-                        }
-                    }
-                    xhr.send()
-                })
-            } else {
-                callback(null, [])
+                            return vehicle
+                        })
+                )
+                return Promise.all(fetches)
             }
-        }
-    }
-
-    xhr.setRequestHeader('Authorization', 'Bearer ' + token)
-
-    xhr.send()
-
+            return []
+        })
 }
 
 export default retrieveFavVehicles

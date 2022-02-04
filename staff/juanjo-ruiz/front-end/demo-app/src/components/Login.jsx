@@ -5,7 +5,7 @@ import '../index.css'
 function Login({ onLoggedIn, onRegisterClick }) {
     const [feedback, setFeedback] = useState(null)
 
-    const login = event => {
+    const submit = event => {
         event.preventDefault()
 
         const username = event.target.username.value
@@ -32,7 +32,7 @@ function Login({ onLoggedIn, onRegisterClick }) {
     }
 
     return <div className="container">
-        <form className="form form-container" onSubmit={login}>
+        <form className="form form-container" onSubmit={submit}>
             <h2 className="title title-form">Inicia Sesión</h2>
 
             <input className="input input-form" type="text" name="username" placeholder="usuario" />

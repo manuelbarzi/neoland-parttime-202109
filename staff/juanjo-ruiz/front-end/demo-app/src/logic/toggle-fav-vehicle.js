@@ -1,64 +1,52 @@
-import { validateToken, validateId, validateCallback} from './helpers/validators'
+import { validateToken, validateId } from './helpers/validators'
 
-function toggleFavVehicle(token, id, callback) {
+function toggleFavVehicle(token, id) {
     validateToken(token)
     validateId(id)
-    validateCallback(callback)
 
-    const xhr = new XMLHttpRequest
+    return fetch('https://b00tc4mp.herokuapp.com/api/v2/users', {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
 
-    xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/v2/users')
+        .then(response => {
+            const { status } = response
 
-    xhr.addEventListener('load', function () {
-        if (this.status === 401) {
-            const res = JSON.parse(this.responseText)
+            if (status === 200)
+                return response.json
+            else if (status >= 400 && status < 500)
+                return response.json().then(payload => { throw new Error(payload.error) })
+            else if (status >= 500)
+                return new Error('server error')
+        })
 
-            const error = res.error
-
-            callback(new Error(error))
-        } else if (this.status === 200) {
-            const user = JSON.parse(this.responseText)
-
-            const favs = user.favs || []
-
+        .then(user => {
+            const { favs = [] } = user
             const index = favs.indexOf(id)
-
             if (index < 0)
                 favs.push(id)
             else
                 favs.splice(index, 1)
 
-            const xhr = new XMLHttpRequest
-
-            xhr.open('PATCH', 'https://b00tc4mp.herokuapp.com/api/v2/users')
-
-
-            xhr.addEventListener('load', function () {
-                if (this.status === 400 || this.status === 401 || this.status === 409) {
-                    const res = JSON.parse(this.responseText)
-
-                    const error = res.error
-
-                    callback(new Error(error))
-                } else if (this.status === 204) {
-                    callback(null)
-                }
+            return fetch('https://b00tc4mp.herokuapp.com/api/v2/users', {
+                method: 'PATCH',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({ favs })
             })
 
-            xhr.setRequestHeader('Authorization', 'Bearer ' + token)
-            xhr.setRequestHeader('Content-type', 'application/json')
+                .then(response => {
+                    const { status } = response
 
-            const data = { favs: favs }
-
-            const json = JSON.stringify(data)
-
-            xhr.send(json)
-        }
-    })
-
-    xhr.setRequestHeader('Authorization', 'Bearer ' + token)
-
-    xhr.send()
+                    if (status === 204)
+                        return
+                    else if (status >= 400)
+                        return response.json().then(payload => { throw new Error(payload.error) })
+                })
+        })
 }
 
 export default toggleFavVehicle
