@@ -4,7 +4,10 @@ class App extends React.Component {
 
         super()
 
-        this.state = { view: 'login', token: null }
+        this.state = {
+            view: sessionStorage.token ? 'home' : 'login',
+            token: sessionStorage.token ? sessionStorage.token : null
+        }
     }
 
     componentWillMount() {
@@ -28,13 +31,13 @@ class App extends React.Component {
                 onLoggedIn={token => this.setState({ view: 'home', token })}
             />
         else if (this.state.view === 'register')
-            return <Register 
-                onLoginClick={() => this.setState({ view: 'login' })} 
+            return <Register
+                onLoginClick={() => this.setState({ view: 'login' })}
                 onRegistered={() => this.setState({ view: 'register-success' })}
             />
         else if (this.state.view === 'register-success')
-            return <RegisterSuccess onLoginClick={() => this.setState({ view: 'login' })}/>
+            return <RegisterSuccess onLoginClick={() => this.setState({ view: 'login' })} />
         else if (this.state.view === 'home')
-            return <Home token={this.state.token} />
+            return <Home token={this.state.token} onLoggedOut={() => this.setState({ view: 'login', token: null })} />
     }
 }

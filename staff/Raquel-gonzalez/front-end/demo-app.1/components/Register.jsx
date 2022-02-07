@@ -27,11 +27,13 @@ class Register extends React.Component {
                 event.preventDefault()
 
                 const name = event.target.name.value
+                const city = event.target.city.value
+                const country = event.target.country.value
                 const username = event.target.username.value
                 const password = event.target.password.value
 
                 try {
-                    registerUser(name, username, password, error => {
+                    registerUser(name, city, country, username, password, error => {
                         if (error) {
                             this.setState({ feedback: error.message })
 
@@ -45,9 +47,11 @@ class Register extends React.Component {
                 }
 
             }}>
-                <input type="text" name="name" placeholder="name" />
-                <input type="text" name="username" placeholder="username" />
-                <input type="password" name="password" placeholder="password" />
+                <input type="text" name="name" placeholder="name" required />
+                <input type="text" name="city" placeholder="city" required />
+                <input type="text" name="country" placeholder="country" required />
+                <input type="text" name="username" placeholder="username" required />
+                <input type="password" name="password" placeholder="password" required />
 
                 <button>Register</button>
 

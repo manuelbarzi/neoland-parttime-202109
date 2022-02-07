@@ -37,8 +37,6 @@ class Login extends React.Component {
                             return
                         }
 
-                        sessionStorage.token = token
-
                         this.props.onLoggedIn(token)
                     })
                 } catch (error) {

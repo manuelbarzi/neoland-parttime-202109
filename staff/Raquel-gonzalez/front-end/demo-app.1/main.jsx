@@ -1,3 +1,3 @@
 ReactDOM.render([
-    <App /> // new App
+    <App /> 
 ], document.getElementById('root'))

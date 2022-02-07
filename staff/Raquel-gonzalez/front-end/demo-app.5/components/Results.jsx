@@ -10,8 +10,10 @@ class Results extends React.Component {
     componentDidMount() {
         logger.debug('Results -> component did mount')
 
+        const query = this.props.query
+
         try {
-            searchVehicles(this.props.query, (error, vehicles) => {
+            searchVehicles(query, (error, vehicles) => {
                 if (error) return alert(error.message)
 
                 this.setState({ vehicles })
@@ -24,8 +26,10 @@ class Results extends React.Component {
     componentWillReceiveProps(props) {
         logger.debug('Results -> component will receive props')
 
+        const query = props.query
+
         try {
-            searchVehicles(props.query, (error, vehicles) => {
+            searchVehicles(query, (error, vehicles) => {
                 if (error) return alert(error.message)
 
                 this.setState({ vehicles })
@@ -43,7 +47,7 @@ class Results extends React.Component {
                 return <ul>
                     {this.state.vehicles.map(vehicle => <li key={vehicle.id}>
                         <h2>{vehicle.name}</h2>
-                        <img src={vehicle.thumbnail} onClick={() => this.props.onItemClick(vehicle.id) }/>
+                        <img src={vehicle.thumbnail} />
                         <span>{vehicle.price} $</span>
                     </li>)}
                 </ul>
