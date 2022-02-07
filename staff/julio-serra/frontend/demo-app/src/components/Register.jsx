@@ -29,11 +29,10 @@ class Register extends Component {
       this.setState({ feedback: error.message });
     }
 
-    goLogin = (event) => {
-      event.preventDefault();
-
-      this.props.onLoginClick();
-    };
+  };
+  goLogin = event => {
+    event.preventDefault();
+    this.props.onLoginClick();
   };
 
   render() {
@@ -47,7 +46,7 @@ class Register extends Component {
           {this.state.feedback ? <p>{this.state.feedback}</p> : null}
         </form>
 
-        <a href="" onClick={goLogin}>
+        <a href="" onClick={this.goLogin} >
           Login
         </a>
       </div>

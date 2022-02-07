@@ -9,18 +9,20 @@ function App() {
     const [token, setToken] = useState(sessionStorage.token ? sessionStorage.token : null)
 
 const onRegister = () => setView('register')
+
 const onLogin = token => {
     setToken(token)
     setView('home')
     }
-const onLoginClick = () => setView('login')
-
+    
+const goLogin = () => setView('login')
 
 
 const logOut = () => {
     setView('login')
     setToken(null)
 }
+
         if (view === 'login')
             return <Login
                 onRegisterClick={onRegister}
@@ -29,17 +31,17 @@ const logOut = () => {
 
         else if (view === 'register')
             return <Register
-                onLoginClick={onLoginClick}
+                onLoginClick={goLogin}
                 onRegistered={onRegister}
             />
 
         else if (view === 'PostRegister')
             return <PostRegister
-                onLoginClick={onLoginClick} />
+                onLoginClick={goLogin} />
 
         else if (view === 'home')
             return <Home token={token}
-                logOut={logOut}    
+            onLoggedOut={logOut}    
             />
 }
 
