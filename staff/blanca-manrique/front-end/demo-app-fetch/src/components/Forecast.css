@@ -1,0 +1,28 @@
+:root{
+    --blanco: #ffffff;
+    --oscuro: #212121;
+    --fondo: #ecf0f3;
+    --primario: #ffc107;
+    --secundario: #f58216d7;
+    --gris: #757575; 
+}
+
+/* Globales */
+html{
+    box-sizing: border-box;
+}
+*, *:before, *:after{
+    box-sizing: inherit;
+}
+body{
+    font-size: 20px;
+    font-family: 'Krub', sans-serif;
+}
+
+.forecast{
+    margin:30px;
+    text-align: center;
+}
+.forecast__list{
+    list-style: none;
+}

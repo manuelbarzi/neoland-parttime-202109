@@ -4,18 +4,15 @@ import retrieveVehicle from '../logic/retrieve-vehicles'
 import toggleFavVehicle from '../logic/toggle-fav-vehicle'
 import addToCart from '../logic/add-vehicle-to-cart'
 import Fav from './Fav'
-import {useNavigate, useParams} from 'react-router-dom'
 
-function Detail() {
+function Detail({ itemId, onReturnClick }) {
     const [vehicle, setVehicle] = useState(null)
-    const {vehicleId} = useParams()
-    const navigate = useNavigate()
 
     useEffect(() => {
         logger.debug('Detail-> component did mount')
 
         try {
-            retrieveVehicle(vehicleId, sessionStorage.token)
+            retrieveVehicle(itemId, sessionStorage.token)
                 .then(vehicle => setVehicle(vehicle))
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -24,7 +21,7 @@ function Detail() {
     }, [])
 
     const goBack = () => {
-        navigate('search') //TODO hay que mejorarlo
+        onReturnClick()
     }
 
     const toggle = vehicle => {
