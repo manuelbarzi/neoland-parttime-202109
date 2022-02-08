@@ -7,7 +7,7 @@
 
 .input {
     border-radius: 10rem;
-    border: 2px solid;
+    border: none;
     margin: 1rem;
     padding: 1rem;
 }
@@ -27,7 +27,7 @@
 
 .btn{
     border-radius: 10rem;
-    border: 2px solid;
+    border: none;
     margin: 1rem;
     padding: 1rem;
 }

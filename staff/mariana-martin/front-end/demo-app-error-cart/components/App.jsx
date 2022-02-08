@@ -51,7 +51,6 @@ class App extends React.Component {
                  onLoggedOut = {() => this.setState({view: 'login', token: null})}   //dispara el callback llamado onLoggedOut, cuando la llama en Home línea 76
                  onClicked={()=> this.setState({view:'changeuser' })}
                 
-                 onClickedCart={() => this.setState({view: 'shoppingcart'})}
            />
         
      
@@ -63,7 +62,11 @@ class App extends React.Component {
                  goBack={()=> this.setState({view: 'home'})}
            />
 
-          
+        //    else if (this.state.view === 'favsvehicles')
+        //    return <FavsVehicles
+        //         onClickedFavHome={()=> this.setState({view: 'home'})}
+        //    />
+
 
         //////agregue yo esto:
         else if (this.state.view === 'unregister')

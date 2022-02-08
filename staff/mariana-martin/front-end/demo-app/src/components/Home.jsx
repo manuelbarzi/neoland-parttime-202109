@@ -1,0 +1,113 @@
+import { useState, useEffect } from 'react'
+import logger from '../logger'
+import retrieveUser from '../logic/retrieve-user'
+import showChangeUser from '../logic/modify-user' //
+import Forecast from './Forecast'
+import Search from './Search'
+import Results from './Results'
+import Detail  from './Detail'
+import Favs from './Favs'
+import Cart from './Cart'
+
+
+
+function Home({ token, onLoggedOut }) {
+    const [name, setName] = useState(null)
+    const [city, setCity] = useState(null)
+    const [query, setQuery] = useState(null)
+    const [vehicleId, setVehicleId] = useState(null)
+    const [view, setView] = useState(null)
+
+    const apiKey = '73KP3CVXGQF33DT6QHF9JVD7B'
+
+    useEffect(() => {
+        logger.debug('Home -> did mount')
+
+        try {
+
+            retrieveUser(token) //llamo a la lógica, y no hay callback  solo en el then
+            .then(user => { //recibo el usuario y si todo va bien hago : extraigo el name y city del usuario
+                const { name, city } = user
+
+                setName(name)
+                setCity(city)
+            })
+            .catch(error => {
+                alert(error.message)
+
+                delete sessionStorage.token
+                onLoggedOut()
+            })
+           
+        } catch (error) {
+            alert(error.message)
+
+            delete sessionStorage.token
+
+            onLoggedOut()
+        }
+    }, [])
+
+    const showFavs = () => {
+        setView('favs')
+    }
+
+    const showCart = () => {
+        setView('cart')
+    }
+
+    const logout = () => {
+        delete sessionStorage.token
+
+        onLoggedOut()
+    }
+
+    const showResults = query => {
+        setView('results')
+        setQuery(query)
+    }
+
+    const showDetail = vehicleId => {
+        setVehicleId(vehicleId)
+        setView('detail')
+    }
+//////
+//     showChangeUser = event => {
+//     event.preventDefault()
+//     this.props.onClicked()
+// }
+
+
+    logger.debug('Home -> render')
+
+    if (name)
+        return <div>
+            <h1>Hello, {name}!</h1>
+
+            <button className="container__btn" onClick={showFavs}>Favs</button>
+
+            <button className="container__btn" onClick={showCart}>Cart</button>
+
+            <button className="container__btn" onClick={logout}>Logout</button>
+
+            <button className="container__btn" onClick={showChangeUser}>Change User</button>
+
+            {city && <Forecast apiKey={apiKey} city={city} />}
+
+            <Search query={query} onQueryChange={showResults} />
+
+            {view === 'results' && <Results
+                query={query}
+                onItemClick={showDetail}
+            />}
+
+            {view === 'detail' && <Detail itemId={vehicleId} />}
+
+            {view === 'favs' && <Favs onItemClick={showDetail} />}
+
+            {view === 'cart' && <Cart onItemClick={showDetail} />}
+        </div>
+    else return null
+}
+
+export default Home
