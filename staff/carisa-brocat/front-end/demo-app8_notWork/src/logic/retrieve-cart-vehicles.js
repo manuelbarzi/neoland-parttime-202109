@@ -3,7 +3,7 @@ import { validateToken } from './helpers/validators'
 function retrieveCartVehicles(token) {
     validateToken(token)
 
-    return new Promise((resolve, rejected) => {
+    new Promise((resolve, rejected) => {
 
         let xhr = new XMLHttpRequest
     

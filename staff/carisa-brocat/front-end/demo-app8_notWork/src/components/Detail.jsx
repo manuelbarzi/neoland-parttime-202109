@@ -52,8 +52,8 @@ function Detail({ itemId }) {
     const addToCart = () => {
         try {
             addCartVehicle(sessionStorage.token, vehicle.id)
-             .then(() => {return alert('Added to Cart')})
-            .catch(error => { return alert(error.message) })
+                .then(() => alert('Car Added successfully'))
+                .catch(error => { return alert(error.message) })
         } catch (error) {
             alert(error.message)
         }

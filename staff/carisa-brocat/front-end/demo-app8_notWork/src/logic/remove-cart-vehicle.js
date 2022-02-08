@@ -4,7 +4,7 @@ function removeCartVehicle(token, id) {
     validateToken(token)
     validateId(id)
 
-   return new Promise((resolve, reject) => {
+    new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest
 
         xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/v2/users')
