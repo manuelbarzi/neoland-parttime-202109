@@ -53,26 +53,7 @@ return <Routes>
         //     onLoggedOut={logOut}    
         //     />
 
-        if (view === 'login')
-            return <Login
-                onRegisterClick={onRegister}
-                onLoggedIn={onLogin}
-            />
 
-        else if (view === 'register')
-            return <Register
-                onLoginClick={goLogin}
-                onRegistered={onRegister}
-            />
-
-        else if (view === 'PostRegister')
-            return <PostRegister
-                onLoginClick={goLogin} />
-
-        else if (view === 'home')
-            return <Home token={token}
-            onLoggedOut={logOut}    
-            />
 }
 
 export default App
