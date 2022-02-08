@@ -29,7 +29,7 @@ const interval = setInterval(() => {
     console.log(car2.toString())
     console.log(car3.toString())
 
-    if (car1.position >= 100 || car2.position >= 100 || car3.position >= 100) {
+    if (car1.position === 100 || car2.position === 100 || car3.position === 100) {
         clearInterval(interval)
 
         showResult(car1, car2, car3)
@@ -38,8 +38,19 @@ const interval = setInterval(() => {
     }
 
     car1.move(randomInteger(0, 5))
+
+    if (car1.position > 100)
+        car1.position = 100
+
     car2.move(randomInteger(0, 5))
+
+    if (car2.position > 100)
+        car2.position = 100
+
     car3.move(randomInteger(0, 5))
+
+    if (car3.position > 100)
+        car3.position = 100
 }, 100)
 
 function showResult(car1, car2, car3) {
@@ -50,21 +61,22 @@ function showResult(car1, car2, car3) {
     writeFile(`race-${new Date().toISOString()}.txt`, `${car1.toString()}\n${car2.toString()}\n${car3.toString()}\n${result}`)
         .then(() => console.log('race saved'))
         .catch(console.error)
+    
 }
 
 function getResult(car1, car2, car3) {
-    if (car1.position === car2.position && car2.position === car3.position)
+    if (car1.position === 100 && car2.position === 100 && car3.position === 100)
         return `tie ${car1.icon} ${car2.icon} ${car3.icon}`
-    else if (car1.position === car2.position && car1.position >= 100)
+    else if (car1.position === 100 && car2.position === 100)
         return `tie ${car1.icon} ${car2.icon}`
-    else if (car1.position === car3.position && car1.position >= 100)
+    else if (car1.position === 100 && car3.position === 100)
         return `tie ${car1.icon} ${car3.icon}`
-    else if (car2.position === car3.position && car2.position >= 100)
+    else if (car2.position === 100 && car3.position === 100)
         return `tie ${car2.icon} ${car3.icon}`
-    else if (car1.position >= 100)
+    else if (car1.position === 100)
         return `winner ${car1.icon}`
-    else if (car2.position >= 100)
+    else if (car2.position === 100)
         return `winner ${car2.icon}`
-    else if (car3.position >= 100)
+    else if (car3.position === 100)
         return `winner ${car3.icon}`
 }
