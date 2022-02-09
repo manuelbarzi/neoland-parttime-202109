@@ -2,12 +2,11 @@ const fs = require('fs').promises
 
 const { readFile, readdir } = fs
 
-
 readdir('.')
     .then(files => {
         const txts = files.filter(file => file.endsWith('.txt'))
 
-        const reads = txts.map(txt => readFile(txt, 'uft8'))
+        const reads = txts.map(txt => readFile(txt, 'utf8'))
 
         return Promise.all(reads)
     })
