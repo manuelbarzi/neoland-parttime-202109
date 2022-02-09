@@ -62,11 +62,11 @@ function getResult(car1, car2, car3) {
         return `tie! ${car1.icon} ${car3.icon}`
     else if (car2.position === 100 && car3.position === 100)
         return `tie! ${car2.icon} ${car3.icon}`
-    else if (car1.position === 100)
+    else if (car1.position >= 100)
         return `winner ${car1.icon}`
-    else if (car2.position === 100)
+    else if (car2.position >= 100)
         return `winner ${car2.icon}`
-    else if (car3.position === 100)
+    else if (car3.position >= 100)
         return `winner ${car3.icon}`
 }
 
