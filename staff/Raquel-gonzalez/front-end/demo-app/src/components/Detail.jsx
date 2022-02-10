@@ -4,15 +4,18 @@ import retrieveVehicle from '../logic/retrieve-vehicles'
 import toggleFavVehicle from '../logic/toggle-fav-vehicle'
 import addToCart from '../logic/add-vehicle-to-cart'
 import Fav from './Fav'
+import {useNavigate, useParams} from 'react-router-dom'
 
-function Detail({ itemId, onReturnClick }) {
+function Detail() {
     const [vehicle, setVehicle] = useState(null)
+    const {vehicleId} = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
         logger.debug('Detail-> component did mount')
 
         try {
-            retrieveVehicle(itemId, sessionStorage.token)
+            retrieveVehicle(vehicleId, sessionStorage.token)
                 .then(vehicle => setVehicle(vehicle))
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -21,7 +24,7 @@ function Detail({ itemId, onReturnClick }) {
     }, [])
 
     const goBack = () => {
-        onReturnClick()
+        navigate('search') 
     }
 
     const toggle = vehicle => {
@@ -47,7 +50,7 @@ function Detail({ itemId, onReturnClick }) {
         try {
             addToCart(vehicle.id, sessionStorage.token)
             .catch(error => alert(error.message))
-            //TODO feedback para que el usuario se entere de que el coche se ha añadido al carrito
+            // feedback para que el usuario se entere de que el coche se ha añadido al carrito
         } catch (error) {
             return alert(error.message)
         }

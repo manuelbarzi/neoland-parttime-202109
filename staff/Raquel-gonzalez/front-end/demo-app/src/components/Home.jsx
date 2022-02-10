@@ -8,14 +8,17 @@ import Detail from './Detail'
 import Favorites from './Favorites'
 import Cart from './Cart'
 import './Home.css'
+import { Routes, Route, useNavigate, useSearchParams} from 'react-router-dom'
 
 function Home({ token, onLoggedOut }) {
     const [name, setName] = useState(null)
-    const [query, setQuery] = useState(null)
-    const [vehicleId, setVehicleId] = useState(null)
-    const [view, setView] = useState(null)
     const [city, setCity] = useState('Madrid')
     const apiKey = 'KT4VXZB23YF5HY2MZA328NVWT'
+    const [search, setSearch] = useSearchParams()
+    const [query, setQuery] = useState(search.get('q'))
+    // const [vehicleId, setVehicleId] = useState(null)
+    const [view, setView] = useState(null)
+    const navigate = useNavigate()
 
     useEffect(() => {
         logger.debug('Home -> did mount')
@@ -45,10 +48,10 @@ function Home({ token, onLoggedOut }) {
     }
 
     const goToFavs = () => {
-        setView('favorites')
+        navigate('favorites')
     }
     const goToCart = () => {
-        setView('cart')
+        navigate('cart')
     }
 
     const goToProfile = () => {
@@ -57,16 +60,16 @@ function Home({ token, onLoggedOut }) {
 
     const showResults = query => {
         setQuery(query)
-        setView('results')
+        navigate(`search?q=${query}`)
     }
 
     const showDetail = vehicleId => {
-        setVehicleId(vehicleId)
-        setView('detail')
+        navigate(`vehicles/${vehicleId}`)
     }
 
     const goBack = () => {
-        setView('results')
+        // setView('results')
+        navigate('search')
     }
 
     if (name)
@@ -88,25 +91,33 @@ function Home({ token, onLoggedOut }) {
 
             <Search query={query} onQueryChange={showResults} />
 
-            {view === 'results' && <Results
+            {/* {view === 'results' && <Results
                 query={query}
                 onItemClick={showDetail}
-            />}
+            />} */}
 
-            {view === 'detail' && <Detail
+            {/* {view === 'detail' && <Detail
                 itemId={vehicleId}
                 onReturnClick={goBack}
-            />}
+            />} */}
 
-            {view === 'favorites' && <Favorites
+            {/* {view === 'favorites' && <Favorites
                 onReturnClick={goBack}
                 onItemClick={showDetail}
-            />}
+            />} */}
 
-            {view === 'cart' && <Cart
+            {/* {view === 'cart' && <Cart
                 onReturnClick={goBack}
                 onItemClick={showDetail}
-            />}
+            />} */}
+
+            <Routes >
+                <Route path='search' element={<Results query={query} onItemClick={showDetail}/>}/>
+                <Route path='vehicles/:vehicleId' element={<Detail onReturnClick={goBack}/>}/>
+                <Route path='favorites' element={<Favorites onReturnClick={goBack} onItemClick={showDetail}/>}/>
+                <Route path='cart' element={<Cart onReturnClick={goBack} onItemClick={showDetail}/>} />
+            </Routes>
+
         </div>
     else return null
 }

@@ -1,55 +1,46 @@
-import { validateToken, validateId, validateCallback } from './helpers/validators'
+import {validateToken} from './helpers/validators'
 
-function retrieveVehicle(token, id, callback) {
+function retrieveVehicle(id, token) {
+
+    if (typeof id !== 'string') throw new TypeError('id is not string')
+    if (!id.trim()) throw new Error('id is empty or blank')
+
     validateToken(token)
-    validateId(id)
-    validateCallback(callback)
 
-    const xhr = new XMLHttpRequest
+    return fetch('https://b00tc4mp.herokuapp.com/api/v2/users', {
+        headers:{
+            Authorization: `Bearer ${token}`
+        }
+    })
+        .then(response =>{
+            const {status} = response
 
-    xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/v2/users')
+            if(status === 200)
+                return response.json()
+            else if(status >=400 && status < 500)
+                return response.json().then(payload => {throw new Error(payload.error)})
+            else if(status >= 500)
+                throw new Error ('server error')
+        })
+        .then(user =>{
+            const {favs} = user
 
-    xhr.onload = function () {
-        if (this.status === 401) {
-            const res = JSON.parse(this.responseText)
+            return fetch(`https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles/${id}`)
+            .then(response =>{
+                const {status} = response
 
-            const error = res.error
-
-            callback(new Error(error))
-        } else if (this.status >= 400 && this.status < 500) {
-            callback(new Error('client error'))
-        } else if (this.status >= 500) {
-            callback(new Error('server error'))
-        } else if (this.status === 200) {
-            const user = JSON.parse(this.responseText)
-
-            const { favs = [] } = user
-
-            const xhr = new XMLHttpRequest
-
-            xhr.open('GET', 'https://b00tc4mp.herokuapp.com/api/hotwheels/vehicles/' + id)
-
-            xhr.onload = function () {
-                if (this.status >= 400 && this.status < 500) {
-                    callback(new Error('client error'))
-                } else if (this.status >= 500) {
-                    callback(new Error('server error'))
-                } else if (this.status === 200) {
-                    const vehicle = JSON.parse(this.responseText)
-
+                if(status === 200)
+                    return response.json()
+                else if(status >=400 && status < 500)
+                    return response.json().then(payload => {throw new Error(payload.error)})
+                else if (status >=500)
+                    throw new Error ('server error')
+            })    
+            .then(vehicle => {
                     vehicle.isFav = favs.includes(vehicle.id)
 
-                    callback(null, vehicle)
-                }
-            }
-
-            xhr.send()
-        }
-    }
-
-    xhr.setRequestHeader('Authorization', 'Bearer ' + token)
-
-    xhr.send()
+                    return vehicle
+                })
+        })
 }
-
 export default retrieveVehicle
