@@ -1,0 +1,14 @@
+[
+    {
+        "id": "USER-1644522517130",
+        "name": "Pepito Grillo",
+        "email": "pepigri@mail.com",
+        "password": "123123123"
+    },
+    {
+        "id": "USER-1644604723834",
+        "name": "Manuel Barzi",
+        "email": "manuelbarzi@gmail.com",
+        "password": "123123123"
+    }
+]

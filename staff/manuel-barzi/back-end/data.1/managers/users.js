@@ -1,16 +1,19 @@
 const { readFile, writeFile } = require('fs').promises
 const path = require('path')
-const { validateUser, validateEmail } = require('./helpers/validators')
+const { validateUser, validateEmail } = require('../helpers/validators')
 
 function read() {
-    return readFile(path.join(__dirname, '../jsons/users.json'), 'utf8')
+    const file = path.join(__dirname, './users.json')
+
+    return readFile(file, 'utf8')
         .then(json => JSON.parse(json))
 }
 
 function write(users) {
+    const file = path.join(__dirname, './users.json')
     const json = JSON.stringify(users, null, 4)
 
-    return writeFile(path.join(__dirname, '../jsons/users.json'), json)
+    return writeFile(file, json)
 }
 
 function save(user) {
@@ -31,7 +34,9 @@ function findByEmail(email) {
         .then(users => users.find(user => user.email === email))
 }
 
-module.exports = {
+const users = {
     save,
     findByEmail
 }
+
+module.exports = users

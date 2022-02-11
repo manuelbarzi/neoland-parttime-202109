@@ -1,4 +1,4 @@
-const { User } = require('../../models')
+const { User } = require('../models')
 
 function validateUser(user) {
     if (user instanceof User === false) throw new TypeError('invalid user')
