@@ -1,9 +1,9 @@
 const { users } = require('../managers')
-const { validateUsername, validateEmail, validatePassword } = require('../managers/helpers/validators')
+const { validateName, validateEmail, validatePassword } = require('../managers/helpers/validators')
 const { User } = require('../models')
 
-function registerUser(username, email, password) {
-    validateUsername(username)
+function registerUser(name, email, password) {
+    validateName(name)
     validateEmail(email)
     validatePassword(password)
 

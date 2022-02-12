@@ -1,10 +1,10 @@
 const { readFile, writeFile } = require('fs').promises
 const path = require('path')
-const { validateUser, validateEmail } = require('./helpers/validators')
+const { validateName, validateEmail } = require('./helpers/validators')
 
 function read() {
-    return readFile(path.join(__dirname, '../json/users.json'), 'utf8')
-        .then(json = JSON.parse(json))
+    return readFile(path.join(__dirname, '../jsons/users.json'), 'utf8')
+        .then(json => JSON.parse(json))
 }
 
 function write(users) {
@@ -14,7 +14,7 @@ function write(users) {
 }
 
 function save(user) {
-    validateUser(user)
+    validateName(Name)
 
     return read()
         .then(users => {

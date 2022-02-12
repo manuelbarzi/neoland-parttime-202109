@@ -4,9 +4,9 @@ function validateEmail(email) {
     if (typeof email !== 'string') throw new TypeError('invalid email')
 }
 
-function validateUsername(username) {
-    if (typeof username !== 'string') throw new TypeError('username is not string')
-    if (!username.trim()) throw new Error('username is empty or blank')
+function validateName(name) {
+    if (typeof name !== 'string') throw new TypeError('name is not string')
+    if (!name.trim()) throw new Error('name is empty or blank')
 }
 
 function validatePassword(password) {
@@ -22,7 +22,7 @@ function validateId(id) {
 
 module.exports = {
     validateEmail,
-    validateUsername,
+    validateName,
     validatePassword,
     validateId
 }
