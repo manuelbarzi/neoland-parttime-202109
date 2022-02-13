@@ -1,6 +1,7 @@
 //versión que no limite al 100 los coches:
 //fs toolbox y promesas en vez de callback y temas asíncronos
-const fs = require('fs').promises   //fs: paquete NODE (caja de herramientas) y dentro hay una herramienta: writeFile
+
+const fs = require('fs').promises   // / fs: paquete NODE (caja de herramientas) y dentro hay una herramienta: writeFile
 const { writeFile } = fs
 
 class Car {
@@ -18,7 +19,7 @@ class Car {
     }
 }
 
-const randomInteger = (min, max) => min + Math.round((max - min) * Math.random())
+const randomInteger = (min, max) => min + Math.round((max - min) * Math.random()) 
 
 const car1 = new Car('🚗')
 const car2 = new Car('🚙')
