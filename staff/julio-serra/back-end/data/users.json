@@ -1,0 +1,14 @@
+[
+    {
+        "id": "USER-20220211163700000",
+        "name": "Jules",
+        "email": "jules@jules.com",
+        "password": "123123123"
+    },
+    {
+        "id": "USER-1644869020574",
+        "name": "DJules",
+        "email": "jules2@jules.com",
+        "password": "123123123"
+    }
+]
