@@ -9,7 +9,7 @@ readdir('.')
         return Promise.all(reads)
     })
     //reduces((accum, race), 0): parámetro 1 --> función reductora, parámetro 2 --> valor inicial del acumulador
-    //El acumulador es un objeto . Cada coche es un objeto con propiedades
+    //El acumulador es un objeto. Cada coche es un objeto con propiedades
     //En la función reductora tenemos que devolver el acumulador actualizado
     .then(races => races.reduce((stats, race) => {
         const lines = race.split('\n')
