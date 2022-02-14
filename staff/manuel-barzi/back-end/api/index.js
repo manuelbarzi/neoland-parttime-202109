@@ -36,7 +36,7 @@ api.post('/api/users/auth', jsonParser, (req, res) => {
     try {
         authenticateUser(email, password)
             .then(id => {
-                res.status(200).send({ id })
+                res.status(200).json({ id })
             })
             .catch(error => {
                 res.status(400).json({ error: error.message })
