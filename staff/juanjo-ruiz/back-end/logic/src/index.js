@@ -1,7 +1,7 @@
 const { registerUser } = require('./register-user')
-const { authenticaUser } = require('./authentica-user')
+const { authenticaUser } = require('./authenticate-user')
 
 module.exports = {
     registerUser,
-    authenticaUser
+    authenticateUser
 }
