@@ -10,5 +10,11 @@
         "name": "Manuel Barzi",
         "email": "manuelbarzi@gmail.com",
         "password": "123123123"
+    },
+    {
+        "id": "USER-123123123",
+        "name": "John Doe",
+        "email": "john@doe.com",
+        "password": "123123123"
     }
 ]

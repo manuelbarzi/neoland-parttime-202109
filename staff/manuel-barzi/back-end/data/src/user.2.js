@@ -1,15 +1,15 @@
 const { readFile, writeFile } = require('fs').promises
 const path = require('path')
 
-function read() {
-    const file = path.join(__dirname, './users.json')
+function loadDocsFromJson(jsonFile) {
+    const file = path.join(__dirname, jsonFile)
 
     return readFile(file, 'utf8')
         .then(json => JSON.parse(json))
 }
 
-function write(users) {
-    const file = path.join(__dirname, './users.json')
+function saveDocsToJson(users, jsonFile) {
+    const file = path.join(__dirname, jsonFile)
     
     const json = JSON.stringify(users, null, 4)
 
@@ -22,16 +22,16 @@ class User {
     }
 
     save() {
-        return read()
+        return loadDocsFromJson('users.json')
             .then(docs => {
                 docs.push(this._doc)
 
-                return write(docs)
+                return saveDocsToJson(docs, 'users.json')
             })
     }
 
     static findByEmail(email) {
-        return read()
+        return loadDocsFromJson('users.json')
             .then(docs => docs.find(doc => doc.email === email))
             .then(doc => doc? new User(doc) : null)
     }
