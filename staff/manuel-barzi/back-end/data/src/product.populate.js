@@ -10,7 +10,7 @@ Product.cache()
 
         // ...
 
-        Promise.all([airMax270.save(), airForce1.save(), airForce1Shadow.save()])
-            .then(() => console.log('Products saved!'))
-            .catch(err => console.log(err))
+        return Promise.all([airMax270.save(), airForce1.save(), airForce1Shadow.save()])
     })
+    .then(() => console.log('Products saved!'))
+    .catch(err => console.log(err))
