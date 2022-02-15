@@ -16,5 +16,21 @@
         "name": "John Doe",
         "email": "john@doe.com",
         "password": "123123123"
+    },
+    {
+        "id": "USER-345345345",
+        "name": "Peter Pan",
+        "email": "peter@pan.com",
+        "password": "123123123",
+        "createdAt": "2020-01-01",
+        "updatedAt": "2020-01-01"
+    },
+    {
+        "id": "USER-456456456",
+        "name": "Wendy Pan",
+        "email": "wendy@pan.com",
+        "password": "123123123",
+        "createdAt": "2020-01-01",
+        "updatedAt": "2020-01-01"
     }
 ]
