@@ -1,4 +1,4 @@
-const { User } = require('data')
+const User = require('data')
 const { validateName, validateEmail, validatePassword } = require('./helpers/validators')
 
 function registerUser(name, email, password) {
@@ -11,11 +11,11 @@ function registerUser(name, email, password) {
         .then(user => {
             if (user) throw new Error('Usuario ya existe')
             
-            user = new User({ id: `USER-${Date.now()}`, name, email, password})
+            user = new User({ id: `USER-${Date.now()}`, name, email, password })
             return user.save()
 
         })
 
 }
 
-module.exports = registerUser
+module.exports = registerUser 

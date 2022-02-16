@@ -1,6 +1,6 @@
 const { readFile, writeFile } = require('fs').promises
 const path = require('path')
-const { fileURLToPath } = require('url')
+// const { fileURLToPath } = require('url')
 
 // leo todos los usuarios
 function read() {
