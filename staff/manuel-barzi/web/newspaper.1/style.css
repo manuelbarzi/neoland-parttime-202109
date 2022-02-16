@@ -1,0 +1,34 @@
+html, body {
+    height: 100%;
+}
+
+header, footer {
+   background-color: aqua;
+   height: 20%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+h1 {
+    background-color: yellow;
+}
+
+main {
+    height: 500%;
+    background-color: aquamarine;
+}
+
+section {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    background-color: bisque;
+    grid-gap: 1rem;
+    padding: 1rem;
+}
+
+p {
+    background-color: burlywood;
+    margin: 0;
+    height: 100px;
+}
