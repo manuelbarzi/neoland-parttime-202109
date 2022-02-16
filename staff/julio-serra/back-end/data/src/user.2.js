@@ -1,5 +1,25 @@
-const { loadDocsFromJson, saveDocsFromJson } = require('./helpers')
- 
+const { readFile, writeFile } = require('fs').promises
+const path = require('path')
+// const { fileURLToPath } = require('url')
+
+// leo todos los usuarios
+function loadDocsFromJson(jsonFile) {
+    // al ser una cadena de promesas devolvemos un return 
+    const file = path.join(__dirname, jsonFile) // que sea un parametro para ponerlas en un fichero aparte
+
+    return readFile(file, 'utf8')
+        // si va bien ".then"
+        .then(json => JSON.parse(json)) // pasamos el json(array) a objeto
+}
+
+function saveDocsFromJson(users, jsonFile) {
+    // al ser una cadena de promesas devolvemos un return
+    const file = path.join(__dirname, jsonFile)
+    const json = JSON.stringify(users, null, 4)
+
+    return writeFile(file, json)
+}
+
 class User {
     constructor(doc) {
         this._doc = doc // _doc para decir que es un documento interno de la instancia
@@ -11,7 +31,6 @@ class User {
         // al ser una cadena de promesas devolvemos un return
         return loadDocsFromJson('users.json')
             .then(docs => {
-                const index = docs.findIndex(doc => doc.id === this._doc.id) //encuentra el id del documento si es igual el id de este documento
                 docs.push(this._doc) // añadimos el usuario en la bbdd (que es el documento)
 
                 return saveDocsFromJson(docs, 'users.json')

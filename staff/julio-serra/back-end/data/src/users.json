@@ -6,15 +6,21 @@
         "password": "123123123"
     },
     {
-        "id": "USER-1645024324437",
-        "name": "JulioS",
-        "email": "jules4@jules.com",
+        "id": "USER-1645041316685",
+        "name": "Julio serra",
+        "email": "jule@jules.com",
         "password": "123123123"
     },
     {
-        "id": "USER-1645034754006",
-        "name": "Julio serra",
-        "email": "jule@jules.com",
+        "id": "USER-113",
+        "name": "Jules",
+        "email": "jules@jules.com",
+        "password": "123123123"
+    },
+    {
+        "id": "USER-113",
+        "name": "JulesCode",
+        "email": "jules@jules.com",
         "password": "123123123"
     }
 ]
