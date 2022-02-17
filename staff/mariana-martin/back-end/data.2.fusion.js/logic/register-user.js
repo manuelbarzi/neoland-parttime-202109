@@ -1,10 +1,11 @@
 
 const { User } = require('../models')
+const { validateName, validateEmail, validatePassword} = require('../helpers/validators')
 
 function registerUser(name, email, password){
-    //validateName
-    //ValidateEmail
-    //Password
+    validateName(name)
+    validateEmail(email)
+    validatePassword(password)
 
     return User.findByEmail(email)   //se usa la clase User con método asociado a la clse no a instancia (porque no hemos hecho New User, porlo que se usa la palabra statis en el archivo de user, en el método)
         .then(user => {

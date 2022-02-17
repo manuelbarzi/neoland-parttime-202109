@@ -21,7 +21,6 @@ function write(users) {
     const file = path.join(__dirname, './users.json')
     const json = JSON.stringify(users, null, 4)
 
-
     return writeFile(file, json)
 }
 
