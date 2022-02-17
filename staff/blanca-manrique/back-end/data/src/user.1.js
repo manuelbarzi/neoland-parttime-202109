@@ -2,14 +2,16 @@ const { readFile, writeFile } = require('fs').promises
 const path = require('path')
 
 function read() {
-    return readFile(path.join(__dirname, './users.json'), 'utf8')
+    const file = path.join(__dirname, './users.json')
+    return readFile(file, 'utf8')
         .then(json => JSON.parse(json))
 }
 
 function write(users) {
+    const file = path.join(__dirname, './users.json')
     const json = JSON.stringify(users, null, 4)
 
-    return writeFile(path.join(__dirname, './users.json'), json)
+    return writeFile(file, json)
 }
 
 class User {

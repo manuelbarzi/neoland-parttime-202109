@@ -1,0 +1,32 @@
+[
+    {
+        "id": "USER-2022021118310000",
+        "name": "Blanca Manrique",
+        "email": "blancamanrique13@gmail.com",
+        "password": "121212"
+    },
+    {
+        "id": "USER-1644946983755",
+        "name": "Blan Mt",
+        "email": "blanmt@gmail.com",
+        "password": "121212"
+    },
+    {
+        "id": "USER-1645007203533",
+        "name": "Blan Mt",
+        "email": "blanmt2@gmail.com",
+        "password": "121212"
+    },
+    {
+        "id": "USER-1645008334076",
+        "name": "Blan Mt",
+        "email": "blanmt3@gmail.com",
+        "password": "121212"
+    },
+    {
+        "id": "1212",
+        "name": "Paco Paco",
+        "email": "paquillo@gmail.com",
+        "password": "121212"
+    }
+]

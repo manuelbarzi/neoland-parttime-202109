@@ -29,5 +29,22 @@ api.post('/api/users', jsonParser, (req, res) => {
     }
 })
 
+api.post('/api/users/auth', jsonParser, (req, res) => {
+    const email = req.body.email
+    const password = req.body.password
+
+    try {
+        authenticateUser(email, password)
+            .then(id => {
+                res.status(200).json({ id })
+            })
+            .catch(error => {
+                res.status(400).json({ error: error.message })
+            })
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
+
 api.listen(8080, () => console.log('api escuchando en puerto 8080'))
 
