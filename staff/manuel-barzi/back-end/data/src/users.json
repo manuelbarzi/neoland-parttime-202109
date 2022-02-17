@@ -32,5 +32,17 @@
         "password": "123123123",
         "createdAt": "2020-01-01",
         "updatedAt": "2020-01-01"
+    },
+    {
+        "id": "USER-1645127348454",
+        "name": "Manuel Barzi",
+        "email": "manuelbarzi2@gmail.com",
+        "password": "123123123"
+    },
+    {
+        "id": "USER-1645128026443",
+        "name": "Manuel Barzi",
+        "email": "manuelbarzi3@gmail.com",
+        "password": "123123123"
     }
 ]

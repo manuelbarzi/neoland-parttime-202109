@@ -5,14 +5,13 @@ function authenticateUser(email, password) {
     validateEmail(email)
     validatePassword(password)
 
-    return User.findByEmail(email)
-        .then(user => {
-            if (!user) throw new Error('user does not exist')
+    const user = User.findByEmail(email)
 
-            if (user._doc.password !== password) throw new Error('password is incorrect')
+    if (!user) throw new Error('user does not exist')
 
-            return user._doc.id
-        })
+    if (user._doc.password !== password) throw new Error('password is incorrect')
+
+    return user._doc.id
 }
 
 module.exports = authenticateUser

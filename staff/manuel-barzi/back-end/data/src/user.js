@@ -1,4 +1,3 @@
-const { loadDocsFromJson } = require('./helpers')
 const Model = require('./model')
 
 class User extends Model {
@@ -7,9 +6,11 @@ class User extends Model {
     }
 
     static findByEmail(email) {
-        return loadDocsFromJson(this._jsonFile)
-            .then(docs => docs.find(doc => doc.email === email))
-            .then(doc => doc? new User(doc) : null)
+        const docs = this._cache[this.jsonFile()]
+
+        let doc = docs.find(doc => doc.email === email)
+
+        return doc? new User(doc) : null
     }
 }
 
