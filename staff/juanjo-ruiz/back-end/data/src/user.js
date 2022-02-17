@@ -1,39 +1,18 @@
-const { readFile, writeFile } = require('fs').promises
-const path = require('path')
+const { loadDocsFromJson } = require('./helpers')
+const Model = require('./model')
 
-function read() {
-    const file = path.join(__dirname, './users.json')
-
-    return readFile(file, 'utf8')
-        .then(json => JSON.parse(json))
-}
-
-function write(users) {
-    const file = path.join(__dirname, './users.json')
-    const json = JSON.stringify(users, null, 4)
-
-    return writeFile(file, json)
-}
-
-class User {
+class User extends Model{
     constructor(doc) {
-        this._doc = doc
-    }
-
-    save() {
-        return read()
-            .then(docs => {
-                docs.push(this._doc)
-
-                return write(docs)
-            })
+        super(doc)
     }
 
     static findByEmail(email) {
-        return read()
-        .then(docs => docs.find(doc => doc.email === email))
-        .then(doc => doc? new User(doc) : null)
+        return loadDocsFromJson(this._jsonFile)
+            .then(docs => docs.find(doc => doc.email === email))
+            .then(doc => doc ? new User(doc) : null)
     }
 }
+
+User.cache('users.json')
 
 module.exports = User

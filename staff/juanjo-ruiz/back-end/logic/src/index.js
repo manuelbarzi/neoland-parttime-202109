@@ -1,5 +1,5 @@
 const { registerUser } = require('./register-user')
-const { authenticaUser } = require('./authenticate-user')
+const { authenticateUser } = require('./authenticate-user')
 
 module.exports = {
     registerUser,
