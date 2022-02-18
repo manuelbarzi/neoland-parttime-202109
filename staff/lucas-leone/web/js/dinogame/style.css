@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+    --color: black;
+    --back-color: #e3e4e5;
+    overflow: hidden;
+  }
+
+html, body {
+max-height: 100%;
+max-width: 100%;
+margin: 0;
+padding: 0;
+}
+* {
+    font-family: 'Press Start 2P', cursive;
+}
+
+body{
+    background-color: #e3e4e5;
+    background-image: url(/staff/lucas-leone/web/js/dinogame/Mesa\ de\ trabajo\ 1.png);
+    
+}
+.tittle{
+    margin-left: 40%;
+}
+
+.dino3{
+    position: absolute;
+    margin-left: 60%;
+    top:3%;
+    z-index: 1;
+    width: 60px;
+    
+}
+.mirror{
+    transform: scaleX(-1)
+}
+.field {
+    border: 1px solid var(--color);
+    border-radius: .3rem;
+    margin: .25rem;
+    padding: .5rem;
+}
+
+.button {
+    border: 1px solid var(--color);
+    border-radius: .3rem;
+    margin: .25rem;
+    padding: .5rem;
+    cursor: pointer;
+}
+.button:hover{
+    background-color:white;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color);
+}
+.signup, .signin {
+    margin-top: 7%;
+}
+
+.container--vertical {
+    flex-direction: column;
+}
+.container--general{
+    /* position: absolute;
+    right: 30%;
+    top: 30%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container--gapped {
+    margin: .25rem;
+}
+
+.panel {
+    border: 1px solid var(--color);
+    border-radius: 1rem;
+    padding: 1rem;
+}
+.final{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.final__lose{
+    font-size: 2rem;
+    margin-top: 2rem;
+}
+
+.final__press{
+    position: absolute;
+    font-size: 1rem;
+    margin-top: 6rem;
+    top:30%
+}
+
+.score{
+   justify-self: flex-end;
+}
+.cactus1, .cactus2{
+    position: absolute;
+    width: 30px;
+
+}
+.cloud1,.cloud2{
+    position: absolute;
+    width: 4%;
+
+}
+.dino{
+    position: absolute;
+    width: 60px;
+}
+
+.signin__feedback {
+    color: red;
+}
+
+
+.canvas1, .canvas2{
+    position:absolute;
+    z-index: 1;
+    top:133px
+}
+
+.canvas1{
+    margin-bottom: 2px;
+}
+
+.text{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin: 0.8rem;
+    gap: 1rem;
+    }
+
+.maxscore{
+    font-size: 0.7rem;
+    margin-top: 0.5rem;
+    
+}
+
+.profile__logo{
+    position: absolute;
+    top:2rem;
+    width:2.5rem;
+}
+
+.profile__logo:hover{
+    background-color: white;
+    border-radius: 3rem;
+    cursor: pointer;
+}
+
+.profile{
+   
+    margin-top: 10%;
+}
+
+.off{
+    display:none
+}
+
+.close{
+    align-self: flex-end;
+    cursor:pointer ;
+
+}
+
+.close:hover{
+    background-color: white;
+}
