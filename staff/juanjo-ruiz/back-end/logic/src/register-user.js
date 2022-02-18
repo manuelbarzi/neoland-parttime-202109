@@ -6,14 +6,13 @@ function registerUser(name, email, password) {
     validateEmail(email)
     validatePassword(password)
 
-    return User.findByEmail(email)
-        .then(user => {
-            if (user) throw new Error('user already exists')
+    let user = User.findByEmail(email)
 
-            user = new User({ id: `USER-${Date.now()}`, name, email, password })
+    if (user) throw new Error('user already exists')
 
-            return user.save()
-        })
+    user = new User({ id: `USER-${Date.now()}`, name, email, password })
+
+    return user.save()
 }
 
 module.exports = registerUser

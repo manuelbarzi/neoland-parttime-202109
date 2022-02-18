@@ -6,6 +6,4 @@ class Product extends Model {
     }
 }
 
-Product.cache('products.json')
-
 module.exports = Product
