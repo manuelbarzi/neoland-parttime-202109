@@ -12,12 +12,6 @@
         "password": "123123123"
     },
     {
-        "id": "USER-123123123",
-        "name": "John Doe",
-        "email": "john@doe.com",
-        "password": "123123123"
-    },
-    {
         "id": "USER-345345345",
         "name": "Peter Pan",
         "email": "peter@pan.com",
@@ -34,15 +28,9 @@
         "updatedAt": "2020-01-01"
     },
     {
-        "id": "USER-1645127348454",
-        "name": "Manuel Barzi",
-        "email": "manuelbarzi2@gmail.com",
-        "password": "123123123"
-    },
-    {
-        "id": "USER-1645128026443",
-        "name": "Manuel Barzi",
-        "email": "manuelbarzi3@gmail.com",
-        "password": "123123123"
+        "id": "USER-123123123",
+        "name": "John Smith",
+        "email": "john@smith.com",
+        "password": "234234234"
     }
 ]

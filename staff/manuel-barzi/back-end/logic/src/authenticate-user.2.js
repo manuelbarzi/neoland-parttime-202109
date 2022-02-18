@@ -9,9 +9,9 @@ function authenticateUser(email, password) {
 
     if (!user) throw new Error('user does not exist')
 
-    if (user.password !== password) throw new Error('password is incorrect')
+    if (user._doc.password !== password) throw new Error('password is incorrect')
 
-    return user.id
+    return user._doc.id
 }
 
 module.exports = authenticateUser
