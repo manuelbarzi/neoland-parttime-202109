@@ -3,9 +3,8 @@ const { loadDocsFromJson, saveDocsToJson } = require('./helpers')
 const cache = {}
 
 class Model {
-    constructor(doc, jsonFile) {
+    constructor(doc) {
         this._doc = doc
-        this._jsonFile = jsonFile
     }
 
     save() {
