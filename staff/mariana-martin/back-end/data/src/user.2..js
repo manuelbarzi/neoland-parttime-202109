@@ -6,16 +6,16 @@ const path = require('path')
 
 
 //READ
-function read() {
-    const file = path.join(__dirname, './users.json')
+function loadDocsFromJson(jsonFile) {
+    const file = path.join(__dirname, 'users.json')
 
     return readFile(file, 'utf8')
         .then(json => JSON.parse(json))
 
 }
 //WRITE
-function write(users) {
-    const file = path.join(__dirname, './users.json')
+function saveDocsToJson(users, jsonFile) {
+    const file = path.join(__dirname, 'users.json')
     const json = JSON.stringify(users, null, 4)
 
 
@@ -23,30 +23,29 @@ function write(users) {
 }
 
 
-//este es el modelo y manejador:
-//si creamos un new User, y el doc sería los datos dentro, el User es el manejador:
+
 
 class User {
     constructor (doc )  {    // (id, name, email, password)
 
-        this._doc = doc    //guión bajo indica que es algo interno
+        this._doc = doc    
     
     }
 
-    //User tiene un método que el mismo se podrá guardar:
+ 
 
     save() {
-        return read()
+        return loadDocsFromJson('user.jason')
             .then(docs => {
                 docs.push(this._doc)
 
-                return write(docs) //array de obj de docs
+                return saveDocsToJson(docs, 'user.jason') 
             })
     }
-    //User tiene otro método que busca email:
+ 
 
     static findByEmail(email) {    //static, porque nos referimos a la clase sin hacer instancia, (instancia sería new USer, )
-        return read()
+        return loadDocsFromJson()
             .then(docs => docs.find(doc => doc.email === email))
             .then(doc => doc? new User(doc) : null)  //envuelvo en un objeto new User (en un usuario en un manejador) , los doc guardan objs planos
     }

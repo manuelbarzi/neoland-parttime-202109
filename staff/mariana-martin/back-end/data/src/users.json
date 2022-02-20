@@ -10,5 +10,11 @@
         "name": "Mariana Martín DEMO2",
         "email": "mariana@mail.com",
         "password": "123456789"
+    },
+    {
+        "id": "USER-123451234",
+        "name": "John Doe",
+        "email": "john@doe.com",
+        "password": "11223344"
     }
 ]
