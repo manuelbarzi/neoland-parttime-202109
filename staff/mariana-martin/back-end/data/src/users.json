@@ -12,12 +12,6 @@
         "password": "123456789"
     },
     {
-        "id": "USER-123451234",
-        "name": "John Doe",
-        "email": "john@doe.com",
-        "password": "11223344"
-    },
-    {
         "id": "USER-12345678",
         "name": "María",
         "email": "maria@gmail.com",
@@ -40,5 +34,11 @@
         "name": " Mariana Martín Demo Demo",
         "email": "marianademo@mail.com",
         "password": "123456789"
+    },
+    {
+        "id": "USER-123123123",
+        "name": "John Smith",
+        "email": "john@smith.com",
+        "password": "010101010101"
     }
 ]

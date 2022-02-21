@@ -24,7 +24,7 @@ class Model {
         return saveDocsToJson(docs, this.constructor.jsonFile())
     }
 
-    static _cache = {}  //ahora es propiedad de Model
+    static _cache = {}  //ahora es propiedad de Model, se guarda la cache del (product ,user, etc)
 
 
     //método estático de la clase, caché que guarde en memoria (si son base de datos pequeñas)
