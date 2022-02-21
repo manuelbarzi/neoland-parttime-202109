@@ -1,8 +1,8 @@
-// Esta versión  cache es propiedad de Model
+// Esta versión guarda en memoria base de datos, para que no se empalmen los productos  (hacer cache de datos en memoria)
 
 
 const { loadDocsFromJson, saveDocsToJson } = require('./helpers')
-
+const cache = {} //Important: cache en memoria y tener todo precargado
 
 class Model {
     constructor(doc, jsonFile) {
@@ -12,7 +12,7 @@ class Model {
 
     save() {
 
-        const docs = this.constructor._cache[this.constructor.jsonFile()]
+        const docs = cache[this.constructor.jsonFile()]
         const index = docs.findIndex(doc => doc.id === this._doc.id)
 
         if (index === -1)
@@ -24,8 +24,6 @@ class Model {
         return saveDocsToJson(docs, this.constructor.jsonFile())
     }
 
-    static _cache = {}  //ahora es propiedad de Model
-
 
     //método estático de la clase, caché que guarde en memoria (si son base de datos pequeñas)
     static jsonFile() {
@@ -35,7 +33,7 @@ class Model {
     static cache() {
 
         return loadDocsFromJson(this.jsonFile())  //readfile
-            .then(docs => this._cache[this.jsonFile()] = docs)   //docs ya cargados los cacheo en memoria
+            .then(docs => cache[this.jsonFile()] = docs)   //docs ya cargados los cacheo en memoria
     }
 
 }

@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "data": "file:../data",
     "express": "^4.17.2",
     "logic": "file:../logic"
   }

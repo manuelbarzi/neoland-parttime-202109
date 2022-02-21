@@ -1,5 +1,15 @@
-const authenticateUser = require('./authenticate-user')
+//Versión con datos cargados en cache, previamente
 
-authenticateUser('mariana@mail.com', '123456789')
-    .then(id => console.log(id))
-    .catch(err => console.log(err))
+const authenticateUser = require('./authenticate-user')
+const {User} = require('data')
+
+
+//tira de cache, no depende de cara de dtos, porque están pre cargados
+User.cache()
+.then(() => {
+
+const id = authenticateUser('mariana@mail.com', '123456789')
+
+console.log(id)
+
+})

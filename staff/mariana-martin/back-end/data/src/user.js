@@ -1,6 +1,5 @@
-//5ta versión: agregando cache
+//6ta versión: agregando cache
 
-const { loadDocsFromJson } = require('./helpers')
 const  Model = require ('./model')
 
 class User extends Model {
@@ -11,10 +10,11 @@ class User extends Model {
         
     }
 
-    static findByEmail(email) {    //static, porque nos referimos a la clase sin hacer instancia, (instancia sería new USer, )
-        return loadDocsFromJson()
-            .then(docs => docs.find(doc => doc.email === email))
-            .then(doc => doc? new User(doc) : null)  //envuelvo en un objeto new User (en un usuario en un manejador) , los doc guardan objs planos
+    static findByEmail(email) {    
+        const docs = this._cache[this.jsonFile()]
+        let doc = docs.find(doc => doc.email === email)
+
+           return doc? new User(doc) : null  //envuelvo en un objeto new User (en un usuario en un manejador) , los doc guardan objs planos
     }
 }
 

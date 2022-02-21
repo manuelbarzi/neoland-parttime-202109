@@ -16,5 +16,29 @@
         "name": "John Doe",
         "email": "john@doe.com",
         "password": "11223344"
+    },
+    {
+        "id": "USER-12345678",
+        "name": "María",
+        "email": "maria@gmail.com",
+        "password": "1234567"
+    },
+    {
+        "id": "USER-12356787",
+        "name": "Lola",
+        "email": "lola@gmail.com",
+        "password": "000000567"
+    },
+    {
+        "id": "USER-1645456192338",
+        "name": "Mariana Martín DEMO2",
+        "email": "marianax2@mail.com",
+        "password": "123456789"
+    },
+    {
+        "id": "USER-1645458014380",
+        "name": " Mariana Martín Demo Demo",
+        "email": "marianademo@mail.com",
+        "password": "123456789"
     }
 ]
