@@ -1,4 +1,3 @@
-const { loadDocsFromJson} = require('./helpers')
 const Model = require('./model')
 
 class User extends Model {
@@ -6,10 +5,43 @@ class User extends Model {
         super(doc)
     }
 
-    static findByEmail(email) { //static: método asociado a clases, no a instancias 
-        return loadDocsFromJson(this._jsonFile)
-            .then(docs => docs.find(doc => doc.email === email))
-            .then(doc => doc? new User(doc) :null)
+    set id(id){
+        this._doc.id = id
+    }
+
+    get id(){
+        return this._doc.id
+    }
+
+    set name(name){
+        this._doc.name = name
+    }
+
+    get name(){
+        return this._doc.name
+    }
+
+    set email(email){
+        this._doc.email = email
+    }
+
+    get email(){
+        return this._doc.email
+    }
+
+    set password(password){
+        this._doc.password = password
+    }
+
+    get password(){
+        return this._doc.password
+    }
+
+    static findByEmail(email) { 
+        const docs = this._cache[this.jsonFile()]
+
+        let doc = docs.find(doc => doc.email === email)
+        return doc ? new User(doc) : null
     } //docs es un array de objetos planos
 }
 

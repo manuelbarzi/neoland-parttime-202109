@@ -1,12 +1,14 @@
 const { loadDocsFromJson, saveDocsToJson } = require('./helpers')
 
+const cache = {}
+
 class Model {
     constructor(doc) {
         this._doc = doc
     }
 
     save() {
-        const docs = this.constructor._cache[this.constructor.jsonFile()]
+        const docs = cache[this.constructor.jsonFile()]
         const index = docs.findIndex(doc => doc.id === this._doc.id)
 
         if (index === -1)
@@ -18,15 +20,13 @@ class Model {
 
     }
 
-    static _cache = {}
-
     static jsonFile() {
         return `${this.name.toLowerCase()}s.json`
     }
 
     static cache() {
         return loadDocsFromJson(this.jsonFile())
-            .then(docs => this._cache[this.jsonFile()] = docs)
+            .then(docs => cache[this.jsonFile()] = docs)
     }
 
 }

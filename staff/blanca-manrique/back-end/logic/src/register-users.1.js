@@ -6,15 +6,15 @@ function registerUser(name, email, password) {
     validateEmail(email)
     validatePassword(password)
 
-    let user = User.findByEmail(email) //SÍNCRONO -> busca en cache
+    return User.findByEmail(email)
+        .then(user => {
+            if (user) {
+                throw new Error('user already exists')
+            }
+            user = new User({ id: `USER-${Date.now()}`, name, email, password })
 
-    if (user) {
-        throw new Error('user already exists')
-    }
-    user = new User({ id: `USER-${Date.now()}`, name, email, password })
-
-    return user.save() //devuelve una promesa
-
+            return user.save()
+        })
 }
 
 module.exports = registerUser

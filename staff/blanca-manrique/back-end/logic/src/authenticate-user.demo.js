@@ -1,5 +1,8 @@
 const authenticateUser = require('./authenticate-user')
+const { User } = require('data')
 
-authenticateUser('blanmt@gmail.com', '121212')
-    .then(id => console.log(id))
-    .catch(err => console.log(err))
+User.cache()
+    .then(() => {
+        const id = authenticateUser('blanmt@gmail.com', '121212')
+        console.log(id)
+    })
