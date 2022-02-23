@@ -22,7 +22,7 @@ const stock = new Schema({
     quantity: {
         type: Number,
         required: true
-    },
+    }
 })
 
 module.exports = stock
