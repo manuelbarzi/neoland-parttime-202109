@@ -5,9 +5,9 @@ const { loadDocsFromJson, saveDocsToJson } = require('./helpers')
 const cache = {} //Important: cache en memoria y tener todo precargado
 
 class Model {
-    constructor(doc, jsonFile) {
+    constructor(doc) {
         this._doc = doc
-        this._jsonFile = jsonFile
+       // this._jsonFile = jsonFile
     }
 
     save() {
