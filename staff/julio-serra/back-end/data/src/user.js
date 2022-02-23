@@ -1,4 +1,4 @@
-const { loadDocsFromJson } = require('./helpers')
+ const { loadDocsFromJson } = require('./helpers')
 const Model = require('./model')
 
 class User extends Model { // save la heredan de model
