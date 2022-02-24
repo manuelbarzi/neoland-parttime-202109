@@ -35,14 +35,31 @@ connect('mongodb://localhost:27017/my-store')
     .then(products => {
         const [airMax, nizza] = products
 
-        const airMax42Stock = new Stock({ product: airMax.id, color: 'black', size: 42, quantity: 100 })
-        const airMax43Stock = new Stock({ product: airMax.id, color: 'black', size: 43, quantity: 150 })
-        const airMax44Stock = new Stock({ product: airMax.id, color: 'black', size: 44, quantity: 150 })
+        const airMaxBlack42Stock = new Stock({ product: airMax.id, color: 'black', size: 42, quantity: 100 })
+        const airMaxWhite43Stock = new Stock({ product: airMax.id, color: 'white', size: 43, quantity: 150 })
+        const airMaxGray44Stock = new Stock({ product: airMax.id, color: 'gray', size: 44, quantity: 150 })
+
+        const nizzaWhite44Stock = new Stock({ product: nizza.id, color: 'white', size: 44, quantity: 60 })
 
         return Promise.all([
-            airMax42Stock.save(),
-            airMax43Stock.save(),
-            airMax44Stock.save()
+            airMaxBlack42Stock.save(),
+            airMaxWhite43Stock.save(),
+            airMaxGray44Stock.save(),
+            nizzaWhite44Stock.save()
         ])
+    })
+    .then(stocks => {
+        const [airMaxBlack42Stock, airMaxWhite43Stock, airMaxGray44Stock, nizzaWhite44Stock] = stocks
+
+        /*
+        const airMaxOrder = new Order({ stock: airMaxWhite43Stock.id, quantity: 5, date: new Date })
+        //airMaxWhite43Stock.quantity = airMaxWhite43Stock.quantity - 5
+        airMaxWhite43Stock.quantity -= 5
+
+        return Promise.all([
+            airMaxWhite43Stock.save(),
+            airMaxOrder.save()
+        ])
+        */
     })
     .then(() => disconnect())
