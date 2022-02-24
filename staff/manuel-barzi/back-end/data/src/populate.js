@@ -1,5 +1,5 @@
 const { connect, disconnect } = require('mongoose')
-const { Brand, Product, Stock } = require('./models')
+const { Brand, Product, Stock, Order } = require('./models')
 
 connect('mongodb://localhost:27017/my-store')
     //.then(() => Promise.all([Brand.collection.drop(), Product.collection.drop()]))
@@ -51,7 +51,6 @@ connect('mongodb://localhost:27017/my-store')
     .then(stocks => {
         const [airMaxBlack42Stock, airMaxWhite43Stock, airMaxGray44Stock, nizzaWhite44Stock] = stocks
 
-        /*
         const airMaxOrder = new Order({ stock: airMaxWhite43Stock.id, quantity: 5, date: new Date })
         //airMaxWhite43Stock.quantity = airMaxWhite43Stock.quantity - 5
         airMaxWhite43Stock.quantity -= 5
@@ -60,6 +59,5 @@ connect('mongodb://localhost:27017/my-store')
             airMaxWhite43Stock.save(),
             airMaxOrder.save()
         ])
-        */
     })
     .then(() => disconnect())
