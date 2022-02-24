@@ -1,4 +1,4 @@
-const Schema = require('mongoose')
+const { Schema } = require('mongoose')
 const { Types: { ObjectId } } = Schema
 
 const stock = new Schema({
@@ -8,7 +8,7 @@ const stock = new Schema({
         ref: 'Product', // para un producto en concreto, referencia a un producto
         required: true
     },
-    
+
     quantity: {
         type: Number,
         required: true
