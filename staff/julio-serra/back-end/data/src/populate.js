@@ -1,5 +1,5 @@
 const { connect, disconnect } = require('mongoose')
-const { Brand, Product, Stock } = require('./models')
+const { Brand, Product, Stock, Order } = require('./models')
 
 connect('mongodb://localhost:27017/my-store')
     .then(() => Brand.deleteMany())
@@ -36,5 +36,6 @@ connect('mongodb://localhost:27017/my-store')
         const airmaxStock = new Stock({product: airMax.id, quantity: 110, color: 'white', size: 44})
         const stanSmithStock = new Stock({product: stanSmith.id, quantity: 100, color: 'green', size: 42})
     })
+    
     .then(() => console.log('desconectao'))
     .then(() => disconnect)
