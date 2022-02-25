@@ -1,9 +1,34 @@
 const { connect, disconnect } = require('mongoose')
-const { Brand, Product, Stock, Order } = require('./models')
+const { Brand, Product, Stock, Order, CreditCard, User } = require('./models')
 
 connect('mongodb://localhost:27017/my-store')
     //.then(() => Promise.all([Brand.collection.drop(), Product.collection.drop()]))
-    .then(() => Promise.all([Brand.deleteMany(), Product.deleteMany(), Stock.deleteMany()]))
+    .then(() => Promise.all([User.deleteMany(), Brand.deleteMany(), Product.deleteMany(), Stock.deleteMany(), Order.deleteMany()]))
+
+    .then(() => {
+        const wendy = new User({ name: 'Wendy Pan', email: 'wendy@pan.com', password: '123123123' })
+        const peter = new User({ name: 'Peter Pan', email: 'peter@pan.com', password: '123123123' })
+
+        return Promise.all([wendy.save(), peter.save()])
+    })
+    .then(([wendy, peter]) => {
+        const wendyCard1 = new CreditCard({ fullName: 'Wendy Pan Contomate', number: '1234 1234 1234 1234', expiration: new Date })
+        const wendyCard2 = new CreditCard({ fullName: 'Wendy Pan Contomate', number: '2345 2345 2345 2345', expiration: new Date })
+        wendy.creditCards.push(wendyCard1, wendyCard2)
+
+        const peterCard = new CreditCard({ fullName: 'Peter Pan Concocho', number: '3456 3456 3456 3456', expiration: new Date })
+        peter.creditCards.push(peterCard)
+
+        return Promise.all([wendy.save(), peter.save()])
+    })
+    .then(([wendy, peter]) => {
+        const [, creditCard2] = wendy.creditCards
+
+        creditCard2.number = '5678 5678 5678 5678'
+
+        return wendy.save()
+    })
+
     .then(() => {
         const nike = new Brand({ name: 'Nike' })
         const adidas = new Brand({ name: 'Adidas' })
@@ -60,4 +85,5 @@ connect('mongodb://localhost:27017/my-store')
             airMaxOrder.save()
         ])
     })
+
     .then(() => disconnect())

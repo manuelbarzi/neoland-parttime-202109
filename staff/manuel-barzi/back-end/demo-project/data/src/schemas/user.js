@@ -1,4 +1,5 @@
 const { Schema } = require('mongoose')
+const creditCard = require('./creditCard')
 
 const user = new Schema({
     name: {
@@ -22,6 +23,8 @@ const user = new Schema({
     HINT https://mongoosejs.com/docs/subdocs.html
     HINT https://mongoosejs.com/docs/2.7.x/docs/embedded-documents.html
     */
+
+    creditCards: [creditCard]
 })
 
 module.exports = user
