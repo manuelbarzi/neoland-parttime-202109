@@ -9,18 +9,18 @@ const { Schema } = require('mongoose')
 const { Types: { ObjectId } } = Schema
 
 const order = {
-    stock = {
+    stock: {
         type: ObjectId,
         ref: 'Stock',
         require: true
     },
 
-    quantity = {
+    quantity: {
         type: Number,
         require: true
     },
 
-    date = {
+    date: {
         type: Date,
         require: true
     }

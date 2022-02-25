@@ -1,9 +1,36 @@
 const { connect, disconnect } = require('mongoose')
-const { Brand, Product, Stock, Order } = require('./models')
+const { Brand, Product, Stock, Order, User, CreditCard } = require('./models')
 
 connect('mongodb://localhost:27017/my-store')
-    .then(() => Brand.deleteMany())
-    // .then(() => Promise.all([Brand.deleteMany(), Product.deleteMany()]))
+    // .then(() => Brand.deleteMany())
+    .then(() => Promise.all([Brand.deleteMany(), Product.deleteMany(), Stock.deleteMany(), Order.deleteMany(), User.deleteMany()]))
+
+    // creamos usuarios para luego añadirles las tarjetas
+    .then(() => {
+        const peter = new User({ name: 'Peter Griffindor', email: 'peter@griffindor.com', password: '123123123' })
+        const wendy = new User({ name: 'Wendolain', email: 'wendo@lain.com', password: '123123123' })
+
+        // se devuelve una promesa para guardar los usuarios que creamos anteriormente
+        return Promise.all([peter.save(), wendy.save()])
+    })
+
+    // dentro de cada usuario le añadimos la tarjeta
+    .then(([peter, wendy]) => {
+        const peterCard = new CreditCard({ fullName: 'Peter Griffindor', number: '0987 0987 0987 0987', expiration: 'Date' })
+        // al crear la tarjeta hay que añadirlas al usuario mediante push
+        peter.creditCards.push(peterCard)
+
+        const wendyCard = new CreditCard({ fullName: 'Wendo Pan', number: '1234 1234 1234 1234', expiration: 'Date' })
+        wendy.creditCards.push(wendyCard)
+
+        // al añadir las tarjetas tenemos que volver guardar los datos
+        return Promise.all([peter.save(), wendy.save()])
+        
+    })
+
+
+
+
     .then(() => {
         const nike = new Brand({ name: 'Nike' })
         const adidas = new Brand({ name: 'Adidas' })
@@ -33,9 +60,9 @@ connect('mongodb://localhost:27017/my-store')
     })
     .then(products => {
         const [airMax, stanSmith] = products
-        const airmaxStock = new Stock({product: airMax.id, quantity: 110, color: 'white', size: 44})
-        const stanSmithStock = new Stock({product: stanSmith.id, quantity: 100, color: 'green', size: 42})
+        const airmaxStock = new Stock({ product: airMax.id, quantity: 110, color: 'white', size: 44 })
+        const stanSmithStock = new Stock({ product: stanSmith.id, quantity: 100, color: 'green', size: 42 })
     })
-    
+
     .then(() => console.log('desconectao'))
     .then(() => disconnect)
