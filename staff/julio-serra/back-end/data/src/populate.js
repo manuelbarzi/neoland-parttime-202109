@@ -59,6 +59,7 @@ connect('mongodb://localhost:27017/my-store')
         ])
     })
     .then(products => {
+         console.log('productos añadidos')
         const [airMax, stanSmith] = products
         const airmaxStock = new Stock({ product: airMax.id, quantity: 110, color: 'white', size: 44 })
         const stanSmithStock = new Stock({ product: stanSmith.id, quantity: 100, color: 'green', size: 42 })
