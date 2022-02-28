@@ -1,24 +1,21 @@
 const { Schema } = require('mongoose')
-const creditCard = require('./creditCard')
 
-const user = new Schema ({
-    name: {
+const creditCard = new Schema ({
+    fullName: {
         type: String,
         required: true
     },
 
-    email: {
+    number: {
         type: String,
         required: true,
         unique: true
     },
 
-    password: {
-        type: String,
+    expiration: {
+        type: Date,
         required: true
-    },
-
-    creditCards: [creditCard]
+    }
 })
 
-module.exports = user
+module.exports = creditCard
