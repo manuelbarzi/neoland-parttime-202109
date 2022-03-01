@@ -1,10 +1,10 @@
 const { Schema } = require('mongoose')
 
-const { Types: { ObjectID } } = Schema
+const { Types: { ObjectId } } = Schema
 
 const stock = new Schema({
     product: {
-        type: ObjectID,
+        type: ObjectId,
         ref: 'Product',
         required: true,
     },

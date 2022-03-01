@@ -1,8 +1,33 @@
 const { connect, disconnect } = require('mongoose')
-const { Brand, Product, Stock } = require('./models')
+const { Brand, Product, Stock, Order, User, CreditCard } = require('./models')
 
 connect('mongodb://localhost:27017/my-store')
     .then(() => Promise.all([Brand.deleteMany(), Product.deleteMany(), Stock.deleteMany()]))
+
+    .then(() => {
+        const wendy = new User({ name: 'Wendy Pan', email: 'wendy@pan.com', password: '123123123' })
+        const peter = new User({ name: 'Peter Pan', email: 'peter@pan.com', password: '123123123' })
+
+        return Promise.all([wendy.save(), peter.save()])
+    })
+    .then(([wendy, peter]) => {
+        const wendyCard1 = new CreditCard({ fullName: 'Wendy Pan Contomate', number: '1234 1234 1234 1234', expiration: new Date })
+        const wendyCard2 = new CreditCard({ fullName: 'Wendy Pan Contomate', number: '2345 2345 2345 2345', expiration: new Date })
+        wendy.creditCarts.push(wendyCard1, wendyCard2)
+
+        const peterCard = new CreditCard({ fullName: 'Peter Pan Concocho', number: '3456 3456 3456 3456', expiration: new Date })
+        peter.creditCarts.push(peterCard)
+
+        return Promise.all([ wendy.save(), peter.save()])
+    })
+    .then(([wendy, peter]) => {
+        const [, creditCard2] = wendy.creditCarts // con la coma hacemos referencia que no queremos el primer parametro
+
+        creditCard2.number = '5678 5678 5678 5678'
+
+        return wendy.save()
+    })
+
     .then(() => {
         const nike = new Brand({ name: 'Nike' })
         const adidas = new Brand({ name: 'Adidas' })
@@ -34,14 +59,29 @@ connect('mongodb://localhost:27017/my-store')
     .then(products => {
         const [airMax, nizza] = products
 
-        const airMax42Stock = new Stock({ product: airMax.id, color: 'black', size: 42, quantity: 100 })
-        const airMax43Stock = new Stock({ product: airMax.id, color: 'black', size: 43, quantity: 150 })
-        const airMax44Stock = new Stock({ product: airMax.id, color: 'black', size: 44, quantity: 150 })
+        const airMaxBlack42Stock = new Stock({ product: airMax.id, color: 'black', size: 42, quantity: 100 })
+        const airMaxWhite43Stock = new Stock({ product: airMax.id, color: 'white', size: 43, quantity: 150 })
+        const airMaxGray44Stock = new Stock({ product: airMax.id, color: 'gray', size: 44, quantity: 150 })
+
+        const nizzaWhite44Stock = new Stock({ product: nizza.id, color: 'whire', size: 44, quantity: 60 })
 
         return Promise.all([
-            airMax42Stock.save(),
-            airMax43Stock.save(),
-            airMax44Stock.save()
+            airMaxBlack42Stock.save(),
+            airMaxWhite43Stock.save(),
+            airMaxGray44Stock.save(),
+            nizzaWhite44Stock.save()
+        ])
+    })
+    .then(stocks => {
+        const [airMaxBlack42Stock, airMaxWhite43Stock, airMaxGray44Stock, nizzaWhite44Stock] = stocks
+
+        const airMaxOrder = new Order({ stock: airMaxWhite43Stock.id, quantity: 5, date: new Date })
+
+        airMaxWhite43Stock.quantity -= 5 // === airMaxWhite43Stock.quantity = airMaxWhite43Stock.quantity - 5
+
+        return Promise.all([
+            airMaxWhite43Stock.save(),
+            airMaxOrder.save()
         ])
     })
     .then(() => disconnect())

@@ -1,10 +1,10 @@
 const { Schema } = require('mongoose')
 
-const { Types: { ObjectID }} = Schema
+const { Types: { ObjectId }} = Schema
 
 const product = new Schema ({
     brand: {
-        type: ObjectID,
+        type: ObjectId,
         ref: 'Brand',
         required: true,
     },
