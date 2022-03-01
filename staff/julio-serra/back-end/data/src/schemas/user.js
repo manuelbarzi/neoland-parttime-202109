@@ -1,5 +1,5 @@
 const { Schema } = require('mongoose')
-const { creditCard } = require('./creditCard')
+const creditCard = require('./creditCard')
 
 //creamos el esquema de mongoose
 
@@ -18,7 +18,7 @@ const user = new Schema({
         required: true
     },
 
-    creditCards: []
+    creditCards: [creditCard]
 })
 
 module.exports = user

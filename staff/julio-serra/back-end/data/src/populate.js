@@ -16,11 +16,11 @@ connect('mongodb://localhost:27017/my-store')
 
     // dentro de cada usuario le añadimos la tarjeta
     .then(([peter, wendy]) => {
-        const peterCard = new CreditCard({ fullName: 'Peter Griffindor', number: '0987 0987 0987 0987', expiration: 'Date' })
+        const peterCard = new CreditCard({ fullName: 'Peter Griffindor', number: '0987 0987 0987 0987', expiration: new Date })
         // al crear la tarjeta hay que añadirlas al usuario mediante push
         peter.creditCards.push(peterCard)
 
-        const wendyCard = new CreditCard({ fullName: 'Wendo Pan', number: '1234 1234 1234 1234', expiration: 'Date' })
+        const wendyCard = new CreditCard({ fullName: 'Wendo Pan', number: '1234 1234 1234 1234', expiration: new Date })
         wendy.creditCards.push(wendyCard)
 
         // al añadir las tarjetas tenemos que volver guardar los datos
@@ -59,11 +59,10 @@ connect('mongodb://localhost:27017/my-store')
         ])
     })
     .then(products => {
-         console.log('productos añadidos')
         const [airMax, stanSmith] = products
         const airmaxStock = new Stock({ product: airMax.id, quantity: 110, color: 'white', size: 44 })
         const stanSmithStock = new Stock({ product: stanSmith.id, quantity: 100, color: 'green', size: 42 })
     })
 
     .then(() => console.log('desconectao'))
-    .then(() => disconnect)
+    .then(() => disconnect())
