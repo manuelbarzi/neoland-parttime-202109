@@ -1,7 +1,7 @@
 const { connect, disconnect } = require('mongoose')
 const { Brand, Product, Stock, Order, CreditCard, User } = require('./models')
 
-connect('mongodb://localhost:27017/my-store')
+connect('mongodb://localhost:27017/demo-project')
     //.then(() => Promise.all([Brand.collection.drop(), Product.collection.drop()]))
     .then(() => Promise.all([User.deleteMany(), Brand.deleteMany(), Product.deleteMany(), Stock.deleteMany(), Order.deleteMany()]))
 
