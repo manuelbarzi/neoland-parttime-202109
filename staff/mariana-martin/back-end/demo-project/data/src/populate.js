@@ -2,13 +2,42 @@
 //1.- CONECTO A BASE DE DATOS MONGOOSE
 
 const { connect, disconnect } = require('mongoose')
-const { Brand, Product, Stock, Order } = require('./models')
+const { Brand, Product, Stock, Order, CreditCard, User} = require('./models')
+
 
 connect('mongodb://localhost:27017/my-store')
     //.then(() => Promise.all([Brand.collection.drop(), Product.collection.drop()])) 
 
     //para borrar y crear de nuevo la base:
-    .then(() => Promise.all([Brand.deleteMany(), Product.deleteMany(), Stock.deleteMany()]))
+    .then(() => Promise.all([User.deleteMany(), Brand.deleteMany(), Product.deleteMany(), Stock.deleteMany(), Order.deleteMany()]))
+    
+    .then(() => {
+        const mickey = new User({ name: 'Mickey Mouse', email:'mickey@mail.com', password:'123456789' })
+        const minnie = new User({ name: 'Minnie Mouse', email:'minnie@mail.com', password:'123456789' })
+
+        return Promise.all([mickey.save(), minnie.save()])
+    })
+
+    .then(([mickey, minnie]) => {
+            const mickeyCard1 = new CreditCard ({ fullName: 'Mickey Mouse Xx', number:'1234 1234 1234 1234', expiration: new Date  })
+            const mickeyCard2 = new CreditCard ({ fullName: 'Mickey Mouse Xx', number:'5678 5678 5678 5678', expiration: new Date  })
+            mickey.creditCards.push(mickeyCard1, mickeyCard2) 
+
+            const minnieCard = new CreditCard ({ fullName: 'Minnie Mouse Xx', number:'4567 4567 4567 4567', expiration: new Date})
+            minnie.creditCards.push(minnieCard)
+
+            return Promise.all([mickey.save(), minnie.save()])  //para que se guarden en base de datos, no sólo en memoria
+
+        })
+     //para cambiar número, 
+        .then(([mickey, minnie]) => {
+            const [, creditCard2]  = mickey.creditCards
+
+            creditCard2.number = '1010 1010 1010 1010'
+
+            return mickey.save()  //salvo de nuevo
+        })
+    
     .then(() => {
 
         const nike = new Brand({ name: 'Nike' })
@@ -81,4 +110,5 @@ connect('mongodb://localhost:27017/my-store')
         ])
     })
 
+    
     .then(() => disconnect())
