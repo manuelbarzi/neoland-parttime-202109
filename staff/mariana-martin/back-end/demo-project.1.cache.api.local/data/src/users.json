@@ -40,5 +40,11 @@
         "name": "John Smith",
         "email": "john@smith.com",
         "password": "010101010101"
+    },
+    {
+        "id": "USER-1646226979492",
+        "name": " Mariana Martín Demo Demo",
+        "email": "marianademo2@mail.com",
+        "password": "123456789"
     }
 ]
