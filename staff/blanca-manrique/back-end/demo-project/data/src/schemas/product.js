@@ -1,5 +1,6 @@
-const {Schema} = require('mongoose')
-const {Types: {ObjectID}} = Schema
+const { Schema } = require('mongoose')
+
+const { Types: { ObjectID } } = Schema
 
 const product = new Schema({
     brand: {
@@ -7,19 +8,23 @@ const product = new Schema({
         ref: 'Brand',
         required: true
     },
-    pid: { //product id
+
+    pid: {
         type: String,
         required: true,
         unique: true,
     },
+
     model: {
         type: String,
         required: true
     },
+
     price: {
         type: Number,
         required: true
     },
+
     image: {
         type: String,
         required: true

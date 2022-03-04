@@ -1,4 +1,4 @@
-const {Schema} = require('mongoose')
+const { Schema } = require('mongoose')
 const creditCard = require('./creditCard')
 
 const user = new Schema({
@@ -18,7 +18,7 @@ const user = new Schema({
         required: true
     },
 
-    creditCards: [creditCard]//subdocument
+    creditCards: [creditCard] //subdocument
 })
 
 module.exports = user

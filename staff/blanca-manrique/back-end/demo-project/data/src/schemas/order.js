@@ -1,17 +1,19 @@
-const {Schema} = require('mongoose')
-const { Types: { ObjectID } } = Schema
+const { Schema } = require('mongoose')
+const { Types: { ObjectId }} = Schema
 
 const order = new Schema({
-    stock:{
-        type: ObjectID,
+    stock: {
+        type: ObjectId,
         ref: 'Stock',
         required: true
     },
+
     quantity: {
         type: Number,
         required: true
     },
-    date:{ //Fecha de compra
+
+    date: { //fecha de compra
         type: Date,
         required: true
     }

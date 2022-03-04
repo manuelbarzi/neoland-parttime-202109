@@ -1,26 +1,26 @@
 const { connect, disconnect } = require('mongoose')
-const { Brand, Product, Stock, Order, User } = require('./models')
+const { Brand, Product, Stock, Order, User, CreditCard } = require('./models')
 
 connect('mongodb://localhost:27017/my-store')
     .then(() => Promise.all([User.deleteMany(), Brand.deleteMany(), Product.deleteMany(), Stock.deleteMany(), Order.deleteMany()]))
 
     .then(() => {
         const wendy = new User({ name: 'Wendy Pan', email: 'wendy@pan.com', password: '123123123' })
-        const peter = new User({ name: 'Peter Pan', email: 'peter@pan.com', password: '123123123' })
+        const potter = new User({ name: 'Harry Potter', email: 'harry@potter.com', password: '121212' })
 
-        return Promise.all([wendy.save(), peter.save()])
+        return Promise.all([wendy.save(), potter.save()])
     })
-    .then(([wendy, peter]) => {
+    .then(([wendy, potter]) => {
         const wendyCard1 = new CreditCard({ fullName: 'Wendy Pan Contomate', number: '1234 1234 1234 1234', expiration: new Date })
         const wendyCard2 = new CreditCard({ fullName: 'Wendy Pan Contomate', number: '2345 2345 2345 2345', expiration: new Date })
         wendy.creditCards.push(wendyCard1, wendyCard2)
 
-        const peterCard = new CreditCard({ fullName: 'Peter Pan Concocho', number: '3456 3456 3456 3456', expiration: new Date })
-        peter.creditCards.push(peterCard)
+        const potterCard = new CreditCard({ fullName: 'Harry Potter', number: '3456 3456 3456 3456', expiration: new Date })
+        potter.creditCards.push(potterCard)
 
-        return Promise.all([wendy.save(), peter.save()])
+        return Promise.all([wendy.save(), potter.save()])
     })
-    .then(([wendy, peter]) => {
+    .then(([wendy, potter]) => {
         const [, creditCard2] = wendy.creditCards
 
         creditCard2.number = '5678 5678 5678 5678'

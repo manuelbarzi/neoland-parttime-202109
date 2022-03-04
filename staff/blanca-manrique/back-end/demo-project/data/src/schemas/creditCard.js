@@ -1,15 +1,16 @@
-const {Schema} = require('mongoose')
+const { Schema } = require('mongoose')
 
 const creditCard = new Schema({
-    fullName:{ 
+    fullName: {
         type: String,
         required: true
     },
-    number:{
+    number: {
         type: String,
         required: true,
+        //unique: true
     },
-    expiration:{
+    expiration: {
         type: Date,
         required: true
     }
