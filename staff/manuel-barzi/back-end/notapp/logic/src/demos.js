@@ -1,7 +1,7 @@
 const { mongoose: { connect, disconnect } } = require('data')
 const { registerUser, authenticateUser } = require('.')
 
-connect('mongodb://localhost:27017/demo-project')
+connect('mongodb://localhost:27017/notapp')
     .then(() => console.log('connected to db'))
     .then(() => {
         // try {
