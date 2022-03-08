@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.2",
+    "data": "file:../data",
     "express": "^4.17.2",
-    "logic": "file:../logic/src"
+    "logic": "file:../logic"
   }
 }
