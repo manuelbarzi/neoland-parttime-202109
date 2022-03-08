@@ -1,4 +1,4 @@
-const { models: { User } } = require('../../src')
+const { models: { User } } = require('../../data')
 const { validateName, validateEmail, validatePassword } = require('./helpers/validators')
 
 function registerUser(name, email, password) {
@@ -9,6 +9,7 @@ function registerUser(name, email, password) {
     const user = new User({ name, email, password })
 
     return user.save()
+    .then(user => { })
 }
 
 module.exports = registerUser

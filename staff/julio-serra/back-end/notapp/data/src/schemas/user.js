@@ -1,7 +1,5 @@
 const { Schema } = require('mongoose')
 
-//creamos el esquema de mongoose
-
 const user = new Schema({
     name: {
         type: String,
@@ -10,7 +8,7 @@ const user = new Schema({
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true  //para validar que sea un email correcto @
     },
     password: {
         type: String,
