@@ -6,10 +6,10 @@ function registerUser(name, email, password) {
         validateEmail.email,
         validatePassword.password
 
-    const user = new User({ name, email, password })
+    // const user = new User({ name, email, password })
 
-    return user.save()
-    .then(user => { })
+    return User.create({ name, email, password })
+        .then(user => { })
 }
 
 module.exports = registerUser

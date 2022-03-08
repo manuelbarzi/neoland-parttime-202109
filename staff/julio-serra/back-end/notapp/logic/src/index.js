@@ -9,12 +9,12 @@ const retrieveNote = require('./retrieve-note')
 
 
 module.exports = {
+    registerUser,
+    updateUser,
+    deleteUser,
+    retrieveUser,
     createNote,
     updateNote,
     deleteNote,
-    updateUser,
-    deleteUser,
-    registerUser,
-    retrieveUser,
     retrieveNote
 }

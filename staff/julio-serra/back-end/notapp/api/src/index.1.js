@@ -1,5 +1,5 @@
 const express = require('express')
-const { registerUser } = require('logic')
+const registerUser = require('logic')
 const { mongoose: { connect } } = require('data')
 
 connect('mongodb://localhost:27017/noteapp')
