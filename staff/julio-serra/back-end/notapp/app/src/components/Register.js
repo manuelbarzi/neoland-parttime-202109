@@ -7,7 +7,7 @@ function Register() {
         const { target: { name: { value: name }, email: { value: email }, password: { value: password } } } = event //extraer los campos
         try {
             registerUser(name, email, password)
-            .then(() => console.log('User Registered'))
+            .then(() => alert('User Registered'))
             .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
