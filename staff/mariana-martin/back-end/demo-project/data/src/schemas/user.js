@@ -13,7 +13,8 @@ const user = new Schema ({
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+    //validador de mail
 
     },
 
