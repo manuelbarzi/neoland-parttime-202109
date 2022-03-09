@@ -1,4 +1,4 @@
-const { models: { Note } } = requite('data')
+const { models: { Note } } = require('data')
 
 function updateNote(noteId, text, color, public) {
 

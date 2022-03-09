@@ -1,6 +1,7 @@
 const { Schema } = require('mongoose')
+const { Types: { ObjectId } } = Schema
 
-const note = new Schema ({
+const note = new Schema({
     user: {
         type: ObjectId,
         ref: 'User',
