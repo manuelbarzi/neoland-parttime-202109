@@ -1,5 +1,5 @@
 const express = require('express')
-const { registerUser, authenticateUser } = require('logic')
+const { registerUser, authenticateUser, retrieveUser } = require('logic')
 const { mongoose: { connect } } = require('data')
 const cors = require('./cors')
 
@@ -17,7 +17,7 @@ connect('mongodb://localhost:27017/noteapp')
 
         //     next()
         // })
-        
+
         const router = express.Router()
 
         const jsonBodyParser = express.json()
@@ -42,6 +42,22 @@ connect('mongodb://localhost:27017/noteapp')
 
                 authenticateUser(email, password)
                     .then(id => res.status(200).send(id))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        // RETRIEVE USER
+        router.get('/users', (req, res) => {
+            try {
+
+                const { headers: { authorization } } = req // la cabecera de respuesta es > Authorization: Bearer + id
+                const [, id] = authorization.split(' ') 
+                // hacemos un split del Authorization: Bearer + id que se converte en un array con 2 posiciones y cogemos la segunda (el id)
+
+                retrieveUser(id)
+                    .then(user => res.json(user))
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
                 res.status(400).json({ error: error.message })
