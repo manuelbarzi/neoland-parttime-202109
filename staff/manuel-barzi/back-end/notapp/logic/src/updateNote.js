@@ -1,3 +1,3 @@
-function updateNote(userId, text, color, public) {
+function updateNote(userId, noteId, text, color, public) {
     
 } 

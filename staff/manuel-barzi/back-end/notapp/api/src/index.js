@@ -1,5 +1,12 @@
 const express = require('express')
-const { registerUser, authenticateUser } = require('logic')
+const {
+    registerUser,
+    authenticateUser,
+    retrieveUser,
+    updateUser,
+    unregisterUser,
+    createNote
+} = require('logic')
 const { mongoose: { connect } } = require('data')
 const cors = require('./cors')
 
@@ -32,7 +39,7 @@ connect('mongodb://localhost:27017/notapp')
                 const { body: { email, password } } = req
 
                 authenticateUser(email, password)
-                    .then(id => res.status(200).send(id))
+                    .then(userId => res.status(200).json({ userId }))
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
                 res.status(400).json({ error: error.message })
@@ -42,9 +49,59 @@ connect('mongodb://localhost:27017/notapp')
         // TODO route for retrieve user
 
         router.get('/users', (req, res) => {
-            // TODO from req, get Authorization header and extract user id (google: express req headers)
-            // TODO call retrieveUser logic to get the user info
-            // TODO return user info in json format
+            try {
+                const { headers: { authorization } } = req
+
+                const [, userId] = authorization.split(' ')
+
+                retrieveUser(userId)
+                    .then(user => res.json(user))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        router.patch('/users', jsonBodyParser, (req, res) => {
+            try {
+                const { headers: { authorization }, body: { name, email, password } } = req
+
+                const [, userId] = authorization.split(' ')
+
+                updateUser(userId, name, email, password)
+                    .then(() => res.status(204).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        router.delete('/users', jsonBodyParser, (req, res) => {
+            try {
+                const { headers: { authorization }, body: { password } } = req
+
+                const [, userId] = authorization.split(' ')
+
+                unregisterUser(userId, password)
+                    .then(() => res.status(204).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        router.post('/notes', jsonBodyParser, (req, res) => {
+            try {
+                const { headers: { authorization }, body: { text, color, public } } = req
+
+                const [, userId] = authorization.split(' ')
+
+                createNote(userId, text, color, public)
+                    .then(() => res.status(201).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
         })
 
         api.use('/api', router)
