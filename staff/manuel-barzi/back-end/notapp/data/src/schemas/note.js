@@ -10,11 +10,19 @@ const note = new Schema({
     },
 
     text: {
-
+        type: String,
+        required: true
     },
 
     color: {
+        type: String,
+        required: true
+    },
 
+    public: {
+        type: Boolean,
+        required: true,
+        default: false
     },
 
     date: {

@@ -5,7 +5,8 @@ const {
     retrieveUser,
     updateUser,
     unregisterUser,
-    createNote
+    createNote,
+    updateNote
 } = require('logic')
 const { mongoose: { connect } } = require('data')
 const cors = require('./cors')
@@ -98,6 +99,20 @@ connect('mongodb://localhost:27017/notapp')
 
                 createNote(userId, text, color, public)
                     .then(() => res.status(201).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        router.patch('/notes/:noteId', jsonBodyParser, (req, res) => {
+            try {
+                const { headers: { authorization }, params: { noteId }, body: { text, color, public } } = req
+
+                const [, userId] = authorization.split(' ')
+
+                updateNote(userId, noteId, text, color, public)
+                    .then(() => res.status(204).send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
                 res.status(400).json({ error: error.message })
