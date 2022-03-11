@@ -1,6 +1,7 @@
 const express = require('express')
-const registerUser = require('logic')
+const { registerUser } = require('logic')
 const { mongoose: { connect } } = require('data')
+const cors = require('./cors')
 
 
 connect('mongodb://localhost:27017/notapp')
@@ -9,13 +10,7 @@ connect('mongodb://localhost:27017/notapp')
 
         const api = express()
 
-        api.use('*', (req, res, next) => {
-            res.setHeader('Access-Control-Allow-Origin', '*')
-            res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE')
-            res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-
-            next()
-        })
+        api.use('*', cors)
 
         const router = express.Router()
 
