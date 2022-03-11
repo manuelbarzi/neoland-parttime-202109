@@ -1,6 +1,8 @@
-import registerUser from "./registerUser";
+import registerUser from "./registerUser"
+import authenticateUser from "./authenticateUser"
 
 
 export {
-    registerUser
+    registerUser,
+    authenticateUser
 }

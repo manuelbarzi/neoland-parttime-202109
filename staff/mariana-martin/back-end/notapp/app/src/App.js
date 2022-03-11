@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-//importamos el compo 
+//importamos el componentes:
 import Register from './components/Register'
 
 function App() {

@@ -1,11 +1,11 @@
 //Montar el server
 
-const express = require('express')
-const { registerUser } = require('logic')
-const {mongoose : {connect }} = require('data')
+const express = require('express')  //paquete de node
+const { registerUser } = require('logic') //del paquete logic
+const {mongoose : {connect }} = require('data') //para usar lógica necesito data y data mongoose
 
 
-connect('mongodb://localhost:27017/notapp')
+connect('mongodb://localhost:27017/notapp')  //conecto a base de datos mongoose
     .then(() => {
         console.log('connected to data-base')
 
@@ -23,23 +23,24 @@ connect('mongodb://localhost:27017/notapp')
             next() 
         })
 
-        const router = express.Router()
+        const router = express.Router()  //para crear rutas como registrar user *1
 
-        const jsonBodyParser = express.json()
+        const jsonBodyParser = express.json()  //nos devuelve un parseador de cuerpos json
 
+        //*1 uso ruta express, petición al servidor en esta ruta: (en la req se guardan esos datos)
         router.post('/users', jsonBodyParser, (req, res ) => {
             try {
-                const { body: { name, email, password }} = req
-
+                const { body: { name, email, password }} = req  //del body extraigo name, mail, psw de la req
+                                                                //cuando lo hacemos en jsonBody, nos pone una propiedad body, los campos con las porpeidades de ese objeto
                 registerUser(name, email, password)
-                    .then(() => res.status(201).send())
+                    .then(() => res.status(201).send())  //201 = creado
                     .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {
+            } catch (error) { //error síncrono:
                 res.status(400).json({ error: error.message })
             }
         })
 
-        api.use('/api', router)
-        api.listen(8080, () => console.log('json server running'))
+        api.use('/api', router) //úsalo en la ruta API , tood lo que sea api/loquesea... se contruyen rutas
+        api.listen(8080, () => console.log('json server running')) //arranco el server...
     })
 

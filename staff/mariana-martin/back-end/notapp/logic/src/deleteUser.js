@@ -1,18 +1,16 @@
 const { models: { User} } = require('data')
 
-function deleteUser(id, password){
+function deleteUser(userId, password){
     //Validators
     
-    return User.findById(id).then((user) => {
-        if(!user) throw new Error(`User with ${id} not found`)
+    return User.deleteOne({ _id: userId, password })
+        .then(result => {
+            const { deleteCount } = result
 
-        if(user.password !== password) throw new Error('wrong credentials')
-
-        return User.deleteOne({ _id: id }).then((result) =>{
-            if(result.deletedCount === 0)
-            throw new Error (`Cannot delete user with id ${id}`)
-        } )
-    })
+            if(deleteCount === 0 )
+                throw new Error(`user with id ${userId} not found or wrong credentials`)
+        })
+  
 
 }
 

@@ -1,10 +1,15 @@
 //importo de la dependencia de data los modelos y luego el modelo Note
-const { models: { Note }} = require('data')
+const { models: { User, Note }} = require('data')
 
-function createNote(user, color, text, public ){
+function createNote(userId, text, color, public=false ){
 
-    return Note.create({ user, color, text, public })
-        .then(note = { })
+    return User.findById(userId)
+        .then(user => {
+            if (!user) throw new Error(`user with id ${userId} not found`)
+
+            return Note.create({ user: userId, text, color, public})
+        })
+        .then(note => { })
 
 }
 

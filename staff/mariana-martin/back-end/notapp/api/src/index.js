@@ -1,7 +1,15 @@
+//Montar el server
 //versión que importa el archivo cors:
 
 const express = require('express')
-const { registerUser, authenticateUser } = require('logic')
+const { registerUser, 
+     authenticateUser, 
+    retrieveUser, 
+    updateUser, 
+    deleteUser,
+
+    createNote} = require('logic') //de la carpeta logic del servidor
+    
 const {mongoose: { connect }} = require('data')
 const cors = require('./cors')
 
@@ -17,6 +25,7 @@ connect('mongodb://localhost:27017/notapp')
 
         const jsonBodyParser = express.json()
 
+     //***** REGISTER
         router.post('/users', jsonBodyParser, (req, res ) => {
             try {
                 const {body: { name, email, password }} = req
@@ -31,7 +40,7 @@ connect('mongodb://localhost:27017/notapp')
             }
         })
 
-
+    //***** AUTHENTICATE
         router.post('/users/auth', jsonBodyParser, (req, res) => {
             try {
                 
@@ -41,14 +50,72 @@ connect('mongodb://localhost:27017/notapp')
                     .then(id => res.status(200).send(id))
                     .catch(error => res.status(400).json({ error: error.message}))
             } catch (error) {
+                res.status(400).json({ error: error.message })
+                
+            }
+        })
+    //***** RETRIEVE
+        router.get('/users', (req, res) => {
+            try {
+                
+                const { headers: { authorization }} = req
+
+                const [, userId] = authorization.split(' ')
+
+                retrieveUser(userId)
+                    .then(user => res.json(user))
+                    .catch(error => res.status(400).json({ error: error.message}))
+            } catch (error) {
+                    res.status(400).json({ error: error.message })
+            }
+        })
+
+    // ***** UPDATE
+        router.patch('/users', jsonBodyParser, (req, res) => {
+
+            try {
+                const {headers: { authorization }, body: { name, email, password}} = req
+                const [, userId] = authorization.split(' ')
+
+                updateUser(userId, name, email, password)
+                    .then(() => res.status(204).send())
+                    .catch(error => res.status(400).json({ error: error.message}))
+            } catch (error) {
                 res.status(400).json({ error: error.message})
                 
             }
         })
 
-        router.get('/users', (req, res) => {
-            //TODO
+    // ***** DELETE USER
+
+        router.delete('/users', jsonBodyParser, (req, res) => {
+            try {
+                const { headers: { authorization }, body: {password}} = req
+
+                const [, userId ] = authorization.split(' ')
+
+                deleteUser(userId, password)
+                    .then(() => res.status(204).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message})
+                
+            }
         })
+
+    // ***** CREATE NOTE
+
+        router.post('/notes', jsonBodyParser, (req, res) => {
+            try {
+                const {headers: { authorization}, body: {text, color, public}} =req
+                const [, userId] = authorization.split(' ')
+
+                createNote(userId, text, color, public)
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+        })
+
 
         api.use('/api', router)
 
