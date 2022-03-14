@@ -6,7 +6,8 @@ const {
     updateUser,
     unregisterUser,
     createNote,
-    updateNote
+    updateNote,
+    deleteNote
 } = require('logic')
 const { mongoose: { connect } } = require('data')
 const cors = require('./cors')
@@ -112,6 +113,20 @@ connect('mongodb://localhost:27017/notapp')
                 const [, userId] = authorization.split(' ')
 
                 updateNote(userId, noteId, text, color, public)
+                    .then(() => res.status(204).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        router.delete('/notes/:noteId', jsonBodyParser, (req, res) => {
+            try {
+                const { headers: { authorization }, params: { noteId } } = req
+
+                const [, userId] = authorization.split(' ')
+
+                deleteNote(userId, noteId)
                     .then(() => res.status(204).send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
