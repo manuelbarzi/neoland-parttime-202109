@@ -1,0 +1,3 @@
+function retrieveNotes(userId, ownerId){
+    
+}
