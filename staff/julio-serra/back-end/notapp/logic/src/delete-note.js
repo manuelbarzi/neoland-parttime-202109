@@ -1,16 +1,13 @@
-const { User } = require('../../data/src/models')
-const { Note } = require('../../data/src/models')
+const { models: { User } } = require('../../data')
+const { models: { Note } } = require('../../data')
 
-function deleteNote(userId, noteId) {
+function deleteNote(id, noteId) {
 
-    return Note.findById(noteId)
+    return Note.findById({ user: id, _id: noteId })
 
-        .then(note => {
-            if (note.user === userId) console.log(note + 'eliminated')
-            // console.log(`${note} borrada`)
-
-            else
-                console.log(note.user)
+        .then(result => {
+            const { matchedCount } = result
+            if (matchedCount === 0) throw new Error(`note with id ${noteId} and user ${id} not found`)
         })
 }
 
