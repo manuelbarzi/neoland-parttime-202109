@@ -1,9 +1,15 @@
 const { models: { User } } = require('data')
 
-function updateUser(id, updateUser) {
+function updateUser(userId, name, email, password) {
     //TODO validaciones
 
-    return User.updateOne({ _id: id}, updateUser)
+    return User.updateOne({ _id: userId }, { name, email, password })
+        .then(result => {
+            const { matchedCount } = result
+
+            if (matchedCount === 0)
+                throw new Error(`user with id ${userId} not found`)
+        })
 }
 
 module.exports = updateUser
