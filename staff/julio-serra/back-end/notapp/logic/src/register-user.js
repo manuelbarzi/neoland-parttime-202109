@@ -1,10 +1,10 @@
 const { models: { User } } = require('../../data')
-const { validateName, validateEmail, validatePassword } = require('./helpers/validators')
+const { validators: { validateName, validateEmail, validatePassword } } = require('../../commons')
 
 function registerUser(name, email, password) {
-    validateName.name,
-        validateEmail.email,
-        validatePassword.password
+    validateName(name)
+    validateEmail(email)
+    validatePassword(password)
 
     // const user = new User({ name, email, password })
 

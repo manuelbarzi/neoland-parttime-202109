@@ -1,6 +1,9 @@
 const { models: { Note } } = require('../../data')
+const { validatos: {validateId}} = require('../../commons')
 
 function updateNote(id, noteId, color, public, text) {
+    validateId(id)
+
     return Note.updateOne({ user: id, _id: noteId }, { color, public, text })
     .then(result => {
         const { matchedCount } = result
