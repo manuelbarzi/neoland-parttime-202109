@@ -7,7 +7,8 @@ const {
     unregisterUser,
     createNote,
     updateNote,
-    deleteNote
+    deleteNote,
+    retrieveNotes
 } = require('logic')
 const { mongoose: { connect } } = require('data')
 const cors = require('./cors')
@@ -128,6 +129,34 @@ connect('mongodb://localhost:27017/notapp')
 
                 deleteNote(userId, noteId)
                     .then(() => res.status(204).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        router.get('/notes', jsonBodyParser, (req, res) => {
+            try {
+                const { headers: { authorization } } = req
+
+                const [, userId] = authorization.split(' ')
+
+                retrieveNotes(userId, userId)
+                    .then(notes => res.status(200).json(notes))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        router.get('/users/:ownerId/notes', jsonBodyParser, (req, res) => {
+            try {
+                const { headers: { authorization }, params: { ownerId } } = req
+
+                const [, userId] = authorization.split(' ')
+
+                retrieveNotes(userId, ownerId)
+                    .then(notes => res.status(200).json(notes))
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
                 res.status(400).json({ error: error.message })

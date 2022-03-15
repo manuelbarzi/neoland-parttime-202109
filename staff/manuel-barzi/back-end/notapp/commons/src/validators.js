@@ -28,10 +28,10 @@ function validateToken(token) {
     if (token.split('.').length !== 3) throw new Error('invalid token')
 }
 
-function validateId(id) {
-    if (typeof id !== 'string') throw new TypeError('id is not string')
-    if (!id.trim()) throw new Error('id is empty or blank')
-    if (id.length !== 24) throw new Error('invalid id')
+function validateId(id, explain = 'id') {
+    if (typeof id !== 'string') throw new TypeError(`${explain} is not string`)
+    if (!id.trim()) throw new Error(`${explain} is empty or blank`)
+    if (id.length !== 24) throw new Error(`invalid ${explain}`)
 }
 
 module.exports = {

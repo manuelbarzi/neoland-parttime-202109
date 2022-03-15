@@ -1,6 +1,8 @@
 const { models: { User }} = require('data')
 
 function deleteUser(userId, password) {
+    // TODO delete all notes from user, before deleting him/her self
+    
     return User.deleteOne({ _id: userId, password })
         .then(result => {
             const { deletedCount } = result
