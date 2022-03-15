@@ -3,7 +3,7 @@ const { models: { Note } } = require('../../data')
 
 function deleteNote(id, noteId) {
 
-    return Note.findById({ user: id, _id: noteId })
+    return Note.deleteOne({ user: id, _id: noteId })
 
         .then(result => {
             const { matchedCount } = result

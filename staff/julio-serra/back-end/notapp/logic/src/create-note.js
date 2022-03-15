@@ -1,7 +1,7 @@
 const { models: { Note } } = require('../../data/')
 
-function createNote(user, data, color, public, text) {
-    return Note.create({ user, data, color, public, text })
+function createNote(user, color, public, text) {
+    return Note.create({ user, color, public, text })
         .then(note => { })
 }
 
