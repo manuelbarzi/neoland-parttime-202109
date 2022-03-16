@@ -81,7 +81,7 @@ connect('mongodb://localhost:27017/notapp')
 
         try{
 
-            return deleteNote('62220ac92a96f8c799c05dcf','62274cab8cc9b9e782e33435')
+            return deleteNote('622b2363d43725790752f32a','622b4445efb91f24ca81a90e')
             .then(() => console.log('Nota Eliminada'))
             .catch(error => console.error(error))
 

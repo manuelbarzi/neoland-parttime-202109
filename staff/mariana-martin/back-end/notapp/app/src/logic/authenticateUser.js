@@ -1,5 +1,7 @@
 //lógica de cliente 
 
+
+
 function authenticateUser(email, password){
 
     return fetch('http://localhost:8080/api/users', {

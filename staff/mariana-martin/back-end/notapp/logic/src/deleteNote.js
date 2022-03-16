@@ -1,13 +1,17 @@
-const { models: { User, Note }} = require('data') 
+//versión que da por hecho que si existe el usuario
+
+const { models: { Note }} = require('data') 
 
 function deleteNote(userId, noteId) {
 
-    return Note.findById(noteId)
-        .then(note => {
+    return Note.deleteOne({ user: userId, _id: noteId })
+        .then(result => {
+            const { matchedCount } = result
 
-            if(note.user === userId ) console.log(note + 'eliminada')
-            else console.log(note.user)
+            if(matchedCount === 0) throw new Error( `note with id ${noteId} and user id ${userId} not found`)
         })
+
+
 }
 
 module.exports = deleteNote

@@ -3,11 +3,13 @@ const { models: { User, Note }} = require('data')
 
 function createNote(userId, text, color, public=false ){
 
-    return User.findById(userId)
+    //Validations
+
+    return User.findById(userId)  //busco user
         .then(user => {
             if (!user) throw new Error(`user with id ${userId} not found`)
 
-            return Note.create({ user: userId, text, color, public})
+            return Note.create({ user: userId, text, color, public}) 
         })
         .then(note => { })
 

@@ -1,9 +1,13 @@
 //me traigo de la dependencia de data los modelos y de modelos User
+//node si permite niveles de destructración: 
 
 const { models: { User } } = require('data')
+const { validators: { validateName, validateEmail, validatePassword } } = require('commons')
 
 function registerUser(name, email, password){
-    //Validators
+    validateName(name)
+    validateEmail(email)
+    validatePassword(password)
 
     // const user = new User({ name, email, password })
 

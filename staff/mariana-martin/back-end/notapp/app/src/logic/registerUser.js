@@ -1,7 +1,12 @@
 //lógica de cliente 
+//el import sólo nos permite sólo 1 nivel de destructuring:
+import { validators } from 'commons'
+const { validateName, validateEmail, validatePassword } = validators
 
 function registerUser(name, email, password){
-//Validators
+validateName(name)
+validateEmail(email)
+validatePassword(password)
 
 //retornamos la promesa que devuelve el fetch y object con method headers y body
 return fetch('http://localhost:8080/api/users', {
