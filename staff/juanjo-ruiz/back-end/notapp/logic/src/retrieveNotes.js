@@ -1,7 +1,10 @@
 const { models: { Note } } = require('data')
-const { user } = require('data/src/schemas')
+const { validators: { validateId } } = require('commons')
 
 function retrieveNotes(userId, ownerId) {
+    validateId(userId, 'user id')
+    validateId(ownerId, 'owner id')
+
     if (userId === ownerId) {
         return Note.find({ user: userId })
             .then(notes => notes)
