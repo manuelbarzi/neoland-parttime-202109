@@ -1,16 +1,21 @@
-const express = require('express')
-const { registerUser, authenticateUser, retrieveUser, createNote, updateNote, deleteNote } = require('../../logic')
+require('dotenv').config()
 const { mongoose: { connect } } = require('../../data')
-const cors = require('./cors')
+const express = require('express')
+const cors = require('cors')
+const { registerUser, authenticateUser, retrieveUser } = require('./handlers')
+const { createNote, updateNote, deleteNote } = require('../../logic')
 const { Router } = require('express')
+const { env: { MONGODB_URL, PORT } } = process
+const { extracUserIdFromAuthorization } = require('./helpers')
 
-connect('mongodb://localhost:27017/noteapp')
+
+connect(MONGODB_URL)
     .then(() => {
         console.log('connected to db')
         const api = express()
 
         // para evitar el error de CORS
-        api.use('*', cors)
+        api.use(cors())
         // api.use('*', (req, res, next) => {
         //     res.setHeader('Access-Control-Allow-Origin', '*')
         //     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PATCH')
@@ -25,51 +30,17 @@ connect('mongodb://localhost:27017/noteapp')
 
 
 
-        router.post('/users', jsonBodyParser, (req, res) => {
-            try {
-                const { body: { name, email, password } } = req
-
-                registerUser(name, email, password)
-                    .then(() => res.status(201).send())
-                    .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
-
-        router.post('/users/auth', jsonBodyParser, (req, res) => {
-            try {
-                const { body: { email, password } } = req
-
-                authenticateUser(email, password)
-                    .then(id => res.status(200).send(id))
-                    .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
+        router.post('/users', jsonBodyParser, registerUser)
+        router.post('/users/auth', jsonBodyParser, authenticateUser)
 
         // RETRIEVE USER
-        router.get('/users', (req, res) => {
-            try {
-
-                const { headers: { authorization } } = req // la cabecera de respuesta es > Authorization: Bearer + id
-                const [, id] = authorization.split(' ')
-                // hacemos un split del Authorization: Bearer + id que se converte en un array con 2 posiciones y cogemos la segunda (el id)
-
-                retrieveUser(id)
-                    .then(user => res.json(user))
-                    .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
+        router.get('/users', retrieveUser)
 
         // CREATE NOTE
         router.post('/notes', jsonBodyParser, (req, res) => {
             try {
-                const { headers: { authorization }, body: { color, public, text } } = req
-                const [, id] = authorization.split(' ')
+                const id = extracUserIdFromAuthorization(req)
+                const { body: { color, public, text } } = req
 
                 createNote(id, color, public, text)
                     .then(() => res.status(201).send())
@@ -83,8 +54,8 @@ connect('mongodb://localhost:27017/noteapp')
         // UPDATE NOTE
         router.patch('/notes/:noteId', jsonBodyParser, (req, res) => {
             try {
-                const { headers: { authorization }, params: { noteId }, body: { color, public, text } } = req
-                const [, id] = authorization.split(' ')
+                const id = extracUserIdFromAuthorization(req)
+                const { params: { noteId }, body: { color, public, text } } = req
 
                 updateNote(id, noteId, color, public, text)
                     .then(() => res.status(204).send())
@@ -98,8 +69,8 @@ connect('mongodb://localhost:27017/noteapp')
         // DELETE NOTE
         router.delete('/notes/:noteId', jsonBodyParser, (req, res) => {
             try {
-                const { headers: { authorization }, params: { noteId } } = req
-                const [, id] = authorization.split(' ')
+                const id = extracUserIdFromAuthorization(req)
+                const { params: { noteId } } = req
 
                 deleteNote(id, noteId)
                     .then(() => res.status(204).send())
@@ -114,5 +85,5 @@ connect('mongodb://localhost:27017/noteapp')
 
         api.use('/api', router)
 
-        api.listen(8080, () => console.log('json server running'))
+        api.listen(PORT, () => console.log('json server running'))
     })
