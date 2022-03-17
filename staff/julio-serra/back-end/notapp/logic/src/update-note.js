@@ -1,5 +1,5 @@
 const { models: { Note } } = require('../../data')
-const { validatos: {validateId}} = require('../../commons')
+const { validators: {validateId}} = require('../../commons')
 
 function updateNote(id, noteId, color, public, text) {
     validateId(id)
