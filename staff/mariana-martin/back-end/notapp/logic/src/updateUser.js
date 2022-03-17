@@ -1,7 +1,13 @@
 const { models: { User }} = require('data')
+const{ validators: { validateId, validateName, validateEmail, validatePassword}} = require('commons')
 
 function updateUser(userId, name, email, password){
-    //Validators
+    validateId(userId, 'user id')
+    validateName(name)
+    validateEmail(email)
+    validatePassword(password)
+
+
                         //busco user cuyo _id sea userid
     return User.updateOne({ _id: userId}, {name, email, password})  //permite buscar y actualizar(updateOne(mongoose))
         .then(result => {

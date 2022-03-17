@@ -1,7 +1,18 @@
 const { models: { User} } = require('data')
+const { validators: { validateId, validatePassword}} = require('commons')
 
 function deleteUser(userId, password){
-    //Validators
+    validateId(userId, 'user id')
+    validatePassword(password)
+
+
+    //TODO eliminar todas las notas del usuario cuando se elimine este
+    //
+    return User.findById({ userId })
+        .then(user => {
+
+        })
+
     
     return User.deleteOne({ _id: userId, password }) //buscamos y borramos con deleteOne 
         .then(result => {

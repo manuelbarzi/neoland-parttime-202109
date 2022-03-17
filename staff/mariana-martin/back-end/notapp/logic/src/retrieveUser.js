@@ -1,8 +1,8 @@
 const { User } = require('data/src/models')
-
+const { validators: {validateId}} = require('commons')
 
 function retrieveUser(userId){
- 
+    validateId(userId, 'user id')
 
 //RETURN CADENA DE PROMESAS
 

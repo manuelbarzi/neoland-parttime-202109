@@ -1,10 +1,11 @@
 //Recupero todas las notas mías: las devuelvo
 //Si recupero nota de alguién más: necesito miId y el Id del usuario , so:
 //o si hacemos click en un usuario veremos todas sus notas
+
 const { models : { Note }} = require('data')
 const { validators: { validateId }} =require('commons')
 
-
+//TODO Validar si el usuario y owner existe
 
 function retrieveNotes(userId, ownerId){
     validateId(userId, 'user id') //'user id' como 2do paramentro para los validators (explain)

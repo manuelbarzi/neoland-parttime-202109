@@ -1,103 +1,55 @@
 //Montar el server
-//versión que importa el archivo cors:
+//versión que ya tiene cors instalado (oficial):
+require('dotenv').config() //cargo var de enviroment, trae librería dotenv y llama método config busca carpeta de la api y lo carga en momeria
 
+const {mongoose: { connect }} = require('data')
 const express = require('express')
-const { registerUser, 
-     authenticateUser, 
-    retrieveUser, 
-    updateUser, 
-    deleteUser,
+const cors = require('cors') //cors oficial
 
+const { registerUserH, authenticateUserH, retrieveUserH,  updateUserH, } = require('./handlers') //importo handlers que envuelven a la lógica
+const { 
+    deleteUser,
     createNote,
     updateNote, 
     retrieveNotes,
     deleteNote} = require('logic') //de la carpeta logic del servidor
 
-const {mongoose: { connect }} = require('data')
-const cors = require('./cors')
+const {extractUserIdFromAuthorization} = require('./handlers/helpers')
 
+const { env: { MONGODB_URL, PORT}} = process //destructuro de .env
 
-connect('mongodb://localhost:27017/notapp')
+connect(MONGODB_URL) //ya no pongo la url tal cual
     .then(() => {
         console.log('connected to database')
 
         const api = express()
-                //* = para todas las rutas utiliza el cors(doc)
-        api.use('*', cors)
+                
+        api.use(cors())
 
         const router = express.Router()
 
         const jsonBodyParser = express.json()
 
-    //MANEJADORES:
+    
      //***** REGISTER USER 
-        router.post('/users', jsonBodyParser, (req, res ) => {
-            try {
-                const {body: { name, email, password }} = req
+        router.post('/users', jsonBodyParser, registerUserH)
 
-                registerUser(name, email, password)
-                    .then(() => res.status(201).send())
-                    .catch(error => res.status(400).json({ error: error.message}))
+    //*****  AUTHENTICATE USER  
+        router.post('/users/auth', jsonBodyParser, authenticateUserH)
 
-            } catch (error) {
-                res.status(400).json({ error: error.message})
-                
-            }
-        })
-
-    //*****  AUTHENTICATE USER  (usaremos id como token, por ahora) 
-        router.post('/users/auth', jsonBodyParser, (req, res) => {
-            try {
-                
-                const { body: { email, password }} = req
-
-                authenticateUser(email, password)
-                    .then(id => res.status(200).send(id))
-                    .catch(error => res.status(400).json({ error: error.message}))
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-                
-            }
-        })
     //***** RETRIEVE USER
-        router.get('/users', (req, res) => {   //ruta
-            try {
-                
-                const { headers: { authorization }} = req  //enviamos en este caso id(en vex de token) 
-                                                            
-                const [, userId] = authorization.split(' ')  //extraemos id del authorizarion (bearer' 'XXXXXX)dividimos 
-                                                            //destructuro authorization [bearer idxxxxxx] la coma es bearer y me quedo la 2 parte
-                retrieveUser(userId)                                                       //1    //2
-                    .then(user => res.json(user))
-                    .catch(error => res.status(400).json({ error: error.message}))
-            } catch (error) {
-                    res.status(400).json({ error: error.message })
-            }
-        })
+        router.get('/users', retrieveUserH)
 
     // ***** UPDATE USER
-        router.patch('/users', jsonBodyParser, (req, res) => {
-
-            try {
-                const {headers: { authorization }, body: { name, email, password}} = req
-                const [, userId] = authorization.split(' ')
-
-                updateUser(userId, name, email, password)
-                    .then(() => res.status(204).send())
-                    .catch(error => res.status(400).json({ error: error.message}))
-            } catch (error) {
-                res.status(400).json({ error: error.message})
-                
-            }
-        })
+        router.patch('/users', jsonBodyParser, updateUserH)
 
     // ***** DELETE USER
                                 //jsonBody, para recibir el pwd
         router.delete('/users', jsonBodyParser, (req, res) => {
             try {
-                const { headers: { authorization }, body: {password}} = req
+                const userId = extractUserIdFromAuthorization(req)
 
-                const [, userId ] = authorization.split(' ')
+                const {  body: {password}} = req
 
                 deleteUser(userId, password)
                     .then(() => res.status(204).send())
@@ -112,8 +64,10 @@ connect('mongodb://localhost:27017/notapp')
 
         router.post('/notes', jsonBodyParser, (req, res) => {
             try {
-                const {headers: { authorization}, body: {text, color, public}} = req  //del body extraigo text, color,pub
-                const [, userId] = authorization.split(' ')
+
+                const userId = extractUserIdFromAuthorization(req)
+                const { body: {text, color, public}} = req  //del body extraigo text, color,pub
+               
 
                 createNote(userId, text, color, public)
                 .then(() => res.status(201).send())  //creado
@@ -124,12 +78,12 @@ connect('mongodb://localhost:27017/notapp')
         })
 
     // ***** UPDATE NOTE
-        //para cambiar nota en api es envio el url de la nota (:noteId) y lo extraemos con params:
-        //en insomnia para probar enla url poner tal cual el id de la nota
+       
         router.patch('/notes/:noteId', jsonBodyParser, (req, res) => {
             try {
-                const{ headers: { authorization }, params: { noteId}, body: {text, color, public}} =req
-                const [, userId] = authorization.split(' ')
+                const userId = extractUserIdFromAuthorization(req)
+                const{ params: { noteId}, body: {text, color, public}} =req
+               
 
                 updateNote(userId, noteId, text, color, public)
                 .then(() => res.status(204).send())
@@ -144,8 +98,8 @@ connect('mongodb://localhost:27017/notapp')
         
         router.get('/notes', jsonBodyParser, (req, res) =>{
             try {
-                const { headers :{ authorization}} =req
-                const [, userId] = authorization.split(' ')
+
+                const userId = extractUserIdFromAuthorization(req)
 
                 retrieveNotes(userId, userId) //nota de mi mismo
                     .then(notes => res.status(200).json(notes))
@@ -161,8 +115,9 @@ connect('mongodb://localhost:27017/notapp')
                         //combino users con notas en la url/de ese user->cuál user-> dame notas
         router.get('/users/:ownerId/notes', jsonBodyParser, (req, res) => {
             try {
-                const { headers : { authorization }, params: { ownerId}} = req
-                const[, userId] = authorization.split(' ')
+                const userId = extractUserIdFromAuthorization(req)
+                const {  params: { ownerId}} = req
+                
 
                 retrieveNotes(userId, ownerId) 
                     .then(notes => res.status(200).json(notes))  //devuelvo notas en un json
@@ -176,9 +131,11 @@ connect('mongodb://localhost:27017/notapp')
      // ***** DELETE NOTE
         router.delete('/notes/:noteId', jsonBodyParser, (req, res) => {
             try {
-                const {headers: { authorization}, params: { noteId }} = req
 
-                const [, userId] = authorization.split(' ')
+                const userId = extractUserIdFromAuthorization(req)
+                const { params: { noteId }} = req
+
+             
 
                 deleteNote(userId, noteId)
                     .then(() => res.status(204).send())
@@ -191,5 +148,5 @@ connect('mongodb://localhost:27017/notapp')
 
         api.use('/api', router)
 
-        api.listen(8080, () => console.log('json server running'))
+        api.listen(PORT, () => console.log('json server running'))
     })
