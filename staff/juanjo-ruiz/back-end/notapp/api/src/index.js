@@ -5,17 +5,17 @@ const { mongoose: { connect } } = require('data')
 const cors = require('cors')
 const { registerUser,
     authenticateUser,
-    registerUser
-} = require('./handlers')
-const { updateUser,
+    registerUser,
+    updateUser,
     deleteUser,
     createNote,
     updateNote,
     deleteNote,
     retrieveNotes,
-} = require('logic')
+    retrieveNotesOwnerId
+} = require('./handlers')
 
-const { extractUserIdFromAuthorization } = require('./handlers/helpers')
+/* const { extractUserIdFromAuthorization } = require('./handlers/helpers') ya no es necesario porque esta implementado en cada handlers*/
 
 const { env: { MONGODB_URL, PORT } } = process
 
@@ -31,108 +31,16 @@ connect(MONGODB_URL)
 
         const jsonBodyParser = express.json()
 
-
         router.post('/users', jsonBodyParser, registerUser)
-
         router.post('/users/auth', jsonBodyParser, authenticateUser)
-
         router.get('/users', retrieveUser)
-
-        router.patch('/users', jsonBodyParser, (req, res) => {
-            try {
-                const userId = extractUserIdFromAuthorization(req)
-
-                const { body: { name, email, password } } = req
-
-                updateUser(userId, name, email, password)
-                    .then(() => res.status(204).send())
-                    .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
-
-        router.delete('/users', jsonBodyParser, (req, res) => {
-            try {
-                const userId = extractUserIdFromAuthorization(req)
-
-                const { body: { password } } = req
-
-                deleteUser(userId, password)
-                    .then(() => res.status(204).send())
-                    .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
-
-        router.post('/notes', jsonBodyParser, (req, res) => {
-            try {
-                const userId = extractUserIdFromAuthorization(req)
-
-                const { body: { text, color, public } } = req
-
-                createNote(userId, text, color, public)
-                    .then(() => res.status(201).send())
-                    .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
-
-        router.patch('/notes/:noteId', jsonBodyParser, (req, res) => {
-            try {
-                const userId = extractUserIdFromAuthorization(req)
-
-                const { params: { noteId }, body: { text, color, public } } = req
-
-                updateNote(userId, noteId, text, color, public)
-                    .then(() => res.status(204).send())
-                    .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
-
-        router.delete('/notes/:noteId', jsonBodyParser, (req, res) => {
-            try {
-                const userId = extractUserIdFromAuthorization(req)
-
-                const { params: { noteId } } = req
-
-                deleteNote(userId, noteId)
-                    .then(() => res.status(204).send())
-                    .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
-
-        router.get('/notes', jsonBodyParser, (req, res) => {
-            try {
-                const userId = extractUserIdFromAuthorization(req)
-
-                retrieveNotes(userId, userId)
-                    .then(notes => res.status(200).json(notes))
-                    .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
-
-        router.get('/users/:ownerId/notes', jsonBodyParser, (req, res) => {
-            try {
-                const userId = extractUserIdFromAuthorization(req)
-
-                const { params: { ownerId } } = req
-
-                retrieveNotes(userId, ownerId)
-                    .then(notes => res.status(200).json(notes))
-                    .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
+        router.patch('/users', jsonBodyParser, updateUser)
+        router.delete('/users', jsonBodyParser, deleteUser)
+        router.post('/notes', jsonBodyParser, createNote)
+        router.patch('/notes/:noteId', jsonBodyParser, updateNote)
+        router.delete('/notes/:noteId', jsonBodyParser, deleteNote)
+        router.get('/notes', jsonBodyParser, retrieveNotes)
+        router.get('/users/:ownerId/notes', jsonBodyParser, retrieveNotesOwnerId)
 
         api.use('/api', router)
 
