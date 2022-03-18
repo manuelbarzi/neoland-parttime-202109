@@ -14,7 +14,8 @@ const {
     createNote,
     updateNote,
     deleteNote,
-    retrieveNotes
+    retrieveNotes,
+    retrievePublicNotesFromUser
 } = require('logic')
 const { extractUserIdFromAuthorization } = require('./handlers/helpers')
 
@@ -97,7 +98,7 @@ connect(MONGODB_URL)
             try {
                 const userId = extractUserIdFromAuthorization(req)
 
-                retrieveNotes(userId, userId)
+                retrieveNotes(userId)
                     .then(notes => res.status(200).json(notes))
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
@@ -111,7 +112,7 @@ connect(MONGODB_URL)
 
                 const { params: { ownerId } } = req
 
-                retrieveNotes(userId, ownerId)
+                retrievePublicNotesFromUser(userId, ownerId)
                     .then(notes => res.status(200).json(notes))
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
