@@ -19,3 +19,5 @@ function retrieveUser(userId) {
             return doc
         })
 }
+
+module.exports= retrieveUser

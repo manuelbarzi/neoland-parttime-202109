@@ -1,89 +1,49 @@
+require('dotenv').config()
+
+const { mongoose: { connect } } = require('data')
 const express = require('express')
+const cors = require('cors')
 const {
     registerUser,
     authenticateUser,
     retrieveUser,
     updateUser,
+    findNotes
+} = require('./handlers')
+const {
     unregisterUser,
     createNote,
     updateNote,
-    deleteNote
+    deleteNote,
+    retrieveNotes
 } = require('logic')
+const { extractUserIdFromAuthorization } = require('./handlers/helpers')
 
-const { mongoose: { connect } } = require('data')
-const cors = require('./cors')
+const { env: { MONGODB_URL, PORT } } = process
 
-connect('mongodb://localhost:27017/notapp')
+connect(MONGODB_URL)
     .then(() => {
         console.log('connected to db')
 
         const api = express()
 
-        api.use('*', cors)
+        api.use(cors())
 
         const router = express.Router()
 
         const jsonBodyParser = express.json()
 
-        router.post('/users', jsonBodyParser, (req, res) => {
-            try {
-                const { body: { name, email, password } } = req
-
-                registerUser(name, email, password)
-                    .then(() => res.status(201).send())
-                    .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
-
-        router.post('/users/auth', jsonBodyParser, (req, res) => {
-            try {
-                const { body: { email, password } } = req
-
-                authenticateUser(email, password)
-                    .then(userId => res.status(200).json({ userId }))
-                    .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
-
-        // TODO route for retrieve user
-
-        router.get('/users', (req, res) => {
-            try {
-                const { headers: { authorization } } = req
-
-                const [, userId] = authorization.split(' ')
-
-                retrieveUser(userId)
-                    .then(user => res.json(user))
-                    .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
-
-        router.patch('/users', jsonBodyParser, (req, res) => {
-            try {
-                const { headers: { authorization }, body: { name, email, password } } = req
-
-                const [, userId] = authorization.split(' ')
-
-                updateUser(userId, name, email, password)
-                    .then(() => res.status(204).send())
-                    .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
-
+        router.post('/users', jsonBodyParser, registerUser)//register user
+        router.post('/users/auth', jsonBodyParser, authenticateUser)// authenticate
+        router.get('/users', retrieveUser)
+        router.patch('/users', jsonBodyParser, updateUser)
+        router.get('/notes/find', jsonBodyParser, findNotes)
+        
         router.delete('/users', jsonBodyParser, (req, res) => {
             try {
-                const { headers: { authorization }, body: { password } } = req
+                const userId = extractUserIdFromAuthorization(req)
 
-                const [, userId] = authorization.split(' ')
+                const { body: { password } } = req
 
                 unregisterUser(userId, password)
                     .then(() => res.status(204).send())
@@ -95,9 +55,9 @@ connect('mongodb://localhost:27017/notapp')
 
         router.post('/notes', jsonBodyParser, (req, res) => {
             try {
-                const { headers: { authorization }, body: { text, color, public } } = req
+                const userId = extractUserIdFromAuthorization(req)
 
-                const [, userId] = authorization.split(' ')
+                const { body: { text, color, public } } = req
 
                 createNote(userId, text, color, public)
                     .then(() => res.status(201).send())
@@ -107,13 +67,13 @@ connect('mongodb://localhost:27017/notapp')
             }
         })
 
-        router.patch('/notes:noteId', jsonBodyParser, (req, res) => {
+        router.patch('/notes/:noteId', jsonBodyParser, (req, res) => {
             try {
-                const { headers: { authorization }, params: {noteId}, body: { text, color, public } } = req
+                const userId = extractUserIdFromAuthorization(req)
 
-                const [, userId] = authorization.split(' ')
+                const { params: { noteId }, body: { text, color, public } } = req
 
-                updateNote(noteId, userId, text, color, public)
+                updateNote(userId, noteId, text, color, public)
                     .then(() => res.status(204).send())
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
@@ -121,14 +81,40 @@ connect('mongodb://localhost:27017/notapp')
             }
         })
 
-        router.delete('/notes:noteId', (req, res) => {
+        router.delete('/notes/:noteId', jsonBodyParser, (req, res) => {
             try {
-                const { headers: { authorization },params:{noteId}} = req
+                const userId = extractUserIdFromAuthorization(req)
 
-                const [, userId] = authorization.split(' ')
+                const { params: { noteId } } = req
 
-                deleteNote(noteId, userId)
+                deleteNote(userId, noteId)
                     .then(() => res.status(204).send())
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        router.get('/notes', jsonBodyParser, (req, res) => {
+            try {
+                const userId = extractUserIdFromAuthorization(req)
+
+                retrieveNotes(userId, userId)
+                    .then(notes => res.status(200).json(notes))
+                    .catch(error => res.status(400).json({ error: error.message }))
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+            }
+        })
+
+        router.get('/users/:ownerId/notes', jsonBodyParser, (req, res) => {
+            try {
+                const userId = extractUserIdFromAuthorization(req)
+
+                const { params: { ownerId } } = req
+
+                retrieveNotes(userId, ownerId)
+                    .then(notes => res.status(200).json(notes))
                     .catch(error => res.status(400).json({ error: error.message }))
             } catch (error) {
                 res.status(400).json({ error: error.message })
@@ -137,5 +123,5 @@ connect('mongodb://localhost:27017/notapp')
 
         api.use('/api', router)
 
-        api.listen(8080, () => console.log('json server running'))
+        api.listen(PORT, () => console.log('json server running'))
     })
