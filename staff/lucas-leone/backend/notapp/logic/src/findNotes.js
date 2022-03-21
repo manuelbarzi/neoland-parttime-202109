@@ -2,7 +2,7 @@ const { Note, User } = require('data/src/models')
 
 
 
-function findNotes(userId, query, color, date){
+function findNotes(userId, query, color, date) {
     validateId(userId)
     validateString(userId, 'user id')
     query && validateString(query, 'query')
@@ -11,29 +11,31 @@ function findNotes(userId, query, color, date){
 
 
     return User.findById(userId)
-        .then(user =>{
+        .then(user => {
             if (!user) throw new Error(`user with id ${userId} not found`)
-            
-            const filter={}
+
+            const filter = {}
 
             if (query) {
-                filter.text= new RegExp(query, 'i')
+                filter.text = new RegExp(query, 'i')
             }
-           
+            if (color) {
+                filter.color = new RegExp(query, 'i')
+            }
 
 
             return Note.find(filter)
-           
-            .then(notes =>{
-                notes.forEach(note=>{
 
-                note.id = note._id.toString()
+                .then(notes => {
+                    notes.forEach(note => {
 
-                delete note._id
-                delete note.__v
+                        note.id = note._id.toString()
+
+                        delete note._id
+                        delete note.__v
+                    })
+                    return notes
                 })
-                return notes
-            })
         })
 }
 
