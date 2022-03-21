@@ -1,22 +1,18 @@
-const {models : { User } } = require('data')
-  
-  function deleteUser(id, password) {
-    //TODO validations
-  
-    /*return User.deleteOne({_id: id, password : password})
-      .then(result => {
-        if (result.deletedCount === 0) throw new Error(`user with id ${id}`)
-      })*/
-  
-    return User.findById(id).then((user) => {
-      if (!user) throw new Error(`user with ${id} not found`);
-  
-      if (user.password !== password) throw new Error("wrong credentials");
-  
-      return User.deleteOne({ _id: id }).then((result) => {
-        if (result.deletedCount === 0)
-          throw new Error(`cannot delete user with id ${id}`);
-      });
-    });
-  }
-  module.exports = deleteUser;
+const { models: { User } } = require('data')
+const {validators: {validateId, validatePassword} } = require('commons')
+
+function deleteUser(userId, password) {
+  validateId(userId, 'user id')
+  validatePassword(password)
+  // TODO delete all notes from user, before deleting him/her self
+
+  return User.deleteOne({ _id: userId, password })
+    .then(result => {
+      const { deletedCount } = result
+
+      if (deletedCount === 0)
+        throw new Error(`user with id ${userId} not found or wrong credentials`)
+    })
+
+}
+module.exports = deleteUser;

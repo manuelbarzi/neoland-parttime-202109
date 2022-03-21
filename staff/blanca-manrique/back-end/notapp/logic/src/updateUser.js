@@ -1,10 +1,18 @@
-const {models : { User } } = require('data')
+const { models: { User } } = require('data')
+const { validators: { validateId, validateName, validateEmail, validatePassword } } = require('commons')
 
-function updateUser(id, updatedUser){
-    // TODO validate id
-    // TODO validate update is object
-    // TODO validate each property
-    
-    return User.updateOne({_id: id}, updatedUser)
+function updateUser(userId, name, email, password) {
+    validateId(userId, 'user id')
+    validateName(name)
+    validateEmail(email)
+    validatePassword(password)
+
+    return User.updateOne({ _id: userId }, { name, email, password })
+        .then(result => {
+            const { matchedCount } = result
+
+            if (matchedCount === 0)
+                throw new Error(`user with id ${userId} not found`)
+        })
 }
 module.exports = updateUser

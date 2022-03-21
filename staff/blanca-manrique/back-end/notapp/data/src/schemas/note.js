@@ -1,6 +1,6 @@
 const { Schema } = require('mongoose')
 const { Types: { ObjectId } } = Schema
-
+const comment = require('./comment')
 
 const note = new Schema ({
     user: {
@@ -16,7 +16,6 @@ const note = new Schema ({
     color: {
         type: String,
         required: true,
-        default: 'white'
     },
     public: {
         type: Boolean,
@@ -26,9 +25,8 @@ const note = new Schema ({
     text:{
         type: String,
         required: true
-    }
-
-
+    },
+    comments: [comment]
 })
 
 module.exports = note

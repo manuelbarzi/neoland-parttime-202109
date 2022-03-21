@@ -1,18 +1,23 @@
-const {models : { User } } = require('data')
+const { models: { User } } = require('data')
+const {validators: {validateId}} = require('commons')
 
-function retrieveUser(id){
-    //TODO validations
+function retrieveUser(userId) {
+    validateId(userId, 'user id')
+    
+    return User.findById(userId)
+        .then(user => {
+            const doc = user._doc
 
-    // findById
-  /*   User.findById(id,(err, docs)=>{
-        if(err) console.error(err)
-        else{
-            return docs
-        }
-    }) */
+            //sanitize
+            doc.id = doc._id.toString()
+            delete doc._id
 
-        return  User.findById(id)
-        .then(doc => doc)
+            delete doc.password
+
+            delete doc.__v
+
+            return doc
+        })
 }
 
 module.exports = retrieveUser
