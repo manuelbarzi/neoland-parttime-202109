@@ -49,6 +49,15 @@ function validatePublic(public) {
     if (!public.trim()) throw new TypeError('public is empty or blanck')
 }
 
+function validateQuery(query) {
+    if (typeof query !== 'string') throw new TypeError('query is not string')
+    if (!query.trim()) throw new TypeError('query is empty or blanck')
+}
+
+function validateDate(date) {
+    if (typeof date !== Date) throw new TypeError('date is not date')
+}
+
 module.exports = {
     validateName,
     validateEmail,
@@ -58,5 +67,7 @@ module.exports = {
     validateId,
     validateText,
     validateColor,
-    validatePublic
+    validatePublic,
+    validateQuery,
+    validateDate
 }
