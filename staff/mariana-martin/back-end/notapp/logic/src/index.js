@@ -10,8 +10,9 @@ const deleteUser = require('./deleteUser')
 //CRUD DE NOTE
 const createNote = require('./createNote')
 const retrieveNote = require('./retrieveNote')
-const retrieveNotes = require('./retrieveNotes')
-const retrievePublicNotes = require('./retrieveNotes')
+const retrieveNotes = require('./retrieveNotes') //mis notas
+const retrievePublicNotes = require('./retrieveNotes') //feed
+const retrievePublicNotesFromUser = require('./retrievePublicNotesFromUser') //notas de alguien
 const updateNote = require('./updateNote')
 const deleteNote = require('./deleteNote')
 
@@ -26,6 +27,7 @@ module.exports = {
     retrieveNote,
     retrieveNotes,
     retrievePublicNotes,
+    retrievePublicNotesFromUser,
     updateNote,
     deleteNote
   

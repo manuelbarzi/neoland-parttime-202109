@@ -8,10 +8,10 @@ function deleteUser(userId, password){
 
     //TODO eliminar todas las notas del usuario cuando se elimine este
     //
-    return User.findById({ userId })
-        .then(user => {
+    // return User.findById({ userId })
+    //     .then(user => {
 
-        })
+    //     })
 
     
     return User.deleteOne({ _id: userId, password }) //buscamos y borramos con deleteOne 

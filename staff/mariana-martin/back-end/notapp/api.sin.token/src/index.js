@@ -30,8 +30,8 @@ connect('mongodb://localhost:27017/notapp')
         const jsonBodyParser = express.json()
 
     //MANEJADORES:
-     //***** REGISTER USER 
-        router.post('/users', jsonBodyParser, (req, res ) => {
+     //***** REGISTER USER      //cuando hacemos una petición, 1ero pasa por el jsonbodypar y nos lo convierte en objeto en memoria
+        router.post('/users', jsonBodyParser, (req, res ) => {  //y lo pone en la request
             try {
                 const {body: { name, email, password }} = req
 
