@@ -1,5 +1,5 @@
-const { models: { User } } = require('../../data/')
-const { validators: { validateId } } = require('../../commons')
+const { models: { User } } = require('data')
+const { validators: { validateId } } = require('commons')
 // metodo findByID
 
 // User.findById(id,(err, docs) => {
@@ -11,16 +11,16 @@ const { validators: { validateId } } = require('../../commons')
 function retrieveUser(id) {
     validateId(id)
 
-    return User.findById(id)
+    return User.findById(id).lean()
         .then(user => {
-            const doc = user._doc // pasamos el usuario de _doc a doc
+           
+            user.id = user._id.toString()
 
-            doc.id = doc._id.toString() // el id del usuario lo convertimos a string y lo guardamos en doc.id
-            delete doc._id // borramos del doc la propiedad _id, la guardamos anteriormente en id
-            delete doc.__v // borramos del doc la propiedad __v
-            delete doc.password // borramos del doc la propiedad password ya que no nos interesa saberla
+            delete user._id // borramos del doc la propiedad _id, la guardamos anteriormente en id
+            delete user.__v // borramos del doc la propiedad __v
+            delete user.password // borramos del doc la propiedad password ya que no nos interesa saberla
 
-            return doc // devolvemos el doc con todas las propiedades correctas y ordenadas
+            return user // devolvemos el doc con todas las propiedades correctas y ordenadas
         })
 }
 

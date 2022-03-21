@@ -1,8 +1,14 @@
-const { models: { Note } } = require('../../data/')
+const { models: { User, Note } } = require('data')
 
-function createNote(user, color, public, text) {
-    return Note.create({ user, color, public, text })
+function createNote(id, text, color, public = false) {
+
+    return User.findById(id)
+        .then(user => {
+            if (!user) throw new Error(`user with id ${id} not found`)
+
+            return Note.create({ user: id, text, color, public })
+        })
         .then(note => { })
-}
+    }
 
 module.exports = createNote
