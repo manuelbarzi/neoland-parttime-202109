@@ -1,6 +1,6 @@
-const authenticateUser = require('logic')
+const { authenticateUser } = require('logic')
 const { env: { JWT_SECRET } } = process
-const sign = require('jsonwebtoken')
+const { sign } = require('jsonwebtoken')
 
 module.exports = (req, res) => {
     try {

@@ -1,15 +1,16 @@
-const { retrieveUser } = require('logic')
 const { extractUserIdFromAuthorization } = require('../helpers')
+const { unregisterUser } = require('logic')
 
 module.exports = (req, res) => {
     try {
-
         const id = extractUserIdFromAuthorization(req)
-        // hacemos un split del Authorization: Bearer + id que se converte en un array con 2 posiciones y cogemos la segunda (el id)
 
-        retrieveUser(id)
-            .then(user => res.json(user))
+        const { body: { password } } = req
+
+        unregisterUser(id, password)
+            .then(() => res.status(204).send())
             .catch(error => res.status(400).json({ error: error.message }))
+
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
