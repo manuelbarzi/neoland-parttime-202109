@@ -3,20 +3,17 @@ const { models: { User } } = require('data')
 function retrieveUser(userId) {
     // validate arguments
 
-    return User.findById(userId)
+    return User.findById(userId).lean()
         .then(user =>  {
-            const doc = user._doc
+            // sanitize
+            user.id = user._id.toString()
+            delete user._id
 
-            // sanitize doc
-            
-            doc.id = doc._id.toString()
-            delete doc._id
+            delete user.__v
 
-            delete doc.__v
+            delete user.password
 
-            delete doc.password
-
-            return doc
+            return user
         })
 }
 

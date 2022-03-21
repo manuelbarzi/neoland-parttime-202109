@@ -7,10 +7,10 @@ const {
     registerUser,
     authenticateUser,
     retrieveUser,
-    updateUser
+    updateUser,
+    unregisterUser
 } = require('./handlers')
 const {
-    unregisterUser,
     createNote,
     updateNote,
     deleteNote,
@@ -38,19 +38,7 @@ connect(MONGODB_URL)
         router.get('/users', retrieveUser)
         router.patch('/users', jsonBodyParser, updateUser)
         
-        router.delete('/users', jsonBodyParser, (req, res) => {
-            try {
-                const userId = extractUserIdFromAuthorization(req)
-
-                const { body: { password } } = req
-
-                unregisterUser(userId, password)
-                    .then(() => res.status(204).send())
-                    .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
+        router.delete('/users', jsonBodyParser, unregisterUser)
 
         router.post('/notes', jsonBodyParser, (req, res) => {
             try {
