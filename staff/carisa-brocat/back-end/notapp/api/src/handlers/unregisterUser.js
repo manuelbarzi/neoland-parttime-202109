@@ -1,14 +1,19 @@
+const {unregisterUser} = require('logic')
 const { extractUserIdFromAuthorization } = require('./helpers')
-const { retrieveUser } = require('logic')
 
 module.exports = (req, res) => {
+
     try {
         const userId = extractUserIdFromAuthorization(req)
-
-        retrieveUser(userId)
-            .then(user => res.json(user))
+    
+        const { body: { password } } = req
+    
+        unregisterUser(userId, password)
+            .then(() => res.status(204).send())
             .catch(error => res.status(400).json({ error: error.message }))
     } catch (error) {
-        res.status(400).json({ errro: error.message })
+        res.status(400).json({ error: error.message })
     }
-}
+}   
+
+

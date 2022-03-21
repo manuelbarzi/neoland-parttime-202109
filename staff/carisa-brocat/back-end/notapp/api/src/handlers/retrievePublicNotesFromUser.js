@@ -1,14 +1,17 @@
 const { extractUserIdFromAuthorization } = require('./helpers')
-const { retrieveUser } = require('logic')
+const { retrievePublicNotesFromUser } = require('logic')
 
 module.exports = (req, res) => {
     try {
         const userId = extractUserIdFromAuthorization(req)
 
-        retrieveUser(userId)
-            .then(user => res.json(user))
+        const { params: { ownerId } } = req
+
+        retrievePublicNotesFromUser(userId, ownerId)
+            .then(notes => res.status(200).json(notes))
             .catch(error => res.status(400).json({ error: error.message }))
     } catch (error) {
-        res.status(400).json({ errro: error.message })
+        res.status(400).json({ error: error.message })
     }
+
 }

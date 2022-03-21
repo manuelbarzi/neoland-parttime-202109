@@ -15,7 +15,7 @@ function retrieveNotes(userId) {
                 note.id = note._id.toString()
 
                 delete note._id
-                delete note._v
+                delete note.__v
             })
 
             return notes
