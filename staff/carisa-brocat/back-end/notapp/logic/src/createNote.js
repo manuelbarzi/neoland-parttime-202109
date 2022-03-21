@@ -1,6 +1,8 @@
 const { models: { User, Note } } = require('data')
+const { validators: { validateId } } = require('commons')
 
 function createNote(userId, text, color, public = false) {
+    validateId(userId)
 
     return User.findById(userId)
         .then(user => {

@@ -1,5 +1,6 @@
 const { Schema } = require('mongoose')
 const { Types: { ObjectId } } = Schema
+const comment = require('./comment')
 
 const note = new Schema({
     user: {
@@ -8,16 +9,14 @@ const note = new Schema({
         required: true
     },
 
-    date: {
-        type: Date,
-        required: true,
-        default: Date.now
+    text:{
+        type: String,
+        required: true
     },
 
     color: {
         type: String,
         reuqired: true,
-        default: false
     },
 
     public: {
@@ -26,10 +25,13 @@ const note = new Schema({
         default: false
     },
 
-    text: {
-        type: String,
-        required: true
-    }
+    date: {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
+
+    comments: [comment]
 })
 
 module.exports = note

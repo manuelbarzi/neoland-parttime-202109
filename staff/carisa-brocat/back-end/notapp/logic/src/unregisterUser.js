@@ -1,6 +1,10 @@
-const { models: User } = require('data')
+const { models: { User } } = require('data')
+const { validators: { validateId, validatePassword } } = require('commons')
 
-function deleteUser(userId, password) {
+function unregisterUser(userId, password) {
+    validateId(userId)
+    validatePassword(password)
+
     return User.deleteOne({ _id: userId, password })
         .then(result => {
             const { deleteCount } = result
@@ -10,4 +14,4 @@ function deleteUser(userId, password) {
         })
 }
 
-module.exports = deleteUser
+module.exports = unregisterUser
