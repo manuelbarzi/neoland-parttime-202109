@@ -9,7 +9,8 @@ const comment = new Schema({
     },
 
     text: {
-
+        type: String,
+        required: true
     },
 
     date: {

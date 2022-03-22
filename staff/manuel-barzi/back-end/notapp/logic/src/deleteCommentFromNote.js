@@ -1,3 +1,0 @@
-function addCommentToNote(userId, noteId) {
-    
-}

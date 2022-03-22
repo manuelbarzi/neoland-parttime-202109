@@ -8,7 +8,8 @@ const {
     authenticateUser,
     retrieveUser,
     updateUser,
-    unregisterUser
+    unregisterUser,
+    addCommentToNote
 } = require('./handlers')
 const {
     createNote,
@@ -37,8 +38,9 @@ connect(MONGODB_URL)
         router.post('/users/auth', jsonBodyParser, authenticateUser)
         router.get('/users', retrieveUser)
         router.patch('/users', jsonBodyParser, updateUser)
-        
         router.delete('/users', jsonBodyParser, unregisterUser)
+
+        router.post('/notes/:noteId/comments', jsonBodyParser, addCommentToNote)
 
         router.post('/notes', jsonBodyParser, (req, res) => {
             try {
@@ -82,7 +84,7 @@ connect(MONGODB_URL)
             }
         })
 
-        router.get('/notes', jsonBodyParser, (req, res) => {
+        router.get('/notes', (req, res) => {
             try {
                 const userId = extractUserIdFromAuthorization(req)
 

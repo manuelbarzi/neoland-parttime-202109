@@ -16,6 +16,15 @@ function retrieveNotes(userId) {
 
                 delete note._id
                 delete note.__v
+
+                const { comments } = note
+
+                comments.forEach(comment => {
+                    comment.id = comment._id.toString()
+    
+                    delete comment._id
+                    delete comment.__v
+                })
             })
 
             return notes
