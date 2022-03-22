@@ -5,7 +5,7 @@ const { mongoose: { connect } } = require('data')
 const cors = require('cors')
 const { registerUser,
     authenticateUser,
-    registerUser,
+    retrieveUser,
     updateUser,
     deleteUser,
     createNote,
