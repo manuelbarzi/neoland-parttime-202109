@@ -4,9 +4,11 @@ const express = require('express')
 const cors = require('cors')
 const { registerUser, 
     authenticateUser, 
-    retrieveUser 
+    retrieveUser,
+    unregisterUser,
+    createNote
 } = require('./handlers')
-const { createNote, 
+const {  
     updateNote, 
     deleteNote, 
     retrieveNotes, 
@@ -16,7 +18,7 @@ const { createNote,
 const { env: { MONGODB_URL, PORT } } = process
 const { extractUserIdFromAuthorization } = require('./helpers')
 const { json } = require('body-parser')
-const unregisterUser = require('./handlers/unregisterUser')
+
 
 
 connect(MONGODB_URL)
@@ -50,18 +52,7 @@ connect(MONGODB_URL)
         router.delete('/users', jsonBodyParser, unregisterUser)
 
         // CREATE NOTE
-        router.post('/notes', jsonBodyParser, (req, res) => {
-            try {
-                const id = extractUserIdFromAuthorization(req)
-                const { body: { color, public, text } } = req
-
-                createNote(id, color, public, text)
-                    .then(() => res.status(201).send())
-                    .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
+        router.post('/notes', jsonBodyParser, createNote)
 
         // RETRIEVE NOTES
         router.get('/notes', jsonBodyParser, (req, res) => {
