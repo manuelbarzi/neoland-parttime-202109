@@ -48,13 +48,15 @@ connect(MONGODB_URL) //ya no pongo la url tal cual
                                 //jsonBody, para recibir el pwd
         router.delete('/users', jsonBodyParser, deleteUserH)
 
+
+
     // ***** CREATE NOTE
 
         router.post('/notes', jsonBodyParser, (req, res) => {
             try {
 
                 const userId = extractUserIdFromAuthorization(req)
-                const { body: {text, color, public}} = req  //del body extraigo text, color,pub
+                const { body: {text, color, public}} = req  //del body extraigo text, color, pub
                
 
                 createNote(userId, text, color, public)
@@ -99,8 +101,9 @@ connect(MONGODB_URL) //ya no pongo la url tal cual
 
 
 
-    // ***** RETRIEVE NOTES de alguien...
+    // ***** RETRIEVE NOTES FROM USER 
                         //combino users con notas en la url/de ese user->cuál user-> dame notas
+
         router.get('/users/:ownerId/notes', jsonBodyParser, (req, res) => {
             try {
                 const userId = extractUserIdFromAuthorization(req)
