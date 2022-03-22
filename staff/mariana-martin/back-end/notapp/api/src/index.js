@@ -6,13 +6,18 @@ const {mongoose: { connect }} = require('data')
 const express = require('express')
 const cors = require('cors') //cors oficial
 
-const { registerUserH, authenticateUserH, retrieveUserH,  updateUserH, deleteUserH } = require('./handlers') //importo handlers que envuelven a la lógica
+const { registerUserH, 
+    authenticateUserH, 
+    retrieveUserH,  
+    updateUserH, 
+    deleteUserH, 
+    createNoteH, 
+    updateNoteH,
+    retrieveNotesH,
+    retrievePublicNotesFromUserH,
+    deleteNoteH } = require('./handlers') //importo handlers que envuelven a la lógica
+
 const { 
-    
-    createNote,
-    updateNote, 
-    retrieveNotes,
-    retrievePublicNotesFromUser,
     deleteNote} = require('logic') //de la carpeta logic del servidor
 
 const {extractUserIdFromAuthorization} = require('./handlers/helpers')
@@ -48,93 +53,26 @@ connect(MONGODB_URL) //ya no pongo la url tal cual
                                 //jsonBody, para recibir el pwd
         router.delete('/users', jsonBodyParser, deleteUserH)
 
-
-
     // ***** CREATE NOTE
 
-        router.post('/notes', jsonBodyParser, (req, res) => {
-            try {
-
-                const userId = extractUserIdFromAuthorization(req)
-                const { body: {text, color, public}} = req  //del body extraigo text, color, pub
-               
-
-                createNote(userId, text, color, public)
-                .then(() => res.status(201).send())  //creado
-                .catch(error => res.status(400).json({ error: error.message}))
-            } catch (error) {
-                res.status(400).json({error: error.message})
-            }
-        })
+        router.post('/notes', jsonBodyParser, createNoteH)
 
     // ***** UPDATE NOTE
        
-        router.patch('/notes/:noteId', jsonBodyParser, (req, res) => {
-            try {
-                const userId = extractUserIdFromAuthorization(req)
-                const{ params: { noteId}, body: {text, color, public}} =req
-               
-
-                updateNote(userId, noteId, text, color, public)
-                .then(() => res.status(204).send())
-                .catch(error => res.status(400).json({ error: error.message}))
-            } catch (error) {
-                res.status(400).json({ error: error.message})
-                
-            }
-        })
+        router.patch('/notes/:noteId', jsonBodyParser, updateNoteH)
 
     //***** RETRIEVE MY NOTES, (ruta extra: en esta ruta NO pasamos el 'ownerId', si no directamente users->notes para recuperar sólo las mías)
         
-        router.get('/notes', jsonBodyParser, (req, res) =>{
-            try {
-
-                const userId = extractUserIdFromAuthorization(req)
-
-                retrieveNotes(userId, userId) //nota de mi mismo
-                    .then(notes => res.status(200).json(notes))
-                    .catch(error => res.status(400).json({ error: error.message}))
-            } catch (error) {
-                res.status(400).json({ error: error.message})
-            }
-        })
-
-
+        router.get('/notes', jsonBodyParser, retrieveNotesH)
 
     // ***** RETRIEVE NOTES FROM USER 
                         //combino users con notas en la url/de ese user->cuál user-> dame notas
 
-        router.get('/users/:ownerId/notes', jsonBodyParser, (req, res) => {
-            try {
-                const userId = extractUserIdFromAuthorization(req)
-                const {  params: { ownerId}} = req
-                
-
-                retrievePublicNotesFromUser(userId, ownerId) 
-                    .then(notes => res.status(200).json(notes))  //devuelvo notas en un json
-                    .catch(error => res.status(400).json({error: error.message}))
-            } catch (error) {
-                res.status(400).json({ error: error.message})
-            }
-        })
+        router.get('/users/:ownerId/notes', jsonBodyParser, retrievePublicNotesFromUserH)
         
         
      // ***** DELETE NOTE
-        router.delete('/notes/:noteId', jsonBodyParser, (req, res) => {
-            try {
-
-                const userId = extractUserIdFromAuthorization(req)
-                const { params: { noteId }} = req
-
-             
-
-                deleteNote(userId, noteId)
-                    .then(() => res.status(204).send())
-                    .catch(error => res.status(400).json({ error: error.message}))
-            } catch (error) {
-                res.status(400).json({ error: error.message})
-            }
-        })
+        router.delete('/notes/:noteId', jsonBodyParser, deleteNoteH)
 
 
         api.use('/api', router)
