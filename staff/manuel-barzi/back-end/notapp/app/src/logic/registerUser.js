@@ -1,6 +1,7 @@
-import { validators } from 'commons'
+import { validators, errors } from 'commons'
 
 const { validateName, validateEmail, validatePassword } = validators
+const { DuplicityError, ClientError, ServerError } = errors
 
 function registerUser(name, email, password) {
     validateName(name)
@@ -20,9 +21,19 @@ function registerUser(name, email, password) {
             if (status === 201)
                 return
             else if (status >= 400 && status < 500)
-                throw new Error('client error')
+                return res.json()
+                    .then(payload => {
+                        const { error: message } = payload
+                        if (status === 409)
+                            throw new DuplicityError(message)
+                        else
+                            throw new ClientError(message)
+                    })
             else if (status >= 500)
-                throw new Error('server error')
+                return res.text()
+                    .then(text => {
+                        throw new ServerError(text)
+                    })
         })
 }
 

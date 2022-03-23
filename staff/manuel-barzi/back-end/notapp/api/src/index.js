@@ -9,11 +9,11 @@ const {
     retrieveUser,
     updateUser,
     unregisterUser,
+    createNote,
+    updateNote,
     addCommentToNote
 } = require('./handlers')
 const {
-    createNote,
-    updateNote,
     deleteNote,
     retrieveNotes,
     retrievePublicNotesFromUser
@@ -24,7 +24,7 @@ const { env: { MONGODB_URL, PORT } } = process
 
 connect(MONGODB_URL)
     .then(() => {
-        console.log('connected to db')
+        console.log('database connected')
 
         const api = express()
 
@@ -42,33 +42,9 @@ connect(MONGODB_URL)
 
         router.post('/notes/:noteId/comments', jsonBodyParser, addCommentToNote)
 
-        router.post('/notes', jsonBodyParser, (req, res) => {
-            try {
-                const userId = extractUserIdFromAuthorization(req)
+        router.post('/notes', jsonBodyParser, createNote)
 
-                const { body: { text, color, public } } = req
-
-                createNote(userId, text, color, public)
-                    .then(() => res.status(201).send())
-                    .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
-
-        router.patch('/notes/:noteId', jsonBodyParser, (req, res) => {
-            try {
-                const userId = extractUserIdFromAuthorization(req)
-
-                const { params: { noteId }, body: { text, color, public } } = req
-
-                updateNote(userId, noteId, text, color, public)
-                    .then(() => res.status(204).send())
-                    .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
+        router.patch('/notes/:noteId', jsonBodyParser, updateNote)
 
         router.delete('/notes/:noteId', jsonBodyParser, (req, res) => {
             try {
@@ -112,5 +88,5 @@ connect(MONGODB_URL)
 
         api.use('/api', router)
 
-        api.listen(PORT, () => console.log('json server running'))
+        api.listen(PORT, () => console.log(`server listening on port ${PORT}`))
     })
