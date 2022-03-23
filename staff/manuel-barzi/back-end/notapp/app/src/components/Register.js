@@ -1,6 +1,6 @@
 import { registerUser } from '../logic'
 
-function Register() {
+export default function Register() {
     const register = event => {
         event.preventDefault()
 
@@ -22,5 +22,3 @@ function Register() {
         <button>Register</button>
     </form>
 }
-
-export default Register
