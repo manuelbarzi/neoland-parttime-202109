@@ -18,5 +18,8 @@
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
     "logic": "file:../logic"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
