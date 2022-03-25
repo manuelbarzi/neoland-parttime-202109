@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="bg-gray-300 h-screen flex justify-center items-center">
+        <form class="flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+            <input class="rounded xl:col-span-2 xl:row-start-1" type="email" name="email" placeholder="Email">
+            <input class="rounded xl:col-span-2 xl:row-start-2" type="password" name="password" placeholder="Password">
+            <button
+                class="md:col-span-2 xl:col-start-3 xl:row-span-2 hover:text-white bg-red-100 hover:bg-blue-100">Login</button>
+        </form>
+    </div>
+</body>
+
+</html>
