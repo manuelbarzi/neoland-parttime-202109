@@ -1,5 +1,12 @@
 const { models: { User } } = require('../../data')
-const { validators: { validateName, validateEmail, validatePassword } } = require('../../commons')
+const {
+    errors: {
+        DuplicityError },
+    validators: {
+        validateName,
+        validateEmail,
+        validatePassword
+    } } = require('../../commons')
 
 function registerUser(name, email, password) {
     validateName(name)
@@ -10,6 +17,12 @@ function registerUser(name, email, password) {
 
     return User.create({ name, email, password })
         .then(user => { })
+        .catch(error => {
+            if (error.message.includes('duplicate')) // si el error contiene la palabra "duplicate" que lance el siguiente error
+                throw new DuplicityError('user already exists')
+
+            throw Error
+        })
 }
 
 module.exports = registerUser

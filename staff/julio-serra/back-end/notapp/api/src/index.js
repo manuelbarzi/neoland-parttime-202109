@@ -2,17 +2,18 @@ require('dotenv').config()
 const { mongoose: { connect } } = require('data')
 const express = require('express')
 const cors = require('cors')
-const { registerUser, 
-    authenticateUser, 
+const { registerUser,
+    authenticateUser,
     retrieveUser,
     unregisterUser,
+    retrieveNotes,
+    updateNote,
+    deleteNote,
+    addCommentToNote,
     createNote
 } = require('./handlers')
-const {  
-    updateNote, 
-    deleteNote, 
-    retrieveNotes, 
-    retrievePublicNotesFromUser 
+const {
+    retrievePublicNotesFromUser,
 } = require('logic')
 
 const { env: { MONGODB_URL, PORT } } = process
@@ -55,50 +56,16 @@ connect(MONGODB_URL)
         router.post('/notes', jsonBodyParser, createNote)
 
         // RETRIEVE NOTES
-        router.get('/notes', jsonBodyParser, (req, res) => {
-            try {
-                const id = extractUserIdFromAuthorization(req)
-
-                retrieveNotes(id)
-                    .then(notes => res.status(200).json(notes))
-                    .catch(error => res.status(400).json({ error: error.message }))
-
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
-
+        router.get('/notes', jsonBodyParser, retrieveNotes)
 
         // UPDATE NOTE
-        router.patch('/notes/:noteId', jsonBodyParser, (req, res) => {
-            try {
-                const id = extractUserIdFromAuthorization(req)
-                const { params: { noteId }, body: { color, public, text } } = req
-
-                updateNote(id, noteId, color, public, text)
-                    .then(() => res.status(204).send())
-                    .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
-
+        router.patch('/notes/:noteId', jsonBodyParser, updateNote)
 
         // DELETE NOTE
-        router.delete('/notes/:noteId', jsonBodyParser, (req, res) => {
-            try {
-                const id = extractUserIdFromAuthorization(req)
-                const { params: { noteId } } = req
+        router.delete('/notes/:noteId', jsonBodyParser, deleteNote)
 
-                deleteNote(id, noteId)
-                    .then(() => res.status(204).send())
-                    .catch(error => res.status(400).json({ error: error.message }))
-
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
-
+        // ADD COMMENT TO NOTE
+        router.post('/notes/:noteId/comments', jsonBodyParser, addCommentToNote)
 
 
         api.use('/api', router)

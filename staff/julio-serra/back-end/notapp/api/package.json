@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "start": "node src",
+    "start-watch": "nodemon src",
     "inspect": "node --inspect-brk src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.2",
+    "commons": "file:../commons",
     "cors": "^2.8.5",
     "data": "file:../data",
     "dotenv": "^16.0.0",
