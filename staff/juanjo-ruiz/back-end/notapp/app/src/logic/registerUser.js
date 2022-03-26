@@ -1,7 +1,7 @@
 import { validators } from 'commons'
 const { validateName, validateEmail, validatePassword }  = validators
  
-function registerUser(name, email, password) {
+export default function(name, email, password) {
     validateName(name)
     validateEmail(email)
     validatePassword(password)
@@ -24,5 +24,3 @@ function registerUser(name, email, password) {
             throw new Error('server error')
         })
 }
-
-export default registerUser 
