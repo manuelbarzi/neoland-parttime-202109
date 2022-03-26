@@ -1,0 +1,54 @@
+body{
+    background-color: rgb(243, 251, 248);
+    color:rgb(0, 17, 11);
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+.h1{
+    
+    margin: auto;
+}
+
+.panel{
+    width: 40%;
+    margin:40px auto ;
+    border: 2px solid rgb(0, 17, 11);
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+.panel form{
+    width: 80%;
+    margin:auto;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+}
+input{
+    margin: 10px 0;
+}
+button{
+    background-color: rgb(40, 107, 80);
+    padding: 5px;
+    border: 2px solid rgb(0, 17, 11);
+    border-radius: 3px;
+    color: rgb(243, 251, 248);
+}
+.feedback{
+    width: 80%;
+    margin: auto;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+.error{
+    color: brown;
+}
+.success{
+    color: rgb(49, 139, 46);
+}
+.update-current{
+    font-size: 1.1em;
+    font-weight: bold;
+    color: rgb(40, 107, 80);
+
+}

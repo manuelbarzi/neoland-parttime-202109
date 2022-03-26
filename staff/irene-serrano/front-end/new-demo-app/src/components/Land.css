@@ -1,0 +1,18 @@
+.land-title{
+    width: 100%;
+    font-size: 4.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.land-title p{
+    font-size: 1rem;
+    color:var(--color-base_light)
+}
+.land-btn-container{
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

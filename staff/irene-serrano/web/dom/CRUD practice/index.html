@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>CreateReadUpdateDelete</h1>
+    <div class="create panel">
+        <h2>Create an user</h2>
+
+        <form class="create-form" action="">
+            <label for="username">username</label>
+            <input class="create-input-user" type="text" >
+
+            <label for="email">email</label>
+            <input class="create-input-email" type="email" >
+
+            <label for="password">password</label>
+            <input class="create-input-password" type="password" > <button>👁️</button>
+
+            <button class="create-form-btn" type="submit">Enviar</button>
+        </form>
+
+        <span class="create-feedback feedback"></span>
+
+    </div>
+
+    <div class="read panel">
+        <h2>Write your credentials to retrieve your email</h2>
+
+        <form class="read-form" action="">
+            <label for="username">username</label>
+            <input class="read-input-username" type="text" >
+
+            <label for="password">password</label>
+            <input class="read-input-password" type="password" >
+
+            <button class="read-form-btn" type="submit">Enviar</button>
+        </form>
+
+        <span class="read-feedback feedback "></span>
+    </div>
+
+    <div class="update panel">
+        <h2>Modify your username</h2>
+        <p>Current username: <span class="update-current"></span></p>
+        <form class="update-form" action="">
+            <label for="username">new username</label>
+            <input class="update-input-username" type="text" >
+
+            <button class="update-form-btn" type="submit">Cambiar</button>
+        </form>
+
+        <span class="update-feedback feedback"></span>
+        <span class="update-show-user"></span>
+    </div>
+
+    <div class="delete panel">
+        <h2>Delete your user</h2>
+
+        <form class="delete-form" action="">
+            <label for="username">username</label>
+            <input class="delete-input-username" type="text" >
+
+            <label for="password">password</label>
+            <input class="delete-input-password" type="password" >
+
+            <button class="delete-form-btn" type="submit">Eliminar</button>
+        </form>
+
+        <span class="delete-feedback feedback"></span>
+      
+    </div>
+
+
+
+<script src="logic/authenticate-user.js"></script>
+<script src="logic/register-user.js"></script>
+<script src="logic/retrieve-user.js"></script>
+<script src="logic/modify-user.js"></script>
+<script src="logic/unregister-user.js"></script>
+
+    <script src="main.js"></script>
+
+
+
+
+</body>
+</html>

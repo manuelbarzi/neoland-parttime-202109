@@ -1,0 +1,20 @@
+.details-img{
+    width: 80%;
+    margin:auto;
+}
+.details-btn-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+}
+.details-btn{
+    line-height: 1.5rem;
+    
+
+}
+.details-btn-container > .link{
+    color:var(--color-primary_light);
+font-size: 1rem;
+}
+ 
