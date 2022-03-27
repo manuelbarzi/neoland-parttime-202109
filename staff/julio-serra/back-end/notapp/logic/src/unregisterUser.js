@@ -1,5 +1,5 @@
-const { validateId, validateEmail, validatePassword } = require('commons/src/validators')
-const { models: { User } } = require('data')
+const { validators : {validateId, validateEmail, validatePassword }} = require('../../commons')
+const { models: { User } } = require('../../data')
 
 function deleteUser(id, password) {
     validateId(id)

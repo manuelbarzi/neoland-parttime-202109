@@ -1,4 +1,4 @@
-const { models: { User, Note } } = require('data')
+const { models: { User, Note } } = require('../../data')
 
 function createNote(id, text, color, public = false) {
 

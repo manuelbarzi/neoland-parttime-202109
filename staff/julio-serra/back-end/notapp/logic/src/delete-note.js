@@ -1,6 +1,6 @@
 const { models: { User } } = require('../../data')
 const { models: { Note } } = require('../../data')
-const { validators: { validateId } } = require('commons')
+const { validators: { validateId } } = require('../../commons')
 
 function deleteNote(id, noteId) {
     validateId(id)

@@ -1,5 +1,5 @@
-const { models: { User } } = require('data')
-const { validators: { validateId } } = require('commons')
+const { models: { User } } = require('../../data')
+const { validators: { validateId } } = require('../../commons')
 // metodo findByID
 
 // User.findById(id,(err, docs) => {

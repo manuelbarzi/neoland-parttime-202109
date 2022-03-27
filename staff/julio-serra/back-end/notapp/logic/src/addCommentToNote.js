@@ -1,4 +1,4 @@
-const { models: { User, Note, Comment } } = require('data')
+const { models: { User, Note, Comment } } = require('../../data')
 
 function addCommentToNote(id, noteId, text) {
     validateId(id)
