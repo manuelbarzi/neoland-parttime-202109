@@ -4,7 +4,7 @@ const EMAIL_REGEX = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"
 
 function validateEmail(email) {
     if (typeof email !== 'string') throw new TypeError('Email is not string')
-    if (!email.trim()) throw new Error('email is emnpty or blank')
+    if (!email.trim()) throw new Error('email is empty or blank')
     if (!EMAIL_REGEX.test(email)) throw new Error('Invalid email')
 }
 
@@ -15,7 +15,7 @@ function validateName(name) {
 
 function validatePassword(password) {
     if (typeof password !== 'string') throw new TypeError('Password is not string')
-    if (!password.trim()) throw new Error('Password is emppty or blank')
+    if (!password.trim()) throw new Error('Password is empty or blank')
     if (password.trim().length < 8) throw new Error('Password length is smaller than 8 characters')
 }
 

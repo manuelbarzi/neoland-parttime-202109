@@ -1,20 +1,23 @@
 import { authenticateUser } from '../logic'
+import { useNavigate } from 'react-router-dom'
 
-function AuthenticateUser() {
+export default function AuthenticateUser() {
 
+    const navigate = useNavigate()
     const auth = event => {
         event.preventDefault()
         const { target: { email: { value: email }, password: { value: password } } } = event //extraer los campos
         try {
             authenticateUser(email, password)
-                .then(() => alert('User Authenticate'))
+                .then(token => {
+                    sessionStorage.token = token
+                    navigate('/home')
+                })
                 .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
     }
-
-
 
     return (
         <>
@@ -44,8 +47,8 @@ function AuthenticateUser() {
                                 <input className="w-full" type="password" class="mt-1 w-full" name="password" placeholder="password" />
                                 <span className="font-bold">Forgot password?</span>
                             </label>
-                            <button className='w-full bg-transparent hover:bg-indigo-400 text-indigo-400 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded'>Submit</button>
-
+                            <button className='w-full bg-transparent hover:bg-indigo-400 text-indigo-400 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded'>Login</button>
+                            <a href='/register'>Register</a>
                         </form>
                     </div>
                 </section>
@@ -54,5 +57,3 @@ function AuthenticateUser() {
         </>
     )
 }
-
-export default AuthenticateUser

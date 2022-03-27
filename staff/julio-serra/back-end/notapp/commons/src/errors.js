@@ -22,8 +22,17 @@ class NotFoundError extends Error {
     }
 }
 
+class AuthError extends Error {
+    constructor(message) {
+        super(message)
+
+        this.name = this.constructor.name
+    }
+}
+
 module.exports = {
     DuplicityError,
     CredentialsError,
-    NotFoundError
+    NotFoundError,
+    AuthError
 }
