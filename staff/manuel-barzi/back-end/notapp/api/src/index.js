@@ -11,11 +11,12 @@ const {
     unregisterUser,
     createNote,
     updateNote,
-    addCommentToNote
+    addCommentToNote,
+    retrieveNotes,
+    retrievePublicNotes
 } = require('./handlers')
 const {
     deleteNote,
-    retrieveNotes,
     retrievePublicNotesFromUser
 } = require('logic')
 const { extractUserIdFromAuthorization } = require('./handlers/helpers')
@@ -60,17 +61,9 @@ connect(MONGODB_URL)
             }
         })
 
-        router.get('/notes', (req, res) => {
-            try {
-                const userId = extractUserIdFromAuthorization(req)
+        router.get('/notes', retrieveNotes)
 
-                retrieveNotes(userId)
-                    .then(notes => res.status(200).json(notes))
-                    .catch(error => res.status(400).json({ error: error.message }))
-            } catch (error) {
-                res.status(400).json({ error: error.message })
-            }
-        })
+        router.get('/notes/public', retrievePublicNotes)
 
         router.get('/users/:ownerId/notes', jsonBodyParser, (req, res) => {
             try {

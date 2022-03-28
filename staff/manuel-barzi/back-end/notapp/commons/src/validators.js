@@ -26,7 +26,18 @@ function validateCallback(callback) {
 function validateToken(token) {
     if (typeof token !== 'string') throw new TypeError('token is not string')
     if (!token.trim()) throw new FormatError('token is empty or blank')
-    if (token.split('.').length !== 3) throw new FormatError('invalid token')
+
+    const parts = sessionStorage.token.split('.')
+
+    if (parts.length !== 3) throw new FormatError('invalid token')
+
+    const [, payload64] = parts
+
+    const payloadJson = atob(payload64)
+
+    const payload = JSON.parse(payloadJson)
+
+    if (Math.round(Date.now() / 1000) > payload.exp) throw new Error('token expired')
 }
 
 function validateId(id, explain = 'id') {
@@ -35,11 +46,22 @@ function validateId(id, explain = 'id') {
     if (id.length !== 24) throw new FormatError(`invalid ${explain}`)
 }
 
+function validateString(string, explain = 'string') {
+    if (typeof string !== 'string') throw new TypeError(`${explain} is not string`)
+    if (!string.trim()) throw new FormatError(`${explain} is empty or blank`)
+}
+
+function validateBoolean(boolean, explain = 'boolean') {
+    if (typeof boolean !== 'boolean') throw new TypeError(`${explain} is not boolean`)
+}
+
 module.exports = {
     validateName,
     validateEmail,
     validatePassword,
     validateCallback,
     validateToken,
-    validateId
+    validateId,
+    validateString,
+    validateBoolean
 }
