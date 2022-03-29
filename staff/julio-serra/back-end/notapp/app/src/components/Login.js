@@ -1,18 +1,17 @@
 import { authenticateUser } from '../logic'
-import { useNavigate } from 'react-router-dom'
 
-export default function AuthenticateUser() {
+export default function AuthenticateUser({ onloggedIn }) {
 
-    const navigate = useNavigate()
-    
     const auth = event => {
         event.preventDefault()
         const { target: { email: { value: email }, password: { value: password } } } = event //extraer los campos
+        
         try {
             authenticateUser(email, password)
                 .then(token => {
                     sessionStorage.token = token
-                    navigate('/')
+                    
+                    onloggedIn()
                 })
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -49,9 +48,9 @@ export default function AuthenticateUser() {
                                 <span className="font-bold">Forgot password?</span>
                             </label>
                             <button className='w-full bg-transparent hover:bg-indigo-400 text-indigo-400 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded'>Login</button>
-                            <a className="hover:underline hover:underline-offset-8 hover:text-gray-500 flex items-center gap-2" href='/register'><svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-  <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-</svg> Go to Register</a>
+                            <a href="/register" className="hover:underline hover:underline-offset-8 hover:text-gray-500 flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                            </svg> Go to Register</a>
                         </form>
                     </div>
                 </section>

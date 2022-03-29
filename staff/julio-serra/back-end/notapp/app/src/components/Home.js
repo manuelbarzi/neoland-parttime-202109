@@ -1,12 +1,50 @@
-export default function Home({ onLogout }) {
-    const logout = () => {
+import { useEffect, useState } from "react"
+import { retrievePublicNotes } from '../logic'
+import Modal from './Modal'
+import CreateNote from './CreateNote'
+
+export default function Home({ onLoggedOut }) {
+
+    const [notes, setNotes] = useState()
+    const [modal, setModal] = useState()
+
+    const loadNotes = () => {
+        try {
+            retrievePublicNotes(sessionStorage.token)
+                .then(notes => setNotes(notes))
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+    useEffect(() => {
+        loadNotes()
+    }, [])
+
+    const handleLogout = () => {
         delete sessionStorage.token
-        onLogout()
+        onLoggedOut()
+    }
+
+    const handleCloseModal = () => setModal(false)
+    const handleOpenModal = () => setModal(true)
+    const handleCloseModalAndReloadNotes = () => {
+        handleCloseModal()
+
+        loadNotes()
     }
 
     return <div>
-        <h1>Autenticación correcta</h1>
         <h1>Bienvenid@ a Home NoteApp</h1>
-        <button onClick={logout}>Log Out</button>
+        <button onClick={handleOpenModal}>+</button>
+        <button onClick={handleLogout}>Log Out</button>
+        {notes ? <ul>
+            {notes.map(note => <li key={note.id} > {note.text}</li>)}
+        </ul> : <p>no notes</p>}
+
+        {modal && <Modal content={
+            <CreateNote onCreated={handleCloseModalAndReloadNotes} />
+        } onClose={handleCloseModal} />
+    }
     </div>
 }
