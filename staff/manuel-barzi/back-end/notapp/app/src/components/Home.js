@@ -7,7 +7,7 @@ export default ({ onLoggedOut }) => {
     const [notes, setNotes] = useState()
     const [modal, setModal] = useState()
 
-    useEffect(() => {
+    const loadNotes = () => {
         try {
             retrievePublicNotes(sessionStorage.token)
                 .then(notes => setNotes(notes))
@@ -15,29 +15,39 @@ export default ({ onLoggedOut }) => {
         } catch (error) {
             alert(error.message)
         }
+    }
+
+    useEffect(() => {
+        loadNotes()
     }, [])
 
-    const logout = () => {
+    const handleLogout = () => {
         delete sessionStorage.token
 
         onLoggedOut()
     }
 
-    const closeModal = () => setModal(false)
+    const handleCloseModal = () => setModal(false)
 
-    const openModal = () => setModal(true)
+    const handleOpenModal = () => setModal(true)
+
+    const handleCloseModalAndReloadNotes = () => {
+        handleCloseModal()
+
+        loadNotes()
+    }
 
     return <div>
         <h1>home</h1>
-        <button onClick={openModal}>+</button>
-        <button onClick={logout}>Logout</button>
+        <button onClick={handleOpenModal}>+</button>
+        <button onClick={handleLogout}>Logout</button>
 
         {notes ? <ul>
             {notes.map(note => <li key={note.id}>{note.text}</li>)}
         </ul> : <p>no notes</p>}
 
         {modal && <Modal content={
-            <CreateNote onCreated={closeModal} />
-        } onClose={closeModal}/>}
+            <CreateNote onCreated={handleCloseModalAndReloadNotes} />
+        } onClose={handleCloseModal} />}
     </div>
 }
