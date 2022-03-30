@@ -7,4 +7,4 @@ const { note } = require('../schemas')
 
 const Note = model('Note', note)
 
-module.exports = Note
+module.exports= Note

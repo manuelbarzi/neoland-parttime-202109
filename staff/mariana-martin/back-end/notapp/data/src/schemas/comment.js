@@ -6,6 +6,7 @@ const { Types: { ObjectId } } = Schema
 
 
 const comment = new Schema ({
+    
     user: {
         type: ObjectId,
         ref: 'User',

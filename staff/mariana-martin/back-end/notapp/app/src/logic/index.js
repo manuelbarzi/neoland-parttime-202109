@@ -1,8 +1,12 @@
-import registerUser from "./registerUser"
-import authenticateUser from "./authenticateUser"
+import registerUser from './registerUser'
+import authenticateUser from './authenticateUser'
+import retrieveNotes from './retrieveNotes'
+import retrievePublicNotes from './retrievePublicNotes'
 
 
 export {
     registerUser,
-    authenticateUser
+    authenticateUser,
+    retrieveNotes,
+    retrievePublicNotes
 }

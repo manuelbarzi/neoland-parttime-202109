@@ -15,6 +15,8 @@ const retrievePublicNotes = require('./retrieveNotes') //feed
 const retrievePublicNotesFromUser = require('./retrievePublicNotesFromUser') //notas de alguien
 const updateNote = require('./updateNote')
 const deleteNote = require('./deleteNote')
+const addCommentToNote = require('./addcommenttonote')
+
 
 
 module.exports = {
@@ -29,6 +31,7 @@ module.exports = {
     retrievePublicNotes,
     retrievePublicNotesFromUser,
     updateNote,
-    deleteNote
+    deleteNote,
+    addCommentToNote
   
 }

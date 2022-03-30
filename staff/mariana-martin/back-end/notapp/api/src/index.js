@@ -4,21 +4,25 @@ require('dotenv').config() //cargo var de enviroment, trae librería dotenv y ll
 
 const {mongoose: { connect }} = require('data')
 const express = require('express')
-const cors = require('cors') //cors oficial
+const cors = require('cors') 
+//cors oficial
 
-const { registerUserH, 
-    authenticateUserH, 
-    retrieveUserH,  
-    updateUserH, 
-    deleteUserH, 
-    createNoteH, 
-    updateNoteH,
-    retrieveNotesH,
-    retrievePublicNotesFromUserH,
-    deleteNoteH } = require('./handlers') //importo handlers que envuelven a la lógica
+//*** HANDLERS:
+const { registerUser, 
+    authenticateUser, 
+    retrieveUser,  
+    updateUser, 
+    deleteUser, 
+    createNote, 
+    updateNote,
+    retrieveNotes,
+    retrievePublicNotes,
+    retrievePublicNotesFromUser,
+    deleteNote,
+    addCommentToNote } = require('./handlers') //importo handlers que envuelven a la lógica
 
-const { 
-    deleteNote} = require('logic') //de la carpeta logic del servidor
+// const { 
+//     deleteNote} = require('logic') //de la carpeta logic del servidor
 
 const {extractUserIdFromAuthorization} = require('./handlers/helpers')
 
@@ -38,44 +42,47 @@ connect(MONGODB_URL) //ya no pongo la url tal cual
 
     
      //***** REGISTER USER 
-        router.post('/users', jsonBodyParser, registerUserH)
+        router.post('/users', jsonBodyParser, registerUser)
 
     //*****  AUTHENTICATE USER  
-        router.post('/users/auth', jsonBodyParser, authenticateUserH)
+        router.post('/users/auth', jsonBodyParser, authenticateUser)
 
     //***** RETRIEVE USER
-        router.get('/users', retrieveUserH)
+        router.get('/users', retrieveUser)
 
     // ***** UPDATE USER
-        router.patch('/users', jsonBodyParser, updateUserH)
+        router.patch('/users', jsonBodyParser, updateUser)
 
-    // ***** DELETE USER
-                                //jsonBody, para recibir el pwd
-        router.delete('/users', jsonBodyParser, deleteUserH)
+    // ***** DELETE USER                               //jsonBody, para recibir el pwd
+        router.delete('/users', jsonBodyParser, deleteUser)
+
 
     // ***** CREATE NOTE
+        router.post('/notes', jsonBodyParser, createNote)
 
-        router.post('/notes', jsonBodyParser, createNoteH)
+    // ***** UPDATE NOTE      
+        router.patch('/notes/:noteId', jsonBodyParser, updateNote)
 
-    // ***** UPDATE NOTE
-       
-        router.patch('/notes/:noteId', jsonBodyParser, updateNoteH)
+    //***** RETRIEVE MY NOTES       
+        router.get('/notes', retrieveNotes)
 
-    //***** RETRIEVE MY NOTES, (ruta extra: en esta ruta NO pasamos el 'ownerId', si no directamente users->notes para recuperar sólo las mías)
-        
-        router.get('/notes', jsonBodyParser, retrieveNotesH)
+    //***** RETRIEVE PUBLIC NOTES       
+         router.get('/notes/public', retrievePublicNotes)
 
     // ***** RETRIEVE NOTES FROM USER 
                         //combino users con notas en la url/de ese user->cuál user-> dame notas
-
-        router.get('/users/:ownerId/notes', jsonBodyParser, retrievePublicNotesFromUserH)
+        router.get('/users/:ownerId/notes', jsonBodyParser, retrievePublicNotesFromUser)
         
         
      // ***** DELETE NOTE
-        router.delete('/notes/:noteId', jsonBodyParser, deleteNoteH)
+        router.delete('/notes/:noteId', jsonBodyParser, deleteNote)
+        
+
+    // ***** ADD COMMENT TO NOTE 
+        router.post('/notes/:noteId/comments', jsonBodyParser, addCommentToNote)
 
 
         api.use('/api', router)
 
-        api.listen(PORT, () => console.log('json server running'))
+        api.listen(PORT, () => console.log(`server listening on port ${PORT}`))
     })

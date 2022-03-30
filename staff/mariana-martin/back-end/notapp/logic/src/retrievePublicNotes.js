@@ -1,15 +1,36 @@
 const { models :{ Note, User }} = require('data')
-
-//será el feed, me traeré todas las notas que haya:
+const { validators: { validateId }} = require('commons')
+//será el feed.
 
 function retrievePublicNotes(userId){
+    validateId(userId, 'user id')
 
     return User.findById(userId)
-        .then( doc => {
-            if (!doc) throw new Error ('You should be logged in to continue...')
-            else return Note.find({ public: true })
-                .then(notes => notes )
+        .then(user => {
+            if(!user) throw new Error(`user with id ${userId} not found`)
+
+            return Note.find({ public: true }).lean()
         })
+        .then(notes => {
+            notes.forEach(note => {
+                note.id = note._id.toString()
+
+                delete note._id
+                delete note.__v
+
+                const { comments } = note
+
+                comments.forEach(comment => {
+                    comment.id = comment._id.toString()
+
+                    delete comment._id
+                    delete comment.__v
+                })
+            })
+
+            return notes
+        })
+
 }
 
 modules.exports = retrievePublicNotes

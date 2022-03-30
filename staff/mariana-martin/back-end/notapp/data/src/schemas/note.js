@@ -3,6 +3,7 @@
 
 const { Schema } = require('mongoose')
 const { Types: { ObjectId } } = Schema
+const comment = require('./comment')
 
 
 const note = new Schema ({
@@ -33,7 +34,9 @@ const note = new Schema ({
     text: {
         type: String, 
         required: true
-    }
+    },
+
+    comments: [comment]
 
 })
 

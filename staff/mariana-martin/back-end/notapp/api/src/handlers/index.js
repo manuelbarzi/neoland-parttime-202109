@@ -1,25 +1,30 @@
-const registerUserH = require('./registerUserH')
-const authenticateUserH = require('./authenticateUserH')
-const retrieveUserH = require('./retrieveUserH')
-const updateUserH = require('./updateUserH')
-const deleteUserH = require('./deleteUserH')
+const registerUser = require('./registerUser')
+const authenticateUser = require('./authenticateUser')
+const retrieveUser = require('./retrieveUser')
+const updateUser = require('./updateUser')
+const deleteUser = require('./deleteUser')
 
-const createNoteH = require('./createNoteH')
-const updateNoteH = require('./updateNoteH')
-const retrieveNotesH = require('./retrieveNotesH')
-const retrievePublicNotesFromUserH = require('./retrievePublicNotesFromUserH')
-const   deleteNoteH = require('./deleteNoteH')
+const createNote = require('./createNote')
+const updateNote = require('./updateNote')
+const retrieveNotes = require('./retrieveNotes')
+const retrievePublicNotes = require('./retrievePublicNotes')
+const retrievePublicNotesFromUser = require('./retrievePublicNotesFromUser')
+const deleteNote = require('./deleteNote')
+const addCommentToNote = require('./addCommentToNote')
+
 
 module.exports = {
-    registerUserH,
-    authenticateUserH,
-    retrieveUserH,
-    updateUserH,
-    deleteUserH,
+    registerUser,
+    authenticateUser,
+    retrieveUser,
+    updateUser,
+    deleteUser,
 
-    createNoteH,
-    updateNoteH,
-    retrieveNotesH,
-    retrievePublicNotesFromUserH,
-    deleteNoteH
+    createNote,
+    updateNote,
+    retrieveNotes,
+    retrievePublicNotes,
+    retrievePublicNotesFromUser,
+    deleteNote,
+    addCommentToNote 
 }

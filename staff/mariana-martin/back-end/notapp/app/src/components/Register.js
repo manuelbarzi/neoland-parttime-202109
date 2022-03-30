@@ -21,8 +21,10 @@ function Register() {
         return <form onSubmit= {register}>  
             <input type="text" name="name" placeholder="name..."/>
             <input type="email" name="email" placeholder="e-mail"/>
-            <input type="passwrod" name="password" placeholder="password..."/>
+            <input type="password" name="password" placeholder="password..."/>
             <button> Register </button>
+
+            <a href="/login">Login</a>
         </form>
 }
 
