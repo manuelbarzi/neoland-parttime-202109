@@ -26,22 +26,19 @@ function validateToken(token) {
     const parts = sessionStorage.token.split('.') // lo divimos en las 3 partes que tiene un token
     if (parts.length !== 3) throw new FormatError('invalid token')
 
-    if (token.split('.').length !== 3) throw new Error('Invalid token')
-
     const [, payload64] = parts // cogemos la segunda parte del token, que es el payload
 
     const payloadJson = atob(payload64) //lo convertimos a json de base64
 
-    const payload = json.parse(payloadJson) // parseamos el json
+    const payload = JSON.parse(payloadJson) // parseamos el json
 
     if (Math.round(Date.now() / 1000) > payload.exp) throw new Error ('token expired')
-
 }
 
-function validateId(id) {
-    if (typeof id !== 'string') throw new TypeError('Id is not string')
-    if (!id.trim()) throw new FormatError('Id is empty or blank')
-    if (id.length !== 24) throw new FormatError('Invalid id')
+function validateId(id, explain = 'id') {
+    if (typeof id !== 'string') throw new TypeError(`${explain} is not string`)
+    if (!id.trim()) throw new FormatError(`${explain}is empty or blank`)
+    if (id.length !== 24) throw new FormatError(`Invalid ${explain}`)
 }
 
 function validateString(string, explain = 'string') {

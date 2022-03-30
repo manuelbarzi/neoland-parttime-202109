@@ -4,7 +4,9 @@ export default function Register() {
 
     const register = event => {
         event.preventDefault()
+
         const { target: { name: { value: name }, email: { value: email }, password: { value: password } } } = event //extraer los campos
+        
         try {
             registerUser(name, email, password)
                 .then(() => alert('User Registered'))
@@ -45,7 +47,9 @@ export default function Register() {
                             <label>
                                 <input type="password" class="mt-1 w-full" name="password" placeholder="password" />
                             </label>
-                            <button className="w-full bg-transparent hover:bg-indigo-400 text-indigo-400 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Register User</button>
+                            <button className="w-full bg-transparent hover:bg-indigo-400 text-indigo-400 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                                <a href="/login">Register User</a>
+                                </button>
                         </form>
                     </div>
                 </section>

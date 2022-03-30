@@ -7,8 +7,8 @@ export default function CreateNote({ onCreated }) {
         const { target: {
             text: { value: text },
             color: { value: color },
-            public: { value: _public }
-        } } = event
+            public: { checked: _public }
+        }} = event
 
         try {
             createNote(sessionStorage.token, text, color, _public)

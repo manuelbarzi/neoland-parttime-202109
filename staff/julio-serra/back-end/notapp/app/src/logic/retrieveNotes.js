@@ -30,6 +30,4 @@ export default function retrieveNotes(token) {
                         throw new ServerError(text)
                     })
         })
-
-
 }

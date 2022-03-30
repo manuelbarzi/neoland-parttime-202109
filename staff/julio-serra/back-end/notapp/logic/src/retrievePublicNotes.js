@@ -1,12 +1,12 @@
-const { models: { Use, Note } } = require('../../data')
+const { models: { User, Note } } = require('../../data')
 const { validators: { validateId } } = require('../../commons')
 
-function retrievePublicNotes(userId) {
-    validateId(userId, 'user id')
+function retrievePublicNotes(id) {
+    validateId(id, 'user id')
 
-    return User.findByUd(userId)
+    return User.findById(id)
         .then(user => {
-            if (!user) throw new Error(`user with id ${userId} not found`)
+            if (!user) throw new Error(`user with id ${id} not found`)
             return Note.find({ public: true }).lean()
         })
         .then(notes => {

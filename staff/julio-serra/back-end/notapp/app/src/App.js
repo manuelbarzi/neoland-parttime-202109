@@ -20,7 +20,7 @@ function App() {
 
   const { token } = sessionStorage
 
-  const { loggedIn, setLoggedIn } = useState(!!token) //para convertirlo a Booleano lo negamos 2 veces
+  const [ loggedIn, setLoggedIn ] = useState(!!token) //para convertirlo a Booleano lo negamos 2 veces
   
   const handleLoggedOut = () => setLoggedIn(false) // ?¿
   

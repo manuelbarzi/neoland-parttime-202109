@@ -6,14 +6,6 @@ class DuplicityError extends Error {
     }
 }
 
-class CredentialsError extends Error {
-    constructor(message) {
-        super(message)
-
-        this.name = this.constructor.name
-    }
-}
-
 class NotFoundError extends Error {
     constructor(message) {
         super(message)
@@ -37,10 +29,27 @@ class FormatError extends Error {
     }
 }
 
+class ClientError extends Error {
+    constructor(message) {
+        super(message)
+
+        this.name = this.constructor.name
+    }
+}
+
+class ServerError extends Error {
+    constructor(message) {
+        super(message)
+
+        this.name = this.constructor.name
+    }
+}
+
 module.exports = {
     DuplicityError,
-    CredentialsError,
     NotFoundError,
     AuthError,
-    FormatError
+    FormatError,
+    ClientError,
+    ServerError
 }

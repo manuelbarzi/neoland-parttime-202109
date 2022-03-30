@@ -17,27 +17,27 @@ export default function authenticateUser(email, password) {
         .then(res => { // analizar la respuesta, mirar el status de la respuesta
             const { status } = res
 
-            if (status === 200) 
+            if (status === 200)
                 return res.json()
                     .then(payload => {
                         const { token } = payload
                         return token
                     })
-                    else if (status >= 400 && status < 500)
-                    return res.json()
+            else if (status >= 400 && status < 500)
+                return res.json()
 
-                        .then(payload => {
-                            const { error: message } = payload
+                    .then(payload => {
+                        const { error: message } = payload
 
-                            if (status === 401)
+                        if (status === 401)
                             throw new AuthError(message)
-                            else
+                        else
                             throw new ClientError(message)
-                        })
-                        else if (status >= 500)
-                        return res.text()
-                        .then(text => {
-                            throw new ServerError(text)
-                        })           
+                    })
+            else if (status >= 500)
+                return res.text()
+                    .then(text => {
+                        throw new ServerError(text)
+                    })
         })
 }

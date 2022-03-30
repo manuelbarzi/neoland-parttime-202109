@@ -17,10 +17,12 @@ export default function registerUser(name, email, password) {
     })
         .then(res => { // analizar la respuesta, mirar el status de la respuesta
             const { status } = res
-            if (status === 201) {
+
+            if (status === 201) 
                 return // no esperamos respuesta alguna
-            } else if (status >= 400 && status < 500)
+            else if (status >= 400 && status < 500)
                 return res.json()
+                
                     .then(payload => {
                         const { error: message } = payload
 

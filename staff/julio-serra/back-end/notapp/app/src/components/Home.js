@@ -35,7 +35,7 @@ export default function Home({ onLoggedOut }) {
     }
 
     return <div>
-        <h1>Bienvenid@ a Home NoteApp</h1>
+        <h1>Bienvenid@ "usuario" a Home NoteApp</h1>
         <button onClick={handleOpenModal}>+</button>
         <button onClick={handleLogout}>Log Out</button>
         {notes ? <ul>

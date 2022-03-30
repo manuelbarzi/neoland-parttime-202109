@@ -29,8 +29,8 @@ export default function createNote(token, text, color, _public) { // lo nombramo
                     .then(payload => {
                         const { error: message } = payload
                         throw new ClientError(message)
-
                     })
+                    
             else if (status >= 500)
                 return res.text()
                     .then(text => {

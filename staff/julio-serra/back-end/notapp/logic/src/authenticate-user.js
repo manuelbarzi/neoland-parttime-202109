@@ -1,5 +1,7 @@
 const { models: { User } } = require('../../data')
-const { validators: { validateEmail, validatePassword } } = require('../../commons')
+const { validators: { validateEmail, validatePassword },
+    errors: { AuthError }
+} = require('../../commons')
 
 function authenticateUser(email, password) {
     validateEmail(email)
@@ -7,12 +9,10 @@ function authenticateUser(email, password) {
 
     return User.findOne({ email, password })
         .then(user => {
-            if (!user) throw new Error('datos incorrectos')
+            if (!user) throw new AuthError('datos incorrectos')
 
             return user.id
         })
-
-
 }
 
 module.exports = authenticateUser

@@ -1,7 +1,7 @@
 import { validators, errors } from 'commons'
 
 const { validateToken } = validators
-const { ClientError, ServerERror } = errors
+const { ClientError, ServerError } = errors
 
 export default function retrievePublicNotes(token) {
     validateToken(token)
@@ -24,10 +24,10 @@ export default function retrievePublicNotes(token) {
                         const { error: message } = payload
                         throw new ClientError(message)
                     })
-                    else if (status >= 500)
-                    return res.text()
+            else if (status >= 500)
+                return res.text()
                     .then(text => {
-                        throw new ServerERror(text)
+                        throw new ServerError(text)
                     })
         })
 }
