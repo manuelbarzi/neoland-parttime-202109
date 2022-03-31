@@ -18,12 +18,16 @@ function retrievePublicNotes(id) {
 
                 const { comments } = note
 
+                if(comments) {
+                    
                 comments.forEach(comment => {
                     comment.id = comment._id.toString()
 
                     delete comment._id
                     delete comment.__v
                 })
+            }
+
             })
             return notes
         })

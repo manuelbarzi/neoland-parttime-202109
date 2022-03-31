@@ -14,12 +14,11 @@ const { registerUser,
     retrievePublicNotes
 } = require('./handlers')
 const {
-    retrievePublicNotesFromUser,
 } = require('logic')
 
 const { env: { MONGODB_URL, PORT } } = process
-const { extractUserIdFromAuthorization } = require('./helpers')
-const { json } = require('body-parser')
+// const { extractUserIdFromAuthorization } = require('./helpers')
+// const { json } = require('body-parser')
 
 
 

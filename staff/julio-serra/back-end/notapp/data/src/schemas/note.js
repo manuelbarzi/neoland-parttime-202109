@@ -1,4 +1,5 @@
 const { Schema } = require('mongoose')
+const comment = require('./comment')
 const { Types: { ObjectId } } = Schema
 
 const note = new Schema ({
@@ -25,7 +26,8 @@ const note = new Schema ({
     text: {
         type: String,
         required: true
-    }
+    },
+    comments: [comment]
 })
 
 module.exports = note
