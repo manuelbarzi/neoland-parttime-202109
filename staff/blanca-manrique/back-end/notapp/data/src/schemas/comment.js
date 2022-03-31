@@ -1,5 +1,5 @@
 const { Schema } = require('mongoose')
-const { Types: { ObjectId }} = Schema
+const { Types: { ObjectId } } = Schema
 
 const comment = new Schema({
     user: {
@@ -8,7 +8,8 @@ const comment = new Schema({
         required: true
     },
     text: {
-
+        type: String,
+        required: true
     },
     date: {
         type: Date,

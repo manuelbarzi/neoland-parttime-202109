@@ -3,13 +3,13 @@ require('dotenv').config()
 const { mongoose: { connect } } = require('data')
 const express = require('express')
 const cors = require('cors')
-const { registerUser, authenticateUser, retrieveUser, updateUser, deleteUser, createNote, updateNote, deleteNote, retrieveNotes, retrievePublicNotesFromUser } = require('./handlers')
+const { registerUser, authenticateUser, retrieveUser, updateUser, deleteUser, createNote, updateNote, deleteNote, retrieveNotes, retrievePublicNotes, retrievePublicNotesFromUser, addCommentToNote} = require('./handlers')
 
 const { env: { MONGODB_URL, PORT } } = process
 
 connect(MONGODB_URL)
     .then(() => {
-        console.log('connected to db')
+        console.log('database connected')
 
         const api = express()
 
@@ -28,9 +28,11 @@ connect(MONGODB_URL)
         router.patch('/notes/:noteId', jsonBodyParser, updateNote)
         router.delete('/notes/:noteId', jsonBodyParser, deleteNote)
         router.get('/notes', retrieveNotes)
+        router.get('/notes/public', retrievePublicNotes)
         router.get('/users/:ownerId/notes', retrievePublicNotesFromUser)
+        router.post('/notes/:noteId/comments', jsonBodyParser, addCommentToNote)
 
         api.use('/api', router)
 
-        api.listen(PORT, () => console.log('json server running'))
+        api.listen(PORT, () => console.log(`server listening on ${PORT}`))
     })

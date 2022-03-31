@@ -1,21 +1,22 @@
 //const EMAIL_REGEX = /[a-z]+\@[a-z]+\.[a-z]+/i 
 const EMAIL_REGEX = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+const { FormatError } = require('./errors')
 
 function validateName(name) {
     if (typeof name !== 'string') throw new TypeError('name is not string')
-    if (!name.trim()) throw new Error('name is empty or blank')
+    if (!name.trim()) throw new FormatError('name is empty or blank')
 }
 
 function validateEmail(email) {
     if (typeof email !== 'string') throw new TypeError('email is not string')
-    if (!email.trim()) throw new Error('email is empty or blank')
-    if (!EMAIL_REGEX.test(email)) throw new Error('invalid email')
+    if (!email.trim()) throw new FormatError('email is empty or blank')
+    if (!EMAIL_REGEX.test(email)) throw new FormatError('invalid email')
 }
 
 function validatePassword(password) {
     if (typeof password !== 'string') throw new TypeError('password is not string')
-    if (!password.trim()) throw new Error('password is empty or blank')
-    if (password.trim().length < 5) throw new Error('password length is smaller than 5 characters')
+    if (!password.trim()) throw new FormatError('password is empty or blank')
+    if (password.trim().length < 5) throw new FormatError('password length is smaller than 5 characters')
 }
 
 function validateCallback(callback) {
@@ -24,14 +25,34 @@ function validateCallback(callback) {
 
 function validateToken(token) {
     if (typeof token !== 'string') throw new TypeError('token is not string')
-    if (!token.trim()) throw new Error('token is empty or blank')
-    if (token.split('.').length !== 3) throw new Error('invalid token')
+    if (!token.trim()) throw new FormatError('token is empty or blank')
+
+    const parts = sessionStorage.token.split('.')
+
+    if (parts.length !== 3) throw new FormatError('invalid token')
+
+    const [, payload64] = parts
+
+    const payloadJson = atob(payload64) 
+
+    const payload = JSON.parse(payloadJson)
+
+    if (Math.round(Date.now() / 1000) > payload.exp) throw new Error('token expired')
 }
 
 function validateId(id, explain = 'id') {
     if (typeof id !== 'string') throw new TypeError(`${explain} is not string`)
-    if (!id.trim()) throw new Error(`${explain} is empty or blank`)
-    if (id.length !== 24) throw new Error(`invalid ${explain}`) //id de Mongo = 24 caracteres
+    if (!id.trim()) throw new FormatError(`${explain} is empty or blank`)
+    if (id.length !== 24) throw new FormatError(`invalid ${explain}`) //id de Mongo = 24 caracteres
+}
+
+function validateText(text) {
+    if (typeof text !== 'string') throw new TypeError('text is not string')
+    if (!text.trim()) throw new FormatError('text is empty or blank')
+}
+
+function validateBoolean(boolean, explain = 'boolean') {
+    if (typeof boolean !== 'boolean') throw new TypeError(`${explain} is not boolean`)
 }
 
 module.exports = {
@@ -40,5 +61,7 @@ module.exports = {
     validatePassword,
     validateCallback,
     validateToken,
-    validateId
+    validateId,
+    validateText,
+    validateBoolean
 }
