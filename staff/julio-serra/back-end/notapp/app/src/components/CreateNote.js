@@ -8,7 +8,7 @@ export default function CreateNote({ onCreated }) {
             text: { value: text },
             color: { value: color },
             public: { checked: _public }
-        }} = event
+        } } = event
 
         try {
             createNote(sessionStorage.token, text, color, _public)
@@ -20,20 +20,22 @@ export default function CreateNote({ onCreated }) {
     }
     return (
         <>
-            <form onSubmit={handleCreateNote}>
-                <textarea name="text"></textarea>
+            <section className='bg-emerald-300 rounded-xl'>
+                <form onSubmit={handleCreateNote}>
+                    <textarea name="text"></textarea>
 
-                <select name="color">
-                    <option value="red">red</option>
-                    <option value="green">green</option>
-                    <option value="blue">blue</option>
-                    <option value="yellow">yellow</option>
-                </select>
+                    <select name="color">
+                        <option value="red">red</option>
+                        <option value="green">green</option>
+                        <option value="blue">blue</option>
+                        <option value="yellow">yellow</option>
+                    </select>
 
-                <input type="checkbox" name="public"></input>
+                    <input type="checkbox" name="public"></input>
 
-                <button>Create</button>
-            </form>
+                    <button>Create</button>
+                </form>
+            </section>
         </>
     )
 }
