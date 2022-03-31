@@ -1,5 +1,5 @@
 export default function() {
-    return <div>
+    return <div className="Landing">
         <a href="/register">Register</a> or <a href="/login">Login</a>
     </div>
 }

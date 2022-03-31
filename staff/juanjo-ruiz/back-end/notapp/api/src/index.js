@@ -12,6 +12,7 @@ const { registerUser,
     updateNote,
     deleteNote,
     retrieveNotes,
+    retrievePublicNotes,
     retrievePublicNotesFromUser,
     findNotes,
     findPublicNotes
@@ -42,6 +43,7 @@ connect(MONGODB_URL)
         router.patch('/notes/:noteId', jsonBodyParser, updateNote)
         router.delete('/notes/:noteId', jsonBodyParser, deleteNote)
         router.get('/notes', jsonBodyParser, retrieveNotes)
+        router.get('/notes/public', jsonBodyParser, retrievePublicNotes)
         router.get('/users/:ownerId/notes', jsonBodyParser, retrievePublicNotesFromUser)
         router.get('/notes', jsonBodyParser, findNotes)
         router.get('/notes/public', jsonBodyParser, findPublicNotes)

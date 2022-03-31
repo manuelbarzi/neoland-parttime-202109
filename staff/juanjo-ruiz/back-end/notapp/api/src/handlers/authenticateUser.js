@@ -1,5 +1,5 @@
 const { authenticateUser } = require('logic')
-const { env: { JWT_SECRET } } = process
+const { env: { JWT_SECRET, JWT_EXP } } = process
 const { sign } = require('jsonwebtoken')
 
 module.exports = (req, res) => {
@@ -8,7 +8,7 @@ module.exports = (req, res) => {
 
         authenticateUser(email, password)
             .then(userId => {
-                const token = sign({ sub: userId }, JWT_SECRET, {expiresIn: JWT_EXP})
+                const token = sign({ sub: userId }, JWT_SECRET, { expiresIn: JWT_EXP })
 
                 res.status(200).json({ token })
             })

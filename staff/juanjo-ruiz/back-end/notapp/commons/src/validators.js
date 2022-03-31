@@ -25,7 +25,18 @@ function validateCallback(callback) {
 function validateToken(token) {
     if (typeof token !== 'string') throw new TypeError('token is not string')
     if (!token.trim()) throw new Error('token is empty or blank')
-    if (token.split('.').length !== 3) throw new Error('invalid token')
+
+    const parts = sessionStorage.token.split('.')
+
+    if (parts.length !== 3) throw new Error('invalid token')
+
+    const [, payload64] = parts
+
+    const payloadJson = atob(payload64)
+
+    const payload = JSON.parse(payloadJson)
+
+    if (Math.round(Date.now() / 1000) > payload.exp) throw new Error('token expired')
 }
 
 function validateId(id, explain = 'id') {
@@ -44,11 +55,6 @@ function validateColor(color) {
     if (!color.trim()) throw new Error('color is empty or blanck')
 }
 
-function validatePublic(public) {
-    if (typeof public !== 'boolean') throw new TypeError('public is not boolean')
-    if (!public.trim()) throw new TypeError('public is empty or blanck')
-}
-
 function validateQuery(query) {
     if (typeof query !== 'string') throw new TypeError('query is not string')
     if (!query.trim()) throw new TypeError('query is empty or blanck')
@@ -56,6 +62,15 @@ function validateQuery(query) {
 
 function validateDate(date) {
     if (typeof date !== Date) throw new TypeError('date is not date')
+}
+
+function validateString(string, explain = 'string') {
+    if (typeof string !== 'string') throw new TypeError(`${explain} is not string`)
+    if (!string.trim()) throw new FormatError(`${explain} is empty or blank`)
+}
+
+function validateBoolean(boolean, explain = 'boolean') {
+    if (typeof boolean !== 'boolean') throw new TypeError(`${explain} is not boolean`)
 }
 
 module.exports = {
@@ -67,7 +82,8 @@ module.exports = {
     validateId,
     validateText,
     validateColor,
-    validatePublic,
     validateQuery,
-    validateDate
+    validateDate,
+    validateString,
+    validateBoolean
 }
