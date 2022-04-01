@@ -10,7 +10,7 @@ export default function Modal({ content, onClose }) {
     return (
         <>
             <section className="w-full">
-                <div className="absolute h-100 top-0 h-screen w-screen flex flex-col bg-black/70 items-center justify-center" onClick={handleClickOnModal}>
+                <div className="left-0 absolute h-100 top-0 h-screen w-screen flex flex-col bg-black/70 items-center justify-center" onClick={handleClickOnModal}>
                     <button onClick={onClose}>
                         <span className="text-red-600">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
