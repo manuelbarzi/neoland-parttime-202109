@@ -31,7 +31,7 @@ function App() {
 
   return <div>
     <Routes>
-      <Route path="/" element={loggedIn ? <Home onLoggedOut={handleLoggedOut} /> : <Landing />} />
+      <Route path="/*" element={loggedIn ? <Home onLoggedOut={handleLoggedOut} /> : <Landing />} />
       <Route path="/register" element={loggedIn ? <Navigate to="/" /> : <Register />} />
       <Route path="/login" element={loggedIn ? <Navigate to="/" /> : <Login onLoggedIn={handleLoggedIn} />} />
     </Routes>

@@ -8,7 +8,7 @@ function retrievePublicNotes(userId) {
         .then(user => {
             if (!user) throw new Error(`user with id ${userId} not found`)
 
-            return Note.find({ public: true }).lean()
+            return Note.find({ public: true }).lean().sort('-date')
         })
         .then(notes => {
             notes.forEach(note => {
