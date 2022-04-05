@@ -7,7 +7,7 @@ function retrievePublicNotes(id) {
     return User.findById(id)
         .then(user => {
             if (!user) throw new Error(`user with id ${id} not found`)
-            return Note.find({ public: true }).lean()
+            return Note.find({ public: true }).lean().sort('-date')
         })
         .then(notes => {
             notes.forEach(note => {
@@ -18,15 +18,15 @@ function retrievePublicNotes(id) {
 
                 const { comments } = note
 
-                if(comments) {
-                    
-                comments.forEach(comment => {
-                    comment.id = comment._id.toString()
+                if (comments) {
 
-                    delete comment._id
-                    delete comment.__v
-                })
-            }
+                    comments.forEach(comment => {
+                        comment.id = comment._id.toString()
+
+                        delete comment._id
+                        delete comment.__v
+                    })
+                }
 
             })
             return notes
