@@ -13,7 +13,8 @@ const {
     updateNote,
     addCommentToNote,
     retrieveNotes,
-    retrievePublicNotes
+    retrievePublicNotes,
+    retrieveNote
 } = require('./handlers')
 const {
     deleteNote,
@@ -64,6 +65,8 @@ connect(MONGODB_URL)
         router.get('/notes', retrieveNotes)
 
         router.get('/notes/public', retrievePublicNotes)
+        
+        router.get('/notes/:noteId', retrieveNote)
 
         router.get('/users/:ownerId/notes', jsonBodyParser, (req, res) => {
             try {

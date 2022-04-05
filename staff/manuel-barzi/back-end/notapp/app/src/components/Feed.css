@@ -1,38 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
-
 .Feed__list {
     display: flex;
     flex-direction: column;
     list-style-type: none;
     gap: .5rem
-}
-
-.Feed__item {
-    box-sizing: border-box;
-    width: 50vw;
-    height: 50vw;
-    background-color: lightgray;
-    padding: .5rem;
-    font-family: 'Rock Salt';
-}
-
-.Feed__item--red {
-    background-color: tomato;
-}
-
-.Feed__item--green {
-    background-color: greenyellow;
-}
-
-.Feed__item--blue {
-    background-color: dodgerblue;
-    color: white;
-}
-
-.Feed__item--yellow {
-    background-color: gold;
-}
-
-.Feed__item--brown {
-    background-color: chocolate;
 }
