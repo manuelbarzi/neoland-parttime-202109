@@ -6,7 +6,7 @@
     --font-size-small: 1.5rem;
 }
 
-.Feed__item {
+.Note {
     background-color: rgb(228, 228, 228);
     font-family: var(--font-notes);
     font-weight: var(--font-weight-bold);
@@ -14,4 +14,21 @@
     overflow: hidden;
     /* text-overflow: ellipsis;
     white-space: nowrap; */
+}
+
+.Note--red {
+    background-color: rgb(255, 0, 0);
+}
+
+.Note--green {
+    background-color: rgb(0, 255, 0);
+}
+
+.Note--blue {
+    background-color: rgb(0, 0, 255);
+    color: white;
+}
+
+.Note--yellow {
+    background-color: rgb(255, 255, 0);
 }

@@ -3,7 +3,6 @@ import { retrievePublicNotes } from '../logic'
 import './Feed.css'
 import Modal from './Modal'
 import { Routes, Route, useNavigate } from 'react-router-dom'
-import Note from './Note'
 
 export default ({ refresh }) => {
     const [notes, setNotes] = useState()
@@ -25,7 +24,7 @@ export default ({ refresh }) => {
     return (
         <div className="Feed">
             {notes ? <ul className="Feed__list grid grid-cols-3 gap-6 pt-5">
-                {notes.map(note => <li key={note.id}><Note note={note} /></li>)}
+                {notes.map(note => <li className={`Feed__item Feed__item--${note.color} h-52 w-52 p-6`} key={note.id} > {note.text}</li>)}
             </ul> : <p>no notes</p>}
             <Routes>
                 <Route path="n/:noteId" element={<Modal content={<h1>Hola modal</h1>} onClose={handleCloseModal} />} />
