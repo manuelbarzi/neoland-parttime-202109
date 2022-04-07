@@ -6,12 +6,12 @@ export default ({ content, onClose}) => {
  }
 
  const handleClickOnContent = event => {
-     event.stopPropagation()
+     event.stopPropagation() //hace que no siga al padre
  }
-
- return <div className="Modal" onClick={handleClickOnModal}>
+                                 //onClick en todo el modal (por fuera) no en el div del contenido (donde escribes notas)
+ return <div className="Modal" onClick={handleClickOnModal}> 
      <button onClick={onClose}>x</button>
-     <div onClick={handleClickOnContent}>
+     <div onClick={handleClickOnContent}>  
          {content}
      </div>
  </div>

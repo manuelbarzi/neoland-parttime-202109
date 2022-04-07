@@ -1,5 +1,14 @@
+.container{
+    background-color: rgb(255, 255, 255);
+    width: 50%;
+    margin: auto;
+    border-radius: 1rem;
+    
+    
+}
 .Landing {
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }

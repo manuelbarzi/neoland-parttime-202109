@@ -15,6 +15,7 @@ const { registerUser,
     deleteUser, 
     createNote, 
     updateNote,
+    retrieveNote,
     retrieveNotes,
     retrievePublicNotes,
     retrievePublicNotesFromUser,
@@ -68,6 +69,9 @@ connect(MONGODB_URL) //ya no pongo la url tal cual
 
     //***** RETRIEVE PUBLIC NOTES       
          router.get('/notes/public', retrievePublicNotes)
+
+    //***** RETRIEVE NOTE
+         router.get('/notes/:noteId', retrieveNote)
 
     // ***** RETRIEVE NOTES FROM USER 
                         //combino users con notas en la url/de ese user->cuál user-> dame notas

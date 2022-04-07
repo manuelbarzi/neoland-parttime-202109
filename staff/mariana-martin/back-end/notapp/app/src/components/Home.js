@@ -1,34 +1,41 @@
-import { useEffect, useState } from 'react'
-import { retrievePublicNotes } from '../logic'
+import { useState } from 'react'
 import Modal from './Modal'
+import CreateNote from './CreateNote'
+import Feed from './Feed'
 
 export default ({ onLoggedOut}) => {
+ 
+    const [modal, setModal] = useState()
+    const [refresh, setRefresh] = useState()
 
-    const [notes, setNotes] = useState()
-
-    useEffect(() => {
-        try {
-            retrievePublicNotes(sessionStorage.token)
-                .then(notes => setNotes(notes))
-                .catch(error => alert(error.message))
-        } catch (error) {
-            alert(error.message)
-        }
-    }, [])
-
-    const logout = () => {
+    const handleLogout = () => {
         delete sessionStorage.token
+
         onLoggedOut()
     }
 
+    const handleCloseModal = () => setModal(false)
+
+    const handleOpenModal = () => setModal(true)
+
+    const handleCloseModalAndReloadNotes = () => {
+        handleCloseModal()
+
+        setRefresh(Date.now())
+    }
+
+  
+
     return <div>
         <h1>Home</h1>
-        <button onClick={logout}>Logout</button>
+        <button onClick={handleOpenModal}>+</button>
+        <button onClick={handleLogout}>Logout</button>
 
-        {notes? <ul>
-            {notes.map(note => <li key={note.id}>{note.text}</li>)}
-        </ul> : <p>no notes</p>}
+        <Feed refresh={refresh} />
+        
+        {modal && <Modal content={
+            <CreateNote onCreated={handleCloseModalAndReloadNotes} /> //recarga notas pantalla al crear una nota
+        } onClose={handleCloseModal} />}
 
-        <Modal />
     </div>
 }

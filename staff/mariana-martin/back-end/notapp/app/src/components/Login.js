@@ -23,6 +23,7 @@ export default function Login({ onLoggedIn}){
     return <form onSubmit={login}>
         <input type="email" name="email" placeholder="email" />
         <input type="password" name="password" placeholder="password" />
+      
         <button>Login</button>
 
         <a href="/register">Register</a>

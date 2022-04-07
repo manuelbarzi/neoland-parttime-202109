@@ -1,33 +1,30 @@
 import { validators, errors } from 'commons'
 
-const { validateToken } = validators
+const { validateToken, validateString, validateBoolean } = validators
 const { ClientError, ServerError } = errors
 
-
-export default function (token){
+export default function (token, text, color, _public) {
     validateToken(token)
+    validateString(text, 'text')
+    validateString(color, 'color')
+    validateBoolean(_public, 'public')
 
-    return fetch('http://localhost:8080/api/notes/public', {
-        method: 'GET',
+    return fetch('http://localhost:8080/api/notes', {
+        method: 'POST',
         headers: {
-            Authorization: `Bearer ${token}`
-        }
+            Authorization: `Bearer ${token}`, //envío token
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ text, color, public: _public }) //envío body
     })
         .then(res => {
-
             const { status } = res
 
-            if (status === 200)
-                return res.json()
-                    .then(notes =>{
-                        notes.forEach(note => note.date = new Date(note.date))  //fecha tipo Date
-
-                        return notes
-                    })
+            if (status === 201)
+                return
             else if (status >= 400 && status < 500)
                 return res.json()
                     .then(payload => {
-                        
                         const { error: message } = payload
 
                         throw new ClientError(message)

@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
+
+.Note {
+    box-sizing: border-box;
+    width: 20vw;
+    height: 20vw;
+    background-color: lightgray;
+    padding: 1.5rem;
+    position: relative;
+    background-color: rgb(109, 178, 247);
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 1.5rem;
+}
+
+
+.Note__footer {
+    position: absolute;
+    bottom: .5rem;
+    right: .5rem;
+    font-size: 1.2rem;
+}
+
+.Note--red {
+    background-color: rgb(192, 120, 107);
+    
+    
+}
+
+.Note--blue {
+    background-color: rgb(109, 178, 247);
+    
+}
+
+
+.Note--yellow {
+    background-color: rgb(226, 208, 107);
+    
+}
+
+.Note--green {
+    background-color: rgb(133, 184, 92);
+   
+}
