@@ -11,6 +11,7 @@ const retrievePublicNotes = require('./retrievePublicNotes')
 const retrievePublicNotesFromUser = require('./retrievePublicNotesFromUser')
 const findNotes = require('./findNotes')
 const findPublicNotes = require('./findPublicNotes')
+const retrieveNote = require('./retrieveNote')
  
 module.exports = {
     registerUser,
@@ -25,5 +26,6 @@ module.exports = {
     retrievePublicNotes,
     retrievePublicNotesFromUser,
     findNotes,
-    findPublicNotes
+    findPublicNotes,
+    retrieveNote
 }

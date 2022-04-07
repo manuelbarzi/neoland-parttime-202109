@@ -1,0 +1,8 @@
+.Feed__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style-type: none;
+    gap: 1rem;
+    padding: 0;
+}

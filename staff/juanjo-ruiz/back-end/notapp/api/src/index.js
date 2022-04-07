@@ -15,7 +15,8 @@ const { registerUser,
     retrievePublicNotes,
     retrievePublicNotesFromUser,
     findNotes,
-    findPublicNotes
+    findPublicNotes,
+    retrieveNote
 } = require('./handlers')
 
 /* const { extractUserIdFromAuthorization } = require('./handlers/helpers') ya no es necesario porque esta implementado en cada handlers*/
@@ -42,11 +43,12 @@ connect(MONGODB_URL)
         router.post('/notes', jsonBodyParser, createNote)
         router.patch('/notes/:noteId', jsonBodyParser, updateNote)
         router.delete('/notes/:noteId', jsonBodyParser, deleteNote)
-        router.get('/notes', jsonBodyParser, retrieveNotes)
-        router.get('/notes/public', jsonBodyParser, retrievePublicNotes)
-        router.get('/users/:ownerId/notes', jsonBodyParser, retrievePublicNotesFromUser)
-        router.get('/notes', jsonBodyParser, findNotes)
-        router.get('/notes/public', jsonBodyParser, findPublicNotes)
+        router.get('/notes', retrieveNotes)
+        router.get('/notes/public', retrievePublicNotes)
+        router.get('/users/:ownerId/notes', jsonBodyParser , retrievePublicNotesFromUser)
+        router.get('/notes', findNotes)
+        router.get('/notes/public', findPublicNotes)
+        router.get('/note/:noteId', retrieveNote)
 
         api.use('/api', router)
 

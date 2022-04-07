@@ -1,11 +1,12 @@
 import { validators } from 'commons'
 
-const { validateToken } = validators
+const { validateToken, validateId } = validators
 
-export default function (token) {
+export default function (token, noteId) {
     validateToken(token)
+    validateId(noteId, 'note id')
 
-    return fetch('http://localhost:8080/api/notes/public', {
+    return fetch(`http://localhost:8080/api/notes/${noteId}`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${token}`
@@ -16,10 +17,10 @@ export default function (token) {
 
             if (status === 200)
                 return res.json()
-                    .then(notes => {
-                        notes.forEach(note => note.date = new Date(note.date))
+                    .then(note => {
+                        note.date = new Date(note.date)
 
-                        return notes
+                        return note
                     })
             else if (status === 400 && status < 500)
                 throw new Error('client error')

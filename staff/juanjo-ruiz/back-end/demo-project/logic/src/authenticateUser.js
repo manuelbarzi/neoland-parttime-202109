@@ -1,7 +1,7 @@
 const { models: { User }} = require('data')
 
 function authenticateUser(email, password) {
-    //TODO añadir validadores
+    
 
     return User.findOne({ email, password})
         .then(user => {

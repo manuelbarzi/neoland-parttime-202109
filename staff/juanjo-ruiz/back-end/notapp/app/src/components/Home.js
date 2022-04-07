@@ -1,29 +1,15 @@
-import { useEffect, useState } from 'react'
-import { retrievePublicNotes } from '../logic'
+import { useState } from 'react'
 import Modal from './Modal'
 import CreateNote from './CreateNote'
+import Feed from './Feed'
 
 export default ({ onLoggedOut }) => {
-    const [notes, setNotes] = useState()
     const [modal, setModal] = useState()
-
-    const loadNotes = () => {
-        try {
-            retrievePublicNotes(sessionStorage.token)
-                .then(notes => setNotes(notes))
-                .catch(error => alert(error.message))
-        } catch (error) {
-            alert(error.message)
-        }
-    }
-
-    useEffect(() => {
-        loadNotes()
-    }, [])
+    const [refresh, setRefresh] = useState()
 
     const handleLogout = () => {
         delete sessionStorage.token
-
+         
         onLoggedOut()
     }
 
@@ -34,7 +20,7 @@ export default ({ onLoggedOut }) => {
     const handleCloseModalAndReloadNotes = () => {
         handleCloseModal()
 
-        loadNotes()
+        setRefresh(Date.now())
     }
 
     return <div>
@@ -42,9 +28,7 @@ export default ({ onLoggedOut }) => {
         <button onClick={handleOpenModal}>+</button>
         <button onClick={handleLogout}>Logout</button>
 
-        {notes ? <ul>
-            {notes.map(note => <li key={note.id}>{note.text}</li>)}
-        </ul> : <p>no notes</p>}
+        <Feed refresh={refresh} />
 
         {modal && <Modal content={
             <CreateNote onCreated={handleCloseModalAndReloadNotes} />
