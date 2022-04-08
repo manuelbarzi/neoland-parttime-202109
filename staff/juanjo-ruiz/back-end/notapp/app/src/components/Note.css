@@ -17,6 +17,12 @@
     font-size: .5rem;
 }
 
+.Note__paperBin {
+    position: absolute;
+    top: .5rem;
+    right: 1rem;
+}
+
 .Note--red {
     background-color: tomato;
 }

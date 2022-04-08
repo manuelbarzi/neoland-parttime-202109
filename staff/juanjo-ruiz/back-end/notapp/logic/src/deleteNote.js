@@ -5,13 +5,21 @@ function deleteNote(userId, noteId) {
     validateId(userId, 'user id')
     validateId(noteId, 'note id')
 
-    return Note.findById(noteId)
-        .then(note => {
-            if (note.user === userId)
-                console.log(`${note} borrada`)
+    return User.findById(userId)
+        .then(user => {
+            if (!user) throw new Error(`user with id ${userId} not found`)
 
-            else
-                console.log(note.user)
+            return Note.findById(noteId)
+        })
+        .then(note => {
+            if (!note) throw new Error(`note with id ${noteId} not found`)
+
+            if (note.user.toString() !== userId) throw new Error(`note with id ${noteId} does not belong to user with id ${userId}`)
+
+            return Note.deleteOne({ _id: noteId })
+        })
+        .then(() => {
+
         })
 }
 

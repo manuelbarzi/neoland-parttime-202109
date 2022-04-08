@@ -11,6 +11,12 @@ export default ({ refresh }) => {
     const navigate = useNavigate()
 
     useEffect(() => {
+        handleRefresh()
+    }, [refresh])
+
+    const handleCloseModal = () => navigate('/')
+
+    const handleRefresh = () => {
         try {
             retrievePublicNotes(sessionStorage.token)
                 .then(notes => setNotes(notes))
@@ -18,14 +24,11 @@ export default ({ refresh }) => {
         } catch (error) {
             alert(error.message)
         }
-
-    }, [refresh])
-
-    const handleCloseModal = () => navigate('/')
+    }
 
     return <div>
         {notes ? <ul className="Feed__list">
-            {notes.map(note => <li key={note.id}><Note note={note} /></li>)}
+            {notes.map(note => <li key={note.id}><Note note={note} onDeleted={handleRefresh} /></li>)}
         </ul> : <p>no notes</p>}
 
         <Routes>
