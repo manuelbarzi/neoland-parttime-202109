@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Special+Elite&display=swap');
+.Note {
+    box-sizing: border-box;
+    width: 50vw;
+    height: 50vw;
+    background-color: lightgray;
+    padding: .5rem;
+    font-family: 'Share Tech Mono', monospace; 
+    position: relative;
+}
+
+.Note__footer {
+    position: absolute;
+    bottom: .5rem;
+    right: 1rem;
+    font-size: .5rem;
+}
+
+.Note--red {
+    background-color: tomato;
+}
+
+.Note--green {
+    background-color: greenyellow;
+}
+
+.Note--blue {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.Note--yellow {
+    background-color: gold;
+}
+
+.Note--black {
+    background-color: black;
+    color: white
+}
+
+.Note--white {
+    background-color: rgb(236, 223, 207);
+}

@@ -1,9 +1,12 @@
 const { models: { Note } } = require('data')
-const { validators: { validateId } } = require('commons')
+const { validators: { validateId, validateText, validateBoolean } } = require('commons')
 
 function updateNote(userId, noteId, text, color, public) {
     validateId(userId, 'user id')
     validateId(noteId, 'note id')
+    validateText(text, 'text')
+    validateText(color, 'color')
+    validateBoolean(public, 'public')
 
     return Note.updateOne({ user: userId, _id: noteId }, { text, color, public })
         .then(result => {

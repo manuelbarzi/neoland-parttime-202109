@@ -46,9 +46,9 @@ function validateId(id, explain = 'id') {
     if (id.length !== 24) throw new FormatError(`invalid ${explain}`) //id de Mongo = 24 caracteres
 }
 
-function validateText(text) {
-    if (typeof text !== 'string') throw new TypeError('text is not string')
-    if (!text.trim()) throw new FormatError('text is empty or blank')
+function validateText(text, explain = 'string') {
+    if (typeof text !== 'string') throw new TypeError(`${explain} is not string`)
+    if (!text.trim()) throw new FormatError(`${explain} is empty or blank`)
 }
 
 function validateBoolean(boolean, explain = 'boolean') {

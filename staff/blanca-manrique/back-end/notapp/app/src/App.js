@@ -32,7 +32,7 @@ function App() {
   
   //renderizado
   return <Routes>
-    <Route path='/' element={loggedIn ? <Home onLoggedOut={logout} /> : <Landing />} />
+    <Route path='/*' element={loggedIn ? <Home onLoggedOut={logout} /> : <Landing />} />
     <Route path='register' element={loggedIn? <Navigate to="/" /> : <Register onRegisterIn={login}/>}/>
     <Route path='login' element={loggedIn? <Navigate to="/" /> : <Login onLoggedIn={home} />} />
   </Routes>

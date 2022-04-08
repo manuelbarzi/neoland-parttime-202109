@@ -3,7 +3,7 @@ require('dotenv').config()
 const { mongoose: { connect } } = require('data')
 const express = require('express')
 const cors = require('cors')
-const { registerUser, authenticateUser, retrieveUser, updateUser, deleteUser, createNote, updateNote, deleteNote, retrieveNotes, retrievePublicNotes, retrievePublicNotesFromUser, addCommentToNote} = require('./handlers')
+const { registerUser, authenticateUser, retrieveUser, updateUser, deleteUser, createNote, updateNote, deleteNote, retrieveNote,retrieveNotes, retrievePublicNotes, retrievePublicNotesFromUser, addCommentToNote} = require('./handlers')
 
 const { env: { MONGODB_URL, PORT } } = process
 
@@ -24,13 +24,15 @@ connect(MONGODB_URL)
         router.get('/users', retrieveUser)
         router.patch('/users', jsonBodyParser, updateUser)
         router.delete('/users', jsonBodyParser, deleteUser)
+        router.post('/notes/:noteId/comments', jsonBodyParser, addCommentToNote)
         router.post('/notes', jsonBodyParser, createNote)
         router.patch('/notes/:noteId', jsonBodyParser, updateNote)
-        router.delete('/notes/:noteId', jsonBodyParser, deleteNote)
+        router.delete('/notes/:noteId', deleteNote)
         router.get('/notes', retrieveNotes)
         router.get('/notes/public', retrievePublicNotes)
+        router.get('/notes/:noteId', retrieveNote)
         router.get('/users/:ownerId/notes', retrievePublicNotesFromUser)
-        router.post('/notes/:noteId/comments', jsonBodyParser, addCommentToNote)
+
 
         api.use('/api', router)
 

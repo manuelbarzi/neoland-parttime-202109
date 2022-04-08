@@ -1,26 +1,26 @@
 import { validators, errors } from 'commons'
 
-const { validateToken, validateText, validateBoolean } = validators
+const { validateToken, validateId } = validators
 const { ClientError, ServerError } = errors
 
-function createNote(token, text, color, _public) {
+function deleteNote(token, noteId) {
     validateToken(token)
-    validateText(text, 'text')
-    validateText(color, 'color')
-    validateBoolean(_public, 'public')
+    validateId(noteId, 'note id')
 
-    return fetch('http://localhost:8080/api/notes', {
-        method: 'POST',
+
+    return fetch(`http://localhost:8080/api/notes/${noteId}`, {
+        method: 'DELETE',
         headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ text, color, public: _public })
+        }
+        // body: JSON.stringify({ user: token, note: _id })
+        //no hace falta: mandamos el token por la authorization, y el id de la nota por la URL, por lo tanto este paso es redundante y no haría falta
     })
         .then(res => {
             const { status } = res
 
-            if (status === 201)
+            if (status === 204)
                 return
             else if (status >= 400 && status < 500)
                 return res.json()
@@ -36,4 +36,4 @@ function createNote(token, text, color, _public) {
                     })
         })
 }
-export default createNote
+export default deleteNote

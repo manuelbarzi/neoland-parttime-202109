@@ -4,7 +4,7 @@ const { validators: { validateId, validateText } } = require('commons')
 function addCommentToNote(userId, noteId, text) {
     validateId(userId, 'user id')
     validateId(noteId, 'note id')
-    validateText(text)
+    validateText(text, 'text')
 
     return Promise.all([User.findById(userId), Note.findById(noteId)])
         .then(([user, note]) => {

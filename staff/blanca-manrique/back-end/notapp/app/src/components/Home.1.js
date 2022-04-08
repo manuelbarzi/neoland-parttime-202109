@@ -1,14 +1,25 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { retrievePublicNotes } from '../logic'
 import Modal from './Modal'
 import CreateNote from './CreateNote'
-import Feed from './Feed'
-import { Routes, Route, useNavigate } from 'react-router-dom'
-import MyNotes from './MyNotes'
 
 function Home({ onLoggedOut }) {
+    const [notes, setNotes] = useState()
     const [modal, setModal] = useState()
-    const [refresh, setRefresh] = useState() //inicialmente está undefined, es decir, es como false
-    const navigate = useNavigate()
+
+    const loadNotes = () => {
+        try {
+            retrievePublicNotes(sessionStorage.token)
+                .then(notes => setNotes(notes))
+                .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
+    useEffect(() => {
+        loadNotes()
+    }, [])
 
     const logout = () => {
         delete sessionStorage.token
@@ -22,20 +33,17 @@ function Home({ onLoggedOut }) {
 
     const handleCloseModalAndReloadNotes = () => {
         handleCloseModal()
-
-        setRefresh(Date.now())
+        loadNotes()
     }
-
-    const handleOpenMyNotes = () => navigate('/notes')
-
-    const handleOpenPublicNotes = () => navigate('/notes/public')
 
     return <div>
         <h1>home</h1>
         <button onClick={logout}>Logout</button>
         <button onClick={handleOpenModal}>+</button>
-        <button onClick={handleOpenPublicNotes}>Public notes</button>
-        <button onClick={handleOpenMyNotes}>My notes</button>
+
+        {notes ? <ul>
+            {notes.map(note => <li key={note.id}>{note.text}</li>)}
+        </ul> : <p>no notes</p>}
 
         {modal &&
             <Modal content={
@@ -44,11 +52,6 @@ function Home({ onLoggedOut }) {
                 onClose={handleCloseModal}
             />
         }
-
-        <Routes>
-            <Route path='notes/public/*' element={<Feed refresh={refresh} />} />
-            <Route path='notes/*' element={<MyNotes />} />
-        </Routes>
     </div>
 }
 export default Home
