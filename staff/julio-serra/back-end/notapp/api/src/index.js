@@ -59,12 +59,12 @@ connect(MONGODB_URL)
         // RETRIEVE NOTES
         router.get('/notes', retrieveNotes)
 
-        // RETRIEVE NOTE
-        router.get('/notes/:noteId', retrieveNote)
-
         // RETRIEVE PUBLIC NOTES
         router.get('/notes/public', retrievePublicNotes)
         
+        // RETRIEVE NOTE
+        router.get('/notes/:noteId', retrieveNote)
+
         // UPDATE NOTE
         router.patch('/notes/:noteId', jsonBodyParser, updateNote)
 

@@ -19,7 +19,7 @@ export default () => {
         } catch (error) {
             alert(error.message)
         }
-    }, [noteId])
+    }, [noteId])
 
     return <>
         {note && <Note note={note} />}
