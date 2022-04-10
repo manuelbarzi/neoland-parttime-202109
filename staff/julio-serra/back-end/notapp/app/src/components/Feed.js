@@ -4,6 +4,7 @@ import './Feed.css'
 import Modal from './Modal'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import Note from './Note'
+import Item from './Item'
 
 export default ({ refresh }) => {
     const [notes, setNotes] = useState()
@@ -28,7 +29,7 @@ export default ({ refresh }) => {
                 {notes.map(note => <li key={note.id}><Note note={note} /></li>)}
             </ul> : <p>no notes</p>}
             <Routes>
-                <Route path="n/:noteId" element={<Modal content={<h1>Hola modal</h1>} onClose={handleCloseModal} />} />
+                <Route path="n/:noteId" element={<Modal content={<Item />} onClose={handleCloseModal} />} />
             </Routes>
 
         </div>

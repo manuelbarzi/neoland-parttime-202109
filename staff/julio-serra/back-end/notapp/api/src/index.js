@@ -11,7 +11,8 @@ const { registerUser,
     deleteNote,
     addCommentToNote,
     createNote,
-    retrievePublicNotes
+    retrievePublicNotes,
+    retrieveNote
 } = require('./handlers')
 const {
 } = require('logic')
@@ -56,7 +57,10 @@ connect(MONGODB_URL)
         router.post('/notes', jsonBodyParser, createNote)
 
         // RETRIEVE NOTES
-        router.get('/notes', jsonBodyParser, retrieveNotes)
+        router.get('/notes', retrieveNotes)
+
+        // RETRIEVE NOTE
+        router.get('/notes/:noteId', retrieveNote)
 
         // RETRIEVE PUBLIC NOTES
         router.get('/notes/public', retrievePublicNotes)
