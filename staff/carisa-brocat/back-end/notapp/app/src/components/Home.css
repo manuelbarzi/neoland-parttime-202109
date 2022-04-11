@@ -1,14 +1,40 @@
-.Home__button{
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+.Home {
+    font-family: 'Caveat Brush', cursive;
+    color: blueviolet;
+    background-image: url('https://newline-interactive.com/wp-content/uploads/2021/07/Whiteboard.png');
+    background-position: center;
+    background-size: cover;
+    border-color: azure;
+}
+
+.Header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.Home__button {
     width: 3rem;
     height: 3rem;
-    border-radius: 1.5rem;
     font-size: 2rem;
     border-style: double;
     border: solid;
-    border-color: azure;
-    background-color: rgb(255, 119, 0);
+    background-color: blueviolet;
+}
+
+.Home__button--add{
+    border-radius: 1.5rem;
+    border-style: double;
+    border: solid;
     position: fixed;
-    left: 80%;
+    left: 83%;
     top: 80%;
     z-index: 1;
+}
+
+.Home__button--logOut {
+    width: 2rem;
+    height: 2rem;
 }

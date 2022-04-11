@@ -11,6 +11,10 @@ export default ({ refresh }) => {
     const navigate = useNavigate()
 
     useEffect(() => {
+        refreshNotes()
+    }, [refresh])
+
+    const refreshNotes = () => {
         try {
             retrievePublicNotes(sessionStorage.token)
                 .then(notes => setNotes(notes))
@@ -18,19 +22,28 @@ export default ({ refresh }) => {
         } catch (error) {
             alert(error.message)
         }
-    }, [refresh])
+    }
 
-    const handleCloseModal = () => navigate('/')
+    const handleCloseModal = () => {
+        refreshNotes()
 
-    const handleOpenItem = (Id) => navigate(`n/${Id}`)
+        navigate('/')
+    }
+
+    const handleOpenItem = noteId => navigate(`n/${noteId}`)
+
 
     return <div className="Feed">
-        {notes ? <ul className="Feed__list">
-            {notes.map(note => <li key={note.id}><Note note={note}  onItemClick={(noteId) => handleOpenItem(noteId)} /></li>)}
-        </ul> : <p>no notes</p>}
+        {
+        notes ? 
+        <ul className="Feed__list">
+            {notes.map(note => <li key={note.id} onClick={() => handleOpenItem(note.id)}><Note note={note} onNoteDeleted={handleCloseModal} /></li>)}
+        </ul> 
+        : <p>no notes</p>
+        }
 
         <Routes>
-            <Route path="n/:noteId" element={<Modal content={<Item />} onClose={handleCloseModal} />} />
+            <Route path="n/:noteId" element={<Modal content={<Item onNoteDeleted={handleCloseModal} />} onClose={handleCloseModal} />} />
         </Routes>
     </div>
 }

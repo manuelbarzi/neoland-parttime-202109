@@ -19,21 +19,24 @@ export default ({ onCreated }) => {
             alert(error.message)
         }
     }
-    return <div calssName='CreateNote'>
-        <form onSubmit={handleCrateNote}>
-            <textarea name='text'></textarea>
+    return <div>
+        <form onSubmit={handleCrateNote} className='CreateNote'>
+            <textarea name='text' className="CreateNote__text"></textarea>
+            <div className='CreateNote__footer'>
+                <select name='color'>
+                    <option value='red'>red</option>
+                    <option value='blue'>blue</option>
+                    <option value='pink'>pink</option>
+                    <option value='yellow'>yellow</option>
+                    <option value='green'>green</option>
+                </select>
+                <div>
+                    <label for='public'>Private</label>
+                    <input type='checkbox' name='public'></input>
+                </div>
 
-            <select name='color'>
-                <option value='red'>red</option>
-                <option value='blue'>blue</option>
-                <option value='pink'>pink</option>
-                <option value='yellow'>yellow</option>
-                <option value='green'>green</option>
-            </select>
-
-            <input type='checkbox' name='public'></input>
-
-            <button>Create</button>
+                <button>Create</button>
+            </div>
         </form>
     </div>
 }

@@ -1,5 +1,28 @@
 .CreateNote{
-    background-color: rgb(244, 246, 247);
-    padding: 1rem;
-    border-radius: 2rem;
+    width: 18rem;
+    height: 18rem;
+    background-color:rgb(255, 254, 254);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.CreateNote__text{
+    width: 90%;
+    height: 60%;
+    font-family: 'Caveat Brush', cursive;
+    border: none;
+    font-size: 1.2rem;
+    color: blueviolet;
+}
+
+
+.CreateNote__footer{
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
 }

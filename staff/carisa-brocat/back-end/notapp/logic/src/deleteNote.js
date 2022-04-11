@@ -1,16 +1,27 @@
-const { models: { Note } } = require('data')
-const { validators: { validateId } } = require('commons')
+const { models: { Note, User } } = require('data')
+const {
+    validators: { validateId },
+    errors: {
+        NotFoundError,
+        AuthError,
+    }
+} = require('commons')
 
 function deleteNote(userId, noteId) {
-    validateId(userId)
-    validateId(noteId)
+    validateId(userId, 'user id')
+    validateId(noteId, 'note id')
 
-    return Note.deleteOne({ user: userId, _id: noteId })
-        .then(result => {
-            const { matchedCount } = result
+    return Promise.all([User.findById(userId), Note.findById(noteId)])
+        .then(([user, note]) => {
+            if (!user) throw new NotFoundError(`user with id ${userId} not found`)
+            if (!note) throw new NotFoundError(`note with id ${noteId} not found`)
 
-            if (matchedCount === 0) throw new Error(`note with id ${noteId} and user id ${userId} not found`)
+            if (note.user.toString() !== userId) throw new AuthError(`note with id ${noteId} does not belong to user with id ${userId}`)
+
+            return Note.deleteOne({ _id: noteId })
         })
+        .then(() => { })
+
 }
 
 module.exports = deleteNote

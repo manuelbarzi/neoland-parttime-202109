@@ -24,10 +24,13 @@ export default ({ onLoggedOut }) => {
         setRefresh(Date.now())
     }
 
-    return <div>
-        <h1>home</h1>
-        <button className='Home__button' onClick={handleOpenModal}>+</button>
-        <button onClick={handleLogout}>Logout</button>
+    return <div className='Home'>
+        <header className='Header'>
+            <h1>NoteThat</h1>
+            <button className='Home__button Home__button--add' onClick={handleOpenModal}>+</button>
+            <img className='Home__button Home__button--logOut' onClick={handleLogout} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFJ75vof0_ph2WsRPJaSTYQPyzk0CCCiTECw&usqp=CAU" />
+            {/* <button className='Home__button Home__button--logOut' onClick={handleLogout}><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFJ75vof0_ph2WsRPJaSTYQPyzk0CCCiTECw&usqp=CAU"></img></button> */}
+        </header>
 
         <Feed refresh={refresh} />
 
