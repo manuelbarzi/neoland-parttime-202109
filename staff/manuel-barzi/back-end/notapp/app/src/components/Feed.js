@@ -43,7 +43,7 @@ export default ({ refresh }) => {
         }
 
         <Routes>
-            <Route path="n/:noteId" element={<Modal content={<Item onSaved={handleCloseModal} />} onClose={handleCloseModal} />} />
+            <Route path="n/:noteId" element={<Modal content={<Item onSaved={handleCloseModal} onDeleted={handleCloseModal} />} onClose={handleCloseModal} />} />
         </Routes>
     </div>
 }

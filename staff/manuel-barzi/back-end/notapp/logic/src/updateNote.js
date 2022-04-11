@@ -5,19 +5,11 @@ const {
 } = require('commons')
 
 function updateNote(userId, noteId, text, color, _public) {
-    // TODO validate input arguments
     validateId(userId, 'user id')
     validateId(noteId, 'note id')
     validateString(text, 'text')
     validateString(color, 'color')
     validateBoolean(_public, 'public')
-
-    // return Note.updateOne({ user: userId, _id: noteId }, { text, color, public: _public })
-    //     .then(result => {
-    //         const { matchedCount } = result
-
-    //         if (matchedCount === 0) throw new Error(`note with id ${noteId} and user id ${userId} not found`)
-    //     })
 
     return Promise.all([User.findById(userId), Note.findById(noteId)])
         .then(([user, note]) => {
