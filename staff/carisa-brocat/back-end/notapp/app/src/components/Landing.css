@@ -1,6 +1,4 @@
-
-body {
-    background-color: rgb(218, 244, 244);
+.Landing {
     display: flex;
     justify-content: center;
     align-items: center;

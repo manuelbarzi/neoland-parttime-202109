@@ -1,23 +1,22 @@
-const { authenticateUser } = require('logic')
-const { env: { JWT_SECRET, JWT_EXP } } = process
-const { sign } = require('jsonwebtoken')
-const { errors: { AuthError }} = require('commons')
+const { extractUserIdFromAuthorization } = require('./helpers')
+const { retrieveNote } = require('logic')
+const { errors: { AuthError, NotFoundError, FormatError } } = require('commons')
 
 module.exports = (req, res) => {
     try {
-        const { body: { email, password } } = req
+        const userId = extractUserIdFromAuthorization(req)
 
-        authenticateUser(email, password)
-            .then(userId => {
-                const token = sign({ sub: userId }, JWT_SECRET, { expiresIn: JWT_EXP })
+        const { params: { noteId } } = req
 
-                res.status(200).json({ token })
-            })
+        retrieveNote(userId, noteId)
+            .then(notes => res.status(200).json(notes))
             .catch(error => {
                 let status = 500
 
                 if (error instanceof AuthError)
                     status = 401
+                else if (error instanceof NotFoundError)
+                    status = 404
 
                 res.status(status).json({ error: error.message })
             })

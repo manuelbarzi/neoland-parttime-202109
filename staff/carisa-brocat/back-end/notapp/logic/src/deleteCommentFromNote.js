@@ -1,3 +1,3 @@
-function deleteCommentToNote(userId, noteId){
+function deleteCommentFromNote(userId, noteId){
     
 }

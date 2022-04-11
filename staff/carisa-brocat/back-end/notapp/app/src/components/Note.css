@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+
+.Note {
+    box-sizing: border-box;
+    width: 15rem;
+    height: 15rem;
+    background-color: lightgray;
+    font-family: 'Caveat Brush', cursive;
+    padding: 0.8rem;
+    font-size: 1.5rem;
+    position: relative;
+}
+
+.Note__footer {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: row;
+    justify-content: space-between;
+    position: absolute;
+    font-size: 1rem;
+    bottom: .5rem;
+}
+
+.Note--red {
+    background-color: rgb(255, 89, 71);
+}
+
+.Note--green {
+    background-color: rgba(136, 247, 68, 0.952);
+}
+
+.Note--blue {
+    background-color: rgb(30, 214, 255);
+}
+
+.Note--yellow {
+    background-color: gold;
+}
+
+.Note--pink {
+    background-color: rgb(240, 116, 222);
+}
+
+.Note__delete{
+    height: 2rem;
+}

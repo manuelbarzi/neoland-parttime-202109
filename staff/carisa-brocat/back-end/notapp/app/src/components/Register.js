@@ -1,6 +1,6 @@
 import { registerUser } from '../logic'
 
-function Register() {
+export default function() {
     const register = event => {
         event.preventDefault()
 
@@ -16,11 +16,10 @@ function Register() {
     }
 
     return <form onSubmit={register}>
-        <input type='text' name='name' placeholder='name' />
-        <input type='email' name='email' placeholder='e-mail' />
-        <input type='password' name='password' placeholder='password' />
+        <input type="text" name="name" placeholder="name" />
+        <input type="email" name="email" placeholder="e-mail" />
+        <input type="password" name="password" placeholder="password" />
         <button>Register</button>
+        <a href="/login">Login</a>
     </form>
 }
-
-export default Register

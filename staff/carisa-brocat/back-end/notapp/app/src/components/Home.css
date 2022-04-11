@@ -1,0 +1,14 @@
+.Home__button{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+    font-size: 2rem;
+    border-style: double;
+    border: solid;
+    border-color: azure;
+    background-color: rgb(255, 119, 0);
+    position: fixed;
+    left: 80%;
+    top: 80%;
+    z-index: 1;
+}

@@ -17,7 +17,7 @@ function retrieveNotes(userId) {
                 delete note._id
                 delete note.__v
             })
-
+            
             return notes
         })
 }

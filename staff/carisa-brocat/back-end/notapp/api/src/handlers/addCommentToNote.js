@@ -1,15 +1,16 @@
 const { extractUserIdFromAuthorization } = require('./helpers')
-const { retrieveNotes } = require('logic')
+const { addCommentToNote } = require('logic')
 
 module.exports = (req, res) => {
     try {
         const userId = extractUserIdFromAuthorization(req)
 
-        retrieveNotes(userId)
-            .then(notes => res.status(200).json(notes))
+        const { params: { noteId }, body: { text } } = req
+
+        addCommentToNote(userId, noteId, text)
+            .then(() => res.status(204).send())
             .catch(error => res.status(400).json({ error: error.message }))
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
-
 }
