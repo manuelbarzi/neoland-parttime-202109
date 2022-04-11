@@ -4,25 +4,25 @@ import { useEffect, useState } from 'react'
 import { retrieveNote } from '../logic'
 
 
-export default () => {
+export default ({ onDeleted }) => {
     const [note, setNote] = useState()
 
     const params = useParams()
 
     const { noteId } = params
 
-    useEffect (() => {
+    useEffect(() => {
         try {
             retrieveNote(sessionStorage.token, noteId)
-            .then(setNote)
-            .catch(error => alert(error.message))
+                .then(setNote)
+                .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
     }, [noteId])
 
     return <>
-        {note && <Note note={note} />}
+        {note && <Note note={note} onDeleted={onDeleted} />}
     </>
 
 }
