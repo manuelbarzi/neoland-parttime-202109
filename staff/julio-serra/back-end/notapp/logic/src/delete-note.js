@@ -3,7 +3,8 @@ const { models: { Note } } = require('../../data')
 const { validators: { validateId } } = require('../../commons')
 
 function deleteNote(id, noteId) {
-    validateId(id)
+    validateId(id, 'user id')
+    validateId(noteId, 'note id')
     return Note.deleteOne({ user: id, _id: noteId })
 
         .then(result => {

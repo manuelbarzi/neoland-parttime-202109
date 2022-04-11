@@ -22,11 +22,12 @@ export default ({ refresh }) => {
 
     const handleCloseModal = () => navigate('/')
 
+    const handleGoToNote = noteId => navigate(`/n/${noteId}`)
 
     return (
         <div className="Feed">
             {notes ? <ul className="Feed__list grid grid-cols-3 gap-6 pt-5">
-                {notes.map(note => <li key={note.id}><Note note={note} /></li>)}
+                {notes.map(note => <li key={note.id} onClick={() => handleGoToNote(note.id)} ><Note note={note} /></li>)}
             </ul> : <p>no notes</p>}
             <Routes>
                 <Route path="n/:noteId" element={<Modal content={<Item />} onClose={handleCloseModal} />} />
