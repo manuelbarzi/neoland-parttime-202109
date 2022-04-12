@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Modal from './Modal'
-import CreateNote from './CreateNote'
+import Note from './Note'
 import Feed from './Feed'
 import MyNotes from './MyNotes'
 import { Routes, Route, useNavigate, Link } from 'react-router-dom'
@@ -41,7 +41,7 @@ export default ({ onLoggedOut }) => {
         </Routes>
 
         {modal && <Modal content={
-            <CreateNote onCreated={handleCloseModalAndReloadNotes} />
+            <Note note={{}} controls={true} onSaved={handleCloseModalAndReloadNotes} />
         } onClose={handleCloseModal} />}
     </div>
 }
