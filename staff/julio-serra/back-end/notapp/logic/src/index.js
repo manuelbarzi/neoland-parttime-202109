@@ -5,13 +5,13 @@ const unregisterUser = require('./unregisterUser')
 const retrieveUser = require('./retrieve-user')
 const createNote = require('./create-note')
 const updateNote = require('./update-note')
-const deleteNote = require('./deleteNote')
 const retrieveNotes = require('./retrieveNotes')
 const retrievePublicNotes = require('./retrievePublicNotes')
 const retrievePublicNotesFromUser = require('./retrievePublicNotesFromUser')
 const findNotes = require('./findNotes')
 const addCommentToNote = require('./addCommentToNote')
 const retrieveNote = require ('./retrieveNote')
+const deleteNote = require('./deleteNote')
 
 
 module.exports = {
@@ -21,12 +21,12 @@ module.exports = {
     retrieveUser,
     createNote,
     updateNote,
-    deleteNote,
     retrieveNotes,
     retrievePublicNotes,
     retrievePublicNotesFromUser,
     authenticateUser,
     addCommentToNote,
     findNotes,
-    retrieveNote
+    retrieveNote,
+    deleteNote
 }

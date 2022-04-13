@@ -3,7 +3,7 @@ import { validators, errors } from 'commons'
 const { validateToken } = validators
 const { ClientError, ServerError } = errors
 
-export default function retrievePublicNotes(token) {
+export default function (token) {
     validateToken(token)
 
     return fetch('http://localhost:8080/api/notes/public', {

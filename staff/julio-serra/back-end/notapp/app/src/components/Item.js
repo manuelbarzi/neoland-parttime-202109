@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { retrieveNote } from '../logic'
 
-
 export default ({ onDeleted }) => {
     const [note, setNote] = useState()
 
@@ -22,7 +21,6 @@ export default ({ onDeleted }) => {
     }, [noteId])
 
     return <>
-        {note && <Note note={note} onDeleted={onDeleted} />}
+        {note && <Note note={note} controls={true} onDeleted={onDeleted} />}
     </>
-
 }

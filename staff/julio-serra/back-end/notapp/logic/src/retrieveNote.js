@@ -18,7 +18,7 @@ module.exports = (id, noteId) => {
             delete note._id
             delete note.__v
 
-            note.id = note.user._id.toString()
+            note.userId = note.user._id.toString()
             note.userName = note.user.name
 
             delete note.user

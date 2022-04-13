@@ -8,11 +8,11 @@ const { registerUser,
     unregisterUser,
     retrieveNotes,
     updateNote,
-    deleteNote,
     addCommentToNote,
     createNote,
     retrievePublicNotes,
-    retrieveNote
+    retrieveNote,
+    deleteNote
 } = require('./handlers')
 const {
 } = require('logic')
@@ -56,6 +56,9 @@ connect(MONGODB_URL)
         // CREATE NOTE
         router.post('/notes', jsonBodyParser, createNote)
 
+        // DELETE NOTE
+        router.delete('/notes/:noteId',jsonBodyParser, deleteNote)
+
         // RETRIEVE NOTES
         router.get('/notes', retrieveNotes)
 
@@ -68,8 +71,7 @@ connect(MONGODB_URL)
         // UPDATE NOTE
         router.patch('/notes/:noteId', jsonBodyParser, updateNote)
 
-        // DELETE NOTE
-        router.delete('/notes/:noteId', jsonBodyParser, deleteNote)
+
 
         // ADD COMMENT TO NOTE
         router.post('/notes/:noteId/comments', jsonBodyParser, addCommentToNote)
