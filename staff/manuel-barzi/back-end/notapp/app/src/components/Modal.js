@@ -1,16 +1,29 @@
 import './Modal.css'
+import { useEffect, useState } from 'react'
+import { useScrollBlock } from '../hooks'
 
 export default ({ content, onClose }) => {
-    const handleClickOnModal = event => {
-        onClose()
-    }
+    const [top, setTop] = useState(0)
+    const [blockScroll, allowScroll] = useScrollBlock()
+
+    useEffect(() => {
+        setTop(window.pageYOffset)
+
+        blockScroll()
+    }, [])
 
     const handleClickOnContent = event => {
         event.stopPropagation()
     }
 
-    return <div className="Modal" onClick={handleClickOnModal}>
-        <button onClick={onClose}>X</button>
+    const handleClose = () => {
+        allowScroll()
+
+        onClose()
+    }
+
+    return <div className="Modal" style={{ top }} onClick={handleClose}>
+        <button className="Modal__closeButton" onClick={handleClose}>x</button>
         <div onClick={handleClickOnContent}>
             {content}
         </div>

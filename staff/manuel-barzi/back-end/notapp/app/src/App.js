@@ -29,13 +29,11 @@ function App() {
     navigate('/')
   }
 
-  return <div>
-    <Routes>
+  return <Routes>
       <Route path="/*" element={loggedIn ? <Home onLoggedOut={handleLoggedOut} /> : <Landing />} />
       <Route path="/register" element={loggedIn ? <Navigate to="/" /> : <Register />} />
       <Route path="/login" element={loggedIn ? <Navigate to="/" /> : <Login onLoggedIn={handleLoggedIn} />} />
     </Routes>
-  </div>
 }
 
 export default App;

@@ -1,6 +1,14 @@
 .MyNotes__list {
     display: flex;
     flex-direction: column;
+    align-items: center;
     list-style-type: none;
-    gap: .5rem
+    gap: 2rem;
+    padding: 0;
+}
+
+.MyNotes__listItem {
+    min-width: 300px;
+    width: 50vw;
+    max-width: 500px;
 }

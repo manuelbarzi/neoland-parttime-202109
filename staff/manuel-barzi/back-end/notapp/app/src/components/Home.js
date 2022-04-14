@@ -4,6 +4,7 @@ import Note from './Note'
 import Feed from './Feed'
 import MyNotes from './MyNotes'
 import { Routes, Route, useNavigate, Link } from 'react-router-dom'
+import './Home.css'
 
 export default ({ onLoggedOut }) => {
     const [modal, setModal] = useState()
@@ -19,7 +20,7 @@ export default ({ onLoggedOut }) => {
 
     const handleCloseModal = () => setModal(false)
 
-    const handleOpenModal = () => setModal(true)
+    const handleOpenCreateNote = () => setModal(true)
 
     const handleCloseModalAndReloadNotes = () => {
         handleCloseModal()
@@ -29,16 +30,25 @@ export default ({ onLoggedOut }) => {
 
     const handleMyNotes = () => navigate('/my-notes')
 
-    return <div>
-        <h1><Link to="/">home</Link></h1>
-        <button onClick={handleOpenModal}>+</button>
-        <button onClick={handleMyNotes}>My notes</button>
-        <button onClick={handleLogout}>Logout</button>
+    return <div className="Home">
+        <div className="Home__content">
+            <nav className="Home__nav">
+                <h1 className="Home__nav-home-button"><Link to="/">home</Link></h1>
 
-        <Routes>
-            <Route path="/*" element={<Feed refresh={refresh} />} />
-            <Route path="/my-notes/*" element={<MyNotes refresh={refresh} />} />
-        </Routes>
+                <div className="Home__nav-action-buttons">
+                    <button onClick={handleOpenCreateNote}>+</button>
+                    <button onClick={handleMyNotes}>My notes</button>
+                    <button onClick={handleLogout}>Logout</button>
+                </div>
+            </nav>
+
+            <main className="Home__main">
+                <Routes>
+                    <Route path="/*" element={<Feed refresh={refresh} />} />
+                    <Route path="/my-notes/*" element={<MyNotes refresh={refresh} />} />
+                </Routes>
+            </main>
+        </div>
 
         {modal && <Modal content={
             <Note note={{}} controls={true} onSaved={handleCloseModalAndReloadNotes} />

@@ -36,7 +36,7 @@ export default ({ refresh }) => {
         {
             notes ?
                 <ul className="MyNotes__list">
-                    {notes.map(note => <li key={note.id} onClick={() => handleGoToNote(note.id)}><Note note={note} /></li>)}
+                    {notes.map(note => <li className="MyNotes__listItem" key={note.id} onClick={() => handleGoToNote(note.id)}><Note note={note} /></li>)}
                 </ul>
                 :
                 <p>no notes</p>
