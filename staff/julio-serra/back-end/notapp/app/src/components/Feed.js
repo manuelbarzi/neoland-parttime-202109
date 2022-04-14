@@ -40,7 +40,7 @@ export default ({ refresh }) => {
                 {notes.map(note => <li onClick={() => handleGoToNote(note.id)} key={note.id}><Note note={note} onDeleted={handleCloseModal} /></li>)}
             </ul> : <p>no notes</p>}
             <Routes>
-                <Route path="n/:noteId" element={<Modal content={<Item onDeleted={handleCloseModal} />} onClose={handleCloseModal} />} />
+                <Route path="n/:noteId" element={<Modal content={<Item onSaved={handleCloseModal} onDeleted={handleCloseModal} />} onClose={handleCloseModal} />} />
             </Routes>
 
         </div>

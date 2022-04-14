@@ -1,7 +1,7 @@
 import { deleteNote, updateNote } from '../logic'
 import './Note.css'
 
-export default ({ note: { id, text, color, userId, date, public: _public, userName }, onDeleted, controls = false }) => {
+export default ({ note: { id, text, color, userId, date, public: _public, userName }, onDeleted, controls = false, onSaved }) => {
 
     const handleSave = event => {
         event.preventDefault()
@@ -10,15 +10,12 @@ export default ({ note: { id, text, color, userId, date, public: _public, userNa
 
         try {
             updateNote(sessionStorage.token, id, text, color, _public)
-            .then(() => alert('note updated'))
+            .then(() => onSaved())
             .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
-
-
     }
-
 
     const handleDelete = event => {
         event.preventDefault()
@@ -35,7 +32,7 @@ export default ({ note: { id, text, color, userId, date, public: _public, userNa
     return <div className={`relative Note h-52 w-52 px-4 Note--${color}`}>
 
         {controls ? <form onSubmit={handleSave}>
-            <textarea className={`padding-0 border-0 Note--${color}`} name="text" defaultValue={text}></textarea>
+            <textarea className={`p-0 mt-2 border-0 Note--${color}`} name="text" defaultValue={text}></textarea>
             <button type='submit'>Save</button>
             <button onClick={handleDelete}>Delete</button>
         </form> : <p>{text}</p>}
