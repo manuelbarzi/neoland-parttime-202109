@@ -34,6 +34,7 @@ export default ({ onLoggedOut }) => {
                                 <path d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm-5.6-4.29a9.95 9.95 0 0 1 11.2 0 8 8 0 1 0-11.2 0zm6.12-7.64l3.02-3.02 1.41 1.41-3.02 3.02a2 2 0 1 1-1.41-1.41z"></path>
                             </svg>AppNote</div>
                             <div className="gap-10 flex text-violet-700 text-xl">
+                                <span><a href="{}" className="flex gap-3 items-center">My Notes</a></span>
                                 <span><a className="flex gap-3 items-center hover:underline hover:underline-offset-8" onClick={handleLogout}>Logout <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                                 </svg></a></span>
