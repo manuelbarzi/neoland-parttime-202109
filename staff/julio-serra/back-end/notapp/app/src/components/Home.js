@@ -54,7 +54,7 @@ export default ({ onLoggedOut }) => {
 
                 <section className="bg-white container w-screen mx-auto mt-12 py-12 px-6">
                     <div className="grid justify-center">
-                        <h1 className="text-2xl font-bold text-center">Mis notas de @usuario</h1>
+                        <h1 className="text-2xl font-bold text-center">Feed de NoteApp</h1>
 
                         <div className="py-5 flex justify-center underline underline-offset-4">
                             <button className="flex items-center gap-2" onClick={handleOpenModal}>

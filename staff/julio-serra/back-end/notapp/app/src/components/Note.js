@@ -38,6 +38,19 @@ export default ({ note: { id, text, color, userId, date, public: _public, userNa
 
         {controls ? <form onSubmit={handleSave}>
             <textarea className={`p-0 mt-2 border-0 Note--${color}`} name="text" defaultValue={text}></textarea>
+           
+            <select name="color" defaultValue={color}>
+                        <option value="red">red</option>
+                        <option value="green">green</option>
+                        <option value="blue">blue</option>
+                        <option value="yellow">yellow</option>
+                    </select>
+
+                    <p className="flex items-center gap-2">
+                    <input type="checkbox" name="public" defaultChecked={_public}></input>  
+                    <label>Public?</label>
+                    </p>
+
             <button type='submit'>Save</button>
             <button onClick={handleDelete}>Delete</button>
         </form> : <p>{text}</p>}
