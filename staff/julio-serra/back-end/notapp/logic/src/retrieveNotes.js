@@ -18,10 +18,10 @@ function retrieveNotes(id) {
                 delete note.__v
 
                 note.userId = note.user._id.toString()
-                note.userName = note.user.userName
+                note.userName = note.user.name
                 
                 delete note.user
-
+                
                 const { comments } = note
 
                 comments.forEach(comment => {

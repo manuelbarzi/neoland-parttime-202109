@@ -20,6 +20,7 @@ function retrievePublicNotes(id) {
                 note.userName = note.user.name
 
                 delete note.user
+
                 const { comments } = note
 
                 if (comments) {
