@@ -33,7 +33,7 @@ export default ({ refresh }) => {
 
     return <div>
         {notes ?
-            <ul>
+            <ul className="Feed__list grid grid-cols-3 gap-6 pt-5">
                 {notes.map(note => <li key={note.id} onClick={() => handleGoToNote(note.id)}><Note note={note} /></li>)}
             </ul>
             : <p>No notes</p>
