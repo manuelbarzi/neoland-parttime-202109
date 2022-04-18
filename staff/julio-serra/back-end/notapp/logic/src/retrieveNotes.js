@@ -8,7 +8,7 @@ function retrieveNotes(id) {
         .then(user => {
             if (!user) throw new Error(`user with id ${id} not found`)
 
-            return Note.find({ user: id }).lean() //lean para que te devuelva directametne el usuario en lugar del ._doc
+            return Note.find({ user: id }).lean().populate('user').sort('-date') //lean para que te devuelva directametne el usuario en lugar del ._doc
         })
         .then(notes => {
             notes.forEach(note => {
@@ -16,6 +16,11 @@ function retrieveNotes(id) {
 
                 delete note._id
                 delete note.__v
+
+                note.userId = note.user._id.toString()
+                note.userName = note.user.userName
+                
+                delete note.user
 
                 const { comments } = note
 
