@@ -1,17 +1,18 @@
 import { deleteNote, updateNote } from '../logic'
 import './Note.css'
+import { extractUserIdFromToken } from '../utils'
 
-export default ({ note: { id, text, color, userId, date, public: _public, userName }, onDeleted, controls = false, onSaved }) => {
+export default ({ note: { id, text, color, userId, date, public: _public, userName }, onDeleted, controls, onSaved }) => {
 
     const handleSave = event => {
         event.preventDefault()
 
-        const { target: { text: { value: text } } } = event
+        const { target: { text: { value: text }, color: { value: color }, public: { checked: _public } } } = event
 
         try {
             updateNote(sessionStorage.token, id, text, color, _public)
-            .then(() => onSaved())
-            .catch(error => alert(error.message))
+                .then(() => onSaved())
+                .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
@@ -29,6 +30,10 @@ export default ({ note: { id, text, color, userId, date, public: _public, userNa
             alert(error.message)
         }
     }
+
+    controls = controls && extractUserIdFromToken(sessionStorage.token) === userId
+
+
     return <div className={`relative Note h-52 w-52 px-4 Note--${color}`}>
 
         {controls ? <form onSubmit={handleSave}>
