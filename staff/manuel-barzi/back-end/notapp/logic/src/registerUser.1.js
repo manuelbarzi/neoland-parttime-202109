@@ -9,7 +9,6 @@ const {
         DuplicityError
     }
 } = require('commons')
-const bcrypt = require('bcryptjs')
 
 
 function registerUser(name, email, password) {
@@ -17,8 +16,14 @@ function registerUser(name, email, password) {
     validateEmail(email)
     validatePassword(password)
 
-    return bcrypt.hash(password, 10)
-        .then(hash => User.create({ name, email, password: hash }))
+    /*
+    const user = new User({ name, email, password })
+
+    return user.save()
+        .then(user => { })
+    */
+
+    return User.create({ name, email, password })
         .then(user => { })
         .catch(error => {
             if (error.message.includes('duplicate'))

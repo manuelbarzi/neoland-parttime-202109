@@ -7,43 +7,47 @@ const safeDocument = typeof document !== 'undefined' ? document : {}
  * const [blockScroll, allowScroll] = useScrollBlock()
  */
 export default () => {
-  const scrollBlocked = useRef()
-  const html = safeDocument.documentElement
-  const { body } = safeDocument
+  // left: 37, up: 38, right: 39, down: 40,
+  // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
+  var keys = { 37: 1, 38: 1, 39: 1, 40: 1, 32: 1, 33: 1, 34: 1, 35: 1, 36: 1 };
 
-  const blockScroll = () => {
-    if (!body || !body.style || scrollBlocked.current) return
-
-    const scrollBarWidth = window.innerWidth - html.clientWidth
-    const bodyPaddingRight =
-      parseInt(window.getComputedStyle(body).getPropertyValue("padding-right")) || 0
-
-    /**
-     * 1. Fixes a bug in iOS and desktop Safari whereby setting
-     *    `overflow: hidden` on the html/body does not prevent scrolling.
-     * 2. Fixes a bug in desktop Safari where `overflowY` does not prevent
-     *    scroll if an `overflow-x` style is also applied to the body.
-     */
-    html.style.position = 'relative' /* [1] */
-    html.style.overflow = 'hidden' /* [2] */
-    body.style.position = 'relative' /* [1] */
-    body.style.overflow = 'hidden' /* [2] */
-    body.style.paddingRight = `${bodyPaddingRight + scrollBarWidth}px`
-
-    scrollBlocked.current = true
+  function preventDefault(e) {
+    e.preventDefault();
   }
 
-  const allowScroll = () => {
-    if (!body || !body.style || !scrollBlocked.current) return
-
-    html.style.position = ''
-    html.style.overflow = ''
-    body.style.position = ''
-    body.style.overflow = ''
-    body.style.paddingRight = ''
-
-    scrollBlocked.current = false
+  function preventDefaultForScrollKeys(e) {
+    if (keys[e.keyCode]) {
+      preventDefault(e);
+      return false;
+    }
   }
 
-  return [blockScroll, allowScroll]
+  // modern Chrome requires { passive: false } when adding event
+  var supportsPassive = false;
+  try {
+    window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
+      get: function () { supportsPassive = true; }
+    }));
+  } catch (e) { }
+
+  var wheelOpt = supportsPassive ? { passive: false } : false;
+  var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
+
+  // call this to Disable
+  function disableScroll() {
+    window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
+    window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
+    window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
+    window.addEventListener('keydown', preventDefaultForScrollKeys, false);
+  }
+
+  // call this to Enable
+  function enableScroll() {
+    window.removeEventListener('DOMMouseScroll', preventDefault, false);
+    window.removeEventListener(wheelEvent, preventDefault, wheelOpt);
+    window.removeEventListener('touchmove', preventDefault, wheelOpt);
+    window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
+  }
+
+  return [disableScroll, enableScroll]
 }

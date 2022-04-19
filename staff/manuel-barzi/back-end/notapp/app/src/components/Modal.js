@@ -3,13 +3,15 @@ import { useEffect, useState } from 'react'
 import { useScrollBlock } from '../hooks'
 
 export default ({ content, onClose }) => {
-    const [top, setTop] = useState(0)
+    const [top, setTop] = useState()
     const [blockScroll, allowScroll] = useScrollBlock()
 
     useEffect(() => {
         setTop(window.pageYOffset)
 
         blockScroll()
+
+        return () => allowScroll()
     }, [])
 
     const handleClickOnContent = event => {
