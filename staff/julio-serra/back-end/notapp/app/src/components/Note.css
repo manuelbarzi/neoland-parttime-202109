@@ -29,6 +29,10 @@
     color: white;
 }
 
+.Note--blue--select {
+    color: black;
+}
+
 .Note--yellow {
     background-color: rgb(255, 255, 0);
 }

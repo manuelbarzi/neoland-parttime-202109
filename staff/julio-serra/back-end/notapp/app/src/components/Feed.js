@@ -36,7 +36,7 @@ export default ({ refresh }) => {
 
     return (
         <div className="Feed">
-            {notes ? <ul className="Feed__list grid grid-cols-3 gap-6 pt-5">
+            {notes ? <ul className="Feed__list grid grid-cols md:grid-cols-2 lg:grid-cols-3 gap-6 pt-5">
                 {notes.map(note => <li onClick={() => handleGoToNote(note.id)} key={note.id}><Note note={note} onDeleted={handleCloseModal} /></li>)}
             </ul> : <p>no notes</p>}
             <Routes>

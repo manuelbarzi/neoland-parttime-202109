@@ -39,25 +39,26 @@ export default ({ note: { id, text, color, userId, date, public: _public, userNa
         controls = controls && extractUserIdFromToken(sessionStorage.token) === userId
 
 
-    return <div className={`relative Note h-52 w-52 px-4 Note--${color}`}>
+    return <div className={`relative Note h-72 w-72 px-4 Note--${color}`}>
 
-        {controls ? <form onSubmit={handleSave}>
-            <textarea className={`p-0 mt-2 border-0 Note--${color}`} name="text" defaultValue={text}></textarea>
+        {controls ? <form className='flex flex-col gap-5' onSubmit={handleSave}>
+            <textarea className={`h-16 p-0 mt-2 border-0 Note--${color}`} name="text" defaultValue={text}></textarea>
 
-            <select name="color" defaultValue={color}>
+            <select className={`Note--${color}--select`} name="color" defaultValue={color}>
                 <option value="red">red</option>
                 <option value="green">green</option>
                 <option value="blue">blue</option>
                 <option value="yellow">yellow</option>
             </select>
 
-            <p className="flex items-center gap-2">
+            <p className="flex items-center gap-3">
                 <input type="checkbox" name="public" defaultChecked={_public}></input>
                 <label>Public?</label>
             </p>
-
-            <button type='submit'>Save</button>
-            {id && <button onClick={handleDelete}>Delete</button>}
+            <div className='flex justify-evenly'>
+            <button className='bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-3 border border-gray-400 rounded shadow text-lg' type='submit'>Save</button>
+            {id && <button className='bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-3 border border-gray-400 rounded shadow text-lg' onClick={handleDelete}>Delete</button>}
+            </div>
         </form> : <p>{text}</p>}
 
         {id && <div className='absolute bottom-1 right-3 text-xs flex flex-row gap-2'>
