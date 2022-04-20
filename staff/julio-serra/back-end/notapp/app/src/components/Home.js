@@ -21,12 +21,12 @@ export default ({ onLoggedOut }) => {
 
     const handleCloseModal = () => setModal(false)
 
-    const handleOpenModal = () => setModal(true)
+    const handleOpenCreateNote = () => setModal(true)
 
     const handleCloseModalAndReloadNotes = () => {
         handleCloseModal()
 
-        setRefresh(Date.now)
+        setRefresh(Date.now())
     }
 
     const handleMyNotes = () => navigate('/my-notes')
@@ -57,7 +57,7 @@ export default ({ onLoggedOut }) => {
                         <h1 className="text-2xl font-bold text-center">Feed de NoteApp</h1>
 
                         <div className="py-5 flex justify-center underline underline-offset-4">
-                            <button className="flex items-center gap-2" onClick={handleOpenModal}>
+                            <button className="flex items-center gap-2" onClick={handleOpenCreateNote}>
                                 <span className="text-xl">Add Note</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
@@ -74,7 +74,7 @@ export default ({ onLoggedOut }) => {
                         </Routes>
 
                         {modal && <Modal content={
-                            <Note onCreated={handleCloseModalAndReloadNotes} />
+                            <Note note={{}} controls={true} onSaved={handleCloseModalAndReloadNotes} />
                         } onClose={handleCloseModal} />
                         }
                     </div>

@@ -14,9 +14,10 @@ export default ({ note: { id, text, color, userId, date, public: _public, userNa
                 createNote(sessionStorage.token, text, color, _public)
                     .then(() => onSaved())
                     .catch(error => alert(error.message))
-            updateNote(sessionStorage.token, id, text, color, _public)
-                .then(() => onSaved())
-                .catch(error => alert(error.message))
+            else
+                updateNote(sessionStorage.token, id, text, color, _public)
+                    .then(() => onSaved())
+                    .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
@@ -56,15 +57,16 @@ export default ({ note: { id, text, color, userId, date, public: _public, userNa
                 <label>Public?</label>
             </p>
             <div className='flex justify-evenly'>
-            <button className='bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-3 border border-gray-400 rounded shadow text-lg' type='submit'>Save</button>
-            {id && <button className='bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-3 border border-gray-400 rounded shadow text-lg' onClick={handleDelete}>Delete</button>}
+                <button className='bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-3 border border-gray-400 rounded shadow text-lg' type='submit'>Save</button>
+                {id && <button className='bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-3 border border-gray-400 rounded shadow text-lg' onClick={handleDelete}>Delete</button>}
             </div>
         </form> : <p>{text}</p>}
 
         {id && <div className='absolute bottom-1 right-3 text-xs flex flex-row gap-2'>
             <span>{userName}</span>
             <span><time>{date.toDateString()}</time></span>
-        </div>}
+        </div>
+        }
 
     </div>
 }

@@ -12,8 +12,9 @@
     font-weight: var(--font-weight-bold);
     font-size: var(--font-size-small);
     overflow: hidden;
-    /* text-overflow: ellipsis;
-    white-space: nowrap; */
+    min-width: 300px;
+    width: 50vw;
+    max-width: 500px;
 }
 
 .Note--red {

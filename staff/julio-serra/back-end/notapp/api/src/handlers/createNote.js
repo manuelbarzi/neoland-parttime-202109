@@ -1,5 +1,6 @@
 const { extractUserIdFromAuthorization } = require('../helpers')
 const { createNote } = require('logic')
+
 module.exports = (req, res) => {
     try {
         const id = extractUserIdFromAuthorization(req)

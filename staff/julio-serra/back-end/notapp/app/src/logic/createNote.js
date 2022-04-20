@@ -37,7 +37,4 @@ export default function createNote(token, text, color, _public) { // lo nombramo
                         throw new ServerError(text)
                     })
         })
-
-
-
 }
