@@ -8,7 +8,6 @@ import { Route, Routes, useNavigate } from "react-router-dom"
 
 export default ({ onLoggedOut }) => {
 
-
     const [modal, setModal] = useState()
     const [refresh, setRefresh] = useState()
 

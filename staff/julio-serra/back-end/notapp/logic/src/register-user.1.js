@@ -8,15 +8,14 @@ const {
         validatePassword
     } } = require('../../commons')
 
-const bcrypt = require('bcryptjs')
-
 function registerUser(name, email, password) {
     validateName(name)
     validateEmail(email)
     validatePassword(password)
 
-    return bcrypt.hash(password, 10)
-        .then(hash => User.create({ name, email, password: hash }))
+    // const user = new User({ name, email, password })
+
+    return User.create({ name, email, password })
         .then(user => { })
         .catch(error => {
             if (error.message.includes('duplicate')) // si el error contiene la palabra "duplicate" que lance el siguiente error

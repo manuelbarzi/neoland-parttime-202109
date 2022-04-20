@@ -10,7 +10,7 @@ const retrievePublicNotes = require('./retrievePublicNotes')
 const retrievePublicNotesFromUser = require('./retrievePublicNotesFromUser')
 const findNotes = require('./findNotes')
 const addCommentToNote = require('./addCommentToNote')
-const retrieveNote = require ('./retrieveNote')
+const retrieveNote = require('./retrieveNote')
 const deleteNote = require('./deleteNote')
 
 
