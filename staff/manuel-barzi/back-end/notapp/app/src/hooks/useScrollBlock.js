@@ -1,7 +1,3 @@
-import { useRef } from 'react'
-
-const safeDocument = typeof document !== 'undefined' ? document : {}
-
 /**
  * Usage:
  * const [blockScroll, allowScroll] = useScrollBlock()
