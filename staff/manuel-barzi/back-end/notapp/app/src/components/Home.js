@@ -31,27 +31,27 @@ export default ({ onLoggedOut }) => {
     const handleMyNotes = () => navigate('/my-notes')
 
     return <div className="Home">
-        <div className="Home__content">
-            <nav className="Home__nav">
-                <h1 className="Home__nav-home-button"><Link to="/">home</Link></h1>
+            <div className="Home__content">
+                <nav className="Home__nav">
+                    <h1 className="Home__nav-home-button"><Link to="/">home</Link></h1>
 
-                <div className="Home__nav-action-buttons">
-                    <button onClick={handleOpenCreateNote}>+</button>
-                    <button onClick={handleMyNotes}>My notes</button>
-                    <button onClick={handleLogout}>Logout</button>
-                </div>
-            </nav>
+                    <div className="Home__nav-action-buttons">
+                        <button onClick={handleOpenCreateNote}>+</button>
+                        <button onClick={handleMyNotes}>My notes</button>
+                        <button onClick={handleLogout}>Logout</button>
+                    </div>
+                </nav>
 
-            <main className="Home__main">
-                <Routes>
-                    <Route path="/*" element={<Feed refresh={refresh} />} />
-                    <Route path="/my-notes/*" element={<MyNotes refresh={refresh} />} />
-                </Routes>
-            </main>
+                <main className="Home__main">
+                    <Routes>
+                        <Route path="/*" element={<Feed refresh={refresh} />} />
+                        <Route path="/my-notes/*" element={<MyNotes refresh={refresh} />} />
+                    </Routes>
+                </main>
+            </div>
+
+            {modal && <Modal content={
+                <Note note={{}} controls={true} onSaved={handleCloseModalAndReloadNotes} />
+            } onClose={handleCloseModal} />}
         </div>
-
-        {modal && <Modal content={
-            <Note note={{}} controls={true} onSaved={handleCloseModalAndReloadNotes} />
-        } onClose={handleCloseModal} />}
-    </div>
 }

@@ -1,6 +1,11 @@
 import { authenticateUser } from '../logic'
+import { useContext } from 'react'
+import Context from './Context'
+import './Login.css'
 
-export default ({onLoggedIn}) => {
+export default ({ onLoggedIn }) => {
+    const { setFeedback } = useContext(Context)
+
     const login = event => {
         event.preventDefault()
 
@@ -13,13 +18,13 @@ export default ({onLoggedIn}) => {
 
                     onLoggedIn()
                 })
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 
-    return <form onSubmit={login}>
+    return <form className="Login" onSubmit={login}>
         <input type="email" name="email" placeholder="e-mail" />
         <input type="password" name="password" placeholder="password" />
         <button>Login</button>

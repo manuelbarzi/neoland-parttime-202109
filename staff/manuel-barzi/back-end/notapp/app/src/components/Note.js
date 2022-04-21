@@ -1,8 +1,12 @@
 import './Note.css'
 import { updateNote, deleteNote, createNote } from '../logic'
 import { extractUserIdFromToken } from '../utils'
+import { useContext } from 'react'
+import Context from './Context'
 
 export default ({ note: { id, text, color, date, public: _public, userId, userName }, controls, onSaved, onDeleted }) => {
+    const { setFeedback } = useContext(Context)
+
     const handleSave = event => {
         event.preventDefault()
 
@@ -11,14 +15,22 @@ export default ({ note: { id, text, color, date, public: _public, userId, userNa
         try {
             if (!id)
                 createNote(sessionStorage.token, text, color, _public)
-                    .then(() => onSaved())
-                    .catch(error => alert(error.message))
+                    .then(() => {
+                        setFeedback({ level: 'info', message: 'Note created' })
+
+                        onSaved()
+                    })
+                    .catch(error => setFeedback({ level: 'error', message: error.message }))
             else
                 updateNote(sessionStorage.token, id, text, color, _public)
-                    .then(() => onSaved())
-                    .catch(error => alert(error.message))
+                    .then(() => {
+                        setFeedback({ level: 'info', message: 'Note updated' })
+
+                        onSaved()
+                    })
+                    .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 
@@ -27,10 +39,14 @@ export default ({ note: { id, text, color, date, public: _public, userId, userNa
 
         try {
             deleteNote(sessionStorage.token, id)
-                .then(() => onDeleted())
-                .catch(error => alert(error.message))
+                .then(() => {
+                    setFeedback({ level: 'info', message: 'Note deleted' })
+
+                    onDeleted()
+                })
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 
