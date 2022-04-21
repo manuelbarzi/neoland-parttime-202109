@@ -9,7 +9,7 @@ export default function (token, text, color, _public) {
     validateBoolean(_public, 'public')
 
     return fetch('http://localhost:8080/api/notes', {
-        method: 'POST',
+        method: 'PATCH',
         headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
@@ -19,7 +19,7 @@ export default function (token, text, color, _public) {
         .then(res => {
             const { status } = res
 
-            if (status === 201)
+            if (status === 200)
                 return res.json()
                     .then(payload => {
                         const { token } = payload

@@ -16,6 +16,8 @@ export default ({ refresh }) => {
 
     const handleCloseModal = () => navigate('/')
 
+    const handleGoToNote = noteId => navigate(`/n/${noteId}`)
+
     const handleRefresh = () => {
         try {
             retrievePublicNotes(sessionStorage.token)
@@ -28,7 +30,7 @@ export default ({ refresh }) => {
 
     return <div>
         {notes ? <ul className="Feed__list">
-            {notes.map(note => <li key={note.id}><Note note={note} onDeleted={handleRefresh} /></li>)}
+            {notes.map(note => <li key={note.id} onClick={() => handleGoToNote(note.id)}><Note note={note} onDeleted={handleRefresh} /></li>)}
         </ul> : <p>no notes</p>}
 
         <Routes>
