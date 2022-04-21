@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+
+.Note {
+    box-sizing: border-box;
+    width: 50vw;
+    height: 50vw;
+    background-color: lightgray;
+    padding: .5rem;
+    font-family: 'Rock Salt';
+    position: relative;
+}
+
+.Note__text {
+    background-color: inherit;
+    font-family: inherit;
+    border: none;
+}
+
+.Note__footer {
+    position: absolute;
+    bottom: .5rem;
+    right: 1rem;
+    font-size: .5rem;
+}
+
+.Note--red {
+    background-color: tomato;
+}
+
+.Note--green {
+    background-color: greenyellow;
+}
+
+.Note--blue {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.Note--yellow {
+    background-color: gold;
+}
+
+.Note--brown {
+    background-color: chocolate;
+}

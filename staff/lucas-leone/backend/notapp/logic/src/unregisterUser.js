@@ -1,7 +1,7 @@
 
   const { models: { User }} = require('data')
 
-  function deleteUser(userId, password) {
+  function unregisterUser(userId, password) {
       return User.deleteOne({ _id: userId, password })
           .then(result => {
               const { deletedCount } = result
@@ -11,4 +11,4 @@
           })
   }
   
-  module.exports = deleteUser
+  module.exports = unregisterUser

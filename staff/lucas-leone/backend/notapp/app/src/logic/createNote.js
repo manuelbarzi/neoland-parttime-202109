@@ -1,19 +1,21 @@
 import { validators, errors } from 'commons'
 
-const { validateName, validateEmail, validatePassword } = validators
-const { DuplicityError, ClientError, ServerError } = errors
+const { validateToken, validateString, validateBoolean } = validators
+const { ClientError, ServerError } = errors
 
-export default function(name, email, password) {
-    validateName(name)
-    validateEmail(email)
-    validatePassword(password)
+export default function (token, text, color, _public) {
+    validateToken(token)
+    // // validateString(text, 'text') ver errpr
+    // // validateString(color, 'color')
+    // validateBoolean(_public, 'public')
 
-    return fetch('http://localhost:8080/api/users', {
+    return fetch('http://localhost:8080/api/notes', {
         method: 'POST',
         headers: {
+            Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name, email, password })
+        body: JSON.stringify({ text, color, public: _public })
     })
         .then(res => {
             const { status } = res
@@ -24,11 +26,8 @@ export default function(name, email, password) {
                 return res.json()
                     .then(payload => {
                         const { error: message } = payload
-                        
-                        if (status === 409)
-                            throw new DuplicityError(message)
-                        else
-                            throw new ClientError(message)
+
+                        throw new ClientError(message)
                     })
             else if (status >= 500)
                 return res.text()

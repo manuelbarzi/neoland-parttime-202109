@@ -1,32 +1,36 @@
 import { validators, errors } from 'commons'
 
-const { validateName, validateEmail, validatePassword } = validators
-const { DuplicityError, ClientError, ServerError } = errors
+const { validateEmail, validatePassword } = validators
+const { AuthError, ClientError, ServerError } = errors
 
-export default function(name, email, password) {
-    validateName(name)
+export default function( email, password) {
     validateEmail(email)
     validatePassword(password)
 
-    return fetch('http://localhost:8080/api/users', {
+    return fetch('http://localhost:8080/api/users/auth', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name, email, password })
+        body: JSON.stringify({ email, password })
     })
         .then(res => {
             const { status } = res
 
-            if (status === 201)
-                return
+            if (status === 200)
+                return res.json()
+                    .then(payload => {
+                        const { token } = payload
+
+                        return token
+                    })
             else if (status >= 400 && status < 500)
                 return res.json()
                     .then(payload => {
                         const { error: message } = payload
                         
-                        if (status === 409)
-                            throw new DuplicityError(message)
+                        if (status === 401)
+                            throw new AuthError(message)
                         else
                             throw new ClientError(message)
                     })

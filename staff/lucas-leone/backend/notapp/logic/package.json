@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "commons": "^0.0.1-pre",
+    "commons": "file:../commons",
     "data": "file:../data"
   }
 }

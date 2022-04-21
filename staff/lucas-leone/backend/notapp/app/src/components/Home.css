@@ -1,0 +1,28 @@
+.Home {
+    display: flex;
+    justify-content: center;
+}
+
+.Home__content {
+    max-width: 80vw;
+}
+
+.Home__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    min-width: 300px;
+    width: 50vw;
+    max-width: 500px;
+    z-index: 1;
+    background-color: rgba(228, 76, 96);
+}
+
+.Home__nav-home-button {
+    justify-self: flex-start;
+}
+
+.Home__main {
+    padding-top: 4rem;
+}
