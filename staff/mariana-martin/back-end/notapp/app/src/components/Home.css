@@ -1,0 +1,15 @@
+
+.button {
+    border-radius: 5px;
+    border: 1px solid rgb(202, 204, 206);
+    background-color: white;
+    color: rgb(22, 43, 83);
+    padding: 8px;
+    margin: 4px;
+    
+}
+
+.menu {
+    background-color: rgb(228, 228, 228);
+    
+}

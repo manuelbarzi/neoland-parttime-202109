@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 
 .Note {
     box-sizing: border-box;
-    width: 20vw;
-    height: 20vw;
+    width: 30vw;
+    height: 30vw;
     background-color: lightgray;
-    padding: 1.5rem;
+    padding: 1rem;
     position: relative;
     background-color: rgb(109, 178, 247);
     font-family: 'Shadows Into Light', cursive;
     font-size: 1.5rem;
+    
 }
 
 
@@ -18,11 +20,21 @@
     position: absolute;
     bottom: .5rem;
     right: .5rem;
-    font-size: 1.2rem;
+    font-size: .8rem;
+    font-family: poppins;
+}
+.Note__text{
+    border-radius: 10px;
+    width: 80%;
+    height: 250px;
+    border: none;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 25px;
 }
 
+
 .Note--red {
-    background-color: rgb(192, 120, 107);
+    background-color: rgb(219, 107, 103);
     
     
 }
@@ -41,4 +53,9 @@
 .Note--green {
     background-color: rgb(133, 184, 92);
    
+}
+
+select{
+    border-radius: 5px;
+    border: none;
 }

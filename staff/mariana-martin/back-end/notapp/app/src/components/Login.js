@@ -1,4 +1,4 @@
-
+import './Login.css'
 import { authenticateUser } from '../logic';
 
 export default function Login({ onLoggedIn}){
@@ -20,11 +20,11 @@ export default function Login({ onLoggedIn}){
         }
     }
 
-    return <form onSubmit={login}>
-        <input type="email" name="email" placeholder="email" />
-        <input type="password" name="password" placeholder="password" />
+    return <form className="container" onSubmit={login}>
+        <input className="input" type="email" name="email" placeholder="email" />
+        <input className="input" type="password" name="password" placeholder="password" />
       
-        <button>Login</button>
+        <button className="button">Login</button>
 
         <a href="/register">Register</a>
     </form>

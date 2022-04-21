@@ -18,10 +18,10 @@ function Register() {
         }
     }
                                 //llamo al register
-        return <form onSubmit= {register}>  
-            <input type="text" name="name" placeholder="name..."/>
-            <input type="email" name="email" placeholder="e-mail"/>
-            <input type="password" name="password" placeholder="password..."/>
+        return <form className="container" onSubmit= {register}>  
+            <input className="input" type="text" name="name" placeholder="name..."/>
+            <input className="input" type="email" name="email" placeholder="e-mail..."/>
+            <input className="input" type="password" name="password" placeholder="password..."/>
             <button> Register </button>
 
             <a href="/login">Login</a>

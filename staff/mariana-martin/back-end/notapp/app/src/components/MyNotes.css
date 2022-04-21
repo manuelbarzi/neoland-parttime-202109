@@ -1,0 +1,21 @@
+h2 {
+    font-size: 2rem;
+    color: whitesmoke
+    
+}
+.MyNotes {
+    background-color:rgb(22, 43, 83);
+    display: flex;
+    justify-content:center;
+    
+    
+    
+}
+
+.MyNotes__list {
+    display: flex;
+    flex-direction: column ;
+    list-style-type: none;
+   
+    gap: .5rem
+}

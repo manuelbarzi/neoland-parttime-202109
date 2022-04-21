@@ -1,0 +1,26 @@
+.container{
+    display: block;
+    text-align: center;
+    
+    
+}
+
+.input {
+    border-radius: 5px;
+    border: 1px solid rgb(202, 204, 206);
+    
+}
+
+
+.button {
+    
+    border-radius: 5px;
+    border: 1px solid rgb(202, 204, 206);
+    background-color: white;
+    color: rgb(22, 43, 83);
+    
+}
+
+.button:hover {
+    background-color: rgb(229, 230, 231);
+}

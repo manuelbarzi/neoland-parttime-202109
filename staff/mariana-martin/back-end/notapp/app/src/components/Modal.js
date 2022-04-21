@@ -10,7 +10,7 @@ export default ({ content, onClose}) => {
  }
                                  //onClick en todo el modal (por fuera) no en el div del contenido (donde escribes notas)
  return <div className="Modal" onClick={handleClickOnModal}> 
-     <button onClick={onClose}>x</button>
+     <button className="button" onClick={onClose}>x</button>
      <div onClick={handleClickOnContent}>  
          {content}
      </div>

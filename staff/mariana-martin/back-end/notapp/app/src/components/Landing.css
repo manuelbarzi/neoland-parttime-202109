@@ -1,14 +1,18 @@
 .container{
+   
     background-color: rgb(255, 255, 255);
-    width: 50%;
+    width: 30%;
+    height: 400px;
     margin: auto;
     border-radius: 1rem;
-    
+    padding:  25px 30px;
+   
     
 }
+
 .Landing {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     
+    display: block;
+    text-align: center;
+
 }
