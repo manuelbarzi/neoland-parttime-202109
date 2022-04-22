@@ -1,0 +1,53 @@
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+.feedback--info {
+  background: DarkGray;
+  box-shadow: 0 0 1px rgba(169, 169, 169, 0.25);
+  color: #fff;
+}
+.feedback--success {
+  background: DarkGreen;
+  box-shadow: 0 0 1px rgba(0, 100, 0, 0.25);
+  color: #fff;
+}
+.feedback--error {
+  background: DarkRed;
+  box-shadow: 0 0 1px rgba(139, 0, 0, 0.25);
+  color: #fff;
+}
+
+.login {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: yellowgreen;
+  font-size: 1rem;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  background: tomato;
+  box-shadow: 0 0 1px rgba(255, 99, 71, 0.25);
+  color: #fff;
+}
+.login__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.input {
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+}
+
+.button {
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+}
+
+/*# sourceMappingURL=index.css.map */

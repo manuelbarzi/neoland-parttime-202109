@@ -1,0 +1,11 @@
+@use '../commons/mixins'
+    
+.feedback
+    &--info
+        @include mixins.theme
+
+    &--success
+        @include mixins.theme($theme: DarkGreen)
+
+    &--error
+        @include mixins.theme($theme: DarkRed)
