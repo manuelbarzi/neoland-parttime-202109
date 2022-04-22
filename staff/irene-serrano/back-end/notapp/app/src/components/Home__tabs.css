@@ -1,0 +1,30 @@
+.Home__tabs{
+  max-width: 70%;
+  padding: 10px 0 50px 0
+}
+.Home__tabTags{
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1px;
+  font-size: 1.4rem;
+}
+.Home__tabTagItem{
+  background-color:var(--color__white);
+  padding: 10px 25px;
+  border-radius: 4px 4px 0 0;
+
+}
+.Home__tabTagItem:hover{
+  background-color: var(--color__light);
+}
+.Home__tabTagItem-selected{
+  background-color: var(--color__light);
+
+}
+.Home__tabContent{
+  background-color: var(--color__light);
+  border-radius: 4px ;
+  box-shadow: 3px 3px 4px #0005;
+}

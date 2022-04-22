@@ -1,0 +1,48 @@
+.UpdateNote{
+    width: 350px;
+    height: 500px;
+    background: #fdfdfd;
+    border-radius:7px;
+    padding: 20px 10px;
+
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+
+}
+.UpdateNote__form{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+}
+.form__inputset-column{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+.form__inputset-row{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: baseline;
+    margin-bottom: 5px;
+}
+textarea {
+    height: 200px;
+    resize: none;
+    padding: 0 5px;
+  }
+.form__submit{
+    margin-top: 5px;
+    line-height: 2rem;
+    padding: 3px 30px;
+    border: none;
+    border-radius: 3px;
+    background-color: var(--color__primary);
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--color__black);
+}

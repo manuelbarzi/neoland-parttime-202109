@@ -1,0 +1,57 @@
+.note {
+  width: 250px;
+  height: 250px;
+  padding: 20px;
+  margin-top: 10px;
+  border-radius: 3px;
+
+  box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  list-style: none;
+
+  display: grid;
+  grid-template-rows: 1fr 2rem;
+
+  font-size: 0.95rem;
+}
+.note__red {
+  background: salmon;
+}
+.note__green {
+  background: PaleGreen;
+}
+.note__blue {
+  background: PaleTurquoise;
+}
+.note__yellow {
+  background: rgb(255, 229, 142);
+}
+.note__pink {
+  background: LightPink;
+}
+.note__purple {
+  background: Thistle;
+}
+.note__white {
+  background: white;
+}
+.note__userButtons{
+  position: absolute;
+  margin-left: 165px;
+  display: flex;
+  gap: 4px;
+}
+.note__deleteButton, .note__editButton{
+  cursor: pointer;
+}
+.note__text {
+  margin-top: 1.3rem;
+  font-size: 1.4rem;
+}
+.note__info {
+
+  font-style: italic;
+}
+hr {
+  border: 0.7px solid #0004;
+}

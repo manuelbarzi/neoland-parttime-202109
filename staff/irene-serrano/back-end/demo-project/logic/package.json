@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "data": "file:../data",
+    "n": "^8.0.2"
+  }
+}

@@ -1,0 +1,14 @@
+.Feed{
+    width: fit-content;
+    margin: auto;
+    padding: 10px 0 50px 0
+}
+.Feed__notes{
+    margin:auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+   
+  }
+ 

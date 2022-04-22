@@ -1,0 +1,40 @@
+.register{
+    width: 300px;
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    gap: 20px;
+    line-height: 2rem;
+}
+
+.register__form{
+    
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    gap:10px;
+    margin: auto
+}
+
+.form__input{
+    line-height: 1.5rem; 
+    padding-left: 5px;
+}
+.form__submit{
+    margin-top: 5px;
+    line-height: 2rem; 
+    border:none;
+    border-radius: 0.5rem;
+    background-color: var(--color__primary);
+    font-weight: 700;
+    font-size: 1rem;
+
+}
+.form__feedback-error{
+    color:var(--color__error);
+    font-weight: 600;
+
+}
