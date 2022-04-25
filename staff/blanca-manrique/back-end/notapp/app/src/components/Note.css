@@ -8,6 +8,11 @@
     font-family: 'Share Tech Mono', monospace; 
     position: relative;
 }
+.Note__text {
+    background-color: inherit;
+    font-family: inherit;
+    border: none;
+}
 
 .Note__footer {
     position: absolute;

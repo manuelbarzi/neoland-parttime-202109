@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { retrieveNote } from '../logic'
 
-function MyNotes() {
+function MyNotes({onSaved, onDeleted}) {
     const [note, setNote] = useState() //inicialmente, note === undefined
 
     const params = useParams()
@@ -24,7 +24,7 @@ function MyNotes() {
     }, [noteId]) //<-- que recupere la nota correspondiente. Se va a volver a ejecutar useEffect
 
     return <>
-        {note && <Note note={note} />}
+        {note && <Note note={note} controls={true} onSaved={onSaved} onDeleted={onDeleted}/>}
     </> //que me pinte la nota SÓLO si hay notas.
     //¿Por qué hacemos esto?:
     //El useEffect tarda en cargarse, por lo que: para el primer render note ===undefined --> Error, ya que no hay nota que pintar

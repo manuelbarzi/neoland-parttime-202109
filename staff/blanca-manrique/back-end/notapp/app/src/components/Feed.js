@@ -12,6 +12,10 @@ function Feed({ refresh }) {
 
 
     useEffect(() => {
+        refreshPublicNotes()
+    }, [refresh])
+
+    const refreshPublicNotes = () => {
         try {
             retrievePublicNotes(sessionStorage.token)
                 .then(notes => setNotes(notes))
@@ -19,20 +23,27 @@ function Feed({ refresh }) {
         } catch (error) {
             alert(error.message)
         }
-    }, [refresh])
+    }
 
-    const handleCloseModal = () => navigate('/')
+    const handleOpenItem = noteId => {
+        navigate(`${noteId}`)
+    }
+
+    const handleCloseModal = () => {
+        refreshPublicNotes()
+        navigate('/')
+    }
 
     return <div className="Feed">
         {notes ? <ul className="Feed__list">
             {notes.map(note =>
-                <li key={note.id}>
-                    <Note note={note}/>
+                <li key={note.id} onClick={() => handleOpenItem(note.id)} >
+                    <Note note={note} />
                 </li>)}
         </ul> : <p>no notes</p>}
 
         <Routes>
-            <Route path="n/:noteId" element={<Modal content={<Item />} onClose={handleCloseModal} />} />
+            <Route path=":noteId" element={<Modal content={<Item onSaved={handleCloseModal} onDeleted={handleCloseModal}/>} onClose={handleCloseModal} />} />
         </Routes>
     </div>
 }

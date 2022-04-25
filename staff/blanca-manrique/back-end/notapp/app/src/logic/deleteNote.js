@@ -11,11 +11,8 @@ function deleteNote(token, noteId) {
     return fetch(`http://localhost:8080/api/notes/${noteId}`, {
         method: 'DELETE',
         headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json'
+            Authorization: `Bearer ${token}`
         }
-        // body: JSON.stringify({ user: token, note: _id })
-        //no hace falta: mandamos el token por la authorization, y el id de la nota por la URL, por lo tanto este paso es redundante y no haría falta
     })
         .then(res => {
             const { status } = res
