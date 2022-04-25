@@ -17,17 +17,17 @@ function retrievePublicNotes(userId) {
                 delete note._id
                 delete note.__v
 
-                note.userId=note.user._id.toString()
-                note.userName = note.user.userName
+                note.userId = note.user._id.toString()
+                note.userName = note.user.name
 
                 delete note.user
 
                 const { comments } = note
 
-                if(comments){
+                if (comments) {
                     comments.forEach(comment => {
                         comment.id = comment._id.toString()
-    
+
                         delete comment._id
                         delete comment.__v
                     })

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { retrievePublicNotes } from '../logic'
-import './Feed.css'
+import { retrieveNotes } from '../logic'
+import './MyNotes.css'
 import Modal from './Modal'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import Note from './Note'
@@ -16,7 +16,7 @@ export default ({ refresh }) => {
 
     const refreshNotes = () => {
         try {
-            retrievePublicNotes(sessionStorage.token)
+            retrieveNotes(sessionStorage.token)
                 .then(notes => setNotes(notes))
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -27,19 +27,19 @@ export default ({ refresh }) => {
     const handleCloseModal = () => {
         refreshNotes()
 
-        navigate('/')
+        navigate('/my-notes')
     }
 
-    const handleGoToNote = noteId => navigate(`n/${noteId}`)
+    const handleGoToNote = noteId => navigate(`/my-notes/${noteId}`)
 
 
-    return <div className="Feed">
+    return <div className="MyNotes">
         {
-        notes ? 
-        <ul className="Feed__list">
-            {notes.map(note => <li key={note.id} onClick={() => handleGoToNote(note.id)}><Note note={note} /></li>)}
-        </ul> 
-        : <p>no notes</p>
+            notes ?
+                <ul className="MyNotes__list">
+                    {notes.map(note => <li key={note.id} onClick={() => handleGoToNote(note.id)}><Note note={note} /></li>)}
+                </ul>
+                : <p>no notes</p>
         }
 
         <Routes>
