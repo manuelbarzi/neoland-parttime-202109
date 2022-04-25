@@ -20,5 +20,4 @@ function deleteNote(userId, noteId) {
         })
         .then(result => {})
 }
-
 module.exports = deleteNote
