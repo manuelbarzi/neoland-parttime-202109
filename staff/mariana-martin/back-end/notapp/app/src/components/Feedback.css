@@ -1,0 +1,17 @@
+.Feedback {
+    font-weight: bold;
+    position: absolute;
+    
+    padding: 1rem;
+    border-radius: .15rem;
+}
+
+.Feedback--info {
+    background-color: rgb(195, 223, 139);
+    color: white;
+}
+
+.Feedback--error {
+    background-color: rgb(245, 168, 155);
+    color: white;
+}

@@ -33,6 +33,8 @@ export default ({ onLoggedOut}) => {
 
     return <div>
         <h1><Link to="/">NotApp Home</Link></h1>
+
+        
         <div className="menu">
         <button className="button" onClick={handleMyNotes}>My Notes</button>
         <button className="button" onClick={handleOpenModal}>+</button>

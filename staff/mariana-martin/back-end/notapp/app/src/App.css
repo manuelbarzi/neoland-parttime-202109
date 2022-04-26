@@ -8,8 +8,10 @@
 
 html,
 body {
+    margin: 0;
     background-color: whitesmoke;
     font-family: poppins, sans-serif;
+    height: 100%;
 
 }
 
