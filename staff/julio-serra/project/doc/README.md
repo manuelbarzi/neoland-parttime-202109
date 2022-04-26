@@ -46,10 +46,34 @@ Las casos de uso necesarios para el funcionamiento de nuestra aplicación:
 - Update User: Desde el componente **updateUser**
 - Delete User: Desde el componente **deleteUser**
 
-![](./assets/img/data-models.jpeg)
-
 ## Wireframes
+
+
+## Technical Description
+
+### Blocks
+
+![](./assets/img/blocks.jpeg)
+
+### Data Model
+
+![](./assets/img/data-model.jpeg)
+
+## Code Coverage
+
+Soon...
+
+## Technologies
+
+- React ![]()
+- Node
+- Express
+- JWT (JsonWebToken)
+- Mongoose
+- Mongo
 
 ## One more thing
 
 - Filtrar anuncios según características (rango precio, ubicación...)
+
+- Exportar BBDD a excel
