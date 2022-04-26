@@ -47,7 +47,7 @@ Las casos de uso necesarios para el funcionamiento de nuestra aplicación:
 - Delete User: Desde el componente **deleteUser**
 
 ## Wireframes
-
+![](./assets/img/figma.jpg)
 
 ## Technical Description
 
