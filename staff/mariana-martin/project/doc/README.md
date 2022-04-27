@@ -1,6 +1,9 @@
 # App
 
 # Intro 
+
+Aplicación para facilitar llevar a cabo un plan de alimentación según objetivos.
+
 Admin/Nutritionist:
 Aplicación donde el nutriólogo  generará un plan de alimentación para su cliente/paciente, de acuerdo a los objetivos y lo compartirá con él.
 Capturará datos del paciente.
