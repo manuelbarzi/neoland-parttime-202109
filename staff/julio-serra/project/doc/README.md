@@ -47,7 +47,7 @@ Las casos de uso necesarios para el funcionamiento de nuestra aplicación:
 - Delete User: Desde el componente **deleteUser**
 
 ## Wireframes
-![](./assets/img/figma.jpg)
+![](./assets/img/figma.jpeg)
 
 ## Technical Description
 
@@ -75,5 +75,7 @@ Soon...
 ## One more thing
 
 - Filtrar anuncios según características (rango precio, ubicación...)
+
+- Añadir "location" con mapa de google en cada pagina del local
 
 - Exportar BBDD a excel
