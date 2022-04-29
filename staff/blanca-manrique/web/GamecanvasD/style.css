@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+:root{
+    --backColor:rgb(193, 18, 31);
+    --green:rgb(115, 186, 155);
+    --black:black;
+    --white: white;
+    --board:seagreen;
+    --blue: rgb(102, 155, 188);
+
+}
+*{
+    font-family: 'Share Tech Mono', monospace;
+} 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+body {
+    background-color:var(--backColor);
+    background-image: url(./img/pngegg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.title{
+    color:var(--black);
+}
+.field{
+    border: 1px solid var(--white);
+    border-radius: .3rem;
+    margin: .25rem;
+    padding: .6rem;
+}
+.button{
+    border: 1px solid var(--white);
+    border-radius: .3rem;
+    margin: .25rem;
+    padding: .6rem; 
+    cursor: pointer; 
+}
+.container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.container--spacing{
+    margin:.25rem;
+}
+.container--vertical{
+    display:flex;
+    flex-direction: column;
+}
+.panel{
+    border:16px solid var(--black);
+    border-radius: 1rem;
+    padding: 1rem;  
+    background-color: var(--board);
+}
+
+/* Nos permite apagar */
+.off{
+    display:none;
+}
+
+/* custom */
+.title{
+    font-size: 60px;
+    text-align: center;
+}
+.signin__feedback{
+   color: var(--white);
+   background-color: var(--black);
+   font-size: 30px; 
+   font-weight: bold;
+   padding: 0 10px;
+   border:none;
+   margin:20px;
+}
+.level{
+    background-color: var(--board);
+    padding: 20px;
+    /* width:600px; */
+    height: 370px;
+}
+.level__user{
+    color: var(--white);
+    font-size: 40px;
+}
+.level__choose{
+    color:var(--white);
+    font-weight: 50px;
+}
+.level__button{
+    font-size: 20px;
+    background-color:var(--black);
+    padding: 20px;
+    font-weight: 50px;
+    border:none;
+    color: var(--white);
+}
+.canvas{
+    margin-left: 300px;
+    margin-right: 230px; 
+}
+.button--auxiliar{
+    padding:15px 20px;
+    background-color: var(--white);
+    color:var(--backColor);
+    font-size: 22px;
+    font-weight: bold;
+    margin-top:16px;
+    cursor: pointer;
+}
+.exit{
+    background-color: var(--black);
+    padding: 28px;
+    width:90%;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+.exit__info{
+    color:var(--white);
+    font-size: 22px;
+}
+.button--back{
+    background-color: var(--boar);
+    color: var(--white);
+    font-size: 18px;
+    padding: 12px 18px;
+}
+.button--exit{
+    background-color: var(--backColor);
+    color: var(--white);
+    font-size: 18px;
+    padding: 12px 18px;
+}

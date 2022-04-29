@@ -1,0 +1,109 @@
+:root{
+    --color_fondo:#3D405B;
+    --color_data:#3DB2FF;
+    --color_exp:#81B29A;
+    --color_formacion:#F2CC8F;
+    --color_video:#E07A5F;
+    --oscuro:#6A040F;
+    --color_formulario:#E5989B;
+
+    --fuente: arial;
+}
+
+body{
+    margin:40px;
+    background-color: var(--color_fondo);
+    font-family: var(--fuente);
+    
+}
+.introduction{
+    color:white;
+}
+.name{
+    text-transform: uppercase;
+    font-size: 30px;
+}
+section{
+    padding: 18px;
+    margin:20px;
+}
+.data{
+    background-color: var(--color_data);
+}
+.table{
+    border:solid;
+    text-align: justify;
+    padding: 12px;
+    font-size: 20px;
+}
+.experience{
+    background-color: var(--color_exp);
+}
+.list{
+    line-height: 1.4;
+    text-align: justify;
+}
+.time{
+    font-weight: bold;
+    font-size: 20px;
+}
+.formacion{
+    background-color: var(--color_formacion);
+    text-align: justify;
+}
+h4{
+    font-size: 20px;
+}
+.formacion-parrafo{
+    line-height: 1.4;
+}
+.more{
+    background-color: var(--color_video);
+}
+.more-title{
+    text-transform: uppercase;
+}
+.invitation{
+    background-color: var(--oscuro);
+    width:60%;
+}
+.invitation__title{
+    color:white;
+    text-transform: uppercase;
+}
+.form{
+    background-color: var(--color_formulario);
+    padding: 20px;
+    font-size: 20px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+    "name surname"
+    "email email"
+    "phone phone"
+    "choose choose";
+}
+.form__name{
+    grid-area: name;
+}
+.form__surname{
+    grid-area: surname;
+}
+.form__email{
+    grid-area: email;
+}
+.form__phone{
+    grid-area: phone;
+}
+.form__choose{
+    grid-area: choose;
+}
+.form__input{
+    width:100%;
+}
+.enviar{
+    color:white;
+    background-color: var(--oscuro);
+    font-size: 22px;
+    grid-area: enviar;
+}
