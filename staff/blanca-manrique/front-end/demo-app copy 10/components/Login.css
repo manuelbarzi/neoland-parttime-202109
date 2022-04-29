@@ -1,0 +1,97 @@
+:root{
+    --blanco: #ffffff;
+    --oscuro: #212121;
+    --fondo: #ecf0f3;
+    --primario: #ffc107;
+    --secundario: #f58216d7;
+    --gris: #757575; 
+}
+
+/* Globales */
+html{
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+*, *:before, *:after{
+    box-sizing: inherit;
+}
+body{
+    font-size: 16px;
+    font-family: 'Krub', sans-serif;
+    margin-top: 40px;
+}
+.login{
+    width:430px;
+    height: 500px;
+    padding: 40px 35px 35px 35px;
+    margin: 0 auto;
+    border-radius: 40px;
+    background-color: var(--fondo);
+}
+@media (max-width: 480px) {
+    .login {
+        width:300px;
+        height: 500px;
+        margin-top: 70px;
+    }
+}
+
+/* titulo */
+.login__title{
+    margin:-70px auto 20px;
+    text-align: center;
+    background-color: var(--primario);
+    border-radius: 500px;
+    height: 150px;
+    width:150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* formulario */
+.login__form{
+    background-color: var(--gris);
+    margin:0 auto;
+    width:min(60rem,100%);
+    border:none;
+    border-radius: 20px;
+    padding:2rem;
+}
+.input{
+    width:100%;
+    padding:15px;
+    border-radius: 22px;
+    border: none;
+    margin-bottom: 1rem;
+}
+.form__btn:hover{
+    background-color: var(--primario);
+}
+
+/* btn para ir a register */
+.login__btn{
+    background-color: var(--secundario);
+    color:var(--blanco);
+    text-decoration: none;
+    padding:1rem 3rem;
+    margin-top: 30px;
+    border-radius: 500px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    width:100%;
+    border:none;
+    display: inline-block;
+}
+.login__btn:hover{
+    background-color: var(--oscuro);
+}
+
+/* feedback */
+.form__feedback{
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    color:var(--primario);
+}

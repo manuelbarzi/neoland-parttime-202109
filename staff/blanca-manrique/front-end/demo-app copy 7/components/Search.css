@@ -1,0 +1,49 @@
+:root{
+    --blanco: #ffffff;
+    --oscuro: #212121;
+    --fondo: #ecf0f3;
+    --primario: #ffc107;
+    --secundario: #f58216d7;
+    --gris: #757575; 
+}
+
+/* Globales */
+html{
+    box-sizing: border-box;
+}
+*, *:before, *:after{
+    box-sizing: inherit;
+}
+body{
+    font-size: 16px;
+    font-family: 'Krub', sans-serif;
+}
+/* .search__form{
+    width: 600px;
+    height: 50px;
+    border-radius: 200px;
+    background-color: var(--secundario);
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+} */
+.search__query{
+    padding:1rem 3rem;
+    border-radius: 500px;
+}
+.search__btn{
+    /* background-color: var(--secundario); */
+    color:var(--blanco);
+    text-decoration: none;
+    padding:1rem 3rem;
+    border-radius: 500px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    border:none;
+}
+.search__btn:hover{
+    background-color: var(--oscuro);
+}

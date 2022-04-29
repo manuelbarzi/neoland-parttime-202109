@@ -1,0 +1,58 @@
+:root{
+    --blanco: #ffffff;
+    --oscuro: #212121;
+    --fondo: #ecf0f3;
+    --primario: #ffc107;
+    --secundario: #f58216d7;
+    --gris: #757575; 
+}
+
+/* Globales */
+html{
+    box-sizing: border-box;
+}
+*, *:before, *:after{
+    box-sizing: inherit;
+}
+body{
+    font-size: 16px;
+    font-family: 'Krub', sans-serif;
+}
+.home{
+    margin:30px;
+}
+@media (min-width: 678px) {
+    .home{
+        margin:40px;
+    }
+}
+/* titulo */
+.home__title{
+    text-align: center;
+}
+
+/* Navegación */
+.home__nav{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primario);
+}
+@media (min-width: 768px) {
+    .home__nav {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+.btn{
+    display: block;
+    text-align: center;
+    font-size: 1.8rem;
+    border:none;
+    background-color: var(--primario);
+    width: 100%;
+    padding: 1rem;
+}
+.btn:hover{
+    cursor: pointer;
+    background-color: var(--secundario);
+}
