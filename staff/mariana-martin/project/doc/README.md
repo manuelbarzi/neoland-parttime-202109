@@ -32,3 +32,16 @@ Podrán generar una lista de compras personales, esto para llevar una mejor orga
 
 ### Wireframes / UI
 
+
+## Technical Description
+
+### Blocks (app architecture)
+
+
+### Data Model (ER (entity relation))
+
+### Code Coverage
+
+### Technologies
+
+### TODO list
