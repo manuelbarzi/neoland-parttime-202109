@@ -1,6 +1,7 @@
 # App
 
-# Intro 
+# Introduction
+![](https://media.giphy.com/media/fAhzOM48cmsVJE62RP/giphy.gif)
 
 Aplicación para facilitar llevar a cabo un plan de alimentación según objetivos.
 
@@ -19,5 +20,15 @@ Podrán generar una lista de compras personales, esto para llevar una mejor orga
 ## Functional Description
 
 ### Use Cases
+![](images/use-cases.png)
 
 ### Activities
+
+#### User Activities
+![](images/user-activities.png)
+
+#### Admin Activities
+![](images/admin-activities.png)
+
+### Wireframes / UI
+
