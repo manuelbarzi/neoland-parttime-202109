@@ -40,6 +40,8 @@ Podrán generar una lista de compras personales, esto para llevar una mejor orga
 
 ### Data Model (ER (entity relation))
 
+![](images/data-models.png)
+
 ### Code Coverage
 
 ### Technologies
