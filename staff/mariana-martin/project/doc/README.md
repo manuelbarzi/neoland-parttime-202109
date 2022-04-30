@@ -20,7 +20,7 @@ Podrán generar una lista de compras personales, esto para llevar una mejor orga
 ## Functional Description
 
 ### Use Cases
-![](images/use-cases.png)
+![](images/use-cases1.png)
 
 ### Activities
 
