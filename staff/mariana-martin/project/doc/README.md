@@ -12,23 +12,27 @@ Generará la próxima cita.
 Modificará la dieta cada determinado tiempo.
 
 User:
-Los  pacientes/usuarios que buscan mejorar sus hábitos alimenticios y son atendidos por un Nutriólogo,  tendrán acceso a su plan de alimentación semanal por medio de la app, para así lograr y monitorear sus objetivos, tendrán acceso a modificar/ sustituir su dieta teniendo varias opciones para cada comida, según sea su gusto.
+Los pacientes/usuarios que buscan mejorar sus hábitos alimenticios y son atendidos por un Nutriólogo,  podrán visualizar su plan de alimentación semanal y su próxima cita.
+
+En fase 2: El uduario podrá modificar/ sustituir su dieta teniendo varias opciones para cada comida, según sea su gusto.
 Podrán monitorear su progreso, marcando si se ha cumplido la cantidad de macronutrientes cada comida cada día.
-Podrán visualizar, reagendar y eliminar la fecha en la que se tiene la próxima cita.
+Podrá reagendar y eliminar la fecha en la que se tiene la próxima cita.
 Podrán generar una lista de compras personales, esto para llevar una mejor organización de los alimentos que necesita para llevar a cabo la dieta.
 
 ## Functional Description
 
 ### Use Cases
-![](images/use-cases1.png)
+![](images/use-cases.png)
 
 ### Activities
+
+
+#### Admin Activities
+![](images/admin-activities.png)
 
 #### User Activities
 ![](images/user-activities.png)
 
-#### Admin Activities
-![](images/admin-activities.png)
 
 ### Wireframes / UI
 
