@@ -1,9 +1,11 @@
 const user = require('./user')
-const local = require('./local')
+const space = require('./space')
 const comment = require('./comment')
+const booking = require('./booking')
 
 module.exports = {
     user,
-    local,
-    comment
+    space,
+    comment,
+    booking
 }

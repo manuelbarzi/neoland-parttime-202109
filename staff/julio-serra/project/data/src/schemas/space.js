@@ -1,9 +1,10 @@
 const { Schema } = require('mongoose')
 const { type: { ObjectId } } = Schema
 const comment = require('./comment')
+const booking = require('./booking')
 
 
-const local = new Schema({
+const space = new Schema({
     id: {
         type: ObjectId,
         required: true,
@@ -22,8 +23,13 @@ const local = new Schema({
         required: true,
         default: Date.now
     },
-    comments: [comment]
+    comments: [Comment],
+    bookings: [Booking],
+    image: {
+        type: Image,
+        required: true
+    }
 })
 
 
-module.exports = local
+module.exports = space

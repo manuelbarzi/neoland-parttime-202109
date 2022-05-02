@@ -65,7 +65,7 @@ Soon...
 
 ## Technologies
 
-- React ![]()
+- React
 - Node
 - Express
 - JWT (JsonWebToken)
