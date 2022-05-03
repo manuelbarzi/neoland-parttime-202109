@@ -36,9 +36,9 @@ Podrán generar una lista de compras personales, esto para llevar una mejor orga
 
 ### Wireframe / UI
 
-![](wireframe.png)
+![](images/wireframe.png)
 
-![](ui.png)
+![](images/ui.png)
 
 
 ## Technical Description
@@ -54,4 +54,11 @@ Podrán generar una lista de compras personales, esto para llevar una mejor orga
 
 ### Technologies
 
+
+
 ### TODO list
+
+En fase 2: El uduario podrá modificar/ sustituir su dieta teniendo varias opciones para cada comida, según sea su gusto.
+Podrán monitorear su progreso, marcando si se ha cumplido la cantidad de macronutrientes cada comida cada día.
+Podrá reagendar y eliminar la fecha en la que se tiene la próxima cita.
+Podrán generar una lista de compras personales, esto para llevar una mejor organización de los alimentos que necesita para llevar a cabo la dieta.
