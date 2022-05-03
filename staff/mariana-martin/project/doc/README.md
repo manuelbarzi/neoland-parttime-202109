@@ -34,7 +34,11 @@ Podrán generar una lista de compras personales, esto para llevar una mejor orga
 ![](images/user-activities.png)
 
 
-### Wireframes / UI
+### Wireframe / UI
+
+![](wireframe.png)
+
+![](ui.png)
 
 
 ## Technical Description
