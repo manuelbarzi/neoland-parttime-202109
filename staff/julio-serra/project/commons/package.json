@@ -1,13 +1,8 @@
 {
-  "name": "logic",
+  "name": "commons",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
-  "dependencies": {
-    "commons": "file:../commons",
-    "data": "file:../data",
-    "undefined": "^1.0.0"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
