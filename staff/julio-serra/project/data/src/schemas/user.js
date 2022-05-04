@@ -1,12 +1,7 @@
 const { Schema } = require('mongoose')
-const { type: { ObjectId } } = Schema
 
-// Id(objectId), name, email, password
 const user = new Schema({
-    id: {
-        type: ObjectId,
-        text: required
-    },
+
     name: {
         type: String,
         required: true
@@ -21,7 +16,7 @@ const user = new Schema({
         required: true
     },
     image: {
-        type: Image,
+        type: String,
         required: true
     }
 })

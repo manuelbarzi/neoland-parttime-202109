@@ -1,5 +1,5 @@
 const { Schema } = require('mongoose')
-const { type: { ObjectId } } = Schema
+const { Types: { ObjectId } } = Schema
 
 const booking = new Schema ({
     id: {

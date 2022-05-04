@@ -1,7 +1,7 @@
 const { Schema } = require('mongoose')
-const { type: { ObjectId } } = Schema
-const comment = require('./comment')
-const booking = require('./booking')
+const { Types: { ObjectId } } = Schema
+const Comment = require('./comment')
+const Booking = require('./booking')
 
 
 const space = new Schema({
@@ -26,7 +26,7 @@ const space = new Schema({
     comments: [Comment],
     bookings: [Booking],
     image: {
-        type: Image,
+        type: String,
         required: true
     }
 })

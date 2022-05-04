@@ -1,7 +1,7 @@
-const { models: { User } } = require('../data')
+const { models: { User } } = require('data')
 const { validators: { validateEmail, validatePassword },
     errors: { AuthError }
-} = require('../commons')
+} = require('commons')
 
 function authenticateUser(email, password) {
     validateEmail(email)
