@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "commons": "file:../commons",
     "data": "file:../data",
     "undefined": "^1.0.0"
