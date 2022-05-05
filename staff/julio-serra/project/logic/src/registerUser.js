@@ -1,13 +1,10 @@
-const { validateName, validateEmail, validatePassword } = require('../../commons')
 const { DuplicityError } = require('../../commons/src/errors')
 const { models: { User } } = require('data')
 
-function registerUser(name, email, password) {
-    validateName(name)
-    validateEmail(email)
-    validatePassword(password)
+function registerUser(name, email, password, image) {
 
-    return User.create({ name, email, password })
+
+    return User.create({ name, email, password, image })
     .then(user => {})
     // .catch(error => {
     //     if(error.message.includes('duplicate'))
