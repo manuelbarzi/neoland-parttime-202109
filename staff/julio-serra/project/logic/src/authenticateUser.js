@@ -1,17 +1,27 @@
-const { models: { User } } = require('data')
-const { validators: { validateEmail, validatePassword },
-    errors: { AuthError }
+const {
+    validators:
+    { validateEmail, validatePassword },
+    errors:
+    { AuthError }
 } = require('commons')
+
+const { models: { User } } = require('data')
+const bcrypt = require('bcryptjs')
 
 function authenticateUser(email, password) {
     validateEmail(email)
     validatePassword(password)
 
-    return User.findOne({ email, password })
+    return User.findOne({ email })
         .then(user => {
-            if (!user) throw new AuthError('datos incorrectos')
+            if (!user) throw new AuthError('wrong credentials')
 
-            return user.id
+            return bcrypt.compare(password, user.password)
+                .then(match => {
+                    if (!match) throw new AuthError('wrong credentials')
+
+                    return user.id
+                })
         })
 }
 

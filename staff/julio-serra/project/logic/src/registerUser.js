@@ -1,5 +1,10 @@
-const { DuplicityError } = require('../../commons/src/errors')
-const { validators: { validateName, validateEmail, validatePassword } } = require('../../commons')
+const {
+    validators:
+    { validateName, validateEmail, validatePassword },
+    errors:
+    { DuplicityError }
+} = require('commons')
+
 const { models: { User } } = require('data')
 const bcrypt = require('bcryptjs')
 
