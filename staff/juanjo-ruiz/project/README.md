@@ -10,10 +10,11 @@ App para la gestión de daños de vehículos dirigido a empresas en las que tien
 ---
 ### Casos de uso
 
-![](doc/images/casos-de-usos.jpg)
+![](doc/images/proyectofinal-casos-de-usos.jpg)
 
 ### Diseño
 
+![](doc/images/proyecto-final-bootcamp.png)
 
 ## Descripción técnica
 ---
@@ -25,3 +26,15 @@ App para la gestión de daños de vehículos dirigido a empresas en las que tien
 ### Bloques
 
 ![](doc/images/proyectofinal-bloques.jpg)
+
+### Tecnologías
+
+- React
+
+- Node
+
+- Express
+
+- Mongoose
+
+- Mongo
