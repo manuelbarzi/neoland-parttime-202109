@@ -3,7 +3,7 @@ const Supplier = require('./Supplier')
 const Product = require('./Product')
 const Variant = require('./Variant')
 const Item = require('./Item')
-const Order = require('Order')
+const Order = require('./Order')
 
 module.exports = {
   User,

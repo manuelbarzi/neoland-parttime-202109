@@ -9,19 +9,19 @@ const variant = new Schema({
     },
     size:{
         type: String,
-        require: true
+        required: true
     },
     color:{
         type: String,
-        require: true
+        required: true
     },
     stockOnHand:{
         type: Number,
-        require: true
+        required: true
     },
     criticalStock:{
         type: Number,
-        require: true
+        required: true
     }
 })
 module.exports = variant
