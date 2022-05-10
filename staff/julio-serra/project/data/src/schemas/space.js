@@ -6,7 +6,7 @@ const Booking = require('./booking')
 
 const space = new Schema({
 
-    user: {
+    admin: {
         type: ObjectId,
         ref: 'User',
         required: true
@@ -24,7 +24,7 @@ const space = new Schema({
     bookings: [Booking],
     image: {
         type: String,
-        required: true
+        required: false
     }
 })
 
