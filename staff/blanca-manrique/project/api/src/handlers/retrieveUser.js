@@ -1,17 +1,18 @@
-const { registerUser } = require('logic')
-const { errors: { DuplicityError, FormatError } } = require('commons')
+const { retrieveUser } = require('logic')
+const { extractUserIdFromAuthorization } = require('./helpers')
+const { errors: { NotFoundError, FormatError } } = require('commons')
 
 module.exports = (req, res) => {
     try {
-        const { body: { username, email, password } } = req
+        const userId = extractUserIdFromAuthorization(req)
 
-        registerUser(username, email, password)
-            .then(() => res.status(201).send())
+        retrieveUser(userId)
+            .then(user => res.json(user))
             .catch(error => {
                 let status = 500
 
-                if (error instanceof DuplicityError)
-                    status = 409
+                if (error instanceof NotFoundError)
+                    status = 404
 
                 res.status(status).json({ error: error.message })
             })

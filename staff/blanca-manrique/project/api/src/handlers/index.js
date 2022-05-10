@@ -1,7 +1,9 @@
-// const registerUser = require('./registerUser')
-// const authenticateUser = require('./authenticateUser')
-// const retrieveUser = require('./retrieveUser')
+const registerUser = require('./registerUser')
+const authenticateUser = require('./authenticateUser')
+const retrieveUser = require('./retrieveUser')
 
-// module.exports = {
-//     registerUser
-// }
+module.exports = {
+    registerUser,
+    authenticateUser,
+    retrieveUser
+}
