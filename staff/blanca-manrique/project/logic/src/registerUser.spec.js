@@ -3,7 +3,7 @@ const { mongoose: { connect, disconnect }, models: { User } } = require('data')
 const { expect } = require('chai')
 const bcrypt = require('bcryptjs')
 const registerUser = require('./registerUser')
-// const { errors: { DuplicityError }} = require('commons')
+const { errors: { DuplicityError }} = require('commons')
 
 const { env: { MONGODB_URL } } = process
 
@@ -24,23 +24,23 @@ describe('registerUser', () => {
             })
     })
 
-    // it('should fail when user already exists', () => {
-    //     return User.deleteMany()
-    //         .then(() => {
-    //             const hash = bcrypt.hashSync('123123123', 10)
+    it('should fail when user already exists', () => {
+        return User.deleteMany()
+            .then(() => {
+                const hash = bcrypt.hashSync('123123123', 10)
 
-    //             return User.create({ name: 'Ti Greton', email: 'ti@greton.com', password: hash })
-    //         })
-    //         .then(() => registerUser('Ti Greton', 'ti@greton.com', '123123123'))
-    //         .then(() => {
-    //             throw new Error('should not reach this point')
-    //         })
-    //         .catch(error => {
-    //             expect(error).to.exist
-    //             expect(error).to.be.instanceOf(DuplicityError)
-    //             expect(error.message).to.equal('user already exists')
-    //         })
-    // })
+                return User.create({ username: 'TiGreton', email: 'ti@greton.com', password: hash })
+            })
+            .then(() => registerUser('TiGreton', 'ti@greton.com', '123123123'))
+            .then(() => {
+                throw new Error('should not reach this point')
+            })
+            .catch(error => {
+                expect(error).to.exist
+                expect(error).to.be.instanceOf(DuplicityError)
+                expect(error.message).to.equal('user already exists')
+            })
+    })
 
     after(() => disconnect())
 })
