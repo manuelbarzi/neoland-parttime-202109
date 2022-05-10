@@ -2,12 +2,12 @@ require('dotenv').config()
 const { mongoose: { connect, disconnect, Types: { ObjectId } }, models: { User } } = require('data')
 const { expect } = require('chai')
 const bcrypt = require('bcryptjs')
-const retrieveUser = require('./retrieveUser')
+const unregisterUser = require('./unregisterUser')
 const { errors: { NotFoundError } } = require('commons')
 
 const { env: { MONGODB_URL } } = process
 
-describe('retrieveUser', () => {
+describe('unregisterUser', () => {
     before(() => connect(MONGODB_URL))
 
     it('should succeed when user already exists', () => {
@@ -17,20 +17,14 @@ describe('retrieveUser', () => {
 
                 return User.create({ name: 'Ti Greton', email: 'ti@greton.com', password: hash })
             })
-            .then(user => retrieveUser(user.id))
-            .then(user => {
-                expect(user).to.exist
-                expect(user.name).to.equal('Ti Greton')
-                expect(user.email).to.equal('ti@greton.com')
-                expect(user.password).to.be.undefined
-            })
+            .then(user => unregisterUser(user.id, '123123123'))
     })
 
     it('should fail when user does not exist', () => {
         const unknownUserId = new ObjectId().toString()
 
         return User.deleteMany()
-            .then(() => retrieveUser(unknownUserId))
+            .then(() => unregisterUser(unknownUserId, '123123123'))
             .then(() => {
                 throw new Error('should not reach this point')
             })
