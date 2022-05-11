@@ -9,33 +9,34 @@ const supplier = new Schema({
     },
     name: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
     email:{
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
     web:{
         type: String,
-        require: true
+        required: true
     },
     phone: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
     adress: {
         type: String,
-        require: true
+        required: true
     },
     contactPerson: {
         type: String, 
+        required: true
     },
     tradeAssurance: {
         type: Boolean,
-        require: true,
+        required: true,
         default: true
     }
 })

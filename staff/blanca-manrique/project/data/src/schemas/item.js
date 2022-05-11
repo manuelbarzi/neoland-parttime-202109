@@ -9,11 +9,11 @@ const item = new Schema({
     },
     quantity:{
         type: String,
-        require: true
+        required: true
     },
     price:{
         type: Number,
-        require: true
+        required: true
     }
 })
 module.exports = item

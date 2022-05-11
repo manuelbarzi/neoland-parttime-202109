@@ -9,34 +9,34 @@ const product = new Schema({
     },
     name:{
         type: String,
-        require: true
+        required: true
     },
     category: {
         type: String,
-        require: true
+        required: true
     },
     brand:{
         type: String,
-        require: true
+        required: true
     },
     model:{
         type: String,
-        require: true
+        required: true
     },
     image: {
         type: String
     },
     material:{
         type: String,
-        require: true
+        required: true
     },
     price:{
         type: Number,
-        require: true
+        required: true
     },
     salePrice:{
         type: Number,
-        require: true
+        required: true
     }
 })
 module.exports = product

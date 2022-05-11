@@ -10,16 +10,16 @@ const order = new Schema({
     },
     createdAt:{
         type: Date,
-        require: true,
+        required: true,
         default: Date.now
     },
     status:{
         type: String,
-        require: true
+        required: true
     },
     quantity:{
         type: Number,
-        require: true
+        required: true
     },
     items: [item]
 })

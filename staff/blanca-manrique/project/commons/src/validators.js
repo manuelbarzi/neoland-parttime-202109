@@ -25,11 +25,21 @@ function validateId(id, explain = 'id') {
     if (id.length !== 24) throw new FormatError(`invalid ${explain}`) //id de Mongo = 24 caracteres
 }
 
-//validate token --> app
+function validateString(string, explain = 'string') {
+    if (typeof string !== 'string') throw new TypeError(`${explain} is not string`)
+    if (!string.trim()) throw new FormatError(`${explain} is empty or blank`)
+}
+
+function validateBoolean(boolean, explain = 'boolean') {
+    if (typeof boolean !== 'boolean') throw new TypeError(`${explain} is not boolean`)
+}
+
 
 module.exports = {
     validateUsername,
     validateEmail,
     validatePassword,
-    validateId
+    validateId,
+    validateString,
+    validateBoolean
 }

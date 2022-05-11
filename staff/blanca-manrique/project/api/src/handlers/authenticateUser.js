@@ -1,6 +1,6 @@
 const { authenticateUser } = require('logic')
-const { env: { JWT_SECRET, JWT_EXP } } = process //de las variables de entorno del proceso me traigo el secreto y el tiempo de expiración
-const { sign } = require('jsonwebtoken') //para crear el token necesitamos de la librería jsonwebtoken el método sign: firma
+const { env: { JWT_SECRET, JWT_EXP } } = process 
+const { sign } = require('jsonwebtoken') 
 const { errors: { AuthError, FormatError }} = require('commons')
 
 module.exports = (req, res) => {
