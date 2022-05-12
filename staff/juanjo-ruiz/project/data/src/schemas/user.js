@@ -1,5 +1,5 @@
 const { Schema } = require('mongoose')
-const { Types: { ObjectId } } = require('Schemas')
+const { Types: { ObjectId } } = Schema
 
 const user = new Schema({
     company: {
@@ -29,8 +29,9 @@ const user = new Schema({
     },
 
     role: {
-        type: Array,
-        required: true
+        type: String,
+        required: true,
+        default: 'driver'
     },
 
     active: {

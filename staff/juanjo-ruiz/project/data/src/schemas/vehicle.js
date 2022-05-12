@@ -1,5 +1,5 @@
 const { Schema } = require('mongoose')
-const { Types: { ObjectId } } = require('Schemas')
+const { Types: { ObjectId } } = Schema
 const part = require('./part')
 
 const vehicle = new Schema({

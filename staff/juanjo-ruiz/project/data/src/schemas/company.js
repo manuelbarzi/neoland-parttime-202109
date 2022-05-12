@@ -29,9 +29,9 @@ const company = new Schema({
     },
 
     role: {
-        type: Array,
+        type: String,
         required: true,
-        defualt: [0]
+        defualt: 'admin'
     },
 
     active: {
