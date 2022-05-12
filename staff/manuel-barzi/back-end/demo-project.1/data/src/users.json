@@ -1,0 +1,36 @@
+[
+    {
+        "id": "USER-1644522517130",
+        "name": "Pepito Grillo",
+        "email": "pepigri@mail.com",
+        "password": "123123123"
+    },
+    {
+        "id": "USER-1644609336002",
+        "name": "Manuel Barzi",
+        "email": "manuelbarzi@gmail.com",
+        "password": "123123123"
+    },
+    {
+        "id": "USER-345345345",
+        "name": "Peter Pan",
+        "email": "peter@pan.com",
+        "password": "123123123",
+        "createdAt": "2020-01-01",
+        "updatedAt": "2020-01-01"
+    },
+    {
+        "id": "USER-456456456",
+        "name": "Wendy Pan",
+        "email": "wendy@pan.com",
+        "password": "123123123",
+        "createdAt": "2020-01-01",
+        "updatedAt": "2020-01-01"
+    },
+    {
+        "id": "USER-123123123",
+        "name": "John Smith",
+        "email": "john@smith.com",
+        "password": "234234234"
+    }
+]

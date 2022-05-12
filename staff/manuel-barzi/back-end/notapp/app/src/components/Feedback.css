@@ -1,0 +1,16 @@
+.Feedback {
+    font-weight: bold;
+    position: absolute;
+    padding: 1rem;
+    border-radius: .25rem;
+}
+
+.Feedback--info {
+    background-color: yellowgreen;
+    color: white;
+}
+
+.Feedback--error {
+    background-color: tomato;
+    color: white;
+}
