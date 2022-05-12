@@ -1,6 +1,7 @@
 # App
 
 # Introduction
+
 ![](https://media.giphy.com/media/fAhzOM48cmsVJE62RP/giphy.gif)
 
 Aplicación para facilitar llevar a cabo un plan de alimentación según objetivos.
