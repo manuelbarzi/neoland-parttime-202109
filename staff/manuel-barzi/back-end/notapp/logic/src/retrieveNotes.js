@@ -1,12 +1,15 @@
 const { models: { User, Note } } = require('data')
-const { validators: { validateId } } = require('commons')
+const { 
+    validators: { validateId },
+    errors: { NotFoundError }
+} = require('commons')
 
 function retrieveNotes(userId) {
     validateId(userId, 'user id')
 
     return User.findById(userId)
         .then(user => {
-            if (!user) throw new Error(`user with id ${userId} not found`)
+            if (!user) throw new NotFoundError(`user with id ${userId} not found`)
 
             return Note.find({ user: userId }).lean().populate('user').sort('-date')
         })
