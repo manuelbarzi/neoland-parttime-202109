@@ -4,6 +4,8 @@ const deleteUser = require('./deleteUser')
 const retrieveUser = require('./retrieveUser')
 const createSpace = require('./createSpace')
 const retrieveSpace = require('./retrieveSpace')
+const deleteSpace = require('./deleteSpace')
+
 
 module.exports = {
     registerUser,
@@ -11,5 +13,6 @@ module.exports = {
     deleteUser,
     retrieveUser,
     createSpace,
-    retrieveSpace
+    retrieveSpace,
+    deleteSpace
 }
