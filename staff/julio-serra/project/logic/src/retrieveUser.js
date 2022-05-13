@@ -8,7 +8,7 @@ const {
 } = require('commons')
 
 function retrieveUser(id) {
-    validateId(id)
+    validateId(id, 'user id')
 
     return User.findById(id).lean()
     .then(user => {

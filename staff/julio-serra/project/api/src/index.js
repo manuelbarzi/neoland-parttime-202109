@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require('express')
-const { registerUser, authenticateUser, retrieveUser, deleteUser, createSpace } = require('./handlers')
+const { registerUser, authenticateUser, retrieveUser, deleteUser, createSpace, retrieveSpace } = require('./handlers')
 const { mongoose: { connect } } = require('data')
 const cors = require('cors') // para evitar el error de CORS
 const { env: { MONGODB_URL, PORT } } = process
@@ -28,6 +28,9 @@ connect(MONGODB_URL)
 
         // CREATE SPACE
         router.post('/spaces', jsonBodyParser, createSpace)
+
+        // RETRIEVE SPACE
+        router.get('/spaces/:spaceId', jsonBodyParser, retrieveSpace)
 
         api.use('/api', router)
         api.listen(PORT, () => console.log('json server running'))
