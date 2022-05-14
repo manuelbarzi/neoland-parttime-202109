@@ -50,6 +50,10 @@ function validateBoolean(boolean, explain = 'boolean') {
     if (typeof boolean !== 'boolean') throw new TypeError(`${explain} is not boolean`)
 }
 
+function validateRange(number, explain = '0') {
+    if (typeof number > 5) throw new TypeError(`${explain} is not posible, numbers between 0 and 5`)
+}
+
 module.exports = {
     validateEmail,
     validateName,
@@ -57,5 +61,6 @@ module.exports = {
     validateToken,
     validateId,
     validateBoolean,
-    validateString
+    validateString,
+    validateRange
 }
