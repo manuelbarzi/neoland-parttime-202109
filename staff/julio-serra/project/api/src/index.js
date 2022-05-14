@@ -1,6 +1,9 @@
 require('dotenv').config()
 const express = require('express')
-const { registerUser, authenticateUser, retrieveUser, deleteUser, createSpace, retrieveSpace, deleteSpace, createReview, deleteReview } = require('./handlers')
+const { registerUser, authenticateUser, retrieveUser, 
+    deleteUser, createSpace, retrieveSpace, deleteSpace, 
+    createReview, deleteReview, addReviewToSpace
+} = require('./handlers')
 const { mongoose: { connect } } = require('data')
 const cors = require('cors') // para evitar el error de CORS
 const { env: { MONGODB_URL, PORT } } = process
@@ -40,6 +43,10 @@ connect(MONGODB_URL)
 
         // DELETE REVIEW
         router.delete('/reviews/:reviewId', jsonBodyParser, deleteReview)
+
+        // ADD REVIEW TO SPACE
+        router.post('/reviews/:spaceId/comments', jsonBodyParser, addReviewToSpace)
+
 
         api.use('/api', router)
         api.listen(PORT, () => console.log('json server running'))
