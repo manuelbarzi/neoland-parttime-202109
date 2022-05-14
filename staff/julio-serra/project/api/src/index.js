@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const { registerUser, authenticateUser, retrieveUser, 
     deleteUser, createSpace, retrieveSpace, deleteSpace, 
-    createReview, deleteReview, addReviewToSpace
+    createReview, deleteReview, addReviewToSpace, createBooking
 } = require('./handlers')
 const { mongoose: { connect } } = require('data')
 const cors = require('cors') // para evitar el error de CORS
@@ -47,6 +47,8 @@ connect(MONGODB_URL)
         // ADD REVIEW TO SPACE
         router.post('/reviews/:spaceId/comments', jsonBodyParser, addReviewToSpace)
 
+        // CREATE BOOKING
+        router.post('/bookings/:spaceId/dates', jsonBodyParser, createBooking)
 
         api.use('/api', router)
         api.listen(PORT, () => console.log('json server running'))

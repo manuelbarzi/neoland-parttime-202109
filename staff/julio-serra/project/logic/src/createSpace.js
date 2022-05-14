@@ -2,19 +2,17 @@ const {
     validators:
     { validateId, validateString },
 } = require('commons')
-const { models: { User, Space, Review } } = require('data')
+const { models: { User, Space } } = require('data')
 
-function createSpace(adminId, text, reviewId) {
+function createSpace(adminId, text) {
     validateId(adminId, 'admin id')
     validateString(text, 'text')
-    validateString(reviewId, 'review id')
-    
-    return Promise.all([User.findById(adminId), Review.findById(reviewId)])
-        .then(([user, review]) => {
-            if (!user) throw new Error(`user with id ${adminId} not found`)
-            if (!review) throw new Error(`review with id ${reviewId} not found`)
 
-            return Space.create({ admin: adminId, text, review: reviewId })
+    return User.findById(adminId)
+        .then(user => {
+            if (!user) throw new Error(`user with id ${adminId} not found`)
+
+            return Space.create({ admin: adminId, text })
         })
         .then(space => { })
 }

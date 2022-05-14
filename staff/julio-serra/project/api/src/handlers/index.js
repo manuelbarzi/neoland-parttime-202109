@@ -8,7 +8,7 @@ const deleteSpace = require('./deleteSpace')
 const createReview = require('./createReview')
 const deleteReview = require('./deleteReview')
 const addReviewToSpace = require('./addReviewToSpace')
-
+const createBooking = require('./createBooking')
 
 
 module.exports = {
@@ -21,5 +21,6 @@ module.exports = {
     deleteSpace,
     createReview,
     deleteReview,
-    addReviewToSpace
+    addReviewToSpace,
+    createBooking
 }
