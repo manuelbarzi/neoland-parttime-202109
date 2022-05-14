@@ -1,12 +1,9 @@
 const { Schema } = require('mongoose')
 const { Types: { ObjectId } } = Schema
-const Review = require('./review')
-const Booking = require('./booking')
 
+const review = new Schema({
 
-const space = new Schema({
-
-    admin: {
+    user: {
         type: ObjectId,
         ref: 'User',
         required: true
@@ -20,13 +17,13 @@ const space = new Schema({
         required: true,
         default: Date.now
     },
-    comments: [Review],
-    bookings: [Booking],
-    image: {
-        type: String,
-        required: false
+    score: {
+        type: Number,
+        required: false,
+        min: 0,
+        max: 5
     }
+
 })
 
-
-module.exports = space
+module.exports = review

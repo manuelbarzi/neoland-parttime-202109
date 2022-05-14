@@ -1,7 +1,7 @@
 const { Schema } = require('mongoose')
 const { Types: { ObjectId } } = Schema
 
-const comment = new Schema({
+const review = new Schema({
     id: {
         type: ObjectId,
         required: true
@@ -20,11 +20,13 @@ const comment = new Schema({
         required: true,
         default: Date.now
     },
-    rating: {
+    score: {
         type: Number,
-        required: false
+        required: false,
+        min: 0,
+        max: 5
     }
 
 })
 
-module.exports = comment
+module.exports = review
