@@ -27,6 +27,12 @@ function validatePassword(password) {
     if (password.trim().length < 8) throw new Error('password length is smaller than 8 characters')
 }
 
+function validateCif(cif) {
+    if (typeof cif !== 'string') throw new TypeError('cif is not string')
+    if(!cif.trim()) throw new Error('cif is empty or blank')
+    if (cif.trim().length < 9) throw new Error('cif length is smaller than 9 characters')
+}
+
 function validateDate(date) {
     if (typeof date !== Date) throw new TypeError('date is not date')
 }
@@ -56,5 +62,6 @@ module.exports = {
     validateEmail,
     validatePassword,
     validateDate,
-    validateToken
+    validateToken,
+    validateCif
 }

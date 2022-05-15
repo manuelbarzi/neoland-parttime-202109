@@ -4,7 +4,11 @@ const { mongoose: { connect } } = require('data')
 const express = require('express')
 const cors = require('cors')
 const {
-    registerCompany
+    registerCompany,
+    authenticateCompany,
+    retrieveCompany,
+    updateCompany,
+    unregisterCompany
 } = require('./handlers')
 
 const { env: { MONGODB_URL, PORT } } = process
@@ -22,8 +26,10 @@ connect(MONGODB_URL)
         const jsonBodyParse = express.json()
 
         router.post('/company', jsonBodyParse, registerCompany)
-        router.post('/company/auth', jsonBodyParse, registerCompany)
-
+        router.post('/company/auth', jsonBodyParse, authenticateCompany)
+        router.get('/company', retrieveCompany)
+        router.patch('/company', jsonBodyParse, updateCompany)
+        router.delete('/company', jsonBodyParse, unregisterCompany)
 
         api.use('/api', router)
 

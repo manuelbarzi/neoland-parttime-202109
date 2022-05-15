@@ -1,5 +1,5 @@
 const { registerCompany } = require('logic')
-const { errors: { DuplicityError, FormatError } } = require('commons')
+const { errors: { DuplicityError, FormatError, TypeError } } = require('commons')
 
 module.exports = (req, res) => {
     try {

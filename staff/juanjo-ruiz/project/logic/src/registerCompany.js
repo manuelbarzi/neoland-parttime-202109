@@ -1,11 +1,11 @@
 const { models: { Company } } = require('data')
 const bcrypt = require('bcryptjs')
-const { errors: { DuplicityError }, validators: { validateString, validateEmail, validatePassword } } = require('commons')
+const { errors: { DuplicityError }, validators: { validateString, validateEmail, validatePassword, validateCif } } = require('commons')
 
 
 function registerCompany(businessName, cif, name, email, password, role = 'admin') {
     validateString(businessName, 'business name')
-    validateString(cif, 'cif')
+    validateCif(cif)
     validateString(name, 'name')
     validateEmail(email)
     validatePassword(password)

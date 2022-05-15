@@ -10,7 +10,7 @@ function authenticateCompany(email, password) {
             .then(company => {
                 if (!company) throw new AuthError(`email don't exists`)
 
-                return bcrypt.compare(password, user.password)
+                return bcrypt.compare(password, company.password)
                     .then(match => {
                         if (!match) throw new AuthError('wrong credentials')
 
