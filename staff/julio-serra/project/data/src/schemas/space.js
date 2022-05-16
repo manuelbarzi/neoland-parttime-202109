@@ -20,7 +20,7 @@ const space = new Schema({
         required: true,
         default: Date.now
     },
-    comments: [Review],
+    reviews: [Review],
     bookings: [Booking],
     image: {
         type: String,
