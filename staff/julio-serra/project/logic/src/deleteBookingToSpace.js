@@ -1,28 +1,28 @@
 const { models: { User, Space } } = require('data')
 const { validators: { validateId }, errors: { NotFoundError } } = require('commons')
 
-function deleteReviewToSpace(adminId, spaceId, reviewId) {
+function deleteBookingToSpace(adminId, spaceId, bookingId) {
     validateId(adminId, 'admin id')
     validateId(spaceId, 'space id')
-    validateId(reviewId, 'review id')
+    validateId(bookingId, 'booking id')
 
     return Promise.all([User.findById(adminId), Space.findById(spaceId)])
         .then(([user, space]) => {
             if (!user) throw new NotFoundError(`user with id ${adminId} not found`)
             if (!space) throw new NotFoundError(`space with id ${spaceId} not found`)
 
-            const { reviews } = space
+            const { bookings } = space
 
-            const reviewIndex = reviews.findIndex(review => review.id === reviewId)
+            const bookingIndex = bookings.findIndex(booking => booking.id === bookingId)
 
-            if (reviewIndex < 0)
-                throw new NotFoundError(`space with id ${spaceId} not found`)
-            
-            reviews.splice(reviewIndex, 1)
-            
+            if (bookingIndex < 0)
+                throw new NotFoundError(`booking with id ${bookingId} not found`)
+
+            bookings.splice(bookingIndex, 1)
+
             return space.save()
         })
         .then(() => { })
 }
 
-module.exports = deleteReviewToSpace
+module.exports = deleteBookingToSpace

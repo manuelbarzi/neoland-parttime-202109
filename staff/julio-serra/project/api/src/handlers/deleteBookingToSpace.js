@@ -1,16 +1,17 @@
+const { deleteBookingToSpace } = require('logic')
 const { extractUserIdFromAuthorization } = require('../helpers')
-const { createBooking } = require('logic')
 
 module.exports = (req, res) => {
     try {
         const userId = extractUserIdFromAuthorization(req)
 
-        const { params: { spaceId } } = req
-        
-        createBooking(userId, spaceId)
-            .then(() => res.status(201).send())
+        const { params: { spaceId, bookingId } } = req
+
+        deleteBookingToSpace(userId, spaceId, bookingId)
+            .then(() => res.status(204).send())
             .catch(error => res.status(400).json({ error: error.message }))
-    } catch (error) {
+   
+        } catch (error) {
         res.status(400).json({ error: error.message })
     }
 }

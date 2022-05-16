@@ -1,9 +1,9 @@
 require('dotenv').config()
 const express = require('express')
-const { registerUser, authenticateUser, retrieveUser, 
-    deleteUser, createSpace, retrieveSpace, deleteSpace, 
-    createReview, deleteReview, addReviewToSpace, 
-    createBooking, deleteReviewToSpace
+const { registerUser, authenticateUser, retrieveUser,
+    deleteUser, createSpace, retrieveSpace, deleteSpace,
+    addReviewToSpace, addBookingToSpace, deleteReviewToSpace,
+    deleteBookingToSpace
 } = require('./handlers')
 const { mongoose: { connect } } = require('data')
 const cors = require('cors') // para evitar el error de CORS
@@ -34,22 +34,22 @@ connect(MONGODB_URL)
         router.post('/spaces', jsonBodyParser, createSpace)
 
         // RETRIEVE SPACE
-        router.get('/spaces/:spaceId', jsonBodyParser, retrieveSpace)
+        router.get('/spaces/:spaceId', retrieveSpace)
 
         // DELETE SPACE
         router.delete('/spaces/:spaceId', jsonBodyParser, deleteSpace)
 
-        // // CREATE REVIEW
-        // router.post('/reviews/', jsonBodyParser, createReview)
-
         // ADD REVIEW TO SPACE
         router.post('/spaces/:spaceId/reviews', jsonBodyParser, addReviewToSpace)
 
-        // CREATE BOOKING TO SPACE
-        router.post('/spaces/:spaceId/bookings', jsonBodyParser, createBooking)
+        // ADD BOOKING TO SPACE
+        router.post('/spaces/:spaceId/bookings', jsonBodyParser, addBookingToSpace)
 
         // DELETE REVIEW TO SPACE
-        router.delete('/spaces/:spaceId/:reviewId', jsonBodyParser, deleteReviewToSpace)
+        router.delete('/spaces/:spaceId/reviews/:reviewId', jsonBodyParser, deleteReviewToSpace)
+
+        // DELETE BOOKING TO SPACE
+        router.delete('/spaces/:spaceId/bookings/:bookingId', jsonBodyParser, deleteBookingToSpace)
 
 
         api.use('/api', router)
