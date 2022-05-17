@@ -1,5 +1,5 @@
 const { models: { User, Space, Review } } = require('data')
-const { validators: { validateId, validateString, validateRange } } = require('commons')
+const { validators: { validateId, validateString, validateRange }, errors: { NotFoundError } } = require('commons')
 
 function addReviewToSpace(userId, spaceId, text, score) {
     validateId(userId, 'user id')
@@ -9,8 +9,8 @@ function addReviewToSpace(userId, spaceId, text, score) {
 
     return Promise.all([User.findById(userId), Space.findById(spaceId)])
         .then(([user, space]) => {
-            if (!user) throw new Error(`user with id ${userId} not found`)
-            if (!space) throw new Error(`user with id ${spaceId} not found`)
+            if (!user) throw new NotFoundError(`user with id ${userId} not found`)
+            if (!space) throw new NotFoundError(`user with id ${spaceId} not found`)
 
             const review = new Review({ user: userId, text, score })
 

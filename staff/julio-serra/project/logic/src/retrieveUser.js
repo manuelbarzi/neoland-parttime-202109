@@ -4,14 +4,18 @@ const {
 } = require('data')
 const { 
     validators: 
-    { validateId } 
+    { validateId },
+    errors: 
+    {NotFoundError} 
 } = require('commons')
 
-function retrieveUser(id) {
-    validateId(id, 'user id')
+function retrieveUser(userId) {
+    validateId(userId, 'user id')
 
-    return User.findById(id).lean()
+    return User.findById(userId).lean()
     .then(user => {
+        if(!user) throw new NotFoundError(`user with id ${userId} not found`)
+       
         user.id = user._id.toString()
         
         delete user.id // borramos del doc la propiedad _id

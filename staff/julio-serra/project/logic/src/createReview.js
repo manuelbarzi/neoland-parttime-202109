@@ -1,5 +1,5 @@
 const { models: { User, Review } } = require('data')
-const { validators: { validateId, validateString, validateRange } } = require('commons')
+const { validators: { validateId, validateString, validateRange }, errors: { NotFoundError } } = require('commons')
 
 function createReview(userId, text, score) {
     validateId(userId, 'user id')
