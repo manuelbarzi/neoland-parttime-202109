@@ -22,7 +22,7 @@ Los negocios podrán promocionarse y responder a preguntas de los usuarios.
 
 
 ### Wireframes / UI Design
-![](images/WireFrames.jpg)
+![](images/WireFrames.png)
 
 ### Tecnical Description
 
@@ -47,3 +47,6 @@ add a photo to user
 - Mongo ![](https://www.mongodb.com/favicon.ico)
 
 ### TODO list
+Add locals as Users
+Add map
+Add chat general
