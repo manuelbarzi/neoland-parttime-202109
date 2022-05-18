@@ -23,6 +23,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.2",
     "nodemon": "^2.0.16"
   }
 }

@@ -1,1 +1,1 @@
-{"dependencies":{"project":"^0.1.6","react-router-dom":"^6.3.0"}}
+{"dependencies":{"project":"^0.1.6","react-router-dom":"^6.3.0"},"devDependencies":{"@tailwindcss/forms":"^0.5.2","install":"^0.13.0","npm":"^8.10.0"}}
