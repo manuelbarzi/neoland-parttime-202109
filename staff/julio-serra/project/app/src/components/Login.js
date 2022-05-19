@@ -22,7 +22,7 @@ export default function AuthenticateUser({ onloggedIn }) {
     return (
         <>    <section className="container w-full mx-auto pt-24 px-6">
             <div>
-                <p className="text-2xl font-bold text-center pb-8">Sign in to NoteApp</p>
+                <p className="text-2xl font-bold text-center pb-8">Sign in to Space Local</p>
                 <form className="grid gap-6 w-1/4 mx-auto" onSubmit={auth}>
                     <label>
                         <input className="w-full" type="email" name="email" placeholder="email" />

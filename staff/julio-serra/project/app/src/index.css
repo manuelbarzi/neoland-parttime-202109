@@ -1,3 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --principal-font: 'Pacifico', cursive;
+    --principal-color: #6563FF;
+    --secondary-color: #FF7353;
+    --tertiary-color: #1C1E4F;
+    --quaternary-color: #000000;
+    --font-size-base: 1.6rem;
+    --font-size-small: 1.2rem;
+    --font-size-extrasmall: 1rem;
+}
+.nav__font {
+    font-family: var(--principal-font);
+}
+.nav__text {
+    color: var(--principal-color);
+    font-family: var(--principal-font);
+}
+body {
+    margin: auto;
+    padding: 0 2rem;
+    max-width: 1400px
+}
