@@ -1,4 +1,4 @@
-const { extractCompanyIdFromAuthorization } = require('./helpers')
+const { extractCompanyIdFromAuthorization } = require('./helpersCompany')
 const { updateCompany } = require('logic')
 const { errors: { AuthError, NotFoundError, TypeError, FormatError } } = require('commons')
 

@@ -8,7 +8,14 @@ const {
     authenticateCompany,
     retrieveCompany,
     updateCompany,
-    unregisterCompany
+    unregisterCompany,
+    createUser,
+    authenticateUser,
+    retrieveUser,
+    updateUser,
+    unregisterUser,
+    activateUser,
+    disableUser
 } = require('./handlers')
 
 const { env: { MONGODB_URL, PORT } } = process
@@ -30,6 +37,14 @@ connect(MONGODB_URL)
         router.get('/company', retrieveCompany)
         router.patch('/company', jsonBodyParse, updateCompany)
         router.delete('/company', jsonBodyParse, unregisterCompany)
+
+        router.post('/driver', jsonBodyParse, createUser)
+        router.post('/driver/auth', jsonBodyParse, authenticateUser)
+        router.get('/driver', retrieveUser)
+        router.patch('/driver', jsonBodyParse, updateUser)
+        router.delete('/driver/:userId', jsonBodyParse, unregisterUser)
+        router.patch('/driver/:userId/desactivated', jsonBodyParse, activateUser)
+        router.patch('/driver/:userId/active', jsonBodyParse, disableUser)
 
         api.use('/api', router)
 
