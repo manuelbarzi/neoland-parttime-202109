@@ -6,7 +6,7 @@ module.exports = (req, res) => {
     try {
         const companyId = extractCompanyIdFromAuthorization(req)
 
-        const { params: { userId }, body: { password, avtive } } = req
+        const { params: { userId }, body: { password, active } } = req
 
         activateUser(companyId, userId, password, active)
             .then(() => res.status(204).send())

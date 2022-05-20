@@ -15,7 +15,8 @@ const {
     updateUser,
     unregisterUser,
     activateUser,
-    disableUser
+    disableUser,
+    createVehicle
 } = require('./handlers')
 
 const { env: { MONGODB_URL, PORT } } = process
@@ -45,6 +46,8 @@ connect(MONGODB_URL)
         router.delete('/driver/:userId', jsonBodyParse, unregisterUser)
         router.patch('/driver/:userId/desactivated', jsonBodyParse, activateUser)
         router.patch('/driver/:userId/active', jsonBodyParse, disableUser)
+
+        router.post('/vehicle', jsonBodyParse, createVehicle)
 
         api.use('/api', router)
 

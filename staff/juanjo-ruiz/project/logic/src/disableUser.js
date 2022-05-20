@@ -2,7 +2,7 @@ const { models: { Company, User } } = require('data')
 const { validators: { validateId, validateBoolean, validatePassword }, errors: { NotFoundError, AuthError } } = require('commons')
 const bcrypt = require('bcryptjs')
 
-function disableUser(companyId, userId, password, active = 'false') {
+function disableUser(companyId, userId, password, active = false) {
     validateId(companyId, 'company id')
     validateId(userId, 'user id')
     validatePassword(password)

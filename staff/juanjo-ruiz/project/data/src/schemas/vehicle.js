@@ -5,13 +5,14 @@ const part = require('./part')
 const vehicle = new Schema({
     user: {
         type: ObjectId,
-        ref: 'User',
+        ref: 'Company',
         required: true
     },
 
     lisense: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 
     brand: {

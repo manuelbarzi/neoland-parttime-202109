@@ -10,6 +10,7 @@ const updateUser = require('./updateUser')
 const unregisterUser = require('./unregisterUser')
 const activateUser = require('./activateUser')
 const disableUser = require('./disableUser')
+const createVehicle = require('./createVehicle')
 
 module.exports = {
     registerCompany,
@@ -23,5 +24,6 @@ module.exports = {
     updateUser,
     unregisterUser,
     activateUser,
-    disableUser
+    disableUser,
+    createVehicle
 }
