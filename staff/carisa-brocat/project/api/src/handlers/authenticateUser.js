@@ -20,6 +20,7 @@ module.exports = (req, res) => {
 
                 if (error instanceof AuthError)
                     status = 401
+                
 
                 res.status(status).json({ error: error.message })
             })
@@ -28,6 +29,7 @@ module.exports = (req, res) => {
 
         if (error instanceof TypeError || error instanceof FormatError)
             status = 400
+    
 
         res.status(status).json({ error: error.message })
     }

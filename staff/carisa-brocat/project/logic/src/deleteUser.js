@@ -14,9 +14,10 @@ function deleteUser(userId, password) {
     validateId(userId, 'userId')
     validatePassword(password)
 
-    return User.findById(userId).lean()
+    return User.findById(userId)
         .then(user => {
-            return comparePassword(password, user)
+
+            return comparePassword(password, user.password)
                 .then((isSamePassword) => {
                     if (!isSamePassword) {
                         throw new AuthError('Invalid Credentials')
@@ -28,9 +29,6 @@ function deleteUser(userId, password) {
                             throw new ClientError(error.message)
                         })
                 })
-        })
-        .catch(error => {
-            throw new ClientError(error.message)
         })
 }
 

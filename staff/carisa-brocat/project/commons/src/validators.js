@@ -20,14 +20,16 @@ function validateCallback(callback) {
 function validateToken(token) {
     if (typeof token !== 'string') throw new TypeError('token is not string')
     if (!token.trim()) throw new FormatError('token is empty or blank')
+    if (token.length !== 172) throw new FormatError('invalid token')
 
-    const parts = sessionStorage.token.split('.')
+    const parts = token.split('.')
 
     if (parts.length !== 3) throw new FormatError('invalid token')
 
     const [, payload64] = parts
 
-    const payloadJson = Buffer.from(payload64, 'base64').buff.toString('ascii') //cuando no se usa el validate del jsonwebtoken y por tanto se usa el buffer para decodificar
+    // const payloadJson = Buffer.from(payload64, 'base64').buff.toString('ascii') //cuando no se usa el validate del jsonwebtoken y por tanto se usa el buffer para decodificar
+    const payloadJson = atob(payload64)
 
     const payload = JSON.parse(payloadJson)
 

@@ -1,18 +1,23 @@
-const { retrieveUser } = require('logic')
+const { updateEmail } = require('logic')
 const extractUserIdFromToken = require('./helpers/extractUserIdFromToken')
-const { errors: { AuthError, FormatError, ClientError } } = require('commons')
+const { errors: { FormatError, ClientError, AuthError, DuplicityError } } = require('commons')
 
 module.exports = (req, res) => {
     try {
         const userId = extractUserIdFromToken(req)
 
-        retrieveUser(userId)
-            .then(user => res.status(200).send({ user }))
+        const { body: { password, email } } = req
+
+        updateEmail(userId, password, email)
+            .then(() => res.status(204).send())
             .catch(error => {
                 let status = 500
 
-                if (error instanceof ClientError)
-                    status = 400
+                if (error instanceof AuthError)
+                    status = 401
+
+                if (error instanceof DuplicityError)
+                    status = 409
 
                 res.status(status).json({ error: error.message })
             })

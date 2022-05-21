@@ -22,14 +22,13 @@ const post = new Schema({
         type: String,
     },
 
-    type: {
+    category: {
         type: String,
         required: true,
     },
 
     subject: {
         type: String,
-        required: true,
     },
 
     image: {
@@ -46,12 +45,12 @@ const post = new Schema({
 
     date: {
         type: Date,
-        default: Date.now,
         required: true,
+        default: Date.now,
     },
 
     address: {
-        type: [String],
+        type: String,
     },
 
     comments: [comment]

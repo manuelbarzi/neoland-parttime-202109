@@ -1,4 +1,4 @@
-const { errors: { ClientError } } = require('commons')
+const { errors: { ClientError }, validators: { validateToken } } = require('commons')
 const { verify } = require('jsonwebtoken')
 const { env: { JWT_SECRET } } = process
 
@@ -8,11 +8,13 @@ module.exports = req => {
 
     const [, token] = authorization.split(' ')
 
-    try {
+    validateToken(token)
 
-        const {sub: userId} = verify(token, JWT_SECRET) //el verify, verifica y devuleve el token decodificado como se creo en el authenticate
+    try {
+        const { sub: userId } = verify(token, JWT_SECRET) //el verify, verifica y devuelve el token decodificado como se creo en el authenticate
 
         return userId
+
     } catch (error) {
         throw new ClientError(error.message)
     }

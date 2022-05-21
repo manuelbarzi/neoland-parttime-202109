@@ -2,7 +2,7 @@ const { models: { User } } = require('data')
 const { validators: {
     validateId,
 }, errors: {
-    ClientError
+    ClientError,
 } } = require('commons')
 
 function retrieveUser(userId) {
@@ -16,7 +16,6 @@ function retrieveUser(userId) {
             delete user.__v
 
             delete user.password
-            console.log(user)
             return user
         })
         .catch(error => {

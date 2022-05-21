@@ -1,6 +1,7 @@
 const { models: { User } } = require('data')
 const { errors: {
-    AuthError
+    AuthError,
+    NotFoundError,
 },
     validators: {
         validatePassword,
@@ -23,12 +24,13 @@ function updatePassword(userId, oldPassword, newPassword) {
 
                     return encryptPassword(newPassword)
                 })
-                .then(hash => {
-                    user.password = hash
+                .then(hash => User.updateOne({ _id: userId }, { password: hash }))
+                .then(result => {
+                    const usersIdFinded = result.matchedCount //el matchedCount es una propiedad del updateOne que devuelve el numero de objetos encontrados con el parametro, en este caso userId 
 
-                    return user.save()
+                    if (usersIdFinded === 0)
+                        throw new NotFoundError(`user with id ${userId} not found`)
                 })
-                .then(user => { })
         })
 
 }

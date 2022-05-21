@@ -17,11 +17,14 @@ function registerUser(nickname, email, password) {
     validatePassword(password)
 
     return encryptPassword(password)
-        .then(hash => User.create({ nickname, email, password: hash}))
+        .then(hash => User.create({ nickname, email, password: hash }))
         .then(user => { })
         .catch(error => {
-            if (error.message.includes('duplicate'))
-                throw new DuplicityError('user already exists')
+            if (error.message.includes('duplicate') & error.message.includes('email'))
+                throw new DuplicityError('email already exist')
+
+            if (error.message.includes('duplicate') & error.message.includes('nickname'))
+                throw new DuplicityError('this nickname is already in use')
 
             throw new ClientError(error.message)
         })

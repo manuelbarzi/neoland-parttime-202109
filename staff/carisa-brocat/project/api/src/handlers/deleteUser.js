@@ -9,23 +9,29 @@ module.exports = (req, res) => {
          const { body: { password } } = req
 
         deleteUser(userId, password)
-            .then(result => res.status(200).send())
+            .then(() => res.status(204).send())
             .catch(error => {
                 let status = 500
 
                 if (error instanceof AuthError)
                     status = 401
+                
 
                 if (error instanceof ClientError)
                     status = 400
+                
         
                 res.status(status).json({ error: error.message })
             })
     } catch (error) {
         let status = 500
 
-        if (error instanceof TypeError || error instanceof FormatError || error instanceof ClientError)
+        if (error instanceof AuthError)
+                    status = 401
+
+        if (error instanceof TypeError || error instanceof FormatError || error instanceof ClientError){
             status = 400
+        }
 
         res.status(status).json({ error: error.message })
     }

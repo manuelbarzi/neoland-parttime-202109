@@ -8,9 +8,13 @@ const {
     authenticateUser,
     retrieveUser,
     updatePassword,
+    updateEmail,
     updateUser,
-    deleteUser
+    deleteUser,
+    createPost,
+    deletePost
 } = require('./handlers')
+
 
 const { env: { MONGODB_URL, PORT } } = process
 
@@ -31,7 +35,10 @@ connect(MONGODB_URL)
         router.get('/users', retrieveUser)
         router.patch('/users', jsonBodyParser, updateUser)
         router.patch('/users/password', jsonBodyParser, updatePassword)
+        router.patch('/users/email', jsonBodyParser, updateEmail)
         router.delete('/users', jsonBodyParser, deleteUser)
+        router.post('/posts', jsonBodyParser, createPost)
+        router.delete('/posts/:postId', jsonBodyParser, deletePost)
 
 
         api.use('/api', router)

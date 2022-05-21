@@ -1,7 +1,6 @@
 const { models: { User } } = require('data')
 const { errors: {
     AuthError,
-    ClientError,
 },
     validators: {
         validateEmail,
@@ -16,17 +15,14 @@ function authenticateUser(email, password) {
 
     return User.findOne({ email })
         .then(user => {
+            if (!user)  throw new AuthError('The email or password are invalid')
 
-            return comparePassword(password, user) //compara el password encriptado y el q pasa el usuario, devuelve booleano
+            return comparePassword(password, user.password) //compara el password encriptado y el q pasa el usuario, devuelve booleano
                 .then((isSamePassword) => {
-                    if (!isSamePassword) {
+                    if (!isSamePassword) 
                         throw new AuthError('Invalid Credentials')
-                    }
-
+                    
                     return user.id
-                })
-                .catch(error => {
-                    throw new ClientError(error.message)
                 })
         })
 }

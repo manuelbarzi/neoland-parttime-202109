@@ -22,7 +22,7 @@ const user = new Schema({
     },
 
     image: {
-        type: String,
+        type: String, // "qasfas0892348wasdfasdf.png"
     },
 
     hairTexture: {
@@ -30,6 +30,10 @@ const user = new Schema({
     },
 
     interests: {
+        type: [String],
+    },
+
+    favoritePosts: {
         type: [String],
     },
 })
