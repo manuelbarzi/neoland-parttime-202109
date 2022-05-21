@@ -27,7 +27,8 @@ const vehicle = new Schema({
 
     frame: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 
     image: {

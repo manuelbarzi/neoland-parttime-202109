@@ -16,7 +16,12 @@ const {
     unregisterUser,
     activateUser,
     disableUser,
-    createVehicle
+    createVehicle,
+    retrieveVehicle,
+    retrieveActiveVehicles,
+    retrieveDeactivatedVehicles,
+    activateVehicle,
+    disableVehicle
 } = require('./handlers')
 
 const { env: { MONGODB_URL, PORT } } = process
@@ -39,15 +44,20 @@ connect(MONGODB_URL)
         router.patch('/company', jsonBodyParse, updateCompany)
         router.delete('/company', jsonBodyParse, unregisterCompany)
 
-        router.post('/driver', jsonBodyParse, createUser)
-        router.post('/driver/auth', jsonBodyParse, authenticateUser)
-        router.get('/driver', retrieveUser)
-        router.patch('/driver', jsonBodyParse, updateUser)
-        router.delete('/driver/:userId', jsonBodyParse, unregisterUser)
-        router.patch('/driver/:userId/desactivated', jsonBodyParse, activateUser)
-        router.patch('/driver/:userId/active', jsonBodyParse, disableUser)
+        router.post('/user', jsonBodyParse, createUser)
+        router.post('/user/auth', jsonBodyParse, authenticateUser)
+        router.get('/user', retrieveUser)
+        router.patch('/user', jsonBodyParse, updateUser)
+        router.delete('/user/:userId', jsonBodyParse, unregisterUser)
+        router.patch('/user/:userId/deactivated', jsonBodyParse, activateUser)
+        router.patch('/user/:userId/active', jsonBodyParse, disableUser)
 
         router.post('/vehicle', jsonBodyParse, createVehicle)
+        router.get('/vehicles/active', retrieveActiveVehicles)
+        router.get('/vehicles/deactivated', retrieveDeactivatedVehicles)
+        router.get('/vehicle/:vehicleId', retrieveVehicle)
+        router.patch('/vehicle/:vehicleId/deactivated', jsonBodyParse, activateVehicle)
+        router.patch('/vehicle/:vehicleId/active', jsonBodyParse, disableVehicle)
 
         api.use('/api', router)
 
