@@ -14,7 +14,6 @@ function retrieveActiveVehicles(userId) {
             vehicles.forEach(vehicle => {
 
                 vehicle.id = vehicle._id.toString()
-                vehicle.userId = vehicle.user._id.toString()
     
                 delete vehicle._id
                 delete vehicle.user._id

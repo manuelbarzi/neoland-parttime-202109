@@ -18,6 +18,7 @@ const activateVehicle = require('./activateVehicle')
 const disableVehicle = require('./disableVehicle')
 const updateVehicle = require('./updateVehicle')
 const deleteVehicle = require('./deleteVehicle')
+const createPart = require('./createPart')
 
 module.exports = {
     registerCompany,
@@ -39,5 +40,6 @@ module.exports = {
     activateVehicle,
     disableVehicle,
     updateVehicle,
-    deleteVehicle
+    deleteVehicle,
+    createPart
 }
