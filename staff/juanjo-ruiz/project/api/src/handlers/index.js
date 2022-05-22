@@ -16,6 +16,8 @@ const retrieveActiveVehicles = require('./retrieveActiveVehicle')
 const retrieveDeactivatedVehicles = require('./retrieveDeactivatedVehicles')
 const activateVehicle = require('./activateVehicle')
 const disableVehicle = require('./disableVehicle')
+const updateVehicle = require('./updateVehicle')
+const deleteVehicle = require('./deleteVehicle')
 
 module.exports = {
     registerCompany,
@@ -35,5 +37,7 @@ module.exports = {
     retrieveActiveVehicles,
     retrieveDeactivatedVehicles,
     activateVehicle,
-    disableVehicle
+    disableVehicle,
+    updateVehicle,
+    deleteVehicle
 }

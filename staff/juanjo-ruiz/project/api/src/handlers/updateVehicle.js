@@ -1,14 +1,14 @@
 const { extractCompanyIdFromAuthorization } = require('./helpersCompany')
-const { updateUser } = require('logic')
+const { updateVehicle } = require('logic')
 const { errors: { AuthError, NotFoundError, TypeError, FormatError } } = require('commons')
 
 module.exports = (req, res) => {
     try {
         const companyId = extractCompanyIdFromAuthorization(req)
 
-        const { params: { userId }, body: { name, email } } = req
+        const { params: { vehicleId }, body: { lisense, brand, model, frame } } = req
 
-        updateUser(companyId, userId, name, email)
+        updateVehicle(companyId, vehicleId, lisense, brand, model, frame)
             .then(() => res.status(204).send())
             .catch(error => {
                 let status = 500
