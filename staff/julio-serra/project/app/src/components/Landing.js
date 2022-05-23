@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import logo from '../assets/img/logo.png'
-
+import Cards from './Cards'
 export default function Landing() {
 
     const navigate = useNavigate()
@@ -41,31 +41,8 @@ export default function Landing() {
                 </container>
             </section>
 
-            <section className='bg-slate-300 pb-10'>
-                <h1 className='nav__font black text-4xl'>Our Spaces</h1>
-                <container className="grid grid-cols-2 gap-10 m-10">
-                    <cards className="bg-white rounded-2xl">
-                        <picture className="flex justify-center"><img src='https://picsum.photos/800/300' alt='' /></picture>
-                        <h1 className="nav__font black text-xl">Title 1</h1>
-                        <div className='cards__description'>Descriptions</div>
-                        <div className='cards__price'>
-                            <span>Precio tachado</span>
-                            <span>Precio con rebaja</span>
-                        </div>
-                        <button>View Listing</button>
-                    </cards>
-                    <cards className="bg-white rounded-2xl">
-                        <picture className="flex justify-center"><img src='https://picsum.photos/800/300' alt='' /></picture>
-                        <h1 className="nav__font black text-xl">Title 1</h1>
-                        <div className='cards__description'>Descriptions</div>
-                        <div className='cards__price'>
-                            <span>Precio tachado</span>
-                            <span>Precio con rebaja</span>
-                        </div>
-                        <button>View Listing</button>
-                    </cards>
-                </container>
-            </section>
+                    <Cards />
+
             <footer className="grid grid-cols-2">
                 <div className='bg-tertiary-color text-white p-15'>
                     <div className="flex items-center justify-evenly">
