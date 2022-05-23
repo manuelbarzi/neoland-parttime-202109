@@ -1,41 +1,35 @@
-const { updateUser } = require('logic')
+const { retrievePostsBy } = require('logic')
+const { errors: { FormatError, AuthError, NotFoundError } } = require('commons')
 const extractUserIdFromToken = require('./helpers/extractUserIdFromToken')
-const { errors: { NotFoundError, FormatError, ClientError, DuplicityError } } = require('commons')
 
 module.exports = (req, res) => {
     try {
         const userId = extractUserIdFromToken(req)
 
-        const { body: { nickname, image, hairTexture, interests, favoritePosts} } = req
+        const { body: { category, subject } } = req
 
-        updateUser(userId, nickname, image, hairTexture, interests, favoritePosts)
-            .then(() => res.status(204).send())
+        retrievePostsBy(userId, category, subject)
+            .then(posts => res.status(200).send(posts))
             .catch(error => {
                 let status = 500
 
                 if (error instanceof NotFoundError)
                     status = 404
 
-                if (error instanceof DuplicityError)
-                    status = 409
-
                 res.status(status).json({ error: error.message })
             })
+
     } catch (error) {
         let status = 500
 
         if (error instanceof AuthError)
-                    status = 401
+            status = 401
 
-        if (error instanceof TypeError || error instanceof FormatError || error instanceof ClientError)
+        if (error instanceof TypeError || error instanceof FormatError)
             status = 400
 
         res.status(status).json({ error: error.message })
     }
 
 }
-
-
-
-
 

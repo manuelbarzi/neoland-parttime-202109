@@ -6,7 +6,7 @@ const { errors: {
 }
 } = require('commons')
 
-function retrieveUserPosts(userId) {
+function retrieveAllPosts(userId) {
     validateId(userId, 'userId')
 
     return User.findById(userId)
@@ -15,7 +15,7 @@ function retrieveUserPosts(userId) {
                 throw new NotFoundError('User not found')
             }
 
-            return Post.find({ user: userId }).lean().populate('user').sort('-date')
+            return Post.find().lean().populate('user').sort('-date')
         })
         .then(posts => {
             if (!posts)
@@ -53,4 +53,4 @@ function retrieveUserPosts(userId) {
         })
 }
 
-module.exports = retrieveUserPosts
+module.exports = retrieveAllPosts

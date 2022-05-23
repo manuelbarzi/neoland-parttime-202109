@@ -7,7 +7,12 @@ const updateEmail = require('./updateEmail')
 const deleteUser = require('./deleteUser')
 const createPost = require('./createPost')
 const deletePost = require('./deletePost')
-
+const retrieveUserPosts = require('./retrieveUserPosts')
+const retrieveAllPosts = require('./retrieveAllPosts')
+const retrievePost = require('./retrievePost')
+const updatePostFeedback = require('./updatePostFeedback')
+const addCommentToPost = require('./addCommentToPost')
+const retrievePostsBy = require('./retrievePostsBy')
 
 module.exports = {
     registerUser,
@@ -19,4 +24,10 @@ module.exports = {
     updateEmail,
     createPost,
     deletePost,
+    retrieveUserPosts,
+    retrieveAllPosts,
+    retrievePost,
+    updatePostFeedback,
+    addCommentToPost,
+    retrievePostsBy
 }

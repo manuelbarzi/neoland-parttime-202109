@@ -20,7 +20,7 @@ function deletePost(userId, postId) {
             const postDeleted = result.deletedCount
 
             if (postDeleted === 0)
-                throw new NotFoundError('Not comment have been deleted.Check if the comment already exist')
+                throw new NotFoundError('Post not found')
         })
 }
 

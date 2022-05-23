@@ -1,6 +1,7 @@
 const { models: { User } } = require('data')
 const { errors: {
-    AuthError
+    AuthError,
+    NotFoundError
 },
     validators: {
         validatePassword,
@@ -16,6 +17,10 @@ function updatePassword(userId, oldPassword, newPassword) {
 
     return User.findById(userId)
         .then(user => {
+            if (!user) {
+                throw new NotFoundError('User not found')
+            }
+
             return comparePassword(oldPassword, user.password) //compara el password encriptado y el q pasa el usuario, devuelve booleano
                 .then((isSamePassword) => {
                     if (!isSamePassword)

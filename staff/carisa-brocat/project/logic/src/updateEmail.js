@@ -2,7 +2,7 @@ const { models: { User } } = require('data')
 const { errors: {
     AuthError,
     DuplicityError,
-    ClientError
+    NotFoundError
 },
     validators: {
         validatePassword,
@@ -19,6 +19,10 @@ function updateEmail(userId, password, email) {
 
     return User.findById(userId)
         .then(user => {
+            if (!user) {
+                throw new NotFoundError('User not found')
+            }
+
             return comparePassword(password, user.password) //compara el password encriptado y el q pasa el usuario, devuelve booleano
                 .then((isSamePassword) => {
                     if (!isSamePassword)
@@ -27,12 +31,13 @@ function updateEmail(userId, password, email) {
                     user.email = email
 
                     return user.save()
-                        .then(user => { })
-                        .catch(error => {
-                            if (error.message.includes('duplicate') & error.message.includes('email'))
-                                throw new DuplicityError('This email already exists')
-                        })
                 })
+                .then(user => { })
+                .catch(error => {
+                    if (error.message.includes('duplicate') & error.message.includes('email'))
+                        throw new DuplicityError('This email already exists')
+                })
+
 
         })
 

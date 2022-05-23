@@ -3,7 +3,7 @@ require('dotenv').config()
 const { mongoose: { connect, disconnect } } = require('data')
 const express = require('express')
 const cors = require('cors')
-const { 
+const {
     registerUser,
     authenticateUser,
     retrieveUser,
@@ -12,7 +12,13 @@ const {
     updateUser,
     deleteUser,
     createPost,
-    deletePost
+    deletePost,
+    retrieveUserPosts,
+    retrieveAllPosts,
+    retrievePost,
+    updatePostFeedback,
+    addCommentToPost,
+    retrievePostsBy
 } = require('./handlers')
 
 
@@ -39,7 +45,12 @@ connect(MONGODB_URL)
         router.delete('/users', jsonBodyParser, deleteUser)
         router.post('/posts', jsonBodyParser, createPost)
         router.delete('/posts/:postId', jsonBodyParser, deletePost)
-
+        router.get('/user/posts', retrieveUserPosts)
+        router.get('/posts/', retrieveAllPosts)
+        router.get('/posts/by', jsonBodyParser, retrievePostsBy)
+        router.get('/posts/:postId', jsonBodyParser, retrievePost)
+        router.patch('/posts/:postId', jsonBodyParser, updatePostFeedback)
+        router.post('/posts/:postId/comment', jsonBodyParser, addCommentToPost)
 
         api.use('/api', router)
 

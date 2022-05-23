@@ -9,7 +9,7 @@ const { errors: {
     }
 } = require('commons')
 
-function updateUser(userId, nickname, image, hairTexture, interests) {
+function updateUser(userId, nickname, image, hairTexture, interests, favoritePosts) {
     validateId(userId, 'userId')
     if (nickname)
         validateString(nickname, 'nickname')
@@ -21,12 +21,12 @@ function updateUser(userId, nickname, image, hairTexture, interests) {
         validateString(interests, 'interests')
 
 
-    return User.updateOne({ _id: userId }, { nickname, image, hairTexture, interests})
+    return User.updateOne({ _id: userId }, { nickname, image, hairTexture, interests, favoritePosts})
         .then(result => {
             const usersIdFinded = result.matchedCount //el matchedCount es una propiedad del updateOne que devuelve el numero de objetos encontrados con el parametro, en este caso userId 
 
             if (usersIdFinded === 0)
-                throw new NotFoundError(`user with id ${userId} not found`)
+                throw new NotFoundError(`user with not found`)
         })
         .catch(error => {
             if (error.message.includes('duplicate') & error.message.includes('nickname'))

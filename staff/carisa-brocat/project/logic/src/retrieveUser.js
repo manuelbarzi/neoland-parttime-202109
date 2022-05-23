@@ -2,14 +2,19 @@ const { models: { User } } = require('data')
 const { validators: {
     validateId,
 }, errors: {
-    ClientError,
+    ClientError, NotFoundError
 } } = require('commons')
+
 
 function retrieveUser(userId) {
     validateId(userId, 'userId')
 
     return User.findById(userId).lean()
         .then(user => {
+            if (!user) {
+                throw new NotFoundError('User not found')
+            }
+
             user.id = user._id.toString()
             delete user._id
 

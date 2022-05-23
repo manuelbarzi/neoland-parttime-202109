@@ -3,11 +3,18 @@ const { errors: {
     NotFoundError
 }, validators: {
     validateId,
+    validateString,
 }
 } = require('commons')
 
-function retrieveUserPosts(userId) {
+function retrievePostsBy(userId, category, subject) {
     validateId(userId, 'userId')
+    if (category) {
+        validateString(category, 'category')
+    }
+    if (subject) {
+        validateString(subject, 'subject')
+    }
 
     return User.findById(userId)
         .then(user => {
@@ -15,7 +22,7 @@ function retrieveUserPosts(userId) {
                 throw new NotFoundError('User not found')
             }
 
-            return Post.find({ user: userId }).lean().populate('user').sort('-date')
+            return Post.find({ category, subject }).lean().populate('user').sort('-date')
         })
         .then(posts => {
             if (!posts)
@@ -53,4 +60,4 @@ function retrieveUserPosts(userId) {
         })
 }
 
-module.exports = retrieveUserPosts
+module.exports = retrievePostsBy
