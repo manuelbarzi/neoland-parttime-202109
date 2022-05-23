@@ -40,5 +40,6 @@ export default function authenticateUser(email, password) {
                     .then(text => {
                         throw new ServerError(text)
                     })
+                    debugger
         })
 }

@@ -1,5 +1,17 @@
+import { useNavigate } from 'react-router-dom'
 import logo from '../assets/img/logo.png'
+
 export default function Landing() {
+
+    const navigate = useNavigate()
+
+    const { token } = sessionStorage
+    const loggedOut = () => {
+        delete sessionStorage.token
+        navigate('/')
+    }
+
+
     return (
         <>
             <header className="pt-8">
@@ -10,7 +22,11 @@ export default function Landing() {
                         <span className="nav__text text-3xl">Space Local</span>
                     </div>
                     <div className="flex gap-12 items-center">
-                        <span className="nav__font black text-xl hover:text-principal-color"><a href="/login">Login</a></span>
+                        {token ?
+                            <p className='cursor-pointer' onClick={loggedOut}>Log Out</p>
+                            : <span className="nav__font black text-xl hover:text-principal-color"><a href="/login">Login</a></span>
+                        }
+
                         <span className="nav__font black text-xl hover:text-principal-color"><a href="/register">Register</a></span>
                     </div>
                 </nav>
@@ -39,7 +55,7 @@ export default function Landing() {
                         <button>View Listing</button>
                     </cards>
                     <cards className="bg-white rounded-2xl">
-                    <picture className="flex justify-center"><img src='https://picsum.photos/800/300' alt='' /></picture>
+                        <picture className="flex justify-center"><img src='https://picsum.photos/800/300' alt='' /></picture>
                         <h1 className="nav__font black text-xl">Title 1</h1>
                         <div className='cards__description'>Descriptions</div>
                         <div className='cards__price'>
@@ -50,19 +66,19 @@ export default function Landing() {
                     </cards>
                 </container>
             </section>
-        <footer className="grid grid-cols-2">
-            <div className='bg-tertiary-color text-white p-15'>
-                <div className="flex items-center justify-evenly">
-                    <img src={logo} width="45" alt="" />
-                    <h1 className="nav__font black text-4xl">Space Rental</h1>
+            <footer className="grid grid-cols-2">
+                <div className='bg-tertiary-color text-white p-15'>
+                    <div className="flex items-center justify-evenly">
+                        <img src={logo} width="45" alt="" />
+                        <h1 className="nav__font black text-4xl">Space Rental</h1>
+                    </div>
+                    <div>
+                        <p>Copyright 2022 · Space Rental <br />
+                            All rights reserved</p>
+                    </div>
                 </div>
-                <div>
-                    <p>Copyright 2022 · Space Rental <br />
-                    All rights reserved</p>
-                </div>
-            </div>
-            <div>Redes Sociales</div>
-        </footer>
+                <div>Redes Sociales</div>
+            </footer>
         </>
     )
 
