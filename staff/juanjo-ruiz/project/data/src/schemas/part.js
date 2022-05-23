@@ -26,8 +26,7 @@ const part = new Schema({
 
     state: {
         type: Array,
-        required: true,
-        default: [0]
+        required: true
     },
 
     date: {

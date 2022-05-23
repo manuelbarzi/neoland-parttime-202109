@@ -18,6 +18,15 @@ function retrieveVehicle(userId, vehicleId) {
             delete vehicle._id
             delete vehicle.__v
 
+            const { parts } = vehicle
+
+            parts.forEach(part => {
+                part.id = part._id.toString()
+
+                delete part._id
+                delete part.__v
+            })
+
             return vehicle
         })
 }

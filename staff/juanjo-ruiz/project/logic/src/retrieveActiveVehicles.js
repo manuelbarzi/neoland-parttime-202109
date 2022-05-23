@@ -14,10 +14,18 @@ function retrieveActiveVehicles(userId) {
             vehicles.forEach(vehicle => {
 
                 vehicle.id = vehicle._id.toString()
-    
+
                 delete vehicle._id
-                delete vehicle.user._id
                 delete vehicle.__v
+
+                const { parts } = vehicle
+
+                parts.forEach(part => {
+                    part.id = part._id.toString()
+
+                    delete part._id
+                    delete part.__v
+                })
             })
 
             return vehicles
