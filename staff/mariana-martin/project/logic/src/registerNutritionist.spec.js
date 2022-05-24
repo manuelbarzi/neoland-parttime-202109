@@ -2,18 +2,18 @@ require('dotenv').config()
 const { mongoose: { connect, disconnect }, models: { User }} = require('data')
 const { expect } = require('chai') //expect ayuda a comprobar 
 const bcrypt = require('bcryptjs')
-const registerUser = require('./registerUser')
+const registerNutritionist = require('./registerNutritionist')
 const { errors: { DuplicityError}} = require('commons')
 
 const {env: {MONGODB_URL}} = process
 
-describe('registerUser', () => {
+describe('registerNutritionist', () => {
     before(() => connect(MONGODB_URL))
     
     it('should succeed when user does not exist', () => {
        debugger
         return User.deleteMany()
-        .then(() => registerUser( 0, 'wendylee', 'wendy@mail.com', '123456789' ))
+        .then(() => registerNutritionist( 0, 'wendylee', 'wendy@mail.com', '123456789' ))
         .then(() => User.findOne({ email: 'wendy@mail.com'}))
         .then(user => {
             expect(user).to.exist
@@ -34,7 +34,7 @@ describe('registerUser', () => {
                         //lo creo directamente con el modelo
                 return User.create({ role: 0, username: 'campanita', email: 'campa@mail.com', password: hash })
             })          //lo creo por medio de la lógica para que falle, encuentre el mismo user
-            .then(() => registerUser( 0, 'campanita', 'campa@mail.com', '123456789' ))
+            .then(() => registerNutritionist( 0, 'campanita', 'campa@mail.com', '123456789' ))
             .then(() => {
                 throw new Error('should not reach this point')
             })

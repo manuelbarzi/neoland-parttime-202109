@@ -2,12 +2,12 @@ require('dotenv').config()
 const { mongoose: { connect, disconnect, Types: { ObjectId}}, models: { User}} = require('data')
 const { expect } = require('chai')
 const bcrypt = require('bcryptjs')
-const deleteUser = require('./deleteUser')
+const deleteNutritionist = require('./deleteNutritionist')
 const {errors: { NotFoundError }} = require('commons')
 
 const { env: { MONGODB_URL}} = process
 
-describe('deleteUser',() => {
+describe('deleteNutritionist',() => {
     before(() => connect(MONGODB_URL))
 
     it('should succeed when user already exists', () => {
@@ -17,7 +17,7 @@ describe('deleteUser',() => {
 
             return User.create({ role:0, username: 'campanita', email: 'campa@mail.com', password: hash})
         })
-        .then(user => deleteUser(user.id, '123456789'))
+        .then(user => deleteNutritionist(user.id, '123456789'))
     })
 
 //case 2: 
@@ -25,7 +25,7 @@ describe('deleteUser',() => {
         const unknownUserId = new ObjectId().toString()
 
         return User.deleteMany()
-            .then(() => deleteUser(unknownUserId, '123456789'))
+            .then(() => deleteNutritionist(unknownUserId, '123456789'))
             .then(() => {
                 throw new Error('should not reach this point')
             })

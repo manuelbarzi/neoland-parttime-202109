@@ -2,7 +2,7 @@ require('dotenv').config()
 const {mongoose: { connect, disconnect}, models: { User}} = require('data')
 const { expect } = require('chai')
 const bcrypt = require('bcryptjs')
-const authenticateUser = require('./authenticateUser')
+const authenticateNutritionist = require('./authenticateNutritionist')
 const { errors: { AuthError}} = require('commons')
 
 const { env: { MONGODB_URL }} = process
@@ -19,7 +19,7 @@ describe('authenticateUser', () => {
 
                 return User.create({role: 0, username: 'campanita', email: 'campa@mail.com', password: hash})
             })
-            .then(() => authenticateUser('campa@mail.com', '123456789'))
+            .then(() => authenticateNutritionist('campa@mail.com', '123456789'))
             .then(userId => { //El authenticate devuelve el id del user
                 expect(userId).to.exist
                 expect(userId).to.be.a('string')
@@ -33,7 +33,7 @@ describe('authenticateUser', () => {
 //case 2: when user doesn't exist
     it('should fail when user does not exist', () => {
         return User.deleteMany() //borro
-            .then(() => authenticateUser('campa@mail.com', '123456789'))
+            .then(() => authenticateNutritionist('campa@mail.com', '123456789'))
             .then(() => {
                 throw new Error('should not reach this point')
             })
@@ -52,7 +52,7 @@ describe('authenticateUser', () => {
 
                 return User.create({ role:0, username: 'campanita', email: 'campa@mail.com', password: hash})
             })                          //el email que buscará será: wrong-campa@mail.com
-            .then(() => authenticateUser('wrong-' + 'campa@mail.com', '123456789'))
+            .then(() => authenticateNutritionist('wrong-' + 'campa@mail.com', '123456789'))
             .then(() => {
                 throw new Error('should not reach this point')
 
@@ -75,7 +75,7 @@ describe('authenticateUser', () => {
 
                 return User.create({role:0, username:'campanita', email:'campa@mail.com', password: hash})
             })                                              //manda el psw mal 123456789wrong
-            .then(()=> authenticateUser('campa@mail.com', '123456789' + '-wrong'))
+            .then(()=> authenticateNutritionist('campa@mail.com', '123456789' + '-wrong'))
             .then(() => {
                 throw new Error('should not reach this point')
             })

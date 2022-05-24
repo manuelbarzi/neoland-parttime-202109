@@ -4,23 +4,39 @@ const meal = require('./meal')
 const { Types: { ObjectId}} = Schema
 
 const mealPlan = new Schema ({
-    admin: {
-        type: ObjectId,
-        ref: 'Admin',
-        required: true
-    },
     patient: {
         type: ObjectId,
         ref: 'Patient',
         required: true
     },
-    monday: [meal],
-    tuesday: [meal],
-    wednesday: [meal],
-    thursday: [meal],
-    friday: [meal],
-    saturday: [meal],
-    sunday: [meal],
+    monday: [{
+        type: ObjectId,
+        ref: 'Meal'
+    }],
+    tuesday: [{
+        type: ObjectId,
+        ref: 'Meal'
+    }],
+    wednesday: [{
+        type: ObjectId,
+        ref: 'Meal'
+    }],
+    thursday: [{
+        type: ObjectId,
+        ref: 'Meal'
+    }],
+    friday: [{
+        type: ObjectId,
+        ref: 'Meal'
+    }],
+    saturday: [{
+        type: ObjectId,
+        ref: 'Meal'
+    }],
+    sunday: [{
+        type: ObjectId,
+        ref: 'Meal'
+    }],
     
 
 })

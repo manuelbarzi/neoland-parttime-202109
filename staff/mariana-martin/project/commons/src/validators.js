@@ -59,6 +59,20 @@ function validateString(string, explain = 'string') {
 function validateBoolean(boolean, explain = 'boolean') {
     if (typeof boolean !== 'boolean') throw new TypeError(`${explain} is not boolean`)
 }
+function validateNumber(number, explain = 'number') {
+    if (typeof number !== 'number') throw new TypeError(`${explain} is not a number`)
+}
+
+function validateArray(array, explain = 'array') {
+    if (typeof array !== 'array') throw new TypeError(`${explain} is not an array`)
+}
+
+function validateDay(day) {
+    // if (typeof day !== 'string') throw new TypeError('word is not a day')
+    if (typeof day !== 'string') throw new TypeError('word is not a day')
+    if(['monday', 'tuesday' , 'wednesday' , 'thursday' ,'friday' ,'saturday', 'sunday'].filter(d => d === day ).length === 0)  throw new TypeError('palabra word is not a day')
+    if (!day.trim()) throw new FormatError('day is empty or blank')
+}
 
 module.exports = {
     validateName,
@@ -69,5 +83,8 @@ module.exports = {
     validateToken,
     validateId,
     validateString,
-    validateBoolean
+    validateBoolean,
+    validateNumber, 
+    validateArray,
+    validateDay
 }

@@ -2,12 +2,12 @@ require('dotenv').config()
 const{ mongoose: { connect, disconnect, Types: { ObjectId }}, models: { User }} = require('data')
 const { expect } = require('chai')
 const bcrypt = require('bcryptjs')
-const retrieveUser = require('./retrieveUser')
+const retrieveNutritionist = require('./retrieveNutritionist')
 const { errors: { NotFoundError }} = require('commons')
 
 const { env: { MONGODB_URL}} = process
 
-describe('retrieveUser', () => {
+describe('retrieveNutritionist', () => {
     before(() => connect(MONGODB_URL))
 
     //positive case 1: 
@@ -20,7 +20,7 @@ describe('retrieveUser', () => {
                 //creo un user para luego recuperarlo
             return User.create({ role:0, username: 'campanita', email: 'campa@mail.com', password:hash})
         })
-        .then(user => retrieveUser(user.id))
+        .then(user => retrieveNutritionist(user.id))
         .then(user => {
             expect(user).to.exist
             expect(user.username).to.equal('campanita')
@@ -35,7 +35,7 @@ describe('retrieveUser', () => {
         const unknownUserId = new ObjectId().toString() //creo un id valido, pero no está en base  y lo covnierto en string
 
         return User.deleteMany()
-            .then(() => retrieveUser(unknownUserId))
+            .then(() => retrieveNutritionist(unknownUserId))
             .then(() => {
                 throw new Error('should not reach this point')
             })

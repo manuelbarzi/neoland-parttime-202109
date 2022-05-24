@@ -3,7 +3,11 @@ const { Types: {ObjectId}} = Schema
 
 
 const meal = new Schema({
-   
+    nutritionist: {
+        type: ObjectId,
+        ref: 'User',
+        required: false
+    },
     title: {
         type: String,
         required: true

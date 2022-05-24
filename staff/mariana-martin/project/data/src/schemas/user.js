@@ -2,17 +2,7 @@ const { Schema } = require('mongoose')
 const { Types: {ObjectId}} = Schema
 
 const user = new Schema({
-    // id: {type: ObjectId} //esto lo define Mongo automático, como _id
-    role: {
-        type: Number,
-        required: true
-    },
- 
-    image: {
-        type: String,
-        required: false
-    },
-    username: {
+    name: {
         type: String,
         required: true
     }, 
@@ -25,8 +15,6 @@ const user = new Schema({
         type: String,
         required: true
     },
-
-
     registrationDate: {
         type: Date,
         required: true,
@@ -56,8 +44,17 @@ const user = new Schema({
     goal: {
         type: String,
         required: false
+    },
+    role: {
+        type: Number,
+        required: true,
+        enum: [0, 1],  //sólo puede haber 2 valores
+        default: 1  //por defecto será paciente
+    },
+    image: {
+        type: String,
+        required: false
     }
- 
 })
 
 module.exports = user
