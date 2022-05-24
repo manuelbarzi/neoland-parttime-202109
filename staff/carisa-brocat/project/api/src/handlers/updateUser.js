@@ -1,6 +1,6 @@
 const { updateUser } = require('logic')
 const extractUserIdFromToken = require('./helpers/extractUserIdFromToken')
-const { errors: { NotFoundError, FormatError, ClientError, DuplicityError } } = require('commons')
+const { errors: { NotFoundError, FormatError, ClientError, DuplicityError, AuthError, ValueError } } = require('commons')
 
 module.exports = (req, res) => {
     try {
@@ -27,7 +27,7 @@ module.exports = (req, res) => {
         if (error instanceof AuthError)
                     status = 401
 
-        if (error instanceof TypeError || error instanceof FormatError || error instanceof ClientError)
+        if (error instanceof TypeError || error instanceof FormatError || error instanceof ClientError || ValueError)
             status = 400
 
         res.status(status).json({ error: error.message })

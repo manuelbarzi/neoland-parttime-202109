@@ -2,6 +2,7 @@ const { models: { User } } = require('data')
 const { errors: {
     AuthError,
     ClientError,
+    NotFoundError
 },
     validators: {
         validatePassword,
@@ -16,6 +17,9 @@ function deleteUser(userId, password) {
 
     return User.findById(userId)
         .then(user => {
+            if (!user) {
+                throw new NotFoundError('user not found')
+            }
 
             return comparePassword(password, user.password)
                 .then((isSamePassword) => {

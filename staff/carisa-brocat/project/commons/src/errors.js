@@ -46,13 +46,31 @@ class FormatError extends Error {
     }
 }
 
+class ConditionError extends Error {
+    constructor(message) {
+        super(message)
+
+        this.name = this.constructor.name
+    }
+}
+
+class ValueError extends Error {
+    constructor(message) {
+        super(message)
+
+        this.name = this.constructor.name
+    }
+}
+
 module.exports = {
     DuplicityError,
     AuthError,
     NotFoundError,
     ClientError,
     ServerError,
-    FormatError //status 400
+    FormatError, //status 400
+    ConditionError,
+    ValueError
 }
 
 //MDN http status (codigo de errores)

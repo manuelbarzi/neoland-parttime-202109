@@ -47,6 +47,10 @@ function validateString(string, explain = 'string') {
     if (!string.trim()) throw new FormatError(`${explain} is empty or blank`)
 }
 
+function validateArray(array) {
+    if (!Array.isArray(array)) throw new TypeError(`${array} is not an array`)
+}
+
 module.exports = {
     validateEmail,
     validatePassword,
@@ -54,4 +58,5 @@ module.exports = {
     validateToken,
     validateId,
     validateString,
+    validateArray,
 }

@@ -30,7 +30,10 @@ const user = new Schema({
     },
 
     interests: {
-        type: [String],
+        type: [{
+            type: String,
+            enum: ['moisture', 'growth', 'restore', 'definition', 'strength']
+        }]        
     },
 
     favoritePosts: {

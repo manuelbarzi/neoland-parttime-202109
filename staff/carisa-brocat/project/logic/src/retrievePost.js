@@ -12,7 +12,7 @@ function retrievePost(postId) {
     return Post.findById(postId).lean().sort('-date')
         .then(post => {
             if (!post) {
-                throw new NotFoundError('Post not found')
+                throw new NotFoundError('post not found')
             }
 
             post.id = post._id.toString()
@@ -21,7 +21,6 @@ function retrievePost(postId) {
 
             post.userId = post.user._id.toString()
             post.userName = post.user.name
-
             delete post.user
 
             delete post.__v
@@ -31,13 +30,13 @@ function retrievePost(postId) {
             if (comments) {
                 comments.forEach(comment => {
                     comment.id = comment._id.toString()
+                    delete comment._id
+                    
                     comment.userId = comment.user._id
                     comment.userName = comment.user.name
+                    delete comment.user
 
-                    delete comment._id
                     delete comment.__v
-                    delete comment.user_id
-                    delete comment.user.name
                 })
             }
             return post

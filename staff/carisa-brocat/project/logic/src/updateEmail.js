@@ -26,7 +26,7 @@ function updateEmail(userId, password, email) {
             return comparePassword(password, user.password) //compara el password encriptado y el q pasa el usuario, devuelve booleano
                 .then((isSamePassword) => {
                     if (!isSamePassword)
-                        throw new AuthError('Invalid Credentials')
+                        throw new AuthError('invalid credentials')
 
                     user.email = email
 
@@ -35,7 +35,7 @@ function updateEmail(userId, password, email) {
                 .then(user => { })
                 .catch(error => {
                     if (error.message.includes('duplicate') & error.message.includes('email'))
-                        throw new DuplicityError('This email already exists')
+                        throw new DuplicityError('duplicate email')
                 })
 
 

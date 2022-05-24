@@ -25,10 +25,13 @@ const post = new Schema({
     category: {
         type: String,
         required: true,
+        enum: ['product', 'question', 'space', 'other'],
+        default: 'question'
     },
 
     subject: {
         type: String,
+        enum: ['moisture', 'growth', 'restore', 'definition', 'strength']
     },
 
     image: {

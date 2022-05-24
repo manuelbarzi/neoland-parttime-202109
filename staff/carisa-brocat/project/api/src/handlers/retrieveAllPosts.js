@@ -1,5 +1,5 @@
 const { retrieveAllPosts } = require('logic')
-const { errors: { FormatError, AuthError, NotFoundError } } = require('commons')
+const { errors: { FormatError, AuthError, NotFoundError, ValueError } } = require('commons')
 const extractUserIdFromToken = require('./helpers/extractUserIdFromToken')
 
 module.exports = (req, res) => {
@@ -23,7 +23,7 @@ module.exports = (req, res) => {
         if (error instanceof AuthError)
             status = 401
 
-        if (error instanceof TypeError || error instanceof FormatError)
+        if (error instanceof TypeError || error instanceof FormatError || error instanceof ValueError)
             status = 400
 
         res.status(status).json({ error: error.message })

@@ -18,13 +18,13 @@ function updatePassword(userId, oldPassword, newPassword) {
     return User.findById(userId)
         .then(user => {
             if (!user) {
-                throw new NotFoundError('User not found')
+                throw new NotFoundError('user not found')
             }
 
             return comparePassword(oldPassword, user.password) //compara el password encriptado y el q pasa el usuario, devuelve booleano
                 .then((isSamePassword) => {
                     if (!isSamePassword)
-                        throw new AuthError('Invalid Credentials')
+                        throw new AuthError('invalid credentials')
 
                     return encryptPassword(newPassword)
                 })

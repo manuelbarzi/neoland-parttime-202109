@@ -12,7 +12,7 @@ function retrieveUser(userId) {
     return User.findById(userId).lean()
         .then(user => {
             if (!user) {
-                throw new NotFoundError('User not found')
+                throw new NotFoundError('user not found')
             }
 
             user.id = user._id.toString()
@@ -21,6 +21,7 @@ function retrieveUser(userId) {
             delete user.__v
 
             delete user.password
+
             return user
         })
         .catch(error => {

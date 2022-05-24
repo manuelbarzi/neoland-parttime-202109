@@ -13,7 +13,7 @@ function updatePostFeedback(userId, postId, likes, dislikes) {
     return User.findById(userId)
         .then(user => {
             if (!user) {
-                throw new NotFoundError('User not found')
+                throw new NotFoundError('user not found')
             }
 
             return Post.updateOne({ _id: postId }, { likes, dislikes })
@@ -22,7 +22,7 @@ function updatePostFeedback(userId, postId, likes, dislikes) {
             const postIdFinded = result.matchedCount //el matchedCount es una propiedad del updateOne que devuelve el numero de objetos encontrados con el parametro, en este caso userId 
 
             if (postIdFinded === 0)
-                throw new NotFoundError(`Post not found`)
+                throw new NotFoundError('post not found')
         })
 
 }

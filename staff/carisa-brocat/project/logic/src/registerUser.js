@@ -21,10 +21,10 @@ function registerUser(nickname, email, password) {
         .then(user => { })
         .catch(error => {
             if (error.message.includes('duplicate') & error.message.includes('email'))
-                throw new DuplicityError('email already exist')
+                throw new DuplicityError('duplicate email')
 
             if (error.message.includes('duplicate') & error.message.includes('nickname'))
-                throw new DuplicityError('this nickname is already in use')
+                throw new DuplicityError('duplicate nickname')
 
             throw new ClientError(error.message)
         })

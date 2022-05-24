@@ -1,6 +1,6 @@
 const {deleteUser} = require('logic')
 const extractUserIdFromToken = require('./helpers/extractUserIdFromToken')
-const {errors: {AuthError, FormatError, ClientError} } = require('commons')
+const {errors: {AuthError, FormatError, ClientError, NotFoundError} } = require('commons')
 
 module.exports = (req, res) => {
     try {
@@ -19,6 +19,9 @@ module.exports = (req, res) => {
 
                 if (error instanceof ClientError)
                     status = 400
+
+                if (error instanceof NotFoundError)
+                    status = 404
                 
         
                 res.status(status).json({ error: error.message })
