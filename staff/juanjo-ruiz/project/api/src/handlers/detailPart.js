@@ -1,5 +1,5 @@
 const { extractUserIdFromAuthorization } = require('./helpersUser')
-const { retrievePart } = require('logic')
+const { detailPart } = require('logic')
 const { errors: { AuthError, NotFoundError, TypeError, FormatError } } = require('commons')
 
 module.exports = (req, res) => {
@@ -8,7 +8,7 @@ module.exports = (req, res) => {
 
         const { params: { vehicleId, partId } } = req
 
-        retrievePart(userId, vehicleId, partId)
+        detailPart(userId, vehicleId, partId)
             .then(part => res.json(part))
             .catch(error => {
                 let status = 500
