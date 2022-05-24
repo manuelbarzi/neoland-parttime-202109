@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="style.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <title>CFC | Calpe Fried Chicken</title>
+</head>
+
+<body>
+
+    <h1>¡El mejor pollo!</h1>
+
+    <h2>Pollo frito</h2>
+
+    <red-box>Esto es un red-box</red-box><red-box>Esto es un red-box</red-box>
+    <div>Esto es un div</div><div>Esto es un div</div>
+    <span>Esto es un span</span><span>Esto es un span</span>
+
+    <ul class="list">
+        <li>Normal</li>
+        <li>
+            Especiales
+            <ul id="circle">
+                <li>Picante</li>
+                <li>Asiático</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Hamburguesas</h2>
+    <ol class="list">
+        <li>Classic</li>
+        <li>Bacon-Cheese</li>
+        <li>Chipotle</li>
+        <li>Huevo</li>
+    </ol>
+
+    <audio controls>
+        <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
+    </audio>
+
+    <br>
+
+    <video controls>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    </video>
+
+    <br>
+
+    "<iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1558.1187404800362!2d0.0443626285671242!3d38.64341948476256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x129dfe2fe8a2a5b9%3A0x8bd32a530d554773!2sCalpe%2C%20Alicante!5e0!3m2!1ses!2ses!4v1632753938441!5m2!1ses!2ses"
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>"
+
+    <br>
+
+    <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/116376952&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+    <div
+        style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
+        <a href="https://soundcloud.com/es" title="Call me eS" target="_blank"
+            style="color: #cccccc; text-decoration: none;">Call me eS</a> · <a
+            href="https://soundcloud.com/es/bw11-voltage-drop-original-mix" title="Voltage Drop" target="_blank"
+            style="color: #cccccc; text-decoration: none;">Voltage Drop</a>
+    </div>
+
+    <br>
+
+    <img src="https://cdn2.cocinadelirante.com/sites/default/files/styles/gallerie/public/images/2020/10/errores-al-hacer-pollo-frito.jpg"
+        width="600" height="450">
+
+    <br>
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/8YcYn4jdeOs" title="YouTube video player"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+
+    <br>
+
+    <table class=".cart">
+        <caption>Precios</caption>
+        <thead class=".cart__header">
+            <tr>
+                ESTO ES HEAD
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Classic</th><td>5€</td>
+            </tr>
+            <tr>
+                <th>Bacon-Cheese</th><td>7€</td>
+            </tr>
+            <tr>
+                <th>Chipotle</th><td>8,50€</td>
+            </tr>
+            <tr>
+                <th>Special</th><td>11,50€</td>
+            </tr>
+        </tbody>
+        <tfoot class=".cart__footer">
+            <tr>
+               ESTO ES FOOT
+            </tr>
+        </tfoot>
+    </table>
+
+    <form class="register" id="form-order" action="ejemplo.php" method="get">
+        <p>
+            <label for="name"> Nombre (obligatorio):</label>
+            <input type="text" name="name" id="name" size="20" placeholder="Rick Sánchez" autocomplete required />
+        </p>
+        <p>
+            <label for="passwd"> Contraseña (obligatoria):</label>
+            <input type="password" name="passwd" id="passwd" size="15" placeholder="asd3035" pattern="[a-z]{3}[0-9]{4}"
+                title="3 letras + 4 números" required />
+        </p>
+        <p>
+            <label for="email">E-Mail:</label>
+            <input type="email" name="correo" id="email" size="30" placeholder="calpefriedchicken@gmail.com">
+        </p>
+        <p>
+            <label for="phone">Teléfono:</label>
+            <input type="tel" name="phone" id="phone" size="30" placeholder="965223344">
+        </p>
+        <p>
+            <label for="website">Mi Web:</label>
+            <input type="url" name="website" id="website" size="30" placeholder="http://www.calpefriedchicken.es">
+        </p>
+        <p>
+            <label for="deliverydate">Fecha de recepción:</label>
+            <input type="date" name="deliverydate" id="deliverydate" min="2021-09-12">
+        </p>
+
+        <p>
+            <label for="points">Nivel de picante:</label>
+            <input type="range" name="points" id="points" min="1" max="60">
+        </p>
+        <p>
+        <fieldset>
+            <legend>Seleciona nivel de picante:</legend>
+            <input type="radio" name="belleza" value="baja"> <label>Baja</label>
+            <input type="radio" name="belleza" value="media"> <label>Media </label>
+            <input type="radio" name="belleza" value="alta" checked> <label>Alta</label>
+        </fieldset>
+        </p>
+        <p>
+        <fieldset>
+            <legend>Selecciona tu bebida:</legend>
+            <input type="checkbox" name="instagramer"> Coca-Cola <br>
+            <input type="checkbox" name="youtuber"> Fanta <br>
+            <input type="checkbox" name="influencer"> Mahou
+        </fieldset>
+        </p>
+        <p>
+            <label for="message-box">Tu mensaje:</label>
+            <br>
+            <textarea name="mensaje"></textarea>
+        </p>
+        <p>
+            <input type="submit" value="Dale al play">
+            <input type="reset" value="Borrar">
+        </p>
+    </form>
+    <br>
+    <a href="https://fried-chicken-calp.negocio.site/?utm_source=gmb&utm_medium=referral" target="_blank"> Visita la
+        página real</a>
+
+    <form class="search" action="https://www.google.es/search">
+        <fieldset>
+            <legend>Search in Google:</legend>
+            <label for="query">Query</label>
+            <input type="text" id="query" name="q" placeholder="Hoteles">
+            <!--input type="submit" value="🔍️"-->
+            <button>🔍️</button>
+            <button type="reset">Limpiar</button>
+        </fieldset>
+    </form>
+
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Stick+No+Bills&display=swap');
+
+/* generics */
+
+* {
+    font-family: 'Stick No Bills';
+}
+
+.pointer:hover {
+    cursor: pointer;
+}
+
+/* blocks */
+
+.center {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.panel {
+    border-color: darkorange;
+    border-width: .5rem;
+    border-style: solid;
+    border-radius: 1rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    color: darkorange;
+    width: 30%;
+}
+
+.panel--light {
+    background-color: lightgray;
+}
+
+.panel--dark {
+    background-color: black;
+}
+
+.apollo {
+    font-size: 3rem;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+}
+
+.menu__list {
+    display: none;
+}
+
+.menu__list--on {
+    display: inline-flex;
+    flex-direction: column;
+    border: 5px solid darkgray;
+    background-color: darkorange;
+}
+
+
+.menu__list-item {
+    margin: 1rem;
+}
+
+@media screen and (min-width: 512px) {
+    .menu {
+        align-items: center;
+    }
+
+    .menu__list {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        background-color: darkorange;
+    }
+
+    .menu__button {
+        display: none;
+    }
+}

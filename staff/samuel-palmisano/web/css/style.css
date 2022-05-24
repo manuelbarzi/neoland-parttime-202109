@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap');
+
+
+/* ELEMENT */
+
+body {
+    background-color: #CCC;
+    color: #333;
+    border-color: greenyellow
+}
+h1, h2 {
+    font-family: Georgia;
+    text-align: center;
+}
+h1 {
+    font-size: 80px;
+    color:coral;
+}
+h2 {
+    font-size: 3em;
+    color: yellow;
+}
+fieldset {
+    background-color: cyan;
+    border-style: solid;
+    border-radius: 10px;
+}
+legend {
+    background-color:hotpink;
+    border-color: green;
+    border-style: solid;
+    border-radius: 5px;
+    color:honeydew;
+}
+input {
+    background-color:darkkhaki;
+    color:darkmagenta;
+    border-style: solid;
+    border border-radius: 5px;
+}
+red-box {
+    background-color:sandybrown;
+}
+
+/* .CLASS */
+
+.disc {
+    list-style-type: disc;
+}
+.search {
+    display: inline-block;
+    margin: 10px;
+}
+.search__body {
+    border-radius: 10px;
+    border-style: solid;
+    background-color: lightgray;
+}
+.search__title {
+    border-radius: 5px;
+    border-style: solid;
+    background-color: black;
+    border-color: darkgray;
+    color:white;
+}
+.button {
+    border-radius: 5px;
+    border-style: solid;
+}
+.field {
+    border-radius: 5px;
+    border-style: solid;
+    margin: 5px;
+}
+.register {
+    display:inline-block;
+    border-color: orange;
+    background-color: orange;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.list {
+    list-style: square;
+    background-color: aquamarine;
+    border-style: solid;
+    border-color: aqua;
+    border-width: 2px;
+    border-radius: 10px;
+}
+.list__item {
+   color: white;
+}
+
+.cart {
+    border-style: solid;
+    border-color:black;
+    border-width: 2px;
+}
+.cart__header {
+    background-color: lightgray;
+}
+.cart__footer {
+    border-style: solid;
+    border-color:black;
+    border-width: 2px;
+}
+
+/* #ID */
+
+#square {
+    list-style-type: square;
+}
+#circle {
+    list-style-type: circle;
+}
+

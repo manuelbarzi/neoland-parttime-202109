@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Stick+No+Bills&display=swap');
+
+* {
+    font-family: 'Stick No Bills';
+}
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-image: url("moon.jpg");
+}
+
+
+.title {
+    border-color: darkorange;
+    border-width: .5rem;
+    border-style: solid;
+    border-radius: 1rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    color: darkorange;
+    width: 30%;
+    text-align: center;
+
+}
+
+.lander {
+    position: absolute;
+    width: 100px;
+}
+
+.asteroid {
+    position: absolute;
+    width: 100px;
+}
+
+.asteroid2 {
+    position: absolute;
+    width: 100px;
+}
+
+.asteroid3 {
+    position: absolute;
+    width: 100px;
+}
