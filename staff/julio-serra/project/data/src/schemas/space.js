@@ -3,17 +3,19 @@ const { Types: { ObjectId } } = Schema
 const Review = require('./review')
 const Booking = require('./booking')
 
-
 const space = new Schema({
-
     admin: {
         type: ObjectId,
         ref: 'User',
         required: true
     },
-    text: {
+    description: {
         type: String,
         required: true
+    },
+    features: {
+        type: [String],
+        enum: ['dj', 'audio', 'wc', 'security', 'lights']
     },
     date: {
         type: Date,

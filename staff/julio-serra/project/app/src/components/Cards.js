@@ -9,6 +9,7 @@ const cards = [
         title: "Titulo 1",
         image: image1,
         url: "https://google.es",
+        features: ['dj', 'audio', 'lights'],
         text: "Lorem ipsum dolor sit amet consectetur, Lorem ipsum dolor sit amet consectetur, Lorem ipsum dolor sit amet consectetur"
     },
     {
@@ -24,10 +25,10 @@ export default function Cards() {
     return (
         <>
         <h1 className='nav__font black text-4xl'>Our Spaces</h1>
-        <div className="grid grid-cols-2 gap-10 m-10">
-            {cards.map(({ title, image, url, id, text}) => (
+        <div className="grid grid-cols-2 gap-10 my-10">
+            {cards.map(({ title, image, url, id, text, features}) => (
                 <div key={id}>
-                    <Card imageUrl={image} title={title} url={url} text={text} />
+                    <Card imageUrl={image} title={title} url={url} text={text} features={features} />
                 </div>
             ))}
         </div>

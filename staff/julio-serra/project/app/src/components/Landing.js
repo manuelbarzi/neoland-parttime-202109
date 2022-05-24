@@ -26,7 +26,6 @@ export default function Landing() {
                             <p className='cursor-pointer' onClick={loggedOut}>Log Out</p>
                             : <span className="nav__font black text-xl hover:text-principal-color"><a href="/login">Login</a></span>
                         }
-
                         <span className="nav__font black text-xl hover:text-principal-color"><a href="/register">Register</a></span>
                     </div>
                 </nav>
@@ -40,9 +39,9 @@ export default function Landing() {
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.</p>
                 </container>
             </section>
-
-                    <Cards />
-
+            <section>
+                <Cards />
+            </section>
             <footer className="grid grid-cols-2">
                 <div className='bg-tertiary-color text-white p-15'>
                     <div className="flex items-center justify-evenly">
