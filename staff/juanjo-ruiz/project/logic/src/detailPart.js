@@ -15,6 +15,10 @@ function detailPart(userId, vehicleId, partId) {
 
             const part = parts.find(item => item._id.toString() === partId)
 
+            part.id = part._id.toString()
+
+            delete part._id
+            
             return part
         })
 }

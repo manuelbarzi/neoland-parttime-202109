@@ -8,22 +8,21 @@ function updatePartDriver(userId, vehicleId, partId, description, image) {
     validateString(description, 'description')
     validateString(image, 'image')
 
-    return Promise.all([User.findById(userId), Vehicle.findById(vehicleId), Part.findById(partId)])
-        .then(([user, vehicle, part]) => {
+    return Promise.all([User.findById(userId), Vehicle.findById(vehicleId)])
+        .then(([user, vehicle]) => {
             if (!user) throw new NotFoundError(`user with id ${userId} not found`)
             if (!vehicle) throw new NotFoundError(`vehicle with id ${vehicleId} not found`)
-            if (!part) throw new NotFoundError(`part with id ${partId} not found`)
 
-            if (vehicle._id.toString() !== part.vehicle.toString()) throw new AuthError(`part with id ${partId} does not belong to vehicle with id ${vehicleId}`)
+            const { parts } = vehicle
 
-            return Vehicle.updateOne({ _id: partId }, { description, image })
-                .then(result => {
-                    const { matchedCount } = result
+            const part = parts.find(item => item._id.toString() === partId)
 
-                    if (matchedCount === 0)
-                        throw new NotFoundError(`vehicle with id ${vehicleId} not found`)
-                })
+            part.description.push(description)
+            part.image.push(image)
+
+            return vehicle.save()
         })
+        .then(() => { })
 }
 
 module.exports = updatePartDriver
