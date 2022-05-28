@@ -1,16 +1,16 @@
 import { registerCompany } from '../logic'
 
-export default function ({onRegistered}) {
+export default function ({ onRegistered }) {
     const register = event => {
         event.preventDefault()
-        
-        const { target: { businessName: { value: businessName } }, cif: { value: { cif } }, name: { value: { name } }, email: { value: { email } }, password: { value: { password } }, role: { value: { role } } } = event
+
+        const { target: { businessName: { value: businessName }, cif: { value: cif }, name: { value: name }, email: { value: email }, password: { value: password } } } = event
 
         try {
-            registerCompany(businessName, cif, name, email, password, role)
+            registerCompany(businessName, cif, name, email, password)
                 .then(() => {
                     alert('admin registrado')
-                    
+
                     onRegistered()
                 })
                 .catch(error => alert(error.message))
