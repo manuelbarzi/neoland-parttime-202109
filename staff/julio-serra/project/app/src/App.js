@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Register from './components/Register';
 import Landing from './components/Landing';
 import Login from './components/Login';
+import Space from './components/Space';
 import './index.css';
 
 
@@ -25,6 +26,7 @@ export default function App() {
         <Route path='/*' element={loggedIn ? <Landing /> : <Landing />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={loggedIn ? <Navigate to="/" /> : <Login onloggedIn={handleLoggedIn} />} />
+        <Route path='/space' element={<Space />} />
       </Routes>
     </>
   );

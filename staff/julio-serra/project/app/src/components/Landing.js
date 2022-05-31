@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 import logo from '../assets/img/logo.png'
 import Cards from './Cards'
+
+
 export default function Landing() {
 
     const navigate = useNavigate()
@@ -23,7 +25,7 @@ export default function Landing() {
                     </div>
                     <div className="flex gap-12 items-center">
                         {token ?
-                            <p className='cursor-pointer' onClick={loggedOut}>Log Out</p>
+                            <p className='cursor-pointer nav__font black text-xl' onClick={loggedOut}>Log Out</p>
                             : <span className="nav__font black text-xl hover:text-principal-color"><a href="/login">Login</a></span>
                         }
                         <span className="nav__font black text-xl hover:text-principal-color"><a href="/register">Register</a></span>
@@ -53,7 +55,15 @@ export default function Landing() {
                             All rights reserved</p>
                     </div>
                 </div>
-                <div>Redes Sociales</div>
+                <div className='bg-cuartiary-color text-white p-15'>
+                    <div className="flex items-center justify-evenly">
+                        <h1 className="nav__font black text-4xl">Contact Us</h1>
+                    </div>
+                    <div>
+                    <h1 className="nav__font black text-4xl">Follow Us</h1>
+
+                    </div>
+                </div>
             </footer>
         </>
     )

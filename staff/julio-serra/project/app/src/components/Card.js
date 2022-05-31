@@ -1,30 +1,23 @@
 import React from 'react'
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+export default function Card({ image, title, price, text, features, dto, off, url }) {
 
-const FEATURE2ICON = {
-    'dj': 'headphones-icon',
-    'audio': 'speaker'
-}
-
-export default function Card({ imageUrl, title, text, url, features }) {
     return (
-        <section className='bg-slate-300 pb-10 h-full'>
-            <cards className="bg-white rounded-2xl">
-                <picture className="flex justify-center"><img src={imageUrl} alt='' /></picture>
-                <h1 className="nav__font black text-xl">{title}</h1>
-                <div className='cards__text'>
-                    {text ? text
-                    : 'Add text...'}
-                </div>
+        <>
+            <section>
                 <div>
-                    {features.map(feature => <span className={FEATURE2ICON-[feature]}></span>)}
+                    <img height="200" src={image} />
+                    <p className=''>{title}</p>
+                    <p>{text}</p>
+                    <p className='line-through'>{price}</p>
+                    <p>{dto} {off}</p>
+                    <p className='flex'>{features}</p>
+                    <Routes>
+                        <Route path='/*'/>
+                    </Routes>
+                    <span><a href={url}>Visit the list</a></span>
                 </div>
-                <div className='cards__price'>
-                    <span>Precio tachado</span>
-                    <span>Precio con rebaja</span>
-                </div>
-                <a href={
-                    url ? url : '#'}>View Listing</a>
-            </cards>
-        </section>
+            </section>
+        </>
     )
 }
