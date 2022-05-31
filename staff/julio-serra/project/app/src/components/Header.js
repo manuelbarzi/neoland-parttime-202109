@@ -1,10 +1,7 @@
-import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import logo from '../assets/img/logo.png'
 
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
-import image1 from '../assets/img/image1.jpg'
-
-export default function Space() {
+export default function Header() {
     const navigate = useNavigate()
 
     const { token } = sessionStorage
@@ -12,13 +9,10 @@ export default function Space() {
         delete sessionStorage.token
         navigate('/')
     }
-    
+
+
     return (
         <>
-            <Routes>
-                <Route path=':spaceId' />
-            </Routes>
-
             <header className="pt-8">
                 <nav className="flex justify-between">
                     <div className="flex items-center gap-5"><picture>
@@ -35,18 +29,6 @@ export default function Space() {
                     </div>
                 </nav>
             </header>
-
-            <section>
-                <div>
-                    <img className='w-full' src={image1} alt='' />
-                    <p>Title</p>
-                    <span>Available...</span>
-                    <p>Features</p>
-                    <p>Price</p>
-                    <p>More details</p>
-                    <button>Checkout</button>
-                </div>
-            </section>
         </>
     )
 }

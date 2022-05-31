@@ -1,26 +1,41 @@
-import React from 'react'
-import Card from './Card'
-import Space from './Space'
-import image1 from '../assets/img/image1.jpg'
-import image2 from '../assets/img/image2.jpg'
+import { useEffect, useState } from 'react'
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import { MusicNoteIcon, VolumeUpIcon, BellIcon, LightBulbIcon, ShieldCheckIcon } from '@heroicons/react/solid'
+import { retrieveAllSpaces } from '../logic';
+import CartItem from './CartItem';
 
 export default function Cards() {
 
-    const features = {
-        dj: <MusicNoteIcon className="h-6 w-6 text-blue-500" />,
-        audio: <VolumeUpIcon className="h-6 w-6 text-blue-500" />,
-        wc: <BellIcon className="h-6 w-6 text-blue-500" />,
-        lights: <LightBulbIcon className="h-6 w-6 text-blue-500" />,
-        security: <ShieldCheckIcon className="h-6 w-6 text-blue-500" />
+    const [spaces, setSpaces] = useState();
+
+    useEffect(() => {
+        getAllSpaces()
+    }, [])
+
+    const getAllSpaces = () => {
+        try {
+            retrieveAllSpaces()
+                .then(spaces => {
+                    setSpaces(spaces)
+                })
+        } catch (error) {
+            alert({ error: error.message })
+        }
     }
 
+
     return (
+
         <>
             <h1 className='nav__font black text-4xl'>Our Spaces</h1>
-            <div className='grid grid-cols-2 gap-10 my-10'>
-                <Card image={image1} text="Photo of monstera plant by Severin Candrian" title="Monstera" price="300€" dto="260€" off="5%" features={[features.dj, features.audio]} url="" />
-                <Card image={image2} text="Photo of Peperomia polybotrya plant by Severin Candrian" title="Peperomia Polybotrya" price="250€" dto="190€" off="3%" features={[features.lights, features.security]} url="" />
+            <div>
+                {spaces ? spaces.map(space => {
+                    return <li key={space.id}>
+                        <CartItem content={space} />
+                    </li>
+                })
+                    : <p>Not found spaces</p>
+                }
             </div>
         </>
     )

@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const { registerUser, authenticateUser, retrieveUser,
-    deleteUser, createSpace, retrieveSpace, deleteSpace,
+    deleteUser, createSpace, retrieveSpace, retrieveAllSpaces, deleteSpace,
     addReviewToSpace, addBookingToSpace, deleteReviewToSpace,
     deleteBookingToSpace
 } = require('./handlers')
@@ -35,6 +35,9 @@ connect(MONGODB_URL)
 
         // RETRIEVE SPACE
         router.get('/spaces/:spaceId', retrieveSpace)
+
+        // RETRIEVE ALL SPACES
+        router.get('/spaces', retrieveAllSpaces)
 
         // DELETE SPACE
         router.delete('/spaces/:spaceId', jsonBodyParser, deleteSpace)

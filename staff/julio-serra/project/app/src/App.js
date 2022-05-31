@@ -26,7 +26,7 @@ export default function App() {
         <Route path='/*' element={loggedIn ? <Landing /> : <Landing />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={loggedIn ? <Navigate to="/" /> : <Login onloggedIn={handleLoggedIn} />} />
-        <Route path='/space' element={<Space />} />
+        <Route path='/spaces' element={<Space />} />
       </Routes>
     </>
   );

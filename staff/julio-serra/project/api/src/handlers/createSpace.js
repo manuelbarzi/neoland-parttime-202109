@@ -5,9 +5,9 @@ module.exports = (req, res) => {
     try {
         const adminId = extractUserIdFromAuthorization(req)
 
-        const { body: { text, features } } = req
+        const { body: { title, description, features, price, typeDetail, depositDetail, sizeDetail, accessDetail, image } } = req
 
-        createSpace(adminId, text, features)
+        createSpace(adminId, title, description, price, features, typeDetail, depositDetail, sizeDetail, accessDetail, image)
             .then(() => res.status(201).send())
             .catch(error => res.status(400).json({ error: error.message }))
     } catch (error) {

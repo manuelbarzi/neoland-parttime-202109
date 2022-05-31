@@ -4,6 +4,7 @@ const deleteUser = require('./deleteUser')
 const retrieveUser = require('./retrieveUser')
 const createSpace = require('./createSpace')
 const retrieveSpace = require('./retrieveSpace')
+const retrieveAllSpaces = require('./retrieveAllSpaces')
 const deleteSpace = require('./deleteSpace')
 const addReviewToSpace = require('./addReviewToSpace')
 const addBookingToSpace = require('./addBookingToSpace')
@@ -18,6 +19,7 @@ module.exports = {
     retrieveUser,
     createSpace,
     retrieveSpace,
+    retrieveAllSpaces,
     deleteSpace,
     addReviewToSpace,
     addBookingToSpace,

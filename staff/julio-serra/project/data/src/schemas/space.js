@@ -9,13 +9,37 @@ const space = new Schema({
         ref: 'User',
         required: true
     },
+    title: {
+        type: String,
+        required: true
+    },
     description: {
         type: String,
         required: true
     },
+    price: {
+        type: String,
+        requerid: true
+    },
     features: {
         type: [String],
         enum: ['dj', 'audio', 'wc', 'security', 'lights']
+    },
+    typeDetail: {
+        type: String,
+        required: true
+    },
+    depositDetail: {
+        type: String,
+        requerid: true
+    },
+    sizeDetail: {
+        type: String,
+        requerid: true
+    },
+    accessDetail: {
+        type: [String],
+        enum: ['None shared', 'Grounded level', 'Host access']
     },
     date: {
         type: Date,
@@ -26,7 +50,6 @@ const space = new Schema({
     bookings: [Booking],
     image: {
         type: String,
-        required: false
     }
 })
 
