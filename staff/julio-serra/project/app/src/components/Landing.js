@@ -8,7 +8,7 @@ export default function Landing() {
 
     return (
         <>
-        <Header />
+            <Header />
             <section className='bg-principal-color h-96 grid items-center'>
                 <container className='bg-secondary-color text-white p-5 m-9 h-5/6'>
                     <h1 className="nav__font text-4xl my-5">Why Space Rental</h1>
@@ -18,9 +18,10 @@ export default function Landing() {
                 </container>
             </section>
 
-                <Cards />
+            <Cards />
 
             <Footer />
+
         </>
     )
 

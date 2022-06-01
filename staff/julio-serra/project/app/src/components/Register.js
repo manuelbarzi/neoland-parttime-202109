@@ -1,7 +1,9 @@
 import { registerUser } from '../logic'
+import { useNavigate } from 'react-router-dom'
 
 export default function Register() {
 
+    const navigate = useNavigate()
     const register = event => {
         event.preventDefault()
 
@@ -16,11 +18,15 @@ export default function Register() {
         }
     }
 
+        const handleClickLanding = () => navigate('/')
+
+
+
     return (
         <>
             
             <section className="container w-full mx-auto pt-24 px-6">
-            <h1><a href="/">Go to Home</a></h1>
+            <h1 className='cursor-pointer' onClick={handleClickLanding}>Go to Home</h1>
             <h1>Register User</h1>
                     <div>
                         <p className="text-2xl font-bold text-center pb-8">Register to Space Local</p>

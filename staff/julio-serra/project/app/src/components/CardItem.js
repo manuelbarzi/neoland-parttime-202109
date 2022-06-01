@@ -1,20 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MusicNoteIcon, VolumeUpIcon, BellIcon, LightBulbIcon, ShieldCheckIcon } from '@heroicons/react/solid'
-import { useNavigate, Routes, Route } from 'react-router-dom';
-import Space from './Space'
+import { useNavigate, Routes, Route, useParams } from 'react-router-dom';
 
-export default function CartItem({ content }) {
+export default function CardItem({ space }) {
 
-    const [features, setFeatures] = useState(content.features)
+    const [features, setFeatures] = useState(space.features)
     const navigate = useNavigate()
+
+    const handleSpaceClick = () => navigate(`spaces/${space.id}`)
+
     return (
         <>
             <section>
-                <img src={content.image} />
-                <p>{content.title}</p>
-                <p>{content.description}</p>
-                <p>{content.price}</p>
-                <p>{content.sizeDetail}</p>
+                <img src={space.image} />
+                <p>{space.title}</p>
+                <p>{space.description}</p>
+                <p>{space.price}</p>
+                <p>{space.sizeDetail}</p>
                 <div className='flex'>
                     {features ? features.map(feature => {
                         if (feature === 'dj') {
@@ -31,12 +33,8 @@ export default function CartItem({ content }) {
                             return null
                     }) : <span>Add your features</span>}
                 </div>
-                <button>View listing</button>
+                <button onClick={handleSpaceClick}>View listing</button>
             </section>
-
-                    <Routes>
-                        <Route path="/spaces/:spaceId" element={<Space />} />
-                    </Routes>
 
         </>
     )

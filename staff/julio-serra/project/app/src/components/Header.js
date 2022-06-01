@@ -10,22 +10,26 @@ export default function Header() {
         navigate('/')
     }
 
+        const handleClickLogo = () => navigate('/')
+        const handleClickLogin = () => navigate('/login')
+        const handleClickRegister = () => navigate('/register')
+
 
     return (
         <>
             <header className="pt-8">
                 <nav className="flex justify-between">
                     <div className="flex items-center gap-5"><picture>
-                        <img src={logo} width="60" alt="logo space local" />
+                        <img className='cursor-pointer' onClick={handleClickLogo} src={logo} width="60" alt="logo space local" />
                     </picture>
                         <span className="nav__text text-3xl">Space Local</span>
                     </div>
                     <div className="flex gap-12 items-center">
                         {token ?
                             <p className='cursor-pointer nav__font black text-xl' onClick={loggedOut}>Log Out</p>
-                            : <span className="nav__font black text-xl hover:text-principal-color"><a href="/login">Login</a></span>
+                            : <span onClick={handleClickLogin} className="cursor-pointer nav__font black text-xl hover:text-principal-color">Login</span>
                         }
-                        <span className="nav__font black text-xl hover:text-principal-color"><a href="/register">Register</a></span>
+                        <span onClick={handleClickRegister} className="cursor-pointer nav__font black text-xl hover:text-principal-color">Register</span>
                     </div>
                 </nav>
             </header>

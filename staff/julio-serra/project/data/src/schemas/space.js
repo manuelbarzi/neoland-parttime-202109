@@ -25,19 +25,19 @@ const space = new Schema({
         type: [String],
         enum: ['dj', 'audio', 'wc', 'security', 'lights']
     },
-    typeDetail: {
+    type: {
         type: String,
         required: true
     },
-    depositDetail: {
+    deposit: {
         type: String,
         requerid: true
     },
-    sizeDetail: {
+    size: {
         type: String,
         requerid: true
     },
-    accessDetail: {
+    access: {
         type: [String],
         enum: ['None shared', 'Grounded level', 'Host access']
     },

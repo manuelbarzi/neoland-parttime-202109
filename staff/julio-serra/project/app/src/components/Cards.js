@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import { retrieveAllSpaces } from '../logic';
-import CartItem from './CartItem';
+import CardItem from './CardItem';
+import { useNavigate, Route, Routes } from 'react-router-dom'
+
 
 export default function Cards() {
 
-    const [spaces, setSpaces] = useState();
+    const navigate = useNavigate()
+    const [spaces, setSpaces] = useState()
 
     useEffect(() => {
         getAllSpaces()
@@ -30,12 +32,13 @@ export default function Cards() {
             <div>
                 {spaces ? spaces.map(space => {
                     return <li key={space.id}>
-                        <CartItem content={space} />
+                        <CardItem space={space} />
                     </li>
                 })
                     : <p>Not found spaces</p>
                 }
             </div>
+
         </>
     )
 }
