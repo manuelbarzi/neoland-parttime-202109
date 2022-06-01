@@ -1,6 +1,5 @@
 import React from 'react'
 import logo from '../assets/img/logo.png'
-
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import image1 from '../assets/img/image1.jpg'
 
@@ -15,9 +14,6 @@ export default function Space() {
     
     return (
         <>
-            <Routes>
-                <Route path=':spaceId' />
-            </Routes>
 
             <header className="pt-8">
                 <nav className="flex justify-between">

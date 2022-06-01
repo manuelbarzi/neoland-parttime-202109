@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
-import { MusicNoteIcon, VolumeUpIcon, BellIcon, LightBulbIcon, ShieldCheckIcon } from '@heroicons/react/solid'
 import { retrieveAllSpaces } from '../logic';
 import CartItem from './CartItem';
 
