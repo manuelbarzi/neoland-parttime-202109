@@ -23,7 +23,7 @@ const deletePart = require('./deletePart')
 const detailPart = require('./detailPart')
 const updatePartDriver = require('./updatePartDriver')
 const updatePartAdmin = require('./updatePartAdmin')
-const retrieveAllDrivers = require('./retrieveAllDrivers')
+const retrieveAllUsers = require('./retrieveAllUsers')
 
 module.exports = {
     registerCompany,
@@ -51,5 +51,5 @@ module.exports = {
     detailPart,
     updatePartDriver,
     updatePartAdmin,
-    retrieveAllDrivers
+    retrieveAllUsers
 }

@@ -1,7 +1,7 @@
 const { models: { User, Company } } = require('data')
 const { validators: { validateId }, errors: { NotFoundError } } = require('commons')
 
-function retrieveAllDriver(companyId) {
+function retrieveAllUsers(companyId) {
     validateId(companyId, 'user id')
 
     return Company.findById(companyId)
@@ -22,4 +22,4 @@ function retrieveAllDriver(companyId) {
         })
 }
 
-module.exports = retrieveAllDriver
+module.exports = retrieveAllUsers

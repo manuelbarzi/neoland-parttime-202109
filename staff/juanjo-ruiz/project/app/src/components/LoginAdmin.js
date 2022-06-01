@@ -24,7 +24,7 @@ export default function ({ onLoggedIn }) {
 
     return <div>
 
-        <h2>Admin</h2>
+        <h2>Accede a tu cuenta de Administrador</h2>
         <form onSubmit={login}>
             <a onClick={() => navigate("/")}>Volver</a>
             <input type="email" name="email" placeholder="Introduce tu correo electrónico" />

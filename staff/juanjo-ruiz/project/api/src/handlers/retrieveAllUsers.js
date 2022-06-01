@@ -1,12 +1,12 @@
 const { extractCompanyIdFromAuthorization } = require('./helpersCompany')
-const { retrieveAllDrivers } = require('logic')
+const { retrieveAllUsers } = require('logic')
 const { errors: { AuthError, NotFoundError, TypeError, FormatError } } = require('commons')
 
 module.exports = (req, res) => {
     try {
         const company = extractCompanyIdFromAuthorization(req)
 
-        retrieveAllDrivers(company)
+        retrieveAllUsers(company)
             .then(driver => res.json(driver))
             .catch(error => {
                 let status = 500
