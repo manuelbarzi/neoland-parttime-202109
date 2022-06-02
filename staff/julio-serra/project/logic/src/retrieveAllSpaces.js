@@ -3,7 +3,7 @@ const { errors: { NotFoundError } } = require('commons')
 
 function retrieveAllSpaces() {
 
-    return Space.find().lean()
+    return Space.find().lean().sort('-date')
         .then((spaces) => {
 
             if (spaces.length === 0) throw new NotFoundError('Spaces not found')

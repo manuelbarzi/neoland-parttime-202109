@@ -24,13 +24,15 @@ export default function Cards() {
         }
     }
 
+    const [count, setCount] = useState(2)
+ 
 
     return (
 
         <>
             <h1 className='nav__font black text-4xl'>Our Spaces</h1>
             <div>
-                {spaces ? spaces.map(space => {
+                {spaces ? spaces.slice(0, count).map(space => {
                     return <li key={space.id}>
                         <CardItem space={space} />
                     </li>
