@@ -1,6 +1,9 @@
 import { registerCompany } from '../logic'
+import { useNavigate } from 'react-router-dom'
 
 export default function ({ onRegistered }) {
+    const navigate = useNavigate()
+
     const register = event => {
         event.preventDefault()
 
@@ -26,6 +29,6 @@ export default function ({ onRegistered }) {
         <input type="email" name="email" placeholder="Introduce tu correo electrónico" />
         <input type="password" name="password" placeholder="Elige una contraseña" />
         <button>Registrate</button>
-        <p>Ya tienes cuenta,<a href="/login"> inicia sesión</a></p>
+        <p>Ya tienes cuenta,<a onClick={() => navigate('/')}> inicia sesión</a></p>
     </form>
 }

@@ -1,6 +1,4 @@
-import { Routes, Route, useNavigate, Link } from 'react-router-dom'
-import Vehicles from './Vehicles'
-import Users from './Users'
+import { useNavigate } from 'react-router-dom'
 
 export default function ({ onLoggedOut }) {
     const navigate = useNavigate()
@@ -11,23 +9,12 @@ export default function ({ onLoggedOut }) {
         onLoggedOut()
     }
 
-    const handleShowVehicles = () => navigate('/vehicles')
-
-    const handleShowUsers = () => navigate('/users')
-
     return <div>
-        <h1><Link to="/">home</Link></h1>
+        <h1>name</h1>
         <button onClick={handleLogout}>cerrar sesión</button>
 
-        <button>Añadir vehículos</button>
-        <button onClick={handleShowVehicles}>Vehículos</button>
-        <button onClick={handleShowUsers}>Users</button>
+        <button onClick={() => navigate('/vehicles')}>Vehículos</button>
+        <button onClick={() => navigate('/users')}>Usuarios</button>
 
-        <div>
-            <Routes>
-                <Route path="/vehicles" element={<Vehicles />} />
-                <Route path="/users" element={<Users />} />
-            </Routes>
-        </div>
     </div>
 }

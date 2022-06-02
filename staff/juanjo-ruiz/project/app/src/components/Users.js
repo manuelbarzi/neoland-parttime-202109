@@ -1,7 +1,8 @@
 import { retrieveAllUsers } from '../logic'
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Routes, Route } from 'react-router-dom'
 import UserItem from './UserItem'
+import CreateUser from './CreateUser'
 
 export default function () {
     const [users, setUsers] = useState()
@@ -17,7 +18,9 @@ export default function () {
         }
     }, [])
 
+
     return <div>
+        <a onClick={() => navigate('/')}>Volver</a>
         <h2>USUARIOS</h2>
         {
             users ?
@@ -28,5 +31,6 @@ export default function () {
                 </ul>
                 : <p>no hay usuarios</p>
         }
+        <a onClick={() => navigate('/user')}>añadir usuario</a> {/* añadir icono */}
     </div>
 }

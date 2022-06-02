@@ -18,6 +18,7 @@ export default function () {
     }, [])
 
     return <div>
+        <a onClick={() => navigate('/')}>volver</a>
         <h2>VEHÍCULOS</h2>
         {
             vehicles ?
@@ -28,5 +29,6 @@ export default function () {
                 </ul>
                 : <p>no hay vehículos activos</p>
         }
+        <a href=''>añadir vehículo</a> {/* añadir icono */}
     </div>
 }

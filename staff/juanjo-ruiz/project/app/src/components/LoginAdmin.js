@@ -31,7 +31,7 @@ export default function ({ onLoggedIn }) {
             <input type="password" name="password" placeholder="Introduce tu contraseña" />
             <button>Inicia sesión</button>
 
-            <p>Aún no estas registrado,<a href="/register">hazlo aquí</a></p>
+            <p>Aún no estas registrado,<a onClick={() => navigate("/register")}>hazlo aquí</a></p>
         </form>
     </div>
 }
