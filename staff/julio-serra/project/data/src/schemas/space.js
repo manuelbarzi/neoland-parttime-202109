@@ -17,6 +17,10 @@ const space = new Schema({
         type: String,
         required: true
     },
+    oldPrice: {
+        type: String,
+        required: true,
+    },
     price: {
         type: String,
         requerid: true
@@ -36,6 +40,10 @@ const space = new Schema({
     size: {
         type: String,
         requerid: true
+    },
+    time: {
+        type: String,
+        required: true,
     },
     access: {
         type: [String],

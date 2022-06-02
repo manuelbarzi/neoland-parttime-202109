@@ -1,4 +1,4 @@
-module.exports = {
+module.exports =  {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
@@ -9,7 +9,7 @@ module.exports = {
         'secondary-color': '#FF7353',
         'tertiary-color': '#1C1E4F',
         'cuartiary-color': '#4E54F0',
-
+        'color-spaces': '#eaeaea'
       }
     },
   },

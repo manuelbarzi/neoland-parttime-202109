@@ -1,4 +1,5 @@
 import Header from './Header';
+import Footer from './Footer'
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { retrieveSpace } from '../logic'
@@ -26,20 +27,27 @@ export default function Space() {
     return (
         <>
             <Header />
-            {space && <>
-                <img className='w-full' src={space.image} />
-                <p>{space.title}</p>
-                <p>{space.description}</p>
-                <p>{space.price}</p>
-                <p>{space.features}</p>
-                <p>{space.type}</p>
-                <p>{space.deposit}</p>
-                <p>{space.size}</p>
-                <p>{space.access}</p>
+            <section className='mt-5'>
+                {space && <>
+                    <div>
+                        <img className='w-full object-cover' style={{ height: "400px" }} src={space.image} />
+                    </div>
+                    <div>
+                        <h1 className='nav__font black text-4xl'>{space.title}</h1>
+                        <p>{space.description}</p>
+                        <p>{space.price}</p>
+                        <p>{space.features}</p>
+                    </div>
 
-
-            </>}
-
+                    <div>
+                        <p>{space.type}</p>
+                        <p>{space.deposit}</p>
+                        <p>{space.size}</p>
+                        <p>{space.access}</p>
+                    </div>
+                </>}
+            </section>
+            <Footer />
         </>
     )
 }

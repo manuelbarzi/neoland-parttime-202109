@@ -3,7 +3,6 @@ import { retrieveAllSpaces } from '../logic';
 import CardItem from './CardItem';
 import { useNavigate, Route, Routes } from 'react-router-dom'
 
-
 export default function Cards() {
 
     const navigate = useNavigate()
@@ -25,22 +24,23 @@ export default function Cards() {
     }
 
     const [count, setCount] = useState(2)
- 
+
 
     return (
 
         <>
-            <h1 className='nav__font black text-4xl'>Our Spaces</h1>
-            <div>
-                {spaces ? spaces.slice(0, count).map(space => {
-                    return <li key={space.id}>
-                        <CardItem space={space} />
-                    </li>
-                })
-                    : <p>Not found spaces</p>
-                }
-            </div>
-
+            <section className='bg-color-spaces pb-20'>
+                <h1 className='nav__font black text-4xl py-8 pl-14'>Our Spaces</h1>
+                <div className='grid grid-cols-2'>
+                    {spaces ? spaces.slice(0, count).map(space => {
+                        return <li className='list-none justify-center' key={space.id}>
+                            <CardItem space={space} />
+                        </li>
+                    })
+                        : <p>Not found spaces</p>
+                    }
+                </div>
+            </section>
         </>
     )
 }

@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,15 +15,19 @@
     --font-size-small: 1.2rem;
     --font-size-extrasmall: 1rem;
 }
+
 .nav__font {
     font-family: var(--principal-font);
 }
+
 .nav__text {
     color: var(--principal-color);
     font-family: var(--principal-font);
 }
+
 body {
+    font-family: 'Inter', sans-serif;
     margin: auto;
     padding: 0 2rem;
-    max-width: 1400px
+    max-width: 1400px;
 }
