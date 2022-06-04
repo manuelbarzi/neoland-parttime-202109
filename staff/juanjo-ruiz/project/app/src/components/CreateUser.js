@@ -7,10 +7,10 @@ export default function () {
     const addUser = event => {
         event.preventDefualt()
 
-        const { target: { name: { value: name }, email: { value: email }, password: { password }, role: { role } } } = event
+        const { target: { name: { value: name }, email: { value: email }, password: { value: password }, role: { value: role } } } = event
 
         try {
-            createUser(name, email, password, role)
+            createUser(sessionStorage.token, name, email, password, role)
                 .then(() => {
                     alert('ususario creado')
                 })
@@ -24,14 +24,14 @@ export default function () {
         <a onClick={() => navigate('/users')}>Volver</a>
         <h2>Nuevo usuario</h2>
         <form onSubmit={addUser}>
-            <input type="name" name="name" placeholder="name" required/>
-            <input type="email" name="email" placeholder="email"required/>
-            <input type="password" name="password" placeholder="password" required/>
-            <select>
+            <input type="name" name="name" placeholder="name" required />
+            <input type="email" name="email" placeholder="email" required />
+            <input type="password" name="password" placeholder="password" required />
+            <select name="role">
                 <option value="driver">driver</option>
                 <option value="admin">admin</option>
             </select>
-            <buttonre>Añadir</buttonre>
+            <button>Añadir</button>
         </form>
     </div>
 }

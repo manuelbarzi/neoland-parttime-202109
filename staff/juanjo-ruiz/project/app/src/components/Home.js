@@ -10,7 +10,7 @@ export default function ({ onLoggedOut }) {
     }
 
     return <div>
-        <h1>name</h1>
+        <h1>Home</h1>
         <button onClick={handleLogout}>cerrar sesión</button>
 
         <button onClick={() => navigate('/vehicles')}>Vehículos</button>

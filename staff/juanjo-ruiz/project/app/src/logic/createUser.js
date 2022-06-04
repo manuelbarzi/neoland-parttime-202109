@@ -3,7 +3,7 @@ import { validators, errors } from 'commons'
 const { validateString, validatePassword, validateEmail } = validators
 const { DuplicityError, ClientError, ServerError } = errors
 
-export default function ( name, email, password, role = 'driver') {
+export default function (token, name, email, password, role) {
     validateString(name, 'name')
     validateEmail(email)
     validatePassword(password)
@@ -12,7 +12,8 @@ export default function ( name, email, password, role = 'driver') {
     return fetch('http://localhost:8080/api/user', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({ name, email, password, role })
     })
