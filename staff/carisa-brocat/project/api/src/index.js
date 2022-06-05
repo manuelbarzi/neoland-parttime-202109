@@ -18,7 +18,9 @@ const {
     retrievePost,
     updatePostFeedback,
     addCommentToPost,
-    retrievePostsBy
+    retrievePostsBy,
+    updateUserHairTextureAndInterests,
+    updateFavoritePosts,
 } = require('./handlers')
 
 
@@ -42,6 +44,8 @@ connect(MONGODB_URL)
         router.patch('/users', jsonBodyParser, updateUser)
         router.patch('/users/password', jsonBodyParser, updatePassword)
         router.patch('/users/email', jsonBodyParser, updateEmail)
+        router.patch('/users/hairTextAndInterests', jsonBodyParser, updateUserHairTextureAndInterests)
+        router.patch('/users/favoritePosts', jsonBodyParser, updateFavoritePosts)
         router.delete('/users', jsonBodyParser, deleteUser)
         router.post('/posts', jsonBodyParser, createPost)
         router.delete('/posts/:postId', jsonBodyParser, deletePost)

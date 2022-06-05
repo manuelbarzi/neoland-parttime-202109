@@ -35,7 +35,7 @@ function retrieveAllPosts(userId) {
                     delete post._id
 
                     post.userId = post.user._id.toString()
-                    post.userName = post.user.name
+                    post.userNickname = post.user.nickname
 
                     delete post.user
 
@@ -47,7 +47,7 @@ function retrieveAllPosts(userId) {
                         comments.forEach(comment => {
                             comment.id = comment._id.toString()
                             comment.userId = comment.user._id
-                            comment.userName = comment.user.name
+                            comment.userNickname = comment.user.nickname
 
                             delete comment._id
                             delete comment.__v

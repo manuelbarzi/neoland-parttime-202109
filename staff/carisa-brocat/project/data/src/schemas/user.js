@@ -39,6 +39,11 @@ const user = new Schema({
     favoritePosts: {
         type: [String],
     },
+
+    quizPassed: {
+        type: Boolean,
+        default: false,
+    }
 })
 
 module.exports = user

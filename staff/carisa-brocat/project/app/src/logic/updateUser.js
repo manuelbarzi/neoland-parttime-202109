@@ -1,12 +1,13 @@
 import { validators, errors } from 'commons'
 
-const { DuplicityError, ServerError, ClientError } = errors
-const { validateString, validatePassword, validateEmail } = validators
+const { AuthError, NotFoundError, ServerError, ClientError } = errors
+const { validateString, validateToken, validateArray } = validators
 
-function updateUser(userId, nickname, image, hairTexture, interests, favoritePosts) {
+function updateUser(token, nickname, image, hairTexture, interests) {
+    validateToken(token)
     validateString(nickname, 'nickname')
-    validateEmail(email)
-    validatePassword(password)
+    validateString(hairTexture, 'hairTexture')
+    validateArray(interests)
 
     return fetch('http://localhost:8080/api/users', {
         method: 'PATCH',
@@ -15,20 +16,22 @@ function updateUser(userId, nickname, image, hairTexture, interests, favoritePos
             Authorization: `Bearer ${token}`
 
         },
-        body: JSON.stringify({ userId, nickname, image, hairTexture, interests, favoritePosts }) //el metodo JSON.stringify convierte valores javascript a JSON
+        body: JSON.stringify({ nickname, image, hairTexture, interests}) //el metodo JSON.stringify convierte valores javascript a JSON
     })
         .then(res => {
             const { status } = res
 
-            if (status === 201)
+            if (status === 204)
                 return
             else if (status >= 400 && status < 500)
                 return res.json()
                     .then(data => {
                         const { error: message } = data
 
-                        if (status === 409)
-                            throw new DuplicityError(message)
+                        if (status === 401)
+                            throw new AuthError(message)
+                        else if (status === 404)
+                            throw new NotFoundError(message)
                         else
                             throw new ClientError(message)
                     })

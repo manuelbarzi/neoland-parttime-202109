@@ -13,6 +13,8 @@ const retrievePost = require('./retrievePost')
 const updatePostFeedback = require('./updatePostFeedback')
 const addCommentToPost = require('./addCommentToPost')
 const retrievePostsBy = require('./retrievePostsBy')
+const updateUserHairTextureAndInterests = require('./updateUserHairTextureAndInterests')
+const updateFavoritePosts = require('./updateFavoritePosts')
 
 module.exports = {
     registerUser,
@@ -29,5 +31,7 @@ module.exports = {
     retrievePost,
     updatePostFeedback,
     addCommentToPost,
-    retrievePostsBy
+    retrievePostsBy,
+    updateUserHairTextureAndInterests,
+    updateFavoritePosts
 }

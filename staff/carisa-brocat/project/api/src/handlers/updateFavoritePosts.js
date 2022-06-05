@@ -1,13 +1,15 @@
-const { retrieveAllPosts } = require('logic')
-const { errors: { FormatError, AuthError, NotFoundError } } = require('commons')
+const { updateFavoritePosts } = require('logic')
 const extractUserIdFromToken = require('./helpers/extractUserIdFromToken')
+const { errors: { NotFoundError, FormatError, ClientError, AuthError } } = require('commons')
 
 module.exports = (req, res) => {
     try {
         const userId = extractUserIdFromToken(req)
 
-        retrieveAllPosts(userId)
-            .then(posts => res.status(200).send(posts))
+        const { body: { favoritePosts } } = req
+
+        updateFavoritePosts(userId, favoritePosts)
+            .then(() => res.status(204).send())
             .catch(error => {
                 let status = 500
 
@@ -16,18 +18,21 @@ module.exports = (req, res) => {
 
                 res.status(status).json({ error: error.message })
             })
-
     } catch (error) {
         let status = 500
 
         if (error instanceof AuthError)
             status = 401
 
-        if (error instanceof TypeError || error instanceof FormatError)
+        if (error instanceof TypeError || error instanceof FormatError || error instanceof ClientError)
             status = 400
 
         res.status(status).json({ error: error.message })
     }
 
 }
+
+
+
+
 

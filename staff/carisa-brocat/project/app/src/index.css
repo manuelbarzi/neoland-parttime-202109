@@ -1,4 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Inconsolata&display=swap');
+/* font-family: 'Inconsolata', monospace;
+font-family: 'Caveat Brush', cursive; */
+
+
 html, body, #root {
   margin: 0;
   height: 100%;
+  padding: 0;
 }

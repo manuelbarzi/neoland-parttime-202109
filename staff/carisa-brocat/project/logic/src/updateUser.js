@@ -10,9 +10,9 @@ const { errors: {
     }
 } = require('commons')
 
-const {validateInterests} = require('./helpers/validateData')
+const { validateInterests } = require('./helpers/validateData')
 
-function updateUser(userId, nickname, image, hairTexture, interests, favoritePosts) {
+function updateUser(userId, nickname, image, hairTexture, interests) {
     validateId(userId, 'userId')
 
     if (nickname)
@@ -26,7 +26,7 @@ function updateUser(userId, nickname, image, hairTexture, interests, favoritePos
         validateInterests(interests)
     }
 
-    return User.updateOne({ _id: userId }, { nickname, image, hairTexture, interests, favoritePosts })
+    return User.updateOne({ _id: userId }, { nickname, image, hairTexture, interests})
         .then(result => {
             const usersIdFinded = result.matchedCount //el matchedCount es una propiedad del updateOne que devuelve el numero de objetos encontrados con el parametro, en este caso userId 
 

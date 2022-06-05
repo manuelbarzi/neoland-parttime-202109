@@ -6,9 +6,9 @@ module.exports = (req, res) => {
     try {
         const userId = extractUserIdFromToken(req)
 
-        const { body: { nickname, image, hairTexture, interests, favoritePosts} } = req
+        const { body: { nickname, image, hairTexture, interests} } = req
 
-        updateUser(userId, nickname, image, hairTexture, interests, favoritePosts)
+        updateUser(userId, nickname, image, hairTexture, interests)
             .then(() => res.status(204).send())
             .catch(error => {
                 let status = 500

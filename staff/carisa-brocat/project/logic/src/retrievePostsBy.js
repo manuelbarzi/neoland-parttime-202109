@@ -44,7 +44,7 @@ function retrievePostsBy(userId, category, subject) {
                     delete post._id
 
                     post.userId = post.user._id.toString()
-                    post.userName = post.user.name
+                    post.userNickname = post.user.nickname
                     delete post.user
 
                     delete post.__v
@@ -57,7 +57,7 @@ function retrievePostsBy(userId, category, subject) {
                             delete comment._id
 
                             comment.userId = comment.user._id
-                            comment.userName = comment.user.name
+                            comment.userNickame = comment.user.nickname
                             delete comment.user
 
                             delete comment.__v

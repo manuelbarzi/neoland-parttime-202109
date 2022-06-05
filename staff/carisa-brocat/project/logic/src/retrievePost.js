@@ -20,7 +20,7 @@ function retrievePost(postId) {
             delete post._id
 
             post.userId = post.user._id.toString()
-            post.userName = post.user.name
+            post.userNickname = post.user.nickname
             delete post.user
 
             delete post.__v
@@ -33,7 +33,7 @@ function retrievePost(postId) {
                     delete comment._id
                     
                     comment.userId = comment.user._id
-                    comment.userName = comment.user.name
+                    comment.userNickname = comment.user.nickname
                     delete comment.user
 
                     delete comment.__v

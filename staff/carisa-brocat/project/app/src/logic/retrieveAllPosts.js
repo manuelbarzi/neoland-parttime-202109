@@ -3,10 +3,10 @@ import { validators, errors } from 'commons'
 const { ServerError, ClientError, NotFoundError, AuthError } = errors
 const { validateToken } = validators
 
-function retrieveUser(token) {
+function retrieveAllPosts(token) {
     validateToken(token)
 
-    return fetch('http://localhost:8080/api/users', {
+    return fetch('http://localhost:8080/api/posts', {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${token}`
@@ -17,8 +17,8 @@ function retrieveUser(token) {
 
             if (status === 200)
                 return res.json()
-                    .then(user => {
-                        return user
+                    .then(posts => {
+                        return posts
                     })
             else if (status >= 400 && status < 500)
                 return res.json()
@@ -40,4 +40,4 @@ function retrieveUser(token) {
         })
 }
 
-export default retrieveUser
+export default retrieveAllPosts
