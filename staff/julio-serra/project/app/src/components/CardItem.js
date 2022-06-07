@@ -52,7 +52,7 @@ export default function CardItem({ space }) {
                     <span className='line-through'>{space.oldPrice}</span>
                     <span className='text-secondary-color font-bold'>{space.price}</span>
 
-                    <button className='w-5/12 mx-auto p-4 rounded-md text-secondary-color border-secondary-color border-2 hover:border-cuartiary-color hover:text-cuartiary-color' onClick={handleSpaceClick}>View listing &gt;</button>            
+                    <button onClick={handleSpaceClick} className='w-5/12 mx-auto p-4 rounded-md text-secondary-color border-secondary-color border-2 hover:border-cuartiary-color hover:text-cuartiary-color'>View listing &gt;</button>            
                 </container>
             </section>
 

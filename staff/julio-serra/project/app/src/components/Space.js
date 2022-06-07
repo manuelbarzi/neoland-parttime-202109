@@ -10,12 +10,14 @@ export default function Space() {
     const [space, setSpace] = useState()
     const params = useParams()
     const { spaceId } = params
+    const [features, setFeatures] = useState()
 
     useEffect(() => {
         try {
             retrieveSpace(spaceId)
                 .then(space => {
                     setSpace(space)
+                    setFeatures(space.features)
                 })
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -36,7 +38,22 @@ export default function Space() {
                         <h1 className='nav__font black text-4xl'>{space.title}</h1>
                         <p>{space.description}</p>
                         <p>{space.price}</p>
-                        <p>{space.features}</p>
+                        <p>
+                            {features ? features.map(feature => {
+                                if (feature === 'dj') {
+                                    return <MusicNoteIcon className="h-5 w-5 text-blue-500" />
+                                } else if (feature === 'wc') {
+                                    return <BellIcon className="h-5 w-5 text-blue-500" />
+                                } else if (feature === 'audio') {
+                                    return <VolumeUpIcon className="h-5 w-5 text-blue-500" />
+                                } else if (feature === 'lights') {
+                                    return <LightBulbIcon className="h-5 w-5 text-blue-500" />
+                                } else if (feature === 'security') {
+                                    return <ShieldCheckIcon className="h-5 w-5 text-blue-500" />
+                                } else
+                                    return null
+                            }) : <span>Not found</span>}
+                        </p>
                     </div>
 
                     <div>
@@ -46,6 +63,7 @@ export default function Space() {
                         <p>{space.access}</p>
                     </div>
                 </>}
+
             </section>
             <Footer />
         </>
