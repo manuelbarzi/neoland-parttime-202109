@@ -6,9 +6,9 @@ module.exports = (req, res ) => {
         
         const nutritionistId = extractUserIdFromAuthorization(req)
 
-        const { params: { mealId }, body: { password}} = req
+        const { params: { mealId } } = req
 
-        deleteMeal(nutritionistId, password, mealId)
+        deleteMeal(nutritionistId, mealId)
             .then(() => res.status(204).send())
             .catch(error => res.status(400).json({ error: error.message}))
 

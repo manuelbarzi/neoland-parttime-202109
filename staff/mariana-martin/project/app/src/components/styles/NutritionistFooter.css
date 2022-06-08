@@ -1,0 +1,17 @@
+.container-nutri-footer{
+    background-color: #145566;
+    height: 40px;
+
+    position: sticky;
+    display: flex;
+  
+  
+ 
+    
+    
+}
+.link {
+    text-decoration:none;
+    color: white;
+    margin: 10px;
+}

@@ -15,7 +15,8 @@ function authenticateNutritionist(email, password){
                 .then(match => {
                     if(!match) throw new AuthError('wrong credentials')
 
-                    return nutritionist.id
+                     //nutritionist.id
+                     return nutritionist.id
                 })
         })
 }

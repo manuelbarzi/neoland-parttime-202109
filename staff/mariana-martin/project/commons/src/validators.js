@@ -64,7 +64,7 @@ function validateNumber(number, explain = 'number') {
 }
 
 function validateArray(array, explain = 'array') {
-    if (typeof array !== 'array') throw new TypeError(`${explain} is not an array`)
+    if (!array instanceof Array ) throw new TypeError(`${explain} is not an array`)
 }
 
 function validateDay(day) {

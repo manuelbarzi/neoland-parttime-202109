@@ -3,9 +3,9 @@ const { validators: { validateId, validatePassword }, errors: { AuthError } } = 
 const bcrypt = require('bcryptjs')
 
 
-function deleteMeal(nutritionistId,  mealId) {
+function deleteMeal(nutritionistId, password,  mealId) {
     validateId(nutritionistId, 'nutritionist id')
-    //validatePassword(password)
+    validatePassword(password)
     validateId(mealId, 'meal id')
 
     return User.findById(nutritionistId)
@@ -16,8 +16,13 @@ function deleteMeal(nutritionistId,  mealId) {
             if (nutritionist.role !== User.NUTRITIONIST)
                 throw new AuthError(`cannot delete, user with id ${nutritionistId} is not an nutritionist`)
 
-           
-                return Meal.findById(mealId)
+            return bcrypt.compare(password, nutritionist.password)
+            })
+              .then(match => {
+                 if (!match) throw new AuthError('wrong crdentials')
+
+
+            return Meal.findById(mealId)
 
                 .then(meal => {
                     if (!meal) throw new Error(`meal with id ${mealId} not found`)
@@ -26,8 +31,8 @@ function deleteMeal(nutritionistId,  mealId) {
 
                     return Meal.deleteOne({ _id: mealId })
                 })
-            })
-              
+        })
+
         .then(result => { })
 
 }
