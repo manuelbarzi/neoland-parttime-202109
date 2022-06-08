@@ -7,6 +7,8 @@
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
     "commons": "file:../commons",
+    "flowbite": "^1.4.7",
+    "flowbite-react": "^0.0.25",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",

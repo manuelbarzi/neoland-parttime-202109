@@ -4,6 +4,7 @@ import Register from './components/Register';
 import Landing from './components/Landing';
 import Login from './components/Login';
 import Space from './components/Space';
+import AllSpaces from './components/AllSpaces'
 
 import './index.css';
 
@@ -25,6 +26,7 @@ export default function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={loggedIn ? <Navigate to="/" /> : <Login onloggedIn={handleLoggedIn} />} />
         <Route path='/spaces/:spaceId' element={<Space />} />
+        <Route path='/allspaces' element={<AllSpaces />} />
       </Routes>
     </>
   );

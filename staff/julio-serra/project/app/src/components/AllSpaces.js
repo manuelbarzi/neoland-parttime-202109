@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { retrieveAllSpaces } from '../logic';
 import CardItem from './CardItem';
+import Header from './Header';
+import Footer from './Footer';
 import { useNavigate, Route, Routes } from 'react-router-dom'
 
 export default function Cards() {
@@ -23,20 +25,18 @@ export default function Cards() {
         }
     }
 
-    const [count, setCount] = useState(2)
-    const handleGoAllSpaces = () => navigate('/allspaces')
 
     return (
 
         <>
-            <section className='bg-color-spaces pb-20'>
-                <div className='flex justify-between items-center pr-16'>
-                    <h1 className='nav__font black text-4xl py-8 pl-14'>Our Spaces</h1>
-                    <span className='cursor-pointer text-cuartiary-color hover:underline-offset-8 hover:font-bold hover:underline' onClick={handleGoAllSpaces}>Show all Spaces</span>
+            <Header />
+            <section className='bg-color-spaces pb-20 mt-5'>
+                <div>
+                    <h1 className='nav__font black text-4xl py-8 pl-14'>All our spaces</h1>
                 </div>
-                <div className='grid grid-cols-2'>
-                    {spaces ? spaces.slice(0, count).map(space => {
-                        return <li className='list-none justify-center' key={space.id}>
+                <div className='grid grid-cols-3'>
+                    {spaces ? spaces.map(space => {
+                        return <li className='mb-10 list-none justify-center' key={space.id}>
                             <CardItem space={space} />
                         </li>
                     })
@@ -45,6 +45,8 @@ export default function Cards() {
                 </div>
 
             </section>
+            <Footer />
+
         </>
     )
 }
