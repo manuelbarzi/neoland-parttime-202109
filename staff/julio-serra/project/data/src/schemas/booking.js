@@ -20,6 +20,10 @@ const booking = new Schema ({
         type: Date,
         default: Date.now,
         required: true
+    },
+    pickupTime: {
+        type: Number,
+        required: false
     }
 })
 
