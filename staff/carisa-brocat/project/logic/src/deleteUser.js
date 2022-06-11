@@ -18,7 +18,7 @@ function deleteUser(userId, password) {
     return User.findById(userId)
         .then(user => {
             if (!user) {
-                throw new NotFoundError('user not found')
+                throw new AuthError('user not found')
             }
 
             return comparePassword(password, user.password)

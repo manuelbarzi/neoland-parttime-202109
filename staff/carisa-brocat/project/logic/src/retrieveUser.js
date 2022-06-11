@@ -2,7 +2,7 @@ const { models: { User } } = require('data')
 const { validators: {
     validateId,
 }, errors: {
-    ClientError, NotFoundError
+    ClientError, NotFoundError, AuthError
 } } = require('commons')
 
 
@@ -12,7 +12,7 @@ function retrieveUser(userId) {
     return User.findById(userId).lean()
         .then(user => {
             if (!user) {
-                throw new NotFoundError('user not found')
+                throw new AuthError('user not found')
             }
 
             user.id = user._id.toString()

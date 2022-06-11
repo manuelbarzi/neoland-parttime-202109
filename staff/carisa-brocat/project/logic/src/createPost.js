@@ -16,17 +16,20 @@ const { validateCategory, validateSubject } = require('./helpers/validateData')
 function createPost(userId, title, description, category, subject, image, address) {
     validateString(title, 'title')
     validateId(userId, 'id')
-    if(category){
+    if (category) {
         validateString(category, 'category')
         validateCategory(category)
     }
-    if(subject){
+    if (subject) {
         validateString(subject, 'subject')
         validateSubject(subject)
     }
 
     return User.findById(userId)
         .then(user => {
+            if (!user) {
+                throw new AuthError('User not found')
+            }
 
             return Post.create({ user: userId, title, description, category, subject, image, address })
 

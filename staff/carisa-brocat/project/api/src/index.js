@@ -16,13 +16,13 @@ const {
     retrieveUserPosts,
     retrieveAllPosts,
     retrievePost,
-    updatePostFeedback,
     addCommentToPost,
     retrievePostsBy,
     updateUserHairTextureAndInterests,
-    updateFavoritePosts,
+    toggleLikePost,
+    toggleDislikePost,
+    toggleSavePost
 } = require('./handlers')
-
 
 const { env: { MONGODB_URL, PORT } } = process
 
@@ -42,18 +42,19 @@ connect(MONGODB_URL)
         router.post('/users/auth', jsonBodyParser, authenticateUser)
         router.get('/users', retrieveUser)
         router.patch('/users', jsonBodyParser, updateUser)
-        router.patch('/users/password', jsonBodyParser, updatePassword)
-        router.patch('/users/email', jsonBodyParser, updateEmail)
-        router.patch('/users/hairTextAndInterests', jsonBodyParser, updateUserHairTextureAndInterests)
-        router.patch('/users/favoritePosts', jsonBodyParser, updateFavoritePosts)
+        router.patch('/user/password', jsonBodyParser, updatePassword)
+        router.patch('/user/email', jsonBodyParser, updateEmail)
+        router.patch('/user/hair-text-and-interests', jsonBodyParser, updateUserHairTextureAndInterests)
         router.delete('/users', jsonBodyParser, deleteUser)
         router.post('/posts', jsonBodyParser, createPost)
         router.delete('/posts/:postId', jsonBodyParser, deletePost)
+        router.patch('/posts/:postId/toggle-like', toggleLikePost)
+        router.patch('/posts/:postId/toggle-dislike', toggleDislikePost)
+        router.patch('/posts/:postId/toggle-save', toggleSavePost)
         router.get('/user/posts', retrieveUserPosts)
         router.get('/posts', retrieveAllPosts)
-        router.get('/posts/by', jsonBodyParser, retrievePostsBy)
+        router.post('/posts/search-by', jsonBodyParser, retrievePostsBy)
         router.get('/posts/:postId', jsonBodyParser, retrievePost)
-        router.patch('/posts/:postId', jsonBodyParser, updatePostFeedback)
         router.post('/posts/:postId/comment', jsonBodyParser, addCommentToPost)
 
         api.use('/api', router)

@@ -1,6 +1,7 @@
 const { models: { User, Post } } = require('data')
 const { errors: {
-    NotFoundError
+    NotFoundError,
+    AuthError,
 }, validators: {
     validateId,
 }
@@ -13,7 +14,7 @@ function retrieveAllPosts(userId) {
     return User.findById(userId)
         .then(user => {
             if (!user)
-                throw new NotFoundError('user not found')
+                throw new AuthError('user not found')
 
             const interests = user.interests
 

@@ -1,7 +1,8 @@
 const { models: { User, Post } } = require('data')
 const { errors: {
     NotFoundError,
-    ConditionError
+    ConditionError,
+    AuthError,
 }, validators: {
     validateId,
     validateString,
@@ -28,7 +29,7 @@ function retrievePostsBy(userId, category, subject) {
     return User.findById(userId)
         .then(user => {
             if (!user)
-                throw new NotFoundError('user not found')
+                throw new AuthError('user not found')
 
             if (category && subject)
                 return Post.find({ category, subject }).lean().populate('user').sort('-date')

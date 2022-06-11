@@ -1,7 +1,7 @@
 // import mongoose from 'mogoose'
 // const {Schema} = mongoose (idem a línea 3)
 
-const { Schema } = require('mongoose')
+const { Schema, Types: { ObjectId } } = require('mongoose')
 
 const user = new Schema({
     nickname: {
@@ -27,17 +27,26 @@ const user = new Schema({
 
     hairTexture: {
         type: String,
+        enum: ['3a', '3b', '3c', '4a', '4b', '4c']
     },
 
     interests: {
         type: [{
             type: String,
             enum: ['moisture', 'growth', 'restore', 'definition', 'strength']
-        }]        
+        }]
     },
 
-    favoritePosts: {
-        type: [String],
+    savedPosts: {
+        type: [{ type: ObjectId, ref: 'Post' }]
+    },
+
+    likedPosts: {
+        type: [{ type: ObjectId, ref: 'Post' }],
+    },
+
+    dislikedPosts: {
+        type: [{ type: ObjectId, ref: 'Post' }],
     },
 
     quizPassed: {

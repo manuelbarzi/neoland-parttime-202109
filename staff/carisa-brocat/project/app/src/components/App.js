@@ -31,8 +31,8 @@ function App() {
 
   return <Routes>
     <Route path="/*" element={token ? <Home onLoggedOut={handleLogOut} /> : <Landing />} />
-    <Route path="/register" element={<Register onRegistered={handleRegistered} />} />
-    <Route path="/login" element={<Login onLoggedIn={handleLogIn} />} />
+    <Route path="/register" element={token ? <Navigate to="/" /> : <Register onRegistered={handleRegistered} />} />
+    <Route path="/login" element={token ? <Navigate to="/" /> : <Login onLoggedIn={handleLogIn} />} />
   </Routes>
 }
 

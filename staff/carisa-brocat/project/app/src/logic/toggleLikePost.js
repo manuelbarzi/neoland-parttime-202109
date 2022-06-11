@@ -1,20 +1,18 @@
 import { validators, errors } from 'commons'
 
 const { AuthError, NotFoundError, ServerError, ClientError } = errors
-const { validateString, validateToken, validateArray } = validators
+const { validateToken, validateId } = validators
 
-function updateUserHairTextureAndInterests(token, hairTexture, interests) {
+function toggleLikePost(token, postId) {
     validateToken(token)
-    validateArray(interests)
+    validateId(postId)
 
-    return fetch('http://localhost:8080/api/user/hair-text-and-interests', {
+    return fetch(`http://localhost:8080/api/posts/${postId}/toggle-like`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`
-
-        },
-        body: JSON.stringify({ hairTexture, interests }) //el metodo JSON.stringify convierte valores javascript a JSON
+        }
     })
         .then(res => {
             const { status } = res
@@ -41,4 +39,4 @@ function updateUserHairTextureAndInterests(token, hairTexture, interests) {
         })
 }
 
-export default updateUserHairTextureAndInterests
+export default toggleLikePost

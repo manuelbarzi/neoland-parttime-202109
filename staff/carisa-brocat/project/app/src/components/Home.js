@@ -1,10 +1,9 @@
 import './Home.css'
-import { useState } from 'react'
-import { retrieveUser, retrieveAllPosts } from '../logic'
+import { useState, useEffect } from 'react'
+import { retrieveUser, retrieveAllPosts, retrievePostsBy } from '../logic'
 import Quiz from './Quiz'
 import Post from './Post'
 import SubjectSelector from './SubjectSelector'
-import { useEffect } from 'react';
 import { errors } from 'commons'
 import CategorySelector from './CategorySelector'
 const { AuthError } = errors
@@ -12,6 +11,8 @@ const { AuthError } = errors
 function Home({ onLoggedOut }) {
     const [user, setUser] = useState()
     const [posts, setPosts] = useState([])
+    const [category, setCategory] = useState()
+    const [subject, setSubject] = useState()
     const [quizPassed, setQuizPassed] = useState(false)
 
     const loadUser = () => {
@@ -22,6 +23,8 @@ function Home({ onLoggedOut }) {
                     setQuizPassed(user.quizPassed)
                 })
                 .catch(error => {
+                    if (error instanceof AuthError)
+                        delete sessionStorage.token
 
                     alert(error.message)
                 })
@@ -40,6 +43,9 @@ function Home({ onLoggedOut }) {
                     setPosts(posts)
                 })
                 .catch(error => {
+                    if (error instanceof AuthError)
+                        delete sessionStorage.token
+
                     alert(error.message)
                 })
         } catch (error) {
@@ -50,11 +56,42 @@ function Home({ onLoggedOut }) {
         }
     }
 
+    const loadPostsBy = () => {
+        try {
+            retrievePostsBy(sessionStorage.token, category, subject)
+                .then(posts => {
+                    setPosts(posts)
+                })
+                .catch(error => {
+                    if (error instanceof AuthError)
+                        delete sessionStorage.token
+
+                    alert(error.message)
+                })
+        } catch (error) {
+            if (error instanceof AuthError)
+                delete sessionStorage.token
+
+            alert(error.message)
+        }
+    }
+
+    const loadFilterPosts = () => {
+        if (category || subject) {
+            loadPostsBy()
+        }
+        else {
+            loadPosts()
+        }
+    }
+
     useEffect(() => {
         loadUser()
-
-        loadPosts()
     }, [])
+
+    useEffect(() => {
+        loadFilterPosts()
+    }, [category, subject])
 
     const logOut = () => {
         delete sessionStorage.token
@@ -62,31 +99,39 @@ function Home({ onLoggedOut }) {
         onLoggedOut()
     }
 
-
-
     const handleQuizPassed = () => setQuizPassed(true)
+
+    const handleSubject = subject => {
+        setSubject(subject)
+    }
+
+    const handleCategory = category => {
+        setCategory(category)
+    }
+
+    const appliedSubjectText = subject ? `${subject}`.charAt(0).toUpperCase() + `${subject}`.slice(1) : 'All'
 
     return <div className='home'>
         {user && quizPassed && <div>
             <div className='home__header'>
                 <h1>Logo</h1>
-                <h2>All</h2>
+                <h2 className='home__header-filterText'>{appliedSubjectText}</h2>
                 <div>
                     <h2>{user.nickname}</h2>
                     <button onClick={logOut}>LogOut</button>
                 </div >
             </div>
             <div className='home__body'>
-                <SubjectSelector />
+                <SubjectSelector onSelectedSubject={handleSubject} />
                 {
                     posts.length ?
-                        <ul> {posts.map(post => <li key={post.id}> <Post post={post} /></li>)}
+                        <ul> {posts.map(post => <li key={post.id}> <Post post={post} user={user} /></li>)}
                         </ul> :
-                        <p>Sorry, there are not posts to show</p>
+                        <p>Sorry, there are no posts to show</p>
                 }
             </div>
             <div className='home__footer'>
-                <CategorySelector />
+                <CategorySelector onSelectedCategory={handleCategory} />
                 <button className='home__button--addPost'>+</button>
             </div>
         </div>}

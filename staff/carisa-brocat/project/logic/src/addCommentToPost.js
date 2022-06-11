@@ -1,6 +1,7 @@
 const { models: { User, Post, Comment } } = require('data')
 const { errors: {
-    NotFoundError
+    NotFoundError,
+    AuthError,
 }, validators: {
     validateId,
     validateString
@@ -15,7 +16,7 @@ function addCommentToPost(userId, postId, text) {
     return Promise.all([User.findById(userId), Post.findById(postId)])
         .then(([user, post]) => {
             if (!user) {
-                throw new NotFoundError('User not found')
+                throw new AuthError('User not found')
             }
             if (!post) {
                 throw new NotFoundError('Post not found')

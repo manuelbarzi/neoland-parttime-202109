@@ -13,8 +13,11 @@ module.exports = (req, res) => {
             .catch(error => {
                 let status = 500
 
+                if (error instanceof AuthError)
+                status = 401
+
                 if (error instanceof NotFoundError)
-                    status = 401
+                    status = 404
 
                 res.status(status).json({ error: error.message })
             })

@@ -1,7 +1,8 @@
 const { models: { User } } = require('data')
 const { errors: {
     NotFoundError,
-    DuplicityError
+    DuplicityError,
+    AuthError
 },
     validators: {
         validateString,
@@ -31,7 +32,7 @@ function updateUser(userId, nickname, image, hairTexture, interests) {
             const usersIdFinded = result.matchedCount //el matchedCount es una propiedad del updateOne que devuelve el numero de objetos encontrados con el parametro, en este caso userId 
 
             if (usersIdFinded === 0)
-                throw new NotFoundError(`user with not found`)
+                throw new AuthError(`user not found`)
         })
         .catch(error => {
             if (error.message.includes('duplicate') & error.message.includes('nickname'))

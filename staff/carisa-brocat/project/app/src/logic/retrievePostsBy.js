@@ -1,26 +1,27 @@
 import { validators, errors } from 'commons'
 
-const { AuthError, NotFoundError, ServerError, ClientError } = errors
-const { validateString, validateToken, validateArray } = validators
+const { ServerError, ClientError, NotFoundError, AuthError } = errors
+const { validateToken } = validators
 
-function updateUserHairTextureAndInterests(token, hairTexture, interests) {
+function retrievePostsBy(token, category, subject) {
     validateToken(token)
-    validateArray(interests)
 
-    return fetch('http://localhost:8080/api/user/hair-text-and-interests', {
-        method: 'PATCH',
+    return fetch('http://localhost:8080/api/posts/search-by', {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
-
+            Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ hairTexture, interests }) //el metodo JSON.stringify convierte valores javascript a JSON
+        body: JSON.stringify({ category, subject })
     })
         .then(res => {
             const { status } = res
 
-            if (status === 204)
-                return
+            if (status === 200)
+                return res.json()
+                    .then(posts => {
+                        return posts
+                    })
             else if (status >= 400 && status < 500)
                 return res.json()
                     .then(data => {
@@ -41,4 +42,4 @@ function updateUserHairTextureAndInterests(token, hairTexture, interests) {
         })
 }
 
-export default updateUserHairTextureAndInterests
+export default retrievePostsBy

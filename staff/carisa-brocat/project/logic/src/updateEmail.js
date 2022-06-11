@@ -20,7 +20,7 @@ function updateEmail(userId, password, email) {
     return User.findById(userId)
         .then(user => {
             if (!user) {
-                throw new NotFoundError('User not found')
+                throw new AuthError('User not found')
             }
 
             return comparePassword(password, user.password) //compara el password encriptado y el q pasa el usuario, devuelve booleano

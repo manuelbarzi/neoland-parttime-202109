@@ -1,6 +1,7 @@
 const { models: { User, Post } } = require('data')
 const { errors: {
-    NotFoundError
+    NotFoundError,
+    AuthError,
 },
     validators: {
         validateId,
@@ -13,6 +14,9 @@ function deletePost(userId, postId) {
 
     return User.findById(userId)
         .then(user => {
+            if (!user) {
+                throw new AuthError('User not found')
+            }
 
             return Post.deleteOne({ _id: postId })
         })

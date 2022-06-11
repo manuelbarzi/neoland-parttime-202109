@@ -25,7 +25,34 @@ function Quiz({ onQuizPassed }) {
                 .then(() => {
                     onQuizPassed()
                 })
-                .catch(error => alert(error.message))
+                .catch(error => {
+                    if (error instanceof AuthError)
+                        delete sessionStorage.token
+
+                    alert(error.message)
+                })
+        } catch (error) {
+            if (error instanceof AuthError)
+                delete sessionStorage.token
+
+            alert(error.message)
+        }
+    }
+
+    const skipQuiz = event => {
+        event.stopPropagation()
+
+        try {
+            updateUserHairTextureAndInterests(sessionStorage.token, "", [])
+                .then(() => {
+                    onQuizPassed()
+                })
+                .catch(error => {
+                    if (error instanceof AuthError)
+                        delete sessionStorage.token
+
+                    alert(error.message)
+                })
         } catch (error) {
             if (error instanceof AuthError)
                 delete sessionStorage.token
@@ -58,7 +85,7 @@ function Quiz({ onQuizPassed }) {
                 </div>
             </fieldset>
             <div className='quiz__form--foot'>
-                <button onClick={onQuizPassed}>Do It Later</button>
+                <button onClick={skipQuiz}>Do It Later</button>
                 <button type='submit'>Next</button>
             </div>
         </form>

@@ -10,11 +10,12 @@ const deletePost = require('./deletePost')
 const retrieveUserPosts = require('./retrieveUserPosts')
 const retrieveAllPosts = require('./retrieveAllPosts')
 const retrievePost = require('./retrievePost')
-const updatePostFeedback = require('./updatePostFeedback')
 const addCommentToPost = require('./addCommentToPost')
 const retrievePostsBy = require('./retrievePostsBy')
 const updateUserHairTextureAndInterests = require('./updateUserHairTextureAndInterests')
-const updateFavoritePosts = require('./updateFavoritePosts')
+const toggleLikePost = require('./toggleLikePost')
+const toggleDislikePost = require('./toggleDislikePost')
+const toggleSavePost = require('./toggleSavePost')
 
 module.exports = {
     registerUser,
@@ -29,9 +30,10 @@ module.exports = {
     retrieveUserPosts,
     retrieveAllPosts,
     retrievePost,
-    updatePostFeedback,
     addCommentToPost,
     retrievePostsBy,
     updateUserHairTextureAndInterests,
-    updateFavoritePosts
+    toggleDislikePost,
+    toggleLikePost,
+    toggleSavePost
 }

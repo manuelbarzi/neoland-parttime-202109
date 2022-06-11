@@ -6,12 +6,15 @@ module.exports = (req, res) => {
     try {
         const userId = extractUserIdFromToken(req)
 
-        const { body: { nickname, image, hairTexture, interests} } = req
+        const { body: { nickname, image, hairTexture, interests } } = req
 
         updateUser(userId, nickname, image, hairTexture, interests)
             .then(() => res.status(204).send())
             .catch(error => {
                 let status = 500
+
+                if (error instanceof AuthError)
+                    status = 401
 
                 if (error instanceof NotFoundError)
                     status = 404
@@ -25,7 +28,7 @@ module.exports = (req, res) => {
         let status = 500
 
         if (error instanceof AuthError)
-                    status = 401
+            status = 401
 
         if (error instanceof TypeError || error instanceof FormatError || error instanceof ClientError || ValueError)
             status = 400
