@@ -10,7 +10,12 @@ const retrieveItems = require('./retrieveItems')
 const deleteSection = require('./deleteSection')
 const unregisterRestaurant = require('./unregisterRestaurant')
 const deleteItem = require('./deleteItem')
-
+const retrieveItemsFromSection = require('./retrieveItemsFromSection')
+const deleteList = require('./deleteList')
+const retrieveItem =require('./retrieveItem')
+const retrieveAllergens = require('./retrieveAllergens')
+const retrieveCategories = require('./retrieveCatgeories')
+const retrieveIngredients = require('./retrieveIngredients')
 
 module.exports = {
     registerUser,
@@ -24,5 +29,11 @@ module.exports = {
     retrieveItems,
     deleteSection,
     unregisterRestaurant,
-    deleteItem
+    deleteItem,
+    retrieveItemsFromSection,
+    deleteList,
+    retrieveItem,
+    retrieveAllergens,
+    retrieveCategories,
+    retrieveIngredients
 }
