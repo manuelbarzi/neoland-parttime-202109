@@ -3,7 +3,7 @@ const express = require('express')
 const { registerUser, authenticateUser, retrieveUser,
     deleteUser, createSpace, retrieveSpace, retrieveAllSpaces, deleteSpace,
     addReviewToSpace, addBookingToSpace, deleteReviewToSpace,
-    deleteBookingToSpace
+    deleteBookingToSpace, findSpaces, retrieveLattestSpaces
 } = require('./handlers')
 const { mongoose: { connect } } = require('data')
 const cors = require('cors') // para evitar el error de CORS
@@ -37,7 +37,10 @@ connect(MONGODB_URL)
         router.get('/spaces/:spaceId', retrieveSpace)
 
         // RETRIEVE ALL SPACES
-        router.get('/spaces', retrieveAllSpaces)
+        router.get('/spaces', retrieveAllSpaces)        
+        
+        // RETRIEVE LATTEST SPACES
+        router.get('/lattestspaces', retrieveLattestSpaces)
 
         // DELETE SPACE
         router.delete('/spaces/:spaceId', jsonBodyParser, deleteSpace)
@@ -54,6 +57,8 @@ connect(MONGODB_URL)
         // DELETE BOOKING TO SPACE
         router.delete('/spaces/:spaceId/bookings/:bookingId', jsonBodyParser, deleteBookingToSpace)
 
+        // FIND SPACES
+        router.get('/spaces?=q', findSpaces)
 
         api.use('/api', router)
         api.listen(PORT, () => console.log('json server running'))

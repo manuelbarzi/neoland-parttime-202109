@@ -15,6 +15,7 @@ export default function Space() {
     const [bookings, setBookings] = useState()
     const [access, setAccess] = useState()
 
+
     useEffect(() => {
         try {
             retrieveSpace(spaceId)
@@ -41,9 +42,12 @@ export default function Space() {
         } catch (error) {
             alert(error.message)
         }
-
     }
 
+   const handleSubmit = (e) => {
+        e.preventDefault();
+        alert('hola')
+      }
 
     return (
         <>
@@ -107,8 +111,9 @@ export default function Space() {
                             <span className='text-cuartiary-color font-bold text-2xl'>{space.price}</span>
                         </div>
                     </div>
-                    <div className='relative' onSubmit={addBooking}>
+                    <div className='relative'>
                         <div className='p-7 gap-5 grid'>
+                            <form onSubmit={addBooking}>
                             <details className='details border-b-2 border-black'>
                                 <summary className='summary-details font-bold text-xl cursor-pointer list-none'>More Details</summary>
                                 <tr className='flex justify-between py-2'><td>Type</td><td>{space.type}</td></tr>
@@ -127,13 +132,13 @@ export default function Space() {
                                             return null
                                     }) : <span>Not found access</span>}
                                 </td></tr>
-                                <tr className='flex justify-between py-2 items-center'><td><label for="start">Start Date</label></td><td><input type="datetime-local" id="start" value="" /></td></tr>
-                                <tr className='flex justify-between py-2 items-center'><td><label for="end">End Date</label></td><td><input type="datetime-local" id="end" value="" /></td></tr>
+                                <tr className='flex justify-between py-2 items-center'><td><label for="start">Start Date</label></td><td><input type="datetime-local" id="start" /></td></tr>
+                                <tr className='flex justify-between py-2 items-center'><td><label for="end">End Date</label></td><td><input type="datetime-local" id="end" /></td></tr>
                                 <tr className='flex justify-between py-2'><td>Total Price</td><td className='font-bold text-xl text-cuartiary-color'>{space.price}</td></tr>
 
-                                <button className='flex mx-auto my-4 bg-secondary-color text-white px-20 py-3 text-xl font-bold border rounded-md hover:bg-white hover:border-cuartiary-color hover:text-cuartiary-color'>Checkout</button>
+                                <button type='submit' className='flex mx-auto my-4 bg-secondary-color text-white px-20 py-3 text-xl font-bold border rounded-md hover:bg-white hover:border-cuartiary-color hover:text-cuartiary-color'>Checkout</button>
                             </details>
-
+                            </form>
                         </div>
                     </div>
                 </>}

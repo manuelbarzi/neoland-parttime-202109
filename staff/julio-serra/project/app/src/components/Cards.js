@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { retrieveAllSpaces } from '../logic';
+import { retrieveLattestSpaces } from '../logic';
 import CardItem from './CardItem';
 import { useNavigate, Route, Routes } from 'react-router-dom'
 
@@ -9,12 +9,12 @@ export default function Cards() {
     const [spaces, setSpaces] = useState()
 
     useEffect(() => {
-        getAllSpaces()
+        getLattestSpaces()
     }, [])
 
-    const getAllSpaces = () => {
+    const getLattestSpaces = () => {
         try {
-            retrieveAllSpaces()
+            retrieveLattestSpaces()
                 .then(spaces => {
                     setSpaces(spaces)
                 })
@@ -23,7 +23,6 @@ export default function Cards() {
         }
     }
 
-    const [count, setCount] = useState(2)
     const handleGoAllSpaces = () => navigate('/allspaces')
 
     return (
@@ -34,14 +33,15 @@ export default function Cards() {
                     <h1 className='nav__font black text-4xl py-8 pl-14'>Our Spaces</h1>
                     <span className='cursor-pointer text-cuartiary-color hover:underline-offset-8 hover:font-bold hover:underline' onClick={handleGoAllSpaces}>Show all Spaces</span>
                 </div>
-                <div className='grid grid-cols-2'>
-                    {spaces ? spaces.slice(0, count).map(space => {
-                        return <li className='list-none justify-center' key={space.id}>
+                <div className='grid grid-cols-3'>
+                    {spaces ? spaces.map(space => {
+                        return <li className='list-none justify-center mb-10' key={space.id}>
                             <CardItem space={space} />
                         </li>
                     })
                         : <p>Not found spaces</p>
                     }
+
                 </div>
 
             </section>
