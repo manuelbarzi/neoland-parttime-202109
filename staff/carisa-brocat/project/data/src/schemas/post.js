@@ -40,10 +40,12 @@ const post = new Schema({
 
     likes: {
         type: Number,
+        default: 0
     },
 
     dislikes: {
         type: Number,
+        default: 0
     },
 
     date: {

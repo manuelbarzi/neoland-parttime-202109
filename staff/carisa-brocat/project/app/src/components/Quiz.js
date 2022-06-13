@@ -66,12 +66,12 @@ function Quiz({ onQuizPassed }) {
             <fieldset className="quiz__fieldset quiz__fieldset-hairtexture">
                 <p className='quiz__fieldset--header'>Tell us your type of hair and let us help to find what you want quickly</p>
                 <div className='quiz__fieldset--main quiz__fieldset--main-hairTexture'>
-                    <InputRadioQuiz name='hairTexture' value='3A' text='3A' />
-                    <InputRadioQuiz name='hairTexture' value='3B' text='3B' />
-                    <InputRadioQuiz name='hairTexture' value='3C' text='3C' />
-                    <InputRadioQuiz name='hairTexture' value='4A' text='4A' />
-                    <InputRadioQuiz name='hairTexture' value='4B' text='4B' />
-                    <InputRadioQuiz name='hairTexture' value='4C' text='4C' />
+                    <InputRadioQuiz name='hairTexture' value='3a' text='3A' />
+                    <InputRadioQuiz name='hairTexture' value='3b' text='3B' />
+                    <InputRadioQuiz name='hairTexture' value='3c' text='3C' />
+                    <InputRadioQuiz name='hairTexture' value='4a' text='4A' />
+                    <InputRadioQuiz name='hairTexture' value='4b' text='4B' />
+                    <InputRadioQuiz name='hairTexture' value='4c' text='4C' />
                 </div>
             </fieldset>
             <fieldset className="quiz__fieldset quiz__fieldset-interests">

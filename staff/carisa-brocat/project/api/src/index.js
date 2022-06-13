@@ -14,6 +14,7 @@ const {
     createPost,
     deletePost,
     retrieveUserPosts,
+    retrieveUserPostsBy,
     retrieveAllPosts,
     retrievePost,
     addCommentToPost,
@@ -53,6 +54,7 @@ connect(MONGODB_URL)
         router.patch('/posts/:postId/toggle-save', toggleSavePost)
         router.get('/user/posts', retrieveUserPosts)
         router.get('/posts', retrieveAllPosts)
+        router.post('/user/posts/search-by', jsonBodyParser, retrieveUserPostsBy)
         router.post('/posts/search-by', jsonBodyParser, retrievePostsBy)
         router.get('/posts/:postId', jsonBodyParser, retrievePost)
         router.post('/posts/:postId/comment', jsonBodyParser, addCommentToPost)

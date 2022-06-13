@@ -27,7 +27,7 @@ const user = new Schema({
 
     hairTexture: {
         type: String,
-        enum: ['3a', '3b', '3c', '4a', '4b', '4c']
+        enum: ['3a', '3b', '3c', '4a', '4b', '4c', ''],
     },
 
     interests: {

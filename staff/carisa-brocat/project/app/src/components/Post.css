@@ -1,12 +1,13 @@
 .post {
-    display:flex;
+    display: flex;
     flex-direction: column;
     border: 2px solid rgba(229, 229, 229);
     margin-top: 15px;
     border-radius: 20px;
     width: 90%;
 }
-.post__header{
+
+.post__header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -15,7 +16,7 @@
     margin-right: 10px;
 }
 
-.post__body{
+.post__body {
     display: flex;
     flex-direction: column;
     border-bottom: 2px solid rgba(229, 229, 229);
@@ -23,18 +24,25 @@
     margin-right: 5px;
 }
 
-.post__footer{
+.post__footer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.post__footer-feedback{
+.post__footer-feedback {
     display: flex;
     flex-direction: row;
     margin-left: 5px;
 }
 
-.post__footer--save{
+.post__footer--saveButton {
     margin-right: 5px;
+    width: 30px;
+    height: 30px;
+    border-style: none;
+}
+
+.post__footer-saveButton--selected {
+    border: 2px solid rgba(131, 252, 74)
 }

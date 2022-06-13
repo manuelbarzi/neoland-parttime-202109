@@ -1,16 +1,24 @@
 import './Home.css'
 import { useState, useEffect } from 'react'
-import { retrieveUser, retrieveAllPosts, retrievePostsBy } from '../logic'
+import { useLocation, Routes, Route, useNavigate } from 'react-router-dom';
+import { retrieveUser } from '../logic'
 import Quiz from './Quiz'
-import Post from './Post'
+import Feed from './Feed'
+import MyPosts from './MyPosts'
+import Modal from './Modal'
+import NewPost from './NewPost'
 import SubjectSelector from './SubjectSelector'
 import { errors } from 'commons'
 import CategorySelector from './CategorySelector'
 const { AuthError } = errors
 
 function Home({ onLoggedOut }) {
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    const [modalOpen, setModalOpen] = useState(false)
+
     const [user, setUser] = useState()
-    const [posts, setPosts] = useState([])
     const [category, setCategory] = useState()
     const [subject, setSubject] = useState()
     const [quizPassed, setQuizPassed] = useState(false)
@@ -36,62 +44,9 @@ function Home({ onLoggedOut }) {
         }
     }
 
-    const loadPosts = () => {
-        try {
-            retrieveAllPosts(sessionStorage.token)
-                .then(posts => {
-                    setPosts(posts)
-                })
-                .catch(error => {
-                    if (error instanceof AuthError)
-                        delete sessionStorage.token
-
-                    alert(error.message)
-                })
-        } catch (error) {
-            if (error instanceof AuthError)
-                delete sessionStorage.token
-
-            alert(error.message)
-        }
-    }
-
-    const loadPostsBy = () => {
-        try {
-            retrievePostsBy(sessionStorage.token, category, subject)
-                .then(posts => {
-                    setPosts(posts)
-                })
-                .catch(error => {
-                    if (error instanceof AuthError)
-                        delete sessionStorage.token
-
-                    alert(error.message)
-                })
-        } catch (error) {
-            if (error instanceof AuthError)
-                delete sessionStorage.token
-
-            alert(error.message)
-        }
-    }
-
-    const loadFilterPosts = () => {
-        if (category || subject) {
-            loadPostsBy()
-        }
-        else {
-            loadPosts()
-        }
-    }
-
     useEffect(() => {
         loadUser()
     }, [])
-
-    useEffect(() => {
-        loadFilterPosts()
-    }, [category, subject])
 
     const logOut = () => {
         delete sessionStorage.token
@@ -109,33 +64,58 @@ function Home({ onLoggedOut }) {
         setCategory(category)
     }
 
+    const handleGoToMyPosts = () => {
+        navigate('/my-posts')
+    }
+
+    const handleOpenMenu = () => {
+
+    }
+
+    const comebackToHome = () => {
+        navigate('/')
+    }
+
+    const handleOpenAndCloseModal = () => {
+        setModalOpen(!modalOpen)
+    }
+
     const appliedSubjectText = subject ? `${subject}`.charAt(0).toUpperCase() + `${subject}`.slice(1) : 'All'
 
     return <div className='home'>
         {user && quizPassed && <div>
             <div className='home__header'>
-                <h1>Logo</h1>
-                <h2 className='home__header-filterText'>{appliedSubjectText}</h2>
-                <div>
-                    <h2>{user.nickname}</h2>
-                    <button onClick={logOut}>LogOut</button>
-                </div >
+                {location.pathname === '/' && <div className='home__header-top'>
+                    <h1>Logo</h1>
+                    <h2 className='home__header-filterText'>{appliedSubjectText}</h2>
+                    <div>
+                        <h2 onClick={handleGoToMyPosts}>{user.nickname}</h2>
+                        <button onClick={logOut}>LogOut</button>
+                    </div >
+                </div>}
+                {location.pathname !== '/' && <div className='home__header-top'>
+                    <h2 onClick={handleOpenMenu}>{user.nickname}</h2>
+                    <h2 className='home__header-filterText'>{appliedSubjectText}</h2>
+                    <div>
+                        <button onClick={comebackToHome}>Come Back</button>
+                    </div >
+                </div>}
+                <div><SubjectSelector onSelectedSubject={handleSubject} /></div>
             </div>
             <div className='home__body'>
-                <SubjectSelector onSelectedSubject={handleSubject} />
-                {
-                    posts.length ?
-                        <ul> {posts.map(post => <li key={post.id}> <Post post={post} user={user} /></li>)}
-                        </ul> :
-                        <p>Sorry, there are no posts to show</p>
-                }
+                <Routes>
+                    <Route path="/*" element={<Feed category={category} subject={subject} user={user} />} />
+                    <Route path="/my-posts/*" element={<MyPosts category={category} subject={subject} user={user} />} />
+                </Routes>
             </div>
             <div className='home__footer'>
                 <CategorySelector onSelectedCategory={handleCategory} />
-                <button className='home__button--addPost'>+</button>
+                <button className='home__button--addPost' onClick={handleOpenAndCloseModal}>+</button>
             </div>
         </div>}
         {user && !quizPassed && <Quiz onQuizPassed={handleQuizPassed} />}
+
+        {modalOpen && <Modal content={<NewPost closeaAndOpenModal={handleOpenAndCloseModal} />} />}
     </div>
 }
 

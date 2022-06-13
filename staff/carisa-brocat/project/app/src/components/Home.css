@@ -6,6 +6,12 @@
 
 .home__header {
     display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.home__header-top {
+    display: flex;
     flex-direction: row;
     justify-content: space-around;
     border-bottom: 2px solid rgba(131, 252, 74);
