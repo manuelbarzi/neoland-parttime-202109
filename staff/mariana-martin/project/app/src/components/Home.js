@@ -10,15 +10,18 @@ import NutritionistFooter from './NutritionistFooter'
 import HomeMenu from './HomeMenu'
 import PatientDetail from './PatientDetail'
 import Meals from './Meals'
+import EditPatient from './EditPatient'
+import MealPlan from './MealPlan'
 
 
 
 
-function Home({ loggedOut }) {
+
+function Home({ onloggedOut }) {
 
     const handleLogout = () => {
         delete sessionStorage.token
-        loggedOut()
+        onloggedOut()
     }
 
     //if , en rutas, y pasar por props al header el nombre y rol 
@@ -26,11 +29,7 @@ function Home({ loggedOut }) {
     const [name, setName] = useState(null)
     const [role, setRole] = useState(null)
 
-    // const handleLogout = () => {
-    //     delete sessionStorage.token
-    //     loggedOut()
-    // }
-
+     
 
     useEffect(() => {
         console.log('useEffect HOME para recuperar nutri')
@@ -46,22 +45,22 @@ function Home({ loggedOut }) {
                     alert(error.message)
 
                     delete sessionStorage.token
-                    //handleLogout()
+                    onloggedOut()
                 })
 
         } catch (error) {
             alert(error.message)
             delete sessionStorage.token
 
-            //handleLogout()
+            onloggedOut()
         }
-    }, [])
+    }, [onloggedOut])
 
     
 
     if (name && role === 0) {
         return <div className="home-container">
-
+         
             <Header name={name} role={role} />
             <button onClick={handleLogout}>Logout</button>
 
@@ -70,11 +69,15 @@ function Home({ loggedOut }) {
                 <Route path="/" element={<HomeMenu />} />
                 <Route path="/my-patients/*" element={<MyPatients />} />
                 <Route path="/register-patient" element={<PatientForm />} />
-                <Route path="/patient/:patientId" element={<PatientDetail />} />
+                <Route path="/patient/:patientId/" element={<PatientDetail />} />
+                <Route path="/edit/:patientId" element={<EditPatient />} />
                 <Route path="/my-meals" element={<Meals />} />
+                <Route path="/mealplan/:patientId/*" element={<MealPlan />} />  
+                
+                {/* <Route path="/add" element={<AddingMeal />} /> */}
+
                 {/* <Route path="*" element={ <ErrorPageCompo /> } />  */}
             </Routes>
-
 
             <NutritionistFooter />
         </div>

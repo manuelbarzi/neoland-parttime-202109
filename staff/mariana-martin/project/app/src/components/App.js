@@ -16,7 +16,7 @@ const { validateToken } = validators
 
 function App() {
 
-
+  
   const [response, setResponse] = useState({ level: 'info', message: null })
   const navigate = useNavigate()
 
@@ -52,7 +52,7 @@ function App() {
           {response.message && <Response level={response.level} message={response.message} onTimeout={clearResponse} />}
         
           <Routes>
-            <Route path="/*" element={loggedIn ? <Home  loggedOut={ handleLoggedOut } /> : <Landing />} />
+            <Route path="/*" element={loggedIn ? <Home  onloggedOut={ handleLoggedOut } /> : <Landing />} />
             <Route path="/login" element={loggedIn ? <Navigate to="/" /> : <Login onLoggedIn={ handleLoggedIn } />} />
             <Route path="/register-nutritionist" element={loggedIn ? <Navigate to="/" /> : <RegisterNutritionist onRegistered={ handleRegistered }/>} />
           </Routes>

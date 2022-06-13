@@ -1,10 +1,11 @@
 import { AiOutlineEdit } from "react-icons/ai"
-
 import { useContext  } from 'react'
 import Context from './Context'
 import { useParams} from 'react-router-dom'
 import { useEffect, useState} from 'react'
 import { retrievePatient} from '../logic'
+import {  useNavigate } from 'react-router-dom'
+import MealPlanSticker from "./MealPlanSticker"
 
 
 
@@ -12,9 +13,11 @@ function PatientDetail(){
     
         const { setResponse } = useContext(Context) 
 
-        const [ patient, setPatient] = useState(null)
+        const [ patient, setPatient ] = useState(null)
         const params = useParams()
         const { patientId } = params
+
+        const navigate = useNavigate()
 
         
      useEffect(() => {
@@ -25,19 +28,24 @@ function PatientDetail(){
                     //.catch(error => setResponse({ level: 'error', message: error.message})) 
                 })
         } catch (error) {
-            debugger
+            
             setResponse({ level: 'error', message:error.message})
         }
      }, [patientId, setResponse])
 
+     
+     const handleGoToEditPatient = patientId => navigate(`/edit/${patientId}`)
+
+     const handleGoToPatientMealPlan = patientId => navigate(`/mealplan/${patientId}`)
+
     return (
         
             <div className="patient-detail">
-            <h2> compo de Patient</h2>
-            <div><AiOutlineEdit /> </div>
-            {patient && <>
+            <h2> Patient Detail</h2>
+            <div onClick={ () => handleGoToEditPatient(patientId) }><AiOutlineEdit /> </div>
+            { patient && <>
             <h4> Name: { patient.name }</h4>
-            <p> <strong> Id: </strong> { patient.id } </p>
+            <p> <strong> Id: </strong> { patientId } </p>
             <p> <strong> Email: </strong> { patient.email } </p>  
             <p> <strong> Nutritionist: </strong> { patient.nutritionist } </p>
             <p> <strong> Age: </strong> { patient.age } </p>
@@ -46,8 +54,16 @@ function PatientDetail(){
             <p> <strong> Measures: </strong> { patient.measures } </p>
             <p> <strong> Goal: </strong> { patient.goal } </p>
             <p> <strong> Registration Date: </strong> { patient.registrationDate } </p> 
-            </>}
+            </> }
+             {/* hice este div porque no funcionaba el onClick en el compo directo */}
+             <div onClick = {() => handleGoToPatientMealPlan(patientId) }>
+            <MealPlanSticker  />
             </div>
+            
+           
+            </div>
+
+           
 
         
     )

@@ -56,10 +56,11 @@ function AllMeals({ reload }) {
             <ul>
                 {meals ? meals.map(meal => {
                     return <li key={meal.id} id={meal.id} >
-                        <MealItemList info={meal} onDeleteMeal={handleDeleteMeal} />
+                        <MealItemList info={ meal} onDeleteMeal={handleDeleteMeal} />
                     </li>
                 }) : <p> No meals add one please</p>}
             </ul>
+            
         </div>
     )
 }

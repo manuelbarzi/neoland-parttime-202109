@@ -1,0 +1,31 @@
+.days-container{
+    background-color: rgb(231, 236, 236);
+    display: flex;
+    flex-direction: column ;
+    align-items: center;
+
+    
+    
+}
+
+.day{
+    text-align: center;
+    margin: 8px;
+    border-radius: 16px;
+    cursor: pointer;
+    width: 100%;
+   
+}
+
+/* cambio de color */
+.day:nth-child(3n +1){
+    background-color: #B5D6CA;
+}
+.day:nth-child(3n +2){
+    background-color: #145566;
+    color: white; 
+}
+.day:nth-child(3n +3){
+    background-color: #FFE5A4;
+    
+}
