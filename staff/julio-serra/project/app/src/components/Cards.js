@@ -3,7 +3,7 @@ import { retrieveLattestSpaces } from '../logic';
 import CardItem from './CardItem';
 import { useNavigate, Route, Routes } from 'react-router-dom'
 
-export default function Cards() {
+export default function Cards({ items }) {
 
     const navigate = useNavigate()
     const [spaces, setSpaces] = useState()
@@ -23,15 +23,12 @@ export default function Cards() {
         }
     }
 
-    const handleGoAllSpaces = () => navigate('/allspaces')
-
     return (
 
         <>
             <section className='bg-color-spaces pb-20'>
                 <div className='flex justify-between items-center pr-16'>
-                    <h1 className='nav__font black text-4xl py-8 pl-14'>Our Spaces</h1>
-                    <span className='cursor-pointer text-cuartiary-color hover:underline-offset-8 hover:font-bold hover:underline' onClick={handleGoAllSpaces}>Show all Spaces</span>
+                    <h1 className='nav__font black text-4xl py-8 pl-14'>The Lattest Spaces...</h1>
                 </div>
                 <div className='grid grid-cols-3'>
                     {spaces ? spaces.map(space => {

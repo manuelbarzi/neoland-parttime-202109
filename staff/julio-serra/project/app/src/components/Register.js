@@ -25,11 +25,11 @@ export default function Register() {
     return (
         <>
             
-            <section className="container w-full mx-auto pt-24 px-6">
+            <section className="container w-full mx-auto pt-24 px-6 bg-tertiary-color">
             <h1 className='cursor-pointer' onClick={handleClickLanding}>Go to Home</h1>
             <h1>Register User</h1>
                     <div>
-                        <p className="text-2xl font-bold text-center pb-8">Register to Space Local</p>
+                        <h1 className="nav__font text-4xl font-bold text-center pb-8">Create Account</h1>
                         <form className="grid gap-6 w-1/4 mx-auto" onSubmit={register}>
                             <label>
                                 <input type="text" className="mt-1 w-full" name="name" placeholder="Name" />
