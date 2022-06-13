@@ -7,7 +7,7 @@ module.exports = (req, res) => {
         const company = extractCompanyIdFromAuthorization(req)
 
         retrieveAllUsers(company)
-            .then(driver => res.json(driver))
+            .then(user => res.json(user))
             .catch(error => {
                 let status = 500
 

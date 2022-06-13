@@ -10,7 +10,7 @@ export default function () {
     useEffect(() => {
         try {
             retrieveUser(sessionStorage.token, userId)
-                .then(user => { 
+                .then(user => {
                     setData(user)
                 })
                 .catch(error => alert(error.message))
@@ -22,10 +22,10 @@ export default function () {
     const update = event => {
         event.preventDefault()
 
-        const { target: { name: { value: name }, email: { value: email } } } = event
+        const { target: { name: { value: name }, email: { value: email }, role: { value: role } } } = event
 
         try {
-            updateUser(sessionStorage.token, userId, name, email)
+            updateUser(sessionStorage.token, userId, name, email, role)
                 .then(() => {
                     alert('usuario actualizado')
 
@@ -39,10 +39,17 @@ export default function () {
 
     return <div>
         <a onClick={() => navigate('/users')}>Volver</a>
-        <form onSubmit={update}>
-            <input type="name" name="name" defaultValue={data.name} />
-            <input type="email" name="email" defaultValue={data.email} />
-            <button>Actualizar</button>
-        </form>
+        {data ?
+            <form onSubmit={update}>
+                <input type="name" name="name" defaultValue={data.name} />
+                <input type="email" name="email" defaultValue={data.email} />
+                <select name="role" defaultValue={data.role}>
+                    <option value="driver">driver</option>
+                    <option value="admin">admin</option>
+                </select>
+                <button>Actualizar</button>
+            </form>
+            : <p>No hay dato</p>
+        }
     </div>
 }

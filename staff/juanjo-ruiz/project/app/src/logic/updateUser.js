@@ -3,11 +3,12 @@ import { validators, errors } from 'commons'
 const { validateToken, validateId, validateString, validateEmail } = validators
 const { DuplicityError, ClientError, ServerError } = errors
 
-export default function (token, userId, name, email) {
+export default function (token, userId, name, email, role) {
     validateToken(token)
     validateId(userId, 'user id')
     validateString(name, 'name')
     validateEmail(email)
+    validateString(role, 'role')
 
     return fetch(`http://localhost:8080/api/user/${userId}/update`, {
         method: 'PATCH',
@@ -15,7 +16,7 @@ export default function (token, userId, name, email) {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ name, email })
+        body: JSON.stringify({ name, email, role })
     })
         .then(res => {
             const { status } = res

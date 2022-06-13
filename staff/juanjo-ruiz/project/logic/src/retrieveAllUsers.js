@@ -8,17 +8,17 @@ function retrieveAllUsers(companyId) {
         .then(company => {
             if (!company) throw new NotFoundError(`company with id ${companyId} not found`)
 
-            return User.find({ role: 'driver' }).lean().sort('-date')
+            return User.find({ active: true }).lean().sort('-date')
         })
-        .then(drivers => {
-            drivers.forEach(driver => {
+        .then(users => {
+            users.forEach(user => {
 
-                driver.id = driver._id.toString()
+                user.id = user._id.toString()
 
-                delete driver._id
-                delete driver.__v
+                delete user._id
+                delete user.__v
             })
-            return drivers
+            return users
         })
 }
 

@@ -5,7 +5,7 @@ export default function () {
     const navigate = useNavigate()
 
     const newUser = event => {
-        event.preventDefualt()
+        event.preventDefault()
 
         const { target: { name: { value: name }, email: { value: email }, password: { value: password }, role: { value: role } } } = event
 
@@ -13,6 +13,8 @@ export default function () {
             createUser(sessionStorage.token, name, email, password, role)
                 .then(() => {
                     alert('ususario creado')
+
+                    navigate('/users')
                 })
                 .catch(error => alert(error.message))
         } catch (error) {

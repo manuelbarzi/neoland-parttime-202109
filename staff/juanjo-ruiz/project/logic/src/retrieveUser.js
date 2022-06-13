@@ -13,10 +13,12 @@ function retrieveUser(companyId, userId) {
             if (user.company.toString() !== company._id.toString()) throw new AuthError(`user with id ${userId} does not belong to admin with id ${companyId}`)
 
             user.id = user._id.toString()
-            
+            user.newDate = user.date.toLocaleDateString()
+
             delete user._id
             delete user.__v
             delete user.password
+            delete user.date
 
             return user
         })
