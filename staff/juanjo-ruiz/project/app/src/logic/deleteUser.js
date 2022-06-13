@@ -1,22 +1,19 @@
 import { validators, errors } from 'commons'
 
-const { validateToken, validateString, validatePassword, validateEmail } = validators
+const { validateToken, validateId } = validators
 const { DuplicityError, ClientError, ServerError } = errors
 
-export default function (token, name, email, password, role) {
+export default function (token, userId, password) {
     validateToken(token)
-    validateString(name, 'name')
-    validateEmail(email)
-    validatePassword(password)
-    validateString(role, 'role')
+    validateId(userId, 'user id')
 
-    return fetch('http://localhost:8080/api/user', {
-        method: 'POST',
+    return fetch(`http://localhost:8080/api/user/${userId}/delete`, {
+        method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ name, email, password, role })
+        body: JSON.stringify({ password })
     })
         .then(res => {
             const { status } = res

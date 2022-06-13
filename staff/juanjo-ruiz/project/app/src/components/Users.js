@@ -1,10 +1,9 @@
 import { retrieveAllUsers } from '../logic'
 import { useState, useEffect } from 'react'
-import { useNavigate, Routes, Route } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import UserItem from './UserItem'
-import CreateUser from './CreateUser'
 
-export default function () {
+export default function ({ onDetailUser }) {
     const [users, setUsers] = useState()
     const navigate = useNavigate()
 
@@ -18,6 +17,8 @@ export default function () {
         }
     }, [])
 
+    const handleDetailUser = id => onDetailUser(id)
+
 
     return <div>
         <a onClick={() => navigate('/')}>Volver</a>
@@ -25,7 +26,7 @@ export default function () {
         {
             users ?
                 <ul>
-                    {users.map(user => <li key={user.id}>
+                    {users.map(user => <li key={user.id} onClick={() => handleDetailUser(user.id)} >
                         <UserItem content={user} />
                     </li>)}
                 </ul>

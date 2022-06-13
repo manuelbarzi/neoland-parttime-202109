@@ -1,12 +1,14 @@
-const { extractUserIdFromAuthorization } = require('./helpersUser')
+const { extractCompanyIdFromAuthorization } = require('./helpersCompany')
 const { retrieveUser } = require('logic')
 const { errors: { AuthError, NotFoundError, TypeError, FormatError } } = require('commons')
 
 module.exports = (req, res) => {
     try {
-        const userId = extractUserIdFromAuthorization(req)
+        const companyId = extractCompanyIdFromAuthorization(req)
 
-        retrieveUser(userId)
+        const { params: { userId } } = req
+
+        retrieveUser(companyId, userId)
             .then(user => res.json(user))
             .catch(error => {
                 let status = 500

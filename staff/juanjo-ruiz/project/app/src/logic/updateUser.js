@@ -1,22 +1,21 @@
 import { validators, errors } from 'commons'
 
-const { validateToken, validateString, validatePassword, validateEmail } = validators
+const { validateToken, validateId, validateString, validateEmail } = validators
 const { DuplicityError, ClientError, ServerError } = errors
 
-export default function (token, name, email, password, role) {
+export default function (token, userId, name, email) {
     validateToken(token)
+    validateId(userId, 'user id')
     validateString(name, 'name')
     validateEmail(email)
-    validatePassword(password)
-    validateString(role, 'role')
 
-    return fetch('http://localhost:8080/api/user', {
-        method: 'POST',
+    return fetch(`http://localhost:8080/api/user/${userId}/update`, {
+        method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ name, email, password, role })
+        body: JSON.stringify({ name, email })
     })
         .then(res => {
             const { status } = res

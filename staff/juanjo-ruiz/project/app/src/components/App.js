@@ -6,9 +6,7 @@ import Register from './Register'
 import LoginAdmin from './LoginAdmin'
 import LoginUser from './LoginUser'
 import Home from './Home'
-import Vehicles from './Vehicles'
-import Users from './Users'
-import CreateUser from './CreateUser'
+
 
 const { validateToken } = validators
 
@@ -40,9 +38,6 @@ function App() {
         <Route path="/register" element={loggedIn ? <Navigate to="/" /> : <Register onRegistered={handleRegistered} />} />
         <Route path="/login-admin" element={loggedIn ? <Navigate to="/" /> : <LoginAdmin onLoggedIn={handleLoggedIn} />} />
         <Route path="/login-user" element={loggedIn ? <Navigate to="/" /> : <LoginUser onLoggedIn={handleLoggedIn} />} />
-        <Route path="/vehicles" element={<Vehicles />} />
-        <Route path="/users" element={<Users />} />
-        <Route path="/user" element={<CreateUser />} />
     </Routes>
 }
 
