@@ -13,7 +13,7 @@ const {
 
 
 const bcrypt = require('bcryptjs')
-const { validateUsername } = require('../../commons/src/validators')
+
 
 
 function authenticateUser(username, password) {
