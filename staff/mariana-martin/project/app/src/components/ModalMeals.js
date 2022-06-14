@@ -4,7 +4,7 @@ import './styles/Modal.css'
 import { addMealToPlan } from '../logic'
 import { useParams} from 'react-router-dom'
 
-function ModalMeals( { closeModal }){
+function ModalMeals( { closeModal, day }){
 
     const [ meals, setMeals ] = useState()
 
@@ -27,11 +27,13 @@ function ModalMeals( { closeModal }){
     const addingMeal = () => {
         try {
             addMealToPlan(sessionStorage.token, patientId, day, mealId)
-            .then(() => console.log('mealpla'))
+            .then(() => console.log('mealplan'))
         } catch (error) {
             alert(error.message)
         }
     }
+
+    const sendMealId = mealId => console.log(mealId)
 
     return(
         <div className="modal-background">
@@ -45,7 +47,7 @@ function ModalMeals( { closeModal }){
                         return <li key={meal.id} >
                                 <p>{meal.title}</p>  
                                 <p>{meal.description}</p>  
-                                <input type="radio" name="meal" value="meal"/>   
+                                <input type="radio" name="meal" value="meal" onClick={()=> sendMealId(meal.id)}/>   
                                              
                             </li>
                         }): <></>}

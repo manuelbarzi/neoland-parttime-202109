@@ -55,6 +55,7 @@ function PatientDetail(){
             <p> <strong> Goal: </strong> { patient.goal } </p>
             <p> <strong> Registration Date: </strong> { patient.registrationDate } </p> 
             </> }
+            
              {/* hice este div porque no funcionaba el onClick en el compo directo */}
              <div onClick = {() => handleGoToPatientMealPlan(patientId) }>
             <MealPlanSticker  />

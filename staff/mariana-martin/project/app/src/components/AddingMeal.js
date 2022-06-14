@@ -1,32 +1,30 @@
 
-
-import { useState } from 'react'
 import ModalMeals from './ModalMeals'
+import {useState } from 'react'
 
-function AddingMeal( ) {
+function AddingMeal() {
 
 
  
     const [ modal, setModal ] = useState(false)
-
-  //  const [ day, setDay ] = useState({})
+   
 
 
     const openModal = () => {
         setModal(true)
+      
     }
 
     const closeModal = () => {
         setModal(false)
+       
     }
-
-   
-  
+    
+ 
     
     return (
         <div>
-           
-            <p><strong> Day Aquí cambia el estado del day  </strong></p>
+            <p><strong> Day: </strong></p>
             <p> Breakfast  </p>
             <button onClick={ openModal }> Select Meal </button>
             <p> Snack </p>
@@ -36,9 +34,10 @@ function AddingMeal( ) {
             <p> Snack </p>
             <button onClick={ openModal }> Select Meal </button>
             <p> Dinner </p>
-           <button onClick={ openModal }> Select Meal </button>
-        
-           { modal?  <ModalMeals closeModal={ closeModal }/> : <></>}
+            <button onClick={ openModal }> Select Meal </button>
+    
+            { modal ?  <ModalMeals closeModal={ closeModal }/> : <></>}
+         
         </div>
     )
 }

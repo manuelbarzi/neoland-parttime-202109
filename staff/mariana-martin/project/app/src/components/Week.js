@@ -2,21 +2,22 @@ import { useNavigate } from 'react-router-dom'
 import Day from './Day'
 import { useParams } from 'react-router-dom'
 
-function Week ({ changeDay }) {
+
+function Week ( { changeDay }) {
 
     const navigate = useNavigate()
 
     const params = useParams()
     const { patientId } = params
+   
 
-    
+
+  
     const goToAddMeal = () => {
        navigate(`/mealplan/${patientId}/add/:mealId`)
      }
 
     
-
-
     return (
             <div className="days-container">
                 <div onClick={ goToAddMeal } className="day"><Day day="Monday" changeDay={changeDay} /> </div>
