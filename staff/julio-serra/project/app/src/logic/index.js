@@ -4,6 +4,7 @@ import retrieveAllSpaces from "./retrieveAllSpaces"
 import retrieveSpace from "./retrieveSpace"
 import addBookingToSpace from "./addBookingToSpace";
 import retrieveLattestSpaces from "./retrieveLattestSpaces"
+import findSpaces from "./findSpaces"
 
 export {
     registerUser,
@@ -11,5 +12,6 @@ export {
     retrieveAllSpaces,
     retrieveSpace,
     addBookingToSpace,
-    retrieveLattestSpaces
+    retrieveLattestSpaces,
+    findSpaces
 }

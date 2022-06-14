@@ -5,9 +5,9 @@ import { useState } from 'react'
 
 
 export default function Landing() {
-    const [cards, setCards] = useState()
-
-    const handleSearch = cards => setCards(cards)
+    const [query, setQuery] = useState()
+    
+    const handleSearch = query => setQuery(query)
 
     return (
         <>
@@ -21,7 +21,7 @@ export default function Landing() {
                 </container>
             </section>
 
-            <Cards items={cards} />
+            <Cards query={query} />
             <Footer />
 
         </>

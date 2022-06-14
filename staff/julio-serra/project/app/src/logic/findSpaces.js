@@ -1,19 +1,13 @@
 import { errors } from 'commons'
 const { ClientError, ServerError } = errors
 
-export default function findSpaces() {
-    return fetch('http://localhost:8080/api/spaces/?q=', {
-        method: 'GET'
-    })
-
+export default function findSpaces(query) {
+    return fetch(`http://localhost:8080/api/spaces?q=${query}`)
     .then(res => {
         const { status } = res
 
         if (status === 200)
             return res.json()
-                .then(q => {
-                    return q
-                })
         else if (status >= 400 && status < 500)
             return res.json()
                 .then(payload => {

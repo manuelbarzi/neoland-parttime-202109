@@ -1,27 +1,31 @@
 import { useEffect, useState } from 'react'
-import { retrieveLattestSpaces } from '../logic';
+import { retrieveLattestSpaces, findSpaces } from '../logic';
 import CardItem from './CardItem';
-import { useNavigate, Route, Routes } from 'react-router-dom'
 
-export default function Cards({ items }) {
-
-    const navigate = useNavigate()
+export default function Cards({ query }) {
     const [spaces, setSpaces] = useState()
 
     useEffect(() => {
-        getLattestSpaces()
-    }, [])
-
-    const getLattestSpaces = () => {
-        try {
-            retrieveLattestSpaces()
-                .then(spaces => {
-                    setSpaces(spaces)
-                })
-        } catch (error) {
-            alert({ error: error.message })
-        }
-    }
+        if (!query)
+            try {
+                retrieveLattestSpaces()
+                    .then(spaces => {
+                        setSpaces(spaces)
+                    })
+            } catch (error) {
+                alert({ error: error.message })
+            }
+        else
+            try {
+                findSpaces(query)
+                    .then(spaces => {
+                        setSpaces(spaces)
+                    })
+                    // TODO .catch
+            } catch (error) {
+                alert({ error: error.message })
+            }
+    }, [query])
 
     return (
 

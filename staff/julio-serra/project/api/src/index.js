@@ -58,7 +58,7 @@ connect(MONGODB_URL)
         router.delete('/spaces/:spaceId/bookings/:bookingId', jsonBodyParser, deleteBookingToSpace)
 
         // FIND SPACES
-        router.get('/spaces?=q', findSpaces)
+        router.get('/spaces?q=', findSpaces)
 
         api.use('/api', router)
         api.listen(PORT, () => console.log('json server running'))

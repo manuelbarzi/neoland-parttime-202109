@@ -25,7 +25,7 @@ export default function Register() {
     return (
         <>
             
-            <section className="container w-full mx-auto pt-24 px-6 bg-tertiary-color">
+            <section className="register w-full mx-auto pt-24 px-6 bg-tertiary-color">
             <h1 className='cursor-pointer' onClick={handleClickLanding}>Go to Home</h1>
             <h1>Register User</h1>
                     <div>
