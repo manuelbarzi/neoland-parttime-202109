@@ -1,10 +1,10 @@
-import { deleteUser } from '../logic'
+import { deleteVehicle } from '../logic'
 import { useParams, useNavigate } from 'react-router-dom'
 
 export default function () {
     const navigate = useNavigate()
 
-    const { userId } = useParams()
+    const { vehicleId } = useParams()
 
     const remove = event => {
         event.preventDefault()
@@ -12,11 +12,11 @@ export default function () {
         const { target: { password: { value: password } } } = event
 
         try {
-            deleteUser(sessionStorage.token, userId, password)
+            deleteVehicle(sessionStorage.token, vehicleId, password)
                 .then(() => {
-                    alert('usuario eliminado')
+                    alert('vehículo eliminado')
 
-                    navigate('/users')
+                    navigate('/vehicles')
                 })
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -26,8 +26,8 @@ export default function () {
 
 
     return <div>
-        <a onClick={() => navigate(`/user/${userId}`)}>Volver</a>
-    <form onSubmit={remove}>
+        <a onClick={() => navigate(`/vehicle/${vehicleId}`)}>Volver</a>
+        <form onSubmit={remove}>
             <input type="password" name="password" placeholder="Contraseña" />
             <button>Eliminar</button>
         </form>

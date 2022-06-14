@@ -26,9 +26,9 @@ export default function () {
         <a onClick={() => navigate('/users')}>Volver</a>
         <h2>Nuevo usuario</h2>
         <form onSubmit={newUser}>
-            <input type="name" name="name" placeholder="name" required />
-            <input type="email" name="email" placeholder="email" required />
-            <input type="password" name="password" placeholder="password" required />
+            <input type="name" name="name" placeholder="nombre" required />
+            <input type="email" name="email" placeholder="correo electrónico" required />
+            <input type="password" name="password" placeholder="contraseña" required />
             <select name="role">
                 <option value="driver">driver</option>
                 <option value="admin">admin</option>

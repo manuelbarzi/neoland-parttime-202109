@@ -14,9 +14,11 @@ function retrieveVehicle(userId, vehicleId) {
 
 
             vehicle.id = vehicle._id.toString()
+            vehicle.newDate = vehicle.date.toLocaleDateString()
 
             delete vehicle._id
             delete vehicle.__v
+            delete vehicle.date
 
             const { parts } = vehicle
 
