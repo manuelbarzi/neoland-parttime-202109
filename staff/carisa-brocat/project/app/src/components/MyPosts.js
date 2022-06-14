@@ -65,11 +65,10 @@ function MyPosts({ category, subject, user }) {
         setRefresh(!refresh)
     }
 
-
     return <div className='myPosts'>
         {
             posts.length ?
-                <ul> {posts.map(post => <li key={post.id}> <Post post={post} user={user} refresh={handleRefresh} /></li>)}
+                <ul> {posts.map(post => <li key={post.id}> <Post post={post} user={user} handleRefresh={handleRefresh} /></li>)}
                 </ul> :
                 <p>Sorry, there are no posts to show</p>
         }

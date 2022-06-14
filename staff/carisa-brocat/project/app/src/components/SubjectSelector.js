@@ -2,13 +2,13 @@ import './SubjectSelector.css'
 import { useState } from 'react'
 
 
-export default ({ onSelectedSubject }) => {
+export default ({ onSubjectSelected }) => {
     const [selected, setSelected] = useState('')
 
     const handleSelected = (subject) => {
         setSelected(subject)
 
-        onSelectedSubject(subject)
+        onSubjectSelected(subject)
     }
 
     return <div className="subject">

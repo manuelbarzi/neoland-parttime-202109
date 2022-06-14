@@ -3,7 +3,7 @@ import { validators, errors } from 'commons'
 const { ServerError, ClientError, NotFoundError, AuthError } = errors
 const { validateToken } = validators
 
-function createPost(token, description, category, subject, image, adress) {
+function createPost(token, title, description, category, subject, image, adress) {
     validateToken(token)
 
     return fetch('http://localhost:8080/api/posts', {
@@ -12,13 +12,13 @@ function createPost(token, description, category, subject, image, adress) {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ description, category, subject, image, adress })
+        body: JSON.stringify({ title, description, category, subject, image, adress })
     })
         .then(res => {
             const { status } = res
 
             if (status === 201)
-                return 
+                return
             else if (status >= 400 && status < 500)
                 return res.json()
                     .then(data => {

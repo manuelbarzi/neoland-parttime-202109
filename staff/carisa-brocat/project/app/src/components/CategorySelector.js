@@ -2,7 +2,7 @@ import './CategorySelector.css'
 import { useState } from 'react'
 
 
-export default ({ onSelectedCategory }) => {
+export default ({ onCategorySelected }) => {
     const [selected, setSelected] = useState('')
 
     const handleSelected = (category) => {
@@ -14,7 +14,7 @@ export default ({ onSelectedCategory }) => {
             category = ''
         }
 
-        onSelectedCategory(category)
+        onCategorySelected(category)
     }
 
     return <div className='category'>

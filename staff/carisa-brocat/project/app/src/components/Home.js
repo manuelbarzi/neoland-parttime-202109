@@ -56,11 +56,11 @@ function Home({ onLoggedOut }) {
 
     const handleQuizPassed = () => setQuizPassed(true)
 
-    const handleSubject = subject => {
+    const onSubjectSelected = subject => {
         setSubject(subject)
     }
 
-    const handleCategory = category => {
+    const onCategorySelected = category => {
         setCategory(category)
     }
 
@@ -76,10 +76,14 @@ function Home({ onLoggedOut }) {
         navigate('/')
     }
 
-    const handleOpenAndCloseModal = () => {
-        setModalOpen(!modalOpen)
+    const handleCloseModal = () => {
+        setModalOpen(false)
     }
 
+    const handleOpenModal = () => {
+        setModalOpen(true)
+    }
+    
     const appliedSubjectText = subject ? `${subject}`.charAt(0).toUpperCase() + `${subject}`.slice(1) : 'All'
 
     return <div className='home'>
@@ -100,22 +104,22 @@ function Home({ onLoggedOut }) {
                         <button onClick={comebackToHome}>Come Back</button>
                     </div >
                 </div>}
-                <div><SubjectSelector onSelectedSubject={handleSubject} /></div>
+                <div><SubjectSelector onSubjectSelected={onSubjectSelected} /></div>
             </div>
             <div className='home__body'>
                 <Routes>
-                    <Route path="/*" element={<Feed category={category} subject={subject} user={user} />} />
-                    <Route path="/my-posts/*" element={<MyPosts category={category} subject={subject} user={user} />} />
+                    <Route path="/*" element={<Feed category={category} subject={subject} user={user}  />} />
+                    <Route path="/my-posts/*" element={<MyPosts category={category} subject={subject} user={user}/>} />
                 </Routes>
             </div>
             <div className='home__footer'>
-                <CategorySelector onSelectedCategory={handleCategory} />
-                <button className='home__button--addPost' onClick={handleOpenAndCloseModal}>+</button>
+                <CategorySelector onCategorySelected={onCategorySelected} />
+                <button className='home__button--addPost' onClick={handleOpenModal}>+</button>
             </div>
         </div>}
         {user && !quizPassed && <Quiz onQuizPassed={handleQuizPassed} />}
 
-        {modalOpen && <Modal content={<NewPost closeaAndOpenModal={handleOpenAndCloseModal} />} />}
+        {modalOpen && <Modal handleCloseModal={handleCloseModal} content={<NewPost handleCloseModal={handleCloseModal}/>} />}
     </div>
 }
 
