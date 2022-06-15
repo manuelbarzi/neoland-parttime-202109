@@ -1,7 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
 import logo from '../assets/img/logo.png'
-import findSpaces from '../logic/findSpaces'
 
 export default function Header({ onSearch }) {
     const navigate = useNavigate()

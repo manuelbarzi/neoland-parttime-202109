@@ -4,7 +4,7 @@ const { ClientError, ServerError } = errors
 
 export default function retrieveLattestSpaces() {
 
-    return fetch('http://localhost:8080/api/lattestspaces', {
+    return fetch('http://localhost:8080/api/spaces/lattest', {
         method: 'GET',
     })
 

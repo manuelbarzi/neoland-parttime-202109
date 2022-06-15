@@ -10,8 +10,8 @@ const addReviewToSpace = require('./addReviewToSpace')
 const addBookingToSpace = require('./addBookingToSpace')
 const deleteReviewToSpace = require('./deleteReviewToSpace')
 const deleteBookingToSpace = require('./deleteBookingToSpace')
-const findSpaces = require('./findSpaces')
 const retrieveLattestSpaces = require('./retrieveLattestSpaces')
+const findSpaces = require('./findSpaces')
 
 module.exports = {
     registerUser,
@@ -26,6 +26,6 @@ module.exports = {
     addBookingToSpace,
     deleteReviewToSpace,
     deleteBookingToSpace,
-    findSpaces,
-    retrieveLattestSpaces
+    retrieveLattestSpaces,
+    findSpaces
 }

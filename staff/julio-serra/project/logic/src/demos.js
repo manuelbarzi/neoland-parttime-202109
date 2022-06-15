@@ -10,8 +10,8 @@ connect('mongodb://localhost:27017/spacelocal')
                 //     .then(() => console.log('user registered'))
                 //     .catch(error => console.error(error))
 
-                //return findSpaces('us')
-                return retrieveLattestSpaces()
+                return findSpaces('spar')
+                // return retrieveLattestSpaces()
                     .then(console.log)
                     .catch(console.error)
             } catch (error) {

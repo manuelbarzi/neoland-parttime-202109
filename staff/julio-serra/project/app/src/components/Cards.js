@@ -21,10 +21,12 @@ export default function Cards({ query }) {
                     .then(spaces => {
                         setSpaces(spaces)
                     })
-                    // TODO .catch
+                    .catch(error => alert({ error: error.message }))
+                // TODO .catch
             } catch (error) {
                 alert({ error: error.message })
             }
+
     }, [query])
 
     return (

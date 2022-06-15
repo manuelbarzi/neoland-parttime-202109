@@ -9,7 +9,7 @@ function findSpaces(query) {
     const matchings = []
 
     keywords.forEach(keyword => {
-        const re = new RegExp(keyword)
+        const re = new RegExp(keyword, 'i')
         
         matchings.push({ title: re })
         matchings.push({ description: re })
@@ -22,7 +22,7 @@ function findSpaces(query) {
         .then((spaces) => {
 
             if (spaces.length === 0) throw new NotFoundError('spaces not found')
-
+            
             return spaces.map(space => {
                 space.id = space._id.toString()
 

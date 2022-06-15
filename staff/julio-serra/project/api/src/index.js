@@ -32,15 +32,15 @@ connect(MONGODB_URL)
 
         // CREATE SPACE
         router.post('/spaces', jsonBodyParser, createSpace)
+        
+        // RETRIEVE LATTEST SPACES
+        router.get('/spaces/lattest', retrieveLattestSpaces)
 
         // RETRIEVE SPACE
         router.get('/spaces/:spaceId', retrieveSpace)
 
         // RETRIEVE ALL SPACES
-        router.get('/spaces', retrieveAllSpaces)        
-        
-        // RETRIEVE LATTEST SPACES
-        router.get('/lattestspaces', retrieveLattestSpaces)
+        //router.get('/spaces', retrieveAllSpaces)        
 
         // DELETE SPACE
         router.delete('/spaces/:spaceId', jsonBodyParser, deleteSpace)
@@ -58,7 +58,7 @@ connect(MONGODB_URL)
         router.delete('/spaces/:spaceId/bookings/:bookingId', jsonBodyParser, deleteBookingToSpace)
 
         // FIND SPACES
-        router.get('/spaces?q=', findSpaces)
+        router.get('/spaces', findSpaces)
 
         api.use('/api', router)
         api.listen(PORT, () => console.log('json server running'))
