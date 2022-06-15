@@ -38,7 +38,7 @@ export default function () {
     }
 
     return <div>
-        <a onClick={() => navigate(`/user${userId}`)}>Volver</a>
+        <a onClick={() => navigate(`/user/${userId}`)}>Volver</a>
         {data ?
             <form onSubmit={update}>
                 <input type="name" name="name" defaultValue={data.name} />

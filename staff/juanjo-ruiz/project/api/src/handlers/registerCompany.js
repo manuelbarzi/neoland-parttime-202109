@@ -3,9 +3,9 @@ const { errors: { DuplicityError, FormatError, TypeError } } = require('commons'
 
 module.exports = (req, res) => {
     try {
-        const { body: { businessName, cif, name, email, password, role } } = req
+        const { body: { businessName, cif, name, email, password } } = req
 
-        registerCompany(businessName, cif, name, email, password, role)
+        registerCompany(businessName, cif, name, email, password)
             .then(() => res.status(201).send())
             .catch(error => {
                 let status = 500

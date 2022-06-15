@@ -1,14 +1,14 @@
 const { createVehicle } = require('logic')
-const { extractCompanyIdFromAuthorization } = require('./helpersCompany')
+const { extractUserIdFromAuthorization } = require('./helpersUser')
 const { errors: { DuplicityError, TypeError, FormatError } } = require('commons')
 
 module.exports = (req, res) => {
     try {
-        const companyId = extractCompanyIdFromAuthorization(req)
+        const adminId = extractUserIdFromAuthorization(req)
 
         const { body: { lisense, brand, model, frame, active } } = req
 
-        createVehicle(companyId, lisense, brand, model, frame, active)
+        createVehicle(adminId, lisense, brand, model, frame, active)
             .then(() => res.status(201).send())
             .catch(error => {
                 let status = 500

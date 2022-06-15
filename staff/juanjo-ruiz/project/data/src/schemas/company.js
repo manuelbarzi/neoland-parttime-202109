@@ -11,29 +11,7 @@ const company = new Schema({
         required: true,
         unique: true
     },
-
-    name: {
-        type: String,
-        required: true
-    },
-
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-
-    password: {
-        type: String,
-        required: true
-    },
-
-    role: {
-        type: String,
-        required: true,
-        defualt: 'admin'
-    },
-
+    
     active: {
         type: Boolean,
         required: true,

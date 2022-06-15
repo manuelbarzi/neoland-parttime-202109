@@ -1,17 +1,17 @@
 const { models: { Vehicle, User } } = require('data')
 const { validators: { validateId }, errors: { NotFoundError, AuthError } } = require('commons')
 
-function retrieveVehicle(userId, vehicleId) {
-    validateId(userId, 'user id')
+function retrieveVehicle(adminId, vehicleId) {
+    validateId(adminId, 'user id')
     validateId(vehicleId, 'vehicle id')
 
-    return Promise.all([User.findById(userId).lean(), Vehicle.findById(vehicleId).lean()])
+    return Promise.all([User.findById(adminId).lean(), Vehicle.findById(vehicleId).lean()])
         .then(([user, vehicle]) => {
-            if (!user) throw new NotFoundError(`user with id ${userId} not found`)
+            if (!user) throw new NotFoundError(`user with id ${adminId} not found`)
             if (!vehicle) throw new NotFoundError(`vehicle with id ${vehicleId} not found`)
 
-            if (vehicle.user.toString() !== user.company.toString()) throw new AuthError(`user with id ${userId} does not belong to vehicle with id ${vehicleId}`)
-
+            if (user.role !== 'owner' && user.role !== 'admin')
+                throw new AuthError(`user with id ${adminId} not authorized for this operation`)
 
             vehicle.id = vehicle._id.toString()
             vehicle.newDate = vehicle.date.toLocaleDateString()

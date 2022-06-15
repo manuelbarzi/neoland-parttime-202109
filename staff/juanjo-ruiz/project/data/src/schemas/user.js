@@ -31,7 +31,8 @@ const user = new Schema({
     role: {
         type: String,
         required: true,
-        default: 'driver'
+        default: 'driver',
+        enum: ['driver', 'admin', 'owner']
     },
 
     active: {

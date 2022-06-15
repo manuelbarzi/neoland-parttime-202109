@@ -8,8 +8,8 @@ module.exports = (req, res) => {
         const { body: { email, password } } = req
 
         authenticateUser(email, password)
-            .then(companyId => {
-                const token = sign({ sub: companyId }, JWT_SECRET, { expiresIn: JWT_EXP })
+            .then(({userId, role}) => {
+                const token = sign({ sub: userId, role }, JWT_SECRET, { expiresIn: JWT_EXP })
 
                 res.status(200).json({ token })
             })

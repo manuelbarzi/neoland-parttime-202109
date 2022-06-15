@@ -1,21 +1,20 @@
-const { models: { Company, User } } = require('data')
-const { validators: { validateId, validatePassword, validateBoolean }, errors: { NotFoundError } } = require('commons')
+const { models: { User } } = require('data')
+const { validators: { validateId, validatePassword, validateBoolean }, errors: { NotFoundError, AuthError } } = require('commons')
 const bcrypt = require('bcryptjs')
 
-function activateUser(companyId, userId, password, active = true) {
-    validateId(companyId, 'company id')
+function activateUser(adminId, userId, password, active = true) {
+    validateId(adminId, 'admin id')
     validateId(userId, 'user id')
     validatePassword(password)
     validateBoolean(active)
 
-    return Promise.all([Company.findById(companyId), User.findById(userId)])
-        .then(([company, user]) => {
-            if (!company) throw new NotFoundError(`company with id ${companyId} not found`)
-            if (!user) throw new NotFoundError(`user with id ${userId} not found`)
+    return User.findById(adminId)
+        .then(user => {
+            if (!user) throw new NotFoundError(`user with id ${adminId} not found`)
 
-            if (user.company.toString() !== companyId) throw new NotFoundError(`user with id ${userId} does not belong to company with id ${companyId}`)
+            if (user.role !== 'owner') throw new AuthError(`user with id ${adminId} not authorized for this operation`)
 
-            return bcrypt.compare(password, company.password)
+            return bcrypt.compare(password, user.password)
                 .then(match => {
                     if (!match) throw new AuthError('wrong credentials')
 

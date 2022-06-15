@@ -1,25 +1,27 @@
-const { models: { User, Company } } = require('data')
+const { models: { User, user } } = require('data')
 const bcrypt = require('bcryptjs')
-const { errors: { DuplicityError, NotFoundError }, validators: { validateString, validateEmail, validatePassword, validateId } } = require('commons')
+const { errors: { DuplicityError, NotFoundError, AuthError }, validators: { validateString, validateEmail, validatePassword, validateId } } = require('commons')
 
-
-function createUser(companyId, name, email, password, role = 'driver') {
-    validateId(companyId, 'company id')
+function createUser(userId, name, email, password, role = 'driver') {
+    validateId(userId, 'user id')
     validateString(name, 'name')
     validateEmail(email)
     validatePassword(password)
     validateString(role, 'role')
 
-    return Company.findById(companyId)
-        .then(company => {
-            if (!company) throw new NotFoundError(`company with id ${companyId} not found`)
+    return User.findById(userId)
+        .then(user => {
+            if (!user) throw new NotFoundError(`user with id ${userId} not found`)
+
+            if (user.role !== 'owner' && user.role !== 'admin')
+                throw new AuthError(`user with id ${userId} not authorized for this operation`)
 
             return bcrypt.hash(password, 10)
-                .then(hash => User.create({ company: companyId, name, email, password: hash, role }))
-                .then(driver => { })
+                .then(hash => User.create({ user: user.company, name, email, password: hash, role }))
+                .then(user => { })
                 .catch(error => {
                     if (error.message.includes('duplicate'))
-                        throw new DuplicityError('company already exist')
+                        throw new DuplicityError('user already exist')
 
                     throw error
                 })

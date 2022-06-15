@@ -1,10 +1,10 @@
-const { extractCompanyIdFromAuthorization } = require('./helpersCompany')
+const { extractUserIdFromAuthorization } = require('./helpersUser')
 const { updatePartAdmin } = require('logic')
 const { errors: { AuthError, NotFoundError, TypeError, FormatError } } = require('commons')
 
 module.exports = (req, res) => {
     try {
-        const companyId = extractCompanyIdFromAuthorization(req)
+        const companyId = extractUserIdFromAuthorization(req)
 
         const { params: { vehicleId, partId }, body: { description, image, state } } = req
 

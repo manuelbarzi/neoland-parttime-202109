@@ -1,12 +1,12 @@
-const { models: { User, Company } } = require('data')
+const { models: { User } } = require('data')
 const { validators: { validateId }, errors: { NotFoundError } } = require('commons')
 
-function retrieveAllUsers(companyId) {
-    validateId(companyId, 'user id')
+function retrieveAllUsers(userId) {
+    validateId(userId, 'user id')
 
-    return Company.findById(companyId)
-        .then(company => {
-            if (!company) throw new NotFoundError(`company with id ${companyId} not found`)
+    return User.findById(userId)
+        .then(userId => {
+            if (!userId) throw new NotFoundError(`userId with id ${userId} not found`)
 
             return User.find({ active: true }).lean().sort('-date')
         })

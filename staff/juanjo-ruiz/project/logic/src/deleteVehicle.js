@@ -1,20 +1,22 @@
-const { models: { Company, Vehicle } } = require('data')
+const { models: { User, Vehicle } } = require('data')
 const { validators: { validateId, validatePassword }, errors: { NotFoundError, AuthError } } = require('commons')
 const bcrypt = require('bcryptjs')
 
-function deleteVehicle(companyId, vehicleId, password) {
-    validateId(companyId, 'company id')
+function deleteVehicle(adminId, vehicleId, password) {
+    validateId(adminId, 'admin id')
     validateId(vehicleId, 'vehicle id')
     validatePassword(password)
 
-    return Promise.all([Company.findById(companyId), Vehicle.findById(vehicleId)])
-        .then(([company, vehicle]) => {
-            if (!company) throw new NotFoundError(`company with id ${companyId} not found`)
+    return Promise.all([User.findById(adminId), Vehicle.findById(vehicleId)])
+        .then(([user, vehicle]) => {
+            if (!user) throw new NotFoundError(`user with id ${adminId} not found`)
             if (!vehicle) throw new NotFoundError(`vehicle with id ${vehicleId} not found`)
 
-            if (vehicle.user.toString() !== companyId) throw new NotFoundError(`vehicle with id ${vehicleId} does not belong to admin with id ${companyId}`)
+            if (user.role !== 'owner')
+            throw new AuthError(`user with id ${adminId} not authorized for this operation`)
 
-            return bcrypt.compare(password, company.password)
+
+            return bcrypt.compare(password, user.password)
         })
         .then(match => {
             if (!match) throw new AuthError('wrong credentials')

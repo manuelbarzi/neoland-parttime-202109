@@ -1,20 +1,21 @@
-const { models: { Company, User } } = require('data')
+const { models: { User } } = require('data')
 const { validators: { validateId, validatePassword }, errors: { NotFoundError, AuthError } } = require('commons')
 const bcrypt = require('bcryptjs')
 
-function unregisterUser(companyId, userId, password) {
-    validateId(companyId, 'company id')
+function unregisterUser(adminId, userId, password) {
+    validateId(adminId, 'admin id')
     validateId(userId, 'user id')
     validatePassword(password)
 
-    return Promise.all([Company.findById(companyId), User.findById(userId)])
-        .then(([company, user]) => {
-            if (!company) throw new NotFoundError(`company with id ${companyId} not found`)
+    return Promise.all([User.findById(adminId), User.findById(userId)])
+        .then(([admin, user]) => {
+            if (!admin) throw new NotFoundError(`admin with id ${adminId} not found`)
             if (!user) throw new NotFoundError(`user with id ${userId} not found`)
 
-            if (user.company.toString() !== companyId) throw new NotFoundError(`user with id ${userId} does not belong to company with id ${companyId}`)
+            if (user.role !== 'owner')
+                throw new AuthError(`user with id ${userId} not authorized for this operation`)
 
-            return bcrypt.compare(password, company.password)
+            return bcrypt.compare(password, admin.password)
         })
         .then(match => {
             if (!match) throw new AuthError('wrong credentials')
@@ -27,8 +28,6 @@ function unregisterUser(companyId, userId, password) {
                         throw new Error(`could not delete user with id ${userId}`)
                 })
         })
-
-
 }
 
 module.exports = unregisterUser
