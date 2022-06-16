@@ -12,6 +12,8 @@ import toggleDislikePost from "./toggleDislikePost"
 import toggleSavePost from "./toggleSavePost"
 import deletePost from "./deletePost"
 import createPost from "./createPost"
+import retrieveUserSavedPosts from "./retrieveUserSavedPosts"
+import deleteUser from "./deleteUser"
 
 export {
     registerUser,
@@ -27,5 +29,7 @@ export {
     toggleDislikePost,
     toggleSavePost,
     deletePost,
-    createPost
+    createPost,
+    retrieveUserSavedPosts,
+    deleteUser
 }

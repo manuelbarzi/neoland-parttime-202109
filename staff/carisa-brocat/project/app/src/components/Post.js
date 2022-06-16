@@ -5,7 +5,7 @@ import { toggleDislikePost, toggleLikePost, toggleSavePost, deletePost } from '.
 import { errors } from 'commons'
 const { AuthError } = errors
 
-export default ({ post, user, handleRefresh }) => {
+export default ({ post, user, handlePostDeleted }) => {
     const location = useLocation()
 
     const [likes, setLikes] = useState(post.likes)
@@ -131,7 +131,7 @@ export default ({ post, user, handleRefresh }) => {
     const handleDeletePost = () => {
         try {
             deletePost(sessionStorage.token, postId)
-                .then(() => handleRefresh())
+                .then(() => handlePostDeleted())
                 .catch(error => {
                     if (error instanceof AuthError)
                         delete sessionStorage.token

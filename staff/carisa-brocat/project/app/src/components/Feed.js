@@ -4,9 +4,8 @@ import Post from './Post'
 import { errors } from 'commons'
 const { AuthError } = errors
 
-function Feed({ category, subject, user }) {
+function Feed({ category, subject, user, postCreated }) {
     const [posts, setPosts] = useState([])
-    const [refresh, setRefresh] = useState(false)
 
     const loadUserPosts = () => {
         try {
@@ -59,17 +58,12 @@ function Feed({ category, subject, user }) {
 
     useEffect(() => {
         loadFilterPosts()
-    }, [category, subject, refresh])
-
-    const handleRefresh = () => {
-        setRefresh(!refresh)
-    }
-
+    }, [category, subject, postCreated])
 
     return <div className='feed'>
         {
             posts.length ?
-                <ul> {posts.map(post => <li key={post.id}> <Post post={post} user={user} handleRefresh={handleRefresh}/></li>)}
+                <ul> {posts.map(post => <li key={post.id}> <Post post={post} user={user} /></li>)}
                 </ul> :
                 <p>Sorry, there are no posts to show</p>
         }

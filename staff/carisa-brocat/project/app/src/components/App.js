@@ -2,6 +2,7 @@ import Register from './Register';
 import Home from './Home';
 import Login from './Login';
 import Landing from './Landing';
+import Unregister from './Unregister';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import { validators } from 'commons';
 const { validateToken } = validators

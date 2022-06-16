@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { errors } from 'commons'
 const { AuthError } = errors
 
-export default ({ handleCloseModal}) => {
+export default ({ handleCloseModal, handlePostCreated }) => {
     const [category, setCategory] = useState('product')
 
     const handleCategorySelected = event => {
@@ -14,13 +14,13 @@ export default ({ handleCloseModal}) => {
     const handleCreatePost = event => {
         event.preventDefault()
 
-         const { target:
-             { category: { value: category },
-               subject: { value: subject },
+        const { target:
+            { category: { value: category },
+                subject: { value: subject },
                 title: { value: title },
-                 description: { value: description },
-                 image: { value: image },
-           } } = event
+                description: { value: description },
+                image: { value: image },
+            } } = event
 
         let address = ''
         if (category === 'space') {
@@ -31,6 +31,7 @@ export default ({ handleCloseModal}) => {
             createPost(sessionStorage.token, title, description, category, subject, image, address)
                 .then(() => {
                     handleCloseModal()
+                     handlePostCreated()
                 })
                 .catch(error => {
                     if (error instanceof AuthError)

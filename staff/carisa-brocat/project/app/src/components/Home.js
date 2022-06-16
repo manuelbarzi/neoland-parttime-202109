@@ -4,12 +4,15 @@ import { useLocation, Routes, Route, useNavigate } from 'react-router-dom';
 import { retrieveUser } from '../logic'
 import Quiz from './Quiz'
 import Feed from './Feed'
-import MyPosts from './MyPosts'
+import UserPosts from './UserPosts'
 import Modal from './Modal'
 import NewPost from './NewPost'
+import UserSavedPosts from './UserSavedPosts'
 import SubjectSelector from './SubjectSelector'
 import { errors } from 'commons'
 import CategorySelector from './CategorySelector'
+import UserMenu from './UserMenu';
+import Unregister from './Unregister'
 const { AuthError } = errors
 
 function Home({ onLoggedOut }) {
@@ -17,10 +20,12 @@ function Home({ onLoggedOut }) {
     const location = useLocation()
 
     const [modalOpen, setModalOpen] = useState(false)
+    const [menuOpen, setMenuOpen] = useState(false)
 
+    const [postCreated, setPostCreated] = useState(false)
     const [user, setUser] = useState()
-    const [category, setCategory] = useState()
     const [subject, setSubject] = useState()
+    const [category, setCategory] = useState()
     const [quizPassed, setQuizPassed] = useState(false)
 
     const loadUser = () => {
@@ -64,16 +69,19 @@ function Home({ onLoggedOut }) {
         setCategory(category)
     }
 
-    const handleGoToMyPosts = () => {
+    const handleMyPosts = () => {
         navigate('/my-posts')
     }
-
-    const handleOpenMenu = () => {
-
+    const handleSavedPosts = () => {
+        navigate('/my-saved-posts')
     }
 
-    const comebackToHome = () => {
-        navigate('/')
+    const handleMenu = () => {
+        setMenuOpen(!menuOpen)
+    }
+
+    const comeBack = () => {
+        navigate(-1)
     }
 
     const handleCloseModal = () => {
@@ -83,7 +91,11 @@ function Home({ onLoggedOut }) {
     const handleOpenModal = () => {
         setModalOpen(true)
     }
-    
+
+    const handlePostCreated = () => {
+        setPostCreated(!postCreated)
+    }
+
     const appliedSubjectText = subject ? `${subject}`.charAt(0).toUpperCase() + `${subject}`.slice(1) : 'All'
 
     return <div className='home'>
@@ -93,33 +105,41 @@ function Home({ onLoggedOut }) {
                     <h1>Logo</h1>
                     <h2 className='home__header-filterText'>{appliedSubjectText}</h2>
                     <div>
-                        <h2 onClick={handleGoToMyPosts}>{user.nickname}</h2>
+                        <h2 onClick={handleMyPosts}>{user.nickname}</h2>
                         <button onClick={logOut}>LogOut</button>
                     </div >
                 </div>}
                 {location.pathname !== '/' && <div className='home__header-top'>
-                    <h2 onClick={handleOpenMenu}>{user.nickname}</h2>
-                    <h2 className='home__header-filterText'>{appliedSubjectText}</h2>
+                    <h2 onClick={handleMenu}>{user.nickname}</h2>
+                    {location.pathname !== '/unregister' && <h2 className='home__header-filterText'>{appliedSubjectText}</h2>}
                     <div>
-                        <button onClick={comebackToHome}>Come Back</button>
+                        <button onClick={comeBack}>Come Back</button>
                     </div >
                 </div>}
-                <div><SubjectSelector onSubjectSelected={onSubjectSelected} /></div>
+                {location.pathname !== '/unregister' && <div><SubjectSelector onSubjectSelected={onSubjectSelected} /></div>}
             </div>
-            <div className='home__body'>
+            {location.pathname !== '/unregister' && <div className='home__body'>
                 <Routes>
-                    <Route path="/*" element={<Feed category={category} subject={subject} user={user}  />} />
-                    <Route path="/my-posts/*" element={<MyPosts category={category} subject={subject} user={user}/>} />
+                    <Route path="/*" element={<Feed category={category} subject={subject} user={user} postCreated={postCreated} />} />
+                    <Route path="/my-posts/*" element={<UserPosts category={category} subject={subject} user={user} postCreated={postCreated} />} />
+                    <Route path="/my-saved-posts/*" element={<UserSavedPosts postCreated={postCreated} />} />
                 </Routes>
-            </div>
-            <div className='home__footer'>
+            </div>}
+            {location.pathname !== '/unregister' && <div className='home__footer'>
                 <CategorySelector onCategorySelected={onCategorySelected} />
                 <button className='home__button--addPost' onClick={handleOpenModal}>+</button>
-            </div>
+            </div>}
         </div>}
         {user && !quizPassed && <Quiz onQuizPassed={handleQuizPassed} />}
 
-        {modalOpen && <Modal handleCloseModal={handleCloseModal} content={<NewPost handleCloseModal={handleCloseModal}/>} />}
+        {modalOpen && <Modal handleCloseModal={handleCloseModal} content={<NewPost handleCloseModal={handleCloseModal} handlePostCreated={handlePostCreated} />} />}
+        <UserMenu menuOpen={menuOpen} handleSavedPosts={handleSavedPosts} handleMenu={handleMenu} handleMyPosts={handleMyPosts} onLoggedOut={onLoggedOut}/>
+
+        <Routes>
+            <Route path="/unregister/*" element={<Unregister />} />
+            {/* <Route path="/configurations/*" element={<Configurations />} /> */}
+        </Routes>
+
     </div>
 }
 

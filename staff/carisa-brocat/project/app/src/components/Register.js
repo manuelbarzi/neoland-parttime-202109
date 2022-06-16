@@ -24,7 +24,7 @@ function Register({ onRegistered }) {
         }
     }
 
-    return <form className="Register" onSubmit={register} >
+    return <form className="register" onSubmit={register} >
         <input type="text" name="nickname" placeholder="nickname" required />
         <input type="email" name="email" placeholder="email" required />
         <input type="password" name="password" placeholder="password" required />
