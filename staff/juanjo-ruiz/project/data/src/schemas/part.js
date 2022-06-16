@@ -10,7 +10,7 @@ const part = new Schema({
 
     user: {
         type: ObjectId,
-        ref: 'user',
+        ref: 'User',
         required: true
     },
 
@@ -31,8 +31,11 @@ const part = new Schema({
     },
 
     state: {
-        type: Array,
-        required: true
+        type: Number,
+        required: true,
+        min: 0,
+        max: 2,
+        default: 2
     },
 
     date: {

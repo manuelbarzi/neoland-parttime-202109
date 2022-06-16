@@ -16,7 +16,7 @@ function updateUser(adminId, userId, name, email, role) {
             if (admin.role !== 'owner' && admin.role !== 'admin')
                 throw new AuthError(`user with id ${adminId} not authorized for this operation`)
 
-            if (role === 'owner' || role === 'admin' && user.role !== 'owner')
+            if (role === 'owner' || role === 'admin' && admin.role !== 'owner')
                 throw new AuthError(`user with id ${adminId} not authorized for this operation`)
 
             return User.updateOne({ _id: userId }, { name, email, role })

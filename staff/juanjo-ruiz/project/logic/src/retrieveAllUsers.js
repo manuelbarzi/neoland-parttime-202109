@@ -11,7 +11,7 @@ function retrieveAllUsers(userId) {
             if (user.role !== 'owner' && user.role !== 'admin')
                 throw new AuthError(`userId with id ${userId} not authorized for this operation`)
 
-            return User.find({ active: true, company: user.company }).lean().sort('-date')
+            return User.find({ company: user.company }).lean().sort('-date')
         })
         .then(users => {
             users.forEach(user => {

@@ -11,10 +11,10 @@ function registerCompany(businessName, cif, name, email, password) {
     validatePassword(password)
 
     return bcrypt.hash(password, 10)
-        .then(hash =>{ 
+        .then(hash => {
             const company = new Company({ businessName, cif })
 
-            const user = new User({company: company.id, name, email, password: hash, role: 'owner'})
+            const user = new User({ company: company.id, user: company.id, name, email, password: hash, role: 'owner' })
 
             return Promise.all([company.save(), user.save()])
         })
