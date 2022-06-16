@@ -25,14 +25,14 @@ export default function Header({ onSearch }) {
     return (
         <>
             <header className="pt-8">
-                <nav className="flex justify-between">
-                    <div className="flex items-center gap-5"><picture>
+                <nav className="px-5 justify-center lg:grid lg:grid-cols-3">
+                    <div className="items-center gap-5 flex justify-center"><picture>
                         <img className='cursor-pointer' onClick={handleClickLogo} src={logo} width="60" alt="logo space local" />
                     </picture>
-                        <span className="nav__text text-3xl">Space Local</span>
+                        <span className="nav__logo text-3xl">Space Local</span>
                     </div>
 
-                    <div className='w-2/4'>
+                    <div className='lg:w-full py-5'>
                         <form onSubmit={handleSearch}>
                             <label for="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
                             <div className="relative">
@@ -45,7 +45,7 @@ export default function Header({ onSearch }) {
                         </form>
                     </div>
 
-                    <div className="flex gap-12 items-center">
+                    <div className="flex gap-12 justify-center items-center">
                         {token ?
                             <p className='cursor-pointer nav__font black text-xl' onClick={loggedOut}>Log Out</p>
                             : <span onClick={handleClickLogin} className="cursor-pointer nav__font black text-xl hover:text-principal-color">Login</span>

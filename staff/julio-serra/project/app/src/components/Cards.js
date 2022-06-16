@@ -22,7 +22,6 @@ export default function Cards({ query }) {
                         setSpaces(spaces)
                     })
                     .catch(error => alert({ error: error.message }))
-                // TODO .catch
             } catch (error) {
                 alert({ error: error.message })
             }
@@ -36,7 +35,7 @@ export default function Cards({ query }) {
                 <div className='flex justify-between items-center pr-16'>
                     <h1 className='nav__font black text-4xl py-8 pl-14'>The Lattest Spaces...</h1>
                 </div>
-                <div className='grid grid-cols-3'>
+                <div className='grid md:grid-cols-2 xl:grid-cols-3'>
                     {spaces ? spaces.map(space => {
                         return <li className='list-none justify-center mb-10' key={space.id}>
                             <CardItem space={space} />

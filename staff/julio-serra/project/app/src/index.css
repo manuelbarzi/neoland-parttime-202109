@@ -1,12 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@500;700&&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-    --principal-font: 'Pacifico', cursive;
+    --principal-font: 'Quicksand', sans-serif;
+    --secundary-font: 'Pacifico', sans-serif;
+    --tertiary-font: 'Inconsolata', monospace;
     --principal-color: #6563FF;
     --secondary-color: #FF7353;
     --tertiary-color: #1C1E4F;
@@ -14,10 +17,13 @@
     --font-size-base: 1.6rem;
     --font-size-small: 1.2rem;
     --font-size-extrasmall: 1rem;
+    --font-weight-bold: 500;
+    --font-weight-extrabold: 700;
 }
 
 .nav__font {
     font-family: var(--principal-font);
+    font-weight: var(--font-weight-bold);
 }
 
 .nav__text {
@@ -25,9 +31,12 @@
     font-family: var(--principal-font);
 }
 
+.nav__logo {
+    font-family: var(--tertiary-font);
+    font-weight: var(--font-weight-extrabold);
+}
+
 body {
-    font-family: 'Inter', sans-serif;
-    margin: auto;
-    padding: 0 2rem;
-    max-width: 1400px;
+    font-family: var(--principal-font);
+    font-size: var(--font-size-small);
 }
