@@ -1,10 +1,14 @@
 import { createPatient } from '../logic'
 import { useContext } from 'react'
 import Context from './Context'
+import {AiOutlineLeft} from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom'
 
 function PatientForm() {
 
     const { setResponse } = useContext(Context)
+
+    const navigate = useNavigate()
 
     const newPatient = event => {
         event.preventDefault()
@@ -26,6 +30,8 @@ function PatientForm() {
 
     return (
         <div>
+            <div onClick={() => navigate("/my-patients")}> <AiOutlineLeft className="back-icon" /> </div>
+
             <h2>New Patient</h2>
 
             <form onSubmit={ newPatient }>

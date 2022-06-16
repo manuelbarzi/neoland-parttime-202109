@@ -5,7 +5,7 @@ import { retrieveAllPatients } from '../logic'
 import PatientItemList from './PatientItemList'
 import SearchPatient from './SearchPatient'
 import MyPatientsHeader from './MyPatientsHeader'
-
+import {AiOutlineLeft} from 'react-icons/ai'
 
 
 
@@ -51,6 +51,7 @@ function MyPatients(){
     
     return (
         <div>  
+             <div onClick={() => navigate("/")}> <AiOutlineLeft className="back-icon" /> </div>
             <MyPatientsHeader />
             <button onClick={handleCreatePatient }>Create patient</button>
 

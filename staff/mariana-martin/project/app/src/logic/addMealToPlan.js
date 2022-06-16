@@ -12,7 +12,7 @@ function addMealToPlan(token, patientId, day, mealId ){
     return fetch(`http://localhost:8080/api/patient/${patientId}/mealPlan/meal/${mealId}`, {
         method: 'POST',
         headers: {
-            Authorization: `Berear ${token}`,
+            Authorization: `Bearer ${token}`,
             'Content-Type' : 'application/json'
         },
         body: JSON.stringify({ day })

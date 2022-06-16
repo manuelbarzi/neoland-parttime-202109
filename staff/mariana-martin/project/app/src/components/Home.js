@@ -13,12 +13,7 @@ import Meals from './Meals'
 import EditPatient from './EditPatient'
 import MealPlan from './MealPlan'
 
-
-
-
-
 function Home({ onloggedOut }) {
-
     const handleLogout = () => {
         delete sessionStorage.token
         onloggedOut()
@@ -29,10 +24,7 @@ function Home({ onloggedOut }) {
     const [name, setName] = useState(null)
     const [role, setRole] = useState(null)
 
-     
-
     useEffect(() => {
-        console.log('useEffect HOME para recuperar nutri')
         try {
             retrieveNutritionist(sessionStorage.token) //misma lógica me sirve para recuperar paciente
                 .then(nutritionist => {
@@ -56,14 +48,13 @@ function Home({ onloggedOut }) {
         }
     }, [onloggedOut])
 
-    
+
 
     if (name && role === 0) {
         return <div className="home-container">
-         
+
             <Header name={name} role={role} />
             <button onClick={handleLogout}>Logout</button>
-
 
             <Routes>
                 <Route path="/" element={<HomeMenu />} />
@@ -72,8 +63,8 @@ function Home({ onloggedOut }) {
                 <Route path="/patient/:patientId/" element={<PatientDetail />} />
                 <Route path="/edit/:patientId" element={<EditPatient />} />
                 <Route path="/my-meals" element={<Meals />} />
-                <Route path="/mealplan/:patientId/*" element={<MealPlan />} />  
-                
+                <Route path="/mealplan/:patientId/*" element={<MealPlan />} />
+
                 {/* <Route path="/add" element={<AddingMeal />} /> */}
 
                 {/* <Route path="*" element={ <ErrorPageCompo /> } />  */}
@@ -84,12 +75,12 @@ function Home({ onloggedOut }) {
     }
 
     if (name && role === 1) {
-        return(
-        <div>
-             <Header name={name} role={role} />
-             <button onClick={handleLogout}>Logout</button>
-            <p>hola Patient {name} </p>
-        </div>)
+        return (
+            <div>
+                <Header name={name} role={role} />
+                <button onClick={handleLogout}>Logout</button>
+                <p>hola Patient {name} </p>
+            </div>)
     }
 
 }

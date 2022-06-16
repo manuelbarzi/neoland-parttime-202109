@@ -1,12 +1,7 @@
-
-
-function Day({ day, changeDay }){
-
-
-
+function Day({ day, onDayClicked }){
     return (
         <div>              
-            <div onClick={()=> changeDay({day})}><p> {day} </p></div>         
+            <div onClick={()=> onDayClicked(day)}><p> {day} </p></div>         
         </div>
     )
 }

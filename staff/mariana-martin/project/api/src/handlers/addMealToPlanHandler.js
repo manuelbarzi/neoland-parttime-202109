@@ -6,11 +6,13 @@ module.exports = (req, res) => {
         
         const nutritionistId = extractUserIdFromAuthorization(req)
 
-        const { params: { patientId, mealId }, body: { day }} = req   
+       // const { params: { patientId, mealId }, body: { day }} = req   
+        const { params: { patientId, mealId , day }} = req   
 
         addMealToPlan(nutritionistId, patientId, day, mealId)
             .then(mealplan => res.status(200).json(mealplan))
-            .catch(error => res.status(400).json({ error: error.message}))
+          // .then(() => res.status(200).send())
+           .catch(error => res.status(400).json({ error: error.message}))
     } catch (error) {
         res.status(400).json({error: error.message})
     }

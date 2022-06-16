@@ -5,7 +5,8 @@ import { useState, useEffect } from 'react'
 import { deleteMeal } from "../logic";
 import { useContext } from 'react'
 import Context from "./Context";
-
+import {AiOutlineLeft} from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -14,6 +15,8 @@ function AllMeals({ reload }) {
     const [meals, setMeals] = useState()
 
     const { setResponse } = useContext(Context)
+
+    const navigate = useNavigate()
 
     //Recupero 
     const getAllMeals = () => {
@@ -51,6 +54,7 @@ function AllMeals({ reload }) {
 
     return (
         <div>
+            <div onClick={() => navigate("/")}> <AiOutlineLeft className="back-icon" /> </div>
             <h3>All Meals</h3>
 
             <ul>

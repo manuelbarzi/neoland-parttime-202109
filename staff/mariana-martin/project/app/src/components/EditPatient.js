@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import { useParams } from 'react-router-dom'
 import { retrievePatient, updatePatient } from '../logic'
-
+import {AiOutlineLeft} from 'react-icons/ai'
 import { useContext } from 'react'
 import Context from './Context'
+import { useNavigate} from 'react-router-dom'
 
 
 function EditPatient(){
@@ -12,7 +13,7 @@ function EditPatient(){
     const { patientId } = useParams()
     const [ patient, setPatient ] = useState()
 
-  
+    const navigate = useNavigate()
 
     useEffect(() => {
         try {
@@ -44,6 +45,7 @@ function EditPatient(){
     
     return (
         <div>
+             <div onClick={() => navigate(`/patient/${patientId}`)}> <AiOutlineLeft className="back-icon" /> </div>
             <h2> Edit Patient Data </h2>
             
             { patient ? <form onSubmit={updatingPatient}>

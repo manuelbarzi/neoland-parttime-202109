@@ -1,33 +1,28 @@
-import { useNavigate } from 'react-router-dom'
 import Day from './Day'
-import { useParams } from 'react-router-dom'
+import {AiOutlineLeft} from 'react-icons/ai'
+import {  useNavigate } from 'react-router-dom'
+import { useParams} from 'react-router-dom'
 
-
-function Week ( { changeDay }) {
+function Week ( { onDaySelected }) {    
 
     const navigate = useNavigate()
-
     const params = useParams()
     const { patientId } = params
-   
 
 
-  
-    const goToAddMeal = () => {
-       navigate(`/mealplan/${patientId}/add/:mealId`)
-     }
-
-    
-    return (
+    return ( 
+        <div>
+            <div onClick={() => navigate(`/patient/${patientId}`)}> <AiOutlineLeft className="back-icon" /> </div>
             <div className="days-container">
-                <div onClick={ goToAddMeal } className="day"><Day day="Monday" changeDay={changeDay} /> </div>
-                <div onClick={ goToAddMeal } className="day"><Day day="Tuesday" changeDay={changeDay} /> </div>
-                <div onClick={ goToAddMeal } className="day"><Day day="Wednesday" changeDay={changeDay} /> </div>
-                <div onClick={ goToAddMeal } className="day"><Day day="Thursday" changeDay={changeDay} /> </div>
-                <div onClick={ goToAddMeal } className="day"><Day day="Friday" changeDay={changeDay} /> </div>
-                <div onClick={ goToAddMeal } className="day"><Day day="Saturday" changeDay={changeDay} /> </div>
-                <div onClick={ goToAddMeal } className="day"><Day day="Sunday" changeDay={changeDay} /> </div>
+                <div className="day"><Day day="Monday" onDayClicked={onDaySelected} /> </div>
+                <div className="day"><Day day="Tuesday" onDayClicked={onDaySelected} /> </div>
+                <div className="day"><Day day="Wednesday" onDayClicked={onDaySelected} /> </div>
+                <div className="day"><Day day="Thursday" onDayClicked={onDaySelected} /> </div>
+                <div className="day"><Day day="Friday" onDayClicked={onDaySelected} /> </div>
+                <div className="day"><Day day="Saturday" onDayClicked={onDaySelected} /> </div>
+                <div className="day"><Day day="Sunday" onDayClicked={onDaySelected} /> </div>
             </div>
+        </div>
     )
 }
 export default Week

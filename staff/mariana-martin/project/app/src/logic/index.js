@@ -14,6 +14,7 @@ import retrieveAllMeals from './retrieveAllMeals'
 import deleteMeal from './deleteMeal'
 
 import addMealToPlan from './addMealToPlan'
+import  retrieveMealPlan from './retrieveMealPlan'
 
 export {
     registerNutritionist,
@@ -30,5 +31,6 @@ export {
     retrieveAllMeals,
     deleteMeal,
 
-    addMealToPlan
+    addMealToPlan,
+    retrieveMealPlan
 }
