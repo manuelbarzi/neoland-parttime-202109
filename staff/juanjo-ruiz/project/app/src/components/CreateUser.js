@@ -32,6 +32,7 @@ export default function () {
             <select name="role">
                 <option value="driver">driver</option>
                 <option value="admin">admin</option>
+                <option value="owner">owner</option>
             </select>
             <button>Crear usuario</button>
         </form>

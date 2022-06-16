@@ -4,11 +4,11 @@ const { errors: { AuthError, NotFoundError, TypeError, FormatError } } = require
 
 module.exports = (req, res) => {
     try {
-        const companyId = extractUserIdFromAuthorization(req)
+        const adminId = extractUserIdFromAuthorization(req)
 
         const { params: { vehicleId }, body: { password } } = req
 
-        deleteVehicle(companyId, vehicleId, password)
+        deleteVehicle(adminId, vehicleId, password)
             .then(() => res.status(204).send())
             .catch(error => {
                 let status = 500

@@ -1,6 +1,6 @@
 import { validators, errors } from 'commons'
 
-const { validateToken, validateString, validatePassword } = validators
+const { validateToken, validateString } = validators
 const { DuplicityError, ClientError, ServerError } = errors
 
 export default function (token, lisense, brand, model, frame) {
@@ -10,7 +10,7 @@ export default function (token, lisense, brand, model, frame) {
     validateString(model, 'model')
     validateString(frame, 'frame')
 
-    return fetch('http://localhost:8080/api/user', {
+    return fetch('http://localhost:8080/api/vehicle', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

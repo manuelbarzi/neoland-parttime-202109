@@ -1,5 +1,4 @@
 const registerCompany = require('./registerCompany')
-const authenticateCompany = require('./authenticateCompany')
 const retrieveCompany = require('./retrieveCompany')
 const updateCompany = require('./updateCompany')
 const unregisterCompany = require('./unregisterCompany')
@@ -21,13 +20,11 @@ const deleteVehicle = require('./deleteVehicle')
 const createPart = require('./createPart')
 const deletePart = require('./deletePart')
 const detailPart = require('./detailPart')
-const updatePartDriver = require('./updatePartDriver')
-const updatePartAdmin = require('./updatePartAdmin')
+const updatePart = require('./updatePart')
 const retrieveAllUsers = require('./retrieveAllUsers')
 
 module.exports = {
     registerCompany,
-    authenticateCompany,
     retrieveCompany,
     updateCompany,
     unregisterCompany,
@@ -49,7 +46,6 @@ module.exports = {
     createPart,
     deletePart,
     detailPart,
-    updatePartDriver,
-    updatePartAdmin,
+    updatePart,
     retrieveAllUsers
 }

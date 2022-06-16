@@ -1,16 +1,15 @@
 import { validators, errors } from 'commons'
 
-const { validateToken, validateId, validateString, validateBoolean } = validators
+const { validateToken, validateId, validateString } = validators
 const { DuplicityError, ClientError, ServerError } = errors
 
-export default function (token, vehicleId, lisense, brand, model, frame, active) {
+export default function (token, vehicleId, lisense, brand, model, frame) {
     validateToken(token)
     validateId(vehicleId, 'vehicle id')
     validateString(lisense, 'lisense')
     validateString(brand, 'brand')
     validateString(model, 'model')
     validateString(frame, 'frame')
-    validateBoolean(active)
 
     return fetch(`http://localhost:8080/api/vehicle/${vehicleId}/update`, {
         method: 'PATCH',
@@ -18,7 +17,7 @@ export default function (token, vehicleId, lisense, brand, model, frame, active)
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ lisense, brand, model, frame, active })
+        body: JSON.stringify({ lisense, brand, model, frame })
     })
         .then(res => {
             const { status } = res

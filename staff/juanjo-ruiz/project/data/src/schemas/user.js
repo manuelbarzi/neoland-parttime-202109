@@ -8,6 +8,12 @@ const user = new Schema({
         required: true
     },
 
+    user: {
+        type: ObjectId,
+        ref: 'User',
+        required: true
+    },
+
     name: {
         type: String,
         required: true

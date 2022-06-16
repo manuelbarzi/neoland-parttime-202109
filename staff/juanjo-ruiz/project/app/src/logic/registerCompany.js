@@ -3,20 +3,19 @@ import { validators, errors } from 'commons'
 const { validateString, validatePassword, validateEmail } = validators
 const { DuplicityError, ClientError, ServerError } = errors
 
-export default function (businessName, cif, name, email, password, role = 'admin') {
+export default function (businessName, cif, name, email, password) {
     validateString(businessName, 'business name')
     validateString(cif, 'cif')
     validateString(name, 'name')
     validateEmail(email)
     validatePassword(password)
-    validateString(role, 'role')
 
     return fetch('http://localhost:8080/api/company', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ businessName, cif, name, email, password, role })
+        body: JSON.stringify({ businessName, cif, name, email, password })
     })
         .then(res => {
             const { status } = res

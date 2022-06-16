@@ -1,7 +1,7 @@
 const { models: { User, Vehicle, Part } } = require('data')
-const { errors: { NotFoundError, AuthError }, validators: { validateString, validateId } } = require('commons')
+const { errors: { NotFoundError }, validators: { validateString, validateId } } = require('commons')
 
-function createPart(userId, vehicleId, description, image, state = '2') {
+function createPart(userId, vehicleId, description, image, state = 2) {
     validateId(userId, 'user id')
     validateId(vehicleId, 'vehicle id')
     validateString(description, 'description')
@@ -13,15 +13,13 @@ function createPart(userId, vehicleId, description, image, state = '2') {
             if (!user) throw new NotFoundError(`user with id ${userId} not found`)
             if (!vehicle) throw new NotFoundError(`vehicle with id ${vehicleId} not found`)
 
-            if (user.company.toString() !== vehicle.user.toString()) throw new AuthError(`vehicle with id ${vehicleId} does not belong to user with id ${userId}`)
-
-            const part = new Part({ user: userId, vehicle: vehicleId, description, image, state})
+            const part = new Part({ company: user.company, user: user.id, vehicle: vehicleId, description, image, state })
 
             vehicle.parts.push(part)
 
             return vehicle.save()
         })
-        .then(vehicle => {})
+        .then(vehicle => { })
 }
 
 module.exports = createPart

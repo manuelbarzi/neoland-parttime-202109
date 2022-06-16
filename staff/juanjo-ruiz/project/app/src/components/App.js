@@ -3,8 +3,7 @@ import { validators } from 'commons'
 import { useState } from 'react'
 import Landing from './Landing'
 import Register from './Register'
-import LoginAdmin from './LoginAdmin'
-import LoginUser from './LoginUser'
+import Login from './Login'
 import Home from './Home'
 
 
@@ -36,8 +35,7 @@ function App() {
     return <Routes>
         <Route path="/*" element={loggedIn ? <Home onLoggedOut={handleLoggedOut} /> : <Landing />} />
         <Route path="/register" element={loggedIn ? <Navigate to="/" /> : <Register onRegistered={handleRegistered} />} />
-        <Route path="/login-admin" element={loggedIn ? <Navigate to="/" /> : <LoginAdmin onLoggedIn={handleLoggedIn} />} />
-        <Route path="/login-user" element={loggedIn ? <Navigate to="/" /> : <LoginUser onLoggedIn={handleLoggedIn} />} />
+        <Route path="/login" element={loggedIn ? <Navigate to="/" /> : <Login onLoggedIn={handleLoggedIn} />} />
     </Routes>
 }
 

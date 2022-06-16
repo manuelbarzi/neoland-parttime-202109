@@ -2,6 +2,12 @@ const { Schema } = require('mongoose')
 const { Types: { ObjectId } } = Schema
 
 const part = new Schema({
+    company: {
+        type: ObjectId,
+        ref: 'Company',
+        required: true
+    },
+
     user: {
         type: ObjectId,
         ref: 'user',

@@ -7,7 +7,7 @@ export default function (token, vehicleId, password) {
     validateToken(token)
     validateId(vehicleId, 'vehicle id')
 
-    return fetch(`http://localhost:8080/api/vehicle/${vehicleId}/delete`, {
+    return fetch(`http://localhost:8080/api/vehicle/${vehicleId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

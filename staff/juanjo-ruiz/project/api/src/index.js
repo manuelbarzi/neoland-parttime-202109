@@ -5,7 +5,6 @@ const express = require('express')
 const cors = require('cors')
 const {
     registerCompany,
-    authenticateCompany,
     retrieveCompany,
     updateCompany,
     unregisterCompany,
@@ -27,8 +26,7 @@ const {
     createPart,
     deletePart,
     detailPart,
-    updatePartDriver,
-    updatePartAdmin,
+    updatePart,
     retrieveAllUsers
 } = require('./handlers')
 
@@ -47,7 +45,6 @@ connect(MONGODB_URL)
         const jsonBodyParse = express.json()
 
         router.post('/company', jsonBodyParse, registerCompany)
-        router.post('/company/auth', jsonBodyParse, authenticateCompany)
         router.get('/company', retrieveCompany)
         router.patch('/company', jsonBodyParse, updateCompany)
         router.delete('/company', jsonBodyParse, unregisterCompany)
@@ -67,12 +64,11 @@ connect(MONGODB_URL)
         router.get('/vehicle/:vehicleId', retrieveVehicle)
         router.patch('/vehicle/:vehicleId/deactivated', jsonBodyParse, activateVehicle)
         router.patch('/vehicle/:vehicleId/active', jsonBodyParse, disableVehicle)
-        router.patch('/vehicle/:vehicleId', jsonBodyParse, updateVehicle)
+        router.patch('/vehicle/:vehicleId/update', jsonBodyParse, updateVehicle)
         router.delete('/vehicle/:vehicleId', jsonBodyParse, deleteVehicle)
         router.post('/vehicle/:vehicleId/part', jsonBodyParse, createPart)
         router.get('/vehicle/:vehicleId/part/:partId', detailPart)
-        router.patch('/vehicle/:vehicleId/part/:partId', jsonBodyParse, updatePartDriver)
-        router.patch('/vehicle/:vehicleId/part/:partId/admin', jsonBodyParse, updatePartAdmin)
+        router.patch('/vehicle/:vehicleId/part/:partId/admin', jsonBodyParse, updatePart)
         router.delete('/vehicle/:vehicleId/part/:partId', jsonBodyParse, deletePart)
 
         api.use('/api', router)

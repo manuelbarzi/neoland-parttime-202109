@@ -12,7 +12,7 @@ export default function ({ onRegistered }) {
         try {
             registerCompany(businessName, cif, name, email, password)
                 .then(() => {
-                    alert('admin registrado')
+                    alert('Bienvenido al fin de tus problemas')
 
                     onRegistered()
                 })

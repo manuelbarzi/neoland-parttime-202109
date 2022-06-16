@@ -12,9 +12,9 @@ export default function () {
         try {
             createVehicle(sessionStorage.token, lisense, brand, model, frame)
                 .then(() => {
-                    alert('ususario creado')
+                    alert('Vehículo creado')
 
-                    navigate('/users')
+                    navigate('/vehicles')
                 })
                 .catch(error => alert(error.message))
         } catch (error) {

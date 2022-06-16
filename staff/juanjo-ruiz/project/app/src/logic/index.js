@@ -1,5 +1,4 @@
 import registerCompany from "./registerCompany"
-import authenticateCompany from "./authenticateCompany"
 import authenticateUser from "./authenticateUser"
 import retrieveAllUsers from "./retrieveAllUsers"
 import createUser from "./createUser"
@@ -14,7 +13,6 @@ import createVehicle from "./createVehicle"
 
 export {
     registerCompany,
-    authenticateCompany,
     authenticateUser,
     retrieveAllUsers,
     createUser,

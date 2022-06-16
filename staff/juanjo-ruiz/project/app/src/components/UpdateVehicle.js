@@ -22,14 +22,14 @@ export default function () {
     const update = event => {
         event.preventDefault()
 
-        const { target: { lisense: { value: lisense }, brand: { value: brand }, model: { value: model }, frame: { value: frame }, active: { value: active } } } = event
+        const { target: { lisense: { value: lisense }, brand: { value: brand }, model: { value: model }, frame: { value: frame } } } = event
 
         try {
-            updateVehicle(sessionStorage.token, vehicleId, lisense, brand, model, frame, active)
+            updateVehicle(sessionStorage.token, vehicleId, lisense, brand, model, frame)
                 .then(() => {
                     alert('vehículo actualizado')
 
-                    navigate('/vehicle')
+                    navigate('/vehicles')
                 })
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -45,10 +45,6 @@ export default function () {
                 <input type="name" name="brand" defaultValue={data.brand} />
                 <input type="name" name="model" defaultValue={data.model} />
                 <input type="name" name="frame" defaultValue={data.frame} />
-                <select name="active" defaultValue={data.active}>
-                    <option value="true">Activo</option>
-                    <option value="false">Desactivado</option>
-                </select>
                 <button>Actualizar</button>
             </form>
             : <p>No hay dato</p>

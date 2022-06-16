@@ -16,8 +16,14 @@ function createUser(userId, name, email, password, role = 'driver') {
             if (user.role !== 'owner' && user.role !== 'admin')
                 throw new AuthError(`user with id ${userId} not authorized for this operation`)
 
+            if (role === 'owner' || role === 'admin' && user.role !== 'owner')
+                throw new AuthError(`user with id ${userId} not authorized for this operation`)
+
+            if (role === 'driver' && user.role === 'driver')
+                throw new AuthError(`user with id ${userId} not authorized for this operation`)
+
             return bcrypt.hash(password, 10)
-                .then(hash => User.create({ user: user.company, name, email, password: hash, role }))
+                .then(hash => User.create({ company: user.company, user: user.id, name, email, password: hash, role }))
                 .then(user => { })
                 .catch(error => {
                     if (error.message.includes('duplicate'))

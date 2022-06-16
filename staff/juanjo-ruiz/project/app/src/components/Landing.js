@@ -8,9 +8,7 @@ export default function () {
 
         <p>El software para la gestión de los daños de su flota de vehículos</p>
         <button onClick={() => navigate("/register")}>Empieza ahora</button>
-
-        <p>Si eres admin, <a onClick={() => navigate("/login-admin")}>inicia sesión aquí</a></p>
-        <p>Si eres driver, <a onClick={() => navigate("/login-user")}>inicia sesión aquí</a></p>
+        <p>Si ya tienes sesión, <a onClick={() => navigate("/login")}>inicia sesión aquí</a></p>
 
     </div>
 } 

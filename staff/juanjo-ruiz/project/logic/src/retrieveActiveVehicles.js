@@ -8,7 +8,7 @@ function retrieveActiveVehicles(userId) {
         .then(user => {
             if (!user) throw new NotFoundError(`user with id ${userId} not found`)
 
-            return Vehicle.find({ active: true }).lean().sort('-date')
+            return Vehicle.find({ active: true, company: user.company }).lean().sort('-date')
         })
         .then(vehicles => {
             vehicles.forEach(vehicle => {

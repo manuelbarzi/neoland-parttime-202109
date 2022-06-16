@@ -3,9 +3,15 @@ const { Types: { ObjectId } } = Schema
 const part = require('./part')
 
 const vehicle = new Schema({
-    user: {
+    company: {
         type: ObjectId,
         ref: 'Company',
+        required: true
+    },
+
+    user: {
+        type: ObjectId,
+        ref: 'User',
         required: true
     },
 

@@ -10,9 +10,6 @@ function retrieveVehicle(adminId, vehicleId) {
             if (!user) throw new NotFoundError(`user with id ${adminId} not found`)
             if (!vehicle) throw new NotFoundError(`vehicle with id ${vehicleId} not found`)
 
-            if (user.role !== 'owner' && user.role !== 'admin')
-                throw new AuthError(`user with id ${adminId} not authorized for this operation`)
-
             vehicle.id = vehicle._id.toString()
             vehicle.newDate = vehicle.date.toLocaleDateString()
 

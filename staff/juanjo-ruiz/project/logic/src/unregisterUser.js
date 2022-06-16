@@ -12,8 +12,8 @@ function unregisterUser(adminId, userId, password) {
             if (!admin) throw new NotFoundError(`admin with id ${adminId} not found`)
             if (!user) throw new NotFoundError(`user with id ${userId} not found`)
 
-            if (user.role !== 'owner')
-                throw new AuthError(`user with id ${userId} not authorized for this operation`)
+            if (admin.role !== 'owner')
+                throw new AuthError(`user with id ${adminId} not authorized for this operation`)
 
             return bcrypt.compare(password, admin.password)
         })

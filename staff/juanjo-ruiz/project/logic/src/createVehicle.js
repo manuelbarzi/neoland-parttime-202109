@@ -13,11 +13,10 @@ function createVehicle(adminId, lisense, brand, model, frame, active = true) {
         .then(user => {
             if (!user) throw new NotFoundError(`user with id ${adminId} not found`)
 
-            if (user.role !== 'owner')
+            if (user.role !== 'owner' && user.role !== 'admin')
                 throw new AuthError(`user with id ${adminId} not authorized for this operation`)
 
-
-            return Vehicle.create({ user: adminId, lisense, brand, model, frame, active })
+            return Vehicle.create({ company: user.company, user: user.id, lisense, brand, model, frame, active })
                 .then(vehicle => { })
                 .catch(error => {
                     if (error.message.includes('duplicate'))
