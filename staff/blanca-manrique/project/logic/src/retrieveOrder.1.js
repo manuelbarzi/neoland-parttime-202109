@@ -1,4 +1,3 @@
-//TODO retrieve final order: with items
 
 const { models: { User, Order, Variant, Supplier } } = require('data')
 const {

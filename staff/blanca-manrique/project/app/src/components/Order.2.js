@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { retrieveOrder, addItemToOrder, deleteItemFromOrder, generateOrder } from '../logic'
+import { retrieveOrder, addItemToOrder, deleteItemFromOrder } from '../logic'
 import { IoChevronBackOutline, IoAdd, IoTrashOutline } from "react-icons/io5"
+import NewItem from './NewItem'
 import './Order.css'
 
 function Order() {
@@ -9,7 +10,7 @@ function Order() {
     const navigate = useNavigate()
     const [order, setOrder] = useState()
     const [items, setItems] = useState([])
-    const [dropdown, setDropdown] = useState(false)
+    const [dropdown, setDropdown] = useState(false) //🔽 por defecto desactivado
     const [datos, setDatos] = useState({
         variant: '',
         price: 0,
@@ -24,10 +25,10 @@ function Order() {
         } catch (error) {
             alert(error.message)
         }
-    }, [items]) 
+    }, [items]) //que escuche cuando el array de items vaya modificándose (items va a ir cambiando cada vez que elimine un item y cada vez que agrege un item)
 
 
-    {/* MODO DRAFT*/ }
+    {/* MODO DRAFT: BORRAR UN ITEM DE LA ORDEN*/ }
     const handleDeleteItem = (itemId) => {
         try {
             deleteItemFromOrder(sessionStorage.token, orderId, itemId)
@@ -46,9 +47,11 @@ function Order() {
         }
     }
 
-    {/* MODO DRAFT*/ }
+    {/* MODO DRAFT: AGREGAR UN ITEM A LA ORDEN*/ }
+    //si clico en + --> se abre el formulario para añadir item
     const handleShowDropdown = () => setDropdown(!dropdown)
 
+    //capturo con el onChange el valor de los inputs
     const handleInputChange = event => {
         event.preventDefault()
 
@@ -58,6 +61,9 @@ function Order() {
         })
     }
 
+    //cuando haga onSubmit: los datos q tengo en los inputs se usan en la lógica de addItemToOrder
+    //con los nuevos datos actualizo el array de items: items + newItem
+    //en cuanto se actualizan los items se cerrar el botón de + (dropdown)
     const handleAddFormSubmit = event => {
         event.preventDefault()
 
@@ -90,29 +96,6 @@ function Order() {
 
     }
 
-    {/* MODO DRAFT: GENERO LA ORDEN*/ }
-    const handleGenerateOrder = event => {
-        event.preventDefault()
-        const { target: { status: { value: _status } } } = event
-        try {
-            generateOrder(sessionStorage.token, orderId, _status)
-                .then(() => {
-                    const update = {}
-
-                    for (const key in order)
-                        update[key] = order[key]
-
-                    update.status = 'in progress'
-
-                    setOrder(update)
-                    navigate('/orders')
-                    console.log('order generated')
-                })
-        } catch (error) {
-
-        }
-    }
-
     const goBack = () => {
         navigate('/orders')
     }
@@ -140,42 +123,44 @@ function Order() {
                         <p>Phone: {order.supplierPhone}</p>
                         <p>E-mail: {order.supplierEmail}</p>
                     </div>
-
                     {/* SI NO HAY ITEMS: QUE NO APAREZCA */}
                     <div className='Order__body-info'>
                         <span className='title-name'>Items Info</span>
                         <p className='product-name'>Product: {order.variantProductName}</p>
+                        {/* SOLO SI ESTOY EN MODO DRAFT PUEDO EDITAR UNA ORDEN: ELIMINAR ITEMS */}
+                        {order.status === 'draft' ?
 
-                        <table className='Orders__table'>
-                            <thead className='Orders__table-header'>
-                                <tr>
-                                    <th>Variant ID</th>
-                                    <th>color</th>
-                                    <th>Size</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody className='Orders__table-body'>
-                                {order.items.map(item => (
-                                    <tr key={item.id}>
-                                        <td>{item.variantId}</td>
-                                        <td>{item.variantColor}</td>
-                                        <td>{item.variantSize}</td>
-                                        <td>{item.price}</td>
-                                        <td>{item.quantity}</td>
+                            <ul className='Order__body-list'>
+                                {order.items.map(item =>
+                                    <li className='Order__body-listItem' key={item.id}>
+
                                         {order.status === 'draft' ?
-                                            <td><IoTrashOutline onClick={() => handleDeleteItem(item.id)} /></td>
+                                            <IoTrashOutline onClick={() => handleDeleteItem(item.id)} />
                                             : null
                                         }
-                                    </tr>))}
+                                        {/* VISIBLE EN CUALQUIER MODO */}
+                                        <p className='item-title'>item ID: {item.id}</p>
+                                        <p>price per unity: {item.price}</p>
+                                        <p>quantity: {item.quantity}</p>
+                                        <p>total: {item.price} x {item.quantity} = {item.price * item.quantity} €</p>
+                                    </li>
+                                )}
+                            </ul>
 
-                            </tbody>
-                        </table>
+                            : <ul className='Order__body-list'>
+                                {order.items.map(item =>
+                                    <li className='Order__body-listItem' key={item.id}>
+                                        <p className='item-title'>item ID: {item.id}</p>
+                                        <p>price per unity: {item.price}</p>
+                                        <p>quantity: {item.quantity}</p>
+                                        <p>total: {item.price} x {item.quantity} = {item.price * item.quantity} €</p>
+                                    </li>
+                                )}
+                            </ul>
+
+                        }
 
                         <span>TOTAL {order.items.reduce((accum, item) => accum + item.price * item.quantity, 0)} €</span>
-
                     </div>
 
                 </>
@@ -216,37 +201,19 @@ function Order() {
                                 />
                                 <button type="submit">Add item</button>
                             </form>
-
                         </>}
-
                     </div>
 
                     : null
 
                 }
-
-                {/* SOLO SI ESTOY EN MODO DRAFT Y LA ORDEN TIENE ITEMS PERMITO GENERAR LA ORDEN */}
-                {(order.status === 'draft' && order.items.length > 0) ?
-                    <>
-                        <form onSubmit={handleGenerateOrder}>
-                            <select name="status" required >
-                                <option disabled label="Por defecto esta orden se genera con status draft" > </option>
-                                <option name="in progress">In progress</option>
-                            </select>
-
-                            <button>GENERATE ORDER</button>
-                        </form>
-                    </>
-                    : null
-                }
-
             </div>
         </div>
 
             : <p>order not found</p>
         }
 
-    </div >
+    </div>
 
 }
 export default Order

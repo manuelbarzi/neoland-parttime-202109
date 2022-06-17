@@ -16,9 +16,12 @@ function CreateOrder({ onCreated }) {
     }
     return (<div>
         <form onSubmit={handleCreateOrder}>
-            <select name="status" required >
+            <select id="status" name="status" required >
                 <option disabled label="Por defecto esta orden se genera con status draft" > </option>
-                <option name="draft">Draft</option>
+                <option value="draft">Draft</option>
+                <option value="in progress">In progress</option>
+                <option value="cancelled">Cancelled</option>
+                <option value="completed">Completed</option>
             </select>
 
             <button>Create Order</button>

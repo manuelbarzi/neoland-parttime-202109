@@ -21,6 +21,9 @@ const order = new Schema({
     total:{
         type: Number
     },
+    description: {
+        type: String
+    },
     items: [item]
 })
 module.exports = order

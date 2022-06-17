@@ -43,9 +43,9 @@ function retrieveOrder(userId, orderId) {
 
                         order.variantProductName = variant.product.name //Quiero que order tenga el nombre del producto de cada una de las variantes
 
-                        order.items.forEach(item => { //no borramos antes: no encuentra product si borramos en el primer forEach. Una vez que hemos accedido a items.variant.product, podemos borrar para cada item la propiedad variant
-                            delete item.variant
-                        })
+                        // order.items.forEach(item => { //no borramos antes: no encuentra product si borramos en el primer forEach. Una vez que hemos accedido a items.variant.product, podemos borrar para cada item la propiedad variant
+                        //     delete item.variant
+                        // })
 
                         return Supplier.findById(supplier) //busco el supplier y si le encuentro entonces
                     })

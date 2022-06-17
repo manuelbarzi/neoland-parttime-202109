@@ -28,6 +28,7 @@ const retrieveOrdersBySupplier = require('./retrieveOrdersBySupplier')
 const deleteItemFromOrder = require('./deleteItemFromOrder')
 const addItemToOrder = require('./addItemToOrder')
 const deleteOrder = require('./deleteOrder')
+const generateOrder = require('./generateOrder')
 
 module.exports = {
     registerUser,
@@ -59,5 +60,6 @@ module.exports = {
     retrieveOrdersBySupplier,
     deleteItemFromOrder,
     addItemToOrder,
-    deleteOrder
+    deleteOrder,
+    generateOrder
 }

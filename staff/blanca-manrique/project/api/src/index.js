@@ -6,6 +6,7 @@ const cors = require('cors')
 
 const { registerUser, authenticateUser, retrieveUser, updateUser, deleteUser, createSupplier, retrieveSupplier, retrieveSuppliers, updateSupplier, createProduct, retrieveProduct, retrieveAllProductsFromSupplier, findSuppliers, updateProduct, createVariant, retrieveVariant, retrieveAllVariantsFromProduct, updateVariant, deleteVariant, createOrder, retrieveOrder, retrieveAllOrders, retrieveOrdersBySupplier, deleteItemFromOrder, addItemToOrder, deleteOrder } = require('./handlers')
 const { json } = require('express')
+const generateOrder = require('./handlers/generateOrder')
 
 const { env: { MONGODB_URL, PORT}} = process
 
@@ -30,7 +31,7 @@ connect(MONGODB_URL)
         router.post('/suppliers', jsonBodyParser, createSupplier)
         router.patch('/suppliers/:supplierId', jsonBodyParser, updateSupplier)
         router.get('/suppliers', retrieveSuppliers)
-        router.get('/suppliers/search', findSuppliers) //TODO
+        router.get('/suppliers/search', findSuppliers) 
         router.get('/suppliers/:supplierId', retrieveSupplier)
 
         router.post('/suppliers/:supplierId/products', jsonBodyParser, createProduct)
@@ -51,7 +52,8 @@ connect(MONGODB_URL)
         router.post('/orders/:orderId', jsonBodyParser, addItemToOrder)
         router.delete('/orders/:orderId/items/:itemId', deleteItemFromOrder)
         router.delete('/orders/:orderId', deleteOrder)
-
+        router.patch('/orders/:orderId', jsonBodyParser, generateOrder)
+        
         api.use('/api', router)
 
         api.listen(PORT, () => console.log(`server listening on ${PORT}`))

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom"
 import { retrieveAllOrders, deleteOrder } from '../logic'
-import { IoChevronBackOutline, IoChevronForwardOutline, IoAdd, IoTrashOutline} from "react-icons/io5"
+import { IoChevronBackOutline, IoChevronForwardOutline, IoAdd, IoTrashOutline } from "react-icons/io5"
 import './ListOrders.css'
 
 function ListOrders() {
@@ -19,26 +19,32 @@ function ListOrders() {
         }
     }, [])
 
-    const handleDeleteOrder = (id) =>{
+    const handleDeleteOrder = (orderId) => {
         try {
-            deleteOrder(sessionStorage.token, id)
+            deleteOrder(sessionStorage.token, orderId)
                 .then(() => {
-                    console.log('order deleted')
+                    const newOrders = [...orders]
+
+                    const index = orders.findIndex((order) => order.id === orderId)
+
+                    newOrders.splice(index, 1)
+
+                    setOrders(newOrders)
                 })
-                .then(() => console.log('deleted order'))
+                
                 .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
-        }  
+        }
     }
 
-    const handleOrderDetail = orderId => { 
+    const handleOrderDetail = orderId => {
         navigate(`/orders/${orderId}`)
     }
-    const handleCreateOrder = () => {  
+    const handleCreateOrder = () => {
         navigate('/orders/new-order')
     }
-    const goBack = () => { 
+    const goBack = () => {
         navigate('/')
     }
 
@@ -62,11 +68,10 @@ function ListOrders() {
                                 <td>{order.status}</td>
                                 <td><time>{order.createdAt.toDateString()}</time></td>
                                 <td><IoChevronForwardOutline className='Orders__table-bodyIcon' onClick={() => handleOrderDetail(order.id)} /></td>
-                                {order.status === 'draft'?
-                                    <td><IoTrashOutline onClick={() => handleDeleteOrder(order.id)}/></td>
-                                    :null
-                                    //solo puedo borrar si la 
-                                } 
+                                {order.status === 'draft' ?
+                                    <td><IoTrashOutline onClick={() => handleDeleteOrder(order.id)} /></td>
+                                    : null
+                                }
                             </tr>))}
 
                     </tbody>
