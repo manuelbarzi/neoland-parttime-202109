@@ -11,6 +11,9 @@ import CreateVehicle from './CreateVehicle'
 import UpdateVehicle from './UpdateVehicle'
 import DeleteVehicle from './DeleteVehicle'
 import Parts from './Parts'
+import PartDetail from './PartDetail'
+import CreatePart from './CreatePart'
+import DeletePart from './DeletePart'
 
 export default function ({ onLoggedOut }) {
     const navigate = useNavigate()
@@ -25,7 +28,7 @@ export default function ({ onLoggedOut }) {
 
     const handleShowVehicle = vehicleId => navigate(`/vehicle/${vehicleId}`)
 
-    const handleShowPart = partId => navigate(`part/${partId}`)
+    const handleShowPart = (vehicleId, partId) => navigate(`/vehicle/${vehicleId}/part/${partId}`)
 
     return <div>
         <h1><Link to="/">Home</Link></h1>
@@ -45,6 +48,9 @@ export default function ({ onLoggedOut }) {
             <Route path="/vehicle/:vehicleId/update" element={<UpdateVehicle />} />
             <Route path="/vehicle/:vehicleId/delete" element={<DeleteVehicle />} />
             <Route path="/vehicle/:vehicleId/parts" element={<Parts onDetailPart={handleShowPart} />} />
+            <Route path="/vehicle/:vehicleId/part/:partId" element={<PartDetail />} />
+            <Route path="/vehicle/:vehicleId/part" element={<CreatePart />} />
+            <Route path="/vehicle/:vehicleId/part/:partId/delete" element={<DeletePart />} />
         </Routes>
     </div>
 }

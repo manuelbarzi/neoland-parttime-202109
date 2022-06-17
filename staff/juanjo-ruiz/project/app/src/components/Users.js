@@ -32,6 +32,6 @@ export default function ({ onDetailUser }) {
                 </ul>
                 : <p>no hay usuarios</p>
         }
-        <a onClick={() => navigate('/user')}>añadir usuario nuevo</a> {/* añadir icono */}
+        <button onClick={() => navigate('/user')}>añadir usuario nuevo</button> {/* añadir icono */}
     </div>
 }

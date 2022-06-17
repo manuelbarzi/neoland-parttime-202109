@@ -16,8 +16,10 @@ function detailPart(userId, vehicleId, partId) {
             const part = parts.find(item => item._id.toString() === partId)
 
             part.id = part._id.toString()
+            part.newDate = part.date.toLocaleDateString()
 
             delete part._id
+            delete part.date
             
             return part
         })

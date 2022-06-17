@@ -12,6 +12,8 @@ import updateVehicle from "./updateVehicle"
 import createVehicle from "./createVehicle"
 import retrieveAllParts from "./retrieveAllParts"
 import retrievePart from './retrievePart'
+import createPart from "./createPart"
+import deletePart from './deletePart'
 
 export {
     registerCompany,
@@ -27,5 +29,7 @@ export {
     updateVehicle,
     createVehicle,
     retrieveAllParts,
-    retrievePart
+    retrievePart,
+    createPart,
+    deletePart
 }

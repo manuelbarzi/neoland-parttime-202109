@@ -31,6 +31,6 @@ export default function ({ onDetailVehicle }) {
                 </ul>
                 : <p>no hay vehículos activos</p>
         }
-        <a onClick={() => navigate('/vehicle')}>añadir vehículo</a> {/* añadir icono */}
+        <button onClick={() => navigate('/vehicle')}>añadir vehículo</button> {/* añadir icono */}
     </div>
 }

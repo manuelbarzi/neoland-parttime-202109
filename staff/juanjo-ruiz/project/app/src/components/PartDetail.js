@@ -5,14 +5,14 @@ import PartItemDetail from './PartItemDetail'
 
 export default function () {
     const navigate = useNavigate()
-    const { partId } = useParams()
-    const [vehicle, setVehicle] = useState()
+    const { vehicleId, partId } = useParams()
+    const [part, setPart] = useState()
 
     useEffect(() => {
         try {
             retrievePart(sessionStorage.token, vehicleId, partId)
-                .then(vehicle => {
-                    setVehicle(vehicle)
+                .then(part => {
+                    setPart(part)
                 })
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -21,9 +21,9 @@ export default function () {
     }, [])
 
     return <div>
-        <a onClick={() => navigate('/vehicles')}>Volver</a>
+        <a onClick={() => navigate(`/vehicle/${vehicleId}/parts`)}>Volver</a>
 
-        {vehicle ? <PartItemDetail content={vehicle} /> : <p>Vehículo no encontrado</p>}
+        {part ? <PartItemDetail content={part} /> : <p>Parte no encontrado</p>}
 
     </div>
 }
