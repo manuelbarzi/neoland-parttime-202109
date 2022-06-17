@@ -1,0 +1,52 @@
+.Variants{
+    max-width: 80%;
+    margin: 1rem auto 2rem;
+    display: grid;
+    gap: 3rem;
+    background-color: #1d3557;
+    border-radius: 20px;
+    padding: 5px;
+}
+.Variants__title{
+    color: #faedcd;
+}
+
+/* TABLE */
+.Variants__table{
+    min-width: 80%;
+    background-color: #faedcd;
+    border-radius: 12px;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.Variants__table-header{
+    background-color: #2a9d8f;
+    color: #faedcd ;
+}
+
+.Variants__table-header th{
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.Variants__table-body td{
+    text-align: center;
+    padding: 12px 15px;
+}
+
+.Variants__table-bodyIcon{
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+/* ADD VARIANT BUTTON */
+.Variants__addIcon{
+    background-color: #ffc300;
+    color: white;
+    border-radius: 50%;
+    font-size: 40px;
+    cursor: pointer;
+}

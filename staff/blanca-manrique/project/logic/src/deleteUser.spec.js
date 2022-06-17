@@ -3,7 +3,7 @@ const { mongoose: { connect, disconnect, Types: { ObjectId } }, models: { User }
 const { expect } = require('chai')
 const bcrypt = require('bcryptjs')
 const deleteUser = require('./deleteUser')
-const { errors: { NotFoundError } } = require('commons')
+const { errors: { NotFoundError, AuthError } } = require('commons')
 
 const { env: { MONGODB_URL } } = process
 
@@ -18,6 +18,24 @@ describe('deleteUser', () => {
                 return User.create({ username: 'TiGreton', email: 'ti@greton.com', password: hash })
             })
             .then(user => deleteUser(user.id, '121212'))
+    })
+
+    it('should fail when user already exists and password is wrong ', () => {
+        return User.deleteMany()
+            .then(() => {
+                const hash = bcrypt.hashSync('121212', 10)
+
+                return User.create({ username: 'TiGreton', email: 'ti@greton.com', password: hash })
+            })
+            .then(user => deleteUser(user.id, '121212' + '-wrong'))
+            .then(() => {
+                throw new Error('should not reach this point')
+            })
+            .catch(error => {
+                expect(error).to.exist
+                expect(error).to.be.instanceOf(AuthError)
+                expect(error.message).to.equal('wrong credentials')
+            })
     })
 
     it('should fail when user does not exist', () => {

@@ -1,0 +1,37 @@
+.Product{
+    padding: 10px;
+    background-color: rgb(146, 146, 187);
+}
+.Product__name{
+    font-size: 30px;
+    margin-right: 16px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+.Product__actions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Product__icon{
+    font-size: 24px;
+    margin-right: 16px;
+    cursor: pointer;
+}
+.Product__returnButton{
+    padding: 10px;
+    border-radius: 30px;
+    border:none;
+    background-color: rgb(46, 11, 80);
+    color:white;
+    cursor: pointer;
+}
+/* Está en el compo ProductDropdown */
+.Product__info{
+    background-color: palevioletred;
+    border-radius: 1rem;
+    max-width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+}

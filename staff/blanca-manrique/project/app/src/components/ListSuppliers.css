@@ -1,0 +1,38 @@
+.IconBack{
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.Suppliers{
+    max-width: 80%;
+    margin: 1rem auto 2rem;
+    display: grid;
+    gap: 3rem;
+}
+.Suppliers__items-li{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius:15px;
+    padding: 12px;
+    background-color: rgb(158, 158, 225);
+    color:white;
+    cursor: pointer;
+    margin-top: 1rem;
+    /* width: 75vh; */
+}
+.Suppliers__items-li-text{
+    margin-left: 1.2rem;
+}
+
+.Suppliers__items-li-icon{
+    font-size: 30px;
+}
+
+.Suppliers__addIcon{
+    background-color: #ffc300;
+    color: white;
+    border-radius: 50%;
+    font-size: 40px;
+    cursor: pointer;
+}

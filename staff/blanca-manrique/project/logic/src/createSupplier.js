@@ -4,7 +4,7 @@ const {
     errors: { NotFoundError, DuplicityError }
 } = require('commons')
 
-function createSupplier(userId, name, email, web, phone, adress, contactPerson, tradeAssurance) {
+function createSupplier(userId, name, email, web, phone, adress, contactPerson, tradeAssurance = true) {
     validateId(userId, 'user id')
     validateEmail(email)
     validateString(name, 'supplier name')
@@ -22,10 +22,10 @@ function createSupplier(userId, name, email, web, phone, adress, contactPerson, 
         })
         .then(supplier => { })
         .catch(error => {
-            if (error.message.includes('duplicate')) //si el error contiene "duplicate" lanzo este error custom
+            if (error.message.includes('duplicate')) 
                 throw new DuplicityError('supplier already exists')
 
-            throw error //si el error NO contiene "duplicate", lanzo el error propio de Mongodb
+            throw error 
         })
 }
 

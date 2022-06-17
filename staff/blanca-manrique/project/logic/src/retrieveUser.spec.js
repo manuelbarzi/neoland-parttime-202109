@@ -7,7 +7,7 @@ const { errors: { NotFoundError }} = require('commons')
 
 const { env: { MONGODB_URL } } = process
 
-describe('authenticateUser', () => {
+describe('retrieveUser', () => {
     before(() => connect(MONGODB_URL))
 
     it('should succeed when user already exists', () => {

@@ -24,4 +24,7 @@ const variant = new Schema({
         required: true
     }
 })
+
+// variant.index({ product: 'sku', size: 'sku', color: 'sku' })
+
 module.exports = variant

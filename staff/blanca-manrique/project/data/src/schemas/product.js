@@ -7,6 +7,14 @@ const product = new Schema({
         ref: 'Supplier',
         required: true
     },
+    supplierProductId:{
+        type: String,
+        required: true,
+        unique: true
+    },
+    supplierProductUrl:{
+        type: String,
+    },
     name:{
         type: String,
         required: true

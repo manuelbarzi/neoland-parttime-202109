@@ -1,0 +1,19 @@
+.Supplier__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: red;
+}
+.Supplier__header-icon{
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.Supplier__info{
+    background-color: palevioletred;
+    border-radius: 1rem;
+    max-width: 80%;
+    margin: 10px auto;
+    padding: 5px;
+}

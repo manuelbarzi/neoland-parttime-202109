@@ -1,0 +1,76 @@
+/* HAMBURGUESA */
+.Navbar{
+    background-color:#dce1eb;
+    height: 80px;
+    display:flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.Navbar__icon{
+    margin-left: 2rem;
+    font-size: 2rem;
+    background: none;
+    text-decoration: none;
+    color:black;
+}
+
+/* NAV */
+.Navmenu{
+    background-color:#fff;
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top:0;
+    left: -100%;  /* si está activa: desaparece el menu, si está desactivada, el menú aparece*/
+    transition: 850ms;
+}
+
+.Navmenu.active{
+    left:0;
+    transition: 350ms;
+}
+
+.Navmenu__items{
+    width: 100%;
+}
+
+/* NAV: toogleClose */
+.Navmenu__items-toggle{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: #ffbb55;
+    cursor:pointer;
+}
+
+.Navmenu__items-li{
+    display:flex;
+    justify-content: start;
+    align-items: center;
+    padding: 8px 0px 8px 16px;
+    /* list-style: none; */
+    height: 60px;
+    cursor:pointer;
+    color: #7d8da1;
+    font-size: 18px;
+    /* Para que se desplace el <li> */
+    transition: all 300ms ease;
+    margin-left: 2rem;
+}
+
+.Navmenu__items-li:hover{
+    background: rgba(132, 139, 200, 0.18);
+    color: #7380ec;
+    font-weight: bold;
+    margin-left: 0;
+}
+
+.Navmenu__items-li-text{
+    margin-left: 16px;
+}
+

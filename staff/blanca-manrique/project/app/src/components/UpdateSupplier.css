@@ -1,0 +1,59 @@
+.UpdateSupplier__iconBack{
+    font-size: 30px;
+    cursor: pointer;
+}
+.UpdateSupplier__form{
+    display: flex;
+    flex-direction: column;
+    padding: 0px 2rem 2rem;
+    background-color: #1d3557;
+    max-width: 80%;
+    margin: 0 auto;
+    border-radius: 30px;
+}
+.UpdateSupplier__title{
+    text-align: center;
+    margin-bottom: 1rem;
+}
+ 
+.UpdateSupplier__label{
+    margin-top:18px;
+    border-radius: 20px;
+    margin-left: 10px;
+    color:white;
+    font-size: 20px;
+}
+.UpdateSupplier__input{
+    margin-top:5px;
+    border-radius: 20px;
+    padding: 12px;
+    border:none;
+    background-color: #dfe7fd;
+    color:#1d3557;
+    outline: none;
+    font-weight: bold;
+}
+
+.UpdateSupplier__btn{
+    text-decoration: none;
+    padding:1rem 3rem;
+    margin-top: 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    width:fit-content;
+    border:none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.UpdateSupplier__btn-icon{
+    margin-left: 10px;
+}
+.UpdateSupplier__btn:hover{
+    background-color: #f9c74f;
+}
+.btn-hover:hover{
+    color:#1d3557;
+}

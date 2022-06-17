@@ -14,7 +14,7 @@ function deleteUser(userId, password) {
             if (!user) throw new NotFoundError(`user with id ${userId} not found`)
 
             //if (user.password !== password) throw new AuthError('wrong credentials')
-            return bcrypt.compare(password, user.password)
+            return bcrypt.compare(password, user.password) //compare=true or false?????
         })
         .then(match => {
             if (!match) throw new AuthError('wrong credentials')

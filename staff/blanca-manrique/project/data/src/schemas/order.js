@@ -15,11 +15,11 @@ const order = new Schema({
     },
     status:{
         type: String,
+        enum: ['draft', 'in progress', 'cancelled', 'completed'],
         required: true
     },
-    quantity:{
-        type: Number,
-        required: true
+    total:{
+        type: Number
     },
     items: [item]
 })

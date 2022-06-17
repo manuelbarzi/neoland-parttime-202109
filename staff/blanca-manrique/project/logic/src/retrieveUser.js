@@ -1,5 +1,8 @@
 const { models: { User } } = require('data')
-const {validators: {validateId}, errors: { NotFoundError }} = require('commons')
+const {
+    validators: {validateId}, 
+    errors: { NotFoundError }
+} = require('commons')
 
 function retrieveUser(userId) {
     validateId(userId, 'user id')

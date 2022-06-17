@@ -34,6 +34,31 @@ function validateBoolean(boolean, explain = 'boolean') {
     if (typeof boolean !== 'boolean') throw new TypeError(`${explain} is not boolean`)
 }
 
+function validateNumber(number, explain = 'number') {
+    if (typeof number !== 'number') throw new TypeError(`${explain} is not number`)
+}
+
+function validateArray(array) {
+    if (!Array.isArray(array)) throw new TypeError(`${array} is not an array`)
+}
+
+function validateToken(token) {
+    if (typeof token !== 'string') throw new TypeError('token is not string')
+    if (!token.trim()) throw new FormatError('token is empty or blank')
+
+    const parts = sessionStorage.token.split('.')
+
+    if (parts.length !== 3) throw new FormatError('invalid token')
+
+    const [, payload64] = parts
+
+    const payloadJson = atob(payload64) 
+
+    const payload = JSON.parse(payloadJson)
+
+    if (Math.round(Date.now() / 1000) > payload.exp) throw new Error('token expired')
+}
+
 
 module.exports = {
     validateUsername,
@@ -41,5 +66,8 @@ module.exports = {
     validatePassword,
     validateId,
     validateString,
-    validateBoolean
+    validateBoolean,
+    validateNumber,
+    validateArray,
+    validateToken
 }

@@ -1,0 +1,49 @@
+.IconBack{
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.Orders{
+    max-width: 80%;
+    margin: 0 auto 2rem;
+    display: grid;
+    gap: 3rem;
+}
+
+/* TABLE */
+.Orders__table{
+    /* background-color: #faedcd; */
+    border-radius: 12px;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+/* .Orders__table-header{
+    background-color: #2a9d8f;
+    color: #faedcd ;
+} */
+
+.Orders__table-header th{
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.Orders__table-body td{
+    text-align: center;
+    padding: 12px 15px;
+}
+
+.Orders__table-bodyIcon{
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* ADD ORDER BUTTON */
+.Orders__addIcon{
+    background-color: #ffc300;
+    color: white;
+    border-radius: 50%;
+    font-size: 40px;
+    cursor: pointer;
+}
