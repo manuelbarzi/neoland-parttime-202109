@@ -1,3 +1,4 @@
+import './styles/RegisterNutritionist.css'
 import { registerNutritionist } from '../logic'
 import Context from './Context'
 import { useContext } from 'react'
@@ -27,11 +28,11 @@ function RegisterNutritionist({ onRegistered }){
     }
 
                         //cuando se haga submit llamaré al callback register 
-    return <form onSubmit={ register }>
-        <input type="text" name="name" placeholder="name"/>
-        <input type="email" name="email" placeholder="e-mail"/>
-        <input type="password" name="password" placeholder="password"/>
-        <button>Register as a Nutritionist</button>
+    return <form className="container-register" onSubmit={ register }>
+        <input className="register-input" type="text" name="name" placeholder="name"/>
+        <input className="register-input" type="email" name="email" placeholder="e-mail"/>
+        <input className="register-input" type="password" name="password" placeholder="password"/>
+        <button className="register-button">Register as a Nutritionist</button>
     </form>
 }
 

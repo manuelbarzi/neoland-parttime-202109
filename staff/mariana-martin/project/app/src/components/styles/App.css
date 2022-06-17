@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Shadows+Into+Light&display=swap');
+*{
+   
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+html,
+body {
+   
+    background-color: whitesmoke; 
+    font-family: poppins, sans-serif;
+    height: 100%;
+    color:#145566;
+}
+
+a {
+    text-decoration: none;
+}   

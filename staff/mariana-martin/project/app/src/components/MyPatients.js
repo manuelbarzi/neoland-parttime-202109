@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { retrieveAllPatients } from '../logic'
-
+import './styles/PatientItem.css'
 import PatientItemList from './PatientItemList'
 import SearchPatient from './SearchPatient'
 import MyPatientsHeader from './MyPatientsHeader'
@@ -50,7 +50,7 @@ function MyPatients(){
     
     
     return (
-        <div>  
+        <div >  
              <div onClick={() => navigate("/")}> <AiOutlineLeft className="back-icon" /> </div>
             <MyPatientsHeader />
             <button onClick={handleCreatePatient }>Create patient</button>
@@ -58,7 +58,7 @@ function MyPatients(){
             <SearchPatient query={ query } onQueryChange={ showResults }/>
         
             <div>
-                <ul>
+                <ul >
                     {patients ? patients.map(patient => {
                         return <li key={patient.id} onClick={()=> handleGoToPatientDetail(patient.id)}>
                             <PatientItemList info={patient} />

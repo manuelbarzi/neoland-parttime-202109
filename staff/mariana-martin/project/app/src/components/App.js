@@ -1,3 +1,4 @@
+import './styles/App.css'
 import { Routes, Route, Navigate, useNavigate} from 'react-router-dom'
 import { useState } from 'react'
 import Landing from './Landing';

@@ -1,4 +1,4 @@
-
+import './styles/AllMeals.css'
 import MealItemList from "./MealItemList";
 import { retrieveAllMeals } from "../logic";
 import { useState, useEffect } from 'react'
@@ -53,10 +53,9 @@ function AllMeals({ reload }) {
 
 
     return (
-        <div>
+        <div className="meals-container">
             <div onClick={() => navigate("/")}> <AiOutlineLeft className="back-icon" /> </div>
             <h3>All Meals</h3>
-
             <ul>
                 {meals ? meals.map(meal => {
                     return <li key={meal.id} id={meal.id} >
@@ -64,7 +63,6 @@ function AllMeals({ reload }) {
                     </li>
                 }) : <p> No meals add one please</p>}
             </ul>
-            
         </div>
     )
 }

@@ -1,10 +1,11 @@
 import { validators, errors } from 'commons'
-const { validateId, validateDay } = validators
+const { validateId, validateDay, validateToken } = validators
 const {  ClientError, ServerError } = errors
 
 
 function addMealToPlan(token, patientId, day, mealId ){
-    validateId(token)
+   
+    validateToken(token)
     validateId(patientId, 'patient id')
     validateDay(day, 'day') 
     validateId(mealId, 'meal id')

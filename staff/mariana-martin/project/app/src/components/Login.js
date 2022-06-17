@@ -27,11 +27,14 @@ function Login({ onLoggedIn }){
         }
     }
 
-            return <form className="example" onSubmit={ login }>
-            <input className="input" type="email" name="email" placeholder="e-mail" />
-            <input type="password" name="password" placeholder="password" />
-            <button href="/home">Login</button>
+            return ( <div  >
+            <form  className="container container-login" onSubmit={ login }>
+            <input className="login-input" type="email" name="email" placeholder="e-mail" />
+            <input className="login-input" type="password" name="password" placeholder="password" />
+            <button className="login-button" href="/home">LOGIN</button>
             </form>
+            </div>
+            )
  }
 
  export default Login

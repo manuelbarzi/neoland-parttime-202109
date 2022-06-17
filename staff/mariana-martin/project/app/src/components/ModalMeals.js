@@ -3,16 +3,17 @@ import { useState, useEffect } from 'react'
 import './styles/Modal.css'
 import { addMealToPlan } from '../logic'
 import { useParams} from 'react-router-dom'
+import ModalListMeal from './ModalListMeal'
 
 
 
-function ModalMeals( { closeModal, onSelectedMeal }){
+function ModalMeals( { closeModal }){
 
     const [ meals, setMeals ] = useState()
 
    
     const { patientId } = useParams()
-    const { mealId } = useParams()
+   
     const { day } = useParams()
 
   
@@ -29,39 +30,39 @@ function ModalMeals( { closeModal, onSelectedMeal }){
 
 
     const addingMeal = () => {
+        console.log(mealId)
         try {
-            addMealToPlan(sessionStorage.token, patientId, day, mealId)
+            addMealToPlan(sessionStorage.token, patientId, day, mealId )
             .then(() => console.log('creado'))
             .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
         }
     }
+
+        
+
+        const onSelectedMeal = id => {
+          mealId = id //lo uso aquí
+          
+      }
+      let mealId;  //guardo el id del meal 
     
-
-    // const handleClickOnContent = event => {
-    //     event.stopPropagation() //hace que no siga al padre
-    // }
-
     return(
         <div className="modal-background"  >
             <div className="modal-container">
                 <p> Select Meal Modal </p>
                 <p>{day}</p>
                 <button onClick={ closeModal }>x</button>
-
-            
+                
                 <ul>
                     { meals ? meals.map (meal => {
                         return <li key={meal.id} >
-                                <p>{meal.title}</p>  
-                                <p>{meal.description}</p>  
-                                <input type="radio" name="meal" value="meal"  onClick={()=> onSelectedMeal(meal.id)}/>   
-                                             
+                               <ModalListMeal meal={meal} onSelectedMeal={onSelectedMeal} />
                             </li>
                         }): <></>}
                 </ul>
-                <button onClick={ addingMeal }>Add</button>
+                <button onClick={ addingMeal }> Add </button>
             </div>
          
         </div>

@@ -13,14 +13,14 @@ function Week ( { onDaySelected }) {
     return ( 
         <div>
             <div onClick={() => navigate(`/patient/${patientId}`)}> <AiOutlineLeft className="back-icon" /> </div>
-            <div className="days-container">
-                <div className="day"><Day day="Monday" onDayClicked={onDaySelected} /> </div>
-                <div className="day"><Day day="Tuesday" onDayClicked={onDaySelected} /> </div>
-                <div className="day"><Day day="Wednesday" onDayClicked={onDaySelected} /> </div>
-                <div className="day"><Day day="Thursday" onDayClicked={onDaySelected} /> </div>
-                <div className="day"><Day day="Friday" onDayClicked={onDaySelected} /> </div>
-                <div className="day"><Day day="Saturday" onDayClicked={onDaySelected} /> </div>
-                <div className="day"><Day day="Sunday" onDayClicked={onDaySelected} /> </div>
+            <div className="container-days">
+                <div className="select-day"><Day day="Monday" onDayClicked={onDaySelected} /> </div>
+                <div className="select-day"><Day day="Tuesday" onDayClicked={onDaySelected} /> </div>
+                <div className="select-day"><Day day="Wednesday" onDayClicked={onDaySelected} /> </div>
+                <div className="select-day"><Day day="Thursday" onDayClicked={onDaySelected} /> </div>
+                <div className="select-day"><Day day="Friday" onDayClicked={onDaySelected} /> </div>
+                <div className="select-day"><Day day="Saturday" onDayClicked={onDaySelected} /> </div>
+                <div className="select-day"><Day day="Sunday" onDayClicked={onDaySelected} /> </div>
             </div>
         </div>
     )

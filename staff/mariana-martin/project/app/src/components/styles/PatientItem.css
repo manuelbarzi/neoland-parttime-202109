@@ -1,7 +1,14 @@
-.patient-item{
+.container-patient-item{
     background-color: #EDEDED;
+    margin: 20px;
+    text-align: left;
+ 
+    height: 90px;
 }
 
 ul {
     list-style: none;
+    padding: 1px;
+   
 }
+

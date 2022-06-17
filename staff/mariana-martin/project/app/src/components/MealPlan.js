@@ -9,6 +9,8 @@ function MealPlan() {
     const navigate = useNavigate()
 
     const handleDaySelected = (day) => {
+       day = day.toLowerCase() 
+        
         navigate(`day/${day}`)
     }
 
