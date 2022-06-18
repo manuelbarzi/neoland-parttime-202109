@@ -14,6 +14,7 @@ import retrieveAllParts from "./retrieveAllParts"
 import retrievePart from './retrievePart'
 import createPart from "./createPart"
 import deletePart from './deletePart'
+import findVehicles from "./findVehicles"
 
 export {
     registerCompany,
@@ -31,5 +32,6 @@ export {
     retrieveAllParts,
     retrievePart,
     createPart,
-    deletePart
+    deletePart,
+    findVehicles
 }
