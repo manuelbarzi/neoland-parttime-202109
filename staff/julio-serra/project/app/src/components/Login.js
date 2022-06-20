@@ -1,6 +1,7 @@
 import { authenticateUser } from "../logic";
 import React from 'react'
 import { useNavigate } from "react-router-dom";
+import logo from '../assets/img/logo.png'
 
 export default function AuthenticateUser({ onloggedIn }) {
 
@@ -27,27 +28,74 @@ export default function AuthenticateUser({ onloggedIn }) {
     const handleClickRegister = () => navigate('/register')
 
     return (
-        <>    <section className="container w-full mx-auto pt-24 px-6">
+        <>    <section className="w-full mx-auto pt-24 px-6 bg-principal-color h-screen relative">
             <div>
-                <p className="text-2xl font-bold text-center pb-8">Sign in to Space Local</p>
-                <form className="grid gap-6 w-1/4 mx-auto" onSubmit={auth}>
-                    <label>
-                        <input className="w-full" type="email" name="email" placeholder="email" />
-                    </label>
-                    <label className="text-right">
-                        <input className="w-full" type="password" name="password" placeholder="password" />
-                        <span className="font-bold">Forgot password?</span>
-                    </label>
-                    <button className='w-full bg-transparent hover:bg-indigo-400 text-indigo-400 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded'>Login</button>
-                    <div className="flex justify-between">
-                        <span onClick={handleClickLanding} className="cursor-pointer hover:underline hover:underline-offset-8 hover:text-gray-500 flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-                        </svg> Go to Home</span>
-                        <span onClick={handleClickRegister} className="cursor-pointer hover:underline hover:underline-offset-8 hover:text-gray-500 flex items-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                            </svg> Go to Register</span>
+                <h1 className="nav__font text-4xl font-bold text-center pb-8 text-white">Hello Again!</h1>
+                <h3 className="nav__font text-xl font-bold text-center pb-8 text-white">Wellcome back you’ve
+                    been missed</h3>
+
+                <form className="grid gap-6 w-full xl:w-1/4 mx-auto" onSubmit={auth}>
+                <div className="flex flex-wrap items-stretch w-full relative h-15 bg-white items-center rounded mb-4">
+                            <div className="flex -mr-px justify-center w-15 p-4">
+                                <span
+                                    className="flex items-center leading-normal bg-white rounded rounded-r-none text-xl px-3 whitespace-no-wrap text-gray-600"
+                                >
+                                    <i className="fas fa-envelope"></i>
+                                </span
+                                >
+                            </div>
+                            <input
+                                type="email" name="email"
+                                className="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border-0 h-10 px-3 relative self-center font-roboto text-xl outline-none"
+                                placeholder="Email"
+                            />
+                            <div className="flex -mr-px">
+                                <span
+                                    className="flex items-center leading-normal bg-white rounded rounded-l-none border-0 px-3 whitespace-no-wrap text-gray-600"
+                                >
+                                </span>
+                            </div>
+                        </div>
+                    <div className="flex flex-wrap items-stretch w-full relative h-15 bg-white items-center rounded mb-4">
+                        <div className="flex -mr-px justify-center w-15 p-4">
+                            <span
+                                className="flex items-center leading-normal bg-white rounded rounded-r-none text-xl px-3 whitespace-no-wrap text-gray-600"
+                            >
+                                <i className="fas fa-lock"></i>
+                            </span
+                            >
+                        </div>
+                        <input
+                            type="password" name="password"
+                            className="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border-0 h-10 px-3 relative self-center font-roboto text-xl outline-none"
+                            placeholder="Password"
+                        />
+                        <div className="flex -mr-px">
+                            <span
+                                className="flex items-center leading-normal bg-white rounded rounded-l-none border-0 px-3 whitespace-no-wrap text-gray-600"
+                            >
+                                <i className="fas fa-eye-slash"></i>
+                            </span>
+                        </div>
                     </div>
+
+                    <button className="w-full bg-transparent hover:bg-indigo-400 text-white font-semibold hover:text-white py-2 px-4 border border-white-500 hover:border-transparent rounded">
+                        Sign in
+                    </button>
+
+                    <div className='flex flex-col items-center gap-5 pt-10'>
+                        <p className='text-white'>Or continued with</p>
+                        <div className="gap-10 flex">
+                            <span><i className="border border-white border-radius-5 rounded-md p-3 text-secondary-color fa-brands fa-apple fa-2x"></i></span>
+                            <span><i className="border border-white border-radius-5 rounded-md p-3 text-secondary-color fa-brands fa-instagram-square fa-2x"></i></span>
+                            <span><i className="border border-white border-radius-5 rounded-md p-3 text-secondary-color fa-brands fa-facebook fa-2x"></i></span>
+                        </div>
+                    </div>
+                    <div className='pb-10 bottom-0 absolute m-auto left-0 right-0 flex flex-col items-center gap-5'>
+                        <p className='text-white'>Not a member? <span className='text-secondary-color font-bold cursor-pointer' onClick={handleClickRegister}>Register now</span></p>
+                        <a className='cursor-pointer' onClick={handleClickLanding}><img src={logo} alt='' width="60" /></a>
+                    </div>
+
                 </form>
             </div>
         </section>
