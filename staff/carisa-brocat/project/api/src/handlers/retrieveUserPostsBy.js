@@ -12,10 +12,7 @@ module.exports = (req, res) => {
             .then(posts => res.status(200).send(posts))
             .catch(error => {
                 let status = 500
-
-                if (error instanceof AuthError)
-                    status = 401
-
+                
                 if (error instanceof NotFoundError)
                     status = 404
 

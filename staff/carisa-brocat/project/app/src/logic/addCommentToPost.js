@@ -1,25 +1,27 @@
 import { validators, errors } from 'commons'
+import { validateId, validateString } from 'commons/src/validators'
 
 const { ServerError, ClientError, NotFoundError, AuthError } = errors
 const { validateToken } = validators
 
-function retrieveUserSavedPosts(token) {
+function addCommentToPost(token, postId, text) {
     validateToken(token)
+    validateId(postId, 'postId')
+    validateString(text, 'text')
 
-    return fetch('http://localhost:8080/api/user/saved-posts', {
-        method: 'GET',
+    return fetch(`http://localhost:8080/api/posts/${postId}/comment`, {
+        method: 'POST',
         headers: {
-            Authorization: `Bearer ${token}`
-        }
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ text })
     })
         .then(res => {
             const { status } = res
 
-            if (status === 200)
-                return res.json()
-                    .then(posts => {
-                        return posts
-                    })
+            if (status === 201)
+                return
             else if (status >= 400 && status < 500)
                 return res.json()
                     .then(data => {
@@ -40,5 +42,4 @@ function retrieveUserSavedPosts(token) {
         })
 }
 
-
-export default retrieveUserSavedPosts
+export default addCommentToPost

@@ -1,7 +1,4 @@
 import './Modal.css'
-import { errors } from 'commons'
-import { useEffect, useState } from 'react'
-const { AuthError } = errors
 
 export default ({ content, handleCloseModal }) => {
     const handleClickOnContent = event => {

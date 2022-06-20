@@ -17,6 +17,8 @@ const updateUserHairTextureAndInterests = require('./updateUserHairTextureAndInt
 const toggleSavePost = require('./toggleSavePost')
 const toggleLikePost = require('./toggleLikePost')
 const toggleDislikePost = require('./toggleDislikePost')
+const retrieveUserSavedPosts  = require('./retrieveUserSavedPosts')
+const retrieveUserSavedPostsBy  = require('./retrieveUserSavedPostsBy')
 
 module.exports = {
     registerUser,
@@ -37,5 +39,7 @@ module.exports = {
     updateUserHairTextureAndInterests,
     toggleSavePost,
     toggleLikePost,
-    toggleDislikePost
+    toggleDislikePost,
+    retrieveUserSavedPosts,
+    retrieveUserSavedPostsBy
 }

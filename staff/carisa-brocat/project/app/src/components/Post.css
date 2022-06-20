@@ -26,8 +26,12 @@
 
 .post__footer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
+}
+
+.post__footer--displayrow{
+    flex-direction: row;
 }
 
 .post__footer-feedback {

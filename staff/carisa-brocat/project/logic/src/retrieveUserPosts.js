@@ -13,7 +13,7 @@ function retrieveUserPosts(userId) {
     return User.findById(userId)
         .then(user => {
             if (!user) {
-                throw new AuthError('user not found')
+                throw new NotFoundError(`user with id ${userId} not found`)
             }
 
             return Post.find({ user: userId }).lean().populate('user').sort('-date')
@@ -36,8 +36,8 @@ function retrieveUserPosts(userId) {
                         comments.forEach(comment => {
                             comment.id = comment._id.toString()
                             delete comment._id
-                            
-                            comment.userId = comment.user._id
+
+                            comment.userId = comment.user._id.toString()
                             comment.userNickname = comment.user.nickname
                             delete comment.user
 

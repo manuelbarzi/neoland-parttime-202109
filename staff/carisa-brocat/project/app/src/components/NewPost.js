@@ -2,7 +2,7 @@ import './NewPost.css'
 import { createPost } from '../logic'
 import { useState } from 'react'
 import { errors } from 'commons'
-const { AuthError } = errors
+const { AuthError, NotFoundError } = errors
 
 export default ({ handleCloseModal, handlePostCreated }) => {
     const [category, setCategory] = useState('product')
@@ -31,9 +31,12 @@ export default ({ handleCloseModal, handlePostCreated }) => {
             createPost(sessionStorage.token, title, description, category, subject, image, address)
                 .then(() => {
                     handleCloseModal()
-                     handlePostCreated()
+                    handlePostCreated()
                 })
                 .catch(error => {
+                    if (error instanceof NotFoundError && error.message.includes('user') && error.message.includes('not found'))
+                        delete sessionStorage.token
+                        
                     if (error instanceof AuthError)
                         delete sessionStorage.token
 

@@ -15,7 +15,7 @@ function deletePost(userId, postId) {
     return User.findById(userId)
         .then(user => {
             if (!user) {
-                throw new AuthError('User not found')
+                throw new NotFoundError(`user with id ${userId} not found`)
             }
 
             return Post.deleteOne({ _id: postId })

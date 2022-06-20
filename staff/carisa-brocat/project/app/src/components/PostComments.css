@@ -1,0 +1,17 @@
+.postComments {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgba(229, 229, 229);
+    border-radius: 20px;
+    width: 90%;
+    height: 500px;
+    margin-left: 5%;
+    overflow-y: scroll;
+}
+
+.postComments__text{
+    height: 100px;
+    width: 90%
+}

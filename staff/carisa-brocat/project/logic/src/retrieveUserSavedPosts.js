@@ -1,41 +1,22 @@
 const { models: { User, Post } } = require('data')
 const { errors: {
-    NotFoundError,
-    ConditionError,
+    NotFoundError
 }, validators: {
     validateId,
-    validateString,
 }
 } = require('commons')
-const {validateCategory, validateSubject} = require('./helpers/validateData')
 
-function retrieveUserPostsBy(userId, category, subject) {
+function retrieveUserSavedPosts(userId) {
     validateId(userId, 'userId')
-
-    if (category) {
-        validateString(category, 'category')
-        validateCategory(category)
-    }
-
-    if (subject) {
-        validateString(subject, 'subject')
-        validateSubject(subject)
-    }
-
-    if (!category && !subject)
-        throw new ConditionError('category and subject are both not provided')
 
     return User.findById(userId)
         .then(user => {
             if (!user)
-            throw new NotFoundError(`user with id ${userId} not found`)
+                throw new NotFoundError(`user with id ${userId} not found`)
 
-            if (category && subject)
-                return Post.find({user: userId, category, subject }).lean().populate('user').sort('-date')
-            else if (category)
-                return Post.find({ user: userId, category }).lean().populate('user').sort('-date')
-            else if (subject)
-                return Post.find({ user: userId, subject }).lean().populate('user').sort('-date')
+            const { savedPosts } = user
+
+            return Post.find({ _id: { $in: savedPosts } }).lean().populate('user').sort('-date')
         })
         .then(posts => {
             if (posts.length)
@@ -69,4 +50,4 @@ function retrieveUserPostsBy(userId, category, subject) {
         })
 }
 
-module.exports = retrieveUserPostsBy
+module.exports = retrieveUserSavedPosts

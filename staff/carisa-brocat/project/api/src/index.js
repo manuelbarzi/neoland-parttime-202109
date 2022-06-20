@@ -22,7 +22,9 @@ const {
     updateUserHairTextureAndInterests,
     toggleLikePost,
     toggleDislikePost,
-    toggleSavePost
+    toggleSavePost,
+    retrieveUserSavedPosts, 
+    retrieveUserSavedPostsBy
 } = require('./handlers')
 
 const { env: { MONGODB_URL, PORT } } = process
@@ -53,6 +55,8 @@ connect(MONGODB_URL)
         router.patch('/posts/:postId/toggle-dislike', toggleDislikePost)
         router.patch('/posts/:postId/toggle-save', toggleSavePost)
         router.get('/user/posts', retrieveUserPosts)
+        router.get('/user/saved-posts', retrieveUserSavedPosts)
+        router.post('/user/saved-posts/search-by', jsonBodyParser, retrieveUserSavedPostsBy)
         router.get('/posts', retrieveAllPosts)
         router.post('/user/posts/search-by', jsonBodyParser, retrieveUserPostsBy)
         router.post('/posts/search-by', jsonBodyParser, retrievePostsBy)

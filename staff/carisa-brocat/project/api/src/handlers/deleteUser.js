@@ -15,14 +15,12 @@ module.exports = (req, res) => {
 
                 if (error instanceof AuthError)
                     status = 401
-                
 
                 if (error instanceof ClientError)
                     status = 400
 
                 if (error instanceof NotFoundError)
-                    status = 404
-                
+                    status = 404     
         
                 res.status(status).json({ error: error.message })
             })

@@ -9,7 +9,7 @@ const { errors: {
 function retrievePost(postId) {
     validateId(postId, 'postId')
 
-    return Post.findById(postId).lean().sort('-date')
+    return Post.findById(postId).lean().populate('user')
         .then(post => {
             if (!post) {
                 throw new NotFoundError('post not found')
@@ -31,8 +31,8 @@ function retrievePost(postId) {
                 comments.forEach(comment => {
                     comment.id = comment._id.toString()
                     delete comment._id
-                    
-                    comment.userId = comment.user._id
+
+                    comment.userId = comment.user._id.toString()
                     comment.userNickname = comment.user.nickname
                     delete comment.user
 
