@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>direct file upload from form</h1>
+    <form action="/upload" method="post">
+        <input type="file" name="origin">
+        <button>Upload</button>
+    </form>
+
+    <script>
+        const form = document.querySelector('form')
+
+        form.onsubmit = event => {
+            event.preventDefault()
+
+            const file = form.origin.files[0] // File
+            
+            uploadFile(file, error => {
+                if (error)
+                    return alert(error)
+
+                alert('file upload')
+            })
+        }
+
+        // logic
+
+        function uploadFile(file, callback) {
+            if (!(file instanceof File)) throw new TypeError('file is not a file')
+            if (typeof callback !== 'function') throw new TypeError('callback is not a function')
+
+            const formData = new FormData()
+
+            formData.append('origin', file)
+
+            const xhr = new XMLHttpRequest
+
+            xhr.onload = event => {
+                const { status } = event.target
+
+                if (status >= 500)
+                    callback(new Error('server error'))
+                else if (status < 500 && status >= 400)
+                    callback(new Error('client error'))
+                else if (status === 200)
+                    callback(null)
+            }
+
+            xhr.open('POST', 'http://localhost:8080/upload')
+
+            xhr.send(formData)
+        }
+    </script>
+</body>
+</html>

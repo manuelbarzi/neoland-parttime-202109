@@ -1,0 +1,17 @@
+@use '../commons/base'
+@use '../commons/mixins'
+    
+.login
+    height: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    background: base.$color
+    font-size: base.$font-size
+    @include mixins.round-border($width: 2px)
+    @include mixins.theme(tomato)
+
+    &__form
+        display: flex
+        flex-direction: column
+        gap: base.$gap
