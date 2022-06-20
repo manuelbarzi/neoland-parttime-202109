@@ -1,9 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { retrieveUser, updateUser } from "../logic"
+import Context from "./Context"
 
 export default function () {
     const navigate = useNavigate()
+    const { setFeedback } = useContext(Context)
     const [data, setData] = useState()
     const { userId } = useParams()
 
@@ -13,9 +15,9 @@ export default function () {
                 .then(user => {
                     setData(user)
                 })
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }, [])
 
@@ -27,13 +29,13 @@ export default function () {
         try {
             updateUser(sessionStorage.token, userId, name, email, role)
                 .then(() => {
-                    alert('usuario actualizado')
+                    setFeedback({ level: 'info', message: 'usuario actualizado' })
 
                     navigate('/users')
                 })
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 

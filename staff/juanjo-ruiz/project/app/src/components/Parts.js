@@ -1,21 +1,23 @@
 import { useNavigate, useParams } from "react-router-dom"
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { retrieveAllParts } from "../logic"
 import PartItem from "./PartItem"
+import Context from "./Context"
 
 export default function ({ onDetailPart }) {
     const navigate = useNavigate()
+    const { setFeedback } = useContext(Context)
     const { vehicleId } = useParams()
 
     const [parts, setParts] = useState()
-    
+
     useEffect(() => {
         try {
             retrieveAllParts(sessionStorage.token, vehicleId)
                 .then(parts => setParts(parts))
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }, [])
 

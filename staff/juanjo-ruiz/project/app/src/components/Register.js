@@ -1,8 +1,11 @@
 import { registerCompany } from '../logic'
 import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import Context from './Context'
 
 export default function ({ onRegistered }) {
     const navigate = useNavigate()
+    const { setFeedback } = useContext(Context)
 
     const register = event => {
         event.preventDefault()
@@ -12,13 +15,13 @@ export default function ({ onRegistered }) {
         try {
             registerCompany(businessName, cif, name, email, password)
                 .then(() => {
-                    alert('Bienvenido al fin de tus problemas')
+                    setFeedback({level: 'info', message: 'Bienvenido'})
 
                     onRegistered()
                 })
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({level: 'error', message: error.message}))
         } catch (error) {
-            alert(error.message)
+            setFeedback({level: 'error', message: error.message})
         }
     }
 

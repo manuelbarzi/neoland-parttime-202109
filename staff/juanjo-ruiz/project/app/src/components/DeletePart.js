@@ -1,8 +1,11 @@
 import { deletePart } from '../logic'
 import { useParams, useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import Context from './Context'
 
 export default function () {
     const navigate = useNavigate()
+    const { setFeedback } = useContext(Context)
 
     const { vehicleId, partId } = useParams()
 
@@ -14,13 +17,13 @@ export default function () {
         try {
             deletePart(sessionStorage.token, vehicleId, partId, password)
                 .then(() => {
-                    alert('parte eliminado')
+                    setFeedback({ level: 'info', message: 'parte eliminado' })
 
                     navigate(`/vehicle/${vehicleId}/parts`)
                 })
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 

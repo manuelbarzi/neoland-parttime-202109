@@ -1,8 +1,11 @@
 import { authenticateUser } from "../logic"
 import { useNavigate } from "react-router-dom"
+import { useContext } from "react"
+import Context from "./Context"
 
 export default function ({ onLoggedIn }) {
     const navigate = useNavigate()
+    const { setFeedback } = useContext(Context)
 
     const login = event => {
         event.preventDefault()
@@ -16,9 +19,9 @@ export default function ({ onLoggedIn }) {
 
                     onLoggedIn()
                 })
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 

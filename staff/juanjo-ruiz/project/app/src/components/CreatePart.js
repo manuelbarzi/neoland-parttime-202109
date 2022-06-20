@@ -1,7 +1,10 @@
 import { createPart } from "../logic"
 import { useNavigate, useParams } from "react-router-dom"
+import { useContext } from "react"
+import Context from "./Context"
 
 export default function () {
+    const { setFeedback} = useContext(Context)
     const navigate = useNavigate()
     const { vehicleId } = useParams()
 
@@ -13,13 +16,13 @@ export default function () {
         try {
             createPart(sessionStorage.token, vehicleId, descripcition, image)
                 .then(() => {
-                    alert('parte creado')
+                    setFeedback({level: 'info', message: 'parte creado'})
 
                     navigate(`/vehicle/${vehicleId}/parts`)
                 })
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({level: 'error', message: error.message}))
         } catch (error) {
-            alert(error.message)
+            setFeedback({level: 'error', message: error.message})
         }
     }
 

@@ -1,8 +1,11 @@
 import { createVehicle } from "../logic"
 import { useNavigate } from "react-router-dom"
+import { useContext } from "react"
+import Context from "./Context"
 
 export default function () {
     const navigate = useNavigate()
+    const { setFeedback } = useContext(Context)
 
     const newVehicle = event => {
         event.preventDefault()
@@ -12,13 +15,13 @@ export default function () {
         try {
             createVehicle(sessionStorage.token, lisense, brand, model, frame)
                 .then(() => {
-                    alert('Vehículo creado')
+                    setFeedback({ level: 'info', message: 'vehículo creado' })
 
                     navigate('/vehicles')
                 })
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 

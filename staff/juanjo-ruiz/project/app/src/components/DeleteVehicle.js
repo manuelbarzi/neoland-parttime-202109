@@ -1,9 +1,11 @@
 import { deleteVehicle } from '../logic'
 import { useParams, useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import Context from './Context'
 
 export default function () {
     const navigate = useNavigate()
-
+    const { setFeedback } = useContext(Context)
     const { vehicleId } = useParams()
 
     const remove = event => {
@@ -14,13 +16,13 @@ export default function () {
         try {
             deleteVehicle(sessionStorage.token, vehicleId, password)
                 .then(() => {
-                    alert('vehículo eliminado')
+                    setFeedback({ level: 'info', message: 'vehículo eliminado' })
 
                     navigate('/vehicles')
                 })
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 

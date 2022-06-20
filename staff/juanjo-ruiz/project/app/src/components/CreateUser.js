@@ -1,7 +1,11 @@
 import { createUser } from "../logic"
 import { useNavigate } from "react-router-dom"
+import { useContext } from "react"
+import Context from "./Context"
 
 export default function () {
+    const { setFeedback } = useContext(Context)
+
     const navigate = useNavigate()
 
     const newUser = event => {
@@ -12,13 +16,13 @@ export default function () {
         try {
             createUser(sessionStorage.token, name, email, password, role)
                 .then(() => {
-                    alert('ususario creado')
+                    setFeedback({ level: 'info', message: 'ususario creado' })
 
                     navigate('/users')
                 })
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 

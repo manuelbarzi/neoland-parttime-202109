@@ -1,19 +1,21 @@
 import { retrieveAllUsers } from '../logic'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import UserItem from './UserItem'
+import Context from './Context'
 
 export default function ({ onDetailUser }) {
-    const [users, setUsers] = useState()
     const navigate = useNavigate()
+    const { setFeedback } = useContext(Context)
+    const [users, setUsers] = useState()
 
     useEffect(() => {
         try {
             retrieveAllUsers(sessionStorage.token)
                 .then(users => setUsers(users))
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }, [])
 

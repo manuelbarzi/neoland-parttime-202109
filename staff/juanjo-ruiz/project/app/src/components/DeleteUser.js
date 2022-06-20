@@ -1,7 +1,10 @@
 import { deleteUser } from '../logic'
 import { useParams, useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import Context from './Context'
 
 export default function () {
+    const { setFeedback } = useContext(Context)
     const navigate = useNavigate()
 
     const { userId } = useParams()
@@ -14,20 +17,20 @@ export default function () {
         try {
             deleteUser(sessionStorage.token, userId, password)
                 .then(() => {
-                    alert('usuario eliminado')
+                    setFeedback({ level: 'info', message: 'usuario eliminado' })
 
                     navigate('/users')
                 })
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 
 
     return <div>
         <a onClick={() => navigate(`/user/${userId}`)}>Volver</a>
-    <form onSubmit={remove}>
+        <form onSubmit={remove}>
             <input type="password" name="password" placeholder="Contraseña" />
             <button>Eliminar</button>
         </form>

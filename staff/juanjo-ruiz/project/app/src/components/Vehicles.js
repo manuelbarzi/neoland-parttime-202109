@@ -1,20 +1,22 @@
 import { retrieveActiveVehicles } from '../logic'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { findVehicles } from '../logic'
 import VehicleItem from './VehicleItem'
+import Context from './Context'
 
 export default function ({ onDetailVehicle }) {
     const navigate = useNavigate()
+    const { setFeedback } = useContext(Context)
     const [vehicles, setVehicles] = useState()
 
     useEffect(() => {
         try {
             retrieveActiveVehicles(sessionStorage.token)
                 .then(vehicles => setVehicles(vehicles))
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({level: 'error', message: error.message}))
         } catch (error) {
-            alert(error.message)
+            setFeedback({level: 'error', message: error.message})
         }
     }, [])
 
@@ -26,9 +28,9 @@ export default function ({ onDetailVehicle }) {
         try {
             findVehicles(sessionStorage.token, query)
                 .then()
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({level: 'error', message: error.message}))
         } catch (error) {
-            alert(error.message)
+            setFeedback({level: 'error', message: error.message})
         }
     }
 

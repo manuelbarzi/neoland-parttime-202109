@@ -1,10 +1,12 @@
 import { useNavigate, useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { retrieveVehicle } from "../logic"
 import VehicleItemDetail from './VehicleItemDetail'
+import Context from "./Context"
 
 export default function () {
     const navigate = useNavigate()
+    const { setFeedback } = useContext(Context)
     const { vehicleId } = useParams()
     const [vehicle, setVehicle] = useState()
 
@@ -14,9 +16,9 @@ export default function () {
                 .then(vehicle => {
                     setVehicle(vehicle)
                 })
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }, [])
 
