@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { retrieveAllPosts, retrievePostsBy } from '../logic'
 import Post from './Post'
 import { errors } from 'commons'
-const { AuthError } = errors
+const { AuthError, NotFoundError } = errors
 
 function Feed({ category, subject, user, postCreated }) {
     const [posts, setPosts] = useState([])
@@ -14,15 +14,9 @@ function Feed({ category, subject, user, postCreated }) {
                     setPosts(posts)
                 })
                 .catch(error => {
-                    if (error instanceof AuthError)
-                        delete sessionStorage.token
-
                     alert(error.message)
                 })
         } catch (error) {
-            if (error instanceof AuthError)
-                delete sessionStorage.token
-
             alert(error.message)
         }
     }
@@ -34,15 +28,9 @@ function Feed({ category, subject, user, postCreated }) {
                     setPosts(posts)
                 })
                 .catch(error => {
-                    if (error instanceof AuthError)
-                        delete sessionStorage.token
-
                     alert(error.message)
                 })
         } catch (error) {
-            if (error instanceof AuthError)
-                delete sessionStorage.token
-
             alert(error.message)
         }
     }
@@ -63,7 +51,7 @@ function Feed({ category, subject, user, postCreated }) {
     return <div className='feed'>
         {
             posts.length ?
-                <ul> {posts.map(post => <li key={post.id}> <Post post={post} user={user} /></li>)}
+                <ul> {posts.map(post => <li key={post.id}> <Post postId={post.id} user={user} /></li>)}
                 </ul> :
                 <p>Sorry, there are no posts to show</p>
         }

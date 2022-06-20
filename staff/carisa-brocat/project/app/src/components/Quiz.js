@@ -3,7 +3,7 @@ import InputRadioQuiz from './InputRadioQuiz'
 import InputCheckboxQuiz from './InputCheckboxQuiz'
 import { updateUserHairTextureAndInterests } from '../logic'
 import { errors } from 'commons'
-const { AuthError } = errors
+const { AuthError, NotFoundError } = errors
 
 function Quiz({ onQuizPassed }) {
 
@@ -26,7 +26,7 @@ function Quiz({ onQuizPassed }) {
                     onQuizPassed()
                 })
                 .catch(error => {
-                    if (error instanceof AuthError)
+                    if (error instanceof NotFoundError && error.message.includes('user') && error.message.includes('not found'))
                         delete sessionStorage.token
 
                     alert(error.message)
@@ -48,7 +48,7 @@ function Quiz({ onQuizPassed }) {
                     onQuizPassed()
                 })
                 .catch(error => {
-                    if (error instanceof AuthError)
+                    if (error instanceof NotFoundError && error.message.includes('user') && error.message.includes('not found'))
                         delete sessionStorage.token
 
                     alert(error.message)

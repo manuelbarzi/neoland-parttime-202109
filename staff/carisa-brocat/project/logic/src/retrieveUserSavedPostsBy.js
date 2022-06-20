@@ -7,9 +7,10 @@ const { errors: {
     validateString,
 }
 } = require('commons')
+
 const {validateCategory, validateSubject} = require('./helpers/validateData')
 
-function retrieveUserPostsBy(userId, category, subject) {
+function retrieveUserSavedPostsBy(userId, category, subject) {
     validateId(userId, 'userId')
 
     if (category) {
@@ -28,14 +29,16 @@ function retrieveUserPostsBy(userId, category, subject) {
     return User.findById(userId)
         .then(user => {
             if (!user)
-            throw new NotFoundError(`user with id ${userId} not found`)
+                throw new NotFoundError(`user with id ${userId} not found`)
+
+            const { savedPosts } = user
 
             if (category && subject)
-                return Post.find({user: userId, category, subject }).lean().populate('user').sort('-date')
+                return Post.find({ _id: { $in: savedPosts }, category, subject }).lean().populate('user').sort('-date')
             else if (category)
-                return Post.find({ user: userId, category }).lean().populate('user').sort('-date')
+                return Post.find({ _id: { $in: savedPosts }, category }).lean().populate('user').sort('-date')
             else if (subject)
-                return Post.find({ user: userId, subject }).lean().populate('user').sort('-date')
+                return Post.find({ _id: { $in: savedPosts }, subject }).lean().populate('user').sort('-date')
         })
         .then(posts => {
             if (posts.length)
@@ -69,4 +72,4 @@ function retrieveUserPostsBy(userId, category, subject) {
         })
 }
 
-module.exports = retrieveUserPostsBy
+module.exports = retrieveUserSavedPostsBy

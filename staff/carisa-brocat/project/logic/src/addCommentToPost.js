@@ -1,7 +1,6 @@
 const { models: { User, Post, Comment } } = require('data')
 const { errors: {
     NotFoundError,
-    AuthError,
 }, validators: {
     validateId,
     validateString
@@ -16,7 +15,7 @@ function addCommentToPost(userId, postId, text) {
     return Promise.all([User.findById(userId), Post.findById(postId)])
         .then(([user, post]) => {
             if (!user) {
-                throw new AuthError('User not found')
+                throw new NotFoundError(`user with id ${userId} not found`)
             }
             if (!post) {
                 throw new NotFoundError('Post not found')
@@ -28,7 +27,7 @@ function addCommentToPost(userId, postId, text) {
 
             return post.save()
         })
-        .then(post => {})
+        .then(post => { })
 }
 
 module.exports = addCommentToPost

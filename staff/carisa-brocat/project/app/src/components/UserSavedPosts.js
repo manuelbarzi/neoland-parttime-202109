@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
-import { retrieveUserSavedPosts } from '../logic'
+import { retrieveUserSavedPosts, retrieveUserSavedPostsBy } from '../logic'
 import { errors } from 'commons'
 import Post from './Post'
-const { AuthError } = errors
+const { AuthError, NotFoundError } = errors
 
-function UserSavedPosts({ user, postCreated }) {
+function UserSavedPosts({ category, subject, user, postCreated }) {
     const [posts, setPosts] = useState([])
+    const [postUnsaved, setPostUnsaved] = useState(false)
 
     const loadUserSavedPosts = () => {
         try {
@@ -14,6 +15,9 @@ function UserSavedPosts({ user, postCreated }) {
                     setPosts(posts)
                 })
                 .catch(error => {
+                    if (error instanceof NotFoundError && error.message.includes('user') && error.message.includes('not found'))
+                        delete sessionStorage.token
+
                     if (error instanceof AuthError)
                         delete sessionStorage.token
 
@@ -27,15 +31,51 @@ function UserSavedPosts({ user, postCreated }) {
         }
     }
 
+    const loadUserSavedPostBy = () => {
+        try {
+            retrieveUserSavedPostsBy(sessionStorage.token, category, subject)
+                .then(posts => {
+                    setPosts(posts)
+                })
+                .catch(error => {
+                    if (error instanceof NotFoundError && error.message.includes('user') && error.message.includes('not found'))
+                        delete sessionStorage.token
+
+                    if (error instanceof AuthError)
+                        delete sessionStorage.token
+
+                    alert(error.message)
+                })
+        } catch (error) {
+            if (error instanceof AuthError)
+                delete sessionStorage.token
+
+            alert(error.message)
+        }
+    }
+
+    const loadFilterPosts = () => {
+        if (category || subject) {
+            loadUserSavedPostBy()
+        }
+        else {
+            loadUserSavedPosts()
+        }
+    }
+
     useEffect(() => {
-        loadUserSavedPosts()
-    }, [postCreated])
+        loadFilterPosts()
+    }, [category, subject, postCreated, postUnsaved])
+
+    const handleUnsavePost = () => {
+        setPostUnsaved(true)
+    }
 
 
-    return <div className='UserSavedPosts'>
+    return <div className='userSavedPosts'>
         {
             posts.length ?
-                <ul> {posts.map(post => <li key={post.id}> <Post post={post} user={user} /></li>)}
+                <ul> {posts.map(post => <li key={post.id}> <Post postId={post.id} user={user} handleUnsavePost={handleUnsavePost} /></li>)}
                 </ul> :
                 <p>Sorry, there are no posts to show</p>
         }

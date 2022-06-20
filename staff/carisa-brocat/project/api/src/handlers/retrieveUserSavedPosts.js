@@ -1,4 +1,4 @@
-const { retrieveAllPosts } = require('logic')
+const { retrieveUserSavedPosts } = require('logic')
 const { errors: { FormatError, AuthError, NotFoundError } } = require('commons')
 const extractUserIdFromToken = require('./helpers/extractUserIdFromToken')
 
@@ -6,7 +6,7 @@ module.exports = (req, res) => {
     try {
         const userId = extractUserIdFromToken(req)
 
-        retrieveAllPosts(userId)
+        retrieveUserSavedPosts(userId)
             .then(posts => res.status(200).send(posts))
             .catch(error => {
                 let status = 500

@@ -12,7 +12,7 @@ function retrieveUser(userId) {
     return User.findById(userId).lean()
         .then(user => {
             if (!user) {
-                throw new AuthError('user not found')
+                throw new NotFoundError(`user with id ${userId} not found`)
             }
 
             user.id = user._id.toString()

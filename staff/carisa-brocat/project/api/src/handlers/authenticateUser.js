@@ -21,7 +21,6 @@ module.exports = (req, res) => {
                 if (error instanceof AuthError)
                     status = 401
                 
-
                 res.status(status).json({ error: error.message })
             })
     } catch (error) {

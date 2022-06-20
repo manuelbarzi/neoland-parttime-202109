@@ -1,6 +1,6 @@
 const { models: { User, Post } } = require('data')
 const { errors: {
-    AuthError
+    NotFoundError
 },
     validators: {
         validateString,
@@ -28,7 +28,7 @@ function createPost(userId, title, description, category, subject, image, addres
     return User.findById(userId)
         .then(user => {
             if (!user) {
-                throw new AuthError('User not found')
+                throw new NotFoundError(`user with id ${userId} not found`)
             }
 
             return Post.create({ user: userId, title, description, category, subject, image, address })

@@ -13,7 +13,10 @@ import toggleSavePost from "./toggleSavePost"
 import deletePost from "./deletePost"
 import createPost from "./createPost"
 import retrieveUserSavedPosts from "./retrieveUserSavedPosts"
+import retrieveUserSavedPostsBy from "./retrieveUserSavedPostsBy"
 import deleteUser from "./deleteUser"
+import addCommentToPost from "./addCommentToPost"
+import retrievePost from "./retrievePost"
 
 export {
     registerUser,
@@ -31,5 +34,8 @@ export {
     deletePost,
     createPost,
     retrieveUserSavedPosts,
-    deleteUser
+    retrieveUserSavedPostsBy,
+    deleteUser,
+    addCommentToPost,
+    retrievePost,
 }

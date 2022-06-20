@@ -13,7 +13,7 @@ function toggleDislikePost(userId, postId) {
     return Promise.all([User.findById(userId), Post.findById(postId)])
         .then(([user, post]) => {
             if (!user) {
-                throw new AuthError('user not found')
+                throw new NotFoundError(`user with id ${userId} not found`)
             }
             if (!post) {
                 throw new NotFoundError('post not found')

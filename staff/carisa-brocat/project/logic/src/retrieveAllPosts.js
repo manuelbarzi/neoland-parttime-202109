@@ -14,7 +14,7 @@ function retrieveAllPosts(userId) {
     return User.findById(userId)
         .then(user => {
             if (!user)
-                throw new AuthError('user not found')
+            throw new NotFoundError(`user with id ${userId} not found`)
 
             const interests = user.interests
 
@@ -47,12 +47,13 @@ function retrieveAllPosts(userId) {
                     if (comments) {
                         comments.forEach(comment => {
                             comment.id = comment._id.toString()
-                            comment.userId = comment.user._id
-                            comment.userNickname = comment.user.nickname
-
                             delete comment._id
-                            delete comment.__v
+
+                            comment.userId = comment.user._id.toString()
+                            comment.userNickname = comment.user.nickname
                             delete comment.user
+
+                            delete comment.__v
                         })
                     }
                 })

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { retrieveUserPosts, retrieveUserPostsBy } from '../logic'
 import Post from './Post'
 import { errors } from 'commons'
-const { AuthError } = errors
+const { AuthError, NotFoundError } = errors
 
 function UserPosts({ category, subject, user, postCreated }) {
     const [posts, setPosts] = useState([])
@@ -15,6 +15,9 @@ function UserPosts({ category, subject, user, postCreated }) {
                     setPosts(posts)
                 })
                 .catch(error => {
+                    if (error instanceof NotFoundError && error.message.includes('user') && error.message.includes('not found'))
+                        delete sessionStorage.token
+
                     if (error instanceof AuthError)
                         delete sessionStorage.token
 
@@ -35,6 +38,9 @@ function UserPosts({ category, subject, user, postCreated }) {
                     setPosts(posts)
                 })
                 .catch(error => {
+                    if (error instanceof NotFoundError && error.message.includes('user') && error.message.includes('not found'))
+                        delete sessionStorage.token
+
                     if (error instanceof AuthError)
                         delete sessionStorage.token
 
@@ -68,7 +74,7 @@ function UserPosts({ category, subject, user, postCreated }) {
     return <div className='userPosts'>
         {
             posts.length ?
-                <ul> {posts.map(post => <li key={post.id}> <Post post={post} user={user} handlePostDeleted={handlePostDeleted} /></li>)}
+                <ul> {posts.map(post => <li key={post.id}> <Post postId={post.id} user={user} handlePostDeleted={handlePostDeleted} /></li>)}
                 </ul> :
                 <p>Sorry, there are no posts to show</p>
         }

@@ -1,6 +1,6 @@
 import { validators, errors } from 'commons'
 
-const { AuthError, ServerError, ClientError } = errors
+const { AuthError, ServerError, ClientError, NotFoundError } = errors
 const { validateToken, validatePassword } = validators
 
 function deleteUser(token, password) {
@@ -27,6 +27,8 @@ function deleteUser(token, password) {
 
                         if (status === 401)
                             throw new AuthError(message)
+                        else if (status === 404)
+                            throw new NotFoundError(message)
                         else
                             throw new ClientError(message)
                     })

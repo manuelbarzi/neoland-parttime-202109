@@ -29,7 +29,7 @@ function retrievePostsBy(userId, category, subject) {
     return User.findById(userId)
         .then(user => {
             if (!user)
-                throw new AuthError('user not found')
+            throw new NotFoundError(`user with id ${userId} not found`)
 
             if (category && subject)
                 return Post.find({ category, subject }).lean().populate('user').sort('-date')
@@ -57,8 +57,8 @@ function retrievePostsBy(userId, category, subject) {
                             comment.id = comment._id.toString()
                             delete comment._id
 
-                            comment.userId = comment.user._id
-                            comment.userNickame = comment.user.nickname
+                            comment.userId = comment.user._id.toString()
+                            comment.userNickname = comment.user.nickname
                             delete comment.user
 
                             delete comment.__v

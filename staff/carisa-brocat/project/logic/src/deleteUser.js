@@ -1,4 +1,4 @@
-const { models: { User } } = require('data')
+const { models: { User, Post, Comment } } = require('data')
 const { errors: {
     AuthError,
     ClientError,
@@ -18,7 +18,7 @@ function deleteUser(userId, password) {
     return User.findById(userId)
         .then(user => {
             if (!user) {
-                throw new AuthError('user not found')
+                throw new NotFoundError(`user with id ${userId} not found`)
             }
 
             return comparePassword(password, user.password)
@@ -27,11 +27,15 @@ function deleteUser(userId, password) {
                         throw new AuthError('Invalid Credentials')
                     }
 
-                    return User.deleteOne({ _id: userId })
-                        .then(result => { })
-                        .catch(error => {
-                            throw new ClientError(error.message)
-                        })
+                    return Promise.all([Post.deleteMany({ user: userId }), Comment.deleteMany({ user: userId })])
+                        .then(() => {
+                            User.deleteOne({ _id: userId })
+                                .then(result => { })
+                                .catch(error => {
+                                    throw new ClientError(error.message)
+                                })
+                        }
+                        )
                 })
         })
 }

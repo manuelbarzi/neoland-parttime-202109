@@ -2,7 +2,7 @@ import Register from './Register';
 import Home from './Home';
 import Login from './Login';
 import Landing from './Landing';
-import Unregister from './Unregister';
+import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import { validators } from 'commons';
 const { validateToken } = validators
@@ -10,30 +10,34 @@ const { validateToken } = validators
 function App() {
   const navigate = useNavigate()
 
-  const { token } = sessionStorage
-
   try {
-    validateToken(token)
+    validateToken(sessionStorage.token)
   } catch (error) {
     delete sessionStorage.token
   }
 
+  const { token } = sessionStorage
+
+  const [loggedIn, setLoggedIn] = useState(!!token)
+
   const handleRegistered = () => navigate('/login')
 
   const handleLogIn = () => {
+    setLoggedIn(true)
+
     navigate('/')
   }
 
   const handleLogOut = () => {
-    delete sessionStorage.token
+    setLoggedIn(false)
 
     navigate('/login')
   }
 
   return <Routes>
-    <Route path="/*" element={token ? <Home onLoggedOut={handleLogOut} /> : <Landing />} />
-    <Route path="/register" element={token ? <Navigate to="/" /> : <Register onRegistered={handleRegistered} />} />
-    <Route path="/login" element={token ? <Navigate to="/" /> : <Login onLoggedIn={handleLogIn} />} />
+    <Route path="*" element={loggedIn ? <Home onLoggedOut={handleLogOut} /> : <Landing />} />
+    <Route path="/register" element={loggedIn ? <Navigate to="/" /> : <Register onRegistered={handleRegistered} />} />
+    <Route path="/login" element={loggedIn ? <Navigate to="/" /> : <Login onLoggedIn={handleLogIn} />} />
   </Routes>
 }
 

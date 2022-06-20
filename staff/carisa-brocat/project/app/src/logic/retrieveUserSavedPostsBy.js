@@ -3,14 +3,16 @@ import { validators, errors } from 'commons'
 const { ServerError, ClientError, NotFoundError, AuthError } = errors
 const { validateToken } = validators
 
-function retrieveUserSavedPosts(token) {
+function retrieveUserSavedPostsBy(token, category, subject) {
     validateToken(token)
 
-    return fetch('http://localhost:8080/api/user/saved-posts', {
-        method: 'GET',
+    return fetch('http://localhost:8080/api/user/saved-posts/search-by', {
+        method: 'POST',
         headers: {
-            Authorization: `Bearer ${token}`
-        }
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ category, subject })
     })
         .then(res => {
             const { status } = res
@@ -40,5 +42,4 @@ function retrieveUserSavedPosts(token) {
         })
 }
 
-
-export default retrieveUserSavedPosts
+export default retrieveUserSavedPostsBy
