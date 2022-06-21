@@ -10,10 +10,10 @@ export default function () {
     const newVehicle = event => {
         event.preventDefault()
 
-        const { target: { lisense: { value: lisense }, brand: { value: brand }, model: { value: model }, frame: { value: frame } } } = event
+        const { target: { lisense: { value: lisense }, brand: { value: brand }, model: { value: model }, frame: { value: frame }, leasingCompany: { value: leasingCompany } } } = event
 
         try {
-            createVehicle(sessionStorage.token, lisense, brand, model, frame)
+            createVehicle(sessionStorage.token, lisense, brand, model, frame, leasingCompany)
                 .then(() => {
                     setFeedback({ level: 'info', message: 'vehículo creado' })
 
@@ -33,6 +33,7 @@ export default function () {
             <input type="name" name="brand" placeholder="marca" required />
             <input type="name" name="model" placeholder="modelo" required />
             <input type="name" name="frame" placeholder="número de bastidor" required />
+            <input type="name" name="leasingCompany" placeholder="Renting propietaria" required />
             <button>Crear vehículo</button>
         </form>
     </div>

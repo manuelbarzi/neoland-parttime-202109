@@ -37,6 +37,12 @@ function validateDate(date) {
     if (typeof date !== Date) throw new TypeError('date is not date')
 }
 
+function validatePhone(phone) {
+    if (typeof phone !== 'number') throw new TypeError('phone is not number')
+    if (!phone.trim()) throw new Error('phone is empty or blank')
+    if (phone.trim().length < 9) throw new Error('phone length is smalles than characters')
+}
+
 function validateToken(token) {
     if (typeof token !== 'string') throw new TypeError('token is not string')
     if (!token.trim()) throw new Error('token is empty or blank')
@@ -63,5 +69,6 @@ module.exports = {
     validatePassword,
     validateDate,
     validateToken,
-    validateCif
+    validateCif,
+    validatePhone
 }

@@ -1,13 +1,16 @@
 import { validators, errors } from 'commons'
 
-const { validateToken, validateString, validatePassword, validateEmail } = validators
+const { validateToken, validateString, validatePassword, validateEmail, validatePhone, validateDate } = validators
 const { DuplicityError, ClientError, ServerError } = errors
 
-export default function (token, name, email, password, role) {
+export default function (token, id, name, email, password, phone, dischargeDate, role) {
     validateToken(token)
+    validateString(id, 'id')
     validateString(name, 'name')
     validateEmail(email)
     validatePassword(password)
+    validatePhone(phone)
+    validateDate(dischargeDate)
     validateString(role, 'role')
 
     return fetch('http://localhost:8080/api/user', {

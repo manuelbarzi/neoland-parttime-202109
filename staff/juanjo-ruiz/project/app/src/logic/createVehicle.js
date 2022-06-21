@@ -3,12 +3,13 @@ import { validators, errors } from 'commons'
 const { validateToken, validateString } = validators
 const { DuplicityError, ClientError, ServerError } = errors
 
-export default function (token, lisense, brand, model, frame) {
+export default function (token, lisense, brand, model, frame, leasingCompany) {
     validateToken(token)
     validateString(lisense, 'lisense')
     validateString(brand, 'brand')
     validateString(model, 'model')
     validateString(frame, 'frame')
+    validateString(leasingCompany, 'leasing company')
 
     return fetch('http://localhost:8080/api/vehicle', {
         method: 'POST',
@@ -16,7 +17,7 @@ export default function (token, lisense, brand, model, frame) {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ lisense, brand, model, frame })
+        body: JSON.stringify({ lisense, brand, model, frame, leasingCompany })
     })
         .then(res => {
             const { status } = res
