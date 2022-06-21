@@ -1,7 +1,6 @@
-import { retrieveActiveVehicles } from '../logic'
+import { retrieveActiveVehicles, findVehicles } from '../logic'
 import { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { findVehicles } from '../logic'
 import VehicleItem from './VehicleItem'
 import Context from './Context'
 
@@ -9,45 +8,65 @@ export default function ({ onDetailVehicle }) {
     const navigate = useNavigate()
     const { setFeedback } = useContext(Context)
     const [vehicles, setVehicles] = useState()
+    const [results, setResults] = useState()
+    const [controls, setControls] = useState()
 
     useEffect(() => {
         try {
             retrieveActiveVehicles(sessionStorage.token)
                 .then(vehicles => setVehicles(vehicles))
-                .catch(error => setFeedback({level: 'error', message: error.message}))
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            setFeedback({level: 'error', message: error.message})
+            setFeedback({ level: 'error', message: error.message })
         }
     }, [])
 
     const search = event => {
         event.preventDefault()
 
-        const query = event.target.q.value
+        const { target: { q: { value: query } } } = event
 
         try {
             findVehicles(sessionStorage.token, query)
-                .then()
-                .catch(error => setFeedback({level: 'error', message: error.message}))
+                .then(results => {
+                    setResults(results)
+                    setControls(true)
+                })
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            setFeedback({level: 'error', message: error.message})
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 
-    const handleDetailVehicle = id => onDetailVehicle(id)
+    const handleButton = () => {
+        results ? 
+            setControls(false)
+            : navigate('/')
+    }
 
+    const handleDetailVehicle = id => onDetailVehicle(id)
+    
     return <div>
-        <a onClick={() => navigate('/')}>volver</a>
+        <a onClick={handleButton}>volver</a>
         <h2>VEHÍCULOS</h2>
 
-        <from onSubmit={search}>
+        <form onSubmit={search}>
             <label>Buscador de matrículas</label>
             <input type="search" name="q" required />
             <button>Buscar</button>
-        </from>
+        </form>
 
         <div>
-            {
+            {controls ?
+                results.length ?
+                    <ul>
+                        {results.map(result => <li key={result.id} onClick={() => handleDetailVehicle(result.id)} >
+                            <VehicleItem content={result} />
+                        </li>)}
+                    </ul>
+                    :
+                    <p>no hay vehículos con esta matrícula</p>
+                :
                 vehicles ?
                     <ul>
                         {vehicles.map(vehicle => <li key={vehicle.id} onClick={() => handleDetailVehicle(vehicle.id)} >

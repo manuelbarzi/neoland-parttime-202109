@@ -1,6 +1,7 @@
 const { Schema } = require('mongoose')
 const { Types: { ObjectId } } = Schema
 const part = require('./part')
+const view = require('./view')
 
 const vehicle = new Schema({
     company: {
@@ -37,9 +38,12 @@ const vehicle = new Schema({
         unique: true
     },
 
-    image: {
-        type: String
+    leasingCompany: {
+        type: String,
+        required: true
     },
+
+    views: [view],
 
     active: {
         type: Boolean,

@@ -14,6 +14,11 @@ const user = new Schema({
         required: true
     },
 
+    id: {
+        type: String,
+        required: true,
+    },
+
     name: {
         type: String,
         required: true
@@ -28,6 +33,15 @@ const user = new Schema({
         type: String,
         required: true,
         unique: true
+    },
+
+    phone: {
+        type: Number
+    },
+
+    dischargeDate: {
+        type: Date,
+        required: true
     },
 
     image: {
