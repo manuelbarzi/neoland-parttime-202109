@@ -23,7 +23,7 @@ export default function Footer() {
                         <h1 className="nav__font black text-4xl">Contact Us</h1>
                         <MailIcon className="h-10 w-10 text-secondary-color" />
                     </div>
-                    <div className="flex items-center justify-center lg:flex gap-5">
+                    <div className="grid items-center text-center justify-center xl:flex gap-5">
                         <h1 className="nav__font black text-4xl">Follow Us</h1>
                         <div className='gap-5 flex'>
                             <i class="fa-brands fa-2x text-secondary-color fa-facebook"></i>

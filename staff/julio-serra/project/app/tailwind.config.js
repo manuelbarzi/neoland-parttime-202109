@@ -1,6 +1,7 @@
 module.exports =  {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
+    ['./src/**/*.{html,js}', './node_modules/tw-elements/dist/js/**/*.js'],
     'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
   ],
   theme: {
@@ -16,6 +17,7 @@ module.exports =  {
   },
   plugins: [
     require('@tailwindcss/forms'),
+    require('tw-elements/dist/plugin'),
     require('flowbite/plugin')
   ],
 }
