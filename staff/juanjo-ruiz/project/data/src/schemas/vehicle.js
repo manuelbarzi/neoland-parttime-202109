@@ -43,20 +43,20 @@ const vehicle = new Schema({
         required: true
     },
 
-    views: [view],
-
     active: {
         type: Boolean,
         required: true,
         default: true
     },
-
+    
     date: {
         type: Date,
         required: true,
         default: Date.now
     },
 
+    views: [view],
+    
     parts: [part]
 })
 

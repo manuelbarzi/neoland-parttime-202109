@@ -15,8 +15,7 @@ const user = new Schema({
     },
 
     id: {
-        type: String,
-        required: true,
+        type: String
     },
 
     name: {
@@ -40,8 +39,7 @@ const user = new Schema({
     },
 
     dischargeDate: {
-        type: Date,
-        required: true
+        type: Date
     },
 
     image: {
