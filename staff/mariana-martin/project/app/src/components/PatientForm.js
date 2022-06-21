@@ -19,13 +19,14 @@ function PatientForm() {
             createPatient(sessionStorage.token, name, email, password, parseInt(age), parseInt(weight), parseInt(height), measures, goal)
                 .then(() => {
                     setResponse({ level: 'info', message: 'Patient created' })
+                    navigate("/my-patients")
                 })
-             
                 .catch(error => alert(error.message))
                 
         } catch (error) {
             setResponse({ level: 'error', message:error.message})
         }
+        
     }
 
     return (

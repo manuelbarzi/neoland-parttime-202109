@@ -10,6 +10,8 @@ function Week ( { onDaySelected }) {
     const { patientId } = params
 
 
+
+
     return ( 
         <div>
             <div onClick={() => navigate(`/patient/${patientId}`)}> <AiOutlineLeft className="back-icon" /> </div>

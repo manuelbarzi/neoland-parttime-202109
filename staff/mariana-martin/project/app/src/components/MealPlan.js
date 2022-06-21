@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate } from 'react-router-dom'
+import { Route, Routes, useNavigate} from 'react-router-dom'
 import '../components/styles/MealPlan.css'
 import AddingMeal from './AddingMeal'
 import Week from './Week'
@@ -7,6 +7,8 @@ import PatientNameHeaderForMealPlan from './PatientNameHeaderForMealPlan'
 
 function MealPlan() {    
     const navigate = useNavigate()
+
+  
 
     const handleDaySelected = (day) => {
        day = day.toLowerCase() 

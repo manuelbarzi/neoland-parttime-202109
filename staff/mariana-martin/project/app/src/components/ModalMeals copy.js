@@ -1,19 +1,19 @@
 import { retrieveAllMeals } from '../logic'
 import { useState, useEffect } from 'react'
 import './styles/Modal.css'
-
+import { addMealToPlan } from '../logic'
 import { useParams} from 'react-router-dom'
 import ModalListMeal from './ModalListMeal'
 
 
 
-function ModalMeals( { closeModal, onAddMeal, onSelectedMeal  }){
+function ModalMeals( { closeModal  }){
 
     const [ meals, setMeals ] = useState()
 
   
    
-    //const { patientId } = useParams()
+    const { patientId } = useParams()
    
     const { day } = useParams()
 
@@ -29,6 +29,24 @@ function ModalMeals( { closeModal, onAddMeal, onSelectedMeal  }){
         }
     }, [])
 
+
+    const addingMeal = () => {
+        console.log(mealId)
+        try {
+            addMealToPlan(sessionStorage.token, patientId, day, mealId )
+            .then(() => console.log('creado'))
+            .catch(error => alert(error.message))
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
+        
+
+        const onSelectedMeal = id => {
+          mealId = id //lo uso aquí  
+      }
+      let mealId;  //guardo el id del meal 
     
     return(
         <div className="modal-background"  >
@@ -44,7 +62,7 @@ function ModalMeals( { closeModal, onAddMeal, onSelectedMeal  }){
                             </li>
                         }): <></>}
                 </ul>
-                <button onClick={ onAddMeal }> Add </button>
+                <button onClick={ addingMeal }> Add </button>
             </div>
          
         </div>

@@ -19,8 +19,8 @@ function retrieveMealPlan(token, patientId, mealPlanId) {
 
         if (status === 200)
             return res.json()
-                .then( patient =>{
-                    return patient
+                .then( plan => {
+                    return plan
                 })
                 else if (status >= 400 && status < 500)
                 return res.json()
