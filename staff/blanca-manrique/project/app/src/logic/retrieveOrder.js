@@ -21,6 +21,10 @@ function retrieveOrder(token, orderId) {
                     .then(order =>{
                         order.createdAt = new Date(order.createdAt)
 
+                        order.notes.forEach(note =>{
+                            note.date = new Date(note.date)
+                        })
+
                         return order
                     })
             else if (status >= 400 && status < 500)

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { retrieveOrder, addItemToOrder, deleteItemFromOrder, generateOrder, updateOrderStatus, addNoteToOrder } from '../logic'
-import { IoChevronBackOutline, IoAdd, IoTrashOutline, IoEllipsisVertical, IoCreate } from "react-icons/io5"
+import { retrieveOrder, addItemToOrder, deleteItemFromOrder, generateOrder, updateOrderStatus } from '../logic'
+import { IoChevronBackOutline, IoAdd, IoTrashOutline, IoEllipsisVertical } from "react-icons/io5"
 import './Order.css'
 
 function Order() {
@@ -9,15 +9,13 @@ function Order() {
     const navigate = useNavigate()
     const [order, setOrder] = useState()
     const [items, setItems] = useState([])
-    const [notes, setNotes] = useState([])
     const [dropdown, setDropdown] = useState(false)
     const [mode, setMode] = useState(false)
-    const [dropNote, setDropNote] = useState(false)
     const [datos, setDatos] = useState({
         variant: '',
         price: 0,
         quantity: 0
-    })
+    });
 
     useEffect(() => {
         try {
@@ -27,7 +25,8 @@ function Order() {
         } catch (error) {
             alert(error.message)
         }
-    }, [items, notes])
+    }, [items])
+
 
     {/* MODO DRAFT*/ }
     const handleDeleteItem = (itemId) => {
@@ -115,7 +114,6 @@ function Order() {
         }
     }
 
-    {/* MODO in progress: puedo cambiar el status a completed o cancelled*/ }
     const handleShowMode = () => setMode(!mode)
 
     const handleChangeStatus = event => {
@@ -127,30 +125,6 @@ function Order() {
                     const update = { ...order, status: order._status }
                     setOrder(update)
                     navigate('/orders')
-                })
-                .catch(error => alert(error.message))
-        } catch (error) {
-            alert(error.message)
-        }
-    }
-
-    {/* MODO DRAFT && IN PROGRESS: ADD NOTE*/ }
-    const handleShowCreateNote = () => setDropNote(!dropNote)
-
-    const handleAddNote = event => {
-        event.preventDefault()
-        const { target: { text: { value: _text } } } = event
-        try {
-            addNoteToOrder(sessionStorage.token, orderId, _text)
-                .then(() => {
-                    const newNote = {
-                        text: event.target.text.value
-                    };
-
-                    const newNotes = [...notes, newNote];
-                    setNotes(newNotes);
-
-                    setDropNote(!dropNote)
                 })
                 .catch(error => alert(error.message))
         } catch (error) {
@@ -196,22 +170,6 @@ function Order() {
                     </div>
                     <time>Date: {order.createdAt.toDateString()}</time>
                 </div>
-
-                {(order.status === 'draft' || order.status === 'in progress') ?
-                    <>
-                        <IoCreate onClick={handleShowCreateNote} />
-                        {dropNote ?
-                            <>
-                                <form onSubmit={handleAddNote}>
-                                    <textarea name='text' placeholder='Add note to order...'></textarea>
-                                    <button type='submit'>Create Note</button>
-                                </form>
-                            </>
-                            : null
-                        }
-                    </>
-                    : null
-                }
 
                 {order.items.length ? <>
                     {/* SI NO HAY ITEMS: QUE NO APAREZCA */}
@@ -305,20 +263,6 @@ function Order() {
 
                     : null
 
-                }
-
-                {order.notes.length ?
-                    <>
-                        <ul className='Order__body-list'>
-                            {order.notes.map(note =>
-                                <li className='Order__body-listItem' key={note.id}>
-                                    <time>Date: {note.date.toDateString()}</time>
-                                    <p>{note.text}</p>
-                                </li>
-                            )}
-                        </ul>
-                    </>
-                    : null
                 }
 
                 {/* SOLO SI ESTOY EN MODO DRAFT Y LA ORDEN TIENE ITEMS PERMITO GENERAR LA ORDEN */}

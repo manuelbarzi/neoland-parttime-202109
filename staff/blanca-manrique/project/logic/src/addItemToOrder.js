@@ -5,7 +5,7 @@ const { validators: { validateId, validateString, validateNumber }, errors: { No
 function addItemToOrder(userId, orderId, variant, price, quantity) {
     validateId(userId, 'user id')
     validateId(orderId, 'order id')
-    validateString(variant, 'variant id')
+    validateString(variant, 'variant')
     validateNumber(price, 'price')
     validateNumber(quantity, 'quantity')
 

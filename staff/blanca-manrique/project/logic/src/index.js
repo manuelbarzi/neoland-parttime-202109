@@ -29,6 +29,8 @@ const deleteItemFromOrder = require('./deleteItemFromOrder')
 const addItemToOrder = require('./addItemToOrder')
 const deleteOrder = require('./deleteOrder')
 const generateOrder = require('./generateOrder')
+const updateOrderStatus = require('./updateOrderStatus')
+const addNoteToOrder = require('./addNoteToOrder')
 
 module.exports = {
     registerUser,
@@ -61,5 +63,7 @@ module.exports = {
     deleteItemFromOrder,
     addItemToOrder,
     deleteOrder,
-    generateOrder
+    generateOrder,
+    updateOrderStatus,
+    addNoteToOrder
 }

@@ -31,8 +31,6 @@ function retrieveAllOrders(userId) {
                     item.variantColor = item.variant.color
 
                     delete item.variant
-                    // const { product } = order.items[0].variant
-                    // order.product = order.items[0].variant.product
                 })
 
 

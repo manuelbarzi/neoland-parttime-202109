@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom"
-import { retrieveAllOrders, deleteOrder } from '../logic'
-import { IoChevronBackOutline, IoChevronForwardOutline, IoAdd, IoTrashOutline } from "react-icons/io5"
+import { retrieveAllOrders, deleteOrder, updateOrderStatus } from '../logic'
+import { IoChevronBackOutline, IoChevronForwardOutline, IoAdd, IoTrashOutline, IoEllipsisVertical } from "react-icons/io5"
 import './ListOrders.css'
+import ChangeOrderStatus from './ChangeOrderStatus'
 
 function ListOrders() {
     const [orders, setOrders] = useState()
@@ -31,7 +32,7 @@ function ListOrders() {
 
                     setOrders(newOrders)
                 })
-                
+
                 .catch(error => alert(error.message))
         } catch (error) {
             alert(error.message)
@@ -51,7 +52,7 @@ function ListOrders() {
     return <div>
         <IoChevronBackOutline className='IconBack' onClick={goBack} />
         <div className='Orders'>
-            {orders ?
+            {orders ? 
                 <table className='Orders__table'>
                     <thead className='Orders__table-header'>
                         <tr>
@@ -73,7 +74,6 @@ function ListOrders() {
                                     : null
                                 }
                             </tr>))}
-
                     </tbody>
                 </table>
 

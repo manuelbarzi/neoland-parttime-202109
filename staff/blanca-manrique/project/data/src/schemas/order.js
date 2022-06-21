@@ -1,6 +1,7 @@
 const { Schema } = require('mongoose')
 const { Types: { ObjectId } } = Schema
 const item = require('./item')
+const note = require('./note')
 
 const order = new Schema({
     user:{
@@ -24,6 +25,7 @@ const order = new Schema({
     description: {
         type: String
     },
-    items: [item]
+    items: [item],
+    notes: [note]
 })
 module.exports = order

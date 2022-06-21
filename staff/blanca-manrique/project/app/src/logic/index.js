@@ -17,9 +17,12 @@ import createOrder from './createOrder'
 import retrieveOrder from './retrieveOrder'
 import findSuppliers  from './findSuppliers'
 import addItemToOrder from './addItemToOrder'
+import addNoteToOrder from './addNoteToOrder'
 import deleteItemFromOrder from './deleteItemFromOrder'
 import deleteOrder from './deleteOrder'
 import generateOrder from './generateOrder'
+import updateOrderStatus from './updateOrderStatus'
+import filterSuppliers from './filterSuppliers'
 
 export {
     registerUser,
@@ -41,7 +44,10 @@ export {
     retrieveOrder,
     findSuppliers,
     addItemToOrder,
+    addNoteToOrder,
     deleteItemFromOrder,
     deleteOrder,
-    generateOrder
+    generateOrder,
+    updateOrderStatus,
+    filterSuppliers
 }

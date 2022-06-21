@@ -17,6 +17,8 @@
 // import { IoCaretDown } from "react-icons/io5" //Go to detail INFO (triángulo invertido)
 // import { IoArrowBackOutline } from "react-icons/io5" //Go back flecha <--
 // import { IoAdd } from "react-icons/io5" //Add: +
+// import { IoSearch } from "react-icons/io5" //Lupa-- search
+// import { IoCreate } from "react-icons/io5" //Crear nota en orders
 
 
 

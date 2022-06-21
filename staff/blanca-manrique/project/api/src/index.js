@@ -4,7 +4,7 @@ const { mongoose: { connect } } = require('data')
 const express = require('express')
 const cors = require('cors')
 
-const { registerUser, authenticateUser, retrieveUser, updateUser, deleteUser, createSupplier, retrieveSupplier, retrieveSuppliers, updateSupplier, createProduct, retrieveProduct, retrieveAllProductsFromSupplier, findSuppliers, updateProduct, createVariant, retrieveVariant, retrieveAllVariantsFromProduct, updateVariant, deleteVariant, createOrder, retrieveOrder, retrieveAllOrders, retrieveOrdersBySupplier, deleteItemFromOrder, addItemToOrder, deleteOrder } = require('./handlers')
+const { registerUser, authenticateUser, retrieveUser, updateUser, deleteUser, createSupplier, retrieveSupplier, retrieveSuppliers, updateSupplier, createProduct, retrieveProduct, retrieveAllProductsFromSupplier, findSuppliers, updateProduct, createVariant, retrieveVariant, retrieveAllVariantsFromProduct, updateVariant, deleteVariant, createOrder, retrieveOrder, retrieveAllOrders, retrieveOrdersBySupplier, deleteItemFromOrder, addItemToOrder, addNoteToOrder, deleteOrder, updateOrderStatus } = require('./handlers')
 const { json } = require('express')
 const generateOrder = require('./handlers/generateOrder')
 
@@ -49,11 +49,13 @@ connect(MONGODB_URL)
         router.post('/orders', jsonBodyParser, createOrder)
         router.get('/orders/:orderId', retrieveOrder)
         router.get('/orders', retrieveAllOrders)
-        router.post('/orders/:orderId', jsonBodyParser, addItemToOrder)
+        router.patch('/orders/:orderId', jsonBodyParser, updateOrderStatus)
+        router.post('/orders/:orderId/add/items', jsonBodyParser, addItemToOrder)
+        router.post('/orders/:orderId/add/notes', jsonBodyParser, addNoteToOrder)
         router.delete('/orders/:orderId/items/:itemId', deleteItemFromOrder)
         router.delete('/orders/:orderId', deleteOrder)
-        router.patch('/orders/:orderId', jsonBodyParser, generateOrder)
-        
+        router.patch('/orders/:orderId/generated', jsonBodyParser, generateOrder)
+
         api.use('/api', router)
 
         api.listen(PORT, () => console.log(`server listening on ${PORT}`))

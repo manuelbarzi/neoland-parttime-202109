@@ -1,23 +1,27 @@
 import { validators, errors } from 'commons'
 
-const { validateToken, validateString } = validators
+const { validateToken, validateId, validateString } = validators
 const { AuthError, NotFoundError, FormatError, ClientError, ServerError } = errors
 
-export default function findSuppliers(token, query) {
+function updateOrderStatus(token, orderId, status) {
     validateToken(token)
-    validateString(query, 'query')
+    validateId(orderId, 'order id')
+    validateString(status, 'order status')
 
-    return fetch(`http://localhost:8080/api/suppliers/search?q=${query}`), {
-        method: 'GET',
+
+    return fetch(`http://localhost:8080/api/orders/${orderId}`, {
+        method: 'PATCH',
         headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ status })
+    })
         .then(res => {
             const { status } = res
 
-            if (status === 200)
-                return res.json()
+            if (status === 204)
+                return 
             else if (status >= 400 && status < 500)
                 return res.json()
                     .then(payload => {
@@ -38,5 +42,6 @@ export default function findSuppliers(token, query) {
                         throw new ServerError(text)
                     })
         })
-
 }
+
+export default updateOrderStatus

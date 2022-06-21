@@ -10,7 +10,7 @@ function addItemToOrder(token, orderId, variant, price, quantity) {
     validateNumber(price, 'price')
     validateNumber(quantity, 'quantity')
 
-    return fetch(`http://localhost:8080/api/orders/${orderId}`, {
+    return fetch(`http://localhost:8080/api/orders/${orderId}/add/items`, {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${token}`,

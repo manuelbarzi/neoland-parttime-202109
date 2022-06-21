@@ -1,38 +1,33 @@
 import { validators, errors } from 'commons'
 
-const { validateToken, validateId, validateString } = validators
-const { AuthError, NotFoundError, FormatError, ClientError, ServerError } = errors
+const { validateToken, validateId, validateString, validateNumber } = validators
+const { ClientError, ServerError, DuplicityError } = errors
 
-function generateOrder(token, orderId, status) {
+function addNoteToOrder(token, orderId, text) {
     validateToken(token)
     validateId(orderId, 'order id')
-    validateString(status, 'order status')
+    validateString(text, 'text')
 
-
-    return fetch(`http://localhost:8080/api/orders/${orderId}/generated`, {
-        method: 'PATCH',
+    return fetch(`http://localhost:8080/api/orders/${orderId}/add/notes`, {
+        method: 'POST',
         headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ status })
+        body: JSON.stringify({ text })
     })
         .then(res => {
             const { status } = res
 
-            if (status === 204)
-                return 
+            if (status === 201)
+                return
             else if (status >= 400 && status < 500)
                 return res.json()
                     .then(payload => {
                         const { error: message } = payload
 
-                        if (status === 400)
-                            throw new FormatError(message)
-                        if (status === 401)
-                            throw new AuthError(message)
-                        else if (status === 404)
-                            throw new NotFoundError(message)
+                        if (status === 409)
+                            throw new DuplicityError(message)
                         else
                             throw new ClientError(message)
                     })
@@ -43,5 +38,4 @@ function generateOrder(token, orderId, status) {
                     })
         })
 }
-
-export default generateOrder
+export default addNoteToOrder

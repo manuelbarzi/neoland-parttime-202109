@@ -7,21 +7,21 @@ function Nav({ handleLogout }) {
     const [sidebar, setSidebar] = useState(false) //no showing por defecto
     const navigate = useNavigate()
 
-    const showSidebar = () => setSidebar(!sidebar) 
+    const handleShowSidebar = () => setSidebar(!sidebar) 
 
     return (
         <>
             <div className='Navbar'>
                 <Link to='#' className='Navbar__icon'>
-                    <IoMenu onClick={showSidebar} />
+                    <IoMenu onClick={handleShowSidebar} />
                 </Link>
             </div>
 
             <nav className={sidebar ? 'Navmenu active' : 'Navmenu'}>
-                <ul className='Navmenu__items' onClick={showSidebar}>
+                <ul className='Navmenu__items' onClick={handleShowSidebar}>
                     <li className='Navmenu__items-toggle'>
                         <Link to='#' className='Navbar__icon'>
-                            <IoClose onClick={showSidebar} />
+                            <IoClose onClick={handleShowSidebar} />
                         </Link>
                     </li>
                     {/* {NavSidebarData.map((item, index) => {

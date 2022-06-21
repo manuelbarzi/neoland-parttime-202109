@@ -1,22 +1,28 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate, Routes, Route } from "react-router-dom"
-import { retrieveSuppliers } from '../logic'
-import { IoChevronBack, IoChevronForwardOutline, IoAdd } from "react-icons/io5"
+import { retrieveSuppliers, filterSuppliers } from '../logic'
+import { IoChevronBack, IoChevronForwardOutline, IoAdd, IoSearch } from "react-icons/io5"
 import './ListSuppliers.css'
 
 function ListSuppliers() {
-    const [suppliers, setSuppliers] = useState()
+    const [suppliers, setSuppliers] = useState([])
+    const [searchTerm, setSearchTerm] = useState("")
+    const [filteredResults, setFilteredResults] = useState([])
+
     const navigate = useNavigate()
 
     useEffect(() => {
         try {
             retrieveSuppliers(sessionStorage.token)
-                .then(suppliers => setSuppliers(suppliers))
+                .then(suppliers => {
+                    setSuppliers(suppliers)
+                })
                 .catch(error => alert(error.message))
 
         } catch (error) {
             alert(error.message)
         }
+
     }, [])
 
     const handleSupplierDetail = supplierId => { //Para ir al detalle del proveedor
@@ -29,17 +35,47 @@ function ListSuppliers() {
         navigate('/')
     }
 
-    return <div>
-        <IoChevronBack className='IconBack' onClick={goBack}/>
+    const searchSuppliers = query => {
+        setSearchTerm(query)
         
+        setFilteredResults(filterSuppliers(query, suppliers))
+    }
+
+
+    return <div>
+        <IoChevronBack className='IconBack' onClick={goBack} />
+
         <div className='Suppliers'>
-            {suppliers ? <ul className='Suppliers__items'>
-                {suppliers.map(supplier =>
-                    <li className='Suppliers__items-li' key={supplier.id} onClick={() => handleSupplierDetail(supplier.id)}>
-                        <span className='Suppliers__items-li-text'>{supplier.name}</span>
-                        <IoChevronForwardOutline className='Suppliers__items-li-icon' />
-                    </li>)}
-            </ul> : <p>no suppliers yet: You can create a new one</p>}
+            <div>
+                <input
+                    type="text"
+                    placeholder='Search supplier...'
+                    onChange={(e) => searchSuppliers(e.target.value)}
+                />
+                <IoSearch />
+            </div>
+
+            {searchTerm.length > 1 ? (
+                filteredResults.map((supplier) => {
+                    return (
+                        <li className='Suppliers__items-li' key={supplier.id} onClick={() => handleSupplierDetail(supplier.id)}>
+                            <span className='Suppliers__items-li-text'>{supplier.name}</span>
+                            <IoChevronForwardOutline className='Suppliers__items-li-icon' />
+                        </li>
+
+                    )
+                })
+            ) : (
+                suppliers.map((supplier) => {
+                    return (
+                        <li className='Suppliers__items-li' key={supplier.id} onClick={() => handleSupplierDetail(supplier.id)}>
+                            <span className='Suppliers__items-li-text'>{supplier.name}</span>
+                            <IoChevronForwardOutline className='Suppliers__items-li-icon' />
+                        </li>
+
+                    )
+                })
+            )}
 
             <IoAdd className='Suppliers__addIcon' onClick={handleCreateSupplier} />
         </div>
