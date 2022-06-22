@@ -3,12 +3,12 @@ import { validators, errors } from 'commons'
 const {validateToken, validateId } = validators
 const { ClientError, ServerError, AuthError, FormatError, NotFoundError } = errors
 
-function retrieveMealPlan(token, patientId, mealPlanId) {
+function retrieveMealPlan(token, patientId) {
     validateToken(token)
     validateId(patientId, 'patient id')
-    validateId(mealPlanId, 'mealPlan id')
+    
 
-    return fetch(`/patient/${patientId}/mealPlan/${mealPlanId}`, {
+    return fetch(`http://localhost:8080/api/patient/${patientId}/mealPlan`, {
         method: 'GET',
         headers:{
             Authorization: `Bearer ${token}`

@@ -5,7 +5,7 @@ import {useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import {Routes, Route} from 'react-router-dom'
 import {AiOutlineLeft} from 'react-icons/ai'
-import { addMealToPlan, retrieveMealPlan} from '../logic'
+import { addMealToPlan, retrieveMealPlan, retrieveAllMeals} from '../logic'
 
 function AddingMeal() {
 
@@ -57,14 +57,23 @@ function AddingMeal() {
         handleRetrievePlan()
          }, [])
     
-                        //debo de recibir el mealPlanId, pero de dónde?
-    const handleRetrievePlan = mealPlanId => {
+                        
+    const handleRetrievePlan = () => {
+
         try {
-            retrieveMealPlan(sessionStorage.token, patientId, mealPlanId)
-            .then(plans => {
-               
-                setPlans(plans)
+            retrieveMealPlan(sessionStorage.token, patientId)
+            .then(plans => { //comidas de todos los días
+                let planId = plans._id 
+                let dayMeals = plans[day]//comidas del día 
                 
+                retrieveAllMeals(sessionStorage.token)
+                .then(meals => { //recibo todas las de base
+                    let planMeals = meals.filter(meal =>{ //filtro las del patient
+                        return dayMeals.find(dayMeal => meal.id === dayMeal) 
+                    })
+
+                    setPlans(planMeals) //steo en estado
+                })
             })
         } catch (error) {
             alert(error.message)
@@ -72,7 +81,7 @@ function AddingMeal() {
     }
  
     
-
+                    //plans Y el plan tiene un elemento por que está null, si no array vacio
     
     return (
         <div className="adding-meal-container">
@@ -81,12 +90,12 @@ function AddingMeal() {
             <p><strong> Day: {day} </strong></p>
 
             <div>
-                <ul>
-                    { plans ? plans.map(plan => {
+                <ul> 
+                    { (plans && plans.length) ? plans.map(plan => {
                         return <li key={plan.id}>
-                            <p>{plan.id}</p>
-                            <p>{plan.patient}</p>
-                            <p>{plan.monday}</p>
+                            <p>{plan.title}</p>
+                            <p>{plan.description}</p>
+                            <p>{plan.id}</p>                            
                         </li>
                     }): <p>No plans yet</p>}
                 </ul>

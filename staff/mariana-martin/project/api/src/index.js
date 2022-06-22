@@ -50,7 +50,7 @@ connect(MONGODB_URL)
         //mealPlans routes:
         router.post('/patient/:patientId/mealPlan/meal/:mealId', jsonBodyParser, addMealToPlanHandler)
       
-        router.get('/patient/:patientId/mealPlan/:mealPlanId', retrieveMealPlanHandler)
+        router.get('/patient/:patientId/mealPlan', retrieveMealPlanHandler)
         router.delete('/patient/:patientId/mealPlan/meal/:mealId', jsonBodyParser, removeMealFromPlanHandler)
       
 

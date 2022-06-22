@@ -7,9 +7,9 @@ module.exports = (req, res) => {
         
         const nutritionistId = extractUserIdFromAuthorization(req)
 
-        const { params: { patientId, mealPlanId }} = req
+        const { params: { patientId }} = req
 
-        retrieveMealPlan(nutritionistId, patientId, mealPlanId)
+        retrieveMealPlan(nutritionistId, patientId)
             .then(mealPlan => res.status(200).json(mealPlan))
             .catch(error => {
                 let status = 500
