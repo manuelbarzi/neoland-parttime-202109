@@ -51,17 +51,34 @@ export default function Space() {
   const navigate = useNavigate()
   const { token } = sessionStorage
 
-  const handleLoggedIn = () => {
+  const [loggedIn, setLoggedIn] = useState(!!token) //para convertirlo a booleano lo negamos 2 veces
+  const [modal, setModal] = useState(false)
 
+  const handleLoggedIn = () => {
+    setLoggedIn(true)
+    setModal(false)
+  }
+
+  const handleGoModal = () => setModal(true)
+  const handleClosedModal = () => setModal(false)
+  const handleLoggedOut = () => {
+    if (loggedIn === true) {
+      alert('checkout confirmated')
+      setModal(false)
+    } else {
+      setModal(true)
+    }
   }
 
   const handleBooking = event => {
     event.preventDefault()
     if (token) {
       alert('checkout confirmed')
+      setModal(false)
     }
     if (!token) {
       alert('You need to be logged')
+      setModal(true)
     }
     else {
       return
@@ -126,7 +143,9 @@ export default function Space() {
                 }) : <span>Not found</span>}
               </div>
 
-              <LoginModal onloggedIn={handleLoggedIn} />
+              {
+                modal ? <LoginModal onloggedIn={handleLoggedIn} onClosedModal={handleClosedModal} /> : null
+              }
 
               <span className='text-cuartiary-color font-bold text-2xl'>{space.price}</span>
             </div>
@@ -156,8 +175,14 @@ export default function Space() {
                   <tr className='flex justify-between py-2 items-center'><td><label for="end">End Date</label></td><td><input type="datetime-local" id="end" /></td></tr>
                   <tr className='flex justify-between py-2'><td>Total Price</td><td className='font-bold text-xl text-cuartiary-color'>{space.price}</td></tr>
 
-                  <button type='submit' className='flex mx-auto my-4 bg-secondary-color text-white px-20 py-3 text-xl font-bold border rounded-md hover:bg-white hover:border-cuartiary-color hover:text-cuartiary-color'>Checkout</button>
-
+                  <button type="submit" class="my-10 grid mx-auto text-center w-1/3 px-6 py-2.5 bg-secondary-color text-white rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" _data-bs-target="#exampleModal"
+                    onClick={(event) => {
+                      event.preventDefault()
+                      handleGoModal()
+                      handleLoggedOut()
+                    }}>
+                    Checkout
+                  </button>
                 </form>
               </details>
             </div>

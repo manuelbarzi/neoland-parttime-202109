@@ -1,8 +1,8 @@
 import { authenticateUser } from "../logic";
 import { useNavigate } from "react-router-dom"
-import { useState} from 'react'
+import { useState } from 'react'
 
-export default function LoginModal({ onloggedIn }) {
+export default function LoginModal({ onloggedIn, onClosedModal }) {
 
     const [modal, setModal] = useState(false)
     const handleClickRegister = () => navigate('/register')
@@ -25,29 +25,10 @@ export default function LoginModal({ onloggedIn }) {
         }
     }
 
-    const handleCheckoutClick = () => setModal(true)
-    const handleCloseClick = () => setModal(false)
-
-
 
     return (
         <>
-            <button type="button" class="px-6
-      py-2.5
-      bg-blue-600
-      text-white
-      rounded
-      shadow-md
-      hover:bg-blue-700 hover:shadow-lg
-      focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-      active:bg-blue-800 active:shadow-lg
-      transition
-      duration-150
-      ease-in-out" data-bs-toggle="modal" _data-bs-target="#exampleModal" onClick={handleCheckoutClick}>
-                Checkout
-            </button>
-
-            {modal && <div style={{display: 'block'}} class="show   modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+            <div style={{ display: 'block' }} class="show   modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
                 id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog relative w-auto pointer-events-none">
                     <div
@@ -55,7 +36,7 @@ export default function LoginModal({ onloggedIn }) {
                         <div
                             class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
                             <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">Loggin your account</h5>
-                            <button onClick={handleCloseClick} type="button"
+                            <button onClick={onClosedModal} type="button"
                                 class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
                                 data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
@@ -116,22 +97,11 @@ export default function LoginModal({ onloggedIn }) {
                             </form>                      </div>
                         <div
                             class="bg-principal-color modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                            <button type="button" class="px-6
-          py-2.5
-          bg-secondary-color
-          text-white
-          rounded
-          shadow-md
-          hover:bg-purple-700 hover:shadow-lg
-          focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0
-          active:bg-purple-800 active:shadow-lg
-          transition
-          duration-150
-          ease-in-out" data-bs-dismiss="modal" onClick={handleCloseClick}>Close</button>
+                            <button type="button" class="px-6 py-2.5 bg-secondary-color text-white rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal" onClick={onClosedModal}>Close</button>
                         </div>
                     </div>
                 </div>
-            </div>}
+            </div>
 
         </>
     )
