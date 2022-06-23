@@ -1,0 +1,25 @@
+.subject {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 2px solid rgba(131, 252, 74);
+    height: 70px;
+}
+
+.subject__button {
+    background-color: rgba(131, 252, 74);
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(255, 255, 255);
+}
+
+
+.subject__button--selected {
+    border-radius: 28px;
+    border: 3px solid rgba(248, 212, 25);
+}

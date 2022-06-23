@@ -1,0 +1,28 @@
+/* rgba(248, 212, 25) */
+
+.userMenu {
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(248, 212, 25);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.userMenu--opened {
+    width: 250px;
+}
+
+.userMenu h2{
+    font-family: 'Supermercado One', cursive;
+    font-size: 30px;
+    background-color: rgba(131, 252, 74);
+    color: rgb(255, 255, 255);
+    padding-left: 20px;
+    transition: 0.3s;
+    white-space: nowrap;
+}

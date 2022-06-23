@@ -1,0 +1,51 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.home__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.home__header-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-bottom: 2px solid rgba(131, 252, 74);
+}
+
+.home__header-filterText{
+    font-family: 'Supermercado One', cursive;
+    font-weight: lighter;
+}
+
+.home__body ul {
+    list-style-type: none;
+    padding: 0px;
+}
+
+.home__footer{
+    display: block;
+    height: 60px;
+}
+
+li {
+    display: flex;
+    justify-content: center;
+}
+
+.home__button--addPost {
+    background-color: rgba(131, 252, 74);
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    border: none;
+    font-size: 35px;
+    color: rgb(255, 255, 255);
+    position: relative;
+    left: 50%;
+    top: -30px;
+}
