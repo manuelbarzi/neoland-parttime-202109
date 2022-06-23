@@ -16,6 +16,7 @@ import createPart from "./createPart"
 import deletePart from './deletePart'
 import findVehicles from "./findVehicles"
 import findUsers from './findUsers'
+import addViewsVehicle from "./addViewsVehicle"
 
 export {
     registerCompany,
@@ -35,5 +36,6 @@ export {
     createPart,
     deletePart,
     findVehicles,
-    findUsers
+    findUsers,
+    addViewsVehicle
 }

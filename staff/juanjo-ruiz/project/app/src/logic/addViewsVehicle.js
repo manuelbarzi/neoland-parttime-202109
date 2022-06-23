@@ -1,32 +1,27 @@
 import { validators, errors } from 'commons'
 
-const { validateToken, validateString } = validators
+const { validateToken, validateId, validateString } = validators
 const { DuplicityError, ClientError, ServerError } = errors
 
-export default function (token, lisense, brand, model, frame, leasingCompany) {
+export default function (token, vehicleId, title, image) {
     validateToken(token)
-    validateString(lisense, 'lisense')
-    validateString(brand, 'brand')
-    validateString(model, 'model')
-    validateString(frame, 'frame')
-    validateString(leasingCompany, 'leasing company')
+    validateId(vehicleId, 'vehicle id')
+    validateString(title, 'title')
+    validateString(image, 'image')
 
-    return fetch('http://localhost:8080/api/vehicle', {
-        method: 'POST',
+    return fetch(`http://localhost:8080/api/vehicle/${vehicleId}/views`, {
+        method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ lisense, brand, model, frame, leasingCompany })
+        body: JSON.stringify({ title, image })
     })
         .then(res => {
             const { status } = res
 
             if (status === 201)
-                return res.json()
-                    .then(vehicle => {
-                        return vehicle
-                    })
+                return
             else if (status >= 400 && status < 500)
                 return res.json()
                     .then(payload => {

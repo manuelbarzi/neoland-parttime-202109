@@ -14,11 +14,7 @@ export default function () {
 
         try {
             createVehicle(sessionStorage.token, lisense, brand, model, frame, leasingCompany)
-                .then(() => {
-                    setFeedback({ level: 'info', message: 'vehículo creado' })
-
-                    navigate('/vehicles')
-                })
+                .then(vehicle => navigate(`/vehicle/${vehicle._id}/views`))
                 .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
             setFeedback({ level: 'error', message: error.message })

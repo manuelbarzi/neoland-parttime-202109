@@ -30,7 +30,8 @@ const {
     retrieveAllUsers,
     retrieveAllParts,
     findVehicles,
-    findUsers
+    findUsers,
+    addViewsVehicle
 } = require('./handlers')
 
 const { env: { MONGODB_URL, PORT } } = process
@@ -63,6 +64,7 @@ connect(MONGODB_URL)
         router.delete('/user/:userId/delete', jsonBodyParse, unregisterUser)
 
         router.post('/vehicle', jsonBodyParse, createVehicle)
+        router.patch('/vehicle/:vehicleId/views', jsonBodyParse, addViewsVehicle)
         router.get('/vehicles/active', retrieveActiveVehicles)
         router.get('/vehicles/deactivated', retrieveDeactivatedVehicles)
         router.get('/vehicle/:vehicleId', retrieveVehicle)

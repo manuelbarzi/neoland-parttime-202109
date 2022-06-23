@@ -9,7 +9,7 @@ module.exports = (req, res) => {
         const { body: { lisense, brand, model, frame, leasingCompany } } = req
 
         createVehicle(adminId, lisense, brand, model, frame, leasingCompany)
-            .then(() => res.status(201).send())
+            .then(vehicle => res.status(201).json(vehicle))
             .catch(error => {
                 let status = 500
 

@@ -18,7 +18,7 @@ function createVehicle(adminId, lisense, brand, model, frame, leasingCompany, ac
                 throw new AuthError(`user with id ${adminId} not authorized for this operation`)
 
             return Vehicle.create({ company: user.company, user: user.id, lisense, brand, model, frame, leasingCompany, active })
-                .then(vehicle => { })
+                .then(vehicle => { return vehicle })
                 .catch(error => {
                     if (error.message.includes('duplicate'))
                         throw new DuplicityError('vehicle already exist')

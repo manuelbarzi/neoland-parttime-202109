@@ -25,6 +25,7 @@ const retrieveAllUsers = require('./retrieveAllUsers')
 const retrieveAllParts = require('./retrieveAllParts')
 const findVehicles = require('./findVehicles')
 const findUsers = require('./findUsers')
+const addViewsVehicle = require('./addViewsVehicle')
 
 module.exports = {
     registerCompany,
@@ -53,5 +54,6 @@ module.exports = {
     retrieveAllUsers,
     retrieveAllParts,
     findVehicles,
-    findUsers
+    findUsers,
+    addViewsVehicle
 }
