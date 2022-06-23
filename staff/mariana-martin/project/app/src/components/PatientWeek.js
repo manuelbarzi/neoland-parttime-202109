@@ -25,12 +25,12 @@ function PatientWeek( { id }){
         <div> </div>
         <div className="container-days">
             <div className="select-day"><Day day="Monday" onDayClicked={handleDaySelected} /> </div>
-            <div className="select-day"><Day day="Tuesday"  /> </div>
-            <div className="select-day"><Day day="Wednesday"  /> </div>
-            <div className="select-day"><Day day="Thursday"  /> </div>
-            <div className="select-day"><Day day="Friday"  /> </div>
-            <div className="select-day"><Day day="Saturday"  /> </div>
-            <div className="select-day"><Day day="Sunday"  /> </div>
+            <div className="select-day"><Day day="Tuesday"  onDayClicked={handleDaySelected}/> </div>
+            <div className="select-day"><Day day="Wednesday"  onDayClicked={handleDaySelected}/> </div>
+            <div className="select-day"><Day day="Thursday"  onDayClicked={handleDaySelected}/> </div>
+            <div className="select-day"><Day day="Friday"  onDayClicked={handleDaySelected}/> </div>
+            <div className="select-day"><Day day="Saturday"  onDayClicked={handleDaySelected}/> </div>
+            <div className="select-day"><Day day="Sunday"  onDayClicked={handleDaySelected}/> </div>
         </div>
     </div>
     )

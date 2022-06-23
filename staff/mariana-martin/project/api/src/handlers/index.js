@@ -21,6 +21,7 @@ const addMealToPlanHandler = require('./addMealToPlanHandler')
 const removeMealFromPlanHandler = require('./removeMealFromPlanHandler')
 const retrieveMealPlanHandler = require('./retrieveMealPlanHandler')
 const retrievePlanFromPatientHandler = require('./retrievePlanFromPatientHandler')
+const retrievePatientMealsListHandler = require('./retrievePatientMealsListHandler')
 
 module.exports = {
     registerNutritionistHandler,
@@ -46,5 +47,6 @@ module.exports = {
     addMealToPlanHandler,
     removeMealFromPlanHandler, 
     retrieveMealPlanHandler,
-    retrievePlanFromPatientHandler
+    retrievePlanFromPatientHandler,
+    retrievePatientMealsListHandler
 }

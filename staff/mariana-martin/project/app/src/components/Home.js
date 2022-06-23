@@ -86,9 +86,13 @@ function Home({ onloggedOut }) {
             <div>
                 <Header name={name} role={role} />
                 <button onClick={handleLogout}>Logout</button>
-                <p>Hello Patient <strong>{name}</strong> </p>
-                <br></br>
                 <p>id: {id} </p>
+                <br></br>
+                <p>Hello <strong>{name}</strong> </p>
+                <p>Your Weekly MealPlan Is Right Here! </p>
+            
+           
+               
               
 
             <Routes>

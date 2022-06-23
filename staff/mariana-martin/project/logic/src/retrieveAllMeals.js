@@ -1,5 +1,5 @@
 const { models: { User, Meal } } = require('data')
-const { validators: { validateId }, errors: { NotFoundError } } = require('commons')
+const { validators: { validateId }, errors: { NotFoundError, AuthError } } = require('commons')
 
 function retrieveAllMeals(nutritionistId) {
     validateId(nutritionistId, 'nutritionist id')

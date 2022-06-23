@@ -17,6 +17,7 @@ import addMealToPlan from './addMealToPlan'
 import  retrieveMealPlan from './retrieveMealPlan'
 import removeMealFromPlan  from './removeMealFromPlan'
 import retrievePlanFromPatient from './retrievePlanFromPatient'
+import retrievePatientMealsList from './retrievePatientMealsList'
 
 
 export {
@@ -37,5 +38,6 @@ export {
     addMealToPlan,
     retrieveMealPlan, 
     removeMealFromPlan,
-    retrievePlanFromPatient
+    retrievePlanFromPatient,
+    retrievePatientMealsList
 }
