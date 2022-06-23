@@ -6,7 +6,7 @@ module.exports = (req, res) => {
         
         const nutritionistId = extractUserIdFromAuthorization(req)
 
-        const { params: { patientId, mealId }, body: { day  }} =req 
+        const { params: { patientId, mealId }, body: { day  }} = req 
 
         removeMealFromPlan(nutritionistId, patientId, day, mealId)
             .then(() => res.status(204).send())

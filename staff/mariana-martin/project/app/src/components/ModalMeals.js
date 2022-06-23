@@ -7,13 +7,10 @@ import ModalListMeal from './ModalListMeal'
 
 
 
-function ModalMeals( { closeModal, onAddMeal, onSelectedMeal  }){
+function ModalMeals( {  onCloseModal, onAddMeal, onSelectedMeal  }){
 
     const [ meals, setMeals ] = useState()
 
-  
-   
-    //const { patientId } = useParams()
    
     const { day } = useParams()
 
@@ -33,9 +30,10 @@ function ModalMeals( { closeModal, onAddMeal, onSelectedMeal  }){
     return(
         <div className="modal-background"  >
             <div className="modal-container">
+                <div className="modal-container__body">
                 <p> Select Meal Modal </p>
-                <p>{day}</p>
-                <button onClick={ closeModal }>x</button>
+                <p><strong> {day} </strong></p>
+                <button onClick={ onCloseModal }>x</button>
                 
                 <ul>
                     { meals ? meals.map (meal => {
@@ -46,7 +44,7 @@ function ModalMeals( { closeModal, onAddMeal, onSelectedMeal  }){
                 </ul>
                 <button onClick={ onAddMeal }> Add </button>
             </div>
-         
+          </div>
         </div>
     )
 }

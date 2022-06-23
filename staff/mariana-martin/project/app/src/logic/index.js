@@ -15,6 +15,9 @@ import deleteMeal from './deleteMeal'
 
 import addMealToPlan from './addMealToPlan'
 import  retrieveMealPlan from './retrieveMealPlan'
+import removeMealFromPlan  from './removeMealFromPlan'
+import retrievePlanFromPatient from './retrievePlanFromPatient'
+
 
 export {
     registerNutritionist,
@@ -32,5 +35,7 @@ export {
     deleteMeal,
 
     addMealToPlan,
-    retrieveMealPlan
+    retrieveMealPlan, 
+    removeMealFromPlan,
+    retrievePlanFromPatient
 }

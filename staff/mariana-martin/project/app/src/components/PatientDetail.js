@@ -18,10 +18,8 @@ function PatientDetail(){
         const params = useParams()
         const { patientId } = params
      
-
         const navigate = useNavigate()
 
-        
      useEffect(() => {
         try {
             retrievePatient( sessionStorage.token , patientId)
@@ -40,14 +38,7 @@ function PatientDetail(){
 
      const handleGoToPatientMealPlan = patientId => navigate(`/mealplan/${patientId}`)
 
-    //  const handleGoToPatientMealPlan = () => {
-    //      try {
-    //          retrieveMealPlan(sessionStorage.token, patientId, mealPlanId)
-    //          navigate(`/mealplan/${patientId}`)
-    //      } catch (error) {
-    //          alert(error.message)
-    //      }
-    //  }
+   
 
     return (
         

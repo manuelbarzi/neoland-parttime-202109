@@ -9,7 +9,7 @@
     justify-content: center;
 }
 
-.modal-container{
+.modal-container{   
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,9 +20,17 @@
     overflow-y: auto;
 }
 
+.modal-container__body{
+   
+    height: 70vh;
+    overflow-y: auto;
+}
+
+
+
 
 
 li {
-    background-color: #EDEDED;
+    background-color: #EDEDED; 
 }
     

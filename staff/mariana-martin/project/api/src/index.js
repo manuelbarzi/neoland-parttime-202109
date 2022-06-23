@@ -6,7 +6,8 @@ const cors = require('cors')
 const { registerNutritionistHandler, authenticateNutritionistHandler, retrieveNutritionistHandler, updateNutritionistHandler, deleteNutritionistHandler,
     createPatientHandler, authenticatePatientHandler, retrievePatientHandler, updatePatientHandler, retrieveAllPatientsHandler, deletePatientHandler,
     createMealHandler, retrieveMealHandler, updateMealHandler, retrieveAllMealsHandler, deleteMealHandler,
-    addMealToPlanHandler, removeMealFromPlanHandler, retrieveMealPlanHandler } = require('./handlers')
+    addMealToPlanHandler, removeMealFromPlanHandler, retrieveMealPlanHandler, retrievePlanFromPatientHandler } = require('./handlers')
+
 
 const { env: { MONGODB_URL, PORT } } = process
 
@@ -49,9 +50,9 @@ connect(MONGODB_URL)
 
         //mealPlans routes:
         router.post('/patient/:patientId/mealPlan/meal/:mealId', jsonBodyParser, addMealToPlanHandler)
-      
         router.get('/patient/:patientId/mealPlan', retrieveMealPlanHandler)
-        router.delete('/patient/:patientId/mealPlan/meal/:mealId', jsonBodyParser, removeMealFromPlanHandler)
+        router.get('/mealPlan/patient', retrievePlanFromPatientHandler) //El paciente recupera su plan
+        router.delete('/patient/:patientId/meal/:mealId', jsonBodyParser, removeMealFromPlanHandler)
       
 
 
