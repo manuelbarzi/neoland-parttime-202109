@@ -31,6 +31,7 @@ const deleteOrder = require('./deleteOrder')
 const generateOrder = require('./generateOrder')
 const updateOrderStatus = require('./updateOrderStatus')
 const addNoteToOrder = require('./addNoteToOrder')
+const monthlyExpenses = require('./monthlyExpenses')
 
 module.exports = {
     registerUser,
@@ -65,5 +66,6 @@ module.exports = {
     deleteOrder,
     generateOrder,
     updateOrderStatus,
-    addNoteToOrder
+    addNoteToOrder,
+    monthlyExpenses
 }

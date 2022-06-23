@@ -4,7 +4,7 @@ const { mongoose: { connect } } = require('data')
 const express = require('express')
 const cors = require('cors')
 
-const { registerUser, authenticateUser, retrieveUser, updateUser, deleteUser, createSupplier, retrieveSupplier, retrieveSuppliers, updateSupplier, createProduct, retrieveProduct, retrieveAllProductsFromSupplier, findSuppliers, updateProduct, createVariant, retrieveVariant, retrieveAllVariantsFromProduct, updateVariant, deleteVariant, createOrder, retrieveOrder, retrieveAllOrders, retrieveOrdersBySupplier, deleteItemFromOrder, addItemToOrder, addNoteToOrder, deleteOrder, updateOrderStatus } = require('./handlers')
+const { registerUser, authenticateUser, retrieveUser, updateUser, deleteUser, createSupplier, retrieveSupplier, retrieveSuppliers, updateSupplier, createProduct, retrieveProduct, retrieveAllProductsFromSupplier, findSuppliers, updateProduct, createVariant, retrieveVariant, retrieveAllVariantsFromProduct, updateVariant, deleteVariant, createOrder, retrieveOrder, retrieveAllOrders, retrieveOrdersBySupplier, deleteItemFromOrder, addItemToOrder, addNoteToOrder, deleteOrder, updateOrderStatus, monthlyExpenses } = require('./handlers')
 const { json } = require('express')
 const generateOrder = require('./handlers/generateOrder')
 
@@ -48,6 +48,7 @@ connect(MONGODB_URL)
 
         router.post('/orders', jsonBodyParser, createOrder)
         router.get('/orders/:orderId', retrieveOrder)
+        router.get('/dashboard/orders', monthlyExpenses)
         router.get('/orders', retrieveAllOrders)
         router.patch('/orders/:orderId', jsonBodyParser, updateOrderStatus)
         router.post('/orders/:orderId/add/items', jsonBodyParser, addItemToOrder)

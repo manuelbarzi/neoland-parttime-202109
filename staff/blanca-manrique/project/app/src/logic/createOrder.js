@@ -3,9 +3,10 @@ import { validators, errors } from 'commons'
 const { validateToken, validateString } = validators
 const { ClientError, ServerError, DuplicityError } = errors
 
-function createOrder(token, status) {
+function createOrder(token, status, description) {
     validateToken(token)
     validateString(status, 'order status')
+    if(description) validateString(description, 'description')
 
     return fetch('http://localhost:8080/api/orders', {
         method: 'POST',
@@ -13,7 +14,7 @@ function createOrder(token, status) {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ status })
+        body: JSON.stringify({ status, description })
     })
         .then(res => {
             const { status } = res

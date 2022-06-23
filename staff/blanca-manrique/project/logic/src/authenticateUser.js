@@ -11,7 +11,7 @@ function authenticateUser(email, password) {
 
     return User.findOne({ email })
         .then(user => {
-            if (!user) throw new AuthError('wrong credentials')
+            if (!user) throw new AuthError('email not found')
 
             return bcrypt.compare(password, user.password)
                 .then(match => {

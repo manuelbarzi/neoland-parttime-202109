@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { retrieveAllProductsFromSupplier } from '../logic'
+import { retrieveAllProductsFromSupplier, filterProducts } from '../logic'
 import { IoChevronForwardOutline, IoAdd, IoSearch } from "react-icons/io5"
 import './ListProducts.css'
 
@@ -30,18 +30,9 @@ function ListProducts() {
         navigate(`products/${productId}`)
     }
 
-    const searchData = (value) => {
-        setSearchTerm(value)
-        if (searchTerm !== '') {
-            const filteredData = products.filter((product) => {
-                //busca en toda la info de supplier --> return Object.values(supplier).join(' ').toLowerCase().includes(searchTerm.toLowerCase())
-                return (product.name.toLowerCase().includes(searchTerm.toLowerCase()) || product.category.toLowerCase().includes(searchTerm.toLowerCase()))
-            })
-            setFilteredResults(filteredData)
-        }
-        else {
-            setFilteredResults(products)
-        }
+    const searchProducts = (query) => {
+        setSearchTerm(query)
+        setFilteredResults(filterProducts(query, products))
     }
 
     return <div className='Products'>
@@ -49,7 +40,7 @@ function ListProducts() {
             <input
                 type="text"
                 placeholder='Search supplier...'
-                onChange={(e) => searchData(e.target.value)}
+                onChange={(e) => searchProducts(e.target.value)}
             />
             <IoSearch />
         </div>
@@ -71,12 +62,12 @@ function ListProducts() {
             products.map((product) => {
                 return (
                     <li className='Products__items-li' key={product.id} onClick={() => handleProductDetail(product.id)}>
-                    <div className='Products__items-li-text'>
-                        <p className='Products__items-li-name'>{product.name}</p>
-                        <p>Category: {product.category}</p>
-                    </div>
-                    <IoChevronForwardOutline className='Products__items-li-icon' />
-                </li>
+                        <div className='Products__items-li-text'>
+                            <p className='Products__items-li-name'>{product.name}</p>
+                            <p>Category: {product.category}</p>
+                        </div>
+                        <IoChevronForwardOutline className='Products__items-li-icon' />
+                    </li>
 
                 )
             })

@@ -23,7 +23,8 @@ const order = new Schema({
         type: Number
     },
     description: {
-        type: String
+        type: String,
+        required: false
     },
     items: [item],
     notes: [note]

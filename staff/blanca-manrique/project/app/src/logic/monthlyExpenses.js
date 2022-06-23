@@ -1,23 +1,27 @@
 import { validators, errors } from 'commons'
 
-const { validateToken, validateString } = validators
+const { validateToken } = validators
 const { AuthError, NotFoundError, FormatError, ClientError, ServerError } = errors
 
-export default function findSuppliers(token, query) {
+function retrieveAllOrders(token) {
     validateToken(token)
-    validateString(query, 'query')
 
-    return fetch(`http://localhost:8080/api/suppliers/search?q=${query}`), {
+    return fetch('http://localhost:8080/api/dashboard/orders', {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${token}`
         }
-    }
+    })
         .then(res => {
             const { status } = res
 
             if (status === 200)
                 return res.json()
+                // .then(orders => { //tenemos que pasar la propiedad order.createdAt de formato String a formato FECHA!!
+                //     orders.forEach(order => order.createdAt = new Date(order.createdAt))
+
+                //     return orders
+                // })
             else if (status >= 400 && status < 500)
                 return res.json()
                     .then(payload => {
@@ -38,5 +42,6 @@ export default function findSuppliers(token, query) {
                         throw new ServerError(text)
                     })
         })
-
 }
+
+export default retrieveAllOrders

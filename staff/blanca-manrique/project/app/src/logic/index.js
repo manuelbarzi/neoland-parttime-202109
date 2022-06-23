@@ -15,7 +15,6 @@ import updateVariant from './updateVariant'
 import retrieveAllOrders from './retrieveAllOrders'
 import createOrder from './createOrder'
 import retrieveOrder from './retrieveOrder'
-import findSuppliers  from './findSuppliers'
 import addItemToOrder from './addItemToOrder'
 import addNoteToOrder from './addNoteToOrder'
 import deleteItemFromOrder from './deleteItemFromOrder'
@@ -23,6 +22,10 @@ import deleteOrder from './deleteOrder'
 import generateOrder from './generateOrder'
 import updateOrderStatus from './updateOrderStatus'
 import filterSuppliers from './filterSuppliers'
+import filterProducts from './filterProducts'
+import filterVariants from './filterVariants'
+import filterOrders from './filterOrders'
+import monthlyExpenses from './monthlyExpenses'
 
 export {
     registerUser,
@@ -42,12 +45,15 @@ export {
     retrieveAllOrders,
     createOrder,
     retrieveOrder,
-    findSuppliers,
     addItemToOrder,
     addNoteToOrder,
     deleteItemFromOrder,
     deleteOrder,
     generateOrder,
     updateOrderStatus,
-    filterSuppliers
+    filterSuppliers,
+    filterProducts,
+    filterVariants,
+    filterOrders,
+    monthlyExpenses
 }

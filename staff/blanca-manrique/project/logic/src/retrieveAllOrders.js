@@ -2,7 +2,7 @@
 const { models: { User, Order, Variant, Product, Supplier } } = require('data')
 const {
     validators: { validateId },
-    errors: { NotFoundError }
+    errors: { NotFoundError, AuthError }
 } = require('commons')
 
 
@@ -19,11 +19,13 @@ function retrieveAllOrders(userId) {
             if (orders.length === 0) throw new NotFoundError(`user with id ${userId} has no created orders`)
 
             orders.forEach(order => {
+                if (order.user.toString() !== userId) throw new AuthError(`user with id ${userId} is not allowed to retrieve order with id ${order.id}`)
+
                 order.id = order._id.toString()
                 delete order._id
                 delete order.__v
 
-                order.items.forEach(item => { //limpiamos cada item del array
+                order.items.forEach(item => { 
                     item.id = item._id.toString()
                     delete item._id
 
@@ -32,7 +34,6 @@ function retrieveAllOrders(userId) {
 
                     delete item.variant
                 })
-
 
             })
             return orders

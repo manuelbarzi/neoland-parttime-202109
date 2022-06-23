@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react'
-import { useNavigate, Routes, Route } from "react-router-dom"
+import { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom"
 import { retrieveSuppliers, filterSuppliers } from '../logic'
 import { IoChevronBack, IoChevronForwardOutline, IoAdd, IoSearch } from "react-icons/io5"
 import './ListSuppliers.css'

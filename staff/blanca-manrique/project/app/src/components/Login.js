@@ -1,6 +1,7 @@
-import { authenticateUser } from '../logic'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { authenticateUser } from '../logic'
+import Feedback from './Feedback'
 
 function Login({ onLoggedIn }) {
     const [feedback, setFeedback] = useState()
@@ -9,8 +10,10 @@ function Login({ onLoggedIn }) {
     const login = event => {
         event.preventDefault()
 
-        const { target: { email: { value: email }, password: { value: password } } } = event
-        //const email = event.target.email.value
+        const { target:
+            { email: { value: email },
+                password: { value: password }
+            } } = event
 
         try {
             authenticateUser(email, password)
@@ -18,9 +21,12 @@ function Login({ onLoggedIn }) {
                     sessionStorage.token = token
                     onLoggedIn()
                 })
-                .catch(error => setFeedback(error.message))
+                .catch(error => {
+                    setFeedback({ level: 'error', message: error.message })
+                    if (error.message === 'token expired') delete sessionStorage.token
+                })
         } catch (error) {
-            setFeedback(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 
@@ -32,8 +38,10 @@ function Login({ onLoggedIn }) {
         <form onSubmit={login}>
             <input type="text" name="email" placeholder="e-mail" />
             <input type="password" name="password" placeholder="password" />
-            <button>Sign in</button>
-            {feedback ? <p>feedback</p> : null}
+
+            {feedback ? <Feedback level={feedback.level} message={feedback.message} /> : null}
+
+            <button type="submit">Sign in</button>
         </form>
 
     </div>
