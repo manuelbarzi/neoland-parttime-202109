@@ -29,7 +29,8 @@ const {
     updatePart,
     retrieveAllUsers,
     retrieveAllParts,
-    findVehicles
+    findVehicles,
+    findUsers
 } = require('./handlers')
 
 const { env: { MONGODB_URL, PORT } } = process
@@ -55,6 +56,7 @@ connect(MONGODB_URL)
         router.post('/user/auth', jsonBodyParse, authenticateUser)
         router.get('/user/:userId', retrieveUser)
         router.get('/users', retrieveAllUsers)
+        router.get('/users/search', findUsers)
         router.patch('/user/:userId/update', jsonBodyParse, updateUser)
         router.patch('/user/:userId/deactivated', jsonBodyParse, activateUser)
         router.patch('/user/:userId/active', jsonBodyParse, disableUser)

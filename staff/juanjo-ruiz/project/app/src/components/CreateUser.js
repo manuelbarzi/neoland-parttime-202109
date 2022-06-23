@@ -11,10 +11,10 @@ export default function () {
     const newUser = event => {
         event.preventDefault()
 
-        const { target: { id: { value: id }, name: { value: name }, email: { value: email }, password: { value: password }, phone: { value: phone }, dischargeDate: { value: dischargeDate }, role: { value: role } } } = event
+        const { target: { businessId: { value: businessId }, name: { value: name }, email: { value: email }, password: { value: password }, phone: { value: phone }, dischargeDate: { value: dischargeDate }, role: { value: role } } } = event
 
         try {
-            createUser(sessionStorage.token, id, name, email, password, phone, dischargeDate, role)
+            createUser(sessionStorage.token, businessId, name, email, password, phone, dischargeDate, role)
                 .then(() => {
                     setFeedback({ level: 'info', message: 'usuario creado' })
 
@@ -30,7 +30,7 @@ export default function () {
         <a onClick={() => navigate('/users')}>Volver</a>
         <h2>Nuevo usuario</h2>
         <form onSubmit={newUser}>
-            <input type="name" name="id" placeholder="id driver" required />
+            <input type="name" name="businessId" placeholder="id driver" required />
             <input type="name" name="name" placeholder="nombre" required />
             <input type="email" name="email" placeholder="correo electrónico" required />
             <input type="password" name="password" placeholder="contraseña" required />

@@ -29,12 +29,13 @@ function validatePassword(password) {
 
 function validateCif(cif) {
     if (typeof cif !== 'string') throw new TypeError('cif is not string')
-    if(!cif.trim()) throw new Error('cif is empty or blank')
+    if (!cif.trim()) throw new Error('cif is empty or blank')
     if (cif.trim().length < 9) throw new Error('cif length is smaller than 9 characters')
 }
 
 function validateDate(date) {
-    if (typeof date !== Date) throw new TypeError('date is not date')
+    if (typeof date !== 'date') throw new TypeError('date is not date')
+    if (!date.trim()) throw new Error('cif is empty or blank')
 }
 
 function validatePhone(phone) {
@@ -67,8 +68,8 @@ module.exports = {
     validateBoolean,
     validateEmail,
     validatePassword,
-    validateDate,
-    validateToken,
     validateCif,
-    validatePhone
+    validateDate,
+    validatePhone,
+    validateToken
 }

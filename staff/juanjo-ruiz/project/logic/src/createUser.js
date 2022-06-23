@@ -1,15 +1,15 @@
-const { models: { User, user } } = require('data')
+const { models: { User } } = require('data')
 const bcrypt = require('bcryptjs')
 const { errors: { DuplicityError, NotFoundError, AuthError }, validators: { validateString, validateEmail, validatePassword, validateId, validateDate, validatePhone } } = require('commons')
 
-function createUser(userId, id, name, email, password, phone, dischargeDate, role = 'driver') {
+function createUser(userId, businessId, name, email, password, phone, dischargeDate, role = 'driver') {
     validateId(userId, 'user id')
-    validateString(id, 'id')
+    validateString(businessId, 'business id')
     validateString(name, 'name')
     validateEmail(email)
     validatePassword(password)
-    validatePhone(phone)
-    validateDate(dischargeDate)
+    validateString(phone, 'phone')
+    validateString(dischargeDate, 'discharge date')
     validateString(role, 'role')
 
     return User.findById(userId)
@@ -26,7 +26,7 @@ function createUser(userId, id, name, email, password, phone, dischargeDate, rol
                 throw new AuthError(`user with id ${userId} not authorized for this operation`)
 
             return bcrypt.hash(password, 10)
-                .then(hash => User.create({ company: user.company, user: user.id, id, name, email, password: hash, phone, dischargeDate, role }))
+                .then(hash => User.create({ company: user.company, user: user.id, businessId, name, email, password: hash, phone, dischargeDate, role }))
                 .then(user => { })
                 .catch(error => {
                     if (error.message.includes('duplicate'))

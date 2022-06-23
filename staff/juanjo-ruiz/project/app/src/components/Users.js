@@ -38,11 +38,16 @@ export default function ({ onDetailUser }) {
         }
     }
 
+    const handleButton = () => {
+        results.length ?
+            setControls(false)
+            : navigate('/')
+    }
+
     const handleDetailUser = id => onDetailUser(id)
 
-
     return <div>
-        <a onClick={() => navigate('/')}>Volver</a>
+        <a onClick={handleButton}>Volver</a>
         <h2>USUARIOS</h2>
 
         <form onSubmit={search}>

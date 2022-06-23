@@ -33,10 +33,9 @@ export default function ({ onLoggedOut }) {
     return <div>
         <h1><Link to="/">Home</Link></h1>
         <button onClick={handleLogout}>cerrar sesión</button>
-
-        <Nav />
-
+        
         <Routes>
+            <Route path="/" element={<Nav />} />
             <Route path="/users" element={<Users onDetailUser={handleShowUser} />} />
             <Route path="/user/:userId" element={<UserDetail />} />
             <Route path="/user" element={<CreateUser />} />

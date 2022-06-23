@@ -1,6 +1,6 @@
 const { createVehicle } = require('logic')
 const { extractUserIdFromAuthorization } = require('./helpersUser')
-const { errors: { DuplicityError, TypeError, FormatError } } = require('commons')
+const { errors: { DuplicityError, FormatError } } = require('commons')
 
 module.exports = (req, res) => {
     try {

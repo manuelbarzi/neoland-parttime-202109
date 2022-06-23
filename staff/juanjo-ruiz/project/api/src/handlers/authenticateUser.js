@@ -1,7 +1,7 @@
 const { authenticateUser } = require('logic')
 const { env: { JWT_SECRET, JWT_EXP } } = process
 const { sign } = require('jsonwebtoken')
-const { errors: { AuthError, FormatError, TypeError } } = require('commons')
+const { errors: { AuthError, FormatError } } = require('commons')
 
 module.exports = (req, res) => {
     try {

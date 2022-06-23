@@ -39,7 +39,7 @@ export default function ({ onDetailVehicle }) {
     }
 
     const handleButton = () => {
-        results ? 
+        results.length ? 
             setControls(false)
             : navigate('/')
     }

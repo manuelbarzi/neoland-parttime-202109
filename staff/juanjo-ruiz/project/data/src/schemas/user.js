@@ -14,7 +14,7 @@ const user = new Schema({
         required: true
     },
 
-    id: {
+    businessId: {
         type: String
     },
 

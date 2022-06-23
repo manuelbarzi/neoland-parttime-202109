@@ -1,6 +1,6 @@
 const { extractUserIdFromAuthorization } = require('./helpersUser')
 const { retrieveAllUsers } = require('logic')
-const { errors: { AuthError, NotFoundError, TypeError, FormatError } } = require('commons')
+const { errors: { AuthError, NotFoundError, FormatError } } = require('commons')
 
 module.exports = (req, res) => {
     try {

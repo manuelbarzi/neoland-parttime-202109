@@ -3,14 +3,14 @@ import { validators, errors } from 'commons'
 const { validateToken, validateString, validatePassword, validateEmail, validatePhone, validateDate } = validators
 const { DuplicityError, ClientError, ServerError } = errors
 
-export default function (token, id, name, email, password, phone, dischargeDate, role) {
+export default function (token, businessId, name, email, password, phone, dischargeDate, role) {
     validateToken(token)
-    validateString(id, 'id')
+    validateString(businessId, 'business id')
     validateString(name, 'name')
     validateEmail(email)
     validatePassword(password)
-    validatePhone(phone)
-    validateDate(dischargeDate)
+    validateString(phone, 'phone')
+    validateString(dischargeDate, 'discharge date')
     validateString(role, 'role')
 
     return fetch('http://localhost:8080/api/user', {
@@ -19,7 +19,7 @@ export default function (token, id, name, email, password, phone, dischargeDate,
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ name, email, password, role })
+        body: JSON.stringify({ businessId, name, email, password, phone, dischargeDate, role })
     })
         .then(res => {
             const { status } = res

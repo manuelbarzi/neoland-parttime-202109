@@ -1,14 +1,14 @@
 const { createUser } = require('logic')
 const { extractUserIdFromAuthorization } = require('./helpersUser')
-const { errors: { DuplicityError, TypeError, FormatError } } = require('commons')
+const { errors: { DuplicityError, FormatError } } = require('commons')
 
 module.exports = (req, res) => {
     try {
         const userId = extractUserIdFromAuthorization(req)
 
-        const { body: { id, name, email, password, phone, dischargeDate, role } } = req
+        const { body: { businessId, name, email, password, phone, dischargeDate, role } } = req
 
-        createUser(userId, id, name, email, password, phone, dischargeDate, role)
+        createUser(userId, businessId, name, email, password, phone, dischargeDate, role)
             .then(() => res.status(201).send())
             .catch(error => {
                 let status = 500

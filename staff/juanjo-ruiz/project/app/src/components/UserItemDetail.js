@@ -15,6 +15,7 @@ export default function ({ content }) {
     }, [])
     
     return <div>
+        <p>{content.businessId}</p>
         <p>{content.name}</p>
         <p>{content.email}</p>
         <time>{content.newDate}</time>
