@@ -17,6 +17,7 @@ import deletePart from './deletePart'
 import findVehicles from "./findVehicles"
 import findUsers from './findUsers'
 import addViewsVehicle from "./addViewsVehicle"
+import retrieveView from "./retrieveView"
 
 export {
     registerCompany,
@@ -37,5 +38,6 @@ export {
     deletePart,
     findVehicles,
     findUsers,
-    addViewsVehicle
+    addViewsVehicle,
+    retrieveView
 }

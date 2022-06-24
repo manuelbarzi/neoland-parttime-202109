@@ -17,6 +17,8 @@ export default function ({ content }) {
         <p>{content.businessId}</p>
         <p>{content.name}</p>
         <p>{content.email}</p>
+        <p>{content.phone}</p>
+        <p>{content.newDischargeDate}</p>
         <time>{content.newDate}</time>
         <p>{content.role}</p>
         <p>{state}</p>

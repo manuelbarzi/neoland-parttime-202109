@@ -15,6 +15,7 @@ import PartDetail from './PartDetail'
 import CreatePart from './CreatePart'
 import DeletePart from './DeletePart'
 import AddViewsVehicle from './AddViewsVehicle'
+import ViewDetail from './ViewDetail'
 
 export default function ({ onLoggedOut }) {
     const navigate = useNavigate()
@@ -34,7 +35,7 @@ export default function ({ onLoggedOut }) {
     return <div>
         <h1><Link to="/">Home</Link></h1>
         <button onClick={handleLogout}>cerrar sesión</button>
-        
+
         <Routes>
             <Route path="/" element={<Nav />} />
             <Route path="/users" element={<Users onDetailUser={handleShowUser} />} />
@@ -46,6 +47,7 @@ export default function ({ onLoggedOut }) {
             <Route path="/vehicle/:vehicleId" element={<VehicleDetail />} />
             <Route path="/vehicle" element={<CreateVehicle />} />
             <Route path="/vehicle/:vehicleId/views" element={<AddViewsVehicle />} />
+            <Route path="/vehicle/:vehicleId/view/:viewId" element={<ViewDetail />} />
             <Route path="/vehicle/:vehicleId/update" element={<UpdateVehicle />} />
             <Route path="/vehicle/:vehicleId/delete" element={<DeleteVehicle />} />
             <Route path="/vehicle/:vehicleId/parts" element={<Parts onDetailPart={handleShowPart} />} />

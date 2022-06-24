@@ -1,8 +1,9 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useState, useEffect } from 'react'
 
-export default function ({ content }) {
+export default function ({ content, onDetailView }) {
     const navigate = useNavigate()
+    const { vehicleId } = useParams()
     const [state, setState] = useState()
     const [part, setPart] = useState()
 
@@ -21,17 +22,14 @@ export default function ({ content }) {
             setPart(content.parts.length)
         }
     }, [])
-    console.log(content.views)
+
+    const handleDetailView = (vehicleId, viewId) => onDetailView(vehicleId, viewId)
 
     return <div>
-        <h6></h6>
-        {content.views.length ? <img src={content.views[0].image} /> : <p>No hay fotos </p>}
-        <h6></h6>
-        {content.views.length ? <img src={content.views[1].image} /> : <p>No hay fotos </p>}
-        <h6></h6>
-        {content.views.length ? <img src={content.views[2].image} /> : <p>No hay fotos </p>}
-        <h6></h6>
-        {content.views.length ? <img src={content.views[3].image} /> : <p>No hay fotos </p>}
+        {content.views.length ? <img src={content.views[0].image} onClick={() => handleDetailView(vehicleId, content.views[0]._id)} /> : <p>No hay foto</p>}
+        {content.views.length ? <img src={content.views[1].image} onClick={() => handleDetailView(vehicleId, content.views[1]._id)}/> : <p>No hay foto</p>}
+        {content.views.length ? <img src={content.views[2].image} onClick={() => handleDetailView(vehicleId, content.views[2]._id)}/> : <p>No hay foto</p>}
+        {content.views.length ? <img src={content.views[3].image} onClick={() => handleDetailView(vehicleId, content.views[3]._id)}/> : <p>No hay foto</p>}
         <p>{content.lisense}</p>
         <p>{content.brand}</p>
         <p>{content.model}</p>

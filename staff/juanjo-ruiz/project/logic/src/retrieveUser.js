@@ -15,6 +15,7 @@ function retrieveUser(adminId, userId) {
 
             user.id = user._id.toString()
             user.newDate = user.date.toLocaleDateString()
+            user.newDischargeDate = user.date.toLocaleDateString()
 
             delete user._id
             delete user.__v

@@ -12,6 +12,7 @@ export default function ({ content }) {
     }, [])
 
     return <div>
+        <h3>{content.businessId}</h3>
         <h3>{content.name}</h3>
         <p>{content.role}</p>
         <span>{state}</span>

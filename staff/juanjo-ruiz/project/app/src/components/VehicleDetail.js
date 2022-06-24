@@ -22,10 +22,12 @@ export default function () {
         }
     }, [])
 
+    const handleDetailView = (vehicleId, viewId) => navigate(`/vehicle/${vehicleId}/view/${viewId}`)
+
     return <div>
         <a onClick={() => navigate('/vehicles')}>Volver</a>
 
-        {vehicle ? <VehicleItemDetail content={vehicle} /> : <p>Vehículo no encontrado</p>}
+        {vehicle ? <VehicleItemDetail content={vehicle} onDetailView={handleDetailView} /> : <p>Vehículo no encontrado</p>}
 
     </div>
 }
