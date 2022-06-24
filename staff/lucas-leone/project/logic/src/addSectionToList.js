@@ -3,6 +3,7 @@ const {
     validators: { validateId, validateString, validateArray },
     errors: { NotFoundError }
 } = require('commons')
+const { section } = require('data/src/schemas')
 /**
  * 
  * @param {ObjectId} ListId 
@@ -10,12 +11,11 @@ const {
  * @param {Array de objectId} items 
  * @returns 
  */
-function addSectionToList(restaurantId, listId, name, items) {
+function addSectionToList(restaurantId, listId, name) {
 
     validateId(restaurantId, 'restaurant id')
     validateId(listId, 'List id')
     validateString(name, 'name')
-    validateArray(items, 'items')
 
 
     return Restaurant.findById(restaurantId)
@@ -28,16 +28,13 @@ function addSectionToList(restaurantId, listId, name, items) {
 
                     const section = new Section({ name })
 
-                    items.forEach(item => {
-                        section.items.push(item)
-                    });
-
                     list.sections.push(section)
 
-                    return list.save()
+                    list.save()
+
+                    return section._id
                 })
         })
-        .then(list => { })
 }
 
 module.exports = addSectionToList

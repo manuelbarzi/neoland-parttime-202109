@@ -21,10 +21,6 @@ const list = new Schema({
         required: true
     },
 
-    image: {
-        type: String
-    },
-
     sections: [section]
     ,
 

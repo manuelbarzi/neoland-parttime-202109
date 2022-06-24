@@ -1,12 +1,14 @@
 import { createList } from "../logic"
+import { useContext } from 'react'
+import { useParams, useNavigate } from "react-router-dom"
+import Context from './Context'
 
 //list: {id, name, description, sections},
 
 export default ({ onSaved }) => {
 
-
-
-
+    const { setFeedback } = useContext(Context)
+    const navigate = useNavigate()
     const handleSave = event => {
         event.preventDefault()
 
@@ -17,16 +19,20 @@ export default ({ onSaved }) => {
                 .then(() => {
                     onSaved()
                 })
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({ level: 'info', message: error.message }))
 
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'info', message: error.message })
         }
 
+    }
+    const handleGoBack = () => {
+        navigate(`/`)
     }
 
 
     return <div>
+        <button onClick={handleGoBack}>x</button>
         <h1>New List</h1>
         <form onSubmit={handleSave}>
             <input type="text" name="name" ></input>

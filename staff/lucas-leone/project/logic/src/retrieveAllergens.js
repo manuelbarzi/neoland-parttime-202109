@@ -8,17 +8,20 @@ function retrieveCategory(restaurantId) {
         .then(restaurant => {
             if (!restaurant) throw new NotFoundError(`restaurant with id ${restaurantId} not found`)
 
-            return Allergen.find({})
+            return Allergen.find().lean()
         })
         .then(allergens => {
-            allergens.map(allergen =>{
+            allergens.forEach(allergen => {
                 allergen.id = allergen._id.toString()
 
-            delete allergen._id
-            delete allergen.__v})
+                delete allergen._id
+                delete allergen.__v
 
+
+            })
 
             return allergens
+
         })
 
 }

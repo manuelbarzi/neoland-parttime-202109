@@ -1,7 +1,10 @@
 import { registerUser } from "../logic";
+import { useContext } from 'react'
+import Context from './Context'
 
 
 export default function ({ onRegistered }) {
+    const { setFeedback } = useContext(Context)
     const register = event => {
         event.preventDefault()
 
@@ -16,10 +19,10 @@ export default function ({ onRegistered }) {
                     onRegistered()
 
                 })
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
 
         } catch (error) {
-            alert(error.message)
+             setFeedback({ level: 'error', message: error.message })
 
         }
     }

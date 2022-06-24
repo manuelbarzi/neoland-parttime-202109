@@ -22,6 +22,15 @@ function retrieveList(restaurantId, listId) {
             delete list._id
             delete list.__v
 
+            const {sections} = list
+            sections.forEach(section => {
+
+                section.id = section._id.toString()
+
+                delete section._id
+                delete section.__v
+            })
+
             return list
         })
 

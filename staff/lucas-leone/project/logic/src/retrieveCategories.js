@@ -8,10 +8,10 @@ function retrieveCategory(restaurantId) {
         .then(restaurant => {
             if (!restaurant) throw new NotFoundError(`restaurant with id ${restaurantId} not found`)
 
-            return Category.find({})
+            return Category.find().lean()
         })
         .then(categories => {
-            categories.map(category =>{
+            categories.forEach(category =>{
                 category.id = category._id.toString()
 
             delete category._id

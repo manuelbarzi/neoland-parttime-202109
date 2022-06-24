@@ -1,7 +1,7 @@
 const { models: { Restaurant, List } } = require('data')
 
 
-function updateList(restaurantId, listId, name, description, image, price) {
+function updateList(restaurantId, listId, name, description, price) {
 
 
     return Promise.all([Restaurant.findById(restaurantId), List.findById(listId)])
@@ -14,7 +14,6 @@ function updateList(restaurantId, listId, name, description, image, price) {
             list.name = name
             list.description = description
             list.price = price
-            list.image = image
 
             return list.save()
         })

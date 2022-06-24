@@ -9,10 +9,10 @@ function retrieveIngredients(restaurantId) {
         .then(restaurant => {
             if (!restaurant) throw new NotFoundError(`restaurant with id ${restaurantId} not found`)
 
-            return Ingredient.find({})
+            return Ingredient.find().lean()
         })
         .then(ingredients => {
-            ingredients.map(ingredient =>{
+            ingredients.forEach(ingredient =>{
                 ingredient.id = ingredient._id.toString()
 
             delete ingredient._id

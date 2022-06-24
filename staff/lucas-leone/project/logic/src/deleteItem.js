@@ -1,37 +1,19 @@
-const { models: { Restaurant, List } } = require('data')
+const { models: { Restaurant, Item, List }} = require('data')
+const { validators: { validateId }, errors: { AuthError, NotFoundError }} = require('commons')
 
-const {
-    validators: { validateId},
-    errors: { NotFoundError }
-} = require('commons')
-
-function deleteItem(restaurantId, listId, sectionId, itemId) {
+function deleteItem(restaurantId, itemId) {
     validateId(restaurantId, 'restaurant id')
-    validateId(listId, 'list id')
-    validateId(sectionId, 'section id')
     validateId(itemId, 'item id')
 
-    return Promise.all([Restaurant.findById(restaurantId), List.findById(listId)])
-        .then(([restaurant, list]) => {
+    return Promise.all([Restaurant.findById(restaurantId), Item.findById(itemId)])
+        .then(([restaurant, item]) => {
             if (!restaurant) throw new NotFoundError(`restaurant with id ${restaurantId} not found`)
-            if (!list) throw new NotFoundError(`list with id ${listId} not found`)
+            if (!item) throw new NotFoundError(`item with id ${itemId} not found`)
+                return Item.deleteOne({ _id: itemId })
+            })
+            .then(() => {})
+        }
+       
 
-            const { sections } = list
-
-            const section = sections.find(section => section.id === sectionId)
-
-            const { items } = section
-
-            const itemIndex = items.findIndex(item => item.toString() === itemId)
-
-            if (itemIndex < 0)
-                throw new NotFoundError(`item with id ${itemId} not found`)
-
-            items.splice(itemIndex, 1)
-
-            return list.save()
-        })
-        .then(() => { })
-}
 
 module.exports = deleteItem

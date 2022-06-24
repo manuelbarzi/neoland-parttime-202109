@@ -17,7 +17,7 @@ function retrieveItemsFromList(restaurantId, items) {
             return Item.find({
                 '_id': { $in: items }
 
-            }).lean()  
+            }).lean().populate('categories').populate('allergens').populate('ingredients')
         })
         .then(items => {
 
@@ -26,6 +26,41 @@ function retrieveItemsFromList(restaurantId, items) {
 
                 delete item._id
                 delete item.__v
+
+                const { categories } = item
+                categories.forEach(category => {
+                    if (category._id) {
+                        category.id = category._id.toString()
+
+                        delete category._id
+                        delete category.__v
+                    }
+
+                })
+
+                const { ingredients } = item
+                ingredients.forEach(ingredient => {
+
+                    ingredient.id = ingredient._id.toString()
+                    if (ingredient._id) {
+                        delete ingredient._id
+                        delete ingredient.__v
+                    }
+
+                })
+
+                const { allergens } = item
+                allergens.forEach(allergen => {
+                    if (allergen._id) {
+                        allergen.id = allergen._id.toString()
+
+                        delete allergen._id
+                        delete allergen.__v
+                    }
+
+                })
+
+
 
             })
 

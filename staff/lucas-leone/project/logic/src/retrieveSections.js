@@ -6,7 +6,7 @@ const {
 } = require('commons')
 
 function retrieveSections(restaurantId, listId) {
-    
+
     validateId(restaurantId, 'restaurant id')
     validateId(listId, 'list id')
 

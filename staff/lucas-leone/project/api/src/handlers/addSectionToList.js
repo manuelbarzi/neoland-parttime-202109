@@ -5,10 +5,13 @@ module.exports = (req, res) => {
     try {
         const restaurantId = extractUserIdFromAuthorization(req)
 
-        const { params: { listId }, body: { name, items } } = req
+        const { params: { listId }, body: { name } } = req
 
-        addSectionToList(restaurantId, listId, name, items)
-            .then(() => res.status(204).send())
+        addSectionToList(restaurantId, listId, name)
+            .then(sectionId => {
+                res.status(200).json({ sectionId })
+            })
+            
             .catch(error => res.status(400).json({ error: error.message }))
     } catch (error) {
         res.status(400).json({ error: error.message })

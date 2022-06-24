@@ -1,7 +1,10 @@
-import { authenticateUser } from "../logic";
+import { authenticateUser } from "../logic"
+import { useContext } from 'react'
+import Context from './Context'
 
 
 export default function ({ onLogged }) {
+    const { setFeedback } = useContext(Context)
     const login = event => {
         event.preventDefault()
 
@@ -13,13 +16,13 @@ export default function ({ onLogged }) {
                 .then(token => {
                      sessionStorage.token = token
 
-                    onLogged()
+                    onLogged(username)
 
                 })
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
 
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
 
         }
     }
