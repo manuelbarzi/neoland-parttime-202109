@@ -23,7 +23,9 @@ export default function () {
         }
     }
 
-    const handleAddViews = () => {
+    const handleAddViews = event => {
+        event.preventDefault()
+
         imageB64.map(image => {
                 try {
                     addViewsVehicle(sessionStorage.token, vehicleId, image.title, image.image)
@@ -37,7 +39,7 @@ export default function () {
                 }
             })
     }
-
+console.log(imageB64)
 
     return <div>
         <a onClick={() => navigate('/vehicle')}>Volver</a>
@@ -45,16 +47,16 @@ export default function () {
         <form>
             <h4>Parte frontal</h4>
             <input type="file" name="imageLead" onChange={handleUploadB64} />
-            {/* {imageB64 && <img src={imageB64[0].image} />} */}
+            { imageB64.length && <img src={imageB64[0].image} />}
             <h4>Parte derecha</h4>
             <input type="file" name="imageRight" onChange={handleUploadB64} />
-            {/* <img src={imageB64.image[1]} /> */}
+            { imageB64.length && <img src={imageB64[1].image} />}
             <h4>Parte trasera</h4>
             <input type="file" name="imageRear" onChange={handleUploadB64} />
-            {/* <img src={imageB64.image[2]} /> */}
+            { imageB64.length && <img src={imageB64[2].image} />}
             <h4>Parte izquierda</h4>
             <input type="file" name="imageLeft" onChange={handleUploadB64} />
-            {/* <img src={imageB64.image[3]} /> */}
+            { imageB64.length && <img src={imageB64[3].image} />}
             <button onClick={handleAddViews}>Añadir imágenes</button>
         </form>
     </div>
