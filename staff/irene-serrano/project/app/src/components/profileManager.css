@@ -1,0 +1,75 @@
+.Company__profileManager,
+.Developer__profileManager {
+    margin: 0 var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.profileManager__title {
+    font-size: var(--text_title-md);
+}
+
+.profileManager__form {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md)
+}
+.profileManager__form label{
+    align-self: flex-start;
+    font-weight: var(--fontWeight-bolder);
+
+
+
+}
+
+.profileManager__input {
+    width: 100%;
+    min-width: 14rem;
+    padding: var(--space-sm);
+    border: var(--line-md) solid var(--color_primary);
+    border: 2px solid var(--color_primary);
+    border-radius: var(--space-sm);
+    background-color: var(--color_transparent);
+    resize: none;
+}
+
+textarea.profileManager__input {
+    height: 14rem;
+}
+
+.profileManager__submitButton {
+    width: fit-content;
+    margin: var(--space-sm) 0;
+    padding: var(--space-sm) var(--space-lg);
+    border: var(--line-md) solid var(--color_primary);
+    border: none;
+    border-radius: var(--space-sm);
+    background-color: var(--color_primary);
+    color: var(--color_primary-darker);
+    font-weight: var(--fontWeight-bolder);
+}
+
+.profileManager__submitButton:hover {
+
+    background-color: var(--color_primary-dark);
+}
+
+.profileManager__deleteButton {
+    width: fit-content;
+    margin: var(--space-md) auto;
+    padding: var(--space-sm) var(--space-lg);
+    border: 2px solid var(--color_error-midOpacity);
+    border-radius: var(--space-sm);
+    background-color: var(--color_transparent);
+    font-weight: var(--fontWeight-bolder);
+    color: var(--color_error);
+}
+
+.profileManager__deleteButton:hover {
+    background-color: var(--color_error-midOpacity);
+    color: var(--color_lighterGrey);
+}

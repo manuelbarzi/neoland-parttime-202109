@@ -1,0 +1,28 @@
+.Company__nav,
+.Developer__nav {
+  position: fixed;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 3rem;
+  width: 100vw;
+  bottom: 0;
+  background-color: var(--color_primary-darker);
+  justify-self: flex-end;
+}
+
+.Company__navButton-bubble {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1.5rem;
+  font-size: var(--text-lg);
+  padding-top: 0.75rem;
+  text-align: center;
+  background-color: var(--color_primary);
+  color: var(--color_primary-darker)
+}
+
+.Company__navButton-bubble:hover {
+  background-color: var(--color_primary-dark);
+  color: var(--color_primary-darker)
+}

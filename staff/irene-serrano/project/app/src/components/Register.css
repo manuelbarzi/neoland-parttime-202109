@@ -1,0 +1,53 @@
+.Register {
+    margin: var(--space-xlg) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.Register__title{
+    font-size: var(--text_title-md);
+}
+.Register__form {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md)
+}
+.Register__form label{
+    align-self: flex-start;
+    font-weight: var(--fontWeight-bolder);
+}
+
+.form__input{
+    width: 100%;
+    min-width: 14rem;
+    padding: var(--space-sm);
+    border: var(--line-md) solid var(--color_primary);
+    border: 2px solid var(--color_primary);
+    border-radius: var(--space-sm);
+    background-color: var(--color_transparent);
+    resize: none;
+}
+textarea.form__input{
+
+    height: 10rem;  
+}
+.Register__button-primary-full{
+    width: fit-content;
+    margin: var(--space-sm) 0;
+    padding: var(--space-sm) 50px;
+    border: var(--line-md) solid var(--color_primary);
+    border: none;
+    border-radius: var(--space-sm);
+    background-color: var(--color_primary);
+    color: var(--color_primary-darker);
+    font-weight: var(--fontWeight-bolder);
+}
+
+.Register__button-primary-full:hover{
+    background-color: var(--color_primary-dark);
+}
+  

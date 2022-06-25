@@ -1,0 +1,45 @@
+:root{
+--space-xxl: 8rem;
+}
+.Landing {
+    padding: 0 var(--space-lg);
+    margin: var(--space-xxl) auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    max-width: 30rem
+}
+
+.Landing__title{
+    font-family: var(--fontFamily-logo);
+    font-size: var( --text_title-lg);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--space-sm)
+} 
+
+.Landing__buttonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md)
+}
+
+.Landing__button-primary{
+    padding: var(--space-sm);
+    border: 2px solid var(--color_primary);
+    border-radius: var(--space-sm);
+    background-color: var(--color_lighterGrey);
+    min-width: 15rem;
+    min-width: 90%;
+    font-weight: var(--fontWeight-bolder);
+    color: var(--color_primary);
+
+    
+}
+
+.Landing__button-primary:hover{
+    background-color: var(--color_primary-lowOpacity);
+    color: var(--color_primary-darker)
+}

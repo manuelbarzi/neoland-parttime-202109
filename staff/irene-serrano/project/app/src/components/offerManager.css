@@ -1,0 +1,155 @@
+.CompanyOffers {
+    margin: 0 var(--space-lg);
+    display: flex;
+    flex-direction: column;
+}
+
+.CompanyOffers__title {
+    font-size: var(--text_title-lg);
+    margin-bottom: var(--space-lg);
+}
+
+.CompanyOffer__list {
+    display: flex;
+    flex-direction: column;
+}
+
+.CompanyOffer__item {
+    margin: 0;
+    padding: var(--space-md);
+    background-color: rgba(222, 31, 31, 0);
+    border-bottom: 1px solid var(--color_mediumlightGrey);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+
+}
+
+.CompanyOffer__item-active {
+    opacity: 1;
+}
+
+.CompanyOffer__item-inactive {
+    opacity: 0.6;
+}
+
+.item__title {
+    font-size: var(--text_title-sm);
+    grid-column: 1 / 3;
+}
+
+.item__text {
+    font-size: var(--text_sm);
+    color: var(--color_grey);
+    grid-column: 1 / 2;
+}
+
+.item__buttonGroup {
+    grid-column: 2 / 3;
+    align-self: flex-end;
+
+}
+.item__candidatesContainer{
+    grid-column: 1 / 3;
+}
+
+.item__buttonGroup button {
+    width: var(--space-lg);
+    background: none;
+    border: none;
+    outline: none;
+    font-size: var(--space-md);
+}
+
+.item__buttonGroup button:hover {
+    cursor: pointer;
+}
+
+.OfferCandidates__NotFound{ 
+    height: fit-content;
+    width: 100%;
+    padding: var(--space-md) ;
+    color: grey;
+    font-size: var(--text_md);
+    grid-column: 1 / 3;
+}
+
+.CreateOffer{
+    margin: 0 var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.EditOffer{
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg)
+}
+
+.EditOffer__title, .CreateOffer__title {
+    font-size: var(--text_title-md);
+}
+
+.EditOffer__form, .CreateOffer__form {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md)
+}
+.CreateOffer__form  label, .EditOffer__form  label{
+    align-self: flex-start;
+    font-weight: var(--fontWeight-bolder);
+}
+.EditOffer__input, .CreateOffer__input {
+    width: 100%;
+    min-width: 14rem;
+    padding: var(--space-sm);
+    border: var(--line-md) solid var(--color_primary);
+    border: 2px solid var(--color_primary);
+    border-radius: var(--space-sm);
+    background-color: var(--color_transparent);
+    resize: none;
+}
+
+textarea.EditOffer__input {
+    height: 14rem;
+}
+
+textarea.CreateOffer__input {
+  height: 7rem; 
+}
+
+.EditOffer__submitButton, .CreateOffer__submitButton {
+    width: fit-content;
+    margin: var(--space-sm) 0;
+    padding: var(--space-sm) var(--space-lg);
+    border: var(--line-md) solid var(--color_primary);
+    border: none;
+    border-radius: var(--space-sm);
+    background-color: var(--color_primary);
+    color: var(--color_primary-darker);
+    font-weight: var(--fontWeight-bolder);
+}
+
+.EditOffer__submitButton:hover {
+    background-color: var(--color_primary-dark);
+}
+
+.EditOffer__deleteButton {
+    width: fit-content;
+    margin: var(--space-md) auto;
+    padding: var(--space-sm) var(--space-lg);
+    border: 2px solid var(--color_error-midOpacity);
+    border-radius: var(--space-sm);
+    background-color: var(--color_transparent);
+    font-weight: var(--fontWeight-bolder);
+    color: var(--color_error);
+}
+
+.EditOffer__deleteButton:hover {
+    background-color: var(--color_error-midOpacity);
+    color: var(--color_lighterGrey);
+}

@@ -1,0 +1,8 @@
+.Header{
+    height: fit-content;
+    padding: var(--space-sm) var(--space-md) 
+  }
+ 
+.Header__logoImg{
+    max-height: var(--space-lg);
+}

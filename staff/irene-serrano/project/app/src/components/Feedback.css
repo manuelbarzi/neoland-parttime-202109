@@ -1,0 +1,51 @@
+.Feedback{
+  background-color: rgba(255, 255, 255, 0.2);
+  max-width: inherit;
+  padding: var(--space-md);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: var(--fontWeight-bolder);
+  border-radius: var(--space-sm);
+  margin:auto;
+}
+
+.Feedback--error{
+  border: 2px solid var(--color_error);
+  background-color: var(--color_error-midOpacity);
+}
+
+.Feedback--success{
+    border: 2px solid var(--color_success);
+    background-color: var(--color_success-midOpacity);
+}
+
+.Feedback--info{
+  background-color: var(--color_success-midOpacity);
+  width: 50%;
+  height: 300px;
+  color: grey;
+  font-size: var(--text_title-sm)
+}
+
+.CompanyOffer__item .Feedback--info, .EditOffer .Feedback--info{
+  border: 2px solid var(--color_error-midOpacity);
+  background-color: var(--color_transparent);
+  height: fit-content;
+  width: 100%;
+  color: grey;
+  font-size: var(--text_title-sm);
+  grid-column: 1 / 3;
+  color: var(--color_primary-darker);  
+}
+
+.OfferCandidatesListItem .Feedback--error{
+  border: none;
+  background-color: var(--color_error-lowOpacity);
+  color:var(--color_grey)
+}
+
+.OfferCandidateItem .Feedback--success{
+  width: 100%;
+  opacity: 0.8;
+}

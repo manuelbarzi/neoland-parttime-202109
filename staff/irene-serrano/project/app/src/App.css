@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@400;600;700;800&display=swap');
+
+
+:root {
+  /* COLORS CLASSIC THEME*/ 
+  
+  --color_darkGrey: #505056;
+  --color_grey: #72737a;
+  --color_mediumlightGrey: #adaeb8;
+  --color_lightGrey: #cccdda;
+  --color_lighterGrey: #f2f2f8;
+  --color_transparent: #0000;
+  --color_primary: #1ae3a3;
+  --color_primary-lowOpacity: #1ae3a344;
+  --color_primary-dark:#0fd093;
+  --color_primary-darker: rgb(0, 65, 72);
+  --color_error: rgb(169, 37, 4);
+  --color_error-midOpacity: rgba(229, 47, 2, 0.722);
+  --color_error-lowOpacity:rgba(229, 47, 2, 0.2);
+  --color_success: #26d251;
+  --color_success-midOpacity: rgba(39, 211, 82, 0.5);
+  --color_info: rgb(161, 186, 255);
+  --color_info-midOpacity: rgba(161, 186, 255, 0.5);
+
+
+  /* FONT SIZES */
+  --text_title-lg: 3.125rem;
+  --text_title-md: 2.5rem;
+  --text_title-sm: 1.5rem;
+
+  --text-lg: 1.2rem;
+  --text-md: 1rem;
+  --text-sm: 0.9rem;
+
+
+  /* SPACES */
+  --space-xlg: 4rem;
+  --space-lg: 2.5rem;
+  --space-md: 1rem;
+  --space-sm: 0.5rem;
+  --space-xs: 0.3rem;
+
+  /*LINES AND FONT WEIGTH*/
+  --line-md: 2px;
+  --fontWeight-bolder: 700;
+  --fontFamily-logo: 'Dosis', sans-serif;
+}
+
+* {
+  color: var(--color_darkGrey);
+  box-sizing: border-box;
+  margin: 0;
+  padding:0;
+}
+
+.App{
+  min-height: 100vh;
+  background-color: var(--color_lighterGrey);
+}
+
+a {
+  color: var(--color_primary-dark);
+  cursor: pointer
+}
+
+a:hover{
+  color: var(--color_primary);
+}
+input::placeholder,textarea::placeholder{
+ color: var(--color_grey);
+ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+ 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue';
+}
+textarea {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+ 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue';
+}

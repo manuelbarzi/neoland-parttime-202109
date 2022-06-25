@@ -1,0 +1,62 @@
+.Modal {
+    background-color: rgba(0, 0, 0, .8);
+    position: fixed;
+    top:0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.Modal__closeButton {
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 2rem;
+    align-self: flex-end;
+    margin-right: 2rem;
+    font-family: Comfortaa;
+    cursor: pointer;
+}
+.ConfirmDeleteUser, .ConfirmDeleteOffer{
+    
+    background-color: aquamarine;
+ 
+    padding: var(--space-md);
+    border: var(--line-md) solid var(--color_primary);
+    border-radius: var(--space-sm);
+    background-color: var(--color_lighterGrey);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+}
+.ConfirmDeleteUser__cancelButton, .ConfirmDeleteOffer__cancelButton{
+    width: fit-content;
+    padding: var(--space-sm) var(--space-lg);
+    border: var(--line-md) solid var(--color_primary);
+    border: none;
+    border-radius: var(--space-sm);
+    background-color: var(--color_mediumlightGrey);
+    color: var(--color_primary-darker);
+    font-weight: var(--fontWeight-bolder);
+}
+.ConfirmDeleteUser__cancelButton:hover, .ConfirmDeleteOffer__cancelButton:hover{
+    background-color: var(--color_primary);
+}
+.ConfirmDeleteUser__deleteButton, .ConfirmDeleteOffer__deleteButton{
+    width: fit-content;
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--space-sm);
+    font-weight: var(--fontWeight-bolder);
+    color: var(--color_error);
+    border:none;
+}
+.ConfirmDeleteUser__deleteButton:hover, .ConfirmDeleteOffer__deleteButton:hover {
+    background-color: var(--color_error-midOpacity);
+    color: var(--color_lighterGrey);
+}
