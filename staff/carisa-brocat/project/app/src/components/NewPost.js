@@ -1,11 +1,21 @@
 import './NewPost.css'
 import { createPost } from '../logic'
 import { useState } from 'react'
+import { useContext } from 'react'
+import Context from './Context'
+import uploadImage from './helps/uploadImage'
 import { errors } from 'commons'
 const { AuthError, NotFoundError } = errors
 
 export default ({ handleCloseModal, handlePostCreated }) => {
+    const { setFeedback } = useContext(Context)
+
     const [category, setCategory] = useState('product')
+    const [imageB64, setImageB64] = useState()
+
+    const handleUploadImage = (event) => {
+        uploadImage(event, setImageB64)
+    }
 
     const handleCategorySelected = event => {
         setCategory(event.target.value)
@@ -19,7 +29,6 @@ export default ({ handleCloseModal, handlePostCreated }) => {
                 subject: { value: subject },
                 title: { value: title },
                 description: { value: description },
-                image: { value: image },
             } } = event
 
         let address = ''
@@ -28,25 +37,19 @@ export default ({ handleCloseModal, handlePostCreated }) => {
         }
 
         try {
-            createPost(sessionStorage.token, title, description, category, subject, image, address)
+            createPost(sessionStorage.token, title, description, category, subject, imageB64, address)
                 .then(() => {
                     handleCloseModal()
+
+                    setFeedback({ level: 'info', message: 'Post created successfully' })
+
                     handlePostCreated()
                 })
                 .catch(error => {
-                    if (error instanceof NotFoundError && error.message.includes('user') && error.message.includes('not found'))
-                        delete sessionStorage.token
-                        
-                    if (error instanceof AuthError)
-                        delete sessionStorage.token
-
-                    alert(error.message)
+                    setFeedback({ level: 'error', message: error.message })
                 })
         } catch (error) {
-            if (error instanceof AuthError)
-                delete sessionStorage.token
-
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 
@@ -82,7 +85,8 @@ export default ({ handleCloseModal, handlePostCreated }) => {
                     <input type="text" name="address" placeholder="Indicate the Adress" required /></>}
 
                 <label >Image</label>
-                <input type="text" name="image" placeholder="Upload a image" />
+                <img src={imageB64} />
+                <input type="file" name="image" onChange={handleUploadImage} />
             </div>
             <button>Create New Post</button>
         </div>

@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react'
 import { retrieveUserPosts, retrieveUserPostsBy } from '../logic'
 import Post from './Post'
+import { useContext } from 'react'
+import Context from './Context'
+
 import { errors } from 'commons'
 const { AuthError, NotFoundError } = errors
 
-function UserPosts({ category, subject, user, postCreated }) {
+function UserPosts({ category, subject, user, postCreated}) {
+    const { setFeedback } = useContext(Context)
+
     const [posts, setPosts] = useState([])
     const [postDeleted, setPostDeleted] = useState(false)
 
@@ -15,19 +20,10 @@ function UserPosts({ category, subject, user, postCreated }) {
                     setPosts(posts)
                 })
                 .catch(error => {
-                    if (error instanceof NotFoundError && error.message.includes('user') && error.message.includes('not found'))
-                        delete sessionStorage.token
-
-                    if (error instanceof AuthError)
-                        delete sessionStorage.token
-
-                    alert(error.message)
+                    setFeedback({ level: 'error', message: error.message })
                 })
         } catch (error) {
-            if (error instanceof AuthError)
-                delete sessionStorage.token
-
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 
@@ -38,19 +34,10 @@ function UserPosts({ category, subject, user, postCreated }) {
                     setPosts(posts)
                 })
                 .catch(error => {
-                    if (error instanceof NotFoundError && error.message.includes('user') && error.message.includes('not found'))
-                        delete sessionStorage.token
-
-                    if (error instanceof AuthError)
-                        delete sessionStorage.token
-
-                    alert(error.message)
+                    setFeedback({ level: 'error', message: error.message })
                 })
         } catch (error) {
-            if (error instanceof AuthError)
-                delete sessionStorage.token
-
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 
@@ -74,7 +61,7 @@ function UserPosts({ category, subject, user, postCreated }) {
     return <div className='userPosts'>
         {
             posts.length ?
-                <ul> {posts.map(post => <li key={post.id}> <Post postId={post.id} user={user} handlePostDeleted={handlePostDeleted} /></li>)}
+                <ul> {posts.map(post => <li key={post.id}> <Post postId={post.id} user={user} handlePostDeleted={handlePostDeleted} logOut/></li>)}
                 </ul> :
                 <p>Sorry, there are no posts to show</p>
         }

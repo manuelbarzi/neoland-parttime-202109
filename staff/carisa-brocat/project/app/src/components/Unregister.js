@@ -2,13 +2,18 @@ import './Unregister.css'
 import Modal from './Modal'
 import { useState } from 'react'
 import { deleteUser } from '../logic'
+import { useContext } from 'react'
+import Context from './Context'
+
 import { errors } from 'commons'
 const { AuthError, NotFoundError } = errors
 
 function Unregister({ logOut }) {
+    const { setFeedback } = useContext(Context)
     const [modalOpen, setModalOpen] = useState(false)
 
-    const unregisterConfirmation = () => {
+    const unregisterConfirmation = event => {
+        event.preventDefault()
 
         setModalOpen(true)
     }
@@ -26,19 +31,14 @@ function Unregister({ logOut }) {
                     logOut()
                 })
                 .catch(error => {
-                    if (error instanceof NotFoundError && error.message.includes('user') && error.message.includes('not found'))
-                        delete sessionStorage.token
+                    setModalOpen(false)
 
-                    if (error instanceof AuthError)
-                        delete sessionStorage.token
-
-                    alert(error.message)
+                    setFeedback({ level: 'error', message: error.message })
                 })
         } catch (error) {
-            if (error instanceof AuthError)
-                delete sessionStorage.token
+            setModalOpen(false)
 
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 
@@ -52,12 +52,9 @@ function Unregister({ logOut }) {
 
         {modalOpen && <Modal handleCloseModal={handleCloseModal} content={<div className="unregister__confirmation" >
             <p>Are you sure do you want to delete your account? </p>
-            <button type="submit">Delete</button>
+            <button type="submit">Yes</button>
         </div>} />}
     </form>
-
-
-
 }
 
 export default Unregister

@@ -6,7 +6,7 @@ const { AuthError } = errors
 
 export default ({ handleSavedPosts, menuOpen, handleMenu, handleMyPosts, onLoggedOut }) => {
     const navigate = useNavigate()
-   
+
     const closeMenu = () => {
         handleMenu()
     }
@@ -29,12 +29,14 @@ export default ({ handleSavedPosts, menuOpen, handleMenu, handleMyPosts, onLogge
 
     const handleUnregister = () => navigate('/unregister')
 
+    const handleUserConnfigurations = () => navigate('/configurations')
+
     return <div>
         <div className={`${menuOpen ? 'userMenu userMenu--opened' : 'userMenu userMenu--closed'}`}>
             <button onClick={closeMenu}>x</button>
             <h2 onClick={showSavedPosts}>My Saved Posts</h2>
             <h2 onClick={showMyPosts}>My Posts</h2>
-            <h2 >Configurations</h2>
+            <h2 onClick={handleUserConnfigurations}>Configurations</h2>
             <h2 onClick={handleUnregister}>Unregister</h2>
             <h2 onClick={onLoggedOut}>LogOut</h2>
         </div>

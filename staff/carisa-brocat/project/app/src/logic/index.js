@@ -17,6 +17,8 @@ import retrieveUserSavedPostsBy from "./retrieveUserSavedPostsBy"
 import deleteUser from "./deleteUser"
 import addCommentToPost from "./addCommentToPost"
 import retrievePost from "./retrievePost"
+import updateEmail from "./updateEmail"
+import updatePassword from "./updatePassword"
 
 export {
     registerUser,
@@ -38,4 +40,6 @@ export {
     deleteUser,
     addCommentToPost,
     retrievePost,
+    updateEmail,
+    updatePassword
 }

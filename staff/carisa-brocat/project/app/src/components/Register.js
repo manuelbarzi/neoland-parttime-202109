@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom'
 import { registerUser } from '../logic'
+import { useContext } from 'react'
+import Context from './Context'
 
 function Register({ onRegistered }) {
+    const { setFeedback } = useContext(Context)
 
     const register = event => {
         event.preventDefault()
@@ -16,11 +19,10 @@ function Register({ onRegistered }) {
                     onRegistered()
                 })
                 .catch(error => {
-                    console.log(error.message)
-                    alert(error.message)
+                    setFeedback({ level: 'error', message: error.message })
                 })
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 

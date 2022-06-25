@@ -48,15 +48,9 @@ function Quiz({ onQuizPassed }) {
                     onQuizPassed()
                 })
                 .catch(error => {
-                    if (error instanceof NotFoundError && error.message.includes('user') && error.message.includes('not found'))
-                        delete sessionStorage.token
-
                     alert(error.message)
                 })
         } catch (error) {
-            if (error instanceof AuthError)
-                delete sessionStorage.token
-
             alert(error.message)
         }
     }

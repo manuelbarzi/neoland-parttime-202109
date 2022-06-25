@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom'
 import { authenticateUser } from '../logic'
+import { useContext } from 'react'
+import Context from './Context'
 
 function Login({ onLoggedIn}) {
+    const { setFeedback } = useContext(Context)
 
     const login = event => {
         event.preventDefault()
@@ -17,14 +20,10 @@ function Login({ onLoggedIn}) {
                     onLoggedIn()
                 })
                 .catch(error => {
-                    console.log(error.message)
-
-                    alert(error.message)
+                    setFeedback({ level: 'error', message: error.message })
                 })
         } catch (error) {
-            console.log(error.message)
-
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 

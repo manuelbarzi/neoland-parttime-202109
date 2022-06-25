@@ -1,9 +1,13 @@
 import './PostComments.css'
 import { addCommentToPost } from '../logic'
+import { useContext } from 'react'
+import Context from './Context'
+
 import { errors } from 'commons'
 const { AuthError, NotFoundError } = errors
 
 export default ({ postId, comments, handleCloseModal, handleNewComments }) => {
+    const { setFeedback } = useContext(Context)
 
     const handleAddComment = event => {
         event.preventDefault()
@@ -15,23 +19,16 @@ export default ({ postId, comments, handleCloseModal, handleNewComments }) => {
             addCommentToPost(sessionStorage.token, postId, text)
                 .then(() => {
                     handleCloseModal()
+        
+                    setFeedback({ level: 'info', message: 'Comment added successfully' })
 
                     handleNewComments()
                 })
                 .catch(error => {
-                    if (error instanceof NotFoundError && error.message.includes('user') && error.message.includes('not found'))
-                        delete sessionStorage.token
-
-                    if (error instanceof AuthError)
-                        delete sessionStorage.token
-
-                    alert(error.message)
+                    setFeedback({ level: 'error', message: error.message })
                 })
         } catch (error) {
-            if (error instanceof AuthError)
-                delete sessionStorage.token
-
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 

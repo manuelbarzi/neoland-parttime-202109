@@ -2,12 +2,15 @@ import './Post.css'
 import Modal from './Modal'
 import PostComments from './PostComments'
 import { useEffect, useState } from 'react'
+import { useContext } from 'react'
+import Context from './Context'
 import { useLocation } from 'react-router-dom'
 import { toggleDislikePost, toggleLikePost, toggleSavePost, deletePost, retrievePost } from '../logic'
 import { errors } from 'commons'
 const { AuthError, NotFoundError } = errors
 
 export default ({ postId, user, handlePostDeleted, handleUnsavePost }) => {
+    const { setFeedback } = useContext(Context)
     const location = useLocation()
     const [modalOpen, setModalOpen] = useState(false)
     const [post, setPost] = useState()
@@ -33,16 +36,16 @@ export default ({ postId, user, handlePostDeleted, handleUnsavePost }) => {
                     setComments(post.comments)
                 })
                 .catch(error => {
-                    alert(error.message)
+                    setFeedback({ level: 'error', message: error.message })
                 })
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 
     useEffect(() => {
         loadPost()
-    }, [newComment])
+    }, [newComment, postSaved])
 
 
     const addUserDislikedPost = () => {
@@ -88,19 +91,10 @@ export default ({ postId, user, handlePostDeleted, handleUnsavePost }) => {
                     }
                 })
                 .catch(error => {
-                    if (error instanceof NotFoundError && error.message.includes('user') && error.message.includes('not found'))
-                        delete sessionStorage.token
-
-                    if (error instanceof AuthError)
-                        delete sessionStorage.token
-
-                    alert(error.message)
+                    setFeedback({ level: 'error', message: error.message })
                 })
         } catch (error) {
-            if (error instanceof AuthError)
-                delete sessionStorage.token
-
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 
@@ -124,19 +118,10 @@ export default ({ postId, user, handlePostDeleted, handleUnsavePost }) => {
                     }
                 })
                 .catch(error => {
-                    if (error instanceof NotFoundError && error.message.includes('user') && error.message.includes('not found'))
-                        delete sessionStorage.token
-
-                    if (error instanceof AuthError)
-                        delete sessionStorage.token
-
-                    alert(error.message)
+                    setFeedback({ level: 'error', message: error.message })
                 })
         } catch (error) {
-            if (error instanceof AuthError)
-                delete sessionStorage.token
-
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 
@@ -151,40 +136,24 @@ export default ({ postId, user, handlePostDeleted, handleUnsavePost }) => {
                     setPostSaved(!postSaved)
                 })
                 .catch(error => {
-                    if (error instanceof NotFoundError & error.message.includes('user') & error.message.includes('not found'))
-                        delete sessionStorage.token
-
-                    if (error instanceof AuthError)
-                        delete sessionStorage.token
-
-                    alert(error.message)
+                    setFeedback({ level: 'error', message: error.message })
                 })
         } catch (error) {
-            if (error instanceof AuthError)
-                delete sessionStorage.token
-
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 
     const handleDeletePost = () => {
         try {
             deletePost(sessionStorage.token, postId)
-                .then(() => handlePostDeleted())
+                .then(() => {
+                    handlePostDeleted()
+                })
                 .catch(error => {
-                    if (error instanceof NotFoundError & error.message.includes('user') & error.message.includes('not found'))
-                        delete sessionStorage.token
-
-                    if (error instanceof AuthError)
-                        delete sessionStorage.token
-
-                    alert(error.message)
+                    setFeedback({ level: 'error', message: error.message })
                 })
         } catch (error) {
-            if (error instanceof AuthError)
-                delete sessionStorage.token
-
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 
@@ -209,7 +178,7 @@ export default ({ postId, user, handlePostDeleted, handleUnsavePost }) => {
             <div className="post__body">
                 <h1 className="post__body-title">{post.title}</h1>
                 <div className="post__body-description">
-                    <p>{post.image}</p>
+                    <img src={post.image}/>
                     <p>{post.description}</p>
                     <p>{post.address}</p>
                 </div>

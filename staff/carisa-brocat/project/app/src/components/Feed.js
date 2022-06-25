@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react'
 import { retrieveAllPosts, retrievePostsBy } from '../logic'
 import Post from './Post'
+import { useContext } from 'react'
+import Context from './Context'
+
 import { errors } from 'commons'
 const { AuthError, NotFoundError } = errors
 
 function Feed({ category, subject, user, postCreated }) {
+    const { setFeedback } = useContext(Context)
+
     const [posts, setPosts] = useState([])
 
     const loadUserPosts = () => {
@@ -14,10 +19,10 @@ function Feed({ category, subject, user, postCreated }) {
                     setPosts(posts)
                 })
                 .catch(error => {
-                    alert(error.message)
+                    setFeedback({ level: 'error', message: error.message })
                 })
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 
@@ -28,10 +33,10 @@ function Feed({ category, subject, user, postCreated }) {
                     setPosts(posts)
                 })
                 .catch(error => {
-                    alert(error.message)
+                    setFeedback({ level: 'error', message: error.message })
                 })
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 
@@ -51,7 +56,7 @@ function Feed({ category, subject, user, postCreated }) {
     return <div className='feed'>
         {
             posts.length ?
-                <ul> {posts.map(post => <li key={post.id}> <Post postId={post.id} user={user} /></li>)}
+                <ul> {posts.map(post => <li key={post.id}> <Post postId={post.id} user={user} logOut/></li>)}
                 </ul> :
                 <p>Sorry, there are no posts to show</p>
         }

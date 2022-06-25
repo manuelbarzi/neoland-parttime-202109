@@ -1,0 +1,13 @@
+.userConfiguration {
+    display: flex;
+    flex-direction: column;
+}
+
+.userConfiguration__title {
+    font-family: 'Supermercado One', cursive;
+    border-bottom: 2px solid rgba(131, 252, 74);
+}
+
+.userConfiguration__form {
+margin: 10%;
+}
