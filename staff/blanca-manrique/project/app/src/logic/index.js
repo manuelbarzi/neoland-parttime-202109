@@ -25,6 +25,10 @@ import filterSuppliers from './filterSuppliers'
 import filterProducts from './filterProducts'
 import filterVariants from './filterVariants'
 import filterOrders from './filterOrders'
+import retrieveCompletedOrders from './retrieveCompletedOrders'
+import retrieveCancelledOrders from './retrieveCancelledOrders'
+import retrieveInProgressOrders from './retrieveInProgressOrders'
+import retrieveDraftOrders from './retrieveDraftOrders'
 import monthlyExpenses from './monthlyExpenses'
 
 export {
@@ -55,5 +59,9 @@ export {
     filterProducts,
     filterVariants,
     filterOrders,
+    retrieveCompletedOrders,
+    retrieveCancelledOrders,
+    retrieveInProgressOrders,
+    retrieveDraftOrders,
     monthlyExpenses
 }

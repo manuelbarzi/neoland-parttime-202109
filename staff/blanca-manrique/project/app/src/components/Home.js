@@ -2,6 +2,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom'
 import Nav from './Nav'
 import Suppliers from './Suppliers'
 import Orders from './Orders'
+import Dashboard from './Dashboard'
 
 function Home({ onLoggedOut }) {
     const navigate = useNavigate()
@@ -19,6 +20,7 @@ function Home({ onLoggedOut }) {
         <Nav handleLogout={logout}/>
         
         <Routes >
+            <Route path='/*' element={<Dashboard />} />
             <Route path='suppliers/*' element={<Suppliers onReturnClick={handleReturnHome}  />} />
             <Route path='orders/*' element={<Orders onReturnClick={handleReturnHome}  />} />
         </Routes>

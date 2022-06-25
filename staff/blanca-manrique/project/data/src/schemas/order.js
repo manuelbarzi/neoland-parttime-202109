@@ -11,8 +11,8 @@ const order = new Schema({
     },
     createdAt:{
         type: Date,
-        required: true,
-        default: Date.now
+        required: true
+        // default: Date.now
     },
     status:{
         type: String,

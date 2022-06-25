@@ -5,9 +5,9 @@ const { errors: { NotFoundError, FormatError } } = require('commons')
 module.exports = (req, res) => {
     try {
         const userId = extractUserIdFromAuthorization(req)
-        const { body: {  status, description } } = req
+        const { body: {  status, description, createdAt } } = req
        
-        createOrder(userId, status, description)
+        createOrder(userId, status, description, createdAt)
         .then(() => res.status(201).send())
         .catch(error => {
             let status = 500

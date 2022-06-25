@@ -1,13 +1,12 @@
 import { validators, errors } from 'commons'
 
-const { validateToken, validateNumber } = validators
+const { validateToken } = validators
 const { AuthError, NotFoundError, FormatError, ClientError, ServerError } = errors
 
-function retrieveAllOrders(token, year) {
+function retrieveInProgressOrders(token) {
     validateToken(token)
-    validateNumber(year, 'year')
 
-    return fetch(`http://localhost:8080/api/dashboard/orders/${year}`, {
+    return fetch('http://localhost:8080/api/orders/inprogress', {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${token}`
@@ -18,11 +17,11 @@ function retrieveAllOrders(token, year) {
 
             if (status === 200)
                 return res.json()
-                // .then(orders => { //tenemos que pasar la propiedad order.createdAt de formato String a formato FECHA!!
-                //     orders.forEach(order => order.createdAt = new Date(order.createdAt))
+                .then(orders => { //tenemos que pasar la propiedad order.createdAt de formato String a formato FECHA!!
+                    orders.forEach(order => order.createdAt = new Date(order.createdAt))
 
-                //     return orders
-                // })
+                    return orders
+                })
             else if (status >= 400 && status < 500)
                 return res.json()
                     .then(payload => {
@@ -45,4 +44,4 @@ function retrieveAllOrders(token, year) {
         })
 }
 
-export default retrieveAllOrders
+export default retrieveInProgressOrders

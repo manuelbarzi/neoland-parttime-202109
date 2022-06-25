@@ -1,21 +1,19 @@
 const { extractUserIdFromAuthorization } = require('./helpers')
-const { monthlyExpenses } = require('logic')
-const { errors: { NotFoundError, FormatError, AuthError } } = require('commons')
+const { retrieveCancelledOrders } = require('logic')
+const { errors: { NotFoundError, AuthError, FormatError } } = require('commons')
 
 module.exports = (req, res) => {
     try {
         const userId = extractUserIdFromAuthorization(req)
 
-        const { params: { year }} = req
-
-        monthlyExpenses(userId, Number(year))
+        retrieveCancelledOrders(userId)
             .then(orders => res.status(200).json(orders))
             .catch(error => {
                 let status = 500
 
                 if (error instanceof NotFoundError)
                     status = 404
-                
+
                 else if (error instanceof AuthError)
                 status = 401
 

@@ -4,7 +4,7 @@ const {
     errors: { NotFoundError }
 } = require('commons')
 
-function createOrder(userId, status, description) {
+function createOrder(userId, status, description, createdAt) {
     validateId(userId, 'user id')
     validateString(status, 'order status')
     description?  validateString(description, 'description') :null
@@ -13,7 +13,7 @@ function createOrder(userId, status, description) {
         .then((user) => {
             if (!user) throw new NotFoundError(`user with id ${userId} not found`)
 
-            return Order.create({user: userId, status: 'draft', description})
+            return Order.create({user: userId, status: 'draft', description, createdAt})
         })
         .then(order => { })
 }

@@ -1,13 +1,12 @@
 const { models: { User, Order }, mongoose: { Types: { ObjectId } } } = require('data')
 const {
-    validators: { validateId, validateNumber },
+    validators: { validateId },
     errors: { NotFoundError }
 } = require('commons')
 
 
-function monthlyExpenses(userId, year) {
+function BestSelling(userId) {
     validateId(userId, 'user id')
-    validateNumber(year, 'year')
 
     return User.findById(userId)
         .then((user) => {
@@ -17,8 +16,6 @@ function monthlyExpenses(userId, year) {
                 [
                     {
                         $project: {
-                            year: { $year: "$createdAt" },
-                            month: { $month: "$createdAt" },
                             _id: 1,
                             user: 1,
                             items: 1
@@ -27,7 +24,7 @@ function monthlyExpenses(userId, year) {
                     {
                         $match: {
                             user: ObjectId(userId),
-                            year
+                            "items.variant": ""
                         }
                     }
                 ]
@@ -51,4 +48,4 @@ function monthlyExpenses(userId, year) {
         })
 }
 
-module.exports = monthlyExpenses
+module.exports = BestSelling

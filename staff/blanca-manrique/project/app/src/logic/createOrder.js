@@ -3,7 +3,7 @@ import { validators, errors } from 'commons'
 const { validateToken, validateString } = validators
 const { ClientError, ServerError, DuplicityError } = errors
 
-function createOrder(token, status, description) {
+function createOrder(token, status, description, createdAt= Date.now) {
     validateToken(token)
     validateString(status, 'order status')
     if(description) validateString(description, 'description')
@@ -14,7 +14,7 @@ function createOrder(token, status, description) {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ status, description })
+        body: JSON.stringify({ status, description, createdAt })
     })
         .then(res => {
             const { status } = res

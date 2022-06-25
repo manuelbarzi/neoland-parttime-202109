@@ -3,13 +3,6 @@ import { useNavigate } from "react-router-dom"
 import { retrieveAllOrders, deleteOrder, filterOrders } from '../logic'
 import { IoChevronBackOutline, IoChevronForwardOutline, IoAdd, IoTrashOutline, IoSearch } from "react-icons/io5"
 import './ListOrders.css'
-import FilterBar from './FilterBar'
-import dayjs from "dayjs"
-
-const isSameOrAfter = require("dayjs/plugin/isSameOrAfter")
-const isSameOrBefore = require("dayjs/plugin/isSameOrBefore")
-dayjs.extend(isSameOrBefore)
-dayjs.extend(isSameOrAfter)
 
 function ListOrders() {
     const [orders, setOrders] = useState([])
@@ -50,6 +43,10 @@ function ListOrders() {
     const handleOrderDetail = orderId => { navigate(`/orders/${orderId}`) }
     const handleCreateOrder = () => { navigate('/orders/new-order') }
     const goBack = () => { navigate('/') }
+    const handleShowCompletedOrders = () => { navigate('/orders/completed') }
+    const handleShowCancelledOrders = () => { navigate('/orders/cancelled') }
+    const handleShowInProgressOrders = () => { navigate('/orders/in-progress') }
+    const handleShowDraftOrders = () => { navigate('/orders/draft') }
 
     const searchOrders = query => {
         setSearchTerm(query)
@@ -71,10 +68,26 @@ function ListOrders() {
                     <IoSearch />
                 </div>
 
-                <FilterBar orders={orders}/>
+                <div>
+                    <button onClick={handleShowCompletedOrders}>Completed</button>
+                    <button onClick={handleShowCancelledOrders}>Cancelled</button>
+                    <button onClick={handleShowInProgressOrders}>In progress</button>
+                    <button onClick={handleShowDraftOrders}>Draft</button>
+                </div>
+
+                <div>
+                    <label>From</label>
+                    <input type="date" id="startDate"/>
+                </div>
+
+                <div>
+                    <label>To</label>
+                    <input type="date" id="endDate"/>
+                </div>
             </div>
             : null
         }
+
 
 
         <div className='Orders'>
@@ -133,6 +146,34 @@ function ListOrders() {
 
                 )
             }
+
+            {/* {orders ?
+                <table className='Orders__table'>
+                    <thead className='Orders__table-header'>
+                        <tr>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Created date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody className='Orders__table-body'>
+                        {orders.map(order => (
+                            <tr key={order.id}>
+                                <td onClick={() => handleOrderDetail(order.id)}>{order.description}</td>
+                                <td>{order.status}</td>
+                                <td><time>{order.createdAt.toDateString()}</time></td>
+                                <td><IoChevronForwardOutline className='Orders__table-bodyIcon' onClick={() => handleOrderDetail(order.id)} /></td>
+                                {order.status === 'draft' ?
+                                    <td><IoTrashOutline onClick={() => handleDeleteOrder(order.id)} /></td>
+                                    : null
+                                }
+                            </tr>))}
+                    </tbody>
+                </table>
+
+                : <p>no orders yet: You can create a new one</p>
+            } */}
 
             <IoAdd className='Orders__addIcon' onClick={handleCreateOrder} />
         </div>

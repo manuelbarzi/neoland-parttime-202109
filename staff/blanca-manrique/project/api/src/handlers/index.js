@@ -30,6 +30,10 @@ const addItemToOrder = require('./addItemToOrder')
 const deleteOrder = require('./deleteOrder')
 const updateOrderStatus = require('./updateOrderStatus')
 const addNoteToOrder = require('./addNoteToOrder')
+const retrieveCompletedOrders = require('./retrieveCompletedOrders')
+const retrieveCancelledOrders = require('./retrieveCancelledOrders')
+const retrieveInProgressOrders = require('./retrieveInProgressOrders')
+const retrieveDraftOrders = require('./retrieveDraftOrders')
 const monthlyExpenses = require('./monthlyExpenses')
 
 module.exports = {
@@ -66,5 +70,9 @@ module.exports = {
     addNoteToOrder,
     deleteOrder,
     updateOrderStatus,
+    retrieveCompletedOrders,
+    retrieveCancelledOrders,
+    retrieveInProgressOrders,
+    retrieveDraftOrders,
     monthlyExpenses
 }
