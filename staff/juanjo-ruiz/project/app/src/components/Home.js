@@ -12,7 +12,6 @@ import UpdateVehicle from './UpdateVehicle'
 import DeleteVehicle from './DeleteVehicle'
 import Parts from './Parts'
 import PartDetail from './PartDetail'
-import CreatePart from './CreatePart'
 import DeletePart from './DeletePart'
 import AddViewsVehicle from './AddViewsVehicle'
 import ViewDetail from './ViewDetail'
@@ -52,7 +51,6 @@ export default function ({ onLoggedOut }) {
             <Route path="/vehicle/:vehicleId/delete" element={<DeleteVehicle />} />
             <Route path="/vehicle/:vehicleId/parts" element={<Parts onDetailPart={handleShowPart} />} />
             <Route path="/vehicle/:vehicleId/part/:partId" element={<PartDetail />} />
-            <Route path="/vehicle/:vehicleId/part" element={<CreatePart />} />
             <Route path="/vehicle/:vehicleId/part/:partId/delete" element={<DeletePart />} />
         </Routes>
     </div>

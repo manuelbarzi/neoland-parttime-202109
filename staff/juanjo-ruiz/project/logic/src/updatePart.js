@@ -1,12 +1,11 @@
 const { models: { User, Vehicle, Part } } = require('data')
 const { validators: { validateId, validateString }, errors: { NotFoundError, AuthError } } = require('commons')
 
-function updatePartAdmin(adminId, vehicleId, partId, description, image, state) {
+function updatePartAdmin(adminId, vehicleId, partId, description, state) {
     validateId(adminId, 'user id')
     validateId(vehicleId, 'vehicle id')
     validateId(partId, 'part id')
     validateString(description, 'description')
-    validateString(image, 'image')
     validateString(state, 'state')
 
     return Promise.all([User.findById(adminId), Vehicle.findById(vehicleId)])
@@ -17,13 +16,14 @@ function updatePartAdmin(adminId, vehicleId, partId, description, image, state) 
             if ( user.role !== 'owner' && user.role !== 'admin')
                 throw new AuthError(`user with id ${adminId} not authorized for this operation`)
 
-            return Vehicle.updateOne({ _id: partId }, { description, image, state })
-                .then(result => {
-                    const { matchedCount } = result
+            const { parts } = vehicle
 
-                    if (matchedCount === 0)
-                        throw new NotFoundError(`vehicle with id ${vehicleId} not found`)
-                })
+            const part = parts.find(item => item._id.toString() === partId)
+
+            part.description = description
+            part.state = state
+
+            return vehicle.save()
         })
 }
 

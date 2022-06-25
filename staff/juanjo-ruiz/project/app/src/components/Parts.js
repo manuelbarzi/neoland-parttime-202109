@@ -35,6 +35,5 @@ export default function ({ onDetailPart }) {
                 </ul>
                 : <p>No hay partes</p>
         }
-        <button onClick={() => navigate(`/vehicle/${vehicleId}/part`)}>Añadir parte</button>
     </div>
 }

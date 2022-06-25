@@ -6,9 +6,9 @@ module.exports = (req, res) => {
     try {
         const adminId = extractUserIdFromAuthorization(req)
 
-        const { params: { vehicleId, partId }, body: { description, image, state } } = req
+        const { params: { vehicleId, partId }, body: { side, description, state } } = req
 
-        updatePartAdmin(adminId, vehicleId, partId, description, image, state)
+        updatePartAdmin(adminId, vehicleId, partId, side, description, state)
             .then(() => res.status(204).send())
             .catch(error => {
                 let status = 500

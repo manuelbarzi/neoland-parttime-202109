@@ -46,16 +46,16 @@ console.log(imageB64)
         <h2>Añade las imágenes de este vehículo</h2>
         <form>
             <h4>Parte frontal</h4>
-            <input type="file" name="imageLead" onChange={handleUploadB64} />
+            <input type="file" name="lead" onChange={handleUploadB64} />
             { imageB64.length && <img src={imageB64[0].image} />}
             <h4>Parte derecha</h4>
-            <input type="file" name="imageRight" onChange={handleUploadB64} />
+            <input type="file" name="right" onChange={handleUploadB64} />
             { imageB64.length && <img src={imageB64[1].image} />}
             <h4>Parte trasera</h4>
-            <input type="file" name="imageRear" onChange={handleUploadB64} />
+            <input type="file" name="rear" onChange={handleUploadB64} />
             { imageB64.length && <img src={imageB64[2].image} />}
             <h4>Parte izquierda</h4>
-            <input type="file" name="imageLeft" onChange={handleUploadB64} />
+            <input type="file" name="left" onChange={handleUploadB64} />
             { imageB64.length && <img src={imageB64[3].image} />}
             <button onClick={handleAddViews}>Añadir imágenes</button>
         </form>

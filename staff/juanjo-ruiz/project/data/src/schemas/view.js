@@ -18,6 +18,7 @@ const view = new Schema({
     title: {
         type: String,
         required: true,
+        enum: ['lead', 'rear', 'left', 'right']
     },
 
     image: {

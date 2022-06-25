@@ -6,9 +6,9 @@ module.exports = (req, res) => {
     try {
         const userId = extractUserIdFromAuthorization(req)
 
-        const { params: { vehicleId }, body: { description, image } } = req
+        const { params: { vehicleId }, body: { side, description, image, coordinates } } = req
 
-        createPart(userId, vehicleId, description, image)
+        createPart(userId, vehicleId, side, description, image, coordinates)
             .then(() => res.status(201).send())
             .catch(error => {
                 let status = 500

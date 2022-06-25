@@ -1,5 +1,6 @@
 const { Schema } = require('mongoose')
 const { Types: { ObjectId } } = Schema
+const coordinate = require('./coordinate')
 
 const part = new Schema({
     company: {
@@ -30,6 +31,12 @@ const part = new Schema({
         required: true
     },
 
+    side: {
+        type: String,
+        required: true,
+        enum: ['lead', 'rear', 'left', 'right']
+    },
+
     state: {
         type: Number,
         required: true,
@@ -37,12 +44,14 @@ const part = new Schema({
         max: 2,
         default: 2
     },
-
+    
     date: {
         type: Date,
         required: true,
         default: Date.now
-    }
+    },
+
+    coordinates: [coordinate]
 })
 
 module.exports = part

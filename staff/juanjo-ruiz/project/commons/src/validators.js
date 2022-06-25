@@ -38,10 +38,14 @@ function validateDate(date) {
     if (!date.trim()) throw new Error('cif is empty or blank')
 }
 
-function validatePhone(phone) {
-    if (typeof phone !== 'number') throw new TypeError('phone is not number')
-    if (!phone.trim()) throw new Error('phone is empty or blank')
-    if (phone.trim().length < 9) throw new Error('phone length is smalles than characters')
+function validateNumber(number, explain = 'number') {
+    if (typeof number !== 'number') throw new TypeError(`${explain} is not number`)
+    if (!number.trim()) throw new Error(`${explain} is empty or blank`)
+    if (number.trim().length < 9) throw new Error(`${explain} length is smalles than characters`)
+}
+
+function validateObject(object, explain = 'object') {
+    if (typeof object !== 'object') throw new TypeError(`${explain} is not object`)
 }
 
 function validateToken(token) {
@@ -70,6 +74,7 @@ module.exports = {
     validatePassword,
     validateCif,
     validateDate,
-    validatePhone,
+    validateNumber,
+    validateObject,
     validateToken
 }

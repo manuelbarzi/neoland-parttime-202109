@@ -1,25 +1,23 @@
 import { validators, errors } from 'commons'
 
-const { validateToken, validateId, validateString, validateNumber, validateObject } = validators
+const { validateToken, validateId, validateString } = validators
 const { DuplicityError, ClientError, ServerError } = errors
 
-export default function (token, vehicleId, side, description, image, coordinates) {
+export default function (token, vehicleId, partId, side, description, state) {
     validateToken(token)
     validateId(vehicleId, 'vehicle id')
+    validateId(partId, 'part id')
     validateString(side, 'side')
     validateString(description, 'description')
-    validateString(image, 'image')
-    validateObject(coordinates, 'coordinantes')
-    validateNumber(coordinates.x, 'x')
-    validateNumber(coordinates.y, 'y')
+    validateString(state, 'state')
 
-    return fetch(`http://localhost:8080/api/vehicle/${vehicleId}/part`, {
-        method: 'POST',
+    return fetch(`http://localhost:8080/api/vehicle/${vehicleId}/part/${partId}/admin`, {
+        method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ side, description, image, coordinates })
+        body: JSON.stringify({ side, description, state })
     })
         .then(res => {
             const { status } = res
