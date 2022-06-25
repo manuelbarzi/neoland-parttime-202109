@@ -9,7 +9,7 @@ function retrieveUser(userId) {
     
     return User.findById(userId).lean()
         .then(user => {
-            if(!user) throw new NotFoundError(`user with id ${userId} not found`)
+            if(!user) throw new NotFoundError("user does not exist")
             
             //sanitize
             user.id = user._id.toString()

@@ -10,8 +10,8 @@ function retrieveOrder(userId, orderId) {
 
     return Promise.all([User.findById(userId).lean(), Order.findById(orderId).populate('items.variant').lean()])
         .then(([user, order]) => {
-            if (!user) throw new NotFoundError(`user with id ${userId} not found`)
-            if (!order) throw new NotFoundError(`order with id ${orderId} not found`)
+            if (!user) throw new NotFoundError("user does not exist")
+            if (!order) throw new NotFoundError("order does not exist")
             if (order.user.toString() !== userId) throw new AuthError(`user with id ${userId} is not allowed to retrieve order with id ${orderId}`)
 
             //Limpiamos la orden antes de devolverla

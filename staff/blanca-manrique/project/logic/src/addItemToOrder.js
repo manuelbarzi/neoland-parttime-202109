@@ -1,5 +1,8 @@
 const { models: { User, Item, Order } } = require('data')
-const { validators: { validateId, validateString, validateNumber }, errors: { NotFoundError, AuthError, DuplicityError } } = require('commons')
+const {
+    validators: { validateId, validateString, validateNumber },
+    errors: { NotFoundError, AuthError, DuplicityError }
+} = require('commons')
 
 
 function addItemToOrder(userId, orderId, variant, price, quantity) {
@@ -19,7 +22,7 @@ function addItemToOrder(userId, orderId, variant, price, quantity) {
             order.items.forEach(_item => {
                 if (_item.variant._id.toString() === variant) throw new DuplicityError(`variant with id ${variant} already added to order with id ${orderId}`)
             })
-            
+
             const item = new Item({ user: userId, variant: variant, price, quantity })
 
             order.items.push(item)

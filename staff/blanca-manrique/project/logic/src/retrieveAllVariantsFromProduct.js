@@ -11,16 +11,16 @@ function retrieveAllVariantsFromProduct(userId, supplierId, productId) {
 
     return Promise.all([User.findById(userId).lean(), Supplier.findById(supplierId).lean(), Product.findById(productId).lean()])
         .then(([user, supplier, product]) => {
-            if (!user) throw new NotFoundError(`user with id ${userId} not found`)
-            if (!supplier) throw new NotFoundError(`supplier with id ${supplierId} not found`)
-            if (!product) throw new NotFoundError(`product with id ${productId} not found`)
-            if (supplier.user._id.toString() !== userId) throw new AuthError(`user with id ${userId} is not authorised to retrieve variants from other user`)
+            if (!user) throw new NotFoundError("user does not exist")
+            if (!supplier) throw new NotFoundError("supplier does not exist")
+            if (!product) throw new NotFoundError("product does not exist")
+            if (supplier.user._id.toString() !== userId) throw new AuthError(`user is not authorised to retrieve variants from other user`)
             if (product.supplier._id.toString() !== supplierId) throw new AuthError(`product with id ${productId} do not belong to supplier with id ${supplierId}`)
 
             return Variant.find({ user: userId, supplier: supplierId, product: productId }).lean().populate('product')
         })
         .then(variants => {
-            if (variants.length === 0) throw new NotFoundError(`product with id ${productId} has no assigned variants`)
+            // if (variants.length === 0) throw new NotFoundError(`product with id ${productId} has no assigned variants`)
 
             for (let i = 0; i < variants.length - 1; i++)
                 if (variants[i].product !== variants[i + 1].product)

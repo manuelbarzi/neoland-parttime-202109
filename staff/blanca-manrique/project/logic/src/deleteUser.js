@@ -1,7 +1,7 @@
 const { models: { User }} = require('data')
 const { 
     validators: { validateId, validatePassword }, 
-    errors: { NotFoundError, AuthError }} 
+    errors: { NotFoundError, AuthError, ConflictError }} 
 = require('commons')
 const bcrypt = require('bcryptjs')
 
@@ -25,7 +25,7 @@ function deleteUser(userId, password) {
             const { deletedCount } = result
 
             if (deletedCount === 0)
-                throw new Error(`could not delete user with id ${userId}`)
+                throw new ConflictError(`could not delete user with id ${userId}`)
         })
 }
 

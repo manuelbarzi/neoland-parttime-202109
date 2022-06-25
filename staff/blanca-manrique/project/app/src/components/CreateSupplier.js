@@ -1,13 +1,14 @@
 import './CreateSupplier.css'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { createSupplier } from '../logic'
 import { useNavigate } from 'react-router-dom'
 import { IoChevronBackOutline, IoSave, IoInformation } from "react-icons/io5"
+import Context from './Context'
 
 function CreateSupplier({ onCreated }) {
+    const { setFeedback } = useContext(Context)
     const [info, setInfo] = useState(false) //info btn
     const navigate = useNavigate()
-
 
     const handleNewSupplier = event => {
         event.preventDefault()
@@ -25,10 +26,13 @@ function CreateSupplier({ onCreated }) {
 
         try {
             createSupplier(sessionStorage.token, name, email, web, phone, adress, contactPerson, tradeAssurance)
-                .then(() => onCreated())
-                .catch(error => alert(error.message))
+                .then(() => {
+                    onCreated()
+                    setFeedback({level: 'success', message: 'Supplier created successfully'})
+                })
+                .catch(error => setFeedback({ level: 'info', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'info', message: error.message })
         }
     }
 

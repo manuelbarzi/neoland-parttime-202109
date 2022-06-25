@@ -1,11 +1,13 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { retrieveAllProductsFromSupplier, filterProducts } from '../logic'
 import { IoChevronForwardOutline, IoAdd, IoSearch } from "react-icons/io5"
 import './ListProducts.css'
+import Context from './Context'
 
 function ListProducts() {
     const { supplierId } = useParams()
+    const { setFeedback } = useContext(Context)
     const [products, setProducts] = useState([])
     const [searchTerm, setSearchTerm] = useState("")
     const [filteredResults, setFilteredResults] = useState([])
@@ -15,9 +17,9 @@ function ListProducts() {
         try {
             retrieveAllProductsFromSupplier(sessionStorage.token, supplierId)
                 .then(products => setProducts(products))
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({level: 'info', message: error.message}))
         } catch (error) {
-            alert(error.message)
+            setFeedback({level: 'info', message: error.message})
         }
     }, [])
 
@@ -73,16 +75,15 @@ function ListProducts() {
             })
         )}
 
-        {/* {products ? <ul className='Products__items'>
-            {products.map(product =>
-                <li className='Products__items-li' key={product.id} onClick={() => handleProductDetail(product.id)}>
-                    <div className='Products__items-li-text'>
-                        <p className='Products__items-li-name'>{product.name}</p>
-                        <p>Category: {product.category}</p>
-                    </div>
-                    <IoChevronForwardOutline className='Products__items-li-icon' />
-                </li>)}
-        </ul> : <p>no products yet: You can create a new one</p>} */}
+        {(searchTerm.length === 0 && products.length === 0) ?
+            <>
+                <p>No products yet, you can aggregate a new one</p>
+            </> : null}
+
+        {(searchTerm.length > 1 && filteredResults.length === 0) ?
+            <>
+                <p>Product not found</p>
+            </> : null}
 
         <IoAdd className='Products__addIcon' onClick={handleAddProduct} />
     </div>

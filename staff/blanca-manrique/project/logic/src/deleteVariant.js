@@ -17,7 +17,7 @@ function deleteVariant(userId, supplierId, productId, variantId) {
             if (!product) throw new NotFoundError(`product with id ${productId} not found`)
             if (!variant) throw new NotFoundError(`variant with id ${variantId} not found`)
 
-            if (supplier.user._id.toString() !== userId) throw new AuthError(`user with id ${userId} is not allowed to access information from other products`)
+            if (supplier.user._id.toString() !== userId) throw new AuthError(`supplier with id ${supplierId} does not belong to user with id ${userId}`)
             if (product.supplier._id.toString() !== supplierId) throw new AuthError(`product with id ${productId} does not belong to supplier with id ${supplierId}`)
             if (variant.product.toString() !== productId) throw new AuthError(`variant with id ${variantId} does not belong to product with id ${productId}`)
 

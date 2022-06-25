@@ -10,9 +10,9 @@ module.exports = (req, res) => {
 
         retrieveAllProductsFromSupplier(userId, supplierId)
             .then(products => {
-                if (products.length === 0) {
-                    res.status(404).json({ error: error.message })
-                }
+                // if (products.length === 0) {
+                //     res.status(404).json({ error: error.message })
+                // }
 
                 res.status(200).json(products)
 

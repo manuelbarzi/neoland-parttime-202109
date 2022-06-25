@@ -1,10 +1,13 @@
 import { useParams, useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
 import './CreateProduct.css'
 import { createProduct } from '../logic'
 import { IoChevronBackOutline, IoSave } from "react-icons/io5"
+import Context from './Context'
 
 function CreateProduct({onCreated}) {
     const { supplierId } = useParams()
+    const { setFeedback } = useContext(Context)
     const navigate = useNavigate()
 
     const handleNewProduct = event => {
@@ -24,10 +27,13 @@ function CreateProduct({onCreated}) {
 
         try { 
             createProduct(sessionStorage.token, supplierId, supplierProductId, supplierProductUrl, name, category, brand, model, material, parseInt(price), parseInt(salePrice))
-                .then(() => onCreated())
-                .catch(error => alert(error.message))
+                .then(() => {
+                    onCreated()
+                    setFeedback({level: 'success', message: 'Supplier created successfully'})
+                })
+                .catch(error => setFeedback({ level: 'info', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'info', message: error.message })
         }
     }
 

@@ -19,9 +19,9 @@ const BarChart = () => {
                     console.log(chart.length)
                     console.log(chart)
                 })
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }, []) //chart???
 

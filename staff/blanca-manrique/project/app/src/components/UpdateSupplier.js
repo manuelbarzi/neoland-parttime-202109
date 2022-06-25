@@ -1,11 +1,13 @@
 import './UpdateSupplier.css'
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { useNavigate, useParams } from 'react-router-dom'
 import { retrieveSupplier, updateSupplier } from '../logic'
 import { IoChevronBackOutline, IoSave } from "react-icons/io5"
+import Context from './Context'
 
 function UpdateSupplier({ onUpdated }) {
     const { supplierId } = useParams()
+    const { setFeedback } = useContext(Context)
     const [supplier, setSupplier] = useState()
     const navigate = useNavigate()
 
@@ -13,9 +15,9 @@ function UpdateSupplier({ onUpdated }) {
         try {
             retrieveSupplier(sessionStorage.token, supplierId)
                 .then(supplier => setSupplier(supplier))
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }, [])
 
@@ -34,10 +36,13 @@ function UpdateSupplier({ onUpdated }) {
 
         try {
             updateSupplier(sessionStorage.token, supplierId, name, email, web, phone, adress, contactPerson, tradeAssurance)
-                .then(() => onUpdated())
-                .catch(error => alert(error.message))
+                .then(() => {
+                    onUpdated()
+                    setFeedback({level: 'success', message: 'Supplier successfully updated'})
+                })
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 

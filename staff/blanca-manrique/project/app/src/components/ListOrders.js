@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useNavigate } from "react-router-dom"
 import { retrieveAllOrders, deleteOrder, filterOrders } from '../logic'
 import { IoChevronBackOutline, IoChevronForwardOutline, IoAdd, IoTrashOutline, IoSearch } from "react-icons/io5"
 import './ListOrders.css'
+import Context from './Context'
 import FilterBar from './FilterBar'
 import dayjs from "dayjs"
 
@@ -12,6 +13,7 @@ dayjs.extend(isSameOrBefore)
 dayjs.extend(isSameOrAfter)
 
 function ListOrders() {
+    const { setFeedback } = useContext(Context)
     const [orders, setOrders] = useState([])
     const [searchTerm, setSearchTerm] = useState("")
     const [filteredResults, setFilteredResults] = useState([])
@@ -21,10 +23,10 @@ function ListOrders() {
         try {
             retrieveAllOrders(sessionStorage.token)
                 .then(orders => setOrders(orders))
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({level: 'info', message: error.message}))
 
         } catch (error) {
-            alert(error.message)
+            setFeedback({level: 'info', message: error.message})
         }
     }, [])
 
@@ -41,9 +43,9 @@ function ListOrders() {
                     setOrders(newOrders)
                 })
 
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({level: 'info', message: error.message}))
         } catch (error) {
-            alert(error.message)
+            setFeedback({level: 'info', message: error.message})
         }
     }
 
@@ -60,6 +62,7 @@ function ListOrders() {
     return <div>
         <IoChevronBackOutline className='IconBack' onClick={goBack} />
 
+
         {orders.length ?
             <div>
                 <div>
@@ -71,7 +74,7 @@ function ListOrders() {
                     <IoSearch />
                 </div>
 
-                <FilterBar orders={orders}/>
+                <FilterBar orders={orders} />
             </div>
             : null
         }
@@ -133,9 +136,20 @@ function ListOrders() {
 
                 )
             }
+            
+            {(searchTerm.length === 0 && orders.length === 0) ?
+                <>
+                    <p>No orders yet, you can generate a new one</p>
+                </> : null}
+
+            {(searchTerm.length > 1 && filteredResults.length === 0) ?
+                <>
+                    <p>Order not found</p>
+                </> : null}
 
             <IoAdd className='Orders__addIcon' onClick={handleCreateOrder} />
         </div>
+
     </div>
 }
 export default ListOrders

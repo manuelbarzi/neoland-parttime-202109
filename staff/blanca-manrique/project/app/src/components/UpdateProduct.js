@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { useNavigate, useParams } from 'react-router-dom'
 import { retrieveProduct, updateProduct } from '../logic'
 import './UpdateProduct.css'
+import Context from './Context'
 import { IoChevronBackOutline, IoSave } from "react-icons/io5"
 
 function UpdateProduct({ onUpdated }) {
     const { supplierId, productId } = useParams()
+    const { setFeedback } = useContext(Context)
     const [product, setProduct] = useState()
     const navigate = useNavigate()
 
@@ -13,9 +15,9 @@ function UpdateProduct({ onUpdated }) {
         try {
             retrieveProduct(sessionStorage.token, supplierId, productId)
                 .then(product => setProduct(product))
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }, [])
 
@@ -35,10 +37,13 @@ function UpdateProduct({ onUpdated }) {
 
         try {
             updateProduct(sessionStorage.token, supplierId, productId, supplierProductId, supplierProductUrl, name, category, brand, model, material, parseInt(price), parseInt(salePrice))
-                .then(() => onUpdated())
-                .catch(error => alert(error.message))
+                .then(() => {
+                    onUpdated()
+                    setFeedback({level: 'success', message: 'Product successfully updated'})
+                })
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 

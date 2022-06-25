@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { authenticateUser } from '../logic'
-import Feedback from './Feedback'
+import Context from './Context'
 
 function Login({ onLoggedIn }) {
-    const [feedback, setFeedback] = useState()
+    const { setFeedback } = useContext(Context)
     const navigate = useNavigate()
 
     const login = event => {
@@ -20,6 +20,7 @@ function Login({ onLoggedIn }) {
                 .then(token => {
                     sessionStorage.token = token
                     onLoggedIn()
+                    setFeedback({level: 'success', message: 'User successfully logged in'})
                 })
                 .catch(error => {
                     setFeedback({ level: 'error', message: error.message })
@@ -38,12 +39,8 @@ function Login({ onLoggedIn }) {
         <form onSubmit={login}>
             <input type="text" name="email" placeholder="e-mail" />
             <input type="password" name="password" placeholder="password" />
-
-            {feedback ? <Feedback level={feedback.level} message={feedback.message} /> : null}
-
             <button type="submit">Sign in</button>
         </form>
-
     </div>
 }
 export default Login

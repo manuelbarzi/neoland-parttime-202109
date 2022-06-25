@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { registerUser } from '../logic'
-import Feedback from './Feedback'
+import Context from './Context'
 
 function Register({ onRegistered }) {
-    const [feedback, setFeedback] = useState()
+    const { setFeedback } = useContext(Context)
     const navigate = useNavigate()
 
     const register = event => {
@@ -18,7 +18,10 @@ function Register({ onRegistered }) {
 
         try {
             registerUser(username, email, password)
-                .then(() => onRegistered())
+                .then(() => {
+                    onRegistered()
+                    setFeedback({level: 'success', message: 'User successfully registered'})
+                })
                 .catch(error => {
                     setFeedback({ level: 'error', message: error.message })
                 })
@@ -36,9 +39,6 @@ function Register({ onRegistered }) {
             <input type="text" name="username" placeholder="username" />
             <input type="email" name="email" placeholder="e-mail" />
             <input type="password" name="password" placeholder="password" />
-
-            {feedback ? <Feedback level={feedback.level} message={feedback.message} /> : null}
-            
             <button type="submit">Sign up</button>
         </form>
 

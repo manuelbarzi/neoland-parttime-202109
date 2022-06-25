@@ -20,7 +20,7 @@ function createVariant(userId, supplierId, productId, size, color, stockOnHand, 
             if (!user) throw new NotFoundError(`user with id ${userId} not found`)
             if (!supplier) throw new NotFoundError(`supplier with id ${supplierId} not found`)
             if (!product) throw new NotFoundError(`product with id ${supplierId} not found`)
-            if (supplier.user._id.toString() !== userId) throw new AuthError(`product with id ${productId} does not belong to user with id ${userId}`)
+            if (supplier.user._id.toString() !== userId) throw new AuthError(`supplier with id ${supplierId} does not belong to user with id ${userId}`)
             if (product.supplier.toString() !== supplierId) throw new AuthError(`product with id ${productId} does not belong to supplier with id ${supplierId}`)
 
             return Variant.findOne({ supplier: supplierId, product: productId, size, color })

@@ -1,11 +1,13 @@
 import { useParams, useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
 import './CreateVariant.css'
 import { createVariant } from '../logic'
 import { IoChevronBackOutline, IoSave } from "react-icons/io5"
+import Context from './Context'
 
 function CreateVariant({ onCreated }) {
-    const { supplierId } = useParams()
-    const { productId } = useParams()
+    const { supplierId, productId } = useParams()
+    const { setFeedback } = useContext(Context)
     const navigate = useNavigate()
 
     const handleNewVariant = event => {
@@ -20,10 +22,13 @@ function CreateVariant({ onCreated }) {
 
         try {
             createVariant(sessionStorage.token, supplierId, productId, size, color, parseInt(stockOnHand), parseInt(criticalStock))
-                .then(() => onCreated())
-                .catch(error => alert(error.message))
+                .then(() => {
+                    onCreated()
+                    setFeedback({level: 'success', message: 'Supplier created successfully'})
+                })
+                .catch(error => setFeedback({ level: 'info', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'info', message: error.message })
         }
     }
 

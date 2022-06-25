@@ -1,7 +1,7 @@
 const { models: { User, Supplier, Product } } = require('data')
 const {
     validators: { validateId, validateString, validateNumber },
-    errors: { NotFoundError, DuplicityError }
+    errors: { NotFoundError, DuplicityError, AuthError }
 } = require('commons')
 
 function createProduct(userId, supplierId, supplierProductId, supplierProductUrl, name, category, brand, model, material, price, salePrice) {
@@ -21,6 +21,7 @@ function createProduct(userId, supplierId, supplierProductId, supplierProductUrl
         .then(([user, supplier]) => {
             if (!user) throw new NotFoundError(`user with id ${userId} not found`)
             if (!supplier) throw new NotFoundError(`supplier with id ${supplierId} not found`)
+            if (supplier.user._id.toString() !== userId) throw new AuthError(`supplier with id ${supplierId} does not belong to user with id ${userId}`)
 
             return Product.create({ supplier: supplierId, supplierProductId, supplierProductUrl, name, category, brand, model, material, price, salePrice })
         })

@@ -10,12 +10,12 @@ function retrieveSuppliers(userId) {
 
     return User.findById(userId)
         .then((user) => {
-            if (!user) throw new NotFoundError(`user with id ${userId} not found`)
+            if (!user) throw new NotFoundError("user does not exist")
 
             return Supplier.find({ user: userId }).lean()
         })
         .then(suppliers => {
-            if (suppliers.length === 0) throw new NotFoundError(`user with id ${userId} has no assigned suppliers`)
+            if (suppliers.length === 0) throw new NotFoundError(`not found any supplier`)
             
             //Limpiamos los proveedores (sanitize)
             suppliers.forEach(supplier => {

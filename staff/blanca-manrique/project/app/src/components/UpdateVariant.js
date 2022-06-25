@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { useNavigate, useParams } from 'react-router-dom'
 import { retrieveVariant, updateVariant } from '../logic'
 import { IoChevronBackOutline, IoSave } from "react-icons/io5"
 import './UpdateVariant.css'
+import Context from './Context'
 
 function UpdateVariant({ onUpdated }) {
     const { supplierId, productId, variantId } = useParams()
+    const { setFeedback } = useContext(Context)
     const [variant, setVariant] = useState()
     const navigate = useNavigate()
 
@@ -13,9 +15,9 @@ function UpdateVariant({ onUpdated }) {
         try {
             retrieveVariant(sessionStorage.token, supplierId, productId, variantId)
                 .then(variant => setVariant(variant))
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }, [])
 
@@ -30,10 +32,13 @@ function UpdateVariant({ onUpdated }) {
 
         try {
             updateVariant(sessionStorage.token, supplierId, productId, variantId, size, color, parseInt(stockOnHand), parseInt(criticalStock))
-                .then(() => onUpdated())
-                .catch(error => alert(error.message))
+                .then(() => {
+                    onUpdated()
+                    setFeedback({level: 'success', message: 'Variant successfully updated'})
+                })
+                .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'error', message: error.message })
         }
     }
 

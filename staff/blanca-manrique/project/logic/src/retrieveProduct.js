@@ -11,9 +11,9 @@ function retrieveProduct(userId, supplierId, productId) {
 
     return Promise.all([User.findById(userId).lean(), Supplier.findById(supplierId).lean(), Product.findById(productId).lean()])
         .then(([user, supplier, product]) => {
-            if (!user) throw new NotFoundError(`user with id ${userId} not found`)
-            if (!supplier) throw new NotFoundError(`supplier with id ${supplierId} not found`)
-            if (!product) throw new NotFoundError(`product with id ${productId} not found`)
+            if (!user) throw new NotFoundError("user does not exist")
+            if (!supplier) throw new NotFoundError("supplier does not exist")
+            if (!product) throw new NotFoundError("product does not exist")
 
             if (supplier.user.toString() !== userId) throw new AuthError(`product with id ${productId} does not belong to user with id ${userId}`)
             if (product.supplier.toString() !== supplierId) throw new AuthError(`product with id ${productId} does not belong to supplier with id ${supplierId}`)

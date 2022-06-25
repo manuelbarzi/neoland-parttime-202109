@@ -10,14 +10,14 @@ function retrieveAllProductsFromSupplier(userId, supplierId) {
 
     return Promise.all([User.findById(userId).lean(), Supplier.findById(supplierId).lean()])
         .then(([user, supplier]) => {
-            if (!user) throw new NotFoundError(`user with id ${userId} not found`)
-            if (!supplier) throw new NotFoundError(`supplier with id ${supplierId} not found`)
-            if (supplier.user.toString() !== userId) throw new AuthError(`user with id ${userId} is not authorised to retrieve products from other user`)
+            if (!user) throw new NotFoundError("user does not exist")
+            if (!supplier) throw new NotFoundError("supplier does not exist")
+            if (supplier.user.toString() !== userId) throw new AuthError("user is not authorised to retrieve products from other user")
 
             return Product.find({ user: userId, supplier: supplierId }).lean().populate('supplier')
         })
         .then(products => {
-            if (products.length === 0) throw new NotFoundError(`supplier with id ${supplierId} has no assigned products`)
+            // if (products.length === 0) throw new NotFoundError(`supplier with id ${supplierId} has no assigned products`)
 
             for (let i = 0; i < products.length - 1; i++)
                 if (products[i].supplier !== products[i + 1].supplier)

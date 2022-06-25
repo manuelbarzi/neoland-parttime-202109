@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { createOrder } from '../logic'
-import Feedback from './Feedback'
+import Context from './Context'
 
 function CreateOrder({ onCreated }) {
-    const [feedback, setFeedback] = useState()
+    const { setFeedback } = useContext(Context)
 
     const handleCreateOrder = (event) => {
         event.preventDefault()
@@ -19,11 +19,11 @@ function CreateOrder({ onCreated }) {
             createOrder(sessionStorage.token, _status, description, _createdAt = Date.now)
                 .then(() =>{
                     onCreated()
-                    // setFeedback({level: 'success', message: 'Order created successfully'})
+                    setFeedback({level: 'success', message: 'Order created successfully'})
                 })
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({ level: 'info', message: error.message }))
         } catch (error) {
-            setFeedback({level: 'error', message: error.message})
+            setFeedback({ level: 'info', message: error.message })
         }
 
     }
@@ -35,8 +35,6 @@ function CreateOrder({ onCreated }) {
                 <option disabled label="Por defecto esta orden se genera con status draft" > </option>
                 <option name="draft">Draft</option>
             </select>
-
-            {feedback ? <Feedback level={feedback.level} message={feedback.message}/> : null}
             <button type="submit">Create Order</button>
         </form>
     </div>)

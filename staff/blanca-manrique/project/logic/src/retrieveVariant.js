@@ -12,10 +12,10 @@ function retrieveVariant(userId, supplierId, productId, variantId) {
 
     return Promise.all([User.findById(userId).lean(), Supplier.findById(supplierId).lean(), Product.findById(productId).lean(), Variant.findById(variantId).lean().populate('product')])
         .then(([user, supplier, product, variant]) => {
-            if (!user) throw new NotFoundError(`user with id ${userId} not found`)
-            if (!supplier) throw new NotFoundError(`supplier with id ${supplierId} not found`)
-            if (!product) throw new NotFoundError(`product with id ${productId} not found`)
-            if (!variant) throw new NotFoundError(`variant with id ${variantId} not found`)
+            if (!user) throw new NotFoundError("user does not exist")
+            if (!supplier) throw new NotFoundError("supplier does not exist")
+            if (!product) throw new NotFoundError("product does not exist")
+            if (!variant) throw new NotFoundError("variant does not exist")
 
             if (supplier.user._id.toString() !== userId) throw new AuthError(`user with id ${userId} is not allowed to access information from other products`)
             if (product.supplier._id.toString() !== supplierId) throw new AuthError(`product with id ${productId} does not belong to supplier with id ${supplierId}`)

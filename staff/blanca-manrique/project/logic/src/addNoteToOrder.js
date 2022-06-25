@@ -1,5 +1,8 @@
 const { models: { User, Note, Order } } = require('data')
-const { validators: { validateId, validateString, validateNumber }, errors: { NotFoundError, AuthError, DuplicityError } } = require('commons')
+const {
+    validators: { validateId, validateString },
+    errors: { NotFoundError, AuthError }
+} = require('commons')
 
 
 function addNoteToOrder(userId, orderId, text) {

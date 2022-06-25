@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useNavigate } from "react-router-dom"
 import { retrieveSuppliers, filterSuppliers } from '../logic'
 import { IoChevronBack, IoChevronForwardOutline, IoAdd, IoSearch } from "react-icons/io5"
 import './ListSuppliers.css'
+import Context from './Context'
 
 function ListSuppliers() {
+    const { setFeedback } = useContext(Context)
     const [suppliers, setSuppliers] = useState([])
     const [searchTerm, setSearchTerm] = useState("")
     const [filteredResults, setFilteredResults] = useState([])
@@ -17,10 +19,10 @@ function ListSuppliers() {
                 .then(suppliers => {
                     setSuppliers(suppliers)
                 })
-                .catch(error => alert(error.message))
+                .catch(error => setFeedback({ level: 'info', message: error.message }))
 
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'info', message: error.message })
         }
 
     }, [])
@@ -37,7 +39,7 @@ function ListSuppliers() {
 
     const searchSuppliers = query => {
         setSearchTerm(query)
-        
+
         setFilteredResults(filterSuppliers(query, suppliers))
     }
 
@@ -55,8 +57,8 @@ function ListSuppliers() {
                 <IoSearch />
             </div>
 
-            {searchTerm.length > 1 ? (
-                filteredResults.map((supplier) => {
+            {searchTerm.length > 1 ?
+                (filteredResults.map((supplier) => {
                     return (
                         <li className='Suppliers__items-li' key={supplier.id} onClick={() => handleSupplierDetail(supplier.id)}>
                             <span className='Suppliers__items-li-text'>{supplier.name}</span>
@@ -65,8 +67,8 @@ function ListSuppliers() {
 
                     )
                 })
-            ) : (
-                suppliers.map((supplier) => {
+                )
+                : (suppliers.map((supplier) => {
                     return (
                         <li className='Suppliers__items-li' key={supplier.id} onClick={() => handleSupplierDetail(supplier.id)}>
                             <span className='Suppliers__items-li-text'>{supplier.name}</span>
@@ -75,7 +77,19 @@ function ListSuppliers() {
 
                     )
                 })
-            )}
+                )
+            }
+
+            {(searchTerm.length === 0 && suppliers.length === 0) ?
+                <>
+                    <p>No suppliers yet, you can aggregate a new one</p>
+                </> : null}
+
+
+            {(searchTerm.length > 1 && filteredResults.length === 0) ?
+                <>
+                    <p>Supplier not found</p>
+                </> : null}
 
             <IoAdd className='Suppliers__addIcon' onClick={handleCreateSupplier} />
         </div>

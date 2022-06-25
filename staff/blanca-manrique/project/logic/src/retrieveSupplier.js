@@ -10,8 +10,8 @@ function retrieveSupplier(userId, supplierId) {
 
     return Promise.all([User.findById(userId).lean(), Supplier.findById(supplierId).lean()])
         .then(([user, supplier]) => {
-            if (!user) throw new NotFoundError(`user with id ${userId} not found`)
-            if (!supplier) throw new NotFoundError(`supplier with id ${supplierId} not found`)
+            if (!user) throw new NotFoundError("user does not exist")
+            if (!supplier) throw new NotFoundError("supplier does not exist")
 
             if(supplier.user.toString() !== userId) throw new AuthError(`supplier with id ${supplierId} does not belong to user with id ${userId}`)
 

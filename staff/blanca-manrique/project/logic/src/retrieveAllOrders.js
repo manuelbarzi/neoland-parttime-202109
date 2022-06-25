@@ -11,12 +11,12 @@ function retrieveAllOrders(userId) {
 
     return User.findById(userId)
         .then((user) => {
-            if (!user) throw new NotFoundError(`user with id ${userId} not found`)
+            if (!user) throw new NotFoundError("user does not exist")
 
             return Order.find({ user: userId }).populate('items.variant').lean()
         })
         .then(orders => {
-            if (orders.length === 0) throw new NotFoundError(`user with id ${userId} has no created orders`)
+            // if (orders.length === 0) throw new NotFoundError(`user with id ${userId} has no created orders`)
 
             orders.forEach(order => {
                 if (order.user.toString() !== userId) throw new AuthError(`user with id ${userId} is not allowed to retrieve order with id ${order.id}`)
