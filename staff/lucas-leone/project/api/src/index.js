@@ -73,9 +73,9 @@ connect(MONGODB_URL)
         router.patch('/list/:listId/section/:sectionId/item/:itemId', jsonBodyParser, updateItem)
 
 
+        router.delete('/list/:listId/section/:sectionId/item/:itemId', removeItem)
         router.delete('/list/:listId/section/:sectionId', deleteSection)
         router.delete('/restaurant', jsonBodyParser, unregisterRestaurant)
-        router.delete('/list/:listId/section/:sectionId/item/:itemId', removeItem)
         router.delete('/list/:listId', deleteList)
         router.delete('/item/:itemId', deleteItem)
 

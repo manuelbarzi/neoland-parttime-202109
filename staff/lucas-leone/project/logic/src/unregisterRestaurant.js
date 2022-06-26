@@ -3,8 +3,8 @@ const bcrypt = require('bcryptjs')
 
 const {
     validators: {
-        validateUsername,
-        validatePassword
+        validatePassword,
+        validateId
     },
     errors: {
         NotFoundError,

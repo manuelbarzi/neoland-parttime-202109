@@ -21,6 +21,8 @@ import retrieveItems from "./retrieveItems"
 import deleteItem from "./deleteItem"
 import retrieveRestaurant from "./retrieveRestaurant"
 import updateRestaurant from "./updateRestaurant";
+import unregisterRestaurant from "./unregisterRestaurant";
+import filterIngredients from "./filterIngredients";
 
 export{
     registerUser,
@@ -45,6 +47,8 @@ export{
     retrieveItems,
     deleteItem,
     retrieveRestaurant,
-    updateRestaurant
+    updateRestaurant,
+    unregisterRestaurant,
+    filterIngredients
     
 }

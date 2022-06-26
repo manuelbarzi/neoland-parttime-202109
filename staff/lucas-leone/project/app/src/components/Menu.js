@@ -1,15 +1,17 @@
+import './Menu.css'
 import { useEffect } from "react";
 import { retrieveLists } from "../logic";
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useContext } from 'react'
 import Context from './Context'
 import Section from "./Section";
 
-export default function ({ refresh, username }) {
+export default function ({ refresh }) {
     const { setFeedback } = useContext(Context)
     const [lists, setLists] = useState()
-    const navigate = useNavigate()
+    const params = useParams()
+    const { username } = params
 
     useEffect(() => {
         refreshList()
@@ -19,27 +21,27 @@ export default function ({ refresh, username }) {
         try {
             retrieveLists(sessionStorage.token)
                 .then((lists) => setLists(lists))
-                .catch((error) =>setFeedback({ level: 'info', message: error.message }))
+                .catch((error) => setFeedback({ level: 'info', message: error.message }))
         } catch (error) {
-           setFeedback({ level: 'info', message: error.message })
+            setFeedback({ level: 'info', message: error.message })
 
         }
     }
-    const handleGoToList = listId => {
-        navigate(`/list/${listId}`)
-    }
-    return <div>
 
-        <ul>
-            <h1>Welcome to</h1><h1> {username}</h1>
+    return <div>
+        <h1 className='menu__title'>{username}</h1>
+        <ul className="menu__contenedor">
             {lists ? lists.map(list =>
-                <li onClick={() => handleGoToList(list.id)}>
-                    <div >
-                        <h1>{list.name}</h1>
-                        <p>{list.description}</p>
+                <li>
+                    <div className='menu__list'>
+                        <div className='menu_listInfo'>
+                            <h1>{list.name}</h1>
+                            <p>{list.description}</p>
+                        </div>
                         {list.sections ? list.sections.map(section => <div>
-                            <Section section={section} />
+                            <Section section={section} listPrice={list.price} />
                         </div>) : <p>no sections</p>}
+                        {list.price && <p className='menu__price'>${list.price}</p>}
 
                     </div>
 

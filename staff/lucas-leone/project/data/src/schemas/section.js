@@ -1,24 +1,24 @@
-const {Schema} = require('mongoose')
-const {Types: {ObjectId}} = Schema
+const { Schema } = require('mongoose')
+const { Types: { ObjectId } } = Schema
 
 const section = new Schema({
 
 
-date: {
-    type: Date,
-    required: true,
-    default: Date.now
-},
+    date: {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
 
-name: {
-    type: String,
-    required: true
-},
+    name: {
+        type: String,
+        required: true
+    },
 
-items: [{
-    type: ObjectId,
-    ref:'Item'
-}]
+    items: [{
+        type: ObjectId,
+        ref: 'Item'
+    }]
 
 })
 

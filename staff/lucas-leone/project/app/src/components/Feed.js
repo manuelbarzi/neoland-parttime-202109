@@ -1,3 +1,4 @@
+import './Feed.css'
 import { useEffect, useContext } from "react";
 import { retrieveLists } from "../logic";
 import { useState } from "react";
@@ -28,11 +29,11 @@ export default function ({ refresh }) {
     const handleGoToList = listId => {
         navigate(`/list/${listId}`)
     }
-    return <div>
+    return <div className='Feed'>
 
-        <ul>
+        <ul className='Feed__list'>
             {lists ? lists.map(list =>
-                <li onClick={() => handleGoToList(list.id)}>
+                <li className='Feed__item' onClick={() => handleGoToList(list.id)}>
                     <List list={list}  />
                 </li>) : <p>no list</p>}
 

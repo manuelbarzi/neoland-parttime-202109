@@ -1,4 +1,5 @@
-
+import './x.css'
+import './Update.css'
 import { useState, useEffect, useContext } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { updateSection, retrieveItemsFromSection, retrieveSection, removeItem, retrieveItems, deleteItem } from "../logic"
@@ -11,6 +12,7 @@ export default () => {
     const [itemsFiltered, setItemsFiltered] = useState()
     const [section, setSection] = useState()
     const [control, setControl] = useState(false)
+    const [deleteControl, setDeleteControl] = useState(false)
     const params = useParams()
     const { listId, sectionId } = params
     const navigate = useNavigate()
@@ -114,14 +116,18 @@ export default () => {
         retrieveItemFromIds(section.items)
     }
 
-    const handleDeleteItem = (itemId)=>{
+    const handleDeleteControl = () => {
+        setDeleteControl(!deleteControl)
+    }
+
+    const handleDeleteItem = (itemId) => {
         try {
             deleteItem(sessionStorage.token, itemId)
                 .then(() => {
                     const itemIndex = itemsFiltered.findIndex(_item => _item.id === itemId)
-                        itemsFiltered.splice(itemIndex, 1)
+                    itemsFiltered.splice(itemIndex, 1)
                     setItemsFiltered(itemsFiltered)
-                    
+
                 })
                 .catch(error => setFeedback({ level: 'info', message: error.message }))
         } catch (error) {
@@ -129,33 +135,41 @@ export default () => {
         }
     }
 
-    
 
-    return <div>
+
+    return <div  className='updateSection' >
         {items ? <>
-            <button onClick={handleGoBack}>x</button>
-            <h1>Update Section</h1>
-            <form onSubmit={handleSave}>
-                <input type="text" name="name" defaultValue={section.name} ></input>
-                <button type="submit">Save</button>
+            <button className='x' onClick={handleGoBack}>x</button>
+            <h1 className='updateSection_title'>Update Section</h1>
+            <form className='updateSection__form' onSubmit={handleSave}>
+                <input className='updateSection__input' type="text" name="name" defaultValue={section.name} ></input>
+                <button className='updateSection__submit' type="submit">Save</button>
             </form>
-            <h4>Items</h4>
+            <h4 className='updateSection_subTitle' >Items</h4>
             <ul>
                 {items.map(item =>
-                    <li>{item.name}
-                        <button onClick={() => handleUpdateItem(item.id)}>Edit</button>
-                        <button onClick={() => handleRemoveItem(item.id)}>Remove</button></li>
+                    <li className='updateSection_item' >{item.name}
+                        <button className='updateSection__subButton' onClick={() => handleUpdateItem(item.id)}>Edit</button>
+                        <button className='updateSection__subButton' onClick={() => handleRemoveItem(item.id)}>Remove</button></li>
                 )}
             </ul>
-            <input type="text" name="query" onChange={(event) => { queryItems(event.target.value) }}></input>
+            <input className='updateSection__input' type="text" name="query" placeholder='Buscar Items' onChange={(event) => { queryItems(event.target.value) }}></input>
             {itemsFiltered ? <ul>{itemsFiltered.map(itemFiltered =>
-                <li><><input type="checkbox" name="items" defaultValue={itemFiltered.id} onChange={() => handleOnChangeitem(itemFiltered)} defaultChecked={items.some(_item => _item.name === itemFiltered.name)} />{itemFiltered.name}
-                <button onClick={()=>handleDeleteItem(itemFiltered.id)}>delete</button>
+                <li><><input className='updateSection__inpu' type="checkbox" name="items" defaultValue={itemFiltered.id} onChange={() => handleOnChangeitem(itemFiltered)} defaultChecked={items.some(_item => _item.name === itemFiltered.name)} />{itemFiltered.name}
+                    <button className='updateSection__subButton' onClick={handleDeleteControl}>Delete</button>
+                {deleteControl && <div className='update__delete'>
+                    <p className='update_deleteText'>Are you sure?</p>
+                    <div className='update_deleteContentButton'>
+                    <button className='update_deleteButton' onClick={() => handleDeleteItem(itemFiltered.id)}>Yes</button>
+                    <button className='update_deleteButton' onClick={handleDeleteControl}>No</button>
+                    </div>
+                </div>}
                 </></li>)}
             </ul>
 
                 : <></>}
-            <button onClick={handleCreateItem}>+</button>
+            <button className='updateSection_createButton' onClick={handleCreateItem}>+</button>
+            
         </> :
             <></>}
     </div>

@@ -1,6 +1,8 @@
+import './x.css'
+import './Update.css'
 import { useEffect, useState, useContext } from "react"
 import { useParams, useNavigate } from "react-router-dom"
-import { retrieveList, deleteList} from "../logic"
+import { retrieveList, deleteList } from "../logic"
 import UpdateList from "./UpdateList"
 import List from "./List"
 import Context from './Context'
@@ -11,6 +13,7 @@ export default function () {
     const { setFeedback } = useContext(Context)
     const [list, setList] = useState()
     const [controls, setControls] = useState(true)
+    const [deleteControl, setDeleteControl] = useState(false)
 
     const navigate = useNavigate()
 
@@ -24,7 +27,7 @@ export default function () {
     const refreshList = () => {
         try {
             retrieveList(sessionStorage.token, listId)
-                .then(list =>  setList(list) )
+                .then(list => setList(list))
                 .catch((error) => setFeedback({ level: 'info', message: error.message }))
 
         } catch (error) {
@@ -32,15 +35,15 @@ export default function () {
 
         }
     }
-    const handleEdit =()=>{
+    const handleEdit = () => {
         setControls(false)
     }
 
-    const handleGoBack = ()=>{
-        navigate(`/`)
+    const handleDeleteControl = () => {
+        setDeleteControl(!deleteControl)
     }
 
-    const handleDeleteList =(listId)=>{
+    const handleDeleteList = (listId) => {
 
         try {
             deleteList(sessionStorage.token, listId)
@@ -53,17 +56,26 @@ export default function () {
             setFeedback({ level: 'info', message: error.message })
         }
     }
-
+    const handleGoBack = () => {
+        navigate(`/`)
+    }
     return <>
-    <button onClick={handleGoBack}>x</button>
-    {controls?
-        <>
-        {list && <List list={list} />}
-        <button onClick={handleEdit}>Edit</button>
-        <button onClick={() => handleDeleteList(list.id)}>Delete</button>
-        </>:
-        <UpdateList refresh={refreshList} list={list}/>}
-       
+        <button className='x' onClick={handleGoBack}>x</button>
+        {controls ?
+            <>  <div className='Detail__contenedor'>
+                {list && <List list={list} />}
+                
+                <button className='Detail_subButon' onClick={handleEdit}>Edit</button>
+                <button className='Detail_subButon' onClick={handleDeleteControl}>Delete</button>
+                {deleteControl && <div className='detail__delete'>
+                    <p className='detail_deleteText' >Are you sure?</p>
+                    <button className='detail_deleteButton' onClick={() => handleDeleteList(list.id)}>Si</button>
+                    <button className='detail_deleteButton' onClick={handleDeleteControl}>No</button>
+                </div>}
+                </div>
+            </> :
+            <UpdateList refresh={refreshList} list={list} />}
+
     </>
 
 }

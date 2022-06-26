@@ -5,7 +5,7 @@ const {
     errors: { NotFoundError }
 } = require('commons')
 
-function deleteItem(restaurantId, listId, sectionId, itemId) {
+function removeItem(restaurantId, listId, sectionId, itemId) {
     validateId(restaurantId, 'restaurant id')
     validateId(listId, 'list id')
     validateId(sectionId, 'section id')
@@ -33,4 +33,4 @@ function deleteItem(restaurantId, listId, sectionId, itemId) {
         .then(() => { })
 }
 
-module.exports = deleteItem
+module.exports = removeItem

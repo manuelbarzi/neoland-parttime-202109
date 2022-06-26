@@ -1,13 +1,14 @@
-
+import './Update.css'
 import { useNavigate } from 'react-router-dom'
 import { updateList, deleteSection } from '../logic'
-import { useContext } from 'react'
+import { useContext,useState } from 'react'
 import Context from './Context'
 //list: {id, name, description, sections},
 
-export default ({ list: { id, name, description, sections, price}, refresh}) => {
+export default ({ list: { id, name, description, sections, price }, refresh }) => {
     const { setFeedback } = useContext(Context)
     const navigate = useNavigate()
+    const [deleteControl, setDeleteControl] = useState(false)
 
 
     const handleSave = event => {
@@ -33,15 +34,18 @@ export default ({ list: { id, name, description, sections, price}, refresh}) => 
 
     }
 
-    const handleNewSection =() =>{
+    const handleNewSection = () => {
         navigate(`/list/${id}/section`)
-        
+
+    }
+    const handleDeleteControl = () => {
+        setDeleteControl(!deleteControl)
     }
 
-    const handleDeleteSection =(sectionId)=>{
+    const handleDeleteSection = (sectionId) => {
 
         try {
-            deleteSection(sessionStorage.token, id , sectionId)
+            deleteSection(sessionStorage.token, id, sectionId)
                 .then(() => {
                     refresh()
                 })
@@ -52,24 +56,30 @@ export default ({ list: { id, name, description, sections, price}, refresh}) => 
         }
     }
 
-
-
-    return <div>
-        <h1>Update List</h1>
-        <form onSubmit={handleSave}>
-            <input type="text" name="name" defaultValue={name} ></input>
-            <textarea name="description" defaultValue={description} ></textarea>
-            <input type="number" name="price" defaultValue={price} ></input>
-            <button type="submit">Save</button>
+    return <div className='updateList'>
+        <h1 className='updateList_title'>Update List</h1> 
+        <form  className='updateList__form' onSubmit={handleSave}>
+            <input className='updateList__input' type="text" name="name" defaultValue={name} ></input>
+            <textarea className='updateList__input' name="description" defaultValue={description} ></textarea>
+            <input className='updateList__input' type="number" name="price" defaultValue={price} ></input>
+            <button className='updateList__submit' type="submit">Save</button>
         </form>
+        <h1 className='updateList_subTitle'>Sections</h1>
         <ul>
             {sections.map(section =>
-                <li>{section.name}
-                    <button onClick={() => handleUpdateSection(section.id)}>Edit</button>
-                    <button onClick={() => handleDeleteSection(section.id)}>Delete</button>  </li>
+                <li className='updateList_section'>{section.name}
+                    <button className='updateList__subButton' onClick={() => handleUpdateSection(section.id)}>Edit</button>
+
+                    <button className='updateList__subButton' onClick={handleDeleteControl}>Delete</button>
+                    {deleteControl && <div className='update__delete'>
+                        <p className='update_deleteText'>Are you sure?</p>
+                        <button className='update_deleteButton'  onClick={() => handleDeleteSection(section.id)}>Si</button>
+                        <button className='update_deleteButton'  onClick={handleDeleteControl}>No</button>
+                    </div>}
+                </li>
             )}
         </ul>
-        <button onClick={handleNewSection}>+</button>
+        <button className='updateList_createButton' onClick={handleNewSection}>+</button>
     </div>
 
 

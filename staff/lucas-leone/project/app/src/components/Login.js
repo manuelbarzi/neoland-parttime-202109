@@ -1,6 +1,8 @@
+import './Login.css'
 import { authenticateUser } from "../logic"
 import { useContext } from 'react'
 import Context from './Context'
+import logo from '../logo_primary.png'
 
 
 export default function ({ onLogged }) {
@@ -14,7 +16,7 @@ export default function ({ onLogged }) {
         try {
             authenticateUser(username, password)
                 .then(token => {
-                     sessionStorage.token = token
+                    sessionStorage.token = token
 
                     onLogged(username)
 
@@ -27,11 +29,15 @@ export default function ({ onLogged }) {
         }
     }
 
-    return <form onSubmit={login}>
-        <input type='text' name='username' placeholder='username' />
-        <input type='password' name='password' placeholder='password' />
-        <button>Login</button>
-        <a href="/Register">Register</a>
-    </form>
+    return <div className='Login'>
+        <img className='Login__image' src={logo} alt="logo"/>
+        <form className="Login__form" onSubmit={login}>
+            <input className='Login__input' type='text' name='username' placeholder='username' />
+            <input className='Login__input' type='password' name='password' placeholder='password' />
+            <button className='Login__submit'>Login</button>
+            <div className='Login__register'><span className='Login__account'>don't have an account?</span><a className='Login__goRegister' href="/Register">Register</a></div>
+        </form>
+       
+    </div>
 
 }

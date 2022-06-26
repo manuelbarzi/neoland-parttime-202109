@@ -1,3 +1,4 @@
+import './Create.css'
 import { createList } from "../logic"
 import { useContext } from 'react'
 import { useParams, useNavigate } from "react-router-dom"
@@ -31,13 +32,13 @@ export default ({ onSaved }) => {
     }
 
 
-    return <div>
+    return <div className='Create'>
         <button onClick={handleGoBack}>x</button>
-        <h1>New List</h1>
-        <form onSubmit={handleSave}>
-            <input type="text" name="name" ></input>
-            <textarea name="description" ></textarea>
-            <button type="submit">Save</button>
+        <h1 className='Create__tiltle'>New List</h1>
+        <form className='Create__form' onSubmit={handleSave}>
+            <input className='Create__input' type="text" name="name" placeholder='Name' ></input>
+            <textarea className='Create__input' name="description" placeholder='Description' ></textarea>
+            <button className='Create__submit' type="submit">Save</button>
         </form>
 
     </div>

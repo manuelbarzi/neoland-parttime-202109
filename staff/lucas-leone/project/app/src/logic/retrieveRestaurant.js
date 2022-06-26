@@ -1,5 +1,5 @@
 import { validators, errors } from "commons";
-import { restaurant } from "../../../logic/node_modules/data/src/schemas";
+
 
 const { validateToken } = validators
 const { ClientError, ServerError } = errors

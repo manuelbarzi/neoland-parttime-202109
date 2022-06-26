@@ -1,3 +1,5 @@
+import './SharePoint.css'
+import './x.css'
 import { useNavigate } from "react-router-dom"
 import QRCode from "react-qr-code"
 import { useEffect, useState, useContext } from "react"
@@ -28,18 +30,18 @@ export default function () {
         setFeedback({ level: 'info', message: error.message })
     }}
 
-    const goToMenu = () => { navigate(`menu/${restaurant.username}`) }
+    const goToMenu = () => { navigate(`../menu/${restaurant.username}`) }
     const handleGoBack = ()=>{
         navigate(`/`)}
 
-    return <div >
+    return <div  className="sharePoint">
         {restaurant?<>
-        <button onClick={handleGoBack}>x</button>
-        <h1>Compartir</h1>
-        <p>copia el sgiguiente link</p>
-        <input type="text" name="link" defaultValue={menuLink} ></input>
-        <QRCode value={menuLink} size={150} bgColor="#282c34" fgColor="#fff" level="H" />
-        <button onClick={goToMenu}>Go</button></>:<></>}
+        <button className='x' onClick={handleGoBack}>x</button>
+        <h1 className='sharePoint_share'>Share</h1>
+        <p className='sharePoint_text'>copia el sgiguiente link</p>
+        <input className='sharePoint_input' type="text" name="link" defaultValue={menuLink} ></input>
+        <QRCode value={menuLink} size={125} bgColor="#282c34" fgColor="#fff" level="H" />
+        <button className='sharePoint_button' onClick={goToMenu}>Go</button></>:<></>}
 
     </div>
 

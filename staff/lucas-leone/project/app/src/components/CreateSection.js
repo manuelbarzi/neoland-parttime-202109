@@ -1,4 +1,6 @@
 
+import './Create.css'
+import './x.css'
 import { useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { addSectionToList} from "../logic"
@@ -44,21 +46,21 @@ export default () => {
 
 
 
-    return <div>
+    return <div className='Create'>
 
-        <button onClick={handleGoBack}>x</button>
-        <h1>Create Section</h1>
-        <form onSubmit={handleSave}>
-            <input type="text" name="name" ></input>
+        <button className='x' onClick={handleGoBack}>x</button>
+        <h1 className='Create__titleMargin'>Create Section</h1>
+        <form  className='Create__form' onSubmit={handleSave}>
+            <input className='Create__input' type="text" name="name" placeholder='Name'></input>
 
-            <button type="submit">Done</button>
+            <button className='Create__submit' type="submit">Done</button>
         </form>
-        <h3>Items</h3>
+        <h3 className='Create__subtitle Create__subtitle-margin'>Items</h3>
         {errorFeedback?
         <>
         <p>You need a name of this section</p></>
         :<></>}
-        <button onClick={handleCreateItem}>+</button>
+        <button className='Create_plusButton' onClick={handleCreateItem}>+</button>
 
     </div>
 

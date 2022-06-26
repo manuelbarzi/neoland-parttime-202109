@@ -1,6 +1,8 @@
+import './Update.css'
+import './x.css'
 import { useEffect, useState, useContext } from "react"
 import { useParams, useNavigate } from "react-router-dom"
-import { retrieveRestaurant, updateRestaurant } from "../logic"
+import { retrieveRestaurant, updateRestaurant, unregisterRestaurant } from "../logic"
 import Context from './Context'
 
 
@@ -8,9 +10,8 @@ import Context from './Context'
 export default function () {
     const { setFeedback } = useContext(Context)
     const [restaurant, setRestaurant] = useState()
-
+    const [controls, setControls] = useState(false)
     const navigate = useNavigate()
-
     const params = useParams()
     const { listId } = params
 
@@ -43,38 +44,46 @@ export default function () {
 
         }
     }
-
      const handleGoBack = () => {
         navigate(`/`)
     }
+    const handlePassword =() =>{
+        setControls(!controls)
+    }
 
-    // const handleDeleteRestaurant = () => {
+    const handleDeleteRestaurant = (event) => {
+        event.preventDefault()
+        const { target: { password: { value: password } } } = event
 
-    //     try {
-    //         deleteRestaurant(sessionStorage.token)
-    //             .then(() => {
-    //                 delete sessionStorage.token
-    //                 navigate('/')
-    //             })
-    //             .catch(error => setFeedback({ level: 'info', message: error.message }))
+        try {
+            unregisterRestaurant(sessionStorage.token, password)
+                .then(() => {
+                    delete sessionStorage.token
+                    navigate('/')
+                })
+                .catch(error => setFeedback({ level: 'info', message: error.message }))
 
-    //     } catch (error) {
-    //         setFeedback({ level: 'info', message: error.message })
-    //     }
-    // }
+        } catch (error) {
+            setFeedback({ level: 'info', message: error.message })
+        }
+    }
 
-    return <div>
+    return <div className='updateUser'>
         {restaurant && <>
-        <button onClick={handleGoBack}>x</button>
-        <form onSubmit={handleUpdateRestaurant}>
-            <h4>Username</h4>
-            <input type="text" name="username" defaultValue={restaurant.username} ></input>
-            <h4>Email</h4>
-            <input type="email" name="email" defaultValue={restaurant.email} ></input>
-            <button onClick='submit'>Save</button>
+        <h1 className='updateUser_title'>Update Restaurant</h1>
+        <button className='x' onClick={handleGoBack}>x</button>
+        <form className='updateUser__form' onSubmit={handleUpdateRestaurant}>
+            <input className='updateUser__input' type="text" name="username" placeholder='Username' defaultValue={restaurant.username} ></input>
+            <input  className='updateUser__input' type="email" name="email" placeholder='Email' defaultValue={restaurant.email} ></input>
+            <button  className='updateUser__submit' onClick='submit'>Save</button>
         </form>
 
-        {/* <button onClick={handleDeleteRestaurant}>Delete</button> */}
+        <button className='updateUser__subButton' onClick={handlePassword}>Unregister Restaurant</button>
+        {controls && < form className='updateUser__deleteForm' onSubmit={handleDeleteRestaurant }>
+            <h4 className='updateUser__subTitle UpdateUser_confirm'>Confirm with password</h4>
+            <input className='updateUser__input UpdateUser_confirm' type="password" name="password" ></input>
+            <button className='updateUser__subButton' >Unregister</button>
+            </form>}
         </>}
     </div>
 

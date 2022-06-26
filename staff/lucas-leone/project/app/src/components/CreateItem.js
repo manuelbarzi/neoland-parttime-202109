@@ -1,4 +1,7 @@
-import { createItem, retrieveAllergens, retrieveCategories, retrieveIngredients} from "../logic"
+
+import './Create.css'
+import './x.css'
+import { createItem, retrieveAllergens, retrieveCategories, retrieveIngredients } from "../logic"
 import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { useContext } from 'react'
@@ -10,6 +13,7 @@ export default () => {
     const { setFeedback } = useContext(Context)
     const [controls, setControls] = useState(true)
     const [categories, setCategories] = useState()
+    const [imageB64, setImageB64] = useState()
 
     const [itemImage, setItemImage] = useState()
     const [itemName, setItemName] = useState()
@@ -25,7 +29,7 @@ export default () => {
 
     const navigate = useNavigate()
     const params = useParams()
-    const { listId, sectionId} = params
+    const { listId, sectionId } = params
 
 
     useEffect(() => {
@@ -62,7 +66,7 @@ export default () => {
         try {
             retrieveAllergens(sessionStorage.token)
                 .then(allergens => setAllergens(allergens))
-                .catch(error=> setFeedback({ level: 'info', message: error.message }))
+                .catch(error => setFeedback({ level: 'info', message: error.message }))
         } catch (error) {
             setFeedback({ level: 'info', message: error.message })
         }
@@ -121,7 +125,7 @@ export default () => {
     }
 
     const handleOnChangePrice = (priceString) => {
-        const price =parseFloat(priceString)
+        const price = parseFloat(priceString)
         setItemPrice(price)
 
     }
@@ -137,7 +141,7 @@ export default () => {
     const handleSave = event => {
         event.preventDefault()
 
-        const { target: { name: { value: name }, image: { value: image } } } = event
+        const { target: { name: { value: name }} } = event
 
         const itemIdCategories = []
         itemCategories.map(item => itemIdCategories.push(item.id))
@@ -148,14 +152,14 @@ export default () => {
         const itemIdAllergens = []
         itemAllergens.map(item => itemIdAllergens.push(item.id))
 
-        
+
 
         try {
-            createItem(sessionStorage.token, listId, sectionId, name, itemIdCategories, itemIdIngredients, itemIdAllergens,itemPrice, image)
+            createItem(sessionStorage.token, listId, sectionId, name, itemIdCategories, itemIdIngredients, itemIdAllergens, itemPrice, imageB64)
                 .then(() => {
                     navigate(`/list/${listId}/section/${sectionId}/section`)
                 })
-                .catch(error=> setFeedback({ level: 'info', message: error.message }))
+                .catch(error => setFeedback({ level: 'info', message: error.message }))
 
         } catch (error) {
             setFeedback({ level: 'info', message: error.message })
@@ -175,59 +179,75 @@ export default () => {
     }
     const handleGoBack = () => {
         navigate(`/list/${listId}/section`)
+
+    }
+
+    const handleUploadB64 = event => {
+
+        const file = event.target.files[0]
+
+        const fileReader = new FileReader
+
+        fileReader.readAsDataURL(file)
+
+        fileReader.onload = event => {
+            setImageB64(event.target.result)
+        }
     }
 
 
 
 
 
-    return <div>
-        {allergens && categories && ingredients ? <>
-            {controls ? <>
-                <button onClick={handleGoBack}>x</button>
-                <h1>Create Item</h1>
-                <form onSubmit={handleSave}>
-                    <h3>Name</h3>
-                    <input type="text" name="name" onChange={(event) => { handleOnChangeName(event.target.value) }} defaultValue={itemName} ></input>
-                    <h3>Image</h3>
-                    <input type="text" name="image" onChange={(event) => { handleOnChangeImage(event.target.value) }} defaultValue={itemImage} ></input>
+    return <div className='CreateItem__contenedor'>
+        <div className='CreateItem'>
+            {allergens && categories && ingredients ? <>
+                {controls ? <>
+                    <h1 className='Create__title Create__titleMargin '>Create Item</h1>
+                    <button className='x' onClick={handleGoBack}>x</button>
+                    <form onSubmit={handleSave}>
+                        <input className='Create__input' type="text" name="name" placeholder='Name' onChange={(event) => { handleOnChangeName(event.target.value) }} defaultValue={itemName} ></input>
+                        <input className='Create__input Create__subtitle-margin' type="number" name="price" placeholder='Price' onChange={(event) => { handleOnChangePrice(event.target.value) }} defaultValue={itemPrice} ></input>
+                        <h3 className='Create__subtitle Create__subtitle-margin' >Image</h3>
+                        <input type="file" name="image" onChange={handleUploadB64} />
+                        {imageB64 && <img src={imageB64} />}
+                        
+                        <h3 className='Create__subtitle Create__subtitle-margin' >Categories</h3>
+                        {categories && categories.map(category => <><input type="checkbox" name="categories" defaultValue={category.id} onChange={() => handleOnChangeCategory(category)} defaultChecked={itemCategories.some(_category => _category.name === category.name)} />{category.name}</>)}
 
-                    <h3>price</h3>
-                    <input type="number" name="price" onChange={(event) => { handleOnChangePrice(event.target.value) }} defaultValue={itemPrice} ></input>
+                        <h3 className='Create__subtitle Create__subtitle-margin' >Allergens</h3>
+                        {allergens && allergens.map(allergen => <><input type="checkbox" name="allergens" defaultValue={allergen.id} onChange={() => handleOnChangeAllergen(allergen)} defaultChecked={itemAllergens.some(_allergen => _allergen.name === allergen.name)} />{allergen.name}</>)}
 
-                    <h3>Categories</h3>
-                    {categories && categories.map(category => <><input type="checkbox" name="categories" defaultValue={category.id} onChange={() => handleOnChangeCategory(category)} defaultChecked={itemCategories.some(_category => _category.name === category.name)} />{category.name}</>)}
+                        <h3 className='Create__subtitle Create__subtitle-margin' >Ingredients</h3>
 
-                    <h3>Allergens</h3>
-                    {allergens && allergens.map(allergen => <><input type="checkbox" name="allergens" defaultValue={allergen.id} onChange={() => handleOnChangeAllergen(allergen)} defaultChecked={itemAllergens.some(_allergen => _allergen.name === allergen.name)} />{allergen.name}</>)}
+                        <ul>{itemIngredients.map(ingredient =>
+                            <li>{ingredient.name}</li>)}
+                        </ul>
+                        <div className='Create__buttons'>
+                            <button className='Create__subButton CreateItem__submit-margin' onClick={handleControl}>Edit ingredients</button>
+                            
+                            <button className='CreateItem__submit' type="submit">Save</button>
+                        </div>
+                        
+                    </form>
 
-                    <h3>Ingredients</h3>
+                </> : <>
+                    <button className='x' onClick={handleControl}>x</button>
+                    <div className='Create_ingredientsContenedor'>
+                        <h3 className='Create__subtitle'>Ingredients</h3>
 
-                    <ul>{itemIngredients.map(ingredient =>
-                        <li>{ingredient.name}</li>)}
-                    </ul>
+                        <input className='Create__input' type="text" name="query" onChange={(event) => { queryIngredients(event.target.value) }}></input>
+                        {ingredientsFiltered ? <ul className='Create__ingredientsList'>{ingredientsFiltered.map(ingredientFiltered =>
+                            <li><><input type="checkbox" name="ingredients" defaultValue={ingredientFiltered.id} onChange={() => handleOnChangeIngredient(ingredientFiltered)} defaultChecked={itemIngredients.some(_ingredient => _ingredient.name === ingredientFiltered.name)} />{ingredientFiltered.name}</></li>)}
+                        </ul>
 
-                    <button onClick={handleControl}>Edit ingredients</button>
+                            : <></>}
+                        <button className='CreateItem__submit CreateItem__submit-margin' onClick={handleControl}>Done</button>
+                    </div>
+                </>}
 
-
-                    <button type="submit">Save</button>
-                </form>
-
-            </> : <>
-                <button onClick={handleControl}>x</button>
-
-                <h3>Ingredients</h3>
-
-                <input type="text" name="query" onChange={(event) => { queryIngredients(event.target.value) }}></input>
-                {ingredientsFiltered ? <ul>{ingredientsFiltered.map(ingredientFiltered =>
-                    <li><><input type="checkbox" name="ingredients" defaultValue={ingredientFiltered.id} onChange={() => handleOnChangeIngredient(ingredientFiltered)} defaultChecked={itemIngredients.some(_ingredient => _ingredient.name === ingredientFiltered.name)} />{ingredientFiltered.name}</></li>)}
-                </ul>
-
-                    : <></>}
-                <button onClick={handleControl}>Done</button>
-            </>}
-
-        </> : <></>}
+            </> : <></>}
+        </div>
     </div>
 
 
