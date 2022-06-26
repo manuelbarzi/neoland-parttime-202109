@@ -14,6 +14,8 @@ import EditPatient from './EditPatient'
 import MealPlan from './MealPlan'
 import PatientWeek from './PatientWeek'
 import ShowPatientPlan from './ShowPatientPlan'
+import {AiOutlineExport} from 'react-icons/ai'
+
 
 
 function Home({ onloggedOut }) {
@@ -60,7 +62,7 @@ function Home({ onloggedOut }) {
         return <div className="home-container">
 
             <Header name={name} role={role} />
-            <button onClick={handleLogout}>Logout</button>
+           <div><button className="logout-button" onClick={handleLogout}><AiOutlineExport/>Logout</button></div> 
 
             <Routes>
                 <Route path="/" element={<HomeMenu />} />
@@ -85,7 +87,7 @@ function Home({ onloggedOut }) {
         return (
             <div>
                 <Header name={name} role={role} />
-                <button onClick={handleLogout}>Logout</button>
+                <div><button className="logout-button" onClick={handleLogout}><AiOutlineExport/>Logout</button></div>
                 <p>id: {id} </p>
                 <br></br>
                 <p>Hello <strong>{name}</strong> </p>

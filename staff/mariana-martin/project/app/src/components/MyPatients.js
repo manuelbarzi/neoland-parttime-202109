@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { retrieveAllPatients } from '../logic'
 import './styles/PatientItem.css'
 import PatientItemList from './PatientItemList'
-import SearchPatient from './SearchPatient'
+
 import MyPatientsHeader from './MyPatientsHeader'
 import {AiOutlineLeft} from 'react-icons/ai'
 
@@ -14,7 +14,7 @@ function MyPatients(){
 
     const [patients, setPatients] = useState()
 
-    const [query, setQuery] = useState(('q')) //Pendiente
+ 
 
     const navigate = useNavigate()
 
@@ -41,21 +41,16 @@ function MyPatients(){
         navigate('/register-patient')
     }
 
-    const showResults = query => { //pendiente
-        setQuery(query)
-        navigate(`search?q=${query} `)  
-        // ${patientId}
-    }
-
+ 
     
     
     return (
         <div >  
              <div onClick={() => navigate("/")}> <AiOutlineLeft className="back-icon" /> </div>
             <MyPatientsHeader />
-            <button onClick={handleCreatePatient }>Create patient</button>
+            <button className="create-patient-button" onClick={handleCreatePatient }>Create patient</button>
 
-            <SearchPatient query={ query } onQueryChange={ showResults }/>
+            {/* <SearchPatient query={ query } onQueryChange={ showResults }/> */}
         
             <div>
                 <ul >

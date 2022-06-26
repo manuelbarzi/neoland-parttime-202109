@@ -1,0 +1,31 @@
+.container-register-patient{
+    display: flex;
+   
+    flex-direction: column;
+    align-items: center;
+    padding-top: 70px; 
+    
+   
+}
+
+.register-input{
+    border-radius: 16px;
+    height: 40px;
+    width: 190px;
+    margin: 5px;
+    border: 0;
+    box-shadow: 2px 2px 2px rgb(226, 225, 225);
+  }
+
+
+.register__button{
+    background-color: #145566;
+    color: white ;
+    margin: 10px;
+    height: 40px;
+    border-radius: 20px;
+    text-align: center;
+    padding: 10px 32px;
+    border: 0;
+    cursor: pointer;
+}

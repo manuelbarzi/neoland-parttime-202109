@@ -90,6 +90,9 @@ function AddingMeal() {
         try {
             removeMealFromPlan(sessionStorage.token, patientId, day, mealId )
             .then(() => handleRetrievePlan())
+            .then(() => {
+                setResponse({ level: 'info', message: 'Deleted Meal'})
+            })
         } catch (error) {
             alert(error.message)
         }
@@ -104,7 +107,7 @@ function AddingMeal() {
 
             <p><strong> Day: {day} </strong></p>
             <br></br>
-            <button onClick={ openModal }> Select Meal </button>
+            <button className="select-meal-button" onClick={ openModal }> Select Meal </button>
             <div>
                 <ul> 
                     

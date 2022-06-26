@@ -37,14 +37,14 @@ function CreateMealForm( {  onCreateClick }){
     return (
         <div>
             <form className="meal-form" onSubmit={ newMeal } >
-                <div> 
-                   
+                <div className="meal-form"> 
+                    <AiOutlineCloseCircle className="createmeal-icon" onClick={onCreateClick} /> 
                     <label> Title </label>              
-                    <input type="text" name="title" placeholder="add title" ></input>
+                    <input className="meal-input__title" type="text" name="title" placeholder="add title" ></input>
                     <label> Description </label>
-                    <AiOutlineCloseCircle onClick={onCreateClick} /> 
-                    <textarea type="text" name="description" placeholder="add description" rows="10" cols="30" ></textarea>
-                    <button >Save Meal</button>
+                 
+                    <textarea className="meal-input" type="text" name="description" placeholder="add description" rows="10" cols="30" ></textarea>
+                    <button className="savemeal-button" >Save Meal</button>
                    
                 </div>
             </form>

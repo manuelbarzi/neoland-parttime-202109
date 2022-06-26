@@ -1,3 +1,13 @@
 .adding-meal-container{
   display: inline;
 }
+.select-meal-button{
+  background-color: #FFE5A4;
+  border: 0;
+  cursor: pointer;
+  height: 36px;
+  width: 100px;
+  border-radius: 15px;
+  margin: 10px;
+  color: #145566;
+}

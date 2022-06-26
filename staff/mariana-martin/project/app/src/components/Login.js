@@ -2,10 +2,14 @@ import { authenticateNutritionist } from '../logic'
 import { useContext} from 'react'  //para usar el feedback de response
 import Context from './Context'
 import './styles/Login.css'
+import {AiOutlineLeft} from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom'
 
 function Login({ onLoggedIn }){
 
     const { setResponse } = useContext(Context)  //extraígo el método que cree en App de response
+
+    const navigate = useNavigate()
 
     const login = event => {
         event.preventDefault()
@@ -28,6 +32,7 @@ function Login({ onLoggedIn }){
     }
 
             return ( <div  >
+            <div onClick={() => navigate("/")}> <AiOutlineLeft className="back-icon" /> </div>
             <form  className="container container-login" onSubmit={ login }>
             <input className="login-input" type="email" name="email" placeholder="e-mail" />
             <input className="login-input" type="password" name="password" placeholder="password" />

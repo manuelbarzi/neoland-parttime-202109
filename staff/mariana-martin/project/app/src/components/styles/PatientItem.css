@@ -12,3 +12,13 @@ ul {
    
 }
 
+.create-patient-button{
+    background-color: #145566;
+    border: 0;
+    cursor: pointer;
+    height: 36px;
+    width: 200px;
+    border-radius: 15px;
+    margin: 30px;
+    color: white;
+}

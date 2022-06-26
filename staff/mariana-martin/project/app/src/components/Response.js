@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 
 export default ({ level, message, onTimeout }) => {
     useEffect(() => {
-        setTimeout(onTimeout, 4000)
+        setTimeout(onTimeout, 3000)
     }, [])
 
     return <div className={`Response Response--${level}`}>{message}</div>

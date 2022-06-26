@@ -1,12 +1,13 @@
 .Response {
     font-weight: bold;
+  
     position: absolute;
-    padding: 8rem;
+    padding: 16rem;
     
 }
 
 .Response--info {
-    
+   
     color:  rgb(100, 144, 100);
 }
 .Response--error {
