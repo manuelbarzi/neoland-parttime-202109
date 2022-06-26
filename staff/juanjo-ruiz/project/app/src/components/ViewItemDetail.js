@@ -8,7 +8,7 @@ import CreatePart from "./CreatePart"
 export default function ({ content }) {
     const navigate = useNavigate()
     const { setFeedback } = useContext(Context)
-    const { vehicleId } = useParams()
+    const { vehicleId, viewId } = useParams()
     const [title, setTitle] = useState()
     const [parts, setParts] = useState()
     const [addPart, setAddPart] = useState()
@@ -28,9 +28,10 @@ export default function ({ content }) {
     useEffect(() => {
         try {
             retrieveAllParts(sessionStorage.token, vehicleId)
-                .then(items => items.map(item => {
-                    setParts(item)
-                }))
+                .then(items => {
+                    setParts(items)
+                    setAddPart(false)
+                })
                 .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
             setFeedback({ level: 'error', message: error.message })
@@ -46,24 +47,22 @@ export default function ({ content }) {
         setCoordinates({ x: asisX, y: asisY })
         setAddPart(true)
     }
-console.log(content)
+
+    const handleDetailPart = (vehicleId, partId) => navigate(`/vehicle/${vehicleId}/view/${viewId}/part/${partId}`)
+
     return <div>
         {addPart ?
-            <CreatePart coordinates={coordinates} title={content.title}/>
+            <CreatePart coordinates={coordinates} title={content.title} />
             :
             <div>
-                <h3>{title}</h3>
                 <img src={content.image} onClick={handleCreatePart} />
                 <h3>Partes</h3>
                 {parts ?
                     <ul>
-                        {parts.map(part => {
-                            if (part.side === title) {
-                                <li key={part.id}>
-                                    <PartItem content={part} />
-                                </li>
-                            }
-                        })}
+                        {parts.filter(part => part.side === content.title).
+                            map(part => <li key={part.id} onClick={() => handleDetailPart(vehicleId, part.id)}>
+                                <PartItem content={part} />
+                            </li>)}
                     </ul>
                     : <p>No hay partes abiertos</p>
                 }

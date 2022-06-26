@@ -52,6 +52,7 @@ const part = new Schema({
     },
 
     coordinates: [coordinate]
+
 })
 
 module.exports = part

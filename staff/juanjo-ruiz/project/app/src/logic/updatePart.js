@@ -3,11 +3,10 @@ import { validators, errors } from 'commons'
 const { validateToken, validateId, validateString } = validators
 const { DuplicityError, ClientError, ServerError } = errors
 
-export default function (token, vehicleId, partId, side, description, state) {
+export default function (token, vehicleId, partId, description, state) {
     validateToken(token)
     validateId(vehicleId, 'vehicle id')
     validateId(partId, 'part id')
-    validateString(side, 'side')
     validateString(description, 'description')
     validateString(state, 'state')
 
@@ -17,7 +16,7 @@ export default function (token, vehicleId, partId, side, description, state) {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ side, description, state })
+        body: JSON.stringify({ description, state })
     })
         .then(res => {
             const { status } = res

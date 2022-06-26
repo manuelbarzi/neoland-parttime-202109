@@ -33,7 +33,7 @@ export default function ({ coordinates, title }) {
                 .then(() => {
                     setFeedback({ level: 'info', message: 'parte creado' })
 
-                    navigate(`/vehicle/${vehicleId}/view/${viewId}`)
+                    navigate(`/vehicle/${vehicleId}`)
                 })
                 .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {

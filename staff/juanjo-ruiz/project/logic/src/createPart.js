@@ -1,4 +1,4 @@
-const { models: { User, Vehicle, Part, Coordinates } } = require('data')
+const { models: { User, Vehicle, Part, Coordinate } } = require('data')
 const { errors: { NotFoundError }, validators: { validateString, validateId, validateNumber, validateObject } } = require('commons')
 
 function createPart(userId, vehicleId, side, description, image, coordinates) {
@@ -16,7 +16,7 @@ function createPart(userId, vehicleId, side, description, image, coordinates) {
             if (!user) throw new NotFoundError(`user with id ${userId} not found`)
             if (!vehicle) throw new NotFoundError(`vehicle with id ${vehicleId} not found`)
 
-            const _coordinates = new Coordinates(coordinates)
+            const _coordinates = new Coordinate(coordinates)
 
             const part = new Part({ company: user.company, user: user.id, vehicle: vehicle.id, side, description, image, coordiantes: _coordinates })
 

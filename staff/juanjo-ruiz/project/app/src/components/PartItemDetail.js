@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom"
 
 export default function ({ content }) {
     const navigate = useNavigate()
-    const { vehicleId } = useParams()
+    const { vehicleId, viewId } = useParams()
 
     return <div>
         <p>{content.newDate}</p>
@@ -11,5 +11,6 @@ export default function ({ content }) {
         <img src={content.image} />
 
         <button onClick={() => navigate(`/vehicle/${vehicleId}/part/${content.id}/delete`)}>Eliminar parte</button>
+        <button onClick={() => navigate(`/vehicle/${vehicleId}/view/${viewId}/part/${content.id}/update`)}>Editar parte</button>
     </div>
 }

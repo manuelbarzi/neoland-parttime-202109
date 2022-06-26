@@ -39,7 +39,6 @@ export default function () {
                 }
             })
     }
-console.log(imageB64)
 
     return <div>
         <a onClick={() => navigate('/vehicle')}>Volver</a>
@@ -47,16 +46,16 @@ console.log(imageB64)
         <form>
             <h4>Parte frontal</h4>
             <input type="file" name="lead" onChange={handleUploadB64} />
-            { imageB64.length && <img src={imageB64[0].image} />}
+            {/* { imageB64.length && <img src={imageB64[0].image} />} */}
             <h4>Parte derecha</h4>
             <input type="file" name="right" onChange={handleUploadB64} />
-            { imageB64.length && <img src={imageB64[1].image} />}
+            {/* { imageB64.length && <img src={imageB64[1].image} />} */}
             <h4>Parte trasera</h4>
             <input type="file" name="rear" onChange={handleUploadB64} />
-            { imageB64.length && <img src={imageB64[2].image} />}
+            {/* { imageB64.length && <img src={imageB64[2].image} />} */}
             <h4>Parte izquierda</h4>
             <input type="file" name="left" onChange={handleUploadB64} />
-            { imageB64.length && <img src={imageB64[3].image} />}
+            {/* { imageB64.length && <img src={imageB64[3].image} />} */}
             <button onClick={handleAddViews}>Añadir imágenes</button>
         </form>
     </div>

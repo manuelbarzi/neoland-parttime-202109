@@ -7,7 +7,7 @@ import Context from "./Context"
 export default function () {
     const navigate = useNavigate()
     const { setFeedback } = useContext(Context)
-    const { vehicleId, partId } = useParams()
+    const { vehicleId, viewId, partId } = useParams()
     const [part, setPart] = useState()
 
     useEffect(() => {
@@ -23,7 +23,7 @@ export default function () {
     }, [])
 
     return <div>
-        <a onClick={() => navigate(`/vehicle/${vehicleId}/parts`)}>Volver</a>
+        <a onClick={() => navigate(`/vehicle/${vehicleId}/view/${viewId}`)}>Volver</a>
 
         {part ? <PartItemDetail content={part} /> : <p>Parte no encontrado</p>}
 

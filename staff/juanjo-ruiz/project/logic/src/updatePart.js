@@ -1,7 +1,7 @@
 const { models: { User, Vehicle, Part } } = require('data')
 const { validators: { validateId, validateString }, errors: { NotFoundError, AuthError } } = require('commons')
 
-function updatePartAdmin(adminId, vehicleId, partId, description, state) {
+function updatePart(adminId, vehicleId, partId, description, state) {
     validateId(adminId, 'user id')
     validateId(vehicleId, 'vehicle id')
     validateId(partId, 'part id')
@@ -27,4 +27,4 @@ function updatePartAdmin(adminId, vehicleId, partId, description, state) {
         })
 }
 
-module.exports = updatePartAdmin
+module.exports = updatePart

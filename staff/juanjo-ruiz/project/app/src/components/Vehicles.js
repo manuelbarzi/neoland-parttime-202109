@@ -58,7 +58,7 @@ export default function ({ onDetailVehicle }) {
 
         <div>
             {controls ?
-                results.length ?
+                results ?
                     <ul>
                         {results.map(result => <li key={result.id} onClick={() => handleDetailVehicle(result.id)} >
                             <VehicleItem content={result} />
