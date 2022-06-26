@@ -18,7 +18,7 @@ function createPart(userId, vehicleId, side, description, image, coordinates) {
 
             const _coordinates = new Coordinate(coordinates)
 
-            const part = new Part({ company: user.company, user: user.id, vehicle: vehicle.id, side, description, image, coordiantes: _coordinates })
+            const part = new Part({ company: user.company, user: user.id, vehicle: vehicle.id, side, description, image, coordinates: _coordinates })
 
             vehicle.parts.push(part)
 
