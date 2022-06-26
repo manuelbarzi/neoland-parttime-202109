@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import { createOrder } from '../logic'
 import Context from './Context'
 

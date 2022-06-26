@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react'
-import { Routes, Route, useNavigate, useParams, Link } from 'react-router-dom'
+import { Routes, Route, useNavigate, useParams } from 'react-router-dom'
 import { retrieveProduct } from '../logic'
 import ListVariants from './ListVariants'
 import CreateVariant from './CreateVariant'
@@ -36,9 +36,7 @@ function Product() {
                 <div className='Product'>
                     <p className='Product__name'>{product.name}</p>
                     <div className='Product__actions'>
-                        <Link to='#'>
-                            <IoCaretDown className='Product__icon' onClick={showDropdown} />
-                        </Link>
+                        <IoCaretDown className='Product__icon' onClick={showDropdown} />
                         <MdModeEditOutline className='Product__icon' onClick={() => navigate(`/suppliers/${supplierId}/products/${productId}/update`)} />
                         <button className='Product__returnButton' onClick={() => navigate(`/suppliers/${supplierId}`)}>Return to list products</button>
                     </div>

@@ -47,7 +47,7 @@ function DraftOrders() {
         navigate(`/orders/${orderId}`)
     }
 
-    const handleCloseDraftOrders = () =>{ navigate('/orders')}
+    const handleCloseDraftOrders = () => { navigate('/orders') }
 
     const searchOrders = query => {
         setSearchTerm(query)
@@ -57,22 +57,22 @@ function DraftOrders() {
 
     return <div>
         <div className='Orders'>
-        {orders.length ?
-            <div>
+            {orders.length ?
                 <div>
-                    <input
-                        type="text"
-                        placeholder='Search order...'
-                        onChange={(e) => searchOrders(e.target.value)}
-                    />
-                    <IoSearch />
-                </div>
+                    <div>
+                        <input
+                            type="text"
+                            placeholder='Search order...'
+                            onChange={(e) => searchOrders(e.target.value)}
+                        />
+                        <IoSearch />
+                    </div>
 
-                <div>draft<IoClose onClick={handleCloseDraftOrders} /></div>
-    
-            </div>
-            : null
-        }
+                    <div>draft<IoClose onClick={handleCloseDraftOrders} /></div>
+
+                </div>
+                : null
+            }
 
             {searchTerm.length > 1 ?
                 (
@@ -128,8 +128,8 @@ function DraftOrders() {
                     </table>
 
                 )
-            } 
-            
+            }
+
             {(searchTerm.length === 0 && orders.length === 0) ?
                 <>
                     <p>No cancelled orders yet</p>

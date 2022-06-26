@@ -5,7 +5,6 @@ import { IoChevronBackOutline, IoAdd, IoTrashOutline, IoEllipsisVertical, IoCrea
 import Context from './Context'
 import ChangeOrderStatus from './ChangeOrderStatus'
 import GenerateOrder from './GenerateOrder'
-import Modal from './Modal'
 import ModalDeleteOrder from './ModalDeleteOrder'
 import './Order.css'
 
@@ -45,10 +44,6 @@ function Order() {
     {/* MODO DRAFT && IN PROGRESS: ADD NOTE*/ }
     const handleShowCreateNote = () => setDropNote(!dropNote)
 
-    const handleOpenModal = () => setModal(true)
-
-    const handleCloseModal = () => setModal(false)
-
     {/* MODO DRAFT*/ }
     const handleDeleteItem = (itemId) => {
         try {
@@ -61,11 +56,6 @@ function Order() {
                     newItems.splice(index, 1)
 
                     setItems(newItems)
-                    setModal(false)
-                    setFeedback({ level: 'info', message: 'Item deleted' }) 
-                    setTimeout(() => {
-                        navigate('/orders')
-                    }, 3000)
 
                 })
                 .catch(error => setFeedback({ level: 'error', message: error.message }))
@@ -216,12 +206,7 @@ function Order() {
                                             <td>{item.price}</td>
                                             <td>{item.quantity}</td>
                                             {order.status === 'draft' ?
-                                                <td>
-                                                    <IoTrashOutline onClick={(e) => {
-                                                        e.preventDefault()
-                                                        handleOpenModal()
-                                                    }} />
-                                                </td>
+                                                <td><IoTrashOutline onClick={() => handleDeleteItem(item.id)} /></td>
                                                 : null
                                             }
                                         </tr>))}
@@ -291,20 +276,6 @@ function Order() {
                                 )}
                             </ul>
                         </> : null}
-
-                    {modal && (
-                        <Modal
-                            content={
-                                <ModalDeleteOrder
-                                    onDeleted={handleDeleteItem}
-                                    onCancel={handleCloseModal}
-                                />
-                            }
-                            onClose={handleCloseModal}
-
-
-                        />
-                    )}
 
                     {/* SOLO SI ESTOY EN MODO DRAFT Y LA ORDEN TIENE ITEMS PERMITO GENERAR LA ORDEN */}
                     {(order.status === 'draft' && order.items.length > 0) ? <GenerateOrder orderId={order.id} /> : null}

@@ -6,7 +6,7 @@ import CompletedOrders from './CompletedOrders'
 import CancelledOrders from "./CancelledOrders"
 import InProgressOrders from "./InProgressOrders"
 import DraftOrders from "./DraftOrders"
-// import NewItem from "./NewItem"
+
 
 function Orders() {
     const navigate = useNavigate()

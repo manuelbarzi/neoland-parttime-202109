@@ -1,22 +1,28 @@
 import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { updateOrderStatus } from '../logic'
+import { generateOrder } from '../logic'
 import Context from './Context'
 
-function ChangeOrderStatus({orderId}) {
+function GenerateOrder({ orderId }) {
     const { setFeedback } = useContext(Context)
-    const navigate = useNavigate()
     const [order, setOrder] = useState([])
+    const navigate = useNavigate()
 
-    const handleChangeStatus = event => {
+    const handleGenerateOrder = event => {
         event.preventDefault()
         const { target: { status: { value: _status } } } = event
         try {
-            updateOrderStatus(sessionStorage.token, orderId, _status)
+            generateOrder(sessionStorage.token, orderId, _status)
                 .then(() => {
-                    const update = { ...order, status: order._status }
+                    const update = {}
+
+                    for (const key in order)
+                        update[key] = order[key]
+
+                    update.status = 'in progress'
+
                     setOrder(update)
-                    setFeedback({ level: 'success', message: 'Order status successfully updated' })
+                    setFeedback({ level: 'success', message: 'Order successfully generated' })
                     navigate('/orders')
                 })
                 .catch(error => setFeedback({ level: 'error', message: error.message }))
@@ -26,15 +32,15 @@ function ChangeOrderStatus({orderId}) {
     }
 
     return <div className="Product__info">
-        <form onSubmit={handleChangeStatus}>
+        <form onSubmit={handleGenerateOrder}>
             <select name="status" required >
-                <option disabled label="Choose a new status for your order" > </option>
-                <option name="completed">completed</option>
-                <option name="cancelled">cancelled</option>
+                <option disabled label="Por defecto esta orden se genera con status draft" > </option>
+                <option name="in progress">In progress</option>
             </select>
-            <button type='submit'>Change</button>
+
+            <button>GENERATE ORDER</button>
         </form>
     </div>
 }
 
-export default ChangeOrderStatus
+export default GenerateOrder

@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react'
-import { Routes, Route, useNavigate, useParams, Link } from 'react-router-dom'
+import { Routes, Route, useNavigate, useParams } from 'react-router-dom'
 import { retrieveSupplier } from '../logic'
 import ListProducts from './ListProducts'
 import CreateProduct from './CreateProduct'
@@ -38,9 +38,7 @@ function Supplier() {
                 <div className='Supplier__header'>
                     <IoChevronBackOutline className='Supplier__header-icon' onClick={handleGoBack} />
                     <span className='Supplier__header-name'>{supplier.name}</span>
-                    <Link to='#'>
-                        <IoCaretDown className='Supplier__header-icon' onClick={showDropdown} />
-                    </Link>
+                    <IoCaretDown className='Supplier__header-icon' onClick={showDropdown} />
                     <MdModeEditOutline className='Supplier__header-icon' onClick={() => navigate(`/suppliers/${supplierId}/update`)} />
                 </div>
 

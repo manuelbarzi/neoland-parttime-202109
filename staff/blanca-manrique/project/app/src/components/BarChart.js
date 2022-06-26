@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { monthlyExpenses } from '../logic'
+import Context from './Context'
 // import { Chart as ChartJS, BarElement } from 'chart.js'
 import { Chart, registerables } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
@@ -9,6 +10,7 @@ Chart.register(
 )
 
 const BarChart = () => {
+    const { setFeedback } = useContext(Context)
     const [chart, setChart] = useState([])
 
     useEffect(() => {

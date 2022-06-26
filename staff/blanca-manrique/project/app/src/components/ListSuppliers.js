@@ -27,22 +27,20 @@ function ListSuppliers() {
 
     }, [])
 
-    const handleSupplierDetail = supplierId => { //Para ir al detalle del proveedor
+    const handleSupplierDetail = supplierId => { 
         navigate(`/suppliers/${supplierId}`)
     }
-    const handleCreateSupplier = () => {   //Para abrir el compo de Create Supplier
+    const handleCreateSupplier = () => {   
         navigate('/suppliers/new-supplier')
     }
-    const goBack = () => { //Volvemos a Home
+    const goBack = () => { 
         navigate('/')
     }
 
     const searchSuppliers = query => {
         setSearchTerm(query)
-
         setFilteredResults(filterSuppliers(query, suppliers))
     }
-
 
     return <div>
         <IoChevronBack className='IconBack' onClick={goBack} />

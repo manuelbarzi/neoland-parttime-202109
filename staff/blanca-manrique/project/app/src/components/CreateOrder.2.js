@@ -1,16 +1,23 @@
+import { useContext } from 'react'
 import { createOrder } from '../logic'
+import Context from './Context'
 
 function CreateOrder({ onCreated }) {
+    const { setFeedback } = useContext(Context)
+
     const handleCreateOrder = (event) => {
         event.preventDefault()
         const { target: {status: {value: _status}} } = event
 
         try {
             createOrder(sessionStorage.token, _status)
-                .then(() => onCreated())
-                .catch(error => alert(error.message))
+                .then(() => {
+                    onCreated()
+                    setFeedback({level: 'success', message: 'Order created successfully'})
+                })
+                .catch(error => setFeedback({ level: 'info', message: error.message }))
         } catch (error) {
-            alert(error.message)
+            setFeedback({ level: 'info', message: error.message })
         }
 
     }
