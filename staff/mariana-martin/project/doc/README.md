@@ -38,8 +38,8 @@ Podrán generar una lista de compras personales, esto para llevar una mejor orga
 ### Wireframe / UI
 
 ![](images/wireframe.png)
-
-![](images/ui.png)
+![](images/inicio-meals-ui.png)
+![](images/my-meals-ui.png)
 
 
 ## Technical Description
