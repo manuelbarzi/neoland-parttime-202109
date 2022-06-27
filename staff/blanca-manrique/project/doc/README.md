@@ -15,6 +15,9 @@ In addition, it allows you to create purchase orders and consult the history of 
 ### Use Cases
 ![](images/use-cases.jpg-Use%20Cases.jpg)
 
+### Wireframes
+![](images/wireframes.jpg)
+
 ### Activities
 
 #### Add product
