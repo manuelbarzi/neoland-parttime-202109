@@ -1,25 +1,29 @@
-const { extractUserIdFromAuthorization } = require('./helpers')
-const { createList } = require('logic')
-const { errors: { NotFoundError, FormatError } } = require('commons')
+const { retrieveAllLists } = require('logic')
+const { errors: { NotFoundError, AuthError, FormatError } } = require('commons')
 
 module.exports = (req, res) => {
     try {
-        const restaurantId = extractUserIdFromAuthorization(req)
+        const { body: { username} } = req
 
-        const { body: { name, description } } = req
-
-        createList(restaurantId, name, description)
-            .then(() => res.status(201).send())
+        retrieveAllLists(username)
+            .then(lists => res.status(200).json(lists))
             .catch(error => {
-                let status = 50
+                let status = 500
+
                 if (error instanceof NotFoundError)
                     status = 404
+
+                else if (error instanceof AuthError)
+                    status = 401
+
                 res.status(status).json({ error: error.message })
             })
     } catch (error) {
         let status = 500
+
         if (error instanceof TypeError || error instanceof FormatError)
             status = 400
+
         res.status(status).json({ error: error.message })
     }
 }

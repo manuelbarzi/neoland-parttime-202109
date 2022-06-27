@@ -11,9 +11,17 @@ module.exports = (req, res) => {
             .then(sectionId => {
                 res.status(200).json({ sectionId })
             })
-            
-            .catch(error => res.status(400).json({ error: error.message }))
+            .catch(error => {
+                let status = 500
+
+                if (error instanceof AuthError)
+                    status = 401
+                res.status(status).json({ error: error.message })
+            })
     } catch (error) {
-        res.status(400).json({ error: error.message })
+        let status = 500
+        if (error instanceof TypeError || error instanceof FormatError)
+            status = 400
+        res.status(status).json({ error: error.message })
     }
 }

@@ -9,7 +9,6 @@ function deleteList(restaurantId, listId) {
         .then(([restaurant, list]) => {
             if (!restaurant) throw new NotFoundError(`restaurant with id ${restaurantId} not found`)
             if (!list) throw new NotFoundError(`list with id ${listId} not found`)
-
             if (list.restaurant.toString() !== restaurantId) throw new AuthError(`list with id ${listId} does not belong to restaurant with id ${restaurantId}`)  
             
             return List.deleteOne({ _id: listId })

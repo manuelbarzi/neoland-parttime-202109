@@ -1,9 +1,16 @@
-import { errors } from 'commons'
-
+import { errors, validators } from 'commons'
 const { ClientError, ServerError } = errors
+const { validateArray, validateId, validateNumber, validateString, validateToken } = validators
 
 export default function (token, listId, sectionId, itemId, name, categories, ingredients, allergens, price, image) {
-
+    validateToken(token)
+    validateId(listId, 'list id')
+    validateString(name, 'name')
+    if (categories) { validateArray(categories, 'categories') }
+    if (ingredients) { validateArray(ingredients, 'ingredients') }
+    if (allergens) { validateArray(allergens, 'allergens') }
+    if (price) { validateNumber(price, 'price') }
+    if (image) { validateString(image, 'image') }
 
     return fetch(`http://localhost:8080/api/list/${listId}/section/${sectionId}/item/${itemId}`, {
         method: 'PATCH',

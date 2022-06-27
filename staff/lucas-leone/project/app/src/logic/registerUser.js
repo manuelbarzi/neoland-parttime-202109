@@ -7,7 +7,7 @@ export default function (username, email, password) {
     validateEmail(email)
     validatePassword(password)
 
-    return fetch('http//localhost:8080/api/restaurant', {
+    return fetch('http://localhost:8080/api/restaurant', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

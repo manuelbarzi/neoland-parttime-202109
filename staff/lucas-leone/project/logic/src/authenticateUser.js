@@ -10,11 +10,7 @@ const {
         AuthError
     }
 } = require('commons')
-
-
 const bcrypt = require('bcryptjs')
-
-
 
 function authenticateUser(username, password) {
     validateUsername(username)
@@ -23,9 +19,7 @@ function authenticateUser(username, password) {
     return Restaurant.findOne({ username })
         .then(restaurant => {
             if (!restaurant) throw new AuthError('wrong credentials')
-
             return bcrypt.compare(password, restaurant.password)
-
                 .then(match => {
                     if (!match) throw new AuthError('wrong credentials')
 

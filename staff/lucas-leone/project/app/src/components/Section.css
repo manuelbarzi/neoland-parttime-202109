@@ -1,7 +1,7 @@
 .Section__title{
     color: var(--color_primary);
     font-size: 2rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .Section__item{
@@ -45,8 +45,14 @@ margin-bottom: 1.5rem;
 
 .Section__itemPrice{
 
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-weight: 700;
     color: var(--color_primary)
 
+}
+
+
+.Section_itemName{
+font-weight: 900;
+font-size: 1.2rem
 }

@@ -1,9 +1,16 @@
 const { models: { Restaurant, Item } } = require('data')
-const { validators: { validateId }, errors: { AuthError, NotFoundError }} = require('commons')
+const { validators: { validateArray, validateId, validateNumber, validateString }, errors: { AuthError, NotFoundError } } = require('commons')
 
 
-function updateitem(restaurantId, itemId,name, categories, ingredients, allergens, price, image) {
-
+function updateitem(restaurantId, itemId, name, categories, ingredients, allergens, price, image) {
+    validateId(restaurantId, 'restaurant id')
+    validateId(itemId, 'item id')
+    validateString(name, 'name')
+    if (categories) { validateArray(categories, 'categories') }
+    if (ingredients) { validateArray(ingredients, 'ingredients') }
+    if (allergens) { validateArray(allergens, 'allergens') }
+    if (price) { validateNumber(price, 'price') }
+    if (image) { validateString(image, 'image') }
 
     return Promise.all([Restaurant.findById(restaurantId), Item.findById(itemId)])
         .then(([restaurant, item]) => {
@@ -17,7 +24,7 @@ function updateitem(restaurantId, itemId,name, categories, ingredients, allergen
             item.ingredients = ingredients
             item.allergens = allergens
             item.price = price
-            item.image =image
+            item.image = image
 
             return item.save()
         })

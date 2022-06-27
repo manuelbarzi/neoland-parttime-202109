@@ -11,8 +11,6 @@ const {
         DuplicityError
     }
 } = require('commons')
-//VALIDATORS TO DO
-
 
 function registerUser(username, email, password){
     validateUsername(username)
@@ -27,10 +25,8 @@ function registerUser(username, email, password){
         if (error.message.includes('duplicate'))
                 throw new DuplicityError('user already exists')
        
-
         throw error
     })
 }
-
 
 module.exports = registerUser

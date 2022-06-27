@@ -12,7 +12,6 @@ export default function (token) {
         headers: {
             Authorization: `Bearer ${token}`
         },
-
     })
         .then(res => {
             const { status } = res

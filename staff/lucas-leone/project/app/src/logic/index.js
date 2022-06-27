@@ -23,6 +23,7 @@ import retrieveRestaurant from "./retrieveRestaurant"
 import updateRestaurant from "./updateRestaurant";
 import unregisterRestaurant from "./unregisterRestaurant";
 import filterIngredients from "./filterIngredients";
+import retrieveAllLists from "./retrieveAllLists";
 
 export{
     registerUser,
@@ -49,6 +50,7 @@ export{
     retrieveRestaurant,
     updateRestaurant,
     unregisterRestaurant,
-    filterIngredients
+    filterIngredients,
+    retrieveAllLists
     
 }

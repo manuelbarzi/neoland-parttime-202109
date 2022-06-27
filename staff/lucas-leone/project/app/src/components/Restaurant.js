@@ -5,9 +5,7 @@ import { useParams, useNavigate } from "react-router-dom"
 import { retrieveRestaurant, updateRestaurant, unregisterRestaurant } from "../logic"
 import Context from './Context'
 
-
-
-export default function () {
+export default function ({Onlogout}) {
     const { setFeedback } = useContext(Context)
     const [restaurant, setRestaurant] = useState()
     const [controls, setControls] = useState(false)
@@ -27,7 +25,6 @@ export default function () {
 
         } catch (error) {
             setFeedback({ level: 'info', message: error.message })
-
         }
     }
     const handleUpdateRestaurant = (event) => {
@@ -41,13 +38,12 @@ export default function () {
 
         } catch (error) {
             setFeedback({ level: 'info', message: error.message })
-
         }
     }
-     const handleGoBack = () => {
+    const handleGoBack = () => {
         navigate(`/`)
     }
-    const handlePassword =() =>{
+    const handlePassword = () => {
         setControls(!controls)
     }
 
@@ -58,8 +54,7 @@ export default function () {
         try {
             unregisterRestaurant(sessionStorage.token, password)
                 .then(() => {
-                    delete sessionStorage.token
-                    navigate('/')
+                    Onlogout()
                 })
                 .catch(error => setFeedback({ level: 'info', message: error.message }))
 
@@ -70,19 +65,19 @@ export default function () {
 
     return <div className='updateUser'>
         {restaurant && <>
-        <h1 className='updateUser_title'>Update Restaurant</h1>
-        <button className='x' onClick={handleGoBack}>x</button>
-        <form className='updateUser__form' onSubmit={handleUpdateRestaurant}>
-            <input className='updateUser__input' type="text" name="username" placeholder='Username' defaultValue={restaurant.username} ></input>
-            <input  className='updateUser__input' type="email" name="email" placeholder='Email' defaultValue={restaurant.email} ></input>
-            <button  className='updateUser__submit' onClick='submit'>Save</button>
-        </form>
+            <h1 className='updateUser_title'>Update Restaurant</h1>
+            <button className='x' onClick={handleGoBack}>x</button>
+            <form className='updateUser__form' onSubmit={handleUpdateRestaurant}>
+                <input className='updateUser__input' type="text" name="username" placeholder='Username' defaultValue={restaurant.username} ></input>
+                <input className='updateUser__input' type="email" name="email" placeholder='Email' defaultValue={restaurant.email} ></input>
+                <button className='updateUser__submit' onClick='submit'>Save</button>
+            </form>
 
-        <button className='updateUser__subButton' onClick={handlePassword}>Unregister Restaurant</button>
-        {controls && < form className='updateUser__deleteForm' onSubmit={handleDeleteRestaurant }>
-            <h4 className='updateUser__subTitle UpdateUser_confirm'>Confirm with password</h4>
-            <input className='updateUser__input UpdateUser_confirm' type="password" name="password" ></input>
-            <button className='updateUser__subButton' >Unregister</button>
+            <button className='updateUser__subButton' onClick={handlePassword}>Unregister Restaurant</button>
+            {controls && < form className='updateUser__deleteForm' onSubmit={handleDeleteRestaurant}>
+                <h4 className='updateUser__subTitle UpdateUser_confirm'>Confirm with password</h4>
+                <input className='updateUser__input UpdateUser_confirm' type="password" name="password" ></input>
+                <button className='updateUser__subButton' >Unregister</button>
             </form>}
         </>}
     </div>

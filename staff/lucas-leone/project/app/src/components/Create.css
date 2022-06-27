@@ -18,6 +18,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding-left: 0.8rem ;
+    padding-right: 0.8rem;
     
 
 }
@@ -44,8 +46,8 @@
 }
 
 .Create__input{
-    border-radius: 1.5rem;
-    padding: 1rem;
+    border-radius: 1.3rem;
+    padding: 0.5rem;
     border: solid var(--color_primary);
     background : var(--color_secondary);
     font-size: 1.5rem;

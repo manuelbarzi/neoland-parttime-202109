@@ -12,16 +12,12 @@ export default function ({ section: { name, items }, listPrice }) {
     const [itemIngredient, setItemIngredient] = useState()
 
     //TO DO RETRIEVE TOFOS LOS ITEMS MOSTRARLOS Y AGREGAR EL ID AL ARRAY DE LA SECTION
-
     useEffect(() => {
         retrieveItems()
     }, [])
 
-
     const retrieveItems = () => {
-
         try {
-
             retrieveItemsFromSection(sessionStorage.token, items)
                 .then(items => {
                     setItemsStorage(items)
@@ -34,13 +30,11 @@ export default function ({ section: { name, items }, listPrice }) {
                 }
                 )
                 .catch((error) => setFeedback({ level: 'info', message: error.message }))
-
         } catch (error) {
             setFeedback({ level: 'info', message: error.message })
-
         }
     }
-
+// TO CREATE A LIST WITH ',' AND 'AND' LIKE 1,2,3 AND 4 FROM ARRAY
     const formatter = new Intl.ListFormat('en', { style: 'long', type: 'conjunction' })
 
     return <div >
@@ -51,7 +45,7 @@ export default function ({ section: { name, items }, listPrice }) {
                 <li >
                     <div className='Section__item' >
                         <div className='Section__itemTiltle'>
-                            <h3>{item.name}</h3>
+                            <h3 className='Section_itemName'>{item.name}</h3>
                             <p>
                                 {formatter.format(itemIngredient)}
                             </p>

@@ -3,15 +3,16 @@ const {
     validators: { validateId },
     errors: { NotFoundError }
 } = require('commons')
+const { validateString } = require('commons/src/validators')
 
-function retrieveLists(restaurantId) {
-    validateId(restaurantId, 'restaurant id')
+function retrieveLists(username) {
+    validateString(username, 'username')
 
-    return Restaurant.findById(restaurantId)
+    return Restaurant.find({username})
         .then(restaurant => {
             if (!restaurant) throw new NotFoundError(`restaurant with id ${restaurantId} not found`)
 
-            return List.find({ restaurant: restaurantId }).lean()
+            return List.find({ username }).lean()
         })
         .then(lists => {
             lists.forEach(list => {

@@ -7,16 +7,12 @@ import UpdateList from "./UpdateList"
 import List from "./List"
 import Context from './Context'
 
-
-
 export default function () {
     const { setFeedback } = useContext(Context)
     const [list, setList] = useState()
     const [controls, setControls] = useState(true)
     const [deleteControl, setDeleteControl] = useState(false)
-
     const navigate = useNavigate()
-
     const params = useParams()
     const { listId } = params
 
@@ -44,27 +40,27 @@ export default function () {
     }
 
     const handleDeleteList = (listId) => {
-
         try {
             deleteList(sessionStorage.token, listId)
                 .then(() => {
                     navigate(`/`)
                 })
                 .catch(error => setFeedback({ level: 'info', message: error.message }))
-
         } catch (error) {
             setFeedback({ level: 'info', message: error.message })
         }
     }
+//THIS MANAGE THE X BUTTON
     const handleGoBack = () => {
         navigate(`/`)
     }
+
     return <>
         <button className='x' onClick={handleGoBack}>x</button>
         {controls ?
             <>  <div className='Detail__contenedor'>
                 {list && <List list={list} />}
-                
+
                 <button className='Detail_subButon' onClick={handleEdit}>Edit</button>
                 <button className='Detail_subButon' onClick={handleDeleteControl}>Delete</button>
                 {deleteControl && <div className='detail__delete'>
@@ -72,7 +68,7 @@ export default function () {
                     <button className='detail_deleteButton' onClick={() => handleDeleteList(list.id)}>Si</button>
                     <button className='detail_deleteButton' onClick={handleDeleteControl}>No</button>
                 </div>}
-                </div>
+            </div>
             </> :
             <UpdateList refresh={refreshList} list={list} />}
 

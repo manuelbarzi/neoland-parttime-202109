@@ -19,18 +19,15 @@ function createItem(restaurantId, listId, sectionId, name, categories, ingredien
         .then(([restaurant, list, item]) => {
             if (!restaurant) throw new NotFoundError(`restaurant with id ${restaurantId} not found`)
             if (!list) throw new NotFoundError(`list with id ${listId} not found`)
-
+            
             item.id = item._id.toString()
-
             delete item._id
             delete item.__v
 
             const { sections } = list
-
             const section = sections.find(section => section.id === sectionId)
 
             section.items.push(item.id)
-
             return list.save()
 
                 .then(item => {})

@@ -24,32 +24,23 @@ export default function ({ onLoggedOut }) {
         navigate(`/`)
     }
 
-    const handleCreateList = () => {
-
-        navigate(`/list`)
-    }
-
     const handleShare = () => {
-
         navigate(`/share`)
-
-
     }
 
     const handleRestaurant = () => {
         navigate(`/restaurant`)
     }
-
-
+//THE NAV BUTTONS WAS CREATED HERE
     return <div className='Home'>
         <div className='Home__nav'>
             <button className='Home__navButton' onClick={handleRestaurant}>user</button>
             <button className='Home__navButton' onClick={logout}>Logout</button>
-            <img className='Home__navShare' src={share} onClick={handleShare} alt="logo"/>
+            <img className='Home__navShare' src={share} onClick={handleShare} alt="logo" />
         </div>
-        <button className='Home__CreateButton' onClick={handleCreateList}>+</button>
+
         <Routes>
-            <Route path='/restaurant' element={<Restaurant />} />
+            <Route path='/restaurant' element={<Restaurant Onlogout={logout} />} />
             <Route path='/list' element={<CreateList onSaved={handleClose} />} />
             <Route path="/list/:listId" element={<Detail />} />
             <Route path="/list/:listId/section/:sectionId" element={<UpdateSection />} />

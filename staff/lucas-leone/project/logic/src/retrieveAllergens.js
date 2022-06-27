@@ -1,8 +1,8 @@
 const { models: { Restaurant, Allergen } } = require('data')
-
+const { validators: { validateId } } = require('commons')
 
 function retrieveCategory(restaurantId) {
-
+    validateId(restaurantId, 'restaurant id')
 
     return Restaurant.findById(restaurantId)
         .then(restaurant => {
@@ -13,11 +13,8 @@ function retrieveCategory(restaurantId) {
         .then(allergens => {
             allergens.forEach(allergen => {
                 allergen.id = allergen._id.toString()
-
                 delete allergen._id
                 delete allergen.__v
-
-
             })
 
             return allergens

@@ -4,7 +4,7 @@ const { updateRestaurant } = require('logic')
 module.exports = (req, res) => {
     try {
         const userId = extractUserIdFromAuthorization(req)
-        
+
         const { body: { username, email } } = req
 
         updateRestaurant(userId, username, email)

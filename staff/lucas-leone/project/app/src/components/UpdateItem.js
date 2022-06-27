@@ -7,24 +7,25 @@ import Context from './Context'
 
 
 export default () => {
+    //GENERAL CONTROLS
     const { setFeedback } = useContext(Context)
     const [item, setItem] = useState()
     const [controls, setControls] = useState(true)
-    const [categories, setCategories] = useState()
-
-    const [itemCategories, setItemCategories] = useState()
-    const [itemAllergens, setItemAllergens] = useState()
-    const [itemIngredients, setItemIngredients] = useState()
-
-    const [imageB64, setImageB64] = useState()
-    const [ingredientsFiltered, setIngredientsFiltered] = useState()
-
-    const [allergens, setAllergens] = useState()
-    const [ingredients, setIngredients] = useState()
-
     const navigate = useNavigate()
     const params = useParams()
     const { listId, sectionId, itemId } = params
+
+    //ITEM INFORMATION
+    const [itemCategories, setItemCategories] = useState()
+    const [itemAllergens, setItemAllergens] = useState()
+    const [itemIngredients, setItemIngredients] = useState()
+    const [imageB64, setImageB64] = useState()
+
+    //ALLERGENS INGREDIENTS ANDCATEGORIES
+    const [allergens, setAllergens] = useState()
+    const [ingredients, setIngredients] = useState()
+    const [categories, setCategories] = useState()
+    const [ingredientsFiltered, setIngredientsFiltered] = useState()
 
     useEffect(() => {
         detailItem()
@@ -49,7 +50,7 @@ export default () => {
 
         }
     }
-
+    //OBTAIN ALL INGREDIENTS, ALLERGENS AND INGREDIENTS
     const allCategories = () => {
         try {
             retrieveCategories(sessionStorage.token)
@@ -57,7 +58,6 @@ export default () => {
                 .catch((error) => setFeedback({ level: 'info', message: error.message }))
         } catch (error) {
             setFeedback({ level: 'info', message: error.message })
-
         }
     }
 
@@ -68,7 +68,6 @@ export default () => {
                 .catch((error) => setFeedback({ level: 'info', message: error.message }))
         } catch (error) {
             setFeedback({ level: 'info', message: error.message })
-
         }
     }
 
@@ -81,35 +80,26 @@ export default () => {
             setFeedback({ level: 'info', message: error.message })
         }
     }
-
+    //WHEN DETECT CHANGES THIS MODIFY THE STATE WITH THE NEW DATA
     const handleOnChangeCategory = (category) => {
-
         const categoryIndex = item.categories.findIndex(_category => _category.name === category.name)
 
         if (categoryIndex < 0) {
             item.categories.push(category)
 
         } else { item.categories.splice(categoryIndex, 1) }
-
         setItemCategories(item.categories)
-
-
     }
 
     const handleOnChangeAllergen = (allergen) => {
-
         const allergenIndex = item.allergens.findIndex(_allergen => _allergen.name === allergen.name)
 
         if (allergenIndex < 0) {
             item.allergens.push(allergen)
-
         } else {
             item.allergens.splice(allergenIndex, 1)
         }
-
         setItemAllergens(item.allergens)
-
-
     }
 
     const handleOnChangeIngredient = (ingredient) => {
@@ -118,15 +108,12 @@ export default () => {
 
         if (ingredientIndex < 0) {
             item.ingredients.push(ingredient)
-
         } else {
             item.ingredients.splice(ingredientIndex, 1)
         }
-
         setItemIngredients(item.ingredients)
-
-
     }
+
     const handleUploadB64 = event => {
 
         const file = event.target.files[0]
@@ -139,9 +126,6 @@ export default () => {
             setImageB64(event.target.result)
         }
     }
-
-
-
 
     const handleSave = event => {
         event.preventDefault()
@@ -157,8 +141,9 @@ export default () => {
         const itemIdAllergens = []
         itemAllergens.map(item => itemIdAllergens.push(item.id))
 
+        const numberPrice = parseFloat(price)
         try {
-            updateItem(sessionStorage.token, listId, sectionId, itemId, name, itemIdCategories, itemIdIngredients, itemIdAllergens, price, imageB64)
+            updateItem(sessionStorage.token, listId, sectionId, itemId, name, itemIdCategories, itemIdIngredients, itemIdAllergens, numberPrice, imageB64)
                 .then(() => {
                     navigate(`/`)
                 })
@@ -167,13 +152,10 @@ export default () => {
         } catch (error) {
             setFeedback({ level: 'info', message: error.message })
         }
-
     }
-
+//THE FILTER FOR INGREDIENTS WITH LOGIC
     const queryIngredients = (query) => {
-
         setIngredientsFiltered(filterIngredients(query, ingredients))
-
     }
 
     const handleControl = () => {
@@ -184,10 +166,6 @@ export default () => {
         navigate(`/list/${listId}/section/${sectionId}`)
     }
 
-
-
-
-
     return <div className='updateItem' >
         {allergens && categories && ingredients && item ? <>
             {controls ? <>
@@ -195,16 +173,16 @@ export default () => {
                 <h1 className='updateSection_title'>Update Item</h1>
                 <form className='updateSection__form' onSubmit={handleSave}>
                     <input className='updateSection__input' type="text" name="name" defaultValue={item.name} placeholder='Name' ></input>
-                    <h4 className='updateSection_subTitle' >Image</h4>
+                    <h4 className='updateSection_subTitle updateItem__subTitle' >Image</h4>
                     <input type="file" name="image" onChange={handleUploadB64} />
-                    {imageB64 && <img src={imageB64} />}
-                    <input className='updateSection__input' type="number" name="price" defaultValue={item.price} placeholder='Price' ></input>
+                    {imageB64 && <img className='updateItem__image' src={imageB64} />}
+                    <input className='updateSection__input ' type="number" name="price" defaultValue={item.price} placeholder='Price' ></input>
                     <div>
-                        <h4 className='updateSection_subTitle' >Categories</h4>
+                        <h4 className='updateSection_subTitle updateItem__subTitle' >Categories</h4>
                         {categories && categories.map(category => <><input className='Update__checkbox' type="checkbox" name="categories" defaultValue={category.id} onChange={() => handleOnChangeCategory(category)} defaultChecked={item.categories.some(_category => _category.name === category.name)} />{category.name}</>)}
                     </div>
                     <div>
-                        <h4 className='updateSection_subTitle'>Allergens</h4>
+                        <h4 className='updateSection_subTitle updateItem__subTitle'>Allergens</h4>
                         {allergens && allergens.map(allergen => <><input type="checkbox" name="allergens" defaultValue={allergen.id} onChange={() => handleOnChangeAllergen(allergen)} defaultChecked={item.allergens.some(_allergen => _allergen.name === allergen.name)} />{allergen.name}</>)}
                     </div>
                     <h4 className='updateSection_subTitle'>Ingredients</h4>
@@ -239,6 +217,4 @@ export default () => {
 
         </> : <></>}
     </div>
-
-
 }

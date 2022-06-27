@@ -17,7 +17,6 @@ function addSectionToList(restaurantId, listId, name) {
     validateId(listId, 'List id')
     validateString(name, 'name')
 
-
     return Restaurant.findById(restaurantId)
         .then(restaurant => {
             if (!restaurant) throw new NotFoundError(`Restaurant with id ${restaurantId} not found`)
@@ -25,13 +24,10 @@ function addSectionToList(restaurantId, listId, name) {
             return List.findById(listId)
                 .then(list => {
                     if (!list) throw new NotFoundError(`list with id ${listId} not found`)
-
                     const section = new Section({ name })
-
+                    
                     list.sections.push(section)
-
                     list.save()
-
                     return section._id
                 })
         })

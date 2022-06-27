@@ -1,23 +1,29 @@
-import { validators, errors } from 'commons'
+import { validators, errors } from "commons";
 
-const { validateToken, validateId } = validators
+const { validateString } = validators
 const { ClientError, ServerError } = errors
 
-export default function (token, itemId) {
-    validateToken(token)
-    validateId(itemId, 'item id')
 
-    return fetch(`http://localhost:8080/api/item/${itemId}`, {
-        method: 'DELETE',
+export default function (username) {
+    validateString(username)
+
+    return fetch('http://localhost:8080/api/username', {
+        method: 'POST',
         headers: {
-            Authorization: `Bearer ${token}`
-        }
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username })
+
     })
         .then(res => {
             const { status } = res
+            if (status === 200)
+                return res.json()
+                    .then(lists => {
+                        lists.forEach(list => list.date = new Date(list.date))
 
-            if (status === 204)
-                return
+                        return lists
+                    })
             else if (status >= 400 && status < 500)
                 return res.json()
                     .then(payload => {

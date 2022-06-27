@@ -9,7 +9,7 @@ Menu Please it's a simple app to make menus for your restaurant. This app was th
 
 ### Functional Description
 Every user can use the link to see the menu like a costumer.
-### Restaurants:
+#### Restaurants:
 - Update name and email
 - Delete Account
 - Create List with name, description and sections
@@ -23,6 +23,9 @@ Every user can use the link to see the menu like a costumer.
 - can look for all the items set  ir to diferents sections or lists
 - can filter in our ingredients basedata
 - See especific List
+
+### Costumer:
+- See all the List with information about sections and items
 
 ### Use Cases
 ![](image/Use_Cases.jpg)

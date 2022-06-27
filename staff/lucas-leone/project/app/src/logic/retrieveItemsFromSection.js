@@ -1,4 +1,5 @@
 import { validators, errors } from "commons";
+import { validateArray } from "commons/src/validators";
 
 const { validateToken } = validators
 const { ClientError, ServerError } = errors
@@ -6,6 +7,7 @@ const { ClientError, ServerError } = errors
 
 export default function (token, items) {
     validateToken(token)
+    if(items){validateArray(items, 'items')}
 
     return fetch('http://localhost:8080/api/list/section/item', {
         method: 'POST',

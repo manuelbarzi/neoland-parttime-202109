@@ -1,9 +1,14 @@
-import { errors } from 'commons'
-
+import { errors, validators } from 'commons'
+const { validateString, validateToken, validateId, validateNumber} = validators
 const { ClientError, ServerError } = errors
 
 export default function (token, listId, name, description, price) {
-//todo validators
+    validateToken(token)
+    validateId(listId, 'list id')
+    validateString(name, 'name')
+    validateString(description, 'description')
+    if(price){validateNumber(price,'price')}
+    
     return fetch(`http://localhost:8080/api/list/${listId}`, {
         method: 'PATCH',
         headers: {

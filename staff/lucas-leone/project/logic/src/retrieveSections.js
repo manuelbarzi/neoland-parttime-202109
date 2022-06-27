@@ -27,14 +27,9 @@ function retrieveSections(restaurantId, listId) {
                 delete section._id
                 delete section.__v
 
-
             })
-
             return sections
-
         })
-
-
 }
 
 module.exports = retrieveSections

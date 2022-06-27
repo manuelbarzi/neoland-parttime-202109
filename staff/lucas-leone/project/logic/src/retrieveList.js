@@ -12,7 +12,6 @@ function retrieveList(restaurantId, listId) {
     return Restaurant.findById(restaurantId)
         .then(restaurant => {
             if (!restaurant) throw new NotFoundError(`restaurant with id ${restaurantId} not found`)
-
             return List.findById(listId).lean()
         })
         .then(list => {

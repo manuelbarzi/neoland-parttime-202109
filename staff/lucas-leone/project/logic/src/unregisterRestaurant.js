@@ -13,7 +13,6 @@ const {
 } = require('commons')
 
 function unregisterRestaurant(restaurantId, password) {
-
     validateId(restaurantId, 'restaurant id')
     validatePassword(password)
 

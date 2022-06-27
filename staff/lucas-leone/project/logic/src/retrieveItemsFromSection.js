@@ -4,9 +4,7 @@ const {
     errors: { NotFoundError }
 } = require('commons')
 
-
 function retrieveItemsFromList(restaurantId, items) {
-
     validateId(restaurantId, 'restaurant id')
     validateArray(items, 'items')
 
@@ -35,7 +33,6 @@ function retrieveItemsFromList(restaurantId, items) {
                         delete category._id
                         delete category.__v
                     }
-
                 })
 
                 const { ingredients } = item
@@ -46,7 +43,6 @@ function retrieveItemsFromList(restaurantId, items) {
                         delete ingredient._id
                         delete ingredient.__v
                     }
-
                 })
 
                 const { allergens } = item
@@ -57,18 +53,11 @@ function retrieveItemsFromList(restaurantId, items) {
                         delete allergen._id
                         delete allergen.__v
                     }
-
                 })
-
-
-
             })
 
             return items
-
         })
-
-
 }
 
 module.exports = retrieveItemsFromList 

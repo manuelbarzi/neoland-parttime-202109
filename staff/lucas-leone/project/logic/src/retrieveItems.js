@@ -5,7 +5,6 @@ const {
 } = require('commons')
 
 function retrieveItems(restaurantId) {
-
     validateId(restaurantId, 'restaurant id')
 
     return Restaurant.findById(restaurantId)
@@ -27,7 +26,6 @@ function retrieveItems(restaurantId) {
             return items
 
         })
-
 
 }
 

@@ -7,6 +7,7 @@ const { ClientError, ServerError } = errors
 export default function (token,listId, sectionId) {
     validateToken(token)
     validateId(listId, 'list id')
+    validateId(sectionId, 'section id')
 
     return fetch(`http://localhost:8080/api/list/${listId}/section/${sectionId}`, {
         method: 'GET',

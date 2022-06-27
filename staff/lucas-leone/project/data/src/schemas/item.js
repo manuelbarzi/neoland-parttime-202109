@@ -24,17 +24,17 @@ const item = new Schema({
 
     categories: [{
         type: ObjectId,
-        ref:'Category'
+        ref: 'Category'
     }],
 
     ingredients: [{
         type: ObjectId,
-        ref:'Ingredient'
+        ref: 'Ingredient'
     }],
 
     allergens: [{
         type: ObjectId,
-        ref:'Allergen'
+        ref: 'Allergen'
     }],
 
     image: {

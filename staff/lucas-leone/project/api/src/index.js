@@ -28,7 +28,8 @@ const { registerUser,
     updateItem,
     deleteItem,
     retrieveRestaurant,
-    updateRestaurant
+    updateRestaurant,
+    retrieveAllLists
 } = require('./handlers')
 
 
@@ -46,16 +47,16 @@ connect(MONGODB_URL)
         const router = express.Router()
 
         const jsonBodyParser = express.json()
-
+        //POST USER
         router.post('/restaurant', jsonBodyParser, registerUser)
         router.post('/restaurant/auth', jsonBodyParser, authenticateUser)
-
+        //LIST POST
+        router.post('/username', jsonBodyParser, retrieveAllLists)
         router.post('/list/:listId/section/:sectionId/item', jsonBodyParser, createItem)
         router.post('/list/section/item', jsonBodyParser, retrieveItemsFromSection)
         router.post('/list/:listId/section', jsonBodyParser, addSectionToList)
         router.post('/list/', jsonBodyParser, createList)
-        
-
+        //GET
         router.get('/list', retrieveLists)
         router.get('/list/:listId/section', retrieveSections)
         router.get('/list/:listId/section/:sectionId', retrieveSection)
@@ -66,13 +67,12 @@ connect(MONGODB_URL)
         router.get('/category', retrieveCategories)
         router.get('/ingredient', retrieveIngredients)
         router.get('/restaurant', retrieveRestaurant)
-        
+        //PATCH
         router.patch('/restaurant', jsonBodyParser, updateRestaurant)
         router.patch('/list/:listId', jsonBodyParser, updateList)
         router.patch('/list/:listId/section/:sectionId', jsonBodyParser, updateSection)
         router.patch('/list/:listId/section/:sectionId/item/:itemId', jsonBodyParser, updateItem)
-
-
+        //DELETE
         router.delete('/list/:listId/section/:sectionId/item/:itemId', removeItem)
         router.delete('/list/:listId/section/:sectionId', deleteSection)
         router.delete('/restaurant', jsonBodyParser, unregisterRestaurant)

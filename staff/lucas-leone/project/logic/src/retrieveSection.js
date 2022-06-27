@@ -6,7 +6,6 @@ const {
 } = require('commons')
 
 function retrieveSection(restaurantId, listId, sectionId) {
-
     validateId(restaurantId, 'restaurant id')
     validateId(listId, 'list id')
 
@@ -31,7 +30,6 @@ function retrieveSection(restaurantId, listId, sectionId) {
             return section
 
         })
-
 }
 
 module.exports = retrieveSection

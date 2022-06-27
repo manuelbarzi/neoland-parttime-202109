@@ -17,11 +17,8 @@ function removeItem(restaurantId, listId, sectionId, itemId) {
             if (!list) throw new NotFoundError(`list with id ${listId} not found`)
 
             const { sections } = list
-
             const section = sections.find(section => section.id === sectionId)
-
             const { items } = section
-
             const itemIndex = items.findIndex(item => item.toString() === itemId)
 
             if (itemIndex < 0) { throw new NotFoundError(`item with id ${itemId} not found`)}

@@ -1,6 +1,6 @@
 import './Menu.css'
 import { useEffect } from "react";
-import { retrieveLists } from "../logic";
+import { retrieveAllLists } from "../logic";
 import { useState } from "react";
 import { useParams } from 'react-router-dom'
 import { useContext } from 'react'
@@ -15,16 +15,15 @@ export default function ({ refresh }) {
 
     useEffect(() => {
         refreshList()
-    }, [refresh])
+    }, [])
 
     const refreshList = () => {
         try {
-            retrieveLists(sessionStorage.token)
+            retrieveAllLists(username)
                 .then((lists) => setLists(lists))
                 .catch((error) => setFeedback({ level: 'info', message: error.message }))
         } catch (error) {
             setFeedback({ level: 'info', message: error.message })
-
         }
     }
 
@@ -48,15 +47,5 @@ export default function ({ refresh }) {
                 </li>) : <p>no list</p>}
 
         </ul>
-
-
-
-
-
-
-
     </div>
-
-
-
 }

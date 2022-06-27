@@ -4,7 +4,6 @@ const { AuthError, ClientError, ServerError } = errors
 
 export default function (username, password) {
     validateUsername(username)
-
     validatePassword(password)
 
     return fetch('http://localhost:8080/api/restaurant/auth', {

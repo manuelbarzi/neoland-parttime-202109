@@ -33,13 +33,13 @@
 
 .Home__CreateButton{
     position: fixed;
-    bottom: 5%;
+    bottom: 4%;
     right: 5%;
     z-index: 100;
-    font-size: 5rem;
+    font-size: 3.2rem;
     border-radius: 100%;
-    padding-right: 1.3rem;
-    padding-left: 1.3rem;
+    padding-right: 0.8rem;
+    padding-left: 0.8rem;
     background-color: var(--color_primary);
     color:var(--color_secondary);
     border:none

@@ -13,7 +13,6 @@ import Menu from "./Menu";
 const { validateToken } = validators
 
 export default function () {
-
     const navigate = useNavigate()
     const [feedback, setFeedback] = useState({ level: 'info', message: null })
     const [userName, setUserName] = useState()
@@ -22,7 +21,6 @@ export default function () {
       } catch (error) {
         delete sessionStorage.token
       } 
-
     const { token } = sessionStorage
     const [loggedIn, setLoggedIn] = useState(!!token)
     
@@ -36,7 +34,7 @@ export default function () {
         navigate('/')
     }
 
-    const handleRegistered = () => { <Navigate to="/login" /> }
+    const handleRegistered = () => { navigate(`/login`)}
 
     const clearFeedback = () => setFeedback({ message: null })
 

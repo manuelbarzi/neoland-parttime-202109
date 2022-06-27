@@ -5,6 +5,7 @@ const { ClientError, ServerError } = errors
 
 export default function (token, listId) {
     validateToken(token)
+    validateId(listId, 'list id')
 
     return fetch(`http://localhost:8080/api/list/${listId}`, {
         method: 'DELETE',

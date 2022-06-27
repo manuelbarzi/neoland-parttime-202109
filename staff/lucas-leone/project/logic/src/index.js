@@ -23,6 +23,7 @@ const updateItem = require('./updateItem')
 const deleteItem = require('./deleteItem')
 const retrieveRestaurant = require('./retrieveRestaurant')
 const updateRestaurant = require('./updateRestaurant')
+const retrieveAllLists = require('./retrieveAllLists')
 
 module.exports = {
     registerUser,
@@ -49,6 +50,7 @@ module.exports = {
     updateItem,
     deleteItem,
     retrieveRestaurant,
-    updateRestaurant
+    updateRestaurant,
+    retrieveAllLists
 
 }

@@ -4,12 +4,10 @@ const {
     errors: { NotFoundError }
 } = require('commons')
 
-
-
 function createList(restaurantId, name, description) {
     validateId(restaurantId, 'restaurant id')
     validateString(name, 'name')
-    validateString(description, 'description')
+    if(description){validateString(description, 'description')}
 
     return Restaurant.findById(restaurantId)
         .then(restaurant => {

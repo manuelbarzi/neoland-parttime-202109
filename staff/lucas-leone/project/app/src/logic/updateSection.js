@@ -1,9 +1,12 @@
-import { errors } from 'commons'
-
+import { validators, errors } from 'commons'
+const { validateToken, validateString,validateId } = validators
 const { ClientError, ServerError } = errors
 
 export default function (token, listId, sectionId, name, items) {
-
+    validateToken(token)
+    validateId(listId, 'list id')
+    validateId(sectionId)
+    validateString(name, 'name')
 
     return fetch(`http://localhost:8080/api/list/${listId}/section/${sectionId}`, {
         method: 'PATCH',
