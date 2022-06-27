@@ -1,0 +1,30 @@
+.FilterBar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:14px;
+    gap:12px;
+}
+
+.FilterBar__btn{
+    padding: 12px;
+    border-radius: 30px;
+    border:none;
+    width: 6rem;
+}
+.FilterBar__btn:hover{
+    background-color:#efd376 ;
+}
+
+@media (min-width: 1100px) {
+    .FilterBar{
+        margin-top:22px;
+        gap:16px;
+    }
+    .FilterBar__btn{
+        width: 10rem;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+  }

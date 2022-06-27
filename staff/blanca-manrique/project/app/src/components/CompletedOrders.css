@@ -1,0 +1,133 @@
+.Orders{
+    max-width: 80%; 
+    margin: 20px auto 2rem;
+}
+.OrderHeader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.OrderClose__completed{
+    background-color: green;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 12px auto;
+    padding: 10px;
+    border-radius: 30px;
+    width: 40%;
+    margin: 12px auto 0px;
+}
+.OrderClose__text{
+    font-weight: bold;
+}
+.OrderClose__icon{
+    font-size: 20px;
+}
+.OrdersHead__search{
+    width: 50%;
+    justify-self: center;
+    margin: 12px 3px 0px;
+    background-color: #ffc300;
+    padding: 12px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.OrdersHead__search-field{
+    outline: none;
+    border: 0;
+    background-color: #ffc300;
+    
+}
+
+
+/* TABLE */
+.OrdersTable{
+    margin: 0 auto;
+    border-radius: 12px;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.OrdersTable__header th{
+    padding: 12px 3px;
+    text-align: center;
+}
+
+.OrdersTable__body td{
+    text-align: center;
+    padding: 12px 0px;
+}
+
+.OrdersTable__bodyIcon{
+    font-size: 24px;
+    cursor: pointer;
+}
+.trash-icon{
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+/* ADD ORDER BUTTON */
+.Orders__addIcon{
+    background-color: #ffc300;
+    color: white;
+    border-radius: 50%;
+    font-size: 40px;
+    cursor: pointer;
+    margin: 2rem 20px;
+}
+@media (min-width: 600px) {
+    .OrdersTable{
+        margin: 0 auto;
+        width: 50vh;
+    }
+    .Orders__addIcon{
+        font-size: 60px;
+    }
+}
+
+  @media (min-width: 1100px) {
+    .OrderClose__completed{
+        max-width: 17rem;
+        padding: 20px;
+    }
+    .OrderClose__text{
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .OrdersHead__search{
+        padding: 20px;
+    }
+    .OrdersHead__search-field{
+        font-size: 25px;
+    }
+    .OrdersHead__search-icon{
+        font-size: 25px;
+    }
+    .OrdersTable{
+        margin: 0 auto;
+        width: 100vh;
+        font-size: 26px;
+    }
+    .OrdersTable__header th{
+        padding: 30px;
+    }
+    .OrdersTable__bodyIcon{
+        font-size: 32px;
+        margin-left: 70px;
+    }
+    .trash-icon{
+        font-size: 30px;
+        margin-right: 70px;
+    }
+    .Orders__addIcon{
+        font-size: 90px;
+    }
+  }

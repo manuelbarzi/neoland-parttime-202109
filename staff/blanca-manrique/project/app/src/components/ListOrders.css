@@ -1,0 +1,116 @@
+.IconBack{
+    font-size: 30px;
+    cursor: pointer;
+}
+.OrdersHead__selectFilters{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.OrdersHead__filterIcon{
+    font-size: 40px;
+    margin-top:12px;
+}
+.OrdersHead__search{
+    max-width: 80%;
+    /* margin: 0 auto 2rem; */
+    /* background-color: #ffc300; */
+    /* padding: 12px; */
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.OrdersHead__search-field{
+    outline: none;
+    border: 0;
+    /* background-color: #ffc300; */
+}
+
+.Orders{
+    max-width: 80%; 
+    margin: 0 auto 2rem;
+}
+
+/* TABLE */
+.OrdersTable{
+    margin: 0 auto;
+    border-radius: 12px;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.OrdersTable__header th{
+    padding: 12px 3px;
+    text-align: center;
+}
+
+.OrdersTable__body td{
+    text-align: center;
+    padding: 12px 0px;
+}
+
+.OrdersTable__bodyIcon{
+    font-size: 24px;
+    cursor: pointer;
+}
+.trash-icon{
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+/* ADD ORDER BUTTON */
+.Orders__addIcon{
+    background-color: #ffc300;
+    color: white;
+    border-radius: 50%;
+    font-size: 40px;
+    cursor: pointer;
+    margin: 2rem 20px;
+}
+@media (min-width: 600px) {
+    .OrdersTable{
+        margin: 0 auto;
+        width: 60vh;
+    }
+    .Orders__addIcon{
+        font-size: 60px;
+    }
+}
+
+  @media (min-width: 1100px) {
+    .OrdersHead__filterIcon{
+        font-size: 50px;
+    }
+    .OrdersHead__search{
+        padding: 20px;
+    }
+    .OrdersHead__search-field{
+        font-size: 25px;
+    }
+    .ProductsHead__search-icon{
+        font-size: 25px;
+    }
+    .OrdersTable{
+        margin: 0 auto;
+        width: 100vh;
+        font-size: 26px;
+    }
+    .OrdersTable__header th{
+        padding: 30px;
+    }
+    .OrdersTable__bodyIcon{
+        font-size: 32px;
+        margin-left: 70px;
+    }
+    .trash-icon{
+        font-size: 30px;
+        margin-right: 70px;
+    }
+    .Orders__addIcon{
+        font-size: 90px;
+    }
+  }

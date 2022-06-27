@@ -1,0 +1,26 @@
+:root {
+  --color_primary: #7380ec;
+  --color_danger: #ff7782;
+  --color_success: #41f1b6;
+  --color_warning: #ffbb55;
+  --color_white: #fff;
+  --color_info-dark: #7d8da1;
+  --color_info-light: #dce1eb;
+  --color_dark: #363949;
+  --color_light: rgba(132, 139, 200, 0.18);
+  --color_primary-variant: #111e88;
+  --color_dark-variant: #677483;
+  --color_background: #f6f6f9;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding:0;
+  text-decoration: none;
+  list-style: none;
+}
+.App{
+  min-height: 100vh;
+  background-color: #f2f2f8;
+}

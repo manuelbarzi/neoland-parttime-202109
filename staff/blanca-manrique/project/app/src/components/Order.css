@@ -1,0 +1,283 @@
+.Order{
+    margin-bottom: 3rem;
+}
+
+/* HEADER */
+.Order__header-iconBack{
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* ORDER INFO */
+.OrderDrop__body{
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 16px;
+}
+
+.OrderDrop__table{
+    padding: 10px;
+    font-size: 18px;
+    justify-self: center;
+    margin: 0 auto;
+}
+
+.Order__body-text{
+    font-weight: bold;
+}
+
+/* TABLE IN COLUMNS */
+.OrderDrop__table-header{
+    display:none;
+    
+}
+
+.OrderDrop__table-body td{
+    display:block;
+    border: 1px solid #ddd;
+    padding: 12px;
+}
+
+.OrderDrop__table-body td:nth-child(1)::before{
+    content: "Created at"
+}
+
+.OrderDrop__table-body td:nth-child(2)::before{
+    content: "Order status"
+}
+
+.OrderDrop__table-body td{
+    text-align: right;
+    display: flex;
+}
+
+.OrderDrop__table-body td::before{
+    float: left;
+    margin-right: 5rem;
+    font-weight: bold;
+}
+
+@media (min-width: 1100px) {
+    .Order__body{
+        width: 90vh;
+    }
+    .OrderDrop__body{
+        width: 90vh;
+        margin: 0 auto;
+        padding: 40px 20px;
+        font-size: 40px;
+    }
+    .OrderDrop__table{
+        font-size: 36px;
+    }
+    .OrderDrop__table-body td::before{
+        margin-right: 8rem;
+
+    }
+    .title-name{
+        font-size: 50px;
+    }
+    .Order__body-text{
+        font-size: 40px;
+    }
+    .ChangeStatus-btn{
+        width: 20vh;
+        font-size: 24px;
+        background-color: #fcbf49;
+        color:black;
+    }
+  }
+
+
+/* BODY */
+.Order__body{
+    margin: 0 auto;
+    max-width: 80%;
+    display: grid;
+    gap: 1rem; 
+}
+
+
+/* CHANGE ORDER STATUS */
+.ChangeStatus-btn{
+    border: none;
+    padding: 12px;
+    border-radius: 30px;
+    margin:10px 0px;
+    background-color: #fcbf49;
+    color: black;
+
+}
+
+/* BODY TITLE */
+.Order__body-title{
+    /* background-color: #d90429; */
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    justify-content: center;
+    border-radius: 12px;
+    padding: 14px;
+    width: fit-content;
+}
+.title-name{
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+/* SUPPLIERS */
+
+/* TABLE IN COLUMNS */
+
+.OrderDrop__body-title{
+    width: 40vh;
+    /* background-color: #d90429; */
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    justify-content: center;
+    border-radius: 12px;
+    padding: 14px;
+}
+.OrderSupp__table-body td{
+    display:block;
+    border: 1px solid #ddd;
+    padding: 12px;
+}
+
+.OrderSupp__table-body td:nth-child(1)::before{
+    content: "Name"
+}
+
+.OrderSupp__table-body td:nth-child(2)::before{
+    content: "Phone"
+}
+.OrderSupp__table-body td:nth-child(3)::before{
+    content: "Email"
+}
+.OrderSupp__table-body td:nth-child(4)::before{
+    content: "Adress"
+}
+
+.OrderSupp__table-body td{
+    text-align: right;
+    /* display: flex; */
+}
+
+.OrderSupp__table-body td::before{
+    float: left;
+    margin-right: 5rem;
+    font-weight: bold;
+}
+
+@media (min-width: 1100px) {
+    .OrderSupp__table-body td::before{
+        margin-right: 8rem;
+    }
+
+  }
+
+
+
+/* INFO ITEMS*/
+.Order__body-info{
+    /* background-color: #fcbf49; */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    justify-content: center;
+    border-radius: 12px;
+    padding: 14px;
+    width: 40vh;
+}
+.product-name{
+    margin-bottom: 0.5rem;
+}
+.Order__body-list{
+    background-color: #90be6d;
+}
+
+.Order__body-listItem{
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+}
+.item-title{
+    font-weight: bold;
+}
+
+
+.Variants__table{
+    width: 50%;
+    margin-bottom: 2rem;
+    justify-self: center;
+    background-color: #faedcd;
+    border-radius: 12px;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.Variants__table-header{
+    background-color: #2a9d8f;
+    color: #faedcd ;
+}
+.Variants__table-body{
+    text-align: center;
+    padding: 12px 15px;
+}
+
+@media (min-width: 600px) {
+    .Order__body-info{
+        width: 70vh;
+        padding: 1rem 4rem 4rem;
+        margin: 30px auto;
+    }
+    .Variants__table{
+        width:60vh;
+        margin-bottom: 3rem;
+    }
+    .Variants__table-header th{
+        padding: 30px;
+        font-size: 26px;
+    }
+    .Variants__table-body td{
+        padding: 30px;
+        font-size: 26px;
+    }
+    .Variants__addIcon{
+        font-size: 90px;
+        margin: 90px 50px 0px;
+    }
+    .Variants__table-bodyIcon{
+        font-size: 40px;
+    }
+  }
+
+  /* ADD NOTE */
+.AddNote, .AddItem{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    gap: 30px;
+    background-color: #90be6d;
+    padding: 20px;
+    border-radius: 30px;
+}
+.AddNote-text, .AddItem-text{
+    font-size: 26px;
+    font-weight: bold;
+}
+.AddNote-icon, .AddItem-icon{
+    font-size: 30px;
+}
+
+/* FORM TO ADD ITEM */
+.form-li{
+    margin-top: 2rem;
+    padding-top: 2rem;
+}
+ 

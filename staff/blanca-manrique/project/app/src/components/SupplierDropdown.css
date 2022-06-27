@@ -1,0 +1,79 @@
+.SupplierDrop{
+    margin: 12px auto;
+    padding: 20px;
+}
+
+.SupplierDrop__body{
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 16px;
+}
+
+.SupplierDrop__table{
+    padding: 10px;
+    font-size: 18px;
+    justify-self: center;
+    margin: 0 auto;
+}
+
+/* TABLE IN COLUMNS */
+.SupplierDrop__table-header{
+    display:none;
+    
+}
+
+.SupplierDrop__table-body td{
+    display:block;
+    border: 1px solid #ddd;
+    padding: 12px;
+}
+
+.SupplierDrop__table-body td:nth-child(1)::before{
+    content: "Contact person"
+}
+
+.SupplierDrop__table-body td:nth-child(2)::before{
+    content: "Trade assurance"
+}
+.SupplierDrop__table-body td:nth-child(3)::before{
+    content: "E-mail"
+}
+.SupplierDrop__table-body td:nth-child(4)::before{
+    content: "Phone"
+}
+.SupplierDrop__table-body td:nth-child(5)::before{
+    content: "Web"
+}
+.SupplierDrop__table-body td:nth-child(6)::before{
+    content: "Adress"
+}
+.SupplierDrop__table-body td{
+    text-align: right;
+}
+.SupplierDrop__table-body td:last-child{
+    display: flex;
+    text-align: justify;
+}
+.SupplierDrop__table-body td::before{
+    float: left;
+    margin-right: 5rem;
+    font-weight: bold;
+}
+
+@media (min-width: 1100px) {
+    .SupplierDrop__body{
+        width: 100vh;
+        margin: 0 auto;
+        padding: 40px 20px;
+        font-size: 40px;
+    }
+    .SupplierDrop__table{
+        font-size: 36px;
+    }
+    .SupplierDrop__table-body td::before{
+        margin-right: 8rem;
+
+    }
+    
+  }

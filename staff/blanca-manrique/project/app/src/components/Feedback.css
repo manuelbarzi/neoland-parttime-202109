@@ -1,0 +1,28 @@
+ .Feedback {
+     max-width: inherit;
+     font-weight: bold;
+     position: absolute;
+     top: 60%;
+     left: 15%;
+     right: 15%;
+     border-style: solid;
+     border-radius: 30px;
+     padding: 10px;
+     background-color: rgba(255, 255, 255, 0.2);
+     text-align: center;
+ }
+
+ .Feedback--error {
+     background-color: white;
+     border-width: 1px;
+     border-color: rgb(224, 115, 115);
+     color: rgb(254, 60, 60);
+ }
+
+ .Feedback--success {
+     background-color: white;
+     border-width: 1px;
+     border-color: rgb(6, 224, 39);
+     color: rgb(5, 151, 7);
+     width: 100%;
+ }
