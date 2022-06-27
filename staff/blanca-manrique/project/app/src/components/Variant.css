@@ -1,15 +1,111 @@
+.Variant{
+    margin: 12px auto;
+    padding: 20px;
+}
+.Variant__header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 3rem 0px;
+    padding: 12px;
+}
+
 .Variant__header-btn{
     border:none;
-    padding: 7px;
+    padding: 18px;
     border-radius: 30px;
-    background-color: greenyellow;
+    font-size: 16px;
+    cursor: pointer;
 }
-.Variant__info{
-    margin: 0 auto;
-    max-width: 80%;
-    background-color: aqua;
-    padding: 20px;
-    border-radius: 12px;
-    width: fit-content;
+.btn-green{
+    background-color: #2a9d8f;
+    color:white;
+    font-weight: bold;
+}
+.btn-yellow{
+    background-color: #f9c74f;
+    color:black;
+    font-weight: bold;
+}
+
+.Variant__body{
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    padding: 40px 20px;
+    border-radius: 12px;
+    font-size: 20px;
 }
+.Variant__body-title{
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.Variant__table{
+    padding: 26px;
+    font-size: 24px;
+    justify-self: center;
+    margin: 0 auto;
+}
+
+/* TABLE IN COLUMNS */
+.Variant__table-header{
+    display:none;
+    
+}
+
+.Variant__table-body td{
+    display:block;
+    border: 1px solid #ddd;
+    padding: 12px;
+}
+
+.Variant__table-body td:nth-child(1)::before{
+    content: "Color"
+}
+
+.Variant__table-body td:nth-child(2)::before{
+    content: "Size"
+}
+.Variant__table-body td:nth-child(3)::before{
+    content: "Stock on hand"
+}
+.Variant__table-body td:nth-child(4)::before{
+    content: "Critical stock"
+}
+.Variant__table-body td{
+    text-align: right;
+}
+
+.Variant__table-body td::before{
+    float: left;
+    margin-right: 4rem;
+    font-weight: bold;
+}
+
+@media (min-width: 1100px) {
+    .Variant__body{
+        width: 100vh;
+        margin: 0 auto;
+        padding: 40px 20px;
+        font-size: 40px;
+    }
+    .Variant__table{
+        font-size: 36px;
+    }
+    .Variant__table-body td::before{
+        margin-right: 8rem;
+
+    }
+    .Variant__header{
+        justify-content: center;
+    }
+    
+    .Variant__header-btn{
+        padding: 30px;
+        font-size: 30px;
+    
+    }
+    .Variant__header-btn:last-child{
+        margin-left: 4rem;
+    
+    }
+  }

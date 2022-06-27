@@ -40,13 +40,14 @@ function ListVariants() {
 
     return <div className='Variants'>
         <h1 className='Variants__title'>Variants</h1>
-        <div>
+        <div className='Variants__search'>
             <input
+                className='Variants__search-input'
                 type="text"
-                placeholder='Search supplier...'
+                placeholder='Search variant...'
                 onChange={(e) => searchVariants(e.target.value)}
             />
-            <IoSearch />
+            <IoSearch className='Variants__search-icon'/>
         </div>
 
         {searchTerm.length > 1 ? (

@@ -38,7 +38,7 @@ function UpdateSupplier({ onUpdated }) {
             updateSupplier(sessionStorage.token, supplierId, name, email, web, phone, adress, contactPerson, tradeAssurance)
                 .then(() => {
                     onUpdated()
-                    setFeedback({level: 'success', message: 'Supplier successfully updated'})
+                    setFeedback({ level: 'success', message: 'Supplier successfully updated' })
                 })
                 .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
@@ -51,13 +51,13 @@ function UpdateSupplier({ onUpdated }) {
     }
 
     return <div className='UpdateSupplier'>
-        <IoChevronBackOutline className='UpdateSupplier__iconBack' onClick={goBack} />
-        <h1 className='UpdateSupplier__title'>MODIFICANDO PROVEEDOR</h1>
+        <div className='UpdateSupplier-header'>
+            <IoChevronBackOutline className='UpdateSupplier__iconBack' onClick={goBack} />
+            <h1 className='UpdateSupplier__title'>Update supplier</h1>
+        </div>
 
         {supplier ?
-
             <form className='UpdateSupplier__form' onSubmit={handleUpdateSupplier}>
-
                 <label className='UpdateSupplier__label'>Supplier name</label>
                 <input className='UpdateSupplier__input' type='text' name='name' defaultValue={supplier.name} ></input>
 
@@ -77,9 +77,9 @@ function UpdateSupplier({ onUpdated }) {
                 <input className='UpdateSupplier__input' type='text' name='contactPerson' defaultValue={supplier.contactPerson} />
 
                 <label className='UpdateSupplier__label'>Trade Assurance</label>
-                <input className='UpdateSupplier__input' type="checkbox" name="tradeAssurance" defaultChecked={supplier.tradeAssurance}></input>
+                <input className='UpdateSupplier__input-checkbox' type="checkbox" name="tradeAssurance" defaultChecked={supplier.tradeAssurance}></input>
 
-                <button type='submit' className='UpdateSupplier__btn btn-hover'>Save <IoSave className='UpdateSupplier__btn-icon btn-hover'/></button>
+                <button type='submit' className='UpdateSupplier__btn btn-hover'>Save <IoSave className='UpdateSupplier__btn-icon btn-hover' /></button>
             </form>
             : <p>There is not supplier to update</p>
         }

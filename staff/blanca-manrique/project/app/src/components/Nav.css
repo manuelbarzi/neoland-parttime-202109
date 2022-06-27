@@ -1,3 +1,4 @@
+
 /* HAMBURGUESA */
 .Navbar{
     background-color:#dce1eb;
@@ -5,6 +6,9 @@
     display:flex;
     justify-content: start;
     align-items: center;
+    position: sticky;
+    width: 100%;
+    top:0px;
 }
 
 .Navbar__icon{
@@ -13,6 +17,7 @@
     background: none;
     text-decoration: none;
     color:black;
+    cursor: pointer;
 }
 
 /* NAV */

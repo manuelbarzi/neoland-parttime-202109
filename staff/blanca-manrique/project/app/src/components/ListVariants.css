@@ -1,19 +1,36 @@
 .Variants{
-    max-width: 80%;
-    margin: 1rem auto 2rem;
+    max-width: 70vh;
+    /* margin: 1rem auto 2rem; */
+    margin: 14px auto 0px;
     display: grid;
-    gap: 3rem;
     background-color: #1d3557;
-    border-radius: 20px;
-    padding: 5px;
+    border-radius: 20px 20px 0px 0px;
+    padding: 7px;
 }
 .Variants__title{
     color: #faedcd;
 }
 
+.Variants__search{
+    margin: 12px auto 24px;
+    background-color: #ffc300;
+    padding: 12px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Variants__search-input{
+    outline: none;
+    border: 0;
+    background-color: #ffc300;
+    font-size: 16px;
+}
 /* TABLE */
 .Variants__table{
-    min-width: 80%;
+    width: 50%;
+    margin-bottom: 2rem;
+    justify-self: center;
     background-color: #faedcd;
     border-radius: 12px;
     border-collapse: collapse;
@@ -49,4 +66,49 @@
     border-radius: 50%;
     font-size: 40px;
     cursor: pointer;
+    margin: 10px 12px;
 }
+
+@media (min-width: 600px) {
+    .Variants{
+        max-width: 100vh;
+        padding: 20px;
+        border-radius: 20px;
+        margin-bottom: 1rem;
+    }
+    .Variants__title{
+        font-size: 40px;
+        margin-left: 50px;
+    }
+    .Variants__search{
+        width: 50%;
+        justify-self: center;
+        padding: 20px;
+        margin-bottom: 3rem;
+    }
+    .Variants__search-input{
+        font-size: 25px;
+    }
+    .Variants__search-icon{
+        font-size: 25px;
+    }
+    .Variants__table{
+        width:60vh;
+        margin-bottom: 3rem;
+    }
+    .Variants__table-header th{
+        padding: 30px;
+        font-size: 26px;
+    }
+    .Variants__table-body td{
+        padding: 30px;
+        font-size: 26px;
+    }
+    .Variants__addIcon{
+        font-size: 90px;
+        margin: 90px 50px 0px;
+    }
+    .Variants__table-bodyIcon{
+        font-size: 40px;
+    }
+  }

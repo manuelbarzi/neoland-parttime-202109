@@ -10,8 +10,9 @@ function Nav({ handleLogout }) {
     const handleShowSidebar = () => setSidebar(!sidebar)
 
     return (
-        <>
-            <div className='Navbar'>
+        <>  
+
+            <div className='Navbar '>
                 <IoMenu className='Navbar__icon' onClick={handleShowSidebar} />
             </div>
 

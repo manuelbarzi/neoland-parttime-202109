@@ -5,7 +5,7 @@ import { createProduct } from '../logic'
 import { IoChevronBackOutline, IoSave } from "react-icons/io5"
 import Context from './Context'
 
-function CreateProduct({onCreated}) {
+function CreateProduct({ onCreated }) {
     const { supplierId } = useParams()
     const { setFeedback } = useContext(Context)
     const navigate = useNavigate()
@@ -25,11 +25,11 @@ function CreateProduct({onCreated}) {
             salePrice: { value: salePrice }
         } } = event
 
-        try { 
+        try {
             createProduct(sessionStorage.token, supplierId, supplierProductId, supplierProductUrl, name, category, brand, model, material, parseInt(price), parseInt(salePrice))
                 .then(() => {
                     onCreated()
-                    setFeedback({level: 'success', message: 'Supplier created successfully'})
+                    setFeedback({ level: 'success', message: 'Supplier created successfully' })
                 })
                 .catch(error => setFeedback({ level: 'info', message: error.message }))
         } catch (error) {
@@ -42,9 +42,10 @@ function CreateProduct({onCreated}) {
     }
 
     return <div className='CreateProduct'>
-        <IoChevronBackOutline className='CreateProduct__iconBack' onClick={goBack}/>
-        <h1 className='CreateProduct__title'>Create new product</h1>
-
+        <div className='CreateProduct-header'>
+            <IoChevronBackOutline className='CreateProduct__iconBack' onClick={goBack} />
+            <h1 className='CreateProduct__title'>Create new product</h1>
+        </div>
         <form className='CreateProduct__form' onSubmit={handleNewProduct}>
             <label className='CreateProduct__label'>Product ID from supplier</label>
             <input className='CreateProduct__input' type='text' name='supplierProductId' placeholder='ID from supplier' />
@@ -73,9 +74,9 @@ function CreateProduct({onCreated}) {
             <label className='CreateProduct__label'>Sale price</label>
             <input className='CreateProduct__input' type='number' name='salePrice' placeholder='sale price' />
 
-            <button type='submit' className='CreateProduct__btn btn-hover'>Save <IoSave className='CreateProduct__btn-icon btn-hover'/></button>
+            <button type='submit' className='CreateProduct__btn btn-hover'>Save <IoSave className='CreateProduct__btn-icon btn-hover' /></button>
         </form>
-    </div>
+    </div >
 
 }
 export default CreateProduct

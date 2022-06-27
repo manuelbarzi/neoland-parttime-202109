@@ -34,7 +34,7 @@ function UpdateVariant({ onUpdated }) {
             updateVariant(sessionStorage.token, supplierId, productId, variantId, size, color, parseInt(stockOnHand), parseInt(criticalStock))
                 .then(() => {
                     onUpdated()
-                    setFeedback({level: 'success', message: 'Variant successfully updated'})
+                    setFeedback({ level: 'success', message: 'Variant successfully updated' })
                 })
                 .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
@@ -47,26 +47,27 @@ function UpdateVariant({ onUpdated }) {
     }
 
     return <div className='UpdateVariant'>
-        <IoChevronBackOutline className='UpdateVariant__iconBack' onClick={goBack} />
-        <h1 className='UpdateVariant__title'>MODIFICANDO VARIANTE</h1>
-
+        <div className='UpdateVariant-header'>
+            <IoChevronBackOutline className='UpdateVariant__iconBack' onClick={goBack} />
+            <h1 className='UpdateVariant__title'>Update variant</h1>
+        </div>
         {variant ?
 
             <form className='UpdateVariant__form' onSubmit={handleUpdateVariant}>
 
-                <label className='UpdateVariant__label'>Product size</label>
+                <label className='UpdateVariant__label'>Variant size</label>
                 <input className='UpdateVariant__input' type='text' name='size' placeholder='size' defaultValue={variant.size} />
 
-                <label className='UpdateVariant__label'>Product color</label>
+                <label className='UpdateVariant__label'>Variant color</label>
                 <input className='UpdateVariant__input' type='text' name='color' placeholder='color' defaultValue={variant.color} />
 
-                <label className='UpdateVariant__label'>Product stock on hand</label>
+                <label className='UpdateVariant__label'>Stock on hand</label>
                 <input className='UpdateVariant__input' type='text' name='stockOnHand' placeholder='stock' defaultValue={variant.stockOnHand} />
 
-                <label className='UpdateVariant__label'>critical stock</label>
+                <label className='UpdateVariant__label'>Critical stock</label>
                 <input className='UpdateVariant__input' type='text' name='criticalStock' placeholder='critical stock' defaultValue={variant.criticalStock} />
 
-                <button type='submit' className='UpdateVariant__btn btn-hover'>Save <IoSave className='UpdateVariant__btn-icon btn-hover'/></button>
+                <button type='submit' className='UpdateVariant__btn btn-hover'>Save <IoSave className='UpdateVariant__btn-icon btn-hover' /></button>
             </form>
             : <p>There is not variant to update</p>
         }

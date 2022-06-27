@@ -1,19 +1,35 @@
 .Supplier__header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: red;
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    padding: 20px;
+    background-color: rgb(210, 195, 245);
+    gap:10px;
 }
 .Supplier__header-icon{
-    font-size: 24px;
+    font-size: 30px;
     cursor: pointer;
 }
-
-.Supplier__info{
-    background-color: palevioletred;
-    border-radius: 1rem;
-    max-width: 80%;
-    margin: 10px auto;
-    padding: 5px;
+.Supplier__header-name{
+    text-align:center;
+    font-weight: bold;
+    font-size: 24px;
 }
+
+@media (min-width: 600px) {
+    .Supplier__header{
+        width: 80%;
+        margin: 1rem auto 2rem;
+        display: flex;
+        justify-content:center;
+        padding: 40px;
+        gap:50px;
+    }
+    .Supplier__header-icon{
+        font-size: 50px;
+    }
+    .Supplier__header-name{
+        text-align:center;
+        font-size: 40px;
+    }
+    
+  }

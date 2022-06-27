@@ -28,7 +28,7 @@ function CreateSupplier({ onCreated }) {
             createSupplier(sessionStorage.token, name, email, web, phone, adress, contactPerson, tradeAssurance)
                 .then(() => {
                     onCreated()
-                    setFeedback({level: 'success', message: 'Supplier created successfully'})
+                    setFeedback({ level: 'success', message: 'Supplier created successfully' })
                 })
                 .catch(error => setFeedback({ level: 'info', message: error.message }))
         } catch (error) {
@@ -43,8 +43,10 @@ function CreateSupplier({ onCreated }) {
     const handleShowInfo = () => setInfo(!info)
 
     return <div className='CreateSupplier'>
-        <IoChevronBackOutline className='CreateSupplier__iconBack' onClick={goBack} />
-        <h1 className='CreateSupplier__title'>Create new supplier</h1>
+        <div className='CreateSupplier-header'>
+            <IoChevronBackOutline className='CreateSupplier__iconBack' onClick={goBack} />
+            <h1 className='CreateSupplier__title'>Create new supplier</h1>
+        </div>
 
         <form className='CreateSupplier__form' onSubmit={handleNewSupplier}>
             <label className='CreateSupplier__label'>Supplier name</label>

@@ -17,9 +17,9 @@ function ListProducts() {
         try {
             retrieveAllProductsFromSupplier(sessionStorage.token, supplierId)
                 .then(products => setProducts(products))
-                .catch(error => setFeedback({level: 'info', message: error.message}))
+                .catch(error => setFeedback({ level: 'info', message: error.message }))
         } catch (error) {
-            setFeedback({level: 'info', message: error.message})
+            setFeedback({ level: 'info', message: error.message })
         }
     }, [])
 
@@ -37,55 +37,59 @@ function ListProducts() {
         setFilteredResults(filterProducts(query, products))
     }
 
-    return <div className='Products'>
-        <div>
+    return <div>
+        <div className='ProductsHead__search'>
             <input
+                className='ProductsHead__search-field'
                 type="text"
-                placeholder='Search supplier...'
+                placeholder='Search product...'
                 onChange={(e) => searchProducts(e.target.value)}
             />
-            <IoSearch />
+            <IoSearch className='ProductsHead__search-icon' />
         </div>
 
-        {searchTerm.length > 1 ? (
-            filteredResults.map((product) => {
-                return (
-                    <li className='Products__items-li' key={product.id} onClick={() => handleProductDetail(product.id)}>
-                        <div className='Products__items-li-text'>
-                            <p className='Products__items-li-name'>{product.name}</p>
-                            <p>Category: {product.category}</p>
-                        </div>
-                        <IoChevronForwardOutline className='Products__items-li-icon' />
-                    </li>
+        <div className='ProductsBody'>
+            {searchTerm.length > 1 ? (
+                filteredResults.map((product) => {
+                    return (
+                        <li className='ProductsBody__items-li' key={product.id} onClick={() => handleProductDetail(product.id)}>
+                            <div className='ProductsBody__items-li-text'>
+                                <p className='Products__items-li-name'>{product.name}</p>
+                                <p>Category: {product.category}</p>
+                            </div>
+                            <IoChevronForwardOutline className='ProductsBody__items-li-icon' />
+                        </li>
 
-                )
-            })
-        ) : (
-            products.map((product) => {
-                return (
-                    <li className='Products__items-li' key={product.id} onClick={() => handleProductDetail(product.id)}>
-                        <div className='Products__items-li-text'>
-                            <p className='Products__items-li-name'>{product.name}</p>
-                            <p>Category: {product.category}</p>
-                        </div>
-                        <IoChevronForwardOutline className='Products__items-li-icon' />
-                    </li>
+                    )
+                })
+            ) : (
+                products.map((product) => {
+                    return (
+                        <li className='ProductsBody__items-li' key={product.id} onClick={() => handleProductDetail(product.id)}>
+                            <div className='ProductsBody__items-li-text'>
+                                <p className='Products__items-li-name'>{product.name}</p>
+                                <p className='Products__items-li-category'>Category: {product.category}</p>
+                            </div>
+                            <IoChevronForwardOutline className='ProductsBody__items-li-icon' />
+                        </li>
 
-                )
-            })
-        )}
+                    )
+                })
+            )}
 
-        {(searchTerm.length === 0 && products.length === 0) ?
-            <>
-                <p>No products yet, you can aggregate a new one</p>
-            </> : null}
+            {(searchTerm.length === 0 && products.length === 0) ?
+                <>
+                    <p>No products yet, you can aggregate a new one</p>
+                </> : null}
 
-        {(searchTerm.length > 1 && filteredResults.length === 0) ?
-            <>
-                <p>Product not found</p>
-            </> : null}
+            {(searchTerm.length > 1 && filteredResults.length === 0) ?
+                <>
+                    <p>Product not found</p>
+                </> : null}
 
-        <IoAdd className='Products__addIcon' onClick={handleAddProduct} />
+            <IoAdd className='ProductsBody__addIcon' onClick={handleAddProduct} />
+        </div>
+
     </div>
 
 }

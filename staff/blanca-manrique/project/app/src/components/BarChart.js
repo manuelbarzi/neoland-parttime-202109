@@ -4,6 +4,7 @@ import Context from './Context'
 // import { Chart as ChartJS, BarElement } from 'chart.js'
 import { Chart, registerables } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
+import './Dashboard.css'
 
 Chart.register(
     ...registerables
@@ -18,21 +19,18 @@ const BarChart = () => {
             monthlyExpenses(sessionStorage.token, 2022)
                 .then(chart => {
                     setChart(chart)
-                    console.log(chart.length)
-                    console.log(chart)
                 })
                 .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
             setFeedback({ level: 'error', message: error.message })
         }
-    }, []) //chart???
+    }, []) 
 
     var data = {
-        // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        // labels: ['Jan', 'Feb', 'March', 'April', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] ,
-        labels: chart ,
+        labels: ['Jan', 'Feb', 'March', 'April', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] ,
+        // labels: chart ,
         datasets: [{
-            label: 'Monthly expenses',
+            label: 'Monthly expenses from completed and in progress orders',
             data: chart,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -82,7 +80,7 @@ const BarChart = () => {
 
     return (
         <div>
-            <Bar
+            <Bar className='bar'
                 data={data}
                 height={400}
                 options={options}

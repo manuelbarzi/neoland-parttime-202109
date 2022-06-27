@@ -23,10 +23,10 @@ function ListOrders() {
         try {
             retrieveAllOrders(sessionStorage.token)
                 .then(orders => setOrders(orders))
-                .catch(error => setFeedback({level: 'info', message: error.message}))
+                .catch(error => setFeedback({ level: 'info', message: error.message }))
 
         } catch (error) {
-            setFeedback({level: 'info', message: error.message})
+            setFeedback({ level: 'info', message: error.message })
         }
     }, [])
 
@@ -43,9 +43,9 @@ function ListOrders() {
                     setOrders(newOrders)
                 })
 
-                .catch(error => setFeedback({level: 'info', message: error.message}))
+                .catch(error => setFeedback({ level: 'info', message: error.message }))
         } catch (error) {
-            setFeedback({level: 'info', message: error.message})
+            setFeedback({ level: 'info', message: error.message })
         }
     }
 
@@ -65,13 +65,14 @@ function ListOrders() {
 
         {orders.length ?
             <div>
-                <div>
+                <div className='OrdersHead__search'>
                     <input
+                        className='OrdersHead__search-field'
                         type="text"
                         placeholder='Search order...'
                         onChange={(e) => searchOrders(e.target.value)}
                     />
-                    <IoSearch />
+                    <IoSearch className='OrdersHead__search-icon'/>
                 </div>
 
                 <FilterBar orders={orders} />
@@ -83,8 +84,8 @@ function ListOrders() {
         <div className='Orders'>
             {searchTerm.length > 1 ?
                 (
-                    <table className='Orders__table'>
-                        <thead className='Orders__table-header'>
+                    <table className='OrdersTable'>
+                        <thead className='OrdersTable__header'>
                             <tr>
                                 <th>Description</th>
                                 <th>Status</th>
@@ -92,15 +93,15 @@ function ListOrders() {
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody className='Orders__table-body'>
+                        <tbody className='OrdersTable__body'>
                             {filteredResults.map(order => (
                                 <tr key={order.id}>
                                     <td onClick={() => handleOrderDetail(order.id)}>{order.description}</td>
                                     <td>{order.status}</td>
                                     <td><time>{order.createdAt.toDateString()}</time></td>
-                                    <td><IoChevronForwardOutline className='Orders__table-bodyIcon' onClick={() => handleOrderDetail(order.id)} /></td>
+                                    <td><IoChevronForwardOutline className='OrdersTable__bodyIcon' onClick={() => handleOrderDetail(order.id)} /></td>
                                     {order.status === 'draft' ?
-                                        <td><IoTrashOutline onClick={() => handleDeleteOrder(order.id)} /></td>
+                                        <td><IoTrashOutline className='trash-icon' onClick={() => handleDeleteOrder(order.id)} /></td>
                                         : null
                                     }
                                 </tr>))}
@@ -110,8 +111,8 @@ function ListOrders() {
 
                 : (
 
-                    <table className='Orders__table'>
-                        <thead className='Orders__table-header'>
+                    <table className='OrdersTable'>
+                        <thead className='OrdersTable__header'>
                             <tr>
                                 <th>Description</th>
                                 <th>Status</th>
@@ -119,15 +120,15 @@ function ListOrders() {
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody className='Orders__table-body'>
+                        <tbody className='OrdersTable__body'>
                             {orders.map(order => (
                                 <tr key={order.id}>
                                     <td onClick={() => handleOrderDetail(order.id)}>{order.description}</td>
                                     <td>{order.status}</td>
                                     <td><time>{order.createdAt.toDateString()}</time></td>
-                                    <td><IoChevronForwardOutline className='Orders__table-bodyIcon' onClick={() => handleOrderDetail(order.id)} /></td>
+                                    <td><IoChevronForwardOutline className='OrdersTable__bodyIcon' onClick={() => handleOrderDetail(order.id)} /></td>
                                     {order.status === 'draft' ?
-                                        <td><IoTrashOutline onClick={() => handleDeleteOrder(order.id)} /></td>
+                                        <td><IoTrashOutline className='trash-icon' onClick={() => handleDeleteOrder(order.id)} /></td>
                                         : null
                                     }
                                 </tr>))}
@@ -136,7 +137,7 @@ function ListOrders() {
 
                 )
             }
-            
+
             {(searchTerm.length === 0 && orders.length === 0) ?
                 <>
                     <p>No orders yet, you can generate a new one</p>

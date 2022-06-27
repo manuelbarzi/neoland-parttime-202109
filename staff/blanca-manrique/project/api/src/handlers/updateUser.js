@@ -1,6 +1,6 @@
 const { extractUserIdFromAuthorization } = require('./helpers')
 const { updateUser } = require('logic')
-const { errors: { AuthError, FormatError, DuplicityError } } = require('commons')
+const { errors: { FormatError, DuplicityError } } = require('commons')
 
 module.exports = (req, res) => {
     try {
@@ -12,10 +12,7 @@ module.exports = (req, res) => {
             .catch(error => {
                 let status = 500
 
-                if (error instanceof AuthError)
-                    status = 401
-
-                else if (error instanceof DuplicityError)
+                if (error instanceof DuplicityError)
                     status = 409
 
                 res.status(status).json({ error: error.message })

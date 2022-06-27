@@ -39,7 +39,7 @@ function UpdateProduct({ onUpdated }) {
             updateProduct(sessionStorage.token, supplierId, productId, supplierProductId, supplierProductUrl, name, category, brand, model, material, parseInt(price), parseInt(salePrice))
                 .then(() => {
                     onUpdated()
-                    setFeedback({level: 'success', message: 'Product successfully updated'})
+                    setFeedback({ level: 'success', message: 'Product successfully updated' })
                 })
                 .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
@@ -52,13 +52,13 @@ function UpdateProduct({ onUpdated }) {
     }
 
     return <div className='UpdateProduct'>
-        <IoChevronBackOutline className='UpdateProduct__iconBack' onClick={goBack} />
-        <h1 className='UpdateProduct__title'>MODIFICANDO PRODUCTO</h1>
+        <div className='UpdateProduct-header'>
+            <IoChevronBackOutline className='UpdateProduct__iconBack' onClick={goBack} />
+            <h1 className='UpdateProduct__title'>Update product</h1>
+        </div>
 
         {product ?
-
             <form className='UpdateProduct__form' onSubmit={handleUpdateProduct}>
-
                 <label className='UpdateProduct__label'>Product ID from supplier</label>
                 <input className='UpdateProduct__input' type='text' name='supplierProductId' placeholder='ID from supplier' defaultValue={product.supplierProductId} />
 
@@ -86,7 +86,7 @@ function UpdateProduct({ onUpdated }) {
                 <label className='UpdateProduct__label'>Sale price</label>
                 <input className='UpdateProduct__input' type='number' name='salePrice' placeholder='sale price' defaultValue={product.salePrice} />
 
-                <button type='submit' className='UpdateProduct__btn btn-hover'>Save <IoSave className='UpdateProduct__btn-icon btn-hover'/></button>
+                <button type='submit' className='UpdateProduct__btn btn-hover'>Save <IoSave className='UpdateProduct__btn-icon btn-hover' /></button>
             </form>
             : <p>There is not product to update</p>
         }

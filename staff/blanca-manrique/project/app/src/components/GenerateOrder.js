@@ -38,8 +38,8 @@ function GenerateOrder({ orderId }) {
                 <option name="in progress">In progress</option>
             </select>
 
-            <button>GENERATE ORDER</button>
-        </form>
+            <button >GENERATE ORDER</button>
+        </form>       
     </div>
 }
 

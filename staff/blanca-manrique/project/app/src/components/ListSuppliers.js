@@ -27,13 +27,13 @@ function ListSuppliers() {
 
     }, [])
 
-    const handleSupplierDetail = supplierId => { 
+    const handleSupplierDetail = supplierId => {
         navigate(`/suppliers/${supplierId}`)
     }
-    const handleCreateSupplier = () => {   
+    const handleCreateSupplier = () => {
         navigate('/suppliers/new-supplier')
     }
-    const goBack = () => { 
+    const goBack = () => {
         navigate('/')
     }
 
@@ -43,24 +43,26 @@ function ListSuppliers() {
     }
 
     return <div>
-        <IoChevronBack className='IconBack' onClick={goBack} />
-
-        <div className='Suppliers'>
-            <div>
+        <div className='SuppliersHead'>
+            <IoChevronBack className='IconBack' onClick={goBack} />
+            <div className='SuppliersHead__search'>
                 <input
+                    className='SuppliersHead__search-field'
                     type="text"
                     placeholder='Search supplier...'
                     onChange={(e) => searchSuppliers(e.target.value)}
                 />
-                <IoSearch />
+                <IoSearch className='SuppliersHead__search-icon' />
             </div>
+        </div>
 
+        <div className='SuppliersBody'>
             {searchTerm.length > 1 ?
                 (filteredResults.map((supplier) => {
                     return (
-                        <li className='Suppliers__items-li' key={supplier.id} onClick={() => handleSupplierDetail(supplier.id)}>
-                            <span className='Suppliers__items-li-text'>{supplier.name}</span>
-                            <IoChevronForwardOutline className='Suppliers__items-li-icon' />
+                        <li className='SuppliersBody__items-li' key={supplier.id} onClick={() => handleSupplierDetail(supplier.id)}>
+                            <span className='SuppliersBody__items-li-text'>{supplier.name}</span>
+                            <IoChevronForwardOutline className='SuppliersBody__items-li-icon' />
                         </li>
 
                     )
@@ -68,9 +70,9 @@ function ListSuppliers() {
                 )
                 : (suppliers.map((supplier) => {
                     return (
-                        <li className='Suppliers__items-li' key={supplier.id} onClick={() => handleSupplierDetail(supplier.id)}>
-                            <span className='Suppliers__items-li-text'>{supplier.name}</span>
-                            <IoChevronForwardOutline className='Suppliers__items-li-icon' />
+                        <li className='SuppliersBody__items-li' key={supplier.id} onClick={() => handleSupplierDetail(supplier.id)}>
+                            <span className='SuppliersBody__items-li-text'>{supplier.name}</span>
+                            <IoChevronForwardOutline className='SuppliersBody__items-li-icon' />
                         </li>
 
                     )
@@ -89,7 +91,7 @@ function ListSuppliers() {
                     <p>Supplier not found</p>
                 </> : null}
 
-            <IoAdd className='Suppliers__addIcon' onClick={handleCreateSupplier} />
+            <IoAdd className='SuppliersBody__addIcon' onClick={handleCreateSupplier} />
         </div>
 
     </div>

@@ -1,19 +1,27 @@
-.UpdateVariant__iconBack{
+.UpdateVariant-header{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    margin-top:12px;
+ }
+ 
+ .UpdateVariant__iconBack{
     font-size: 30px;
     cursor: pointer;
+    align-self: center;
 }
+
+.UpdateVariant__title{
+    text-align: center;
+}
+
 .UpdateVariant__form{
     display: flex;
     flex-direction: column;
     padding: 0px 2rem 2rem;
     background-color: #1d3557;
     max-width: 80%;
-    margin: 0 auto;
+    margin: 14px auto;
     border-radius: 30px;
-}
-.UpdateVariant__title{
-    text-align: center;
-    margin-bottom: 1rem;
 }
  
 .UpdateVariant__label{
@@ -31,7 +39,6 @@
     background-color: #dfe7fd;
     color:#1d3557;
     outline: none;
-    font-weight: bold;
 }
 
 .UpdateVariant__btn{
@@ -47,6 +54,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    align-self: center;
 }
 .UpdateVariant__btn-icon{
     margin-left: 10px;
@@ -57,3 +65,29 @@
 .btn-hover:hover{
     color:#1d3557;
 }
+
+@media (min-width: 600px) {
+    .UpdateVariant__form{
+        width: 60vh;
+        padding: 1rem 4rem 4rem;
+        margin: 30px auto;
+    }
+    .UpdateVariant__label{
+        margin-top:24px;
+        font-size: 28px;
+    }
+    .UpdateVariant__input{
+        margin-top:10px;
+        border-radius: 20px;
+        padding: 18px;
+        font-size: 18px;
+    }
+    .UpdateVariant__btn{
+        font-size: 30px;
+        align-self: center;
+        width: 60%;
+    }
+    .UpdateVariant__title{
+        font-size: 50px;
+    }
+  }

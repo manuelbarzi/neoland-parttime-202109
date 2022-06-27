@@ -24,7 +24,7 @@ function CreateVariant({ onCreated }) {
             createVariant(sessionStorage.token, supplierId, productId, size, color, parseInt(stockOnHand), parseInt(criticalStock))
                 .then(() => {
                     onCreated()
-                    setFeedback({level: 'success', message: 'Supplier created successfully'})
+                    setFeedback({ level: 'success', message: 'Supplier created successfully' })
                 })
                 .catch(error => setFeedback({ level: 'info', message: error.message }))
         } catch (error) {
@@ -34,12 +34,13 @@ function CreateVariant({ onCreated }) {
 
     const goBack = () => {
         navigate(`/suppliers/${supplierId}/products/${productId}/`)
-    } 
+    }
 
     return <div className='CreateVariant'>
-        <IoChevronBackOutline className='CreateVariant__iconBack' onClick={goBack}/>
-        <h1 className='CreateVariant__title'>Create new variant</h1>
-
+        <div className='CreateVariant-header'>
+            <IoChevronBackOutline className='CreateVariant__iconBack' onClick={goBack} />
+            <h1 className='CreateVariant__title'>Create new variant</h1>
+        </div>
         <form className='CreateVariant__form' onSubmit={handleNewVariant}>
             <label className='CreateVariant__label'>Product size</label>
             <input className='CreateVariant__input' type='text' name='size' placeholder='size' />
@@ -53,7 +54,7 @@ function CreateVariant({ onCreated }) {
             <label className='CreateVariant__label'>critical stock</label>
             <input className='CreateVariant__input' type='text' name='criticalStock' placeholder='critical stock' />
 
-            <button type='submit' className='CreateVariant__btn btn-hover'>Save <IoSave className='CreateVariant__btn-icon btn-hover'/></button>
+            <button type='submit' className='CreateVariant__btn btn-hover'>Save <IoSave className='CreateVariant__btn-icon btn-hover' /></button>
         </form>
     </div>
 

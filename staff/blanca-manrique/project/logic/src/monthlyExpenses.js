@@ -21,13 +21,15 @@ function monthlyExpenses(userId, year) {
                             month: { $month: "$createdAt" },
                             _id: 1,
                             user: 1,
-                            items: 1
+                            items: 1,
+                            status: 1
                         }
                     },
                     {
                         $match: {
                             user: ObjectId(userId),
-                            year
+                            year,
+                            $or:[{status: 'in progress'}, {status: 'completed'}]
                         }
                     }
                 ]

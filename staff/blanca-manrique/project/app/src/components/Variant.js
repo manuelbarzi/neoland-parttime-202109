@@ -1,8 +1,6 @@
 import { useEffect, useState, useContext } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { retrieveVariant } from '../logic'
-import { IoChevronBackOutline, IoCaretDown } from "react-icons/io5"
-import { MdModeEditOutline } from "react-icons/md"
 import Context from './Context'
 import './Variant.css'
 
@@ -25,17 +23,30 @@ function Variant() {
     return <div>
         {variant ?
             <div className='Variant'>
-                <div className='Variant__header'>
-                    <p>Estás viendo el detalle del producto, si deseas volver a visualizar las variantes: </p>
-                    <button className='Variant__header-btn' onClick={() => navigate(`/suppliers/${supplierId}/products/${productId}`)}>Return to list variants</button>
-                    <MdModeEditOutline className='Variant__header-icon' onClick={() => navigate(`/suppliers/${supplierId}/products/${productId}/variants/${variantId}/update`)} />
+                <div className='Variant__body'>
+                    <h3 className='Variant__body-title'>ID: {variant.id}</h3>
+                    <table className='Variant__table' key={variant.id}>
+                        <thead className='Variant__table-header'>
+                            <tr>
+                                <th>Variant color</th>
+                                <th>Variant size</th>
+                                <th>Stock on hand</th>
+                                <th>Critical stock</th>
+                            </tr>
+                        </thead>
+                        <tbody className='Variant__table-body'>
+                            <tr>
+                                <td>{variant.color}</td>
+                                <td>{variant.size}</td>
+                                <td>{variant.stockOnHand}</td>
+                                <td>{variant.criticalStock}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div className='Variant__info'>
-                    <p>Variant ID: {variant.id}</p>
-                    <p>Variant color: {variant.color}</p>
-                    <p>Variant size: {variant.size}</p>
-                    <p>Stock on hand: {variant.stockOnHand}</p>
-                    <p>Critical stock: {variant.criticalStock}</p>
+                <div className='Variant__header'>
+                    <button className='Variant__header-btn btn-green' onClick={() => navigate(`/suppliers/${supplierId}/products/${productId}`)}>Return to variants</button>
+                    <button className='Variant__header-btn btn-yellow' onClick={() => navigate(`/suppliers/${supplierId}/products/${productId}/variants/${variantId}/update`)}>Update variant</button>
                 </div>
             </div>
             :

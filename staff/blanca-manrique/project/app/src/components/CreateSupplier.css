@@ -1,19 +1,27 @@
-.CreateSupplier__iconBack{
+ .CreateSupplier-header{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    margin-top:12px;
+ }
+ 
+ .CreateSupplier__iconBack{
     font-size: 30px;
     cursor: pointer;
+    align-self: center;
 }
+
+.CreateSupplier__title{
+    text-align: center;
+}
+
 .CreateSupplier__form{
     display: flex;
     flex-direction: column;
     padding: 0px 2rem 2rem;
     background-color: #1d3557;
     max-width: 80%;
-    margin: 0 auto;
+    margin: 14px auto;
     border-radius: 30px;
-}
-.CreateSupplier__title{
-    text-align: center;
-    margin-bottom: 1rem;
 }
  
 .CreateSupplier__label{
@@ -46,6 +54,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    align-self: center;
 }
 .CreateSupplier__btn-icon{
     margin-left: 10px;
@@ -84,3 +93,29 @@
     text-align:justify;
     margin-top: 10px;
 }
+
+@media (min-width: 600px) {
+    .CreateSupplier__form{
+        width: 60vh;
+        padding: 1rem 4rem 4rem;
+        margin: 30px auto;
+    }
+    .CreateSupplier__label{
+        margin-top:24px;
+        font-size: 28px;
+    }
+    .CreateSupplier__input{
+        margin-top:10px;
+        border-radius: 20px;
+        padding: 18px;
+        font-size: 18px;
+    }
+    .CreateSupplier__btn{
+        font-size: 30px;
+        align-self: center;
+        width: 60%;
+    }
+    .CreateSupplier__title{
+        font-size: 50px;
+    }
+  }

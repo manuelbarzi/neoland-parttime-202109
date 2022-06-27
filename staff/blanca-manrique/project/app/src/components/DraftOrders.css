@@ -1,7 +1,35 @@
+.Orders{
+    max-width: 80%; 
+    margin: 20px auto 2rem;
+}
+.OrderHeader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.OrderClose__draft{
+    background-color: lightskyblue;
+    color:white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 12px auto;
+    padding: 10px;
+    border-radius: 30px;
+    width: 40%;
+    margin: 12px auto 0px;
+}
+.OrderClose__text{
+    font-weight: bold;
+}
+.OrderClose__icon{
+    font-size: 20px;
+}
 .OrdersHead__search{
     width: 50%;
     justify-self: center;
-    margin: 12px auto 0px;
+    margin: 12px 3px 0px;
     background-color: #ffc300;
     padding: 12px;
     border-radius: 30px;
@@ -17,15 +45,6 @@
     
 }
 
-.IconBack{
-    font-size: 30px;
-    cursor: pointer;
-}
-
-.Orders{
-    max-width: 80%; 
-    margin: 0 auto 2rem;
-}
 
 /* TABLE */
 .OrdersTable{
@@ -75,13 +94,21 @@
 }
 
   @media (min-width: 1100px) {
+    .OrderClose__draft{
+        max-width: 17rem;
+        padding: 20px;
+    }
+    .OrderClose__text{
+        font-size: 20px;
+        font-weight: bold;
+    }
     .OrdersHead__search{
         padding: 20px;
     }
     .OrdersHead__search-field{
         font-size: 25px;
     }
-    .ProductsHead__search-icon{
+    .OrdersHead__search-icon{
         font-size: 25px;
     }
     .OrdersTable{

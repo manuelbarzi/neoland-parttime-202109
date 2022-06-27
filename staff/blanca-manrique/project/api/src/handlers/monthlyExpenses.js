@@ -1,6 +1,6 @@
 const { extractUserIdFromAuthorization } = require('./helpers')
 const { monthlyExpenses } = require('logic')
-const { errors: { NotFoundError, FormatError, AuthError } } = require('commons')
+const { errors: { NotFoundError, FormatError } } = require('commons')
 
 module.exports = (req, res) => {
     try {
@@ -15,9 +15,6 @@ module.exports = (req, res) => {
 
                 if (error instanceof NotFoundError)
                     status = 404
-                
-                else if (error instanceof AuthError)
-                status = 401
 
                 res.status(status).json({ error: error.message })
             })

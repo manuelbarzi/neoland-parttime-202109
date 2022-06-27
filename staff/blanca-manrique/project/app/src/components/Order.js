@@ -1,12 +1,10 @@
-import { useEffect, useState, useContext } from 'react'
+import { useEffect, useState, useContext, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { retrieveOrder, addItemToOrder, deleteItemFromOrder, addNoteToOrder } from '../logic'
 import { IoChevronBackOutline, IoAdd, IoTrashOutline, IoEllipsisVertical, IoCreate } from "react-icons/io5"
 import Context from './Context'
 import ChangeOrderStatus from './ChangeOrderStatus'
 import GenerateOrder from './GenerateOrder'
-import Modal from './Modal'
-import ModalDeleteOrder from './ModalDeleteOrder'
 import './Order.css'
 
 function Order() {
@@ -24,7 +22,6 @@ function Order() {
         price: 0,
         quantity: 0
     })
-    const [modal, setModal] = useState()
 
     useEffect(() => {
         try {
@@ -45,11 +42,8 @@ function Order() {
     {/* MODO DRAFT && IN PROGRESS: ADD NOTE*/ }
     const handleShowCreateNote = () => setDropNote(!dropNote)
 
-    const handleOpenModal = () => setModal(true)
-
-    const handleCloseModal = () => setModal(false)
-
     {/* MODO DRAFT*/ }
+
     const handleDeleteItem = (itemId) => {
         try {
             deleteItemFromOrder(sessionStorage.token, orderId, itemId)
@@ -61,18 +55,13 @@ function Order() {
                     newItems.splice(index, 1)
 
                     setItems(newItems)
-                    setModal(false)
-                    setFeedback({ level: 'info', message: 'Item deleted' }) 
-                    setTimeout(() => {
-                        navigate('/orders')
-                    }, 3000)
-
                 })
                 .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {
             setFeedback({ level: 'error', message: error.message })
         }
     }
+
 
     const handleInputChange = event => {
         event.preventDefault()
@@ -216,12 +205,7 @@ function Order() {
                                             <td>{item.price}</td>
                                             <td>{item.quantity}</td>
                                             {order.status === 'draft' ?
-                                                <td>
-                                                    <IoTrashOutline onClick={(e) => {
-                                                        e.preventDefault()
-                                                        handleOpenModal()
-                                                    }} />
-                                                </td>
+                                                <td><IoTrashOutline onClick={() => { handleDeleteItem(item.id) }} /></td>
                                                 : null
                                             }
                                         </tr>))}
@@ -238,8 +222,6 @@ function Order() {
                         : <p>No items yet</p>
 
                     }
-
-
 
                     {/* SOLO SI ESTOY EN MODO DRAFT PUEDO MODIFICAR LA ORDEN: PUEDO AÑADIR ITEMS */}
                     {order.status === 'draft' ?
@@ -291,20 +273,6 @@ function Order() {
                                 )}
                             </ul>
                         </> : null}
-
-                    {modal && (
-                        <Modal
-                            content={
-                                <ModalDeleteOrder
-                                    onDeleted={handleDeleteItem}
-                                    onCancel={handleCloseModal}
-                                />
-                            }
-                            onClose={handleCloseModal}
-
-
-                        />
-                    )}
 
                     {/* SOLO SI ESTOY EN MODO DRAFT Y LA ORDEN TIENE ITEMS PERMITO GENERAR LA ORDEN */}
                     {(order.status === 'draft' && order.items.length > 0) ? <GenerateOrder orderId={order.id} /> : null}

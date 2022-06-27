@@ -37,11 +37,13 @@ function Product() {
                     <p className='Product__name'>{product.name}</p>
                     <div className='Product__actions'>
                         <IoCaretDown className='Product__icon' onClick={showDropdown} />
-                        <MdModeEditOutline className='Product__icon' onClick={() => navigate(`/suppliers/${supplierId}/products/${productId}/update`)} />
                         <button className='Product__returnButton' onClick={() => navigate(`/suppliers/${supplierId}`)}>Return to list products</button>
+                        <MdModeEditOutline className='Product__icon' onClick={() => navigate(`/suppliers/${supplierId}/products/${productId}/update`)} />
                     </div>
                 </div>
 
+                {dropdown && <ProductDropdown product={product} />}
+                
                 <Routes >
                     <Route path='/' element={<ListVariants />} />
                     <Route path='/variants/:variantId/' element={<Variant />} />
@@ -49,7 +51,6 @@ function Product() {
                     <Route path='/variants/new-variant' element={<CreateVariant onCreated={() => navigate(`/suppliers/${supplierId}/products/${productId}/`)} />} />
                 </Routes>
 
-                {dropdown && <ProductDropdown product={product} />}
 
             </div>
             :

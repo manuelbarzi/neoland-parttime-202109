@@ -17,6 +17,7 @@ module.exports = (req, res) => {
 
                 else if (error instanceof NotFoundError)
                     status = 404
+                
 
                 res.status(status).json({ error: error.message })
             })

@@ -27,11 +27,3 @@
     color:white;
     cursor: pointer;
 }
-/* Está en el compo ProductDropdown */
-.Product__info{
-    background-color: palevioletred;
-    border-radius: 1rem;
-    max-width: 80%;
-    margin: 10px auto;
-    padding: 10px;
-}

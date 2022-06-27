@@ -1,13 +1,12 @@
 import BarChart from './BarChart'
 import DoughnutChart from './DoughnutChart'
+import './Dashboard.css'
 
 function Dashboard() {
-
-    return <div>
-        <h1>Estamos en Dashboard</h1>
+    return <div className='Dashboard'>
+        <h1 className='Dashboard__title'>Dashboard</h1>
         <BarChart />
         <DoughnutChart />
-
     </div>
 }
 export default Dashboard
