@@ -38,3 +38,16 @@ App para la gestión de daños de vehículos dirigido a empresas en las que tien
 - Mongoose
 
 - Mongo
+
+### TO-DO
+
+- Añadir funcionalidad para activar y desactivar los vehículos
+
+- Añadir funcionalidad para activar y desactivar los usuarios
+
+- Generar contraseña para usuario automáticamente
+
+- Añadir test
+
+- Documentar las lógicas
+
