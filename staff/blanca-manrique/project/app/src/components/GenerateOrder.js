@@ -23,7 +23,6 @@ function GenerateOrder({ orderId }) {
                     update.status = 'in progress'
 
                     setOrder(update)
-                    setFeedback({ level: 'success', message: 'Order successfully generated' })
                     navigate('/orders')
                 })
                 .catch(error => setFeedback({ level: 'error', message: error.message }))

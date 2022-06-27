@@ -29,7 +29,6 @@ function CreateProduct({ onCreated }) {
             createProduct(sessionStorage.token, supplierId, supplierProductId, supplierProductUrl, name, category, brand, model, material, parseInt(price), parseInt(salePrice))
                 .then(() => {
                     onCreated()
-                    setFeedback({ level: 'success', message: 'Supplier created successfully' })
                 })
                 .catch(error => setFeedback({ level: 'info', message: error.message }))
         } catch (error) {

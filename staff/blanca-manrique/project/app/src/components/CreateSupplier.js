@@ -28,7 +28,6 @@ function CreateSupplier({ onCreated }) {
             createSupplier(sessionStorage.token, name, email, web, phone, adress, contactPerson, tradeAssurance)
                 .then(() => {
                     onCreated()
-                    setFeedback({ level: 'success', message: 'Supplier created successfully' })
                 })
                 .catch(error => setFeedback({ level: 'info', message: error.message }))
         } catch (error) {

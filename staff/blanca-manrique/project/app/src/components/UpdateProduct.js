@@ -39,7 +39,6 @@ function UpdateProduct({ onUpdated }) {
             updateProduct(sessionStorage.token, supplierId, productId, supplierProductId, supplierProductUrl, name, category, brand, model, material, parseInt(price), parseInt(salePrice))
                 .then(() => {
                     onUpdated()
-                    setFeedback({ level: 'success', message: 'Product successfully updated' })
                 })
                 .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {

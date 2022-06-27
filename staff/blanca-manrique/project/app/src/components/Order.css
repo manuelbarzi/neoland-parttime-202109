@@ -84,6 +84,8 @@
     .ChangeStatus-btn{
         width: 20vh;
         font-size: 24px;
+        background-color: #fcbf49;
+        color:black;
     }
   }
 
@@ -102,13 +104,15 @@
     border: none;
     padding: 12px;
     border-radius: 30px;
-    margin-top:10px;
+    margin:10px 0px;
+    background-color: #fcbf49;
+    color: black;
 
 }
 
 /* BODY TITLE */
 .Order__body-title{
-    background-color: #d90429;
+    /* background-color: #d90429; */
     display: flex;
     flex-direction: column;
     align-items:flex-start;
@@ -130,7 +134,7 @@
 
 .OrderDrop__body-title{
     width: 40vh;
-    background-color: #d90429;
+    /* background-color: #d90429; */
     display: flex;
     flex-direction: column;
     align-items:flex-start;
@@ -180,7 +184,8 @@
 
 /* INFO ITEMS*/
 .Order__body-info{
-    background-color: #fcbf49;
+    /* background-color: #fcbf49; */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column;
     align-items:flex-start;

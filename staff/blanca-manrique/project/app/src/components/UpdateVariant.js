@@ -34,7 +34,6 @@ function UpdateVariant({ onUpdated }) {
             updateVariant(sessionStorage.token, supplierId, productId, variantId, size, color, parseInt(stockOnHand), parseInt(criticalStock))
                 .then(() => {
                     onUpdated()
-                    setFeedback({ level: 'success', message: 'Variant successfully updated' })
                 })
                 .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {

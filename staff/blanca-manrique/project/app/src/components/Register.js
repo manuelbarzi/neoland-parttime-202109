@@ -22,7 +22,6 @@ function Register({ onRegistered }) {
             registerUser(username, email, password)
                 .then(() => {
                     onRegistered()
-                    setFeedback({ level: 'success', message: 'User successfully registered' })
                 })
                 .catch(error => {
                     setFeedback({ level: 'error', message: error.message })

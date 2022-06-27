@@ -326,7 +326,7 @@ function Order() {
 
             :
             <div>
-                <p>order not found</p>
+                <h3>order not found</h3>
                 <button onClick={() => navigate('/orders')}>Return to orders</button>
             </div>
 

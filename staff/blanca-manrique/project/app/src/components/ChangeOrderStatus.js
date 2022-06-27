@@ -17,7 +17,6 @@ function ChangeOrderStatus({orderId}) {
                 .then(() => {
                     const update = { ...order, status: order._status }
                     setOrder(update)
-                    setFeedback({ level: 'success', message: 'Order status successfully updated' })
                     navigate('/orders')
                 })
                 .catch(error => setFeedback({ level: 'error', message: error.message }))

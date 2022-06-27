@@ -38,7 +38,6 @@ function UpdateSupplier({ onUpdated }) {
             updateSupplier(sessionStorage.token, supplierId, name, email, web, phone, adress, contactPerson, tradeAssurance)
                 .then(() => {
                     onUpdated()
-                    setFeedback({ level: 'success', message: 'Supplier successfully updated' })
                 })
                 .catch(error => setFeedback({ level: 'error', message: error.message }))
         } catch (error) {

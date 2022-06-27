@@ -24,7 +24,6 @@ function CreateVariant({ onCreated }) {
             createVariant(sessionStorage.token, supplierId, productId, size, color, parseInt(stockOnHand), parseInt(criticalStock))
                 .then(() => {
                     onCreated()
-                    setFeedback({ level: 'success', message: 'Supplier created successfully' })
                 })
                 .catch(error => setFeedback({ level: 'info', message: error.message }))
         } catch (error) {

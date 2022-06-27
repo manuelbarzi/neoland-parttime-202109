@@ -9,17 +9,14 @@ function CreateOrder({ onCreated }) {
         event.preventDefault()
         const { target:
             { status: { value: _status },
-                description: { value: description },
-                createdAt: {value: _createdAt}
-                
+                description: { value: description }  
             }
         } = event
 
         try {
-            createOrder(sessionStorage.token, _status, description, _createdAt = Date.now)
+            createOrder(sessionStorage.token, _status, description)
                 .then(() =>{
                     onCreated()
-                    setFeedback({level: 'success', message: 'Order created successfully'})
                 })
                 .catch(error => setFeedback({ level: 'info', message: error.message }))
         } catch (error) {

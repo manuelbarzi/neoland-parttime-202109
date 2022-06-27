@@ -13,7 +13,6 @@ function CreateOrder({ onCreated }) {
             createOrder(sessionStorage.token, _status)
                 .then(() => {
                     onCreated()
-                    setFeedback({level: 'success', message: 'Order created successfully'})
                 })
                 .catch(error => setFeedback({ level: 'info', message: error.message }))
         } catch (error) {
