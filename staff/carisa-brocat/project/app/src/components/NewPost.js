@@ -53,10 +53,10 @@ export default ({ handleCloseModal, handlePostCreated }) => {
         }
     }
 
-    return <form className="newPost" onSubmit={handleCreatePost}>
-        <div className="createPost__header">
-            <div>
-                <label >Category</label>
+    return <form className="NewPost" onSubmit={handleCreatePost}>
+        <div className="NewPost__header">
+            <div className="NewPost__header-category">
+                <label >Category:</label>
                 <select id='category' name='category' defaultValue='product' onChange={handleCategorySelected}>
                     <option value='product'>Product</option>
                     <option value='question'>Question</option>
@@ -64,8 +64,8 @@ export default ({ handleCloseModal, handlePostCreated }) => {
                     <option value='other'>Others</option>
                 </select>
             </div>
-            <div>
-                <label >Subject</label>
+            <div className="NewPost__header-subject">
+                <label >Subject:</label>
                 <select id='subject' name='subject' defaultValue='moisture'>
                     <option value='moisture'>Moisture</option>
                     <option value='definition'>Definition</option>
@@ -74,21 +74,29 @@ export default ({ handleCloseModal, handlePostCreated }) => {
                     <option value='strength'>Strength</option>
                 </select>
             </div>
-            <div className="newPost__body">
-                <label >Title / SpaceName</label>
-                <input type="text" name="title" required placeholder="Give a title to your post" />
-
-                <label >Description</label>
-                <textarea name="description" placeholder="Say more" required></textarea>
-
-                {category === 'space' && <><label >Adress</label>
-                    <input type="text" name="address" placeholder="Indicate the Adress" required /></>}
-
-                <label >Image</label>
-                <img src={imageB64} />
-                <input type="file" name="image" onChange={handleUploadImage} />
-            </div>
-            <button>Create New Post</button>
         </div>
+        <div className="NewPost__body">
+            <input className="NewPost__body__title" type="text" name="title" required placeholder="Write the title of your post here" maxLength="50" minLength="5" />
+            <div className=" NewPost__body NewPost__body--row">
+                <div className=" NewPost__body NewPost__body__image">
+                    <img src={imageB64 ?? "./images/Not-Image.png"} />
+                    <label className="NewPost__LabeInputFile">
+                        <input className=" NewPost__inputFile" type="file" name="image" onChange={handleUploadImage} />
+                        <img src="./images/Upload-icon.png" />
+                    </label>
+                </div>
+
+                <div className="NewPost__body NewPost__body__description">
+                    <textarea name="description" placeholder="Give a small description of your post" required minLength="50"></textarea>
+
+                    {category === 'space' && <div className="NewPost__body-address"><label >Adress:</label>
+                        <input type="text" name="address" placeholder="Give an address" required /></div>}
+                </div>
+            </div>
+        </div>
+        <div className="NewPost__footer">
+            <button className='NewPost__button'>+</button>
+        </div>
+
     </form>
 }

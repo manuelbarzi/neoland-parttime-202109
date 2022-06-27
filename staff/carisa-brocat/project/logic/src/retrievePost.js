@@ -36,6 +36,7 @@ function retrievePost(postId) {
 
                     comment.userId = comment.user._id.toString()
                     comment.userNickname = comment.user.nickname
+
                     delete comment.user
 
                     delete comment.__v

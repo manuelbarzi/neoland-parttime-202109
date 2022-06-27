@@ -1,16 +1,16 @@
-# Afro
+# RockUrAfro
 
 ## Introduction
 Por que?
-Desde mi experiencia y la de muchas de las mujeres de mi familia y amigas de pelo afro, el encontrar la peluquería de 'confianza'  o el producto idóneo para aplicar en nuestro pelo siempre es una tarea compleja. Llena muchas veces de mucha prueba y error y sobre todo de lo que se conoce de manera resumida como saber popular: la prima que fue a tal  peluquería y te la recomienda o la amiga que te habla de "la mejor crema de peinar que probaras en tu vida".
-Por tanto, se me ocurrió la idea, por qué no hacer una web que permita unir a todas las primas todas las amigas y todos los  que quieran "free their afro", puedan compartir su conocimiento y recomendar aquello que le ha funcionado. De manera que a cualquier parte del mundo a la que llegues siempre tengas una recomendación a mano para poder encontrar el producto que te puede funcionar o la peluquería de la que mínimo podras salir "sin mal sabor de boca".
+Desde mi experiencia y la de muchas de las mujeres de mi familia y amigas, de pelo afro, el encontrar la peluquería de 'confianza'  o el producto idóneo para aplicar en nuestro pelo siempre es una tarea compleja; lena muchas veces de infinitas pruebas/error que hacen el proceso agotador.
+Por tanto, surge la idea, de hacer una web que permita unir a todas las primas todas las amigas y todos aquellos que quieran "rock their afro", puedan compartir su conocimiento y recomendaciones.
 
 ![](https://media.giphy.com/media/9Drw7lRAp4J1xqOJHF/giphy.gif)
 
 ## Functional Description
 Como funcionará?
 -Demo#1 (solo usuarios, no negocios)
-Para usar la web deberás estar registrado. Al inicio se te preguntará el tipo de textura afro que tienes y si no lo sabes se te plantearan un par de preguntas  para definirla, de esta manera se te recomendarán comentarios y recomendaciones de otros usuarios, productos e info ya contenida en la web.
+Para usar la web deberás estar registrado. Al inicio se tendrá la opción de hacr un test que permitirá una mejor experiencia de usario.
 Como usuario podrás hacer preguntas generales y responder a preguntas de otros usuarios, subir fotos recomendando productos así como ubicación de locales para comprar productos as como peluquerías.
 -Demo#2 (usuarios y negocios)
 Los negocios podrán promocionarse y responder a preguntas de los usuarios.
@@ -47,6 +47,9 @@ add a photo to user
 - Mongo ![](https://www.mongodb.com/favicon.ico)
 
 ### TODO list
-Add locals as Users
-Add map
-Add chat general
+- Add locals as Users
+- Add map
+- Add general chat
+- Add tests
+- Improve the code (components structure)
+- Documentar

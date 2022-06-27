@@ -24,7 +24,8 @@ function Quiz({ onQuizPassed }) {
             }
         })
 
-        if (!hairTexture || !interestsArray) {
+
+        if ((!hairTexture) || (interestsArray.length === 0)) {
             return (setFeedback({ level: 'error', message: 'Please select a hair texture and at least and interest ' }))
         }
 

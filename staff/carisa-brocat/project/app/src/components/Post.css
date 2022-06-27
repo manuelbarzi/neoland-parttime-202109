@@ -7,6 +7,7 @@
     width: 90%;
     max-width: 400px;
     height: 450px;
+    justify-content: flex-start;
 }
 
 .Post__header {
@@ -29,7 +30,7 @@
     height: 35px;
     overflow: hidden;
     border-radius: 50%;
-    border: var(--green) solid 1px;
+    border: var(--gray) solid 1px;
     margin-right: 5px;
 }
 
@@ -74,6 +75,7 @@
     flex-direction: column;
     justify-content: space-around;
     height: 100%;
+    
 }
 
 .Post__body__description {
@@ -82,6 +84,7 @@
     max-height: 80%;
     text-align: justify;
   text-justify: inter-word;
+  padding-left: 5px;
 }
 
 .Post__body__date {

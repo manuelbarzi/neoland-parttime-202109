@@ -33,6 +33,7 @@
     padding-left: 20px;
     transition: 0.3s;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 .UserMenu__header{
@@ -48,8 +49,7 @@
     height: 60px;
     overflow: hidden;
     border-radius: 50%;
-    border: var(--green) solid 1px;
-    cursor: pointer;
+    border: var(--gray) solid 1px;
 }
 
 .UserMenu__header__user-image img {

@@ -164,7 +164,7 @@ export default ({ postId, user, handlePostDeleted, handleUnsavePost }) => {
     }
 
     const handleNewComments = () => {
-        setNewComment(true)
+        setNewComment(!newComment)
     }
 
     return < >

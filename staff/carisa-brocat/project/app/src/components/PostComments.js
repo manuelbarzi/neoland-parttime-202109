@@ -32,22 +32,22 @@ export default ({ postId, comments, handleCloseModal, handleNewComments }) => {
         }
     }
 
-    return <div className='postComments'>
-        <div>
+    return <div className='PostComments'>
+        <h2>Comments</h2>
+        <div className='PostComments__list'>
             {
                 comments.length ?
                     <ul> {comments.map(comment => <li key={comment.id}>
-                        <h3>{comment.userNickname}</h3>
-                        <p>{comment.date}</p>
-                        <p>{comment.text}</p>
+                        <p className='PostComments__date'>{comment.date}</p>
+                        <p className='PostComments__text'>{comment.text}</p>
                     </li>)}
                     </ul> :
                     <p>Sorry, there are no comments to show</p>
             }
         </div>
-        <form onSubmit={handleAddComment}>
-            <textarea className="postComments__text"name="text" placeholder="Add a new comment" required></textarea>
-            <button>Add Comment</button>
+        <form className="PostComments__form" onSubmit={handleAddComment}>
+            <textarea className="PostComments__input" name="text" placeholder="Add a new comment" required></textarea>
+            <button className='PostComments__button'>+</button>
         </form>
     </div>
 }
