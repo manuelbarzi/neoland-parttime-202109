@@ -1,0 +1,34 @@
+const registerUser = require('./registerUser')
+const authenticateUser = require('./authenticateUser')
+const deleteUser = require('./deleteUser')
+const retrieveUser = require('./retrieveUser')
+const createSpace = require('./createSpace')
+const retrieveSpace = require('./retrieveSpace')
+const retrieveAllSpaces = require('./retrieveAllSpaces')
+const deleteSpace = require('./deleteSpace')
+const addReviewToSpace = require('./addReviewToSpace')
+const addBookingToSpace = require('./addBookingToSpace')
+const deleteReviewToSpace = require('./deleteReviewToSpace')
+const deleteBookingToSpace = require('./deleteBookingToSpace')
+const findSpaces = require('./findSpaces')
+const retrieveLattestSpaces = require('./retrieveLattestSpaces')
+const sendCheckout = require('./sendCheckout')
+
+
+module.exports = {
+    registerUser,
+    authenticateUser,
+    deleteUser,
+    retrieveUser,
+    createSpace,
+    retrieveSpace,
+    retrieveAllSpaces,
+    deleteSpace,
+    addReviewToSpace,
+    addBookingToSpace,
+    deleteReviewToSpace,
+    deleteBookingToSpace,
+    findSpaces,
+    retrieveLattestSpaces,
+    sendCheckout
+}

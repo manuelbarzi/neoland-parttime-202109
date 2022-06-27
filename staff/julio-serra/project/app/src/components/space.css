@@ -1,0 +1,13 @@
+
+.summary-details::before {
+    content: '';
+    background: url(../assets/img/plus.svg) no-repeat center;
+    position: absolute;
+    right: 2rem;
+    height: 1rem;
+    width: 1rem;
+}
+.details[open] .summary-details::before {
+    background: url(../assets/img/minus.svg) no-repeat center;
+    content: '';
+}

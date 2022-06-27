@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Budicon-Outline/Interface/plus-ui</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Brokers_RaySkin_MVP_Desktop_1400px" transform="translate(-958.000000, -4283.000000)" fill="#000000" fill-rule="nonzero">
+            <g id="FAQ" transform="translate(64.000000, 4279.000000)">
+                <g id="Group-13" transform="translate(333.000000, 0.000000)">
+                    <g id="Budicon-Outline/Interface/plus-ui" transform="translate(557.000000, 1.000000)">
+                        <path d="M21,11.5 C21,11.754051 20.7761424,11.96 20.5,11.96 L13,11.96 L13,18.86 C13,19.114051 12.7761424,19.32 12.5,19.32 C12.2238576,19.32 12,19.114051 12,18.86 L12,11.96 L4.5,11.96 C4.22385763,11.96 4,11.754051 4,11.5 C4,11.245949 4.22385763,11.04 4.5,11.04 L12,11.04 L12,4.14 C12,3.88594902 12.2238576,3.68 12.5,3.68 C12.7761424,3.68 13,3.88594902 13,4.14 L13,11.04 L20.5,11.04 C20.7761424,11.04 21,11.245949 21,11.5 Z" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
