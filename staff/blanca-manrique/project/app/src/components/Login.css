@@ -1,0 +1,86 @@
+.Form__header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 3rem
+}
+
+.Form__iconBack{
+    font-size: 30px;
+    cursor: pointer;
+    align-self: center;
+}
+.Form__title{
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.Form__body{
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 2rem 3rem;
+    background-color: #1d3557;
+    max-width: 80%;
+    margin: 14px auto;
+    border-radius: 30px;
+}
+.Form__bodyInput{
+    margin:5px 0px 3rem;
+    border-radius: 20px;
+    padding: 12px;
+    border:none;
+    background-color: #dfe7fd;
+    color:#1d3557;
+    outline: none;
+}
+.Form__btn{
+    text-decoration: none;
+    padding:1rem 3rem;
+    margin-top: 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    width:fit-content;
+    border:none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    text-transform: uppercase;
+}
+.Form__btn-icon{
+    margin-left: 10px;
+}
+.Form__btn:hover{
+    background-color: #f9c74f;
+}
+.btn-hover:hover{
+    color:#1d3557;
+}
+
+@media (min-width: 600px) {
+    .Form__body{
+        width: 60vh;
+        padding: 3rem 4rem 4rem;
+        margin: 2rem auto;
+    }
+    .Form__iconBack{
+        font-size: 50px;
+    }
+    .Form__bodyInput{
+        margin-top:10px;
+        border-radius: 20px;
+        padding: 18px;
+        font-size: 22px;
+    }
+    .Form__btn{
+        font-size: 30px;
+        align-self: center;
+        width: 60%;
+    }
+    .Form__title{
+        font-size: 50px;
+    }
+  }

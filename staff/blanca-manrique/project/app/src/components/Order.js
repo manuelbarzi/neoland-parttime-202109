@@ -139,67 +139,86 @@ function Order() {
                 <div className='Order__body'>
                     <div className='Order__body-title'>
                         <span className='title-name'>Purchase order</span>
-                        <span>ID order: {order.id}</span>
+                        <span className='Order__body-text'>ID order: {order.id}</span>
+
+                        <div className='OrderDrop__body'>
+                            <table className='OrderDrop__table' key={order.id}>
+                                <thead className='OrderDrop__table-header'>
+                                    <tr>
+                                        <th>Created at</th>
+                                        <th>Order Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody className='OrderDrop__table-body'>
+                                    <tr>
+                                        <td><time>{order.createdAt.toDateString()}</time></td>
+                                        <td>{order.status}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <div>
-                            <span>Order status: {order.status}</span>
                             {order.status === 'in progress' ?
                                 <>
-                                    <IoEllipsisVertical onClick={handleShowMode} />
+                                    <button className='ChangeStatus-btn' onClick={handleShowMode} >Change status</button>
                                     {mode ? <ChangeOrderStatus orderId={order.id} /> : null}
                                 </>
                                 : null
                             }
 
                         </div>
-                        <time>Date: {order.createdAt.toDateString()}</time>
+
                     </div>
-
-                    {(order.status === 'draft' || order.status === 'in progress') ?
-                        <>
-                            <IoCreate onClick={handleShowCreateNote} />
-                            {dropNote ?
-                                <>
-                                    <form onSubmit={handleAddNote}>
-                                        <textarea name='text' placeholder='Add note to order...'></textarea>
-                                        <button type='submit'>Create Note</button>
-                                    </form>
-                                </>
-                                : null}
-
-                        </>
-                        : null
-                    }
 
                     {order.items.length ? <>
                         {/* SI NO HAY ITEMS: QUE NO APAREZCA */}
-                        <div className='Order__body-supplier'>
-                            <span className='title-name'>Supplier Info</span>
-                            <p>Name: {order.supplierName}</p>
-                            <p>Adress: {order.supplierAdress}</p>
-                            <p>Phone: {order.supplierPhone}</p>
-                            <p>E-mail: {order.supplierEmail}</p>
+                        <div className='OrderDrop__body-title'>
+
+                            <div className='OrderDrop__body'>
+                                <span className='title-name'>Supplier Info</span>
+                                <table className='OrderSupp__table' key={order.id}>
+                                    <thead className='OrderDrop__table-header'>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Phone</th>
+                                            <th>E-mail</th>
+                                            <th>Adress</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className='OrderSupp__table-body'>
+                                        <tr>
+                                            <td>{order.supplierName}</td>
+                                            <td>{order.supplierPhone}</td>
+                                            <td>{order.supplierEmail}</td>
+                                            <td>{order.supplierAdress}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 
                         {/* SI NO HAY ITEMS: QUE NO APAREZCA */}
                         <div className='Order__body-info'>
                             <span className='title-name'>Items Info</span>
                             <p className='product-name'>Product: {order.variantProductName}</p>
+                            {/* <p className='product-name'>Variant: {item.variantId}</p> */}
 
-                            <table className='Orders__table'>
-                                <thead className='Orders__table-header'>
+                            <table className='Variants__table'>
+                                <thead className='Variants__table-header'>
                                     <tr>
-                                        <th>Variant ID</th>
                                         <th>color</th>
                                         <th>Size</th>
                                         <th>Price</th>
                                         <th>Quantity</th>
-                                        <th>Action</th>
+                                        {order.status === 'draft' ?
+                                            <th>Action</th>
+                                            : null
+                                        }
                                     </tr>
                                 </thead>
-                                <tbody className='Orders__table-body'>
+                                <tbody className='Variants__table-body'>
                                     {order.items.map(item => (
                                         <tr key={item.id}>
-                                            <td>{item.variantId}</td>
                                             <td>{item.variantColor}</td>
                                             <td>{item.variantSize}</td>
                                             <td>{item.price}</td>
@@ -223,14 +242,37 @@ function Order() {
 
                     }
 
+                    {(order.status === 'draft' || order.status === 'in progress') ?
+                        <>
+                            <div className='AddNote'>
+                                <p className='AddNote-text'>Add note to order</p>
+                                <IoCreate className='AddNote-icon' onClick={handleShowCreateNote} />
+                            </div>
+                            {dropNote ?
+                                <>
+                                    <form onSubmit={handleAddNote}>
+                                        <textarea name='text' placeholder='Add note to order...'></textarea>
+                                        <button type='submit'>Create Note</button>
+                                    </form>
+                                </>
+                                : null}
+
+                        </>
+                        : null
+                    }
+
                     {/* SOLO SI ESTOY EN MODO DRAFT PUEDO MODIFICAR LA ORDEN: PUEDO AÑADIR ITEMS */}
                     {order.status === 'draft' ?
                         <div>
-                            <IoAdd className='Orders__addIcon' onClick={handleShowDropdown} />
-                            {dropdown && <>
-                                <h1>Add item to order</h1>
-                                <form onSubmit={handleAddFormSubmit}>
+                            <div className='AddItem'>
+                                <p className='AddItem-text'>Add item to order</p>
+                                {/* <IoAdd className='Orders__addIcon' onClick={handleShowDropdown} /> */}
+                                <IoAdd className='AddItem-icon' onClick={handleShowDropdown} />
+                            </div>
+                            {dropdown && <div className='Create'>
+                                <form className='CreateProduct__form form-li' onSubmit={handleAddFormSubmit}>
                                     <input
+                                    className='CreateProduct__input'
                                         type="text"
                                         name="variant"
                                         required="required"
@@ -238,6 +280,7 @@ function Order() {
                                         onChange={handleInputChange}
                                     />
                                     <input
+                                    className='CreateProduct__input'
                                         type="number"
                                         name="price"
                                         required="required"
@@ -245,16 +288,17 @@ function Order() {
                                         onChange={handleInputChange}
                                     />
                                     <input
+                                    className='CreateProduct__input'
                                         type="number"
                                         name="quantity"
                                         required="required"
                                         placeholder='Enter the quantity'
                                         onChange={handleInputChange}
                                     />
-                                    <button type="submit">Add item</button>
+                                    <button type='submit' className='CreateProduct__btn btn-hover'>Add item</button>
                                 </form>
 
-                            </>}
+                            </div>}
 
                         </div>
 

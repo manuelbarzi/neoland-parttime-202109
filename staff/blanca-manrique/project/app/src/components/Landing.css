@@ -1,0 +1,75 @@
+.Landing{
+    max-width: 100vw;
+    height: 100vh;
+    background-image: url('../../public/images/containers.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: bottom center;
+    position: relative;
+}
+.Landing__title{
+    position: absolute;
+    max-width: 70%;
+    top: 29%;
+    left: 37%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.Landing__name{
+    font-size: 40px;
+}
+.Landing__icon{
+    font-size: 50px;
+    margin-left: 20px;
+}
+.Landing__btns{
+    position: absolute;
+    max-width: 70%;
+    top: 35%;
+    left: 20%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+}
+
+.btn{
+    background-color: #f9c74f;
+    text-decoration: none;
+    padding:18px ;
+    margin-top: 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    width:20vh;
+    border:none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+@media (min-width: 600px) {
+    .Landing__title{
+        top: 30%;
+        left: 55%;
+    }
+    .Landing__name{
+        font-size: 4rem;
+    }
+    .Landing__icon{
+        font-size: 4rem;
+    }
+    .Landing__btns{
+        top: 40%;
+        left: 42%;
+        gap:35px;
+    }
+    .btn{
+        width: 30vh;
+    }
+  }

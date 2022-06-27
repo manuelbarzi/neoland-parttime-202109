@@ -1,9 +1,22 @@
+.IconBack{
+    font-size: 30px;
+    cursor: pointer;
+}
+.OrdersHead__selectFilters{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.OrdersHead__filterIcon{
+    font-size: 40px;
+    margin-top:12px;
+}
 .OrdersHead__search{
-    width: 50%;
-    justify-self: center;
-    margin: 12px auto 0px;
-    background-color: #ffc300;
-    padding: 12px;
+    max-width: 80%;
+    /* margin: 0 auto 2rem; */
+    /* background-color: #ffc300; */
+    /* padding: 12px; */
     border-radius: 30px;
     display: flex;
     justify-content: center;
@@ -13,13 +26,7 @@
 .OrdersHead__search-field{
     outline: none;
     border: 0;
-    background-color: #ffc300;
-    
-}
-
-.IconBack{
-    font-size: 30px;
-    cursor: pointer;
+    /* background-color: #ffc300; */
 }
 
 .Orders{
@@ -67,7 +74,7 @@
 @media (min-width: 600px) {
     .OrdersTable{
         margin: 0 auto;
-        width: 50vh;
+        width: 60vh;
     }
     .Orders__addIcon{
         font-size: 60px;
@@ -75,6 +82,9 @@
 }
 
   @media (min-width: 1100px) {
+    .OrdersHead__filterIcon{
+        font-size: 50px;
+    }
     .OrdersHead__search{
         padding: 20px;
     }

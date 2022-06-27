@@ -1,8 +1,8 @@
-# Project
+# Cargo
 
 ## Introduction
 
-X es un programa de gestión de compras a proveedores.
+Cargo es un programa de gestión de compras a proveedores.
 
 A través de esta App los usuarios podrán tener un registro de todos los productos y sus variantes clasificados por proveedores, facilitándoles el control y la gestión de su inventario, y alertándoles cuando el stock sea crítico.
 

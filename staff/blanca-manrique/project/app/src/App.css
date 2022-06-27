@@ -20,5 +20,7 @@
   text-decoration: none;
   list-style: none;
 }
-
-
+.App{
+  min-height: 100vh;
+  background-color: #f2f2f8;
+}

@@ -2,6 +2,7 @@ import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { generateOrder } from '../logic'
 import Context from './Context'
+import './GenerateOrder.css'
 
 function GenerateOrder({ orderId }) {
     const { setFeedback } = useContext(Context)
@@ -31,14 +32,14 @@ function GenerateOrder({ orderId }) {
         }
     }
 
-    return <div className="Product__info">
+    return <div className="GenerateOrder">
         <form onSubmit={handleGenerateOrder}>
-            <select name="status" required >
-                <option disabled label="Por defecto esta orden se genera con status draft" > </option>
+            <select className='GenerateOrder__select' name="status" required >
+                <option disabled label="Order status will change from draft to in progress" > </option>
                 <option name="in progress">In progress</option>
             </select>
 
-            <button >GENERATE ORDER</button>
+            <button className='GenerateOrder-btn' type="submit">GENERATE ORDER</button>
         </form>       
     </div>
 }

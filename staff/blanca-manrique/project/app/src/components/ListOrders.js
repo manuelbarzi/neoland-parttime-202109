@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
 import { useNavigate } from "react-router-dom"
 import { retrieveAllOrders, deleteOrder, filterOrders } from '../logic'
-import { IoChevronBackOutline, IoChevronForwardOutline, IoAdd, IoTrashOutline, IoSearch } from "react-icons/io5"
+import { IoChevronBackOutline, IoChevronForwardOutline, IoAdd, IoTrashOutline, IoSearch, IoFilterCircle } from "react-icons/io5"
 import './ListOrders.css'
 import Context from './Context'
 import FilterBar from './FilterBar'
@@ -18,6 +18,7 @@ function ListOrders() {
     const [searchTerm, setSearchTerm] = useState("")
     const [filteredResults, setFilteredResults] = useState([])
     const navigate = useNavigate()
+    const [dropFilter, setDropFilter] = useState(false)
 
     useEffect(() => {
         try {
@@ -53,6 +54,8 @@ function ListOrders() {
     const handleCreateOrder = () => { navigate('/orders/new-order') }
     const goBack = () => { navigate('/') }
 
+    const handleShowFilterBar = () => setDropFilter(!dropFilter)
+
     const searchOrders = query => {
         setSearchTerm(query)
 
@@ -62,9 +65,8 @@ function ListOrders() {
     return <div>
         <IoChevronBackOutline className='IconBack' onClick={goBack} />
 
-
         {orders.length ?
-            <div>
+            <div className='OrdersHead__selectFilters'>
                 <div className='OrdersHead__search'>
                     <input
                         className='OrdersHead__search-field'
@@ -74,12 +76,13 @@ function ListOrders() {
                     />
                     <IoSearch className='OrdersHead__search-icon'/>
                 </div>
+                <IoFilterCircle className='OrdersHead__filterIcon' onClick={handleShowFilterBar}/>
 
-                <FilterBar orders={orders} />
             </div>
             : null
         }
 
+        {dropFilter? <FilterBar orders={orders} /> :null }
 
         <div className='Orders'>
             {searchTerm.length > 1 ?

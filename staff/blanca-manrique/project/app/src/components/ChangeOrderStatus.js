@@ -2,6 +2,7 @@ import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { updateOrderStatus } from '../logic'
 import Context from './Context'
+import './ChangeOrderStatus.css'
 
 function ChangeOrderStatus({orderId}) {
     const { setFeedback } = useContext(Context)
@@ -25,14 +26,14 @@ function ChangeOrderStatus({orderId}) {
         }
     }
 
-    return <div className="Product__info">
+    return <div className="Change__info">
         <form onSubmit={handleChangeStatus}>
-            <select name="status" required >
+            <select className='Change__select' name="status" required >
                 <option disabled label="Choose a new status for your order" > </option>
                 <option name="completed">completed</option>
                 <option name="cancelled">cancelled</option>
             </select>
-            <button type='submit'>Change</button>
+            <button className='Change-btn' type='submit'>Change</button>
         </form>
     </div>
 }
