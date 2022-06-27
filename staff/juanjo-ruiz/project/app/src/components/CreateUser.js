@@ -2,6 +2,7 @@ import { createUser } from "../logic"
 import { useNavigate } from "react-router-dom"
 import { useContext } from "react"
 import Context from "./Context"
+import './CreateUser.css'
 
 export default function () {
     const { setFeedback } = useContext(Context)
@@ -28,20 +29,22 @@ export default function () {
 
     return <div>
         <a onClick={() => navigate('/users')}>Volver</a>
+        <div className="createUser">
         <h2>Nuevo usuario</h2>
-        <form onSubmit={newUser}>
-            <input type="name" name="businessId" placeholder="id driver" required />
-            <input type="name" name="name" placeholder="nombre" required />
-            <input type="email" name="email" placeholder="correo electrónico" required />
-            <input type="password" name="password" placeholder="contraseña" required />
-            <input type="number" name="phone" placeholder="número de teléfono" />
-            <input type="date" name="dischargeDate" required />
-            <select name="role">
+        <form className="createUser__form" onSubmit={newUser}>
+            <input className="createUser__input" type="name" name="businessId" placeholder="id driver" required />
+            <input className="createUser__input" type="name" name="name" placeholder="nombre" required />
+            <input className="createUser__input" type="email" name="email" placeholder="correo electrónico" required />
+            <input className="createUser__input" type="password" name="password" placeholder="contraseña" required />
+            <input className="createUser__input" type="number" name="phone" placeholder="número de teléfono" />
+            <input className="createUser__input" type="date" name="dischargeDate" required />
+            <select className="createUser__select" name="role">
                 <option value="driver">driver</option>
                 <option value="admin">admin</option>
                 <option value="owner">owner</option>
             </select>
-            <button>Crear usuario</button>
+            <button className="createUser__button">Crear usuario</button>
         </form>
+        </div>
     </div>
 }

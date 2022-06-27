@@ -7,6 +7,7 @@ import Login from './Login'
 import Home from './Home'
 import Context from './Context'
 import Feedback from './Feedback'
+import './App.css'
 
 const { validateToken } = validators
 

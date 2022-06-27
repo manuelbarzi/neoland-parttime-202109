@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import UserItem from './UserItem'
 import Context from './Context'
+import './Users.css'
 
 export default function ({ onDetailUser }) {
     const navigate = useNavigate()
@@ -48,14 +49,12 @@ export default function ({ onDetailUser }) {
 
     return <div>
         <a onClick={handleButton}>Volver</a>
-        <h2>USUARIOS</h2>
-
+        <h2 className="users__title">USUARIOS</h2>
         <form onSubmit={search}>
-            <label>Buscador de usuarios</label>
-            <input type="search" name="q" required />
-            <button>Buscar</button>
+            <label className="users__label">Buscador de usuarios</label>
+            <input className="users__input" type="search" name="q" required />
+            <button className="users__button__search">🔎</button>
         </form>
-
         <div>
             {controls ?
                 results.length ?
@@ -76,6 +75,6 @@ export default function ({ onDetailUser }) {
                     : <p>no hay usuarios</p>
             }
         </div>
-        <button onClick={() => navigate('/user')}>añadir usuario nuevo</button> {/* añadir icono */}
+        <button className="users__button" onClick={() => navigate('/user')}>añadir usuario nuevo</button> {/* añadir icono */}
     </div>
 }

@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState, useContext } from "react"
 import { retrievePart, updatePart } from "../logic"
 import Context from "./Context"
+import './UpdatePart.css'
 
 export default function () {
     const navigate = useNavigate()
@@ -39,17 +40,17 @@ export default function () {
         }
     }
 
-    return <div>
+    return <div className="updatePart">
         <a onClick={() => navigate(`/vehicle/${vehicleId}/view/${viewId}`)}>Volver</a>
         {data ?
-            <form onSubmit={update}>
-                <textarea type="name" name="description" defaultValue={data.description} />
-                <select name="state" defaultValue={data.state}>
+            <form className="updatePart__form" onSubmit={update}>
+                <textarea className="updatePart__textarea" type="name" name="description" defaultValue={data.description} />
+                <select className="updatePart_select" name="state" defaultValue={data.state}>
                     <option value="2">Iniciado</option>
                     <option value="1">En proceso</option>
                     <option value="0">Gestionado</option>
                 </select>
-                <button>Actualizar</button>
+                <button className="updatePart__button">Actualizar</button>
             </form>
             : <p>No hay datos</p>
         }

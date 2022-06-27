@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState, useContext } from "react"
 import { retrieveVehicle, updateVehicle } from "../logic"
 import Context from "./Context"
+import './UpdateVehicle.css'
 
 export default function () {
     const navigate = useNavigate()
@@ -39,15 +40,15 @@ export default function () {
         }
     }
 
-    return <div>
+    return <div className="updateVehicle">
         <a onClick={() => navigate(`/vehicle/${vehicleId}`)}>Volver</a>
         {data ?
-            <form onSubmit={update}>
-                <input type="name" name="lisense" defaultValue={data.lisense} />
-                <input type="name" name="brand" defaultValue={data.brand} />
-                <input type="name" name="model" defaultValue={data.model} />
-                <input type="name" name="frame" defaultValue={data.frame} />
-                <button>Actualizar</button>
+            <form className="updateVehicle__form" onSubmit={update}>
+                <input className="updateVehicle__input" type="name" name="lisense" defaultValue={data.lisense} />
+                <input className="updateVehicle__input" type="name" name="brand" defaultValue={data.brand} />
+                <input className="updateVehicle__input" type="name" name="model" defaultValue={data.model} />
+                <input className="updateVehicle__input" type="name" name="frame" defaultValue={data.frame} />
+                <button className="updateVehicle__button">Actualizar</button>
             </form>
             : <p>No hay dato</p>
         }

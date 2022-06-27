@@ -25,13 +25,13 @@ export default function ({ onRegistered }) {
         }
     }
 
-    return <form onSubmit={register}>
-        <input type="text" name="businessName" placeholder="Introduce el nombre de la empresa" />
-        <input type="text" name="cif" placeholder="Introduce el cif" />
-        <input type="text" name="name" placeholder="Introduce tu nombre" />
-        <input type="email" name="email" placeholder="Introduce tu correo electrónico" />
-        <input type="password" name="password" placeholder="Elige una contraseña" />
-        <button>Registrate</button>
+    return <form className="login login__form" onSubmit={register}>
+        <input className="login__input" type="text" name="businessName" placeholder="Introduce el nombre de la empresa" />
+        <input className="login__input" type="text" name="cif" placeholder="Introduce el cif" />
+        <input className="login__input" type="text" name="name" placeholder="Introduce tu nombre" />
+        <input className="login__input" type="email" name="email" placeholder="Introduce tu correo electrónico" />
+        <input className="login__input" type="password" name="password" placeholder="Elige una contraseña" />
+        <button className="login__button">Registrate</button>
         <p>Ya tienes cuenta,<a onClick={() => navigate('/')}> inicia sesión</a></p>
     </form>
 }

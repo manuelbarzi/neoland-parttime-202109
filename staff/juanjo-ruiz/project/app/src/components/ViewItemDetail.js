@@ -4,6 +4,7 @@ import { retrieveAllParts } from '../logic'
 import Context from "./Context"
 import PartItem from './PartItem'
 import CreatePart from "./CreatePart"
+import './ViewItemDetail.css'
 
 export default function ({ content }) {
     const navigate = useNavigate()
@@ -54,13 +55,13 @@ export default function ({ content }) {
         {addPart ?
             <CreatePart coordinates={coordinates} title={content.title} />
             :
-            <div>
+            <div className="viewItemDetail">
                 <img src={content.image} onClick={handleCreatePart} />
                 <h3>Partes</h3>
                 {parts ?
                     <ul>
                         {parts.filter(part => part.side === content.title).
-                            map(part => <li key={part.id} onClick={() => handleDetailPart(vehicleId, part.id)}>
+                            map(part => <li className="viewItemDetail__li" key={part.id} onClick={() => handleDetailPart(vehicleId, part.id)}>
                                 <PartItem content={part} />
                             </li>)}
                     </ul>

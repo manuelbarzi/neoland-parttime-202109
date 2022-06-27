@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState, useContext } from "react"
 import { retrieveUser, updateUser } from "../logic"
 import Context from "./Context"
+import './UpdateUser.css'
 
 export default function () {
     const navigate = useNavigate()
@@ -39,18 +40,18 @@ export default function () {
         }
     }
 
-    return <div>
+    return <div className="updateUser">
         <a onClick={() => navigate(`/user/${userId}`)}>Volver</a>
         {data ?
-            <form onSubmit={update}>
-                <input type="name" name="name" defaultValue={data.name} />
-                <input type="email" name="email" defaultValue={data.email} />
-                <select name="role" defaultValue={data.role}>
+            <form className="updateUser__form" onSubmit={update}>
+                <input className="updateUser__input" type="name" name="name" defaultValue={data.name} />
+                <input className="updateUser__input" type="email" name="email" defaultValue={data.email} />
+                <select className="updateUser__select" name="role" defaultValue={data.role}>
                     <option value="driver">driver</option>
                     <option value="admin">admin</option>
                     <option value="owner">owner</option>
                 </select>
-                <button>Actualizar</button>
+                <button className="updateUser__button">Actualizar</button>
             </form>
             : <p>No hay dato</p>
         }

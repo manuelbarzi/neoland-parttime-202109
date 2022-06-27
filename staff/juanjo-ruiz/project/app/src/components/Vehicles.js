@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import VehicleItem from './VehicleItem'
 import Context from './Context'
+import './Vehicles.css'
 
 export default function ({ onDetailVehicle }) {
     const navigate = useNavigate()
@@ -47,13 +48,12 @@ export default function ({ onDetailVehicle }) {
     const handleDetailVehicle = id => onDetailVehicle(id)
     
     return <div>
-        <a onClick={handleButton}>volver</a>
-        <h2>VEHÍCULOS</h2>
-
+        <a onClick={() => handleButton}>volver</a>
+        <h2 className="vehicles__title">VEHÍCULOS</h2>
         <form onSubmit={search}>
-            <label>Buscador de matrículas</label>
-            <input type="search" name="q" required />
-            <button>Buscar</button>
+            <label className="vehicles__label">Buscador de matrículas</label>
+            <input className="vehicles__input" type="search" name="q" required />
+            <button className="vehicles__button__search">🔎</button>
         </form>
 
         <div>
@@ -76,6 +76,6 @@ export default function ({ onDetailVehicle }) {
                     : <p>no hay vehículos activos</p>
             }
         </div>
-        <button onClick={() => navigate('/vehicle')}>añadir vehículo</button> {/* añadir icono */}
+        <button className="vehicles__button" onClick={() => navigate('/vehicle')}>añadir vehículo</button> {/* añadir icono */}
     </div>
 }

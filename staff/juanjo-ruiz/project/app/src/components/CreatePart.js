@@ -2,6 +2,7 @@ import { createPart } from "../logic"
 import { useNavigate, useParams } from "react-router-dom"
 import { useContext, useState } from "react"
 import Context from "./Context"
+import './CreatePart.css'
 
 export default function ({ coordinates, title }) {
     const { setFeedback } = useContext(Context)
@@ -41,13 +42,13 @@ export default function ({ coordinates, title }) {
         }
     }
 
-    return <div>
-        <h2>Nuevo parte</h2>
-        <form onSubmit={newPart}>
-            <textarea type="name" name="description" placeholder="Descripción del accidente" required ></textarea>
-            <input type="file" name="img" onChange={handleAddImage} required />
+    return <div className="createPart">
+        <h2 className="createPart__title">Nuevo parte</h2>
+        <form className="createPart__form" onSubmit={newPart}>
+            <textarea className="createPart__textarea" type="name" name="description" placeholder="Descripción del accidente" required ></textarea>
+            <input className="" type="file" name="img" onChange={handleAddImage} required />
             {image && <img src={image} />}
-            <button>Crear parte</button>
+            <button className="createPart__button">Crear parte</button>
         </form>
     </div>
 }

@@ -2,6 +2,7 @@ import { authenticateUser } from "../logic"
 import { useNavigate } from "react-router-dom"
 import { useContext } from "react"
 import Context from "./Context"
+import './Login.css'
 
 export default function ({ onLoggedIn }) {
     const navigate = useNavigate()
@@ -25,15 +26,13 @@ export default function ({ onLoggedIn }) {
         }
     }
 
-    return <div>
+    return <div className="login">
         <h2>Accede a tu cuenta</h2>
-        <form onSubmit={login}>
-            <a onClick={() => navigate("/")}>Volver</a>
-            <input type="email" name="email" placeholder="Introduce tu correo electrónico" />
-            <input type="password" name="password" placeholder="Introduce tu contraseña" />
-            <button>Inicia sesión</button>
-
-            <p>Aún no estas registrado,<a onClick={() => navigate("/register")}>hazlo aquí</a></p>
+        <form className="login__form" onSubmit={login}>
+            <input className="login__input" type="email" name="email" placeholder="Introduce tu correo electrónico" />
+            <input className="login__input" type="password" name="password" placeholder="Introduce tu contraseña" />
+            <button className="login__button">Inicia sesión</button>
         </form>
+            <p>Aún no estas registrado,<a onClick={() => navigate("/register")}>hazlo aquí</a></p>
     </div>
 }

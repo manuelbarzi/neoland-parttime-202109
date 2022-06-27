@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from 'react'
 import { retrieveAllParts } from "../logic"
 import PartItem from "./PartItem"
 import Context from "./Context"
+import './Parts.css'
 
 export default function ({ onDetailPart }) {
     const navigate = useNavigate()
@@ -29,7 +30,7 @@ export default function ({ onDetailPart }) {
         {
             parts ?
                 <ul>
-                    {parts.map(part => <li key={part.id} onClick={() => handleDatailPart(vehicleId, part.id)}>
+                    {parts.map(part => <li className="part__li" key={part.id} onClick={() => handleDatailPart(vehicleId, part.id)}>
                         <PartItem content={part} />
                     </li>)}
                 </ul>

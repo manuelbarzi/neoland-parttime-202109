@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-
+import './PartItem.css'
 export default function ({ content }) {
     const [title, setTitle] = useState()
 
@@ -15,9 +15,11 @@ export default function ({ content }) {
     }, [])
 
 
-    return <div>
-        <h4>{title}</h4>
-        <p>{content.newDate}</p>
-        <p>{content.state}</p>
+    return <div className="partItem__card">
+        <div className="partItem__content">
+            <div className={`partItem partItem--${content.state}`}></div>
+            <h4>{title}</h4>
+        </div>
+        <p className="partItem__date">{content.newDate}</p>
     </div>
 }

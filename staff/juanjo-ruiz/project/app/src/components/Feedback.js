@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import './Feedback.css'
 
 export default function ({ level, message, onTimeout }) {
 
@@ -6,5 +7,5 @@ export default function ({ level, message, onTimeout }) {
         setTimeout(onTimeout, 2000)
     }, [])
 
-    return <div>{message}</div>
+    return <div className={`feedback feedback--${level}`}>{message}</div>
 }

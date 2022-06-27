@@ -2,6 +2,7 @@ import { deleteUser } from '../logic'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import Context from './Context'
+import './DeleteUser.css'
 
 export default function () {
     const { setFeedback } = useContext(Context)
@@ -30,9 +31,11 @@ export default function () {
 
     return <div>
         <a onClick={() => navigate(`/user/${userId}`)}>Volver</a>
-        <form onSubmit={remove}>
-            <input type="password" name="password" placeholder="Contraseña" />
-            <button>Eliminar</button>
+        <div className="deleteUser">
+        <form className="deleteUser__form" onSubmit={remove}>
+            <input className="deleteUser__input" type="password" name="password" placeholder="Contraseña" />
+            <button className="deleteUser__button">Eliminar</button>
         </form>
+        </div>
     </div>
 }

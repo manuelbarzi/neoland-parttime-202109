@@ -2,6 +2,7 @@ import { deleteVehicle } from '../logic'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import Context from './Context'
+import './DeleteVehicle.css'
 
 export default function () {
     const navigate = useNavigate()
@@ -29,9 +30,11 @@ export default function () {
 
     return <div>
         <a onClick={() => navigate(`/vehicle/${vehicleId}`)}>Volver</a>
-        <form onSubmit={remove}>
-            <input type="password" name="password" placeholder="Contraseña" />
-            <button>Eliminar</button>
-        </form>
+        <div className="deleteVehicle">
+            <form className="deleteVehicle__form" onSubmit={remove}>
+                <input className="deleteVehicle__input" type="password" name="password" placeholder="Contraseña" />
+                <button className="deleteVehicle__button">Eliminar</button>
+            </form>
+        </div>
     </div>
 }

@@ -2,6 +2,7 @@ import { createVehicle } from "../logic"
 import { useNavigate } from "react-router-dom"
 import { useContext } from "react"
 import Context from "./Context"
+import './CreateVehicle.css'
 
 export default function () {
     const navigate = useNavigate()
@@ -23,14 +24,16 @@ export default function () {
 
     return <div>
         <a onClick={() => navigate('/vehicles')}>Volver</a>
-        <h2>Nuevo vehículo</h2>
-        <form onSubmit={newVehicle}>
-            <input type="name" name="lisense" placeholder="matrícula" required />
-            <input type="name" name="brand" placeholder="marca" required />
-            <input type="name" name="model" placeholder="modelo" required />
-            <input type="name" name="frame" placeholder="número de bastidor" required />
-            <input type="name" name="leasingCompany" placeholder="Renting propietaria" required />
-            <button>Crear vehículo</button>
-        </form>
+        <div className="createVehicle">
+            <h2>Nuevo vehículo</h2>
+            <form className="createVehicle__form" onSubmit={newVehicle}>
+                <input className="createVehicle__input" type="name" name="lisense" placeholder="matrícula" required />
+                <input className="createVehicle__input" type="name" name="brand" placeholder="marca" required />
+                <input className="createVehicle__input" type="name" name="model" placeholder="modelo" required />
+                <input className="createVehicle__input" type="name" name="frame" placeholder="número de bastidor" required />
+                <input className="createVehicle__input" type="name" name="leasingCompany" placeholder="Renting propietaria" required />
+                <button className="createVehicle__button" >Crear vehículo</button>
+            </form>
+        </div>
     </div>
 }
