@@ -167,7 +167,7 @@ first Sketches for the app
 
     
 ## TO-DO LIST
-- Order system
+- Order system and restaurant manager
 - Refactor code
 - Idependent orders for costumers
 - Test server side logics
