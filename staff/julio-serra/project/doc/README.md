@@ -1,5 +1,4 @@
-## SpaceRent
-
+## SpaceLocal
 ![](./assets/img/giphy.webp)
 
 ### Intro
@@ -33,7 +32,7 @@ Diagrama de actividad para el alquiler del local
 
 ![](./assets/img/activities.jpeg)
 
-## Model Cases
+## Use Cases
 
 Las casos de uso necesarios para el funcionamiento de nuestra aplicación:
 
@@ -45,6 +44,7 @@ Las casos de uso necesarios para el funcionamiento de nuestra aplicación:
 - Delete Local: Desde el componente **deleteLocal**
 - Update User: Desde el componente **updateUser**
 - Delete User: Desde el componente **deleteUser**
+- Add Booking To Space: Desde el componente **addBookingToSpace**
 
 ## Wireframes
 ![](./assets/img/figma.jpeg)
@@ -59,9 +59,6 @@ Las casos de uso necesarios para el funcionamiento de nuestra aplicación:
 
 ![](./assets/img/data-model.jpeg)
 
-## Code Coverage
-
-Soon...
 
 ## Technologies
 

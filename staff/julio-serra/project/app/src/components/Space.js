@@ -2,7 +2,7 @@ import Header from './Header';
 import Footer from './Footer'
 import { useParams, useNavigate } from "react-router-dom"
 import { useEffect, useState, React } from "react"
-import { retrieveSpace } from '../logic'
+import { retrieveSpace, addBookingToSpace } from '../logic'
 import { MusicNoteIcon, VolumeUpIcon, BellIcon, LightBulbIcon, ShieldCheckIcon, ArrowsExpandIcon, ClockIcon } from '@heroicons/react/solid'
 import './space.css'
 import { Tooltip } from 'flowbite-react'
@@ -18,6 +18,8 @@ export default function Space() {
   const [features, setFeatures] = useState()
   const [bookings, setBookings] = useState()
   const [access, setAccess] = useState()
+
+
 
   useEffect(() => {
     try {
@@ -59,32 +61,48 @@ export default function Space() {
     setModal(false)
   }
 
-  const handleGoModal = () => setModal(true)
-  const handleClosedModal = () => setModal(false)
-  const handleLoggedOut = () => {
+  const handleGoModal = () => {
     if (loggedIn === true) {
-      alert('checkout confirmated')
       setModal(false)
     } else {
       setModal(true)
     }
   }
+  const handleClosedModal = () => setModal(false)
 
-  const handleBooking = event => {
+  // const handleLoggedOut = () => {
+  //   if (loggedIn === true) {
+  //     alert('checkout confirmated')
+  //     setModal(false)
+  //   } else {
+  //     setModal(true)
+  //   }
+  // }
+
+  const handleBooking = (event) => {
     event.preventDefault()
-    if (token) {
-      alert('checkout confirmed')
-      setModal(false)
-    }
-    if (!token) {
-      alert('You need to be logged')
-      setModal(true)
-    }
-    else {
-      return
-    }
-  }
 
+    const { target: {
+      name: { value: name }
+    } } = event
+
+    if (loggedIn === true) {
+      try {
+        addBookingToSpace({ spaceId, name })
+        console.log('entry logic')
+
+          .then(() => {
+            console.log('sending message')
+            alert('Message sending succesfully')
+          })
+      
+      } catch (error) {
+        console.log('error message')
+        alert('error sending message')
+      }
+    } else setModal(true)
+
+  }
 
   return (
     <>
@@ -171,16 +189,20 @@ export default function Space() {
                         return null
                     }) : <span>Not found access</span>}
                   </td></tr>
-                  <tr className='flex justify-between py-2 items-center'><td><label for="start">Start Date</label></td><td><input type="datetime-local" id="start" /></td></tr>
-                  <tr className='flex justify-between py-2 items-center'><td><label for="end">End Date</label></td><td><input type="datetime-local" id="end" /></td></tr>
+                  <tr className='flex justify-between py-2 items-center'><td><label for="start">Start Date</label></td><td><input type="date" id="start" name='start' /></td></tr>
+                  <tr className='flex justify-between py-2 items-center'><td><label for="end">End Date</label></td><td><input type="date" id="end" name='end' /></td></tr>
                   <tr className='flex justify-between py-2'><td>Total Price</td><td className='font-bold text-xl text-cuartiary-color'>{space.price}</td></tr>
+                  
+                  {/* <label htmlFor="name" >Name</label>
+                  <input id="name" className="Contact__input" type="text" name="name" placeholder="Name" required /> */}
 
-                  <button type="submit" class="my-10 grid mx-auto text-center w-1/3 px-6 py-2.5 bg-secondary-color text-white rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" _data-bs-target="#exampleModal"
-                    onClick={(event) => {
-                      event.preventDefault()
-                      handleGoModal()
-                      handleLoggedOut()
-                    }}>
+                  <button type="submit" className="my-10 grid mx-auto text-center w-1/3 px-6 py-2.5 bg-secondary-color text-white rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                  // onClick={(event) => {
+                  //   event.preventDefault()
+                  //   handleGoModal()
+                  //   handleLoggedOut()
+                  // }}
+                  >
                     Checkout
                   </button>
                 </form>

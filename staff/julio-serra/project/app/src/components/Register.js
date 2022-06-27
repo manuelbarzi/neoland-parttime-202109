@@ -19,6 +19,7 @@ export default function Register() {
             alert(error.message)
         }
     }
+    const { token } = sessionStorage
 
     const handleClickLanding = () => navigate('/')
     const handleClickLogin = () => navigate('/login')
@@ -97,10 +98,10 @@ export default function Register() {
                     </form>
                 </div>
 
-            <div className='pb-10 bottom-0 absolute m-auto left-0 right-0 flex flex-col items-center gap-5'>
-            <p className='text-white'>Already have an account? <span className='text-secondary-color font-bold cursor-pointer' onClick={handleClickLogin}>Log in</span></p>
-            <a className='cursor-pointer' onClick={handleClickLanding}><img src={logo} alt='' width="60" /></a>
-            </div>
+                <div className='pb-10 bottom-0 absolute m-auto left-0 right-0 flex flex-col items-center gap-5'>
+                    <p className='text-white'>Already have an account? <span className='text-secondary-color font-bold cursor-pointer' onClick={handleClickLogin}>Log in</span></p>
+                    <a className='cursor-pointer' onClick={handleClickLanding}><img src={logo} alt='' width="60" /></a>
+                </div>
 
             </section>
         </>

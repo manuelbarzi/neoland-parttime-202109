@@ -12,6 +12,8 @@ const deleteReviewToSpace = require('./deleteReviewToSpace')
 const deleteBookingToSpace = require('./deleteBookingToSpace')
 const findSpaces = require('./findSpaces')
 const retrieveLattestSpaces = require('./retrieveLattestSpaces')
+const sendCheckout = require('./sendCheckout')
+
 
 module.exports = {
     registerUser,
@@ -27,5 +29,6 @@ module.exports = {
     deleteReviewToSpace,
     deleteBookingToSpace,
     findSpaces,
-    retrieveLattestSpaces
+    retrieveLattestSpaces,
+    sendCheckout
 }

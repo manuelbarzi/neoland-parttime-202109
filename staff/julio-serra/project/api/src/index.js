@@ -5,6 +5,7 @@ const { registerUser, authenticateUser, retrieveUser,
     addReviewToSpace, addBookingToSpace, deleteReviewToSpace,
     deleteBookingToSpace, findSpaces, retrieveLattestSpaces
 } = require('./handlers')
+
 const { mongoose: { connect } } = require('data')
 const cors = require('cors') // para evitar el error de CORS
 const { env: { MONGODB_URL, PORT } } = process
@@ -50,6 +51,7 @@ connect(MONGODB_URL)
 
         // ADD BOOKING TO SPACE
         router.post('/spaces/:spaceId/bookings', jsonBodyParser, addBookingToSpace)
+    
 
         // DELETE REVIEW TO SPACE
         router.delete('/spaces/:spaceId/reviews/:reviewId', jsonBodyParser, deleteReviewToSpace)
@@ -58,8 +60,9 @@ connect(MONGODB_URL)
         router.delete('/spaces/:spaceId/bookings/:bookingId', jsonBodyParser, deleteBookingToSpace)
 
         // FIND SPACES
-        router.get('/spaces', findSpaces)
+        router.get('/spaces', findSpaces) 
 
+          
         api.use('/api', router)
         api.listen(PORT, () => console.log('json server running'))
 
