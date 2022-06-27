@@ -4,21 +4,14 @@
 
 ![](https://media.giphy.com/media/fAhzOM48cmsVJE62RP/giphy.gif)
 
-Aplicación para facilitar llevar a cabo un plan de alimentación según objetivos.
+This is an app to facilitate the management of your healthy goals.
 
-Admin/Nutritionist:
-Aplicación donde el nutriólogo  generará un plan de alimentación para su cliente/paciente, de acuerdo a los objetivos y lo compartirá con él.
-Capturará datos del paciente.
-Generará la próxima cita.
-Modificará la dieta cada determinado tiempo.
+My Meals App goal is to offer a solution to manage the Nutritionists and Patients matters. 
+This app will help Nutritionists to personalize Meal Plans and share those with the patients, who will be  
+able to check/view their weekly meals in here, making it easier to organize and manage. 
 
-User:
-Los pacientes/usuarios que buscan mejorar sus hábitos alimenticios y son atendidos por un Nutriólogo,  podrán visualizar su plan de alimentación semanal y su próxima cita.
 
-En fase 2: El uduario podrá modificar/ sustituir su dieta teniendo varias opciones para cada comida, según sea su gusto.
-Podrán monitorear su progreso, marcando si se ha cumplido la cantidad de macronutrientes cada comida cada día.
-Podrá reagendar y eliminar la fecha en la que se tiene la próxima cita.
-Podrán generar una lista de compras personales, esto para llevar una mejor organización de los alimentos que necesita para llevar a cabo la dieta.
+
 
 ## Functional Description
 
@@ -66,7 +59,10 @@ Podrán generar una lista de compras personales, esto para llevar una mejor orga
 
 ### TODO list
 
-En fase 2: El usuario podrá modificar/ sustituir su dieta teniendo varias opciones para cada comida, según sea su gusto.
-Podrán monitorear su progreso, marcando si se ha cumplido la cantidad de macronutrientes cada comida cada día.
-Podrá reagendar y eliminar la fecha en la que se tiene la próxima cita.
-Podrán generar una lista de compras personales, esto para llevar una mejor organización de los alimentos que necesita para llevar a cabo la dieta.
+FASE 2 - 3 
+- Separate meals by calories blocks, in order to facilitate designing personal Meal Plans.
+- Be able to schedule next appointment. (shared calendar)
+- Have a progress tracker.
+- Shopping List for the Patients.
+
+
