@@ -8,7 +8,7 @@ function NutritionistHeader({ name, role }) {
     if (name && role === 0) {
         return (
             <div className="container-nutri-header">
-                <h3> LOGO </h3>
+                <h3> MY MEALS</h3>
                 <h3> Hello Nutritionist  {name} </h3>
             </div>
         )

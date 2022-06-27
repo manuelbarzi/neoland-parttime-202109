@@ -20,7 +20,7 @@ function AddingMeal() {
     
     const [ modal, setModal ] = useState(false)
 
-    const [ plans, setPlans ] = useState(null)
+    const [ plans, setPlans ] = useState([])
 
 
     const navigate = useNavigate()
@@ -32,7 +32,6 @@ function AddingMeal() {
     }
 
     const handleCloseModal = () => {
-       // console.log('cierra modal')
         handleRetrievePlan()
         setModal(false)
     }
@@ -45,7 +44,6 @@ function AddingMeal() {
             .then(() => {
                 setResponse({ level: 'info', message: 'Added Meal'})
             })
-            //.then(() => console.log(plans))
             handleRetrievePlan()
             handleCloseModal()
         } catch (error) {
@@ -54,13 +52,15 @@ function AddingMeal() {
     }
 
     const onSelectedMeal = id => { // lo recibo de ModalList
-        mealId = id 
+        mealId = id  // guardo el id del meal lo uso en la lógica
     }
-    let mealId;  // guardo el id del meal lo uso en la lógica
+    let mealId;  
 
     
     //*1 .- RECUPERO PLAN
+    
     const handleRetrievePlan = () => {
+        
         try {
             retrieveMealPlan(sessionStorage.token, patientId)
             .then(plans => { //comidas de todos los días
@@ -70,7 +70,7 @@ function AddingMeal() {
                 
                 retrieveAllMeals(sessionStorage.token)
                 .then(meals => { //recibo todas las de base
-                    let planMeals = meals.filter(meal =>{ //filtro las del patient
+                    let planMeals = meals.filter(meal => { //filtro las del patient
                         return dayMeals.find(dayMeal => meal.id === dayMeal) 
                     })
                     setPlans(planMeals) //seteo en estado
@@ -85,7 +85,7 @@ function AddingMeal() {
          }, [])
 
 
-    //*REMOVE MEAL FORM PLAN y REFRESCO:
+    //*REMOVE MEAL FROM PLAN y REFRESCO:
     const onRemoveMeal= mealId => {
         try {
             removeMealFromPlan(sessionStorage.token, patientId, day, mealId )

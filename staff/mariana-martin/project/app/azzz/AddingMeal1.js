@@ -1,13 +1,13 @@
 import { AiOutlineCloseCircle } from "react-icons/ai"
 import './styles/AddingMeal.css'
-import ModalMeals from './ModalMeals'
+import ModalMeals from '../src/components/ModalMeals'
 import {useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import {Routes, Route} from 'react-router-dom'
 import {AiOutlineLeft} from 'react-icons/ai'
-import { addMealToPlan, retrieveMealPlan, retrieveAllMeals, removeMealFromPlan} from '../logic'
+import { addMealToPlan, retrieveMealPlan, retrieveAllMeals, removeMealFromPlan} from '../src/logic'
 import { useContext  } from 'react'
-import Context from  './Context'
+import Context from  '../src/components/Context'
 
 function AddingMeal() {
 
@@ -45,6 +45,7 @@ function AddingMeal() {
             .then(() => {
                 setResponse({ level: 'info', message: 'Added Meal'})
             })
+            //.then(() => console.log(plans))
             handleRetrievePlan()
             handleCloseModal()
         } catch (error) {
@@ -106,7 +107,7 @@ function AddingMeal() {
 
             <p><strong> Day: {day} </strong></p>
             <br></br>
-            <button className="select-meal-button" onClick={ openModal }> Select Meal </button>
+            <button onClick={ openModal }> Select Meal </button>
             <div>
                 <ul> 
                     
