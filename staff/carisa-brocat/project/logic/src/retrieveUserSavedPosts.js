@@ -26,6 +26,8 @@ function retrieveUserSavedPosts(userId) {
 
                     post.userId = post.user._id.toString()
                     post.userNickname = post.user.nickname
+                    post.userImage = post.user.image
+                    
                     delete post.user
 
                     delete post.__v

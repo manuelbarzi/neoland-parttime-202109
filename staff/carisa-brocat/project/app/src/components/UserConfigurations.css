@@ -1,13 +1,62 @@
-.userConfiguration {
+.UserConfiguration {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 40px;
+    align-items: center;
 }
 
-.userConfiguration__title {
+.UserConfiguration__title{
     font-family: 'Supermercado One', cursive;
-    border-bottom: 2px solid rgba(131, 252, 74);
+    color: var(--green);
+    border-bottom: 2px solid var(--green);
+    width: 100%;
+    text-align: center;
+    padding: 5px;
 }
 
-.userConfiguration__form {
-margin: 10%;
+.UserConfiguration__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.UserConfiguration__upload-userImage{
+  display: flex;
+}
+
+.UserConfiguration__upload-userImage__icon{
+    width: 30px;
+}
+
+
+.UserConfiguration__user-image {
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    border-radius: 35px;
+    border: var(--gray) solid 1px;
+    cursor: pointer;
+}
+
+.UserConfiguration__user-image img {
+    width: auto;
+    height: 100%;
+}
+
+
+
+.UserConfiguration__form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+}
+
+input[type=file] {
+    color: transparent;
+    visibility: hidden;
 }

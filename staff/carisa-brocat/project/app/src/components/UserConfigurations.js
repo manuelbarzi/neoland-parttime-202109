@@ -19,9 +19,9 @@ function UserConfigurations({ user, handleRefresh }) {
     const [onChangePassword, setOnChangePassword] = useState(false)
     const [onChangeEmail, setOnChangeEmail] = useState(false)
     const [imageB64, setImageB64] = useState()
-    const userImage = imageB64?? user?.image
+    const userImage = imageB64 ?? user?.image
 
-    const handleUploadImage = (event)=>{
+    const handleUploadImage = (event) => {
         uploadImage(event, setImageB64)
     }
 
@@ -61,18 +61,26 @@ function UserConfigurations({ user, handleRefresh }) {
         }
     }
 
-    return <div className="userConfiguration">
-        <h1 className="userConfiguration__title">Configuration</h1>
+    return <div className="UserConfiguration">
+        <h1 className="UserConfiguration__title">Configuration</h1>
         {onChangePassword ? <UpdateUserPassword handleShowChangePassword={handleShowChangePassword} />
             :
             (onChangeEmail ? <UpdateUserEmail handleShowChangeEmail={handleShowChangeEmail} />
                 :
-                <div className="userConfiguration__general">
-                    <form className="userConfiguration__form" onSubmit={handleUpdateUser}>
-                        <img src={userImage} alt="UserImage" />
-                        <input type="file" name="image" onChange={handleUploadImage} />
+                <div className="UserConfiguration__container">
+                    <form className="UserConfiguration__form" onSubmit={handleUpdateUser}>
+                        <div className='UserConfiguration__upload-userImage'>
+                        <div className='UserConfiguration__user-image'>
+                            <img src={user?.image ?? "./images/Profile-image.png"} alt="userImage" />
+                        </div>
+                        <label>
+                            <input type="file" name="image" onChange={handleUploadImage} />
+                            <img src="./images/Upload-icon.png" className='UserConfiguration__upload-userImage__icon'/>
+                        </label>
+                        </div>
+
                         <input type="text" name="nickname" defaultValue={userNickname} />
-                        <div className='userConfiguration__hairTexture'>
+                        <div className='UserConfiguration__hairTexture'>
                             <label>Hair Texture</label>
                             <select id='hairTexture' name='hairTexture' >
                                 <option value='3a'>3a</option>
@@ -83,7 +91,7 @@ function UserConfigurations({ user, handleRefresh }) {
                                 <option value='4c'>4c</option>
                             </select>
                         </div>
-                        <div className='userConfiguration__interests'>
+                        <div className='UserConfiguration__interests'>
                             <h2> Interests</h2>
                             <label>
                                 <input type='checkbox' name='interests' value='growth' />

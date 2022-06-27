@@ -1,3 +1,4 @@
+import './UserSavedPosts.css'
 import { useState, useEffect } from 'react'
 import { retrieveUserSavedPosts, retrieveUserSavedPostsBy } from '../logic'
 import { errors } from 'commons'
@@ -59,12 +60,12 @@ function UserSavedPosts({ category, subject, user, postCreated, logOut }) {
     }
 
 
-    return <div className='userSavedPosts'>
+    return <div className='UserSavedPosts'>
         {
             posts.length ?
                 <ul> {posts.map(post => <li key={post.id}> <Post postId={post.id} user={user} handleUnsavePost={handleUnsavePost} logOut/></li>)}
                 </ul> :
-                <p>Sorry, there are no posts to show</p>
+                <p className='UserSavedPosts__text'>Sorry, there are no posts to show</p>
         }
     </div>
 }

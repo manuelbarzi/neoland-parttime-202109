@@ -1,3 +1,4 @@
+import './Feed.css'
 import { useState, useEffect } from 'react'
 import { retrieveAllPosts, retrievePostsBy } from '../logic'
 import Post from './Post'
@@ -53,12 +54,15 @@ function Feed({ category, subject, user, postCreated }) {
         loadFilterPosts()
     }, [category, subject, postCreated])
 
-    return <div className='feed'>
+    return <div className='Feed'>
         {
             posts.length ?
-                <ul> {posts.map(post => <li key={post.id}> <Post postId={post.id} user={user} logOut/></li>)}
+                <ul> {posts.map(post => <li key={post.id}> <Post postId={post.id} user={user} logOut /></li>)}
                 </ul> :
-                <p>Sorry, there are no posts to show</p>
+                <div className='Feed__text'>
+                    <p>Sorry, there are no posts to show</p>
+                </div>
+
         }
     </div>
 }

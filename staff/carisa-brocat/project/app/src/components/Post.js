@@ -23,7 +23,6 @@ export default ({ postId, user, handlePostDeleted, handleUnsavePost }) => {
     const [newComment, setNewComment] = useState(false)
 
     const savedStatus = user.savedPosts.includes(postId)
-
     const [postSaved, setPostSaved] = useState(savedStatus)
 
     const loadPost = () => {
@@ -45,8 +44,7 @@ export default ({ postId, user, handlePostDeleted, handleUnsavePost }) => {
 
     useEffect(() => {
         loadPost()
-    }, [newComment, postSaved])
-
+    }, [newComment])
 
     const addUserDislikedPost = () => {
         const userNewDislikedPosts = userDislikedPosts
@@ -169,43 +167,54 @@ export default ({ postId, user, handlePostDeleted, handleUnsavePost }) => {
         setNewComment(true)
     }
 
-
-    return <div className="post">
-        {post ? <div> <div className="post__header">
-            <p>{post.userNickname}</p>
-            <p>{post.subject}</p>
-        </div>
-            <div className="post__body">
-                <h1 className="post__body-title">{post.title}</h1>
-                <div className="post__body-description">
-                    <img src={post.image}/>
-                    <p>{post.description}</p>
-                    <p>{post.address}</p>
+    return < >
+        {post ? <div className="Post">
+            <div className="Post__header">
+                <div className="Post__header_userInfo">
+                    <div className="Post__header_userInfo-image">
+                        <img src={post.userImage ?? "./images/Profile-image.png"} alt="userImage" />
+                    </div>
+                    <p>{post.userNickname}</p>
+                </div>
+                <p>{post.subject}</p>
+            </div>
+            <div className="Post__body">
+                <h1 className="Post__body__title">{post.title}</h1>
+                <div className="Post__body__container">
+                    <img className="Post__body__image" src={post.image} />
+                    <div className="Post__body__container-description">
+                        <p className="Post__body__description">{post.description}</p>
+                        <p className="Post__body__address">{post.address ? `Address: ${post.address}` : null}</p>
+                        <time className="Post__body__date">{post.date}</time>
+                        <p className='Post__body__comments' onClick={onComments}>Comments ({comments.length})</p>
+                    </div>
                 </div>
             </div>
-            {location.pathname === '/my-posts' && <button className='post__footer post__footer--deleteButton' onClick={handleDeletePost}>Delete</button>}
-            {location.pathname !== '/my-posts' && <div className="post__footer">
-                <div className="post__footer post__footer--displayrow">
-                    <div className="post__footer-feedback">
-                        <div className="post__footer-feedback post__footer-feedback__likes">
-                            <button onClick={handleLikes}>Likes</button>
+            {location.pathname === '/my-posts' && <div className='Post__footer Post__footer--center'>
+                <button className='Post__footer__button' onClick={handleDeletePost}><img src="./images/Delete-Icon.png" alt="userImage" /></button>
+            </div>}
+            {location.pathname !== '/my-posts' && <div className="Post__footer">
+                <div className="Post__footer Post__footer-container">
+                    <div className="Post__footer-feedback">
+                        <div className="Post__footer-feedback Post__footer-feedback__likes">
+                            <button className='Post__footer__button' onClick={handleLikes}><img src="./images/Likes-Icon.png" alt="userImage" /></button>
                             {
-                                likes ? <p>{likes}</p> : <p>0</p>
+                                likes ? <p>({likes})</p> : <p>(0)</p>
                             }
                         </div>
-                        <div className="post__footer-feedback post__footer-feedback__dislikes">
-                            <button onClick={handleDislikes}>Dislikes</button>
+                        <div className="Post__footer-feedback Post__footer-feedback__dislikes">
+                            <button className='Post__footer__button ' onClick={handleDislikes}><img src="./images/Dislikes-Icon.png" alt="userImage" /></button>
                             {
-                                dislikes ? <p>{dislikes}</p> : <p>0</p>
+                                dislikes ? <p>({dislikes})</p> : <p>(0)</p>
                             }
                         </div>
                     </div>
-                    <button className={`${postSaved ? 'post__footer--saveButton post__footer-saveButton--selected' : 'post__footer--saveButton'}`} onClick={handleSavePosts} >Save</button>
+                    <button className='Post__footer__button Post__footer__button-save' onClick={handleSavePosts}><img src={postSaved ? "./images/Saved-Icon.png" : "./images/Unsaved-Icon.png"} /></button>
                 </div>
-                <h3 onClick={onComments}>Comments {comments.length}</h3>
-            </div>}</div> :
-            0}
+            </div>}
+        </div> :
+            null}
 
         {modalOpen && <Modal handleCloseModal={handleCloseModal} content={<PostComments handleCloseModal={handleCloseModal} postId={postId} comments={comments} handleNewComments={handleNewComments} />} />}
-    </div>
+    </>
 }

@@ -1,3 +1,4 @@
+import './UserPosts.css'
 import { useState, useEffect } from 'react'
 import { retrieveUserPosts, retrieveUserPostsBy } from '../logic'
 import Post from './Post'
@@ -58,12 +59,12 @@ function UserPosts({ category, subject, user, postCreated}) {
         setPostDeleted(!postDeleted)
     }
 
-    return <div className='userPosts'>
+    return <div className='UserPosts'>
         {
             posts.length ?
                 <ul> {posts.map(post => <li key={post.id}> <Post postId={post.id} user={user} handlePostDeleted={handlePostDeleted} logOut/></li>)}
                 </ul> :
-                <p>Sorry, there are no posts to show</p>
+                <p className='UserPosts__text'>Sorry, there are no posts to show</p>
         }
     </div>
 }

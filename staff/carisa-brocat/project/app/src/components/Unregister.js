@@ -11,6 +11,11 @@ const { AuthError, NotFoundError } = errors
 function Unregister({ logOut }) {
     const { setFeedback } = useContext(Context)
     const [modalOpen, setModalOpen] = useState(false)
+    const [passwordShown, setPasswordShown] = useState(false)
+
+    const toggleShowPassword = () => {
+        setPasswordShown(!passwordShown)
+    }
 
     const unregisterConfirmation = event => {
         event.preventDefault()
@@ -46,15 +51,21 @@ function Unregister({ logOut }) {
         setModalOpen(false)
     }
 
-    return <form className="unregister" onSubmit={handleDeleteUser} >
-        <input type="password" name="password" placeholder="password" required />
-        <button onClick={unregisterConfirmation}>Delete</button>
+    return <div className="Unregister">
+        <h1 className="Unregister__title">Unregister</h1>
+        <form className="Unregister__form" onSubmit={handleDeleteUser} >
+            <div className='Unregister__form-input Unregister__form-input--noPadding'>
+                <input className='Unregister__form-input Unregister__form-input__password' type={passwordShown ? "text" : "password"} name="password" placeholder="password" required />
+                <img className='Unregister__image-hide-show-password' onClick={toggleShowPassword} src={passwordShown ? "./images/visibility_on.png" : "./images/visibility_off.png"} />
+            </div>
+            <button onClick={unregisterConfirmation} className="Unregister__form-button">Delete</button>
 
-        {modalOpen && <Modal handleCloseModal={handleCloseModal} content={<div className="unregister__confirmation" >
-            <p>Are you sure do you want to delete your account? </p>
-            <button type="submit">Yes</button>
-        </div>} />}
-    </form>
+            {modalOpen && <Modal handleCloseModal={handleCloseModal} content={<div className="Unregister__confirmation" >
+                <p>Are you sure do you want to delete your account? </p>
+                <button type="submit" className="Unregister__form-button Unregister__form-button--small">Yes</button>
+            </div>} />}
+        </form>
+    </div>
 }
 
 export default Unregister

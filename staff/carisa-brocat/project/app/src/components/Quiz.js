@@ -2,10 +2,14 @@ import './Quiz.css'
 import InputRadioQuiz from './InputRadioQuiz'
 import InputCheckboxQuiz from './InputCheckboxQuiz'
 import { updateUserHairTextureAndInterests } from '../logic'
+import { useContext, useState } from 'react'
+import Context from './Context'
+
 import { errors } from 'commons'
 const { AuthError, NotFoundError } = errors
 
 function Quiz({ onQuizPassed }) {
+    const { setFeedback } = useContext(Context)
 
     const onQuiz = event => {
         event.preventDefault()
@@ -19,6 +23,10 @@ function Quiz({ onQuizPassed }) {
                 interestsArray.push(interest.value)
             }
         })
+
+        if (!hairTexture || !interestsArray) {
+            return (setFeedback({ level: 'error', message: 'Please select a hair texture and at least and interest ' }))
+        }
 
         try {
             updateUserHairTextureAndInterests(sessionStorage.token, hairTexture, interestsArray)
@@ -55,32 +63,32 @@ function Quiz({ onQuizPassed }) {
         }
     }
 
-    return <div>
-        <form className='quiz__form' onSubmit={onQuiz}>
-            <fieldset className="quiz__fieldset quiz__fieldset-hairtexture">
-                <p className='quiz__fieldset--header'>Tell us your type of hair and let us help to find what you want quickly</p>
-                <div className='quiz__fieldset--main quiz__fieldset--main-hairTexture'>
-                    <InputRadioQuiz name='hairTexture' value='3a' text='3A' />
-                    <InputRadioQuiz name='hairTexture' value='3b' text='3B' />
-                    <InputRadioQuiz name='hairTexture' value='3c' text='3C' />
-                    <InputRadioQuiz name='hairTexture' value='4a' text='4A' />
-                    <InputRadioQuiz name='hairTexture' value='4b' text='4B' />
-                    <InputRadioQuiz name='hairTexture' value='4c' text='4C' />
-                </div>
+    return <div className='Quiz'>
+        <img className='Quiz__logo' src="./images/App-logo.png" alt='app-logo' />
+
+        <form className='Quiz__form' onSubmit={onQuiz}>
+            <p className='Quiz__form__text'>Tell us your type of hair and let us help to find what are you looking for quickly</p>
+            <fieldset className="Quiz__fieldset Quiz__fieldset-hairtexture">
+                <InputRadioQuiz name='hairTexture' value='3a' text='3A' />
+                <InputRadioQuiz name='hairTexture' value='3b' text='3B' />
+                <InputRadioQuiz name='hairTexture' value='3c' text='3C' />
+                <InputRadioQuiz name='hairTexture' value='4a' text='4A' />
+                <InputRadioQuiz name='hairTexture' value='4b' text='4B' />
+                <InputRadioQuiz name='hairTexture' value='4c' text='4C' />
             </fieldset>
-            <fieldset className="quiz__fieldset quiz__fieldset-interests">
-                <p className='quiz__fieldset--header'>What would you like for your hair?</p>
-                <div className='quiz__fieldset--main quiz__fieldset--main-interests'>
-                    <InputCheckboxQuiz name='interests' value='moisture' text='Moisture' />
-                    <InputCheckboxQuiz name='interests' value='growth' text='Growt' />
-                    <InputCheckboxQuiz name='interests' value='restore' text='Restore' />
-                    <InputCheckboxQuiz name='interests' value='definition' text='Definition' />
-                    <InputCheckboxQuiz name='interests' value='strength' text='Strength' />
-                </div>
+
+            <p className='Quiz__form__text'>What would you like for your hair?</p>
+            <fieldset className="Quiz__fieldset Quiz__fieldset-interests">
+                <InputCheckboxQuiz name='interests' value='moisture' text='Moisture' />
+                <InputCheckboxQuiz name='interests' value='growth' text='Growt' />
+                <InputCheckboxQuiz name='interests' value='restore' text='Restore' />
+                <InputCheckboxQuiz name='interests' value='definition' text='Definition' />
+                <InputCheckboxQuiz name='interests' value='strength' text='Strength' />
             </fieldset>
-            <div className='quiz__form--foot'>
-                <button onClick={skipQuiz}>Do It Later</button>
-                <button type='submit'>Next</button>
+
+            <div className='Quiz__form__footer'>
+                <button className="Quiz__button-footer" onClick={skipQuiz}>Do It Later</button>
+                <button className="Quiz__button-footer" type='submit'>Next</button>
             </div>
         </form>
     </div>

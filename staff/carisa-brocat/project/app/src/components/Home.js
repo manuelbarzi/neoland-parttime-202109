@@ -1,6 +1,6 @@
 import './Home.css'
 import { useState, useEffect } from 'react'
-import { useLocation, Routes, Route, useNavigate, createRoutesFromChildren } from 'react-router-dom';
+import { useLocation, Routes, Route, useNavigate } from 'react-router-dom';
 import { retrieveUser } from '../logic'
 import Quiz from './Quiz'
 import Feed from './Feed'
@@ -16,8 +16,6 @@ import UserConfigurations from './UserConfigurations';
 import { useContext } from 'react'
 import Context from './Context'
 
-import { errors } from 'commons'
-
 function Home({ onLoggedOut }) {
     const navigate = useNavigate()
     const location = useLocation()
@@ -26,7 +24,6 @@ function Home({ onLoggedOut }) {
     const [modalOpen, setModalOpen] = useState(false)
     const [menuOpen, setMenuOpen] = useState(false)
     const [refresh, setRefresh] = useState(false)
-
     const [postCreated, setPostCreated] = useState(false)
     const [user, setUser] = useState()
     const [subject, setSubject] = useState()
@@ -54,7 +51,7 @@ function Home({ onLoggedOut }) {
 
     useEffect(() => {
         loadUser()
-    }, [refresh])
+    }, [refresh, category, subject])
 
     const logOut = () => {
         delete sessionStorage.token
@@ -77,6 +74,7 @@ function Home({ onLoggedOut }) {
 
         navigate('/my-posts')
     }
+
     const handleSavedPosts = () => {
         setRefresh(!refresh)
 
@@ -88,12 +86,14 @@ function Home({ onLoggedOut }) {
     }
 
     const comeBack = () => {
-        if (location.pathname === '/unregister')
+        if (location.pathname === '/unregister') {
+            setRefresh(!refresh)
             navigate(-1)
-        else if (location.pathname === '/my-posts' || '/my-saved-posts'){
+        }
+        else if (location.pathname === '/my-posts' || '/my-saved-posts') {
             setRefresh(!refresh)
             navigate('/')
-        }      
+        }
     }
 
     const handleCloseModal = () => {
@@ -113,56 +113,55 @@ function Home({ onLoggedOut }) {
     }
 
     const isNotInUnregisterOrConfiguration = location.pathname !== '/unregister' && location.pathname !== '/configurations'
-
     const appliedSubjectText = subject ? `${subject}`.charAt(0).toUpperCase() + `${subject}`.slice(1) : 'All'
 
-    return <div className='home'>
+    return <div className='Home'>
         {user && quizPassed && <div>
-            <div className='home__header'>
-                {location.pathname === '/' && <div className='home__header-top'>
-                    <h1>Logo</h1>
-                    <h2 className='home__header__filterText'>{appliedSubjectText}</h2>
-                    <div className="Home__header-top__rigth">
-                        <div className="Home__header-top__user">
-                            <div className="Home__header-top__user__image">
-                                <img src={user?.image} alt="userImage" onClick={handleMyPosts} />
-                            </div>
-                            <p >{user.nickname}</p>
+            <div className='Home__header'>
+
+                {location.pathname === '/' && <div className='Home__header__top'>
+                    <img className='Home__logo' src="./images/App-logo.png" alt='app-logo' />
+                    <h2 className='Home__header__subject-filter-text'>{appliedSubjectText}</h2>
+                    <div className="Home__header__top Home__header__top--noBorder">
+                        <div className="Home__header__top-user-image">
+                            <img src={user?.image?? "./images/Profile-image.png"} alt="userImage" onClick={handleMyPosts} />
                         </div>
-                        <button onClick={logOut}>LogOut</button>
+                        <button className="Home__header__top__button" onClick={logOut} ><img src="./images/Logout-img.png" /></button>
                     </div >
                 </div>}
-                {location.pathname !== '/' && <div className='home__header-top'>
-                    <div className="Home__header-top__user">
-                        <div className="Home__header-top__user__image">
-                            <img src={user?.image} alt="userImage" onClick={handleMenu} />
+
+                {location.pathname !== '/' && <div className='Home__header__top Home__header_top-userSection'>
+                        <div className="Home__header__top-user-image">
+                            <img src={user?.image?? "./images/Profile-image.png"} alt="userImage" onClick={handleMenu} />
                         </div>
-                        <p >{user.nickname}</p>
-                    </div>
-                    {isNotInUnregisterOrConfiguration && <h2 className='home__header-filterText'>{appliedSubjectText}</h2>}
+                    {isNotInUnregisterOrConfiguration && <h2 className='Home__header__subject-filter-text'>{appliedSubjectText}</h2>}
                     <div>
-                        <button onClick={comeBack}>Come Back</button>
+                        <button className="Home__header__top__button Home__header__top__button-comeback" onClick={comeBack}><img src="./images/ComeBack-img.png" /></button>
                     </div >
                 </div>}
-                {isNotInUnregisterOrConfiguration && <div><SubjectSelector onSubjectSelected={onSubjectSelected} /></div>}
+                {isNotInUnregisterOrConfiguration && <SubjectSelector onSubjectSelected={onSubjectSelected} />}
             </div>
-            {isNotInUnregisterOrConfiguration && <div className='home__body'>
+
+            {isNotInUnregisterOrConfiguration && <div className='Home__body'>
                 <Routes>
                     <Route path="/*" element={<Feed category={category} subject={subject} user={user} postCreated={postCreated} logOut={logOut} />} />
                     <Route path="/my-posts/*" element={<UserPosts category={category} subject={subject} user={user} postCreated={postCreated} logOut={logOut} />} />
                     <Route path="/my-saved-posts/*" element={<UserSavedPosts category={category} subject={subject} user={user} postCreated={postCreated} logOut={logOut} />} />
                 </Routes>
             </div>}
-            {isNotInUnregisterOrConfiguration && <div className='home__footer'>
+            {isNotInUnregisterOrConfiguration && <div className='Home__footer'>
                 <CategorySelector onCategorySelected={onCategorySelected} />
-                <button className='home__button--addPost' onClick={handleOpenModal}>+</button>
+                <div className='Home__button-addPost_container'>
+                <button className='Home__button-addPost' onClick={handleOpenModal}>+</button>
+                </div>       
             </div>}
         </div>}
+
         {user && !quizPassed && <Quiz onQuizPassed={handleQuizPassed} />}
 
         {modalOpen && <Modal handleCloseModal={handleCloseModal} content={<NewPost handleCloseModal={handleCloseModal} handlePostCreated={handlePostCreated} />} />}
 
-        <UserMenu menuOpen={menuOpen} handleSavedPosts={handleSavedPosts} handleMenu={handleMenu} handleMyPosts={handleMyPosts} onLoggedOut={logOut} />
+        <UserMenu menuOpen={menuOpen} handleSavedPosts={handleSavedPosts} handleMenu={handleMenu} handleMyPosts={handleMyPosts} onLoggedOut={logOut} user={user}/>
 
         <Routes>
             <Route path="/unregister/*" element={<Unregister logOut={logOut} />} />

@@ -1,67 +1,101 @@
-.quiz__form{
+.Quiz {
   display: flex;
+  width: 100%;
+  height: 100%;
   flex-direction: column;
+  align-items: center;
   justify-content: flex-start;
 }
 
-.quiz__fieldset {
-border: 0;
-display: flex;
-flex-direction: column;
-justify-content: flex-start;
+.Quiz__logo {
+  width: 120px;
+  margin-top: 60px;
 }
 
-.quiz__fieldset--main{
-  display: grid;
-  grid-template-columns: 60px 60px;
-  grid-template-rows: 60px 60px 60px;
-}
-
-.quiz__fieldset--main-interests{
-  grid-template-columns: 150px 150px;
-}
-
-.quiz__form--foot{
+.Quiz__form {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
-.quiz__button{
-    background-color: rgba(248, 212, 25);
-    font-size: 20px;
-    margin: 3px;
-    color:rgb(255, 255, 255);
+.Quiz__form__text {
+  font-size: 18px;
+  margin: 0;
+  margin-top: 10px;
+  text-align: justify;
 }
 
-.quiz__button--interests{
+.Quiz__fieldset {
+  border: 0;
+  display: grid;
+  grid-template-columns: 50px 50px;
+  grid-template-rows: 50px 50px 50px;
+  align-items: center;
+  justify-content: center;
+}
+
+.Quiz__fieldset-interests {
+  grid-template-columns: 125px 125px;
+}
+
+.Quiz__button {
+  background-color: var(--yellow);
+  font-size: 20px;
+  margin: 3px;
+  color: white;
+}
+
+.Quiz__button__interests {
   border-radius: 10px;
-  width: 110px;
+  width: 115px;
   height: 40px;
 }
 
-.quiz__button--hairTexture{
+.Quiz__button__hairTexture {
   border-radius: 10px;
   width: 40px;
   height: 40px;
 }
 
-.quiz__button label {
-    text-align: center;
-  }
-
-.quiz__button input{
-    display: none;
-   
+.Quiz__button label {
+  text-align: center;
 }
 
-.quiz__button input:checked + span {
-    border-radius: 10px;
-    border: 2px solid rgba(131, 252, 74) ;
+.Quiz__button input {
+  display: none;
 }
 
-.quiz__button span{
-  display: block ;
-  height: stretch;
+.Quiz__button input:checked+span {
+  border-radius: 10px;
+  border: 2px solid var(--green);
 }
 
+.Quiz__button span {
+  display: flex;
+  height: -webkit-fill-available;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.Quiz__form__footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-top: 30px;
+}
+
+.Quiz__button-footer{
+  background-color: var(--green);
+  border-style: none;
+  width: 120px;
+  height: 40px;
+  border-radius: 10px;
+  color: white;
+  font-size: 18px;
+  font-family: 'Inconsolata', monospace;
+}

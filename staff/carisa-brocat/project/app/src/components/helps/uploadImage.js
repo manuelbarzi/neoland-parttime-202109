@@ -1,7 +1,7 @@
 export default (event, setImageB64) => {
     const file = event.target.files[0]
 
-    const fileReader = new FileReader
+    const fileReader = new FileReader()
 
     fileReader.readAsDataURL(file)
 

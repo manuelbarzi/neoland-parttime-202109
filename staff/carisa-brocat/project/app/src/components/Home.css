@@ -1,63 +1,94 @@
-.home {
+.Home {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
-.home__header {
+.Home__header {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    padding-top: 10px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: white;
 }
 
-.home__header-top {
+.Home__logo {
+    height: 50px;
+}
+
+.Home__header__top {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    border-bottom: 2px solid rgba(131, 252, 74);
+    justify-content: space-between;
+    border-bottom: 2px solid var(--green);
+    padding-left: 10px;
+    padding-right: 10px;
+    align-items: flex-end;
+    padding-bottom: 5px;
 }
 
-.home__header-filterText{
+.Home__header__top--noBorder {
+    border-style: none
+}
+
+.Home__header__subject-filter-text {
     font-family: 'Supermercado One', cursive;
     font-weight: lighter;
+    color: var(--green);
+    font-size: 25px;
+    margin: 0;
 }
 
-.Home__header-top__rigth{
-    display: flex;
-    flex-direction: row;
-}
-
-.Home__header-top__user{
-display: flex;
-flex-direction: column;
-align-items: center;
-}
-
-.Home__header-top__user p{
-padding: 0;
-margin: 0;
-}
-
-.Home__header-top__user__image{
-    width: 60px;
-    height: 60px;
-    position: relative;
+.Home__header__top-user-image {
+    width: 45px;
+    height: 45px;
     overflow: hidden;
     border-radius: 50%;
+    border: var(--green) solid 1px;
+    cursor: pointer;
 }
 
-.Home__header-top__user__image img{
-    width: 100%;
+.Home__header__top-user-image img {
+    width: auto;
+    height: 100%;
 }
 
-.home__body ul {
+.Home__header__top__button {
+    border-style: none;
+    background-color: white;
+    padding: 0;
+    padding-left: 15px;
+}
+
+.Home__header__top__button img {
+    width: 30px;
+}
+
+.Home__header__top__button-comeback img{
+    width: 50px;
+}
+
+.Home__body{
+    margin-top: 120px;
+    margin-bottom: 90px;
+}
+
+.Home__body ul {
     list-style-type: none;
-    padding: 0px;
+    padding: 0px;  
 }
 
-.home__footer{
-    display: block;
-    height: 60px;
+.Home__footer {
+    position: fixed;
+    width: 100%;
+    background: white;
+    bottom: 0;
+    border-top: 2px solid var(--green);
+    padding-top: 5px;
+    padding-bottom: 15px;
+    z-index: 1;
 }
 
 li {
@@ -65,18 +96,26 @@ li {
     justify-content: center;
 }
 
-.home__button--addPost {
-    background-color: rgba(131, 252, 74);
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
-    border: none;
-    font-size: 35px;
-    color: rgb(255, 255, 255);
-    position: relative;
-    left: 50%;
-    top: -30px;
+.Home__button-addPost_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    padding-top: 5px;
+    padding-bottom: 15px;
+    bottom: 0;
+    width: 100%;
+    pointer-events: none;
 }
 
-
-
+.Home__button-addPost {
+    background-color: var(--green);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    font-size: 35px;
+    color: white;
+    pointer-events: auto;
+    align-items: center;
+}
