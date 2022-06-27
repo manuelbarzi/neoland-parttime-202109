@@ -1,0 +1,11 @@
+.mealplan-sticker{
+    background-color: #B6DBD4;
+    padding: 3rem;
+    width: 17rem;
+    height: 50px;
+    border-radius: 1.5rem;
+    box-shadow: 5px 2px 2px rgb(244, 244, 244);
+    cursor: pointer;
+    margin: 10px;
+    text-align: center;
+}

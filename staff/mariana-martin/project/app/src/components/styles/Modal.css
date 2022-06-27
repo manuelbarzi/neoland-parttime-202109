@@ -1,0 +1,36 @@
+.modal-background{
+    position:fixed;
+    z-index: 2;
+    top:0;
+    left: 0;
+    width: 100%; 
+    min-height:  100vh;
+    background-color:  rgba(0, 0, 0, .7);
+    justify-content: center;
+}
+
+.modal-container{   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 50%;
+    border-radius: 1.5em;
+    overflow-y: auto;
+}
+
+.modal-container__body{
+   
+    height: 70vh;
+    overflow-y: auto;
+}
+
+
+
+
+
+li {
+    background-color: #EDEDED; 
+}
+    

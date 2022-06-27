@@ -1,0 +1,16 @@
+.Response {
+    font-weight: bold;
+  
+    position: absolute;
+    padding: 16rem;
+    
+}
+
+.Response--info {
+   
+    color:  rgb(100, 144, 100);
+}
+.Response--error {
+    font-weight: bold;
+    color: red;
+}

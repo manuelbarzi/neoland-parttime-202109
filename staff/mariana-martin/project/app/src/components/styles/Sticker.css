@@ -1,0 +1,14 @@
+.sticker-menu{
+    margin: 20px;
+    background-color: white;
+    padding: 3rem;
+    width: 16rem;
+    border-radius: 1.5rem;
+    box-shadow: 5px 2px 2px rgb(244, 244, 244);
+    cursor: pointer;
+    
+   
+}
+.sticker-menu:hover{
+    background-color: #dae6e4;
+}

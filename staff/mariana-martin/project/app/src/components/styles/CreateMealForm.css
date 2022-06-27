@@ -1,0 +1,28 @@
+.meal-form{
+    display: flex;
+    flex-direction: column;
+    margin: 5px
+    
+}
+
+.savemeal-button{
+    background-color: #145566;
+    color: white;
+    height: 40px;
+    border: 0;
+}
+.createmeal-icon{
+    margin: 5px;
+  
+}
+.meal-input{
+    border: 0;
+    border-radius: 20px;
+    
+}
+.meal-input__title{
+    border: 0;
+    border-radius: 5px;
+    height: 30px;
+    
+}
