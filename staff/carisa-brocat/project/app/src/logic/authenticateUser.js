@@ -1,3 +1,6 @@
+require('dotenv').config()
+const { env: { URL } } = process
+
 import { validators, errors } from 'commons'
 
 const { ServerError, ClientError, AuthError } = errors
@@ -7,7 +10,7 @@ function authenticateUser(email, password) {
     validateEmail(email)
     validatePassword(password)
 
-    return fetch('http://localhost:8080/api/users/auth', {
+    return fetch(`${URL}/users/auth`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

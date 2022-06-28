@@ -1,3 +1,5 @@
+require('dotenv').config()
+const { env: { URL } } = process
 import { validators, errors } from 'commons'
 
 const { AuthError, NotFoundError, ServerError, ClientError } = errors
@@ -7,7 +9,7 @@ function toggleLikePost(token, postId) {
     validateToken(token)
     validateId(postId)
 
-    return fetch(`http://localhost:8080/api/posts/${postId}/toggle-like`, {
+    return fetch(`${URL}/posts/${postId}/toggle-like`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',

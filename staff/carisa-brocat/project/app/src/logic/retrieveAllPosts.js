@@ -1,3 +1,5 @@
+require('dotenv').config()
+const { env: { URL } } = process
 import { validators, errors } from 'commons'
 
 const { ServerError, ClientError, NotFoundError, AuthError } = errors
@@ -6,7 +8,7 @@ const { validateToken } = validators
 function retrieveAllPosts(token) {
     validateToken(token)
 
-    return fetch('http://localhost:8080/api/posts', {
+    return fetch(`${URL}/posts`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${token}`

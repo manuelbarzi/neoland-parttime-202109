@@ -1,3 +1,5 @@
+require('dotenv').config()
+const { env: { URL } } = process
 import { validators, errors } from 'commons'
 
 const { AuthError, NotFoundError, ServerError, ClientError } = errors
@@ -7,7 +9,7 @@ function updatePassword(token, oldPassword, newPassword) {
     validatePassword(oldPassword)
     validatePassword(newPassword)
 
-    return fetch('http://localhost:8080/api/user/password', {
+    return fetch(`${URL}/user/password`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',

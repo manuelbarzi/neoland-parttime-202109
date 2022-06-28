@@ -1,3 +1,5 @@
+require('dotenv').config()
+const { env: { URL } } = process
 import { validators, errors } from 'commons'
 
 const { AuthError, NotFoundError, ServerError, ClientError } = errors
@@ -7,7 +9,7 @@ function updateEmail(token, password, email) {
     validatePassword(password)
     validateEmail(email)
 
-    return fetch('http://localhost:8080/api/user/email', {
+    return fetch(`${URL}/user/email`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',

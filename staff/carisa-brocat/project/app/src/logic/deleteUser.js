@@ -1,3 +1,5 @@
+require('dotenv').config()
+const { env: { URL } } = process
 import { validators, errors } from 'commons'
 
 const { AuthError, ServerError, ClientError, NotFoundError } = errors
@@ -7,7 +9,7 @@ function deleteUser(token, password) {
     validatePassword(password)
     validateToken(token)
 
-    return fetch('http://localhost:8080/api/users', {
+    return fetch(`${URL}/users`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

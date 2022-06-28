@@ -1,3 +1,5 @@
+require('dotenv').config()
+const { env: { URL } } = process
 import { validators, errors } from 'commons'
 
 const { ServerError, ClientError, NotFoundError, AuthError } = errors
@@ -6,7 +8,7 @@ const { validateToken } = validators
 function retrieveUserPostsBy(token, category, subject) {
     validateToken(token)
 
-    return fetch('http://localhost:8080/api/user/posts/search-by', {
+    return fetch(`${URL}/user/posts/search-by`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

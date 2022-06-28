@@ -1,3 +1,5 @@
+require('dotenv').config()
+const { env: { URL } } = process
 import { validators, errors } from 'commons'
 import { validateId, validateString } from 'commons/src/validators'
 
@@ -9,7 +11,7 @@ function addCommentToPost(token, postId, text) {
     validateId(postId, 'postId')
     validateString(text, 'text')
 
-    return fetch(`http://localhost:8080/api/posts/${postId}/comment`, {
+    return fetch(`${URL}/posts/${postId}/comment`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

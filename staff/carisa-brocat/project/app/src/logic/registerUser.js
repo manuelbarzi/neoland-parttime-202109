@@ -1,3 +1,5 @@
+require('dotenv').config()
+const { env: { URL } } = process
 import { validators, errors } from 'commons'
 
 const { DuplicityError, ServerError, ClientError } = errors
@@ -8,7 +10,7 @@ function registerUser(nickname, email, password) {
     validateEmail(email)
     validatePassword(password)
 
-    return fetch('http://localhost:8080/api/users', {
+    return fetch(`${URL}/users`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

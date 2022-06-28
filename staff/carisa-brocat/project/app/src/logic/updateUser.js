@@ -1,3 +1,5 @@
+require('dotenv').config()
+const { env: { URL } } = process
 import { validators, errors } from 'commons'
 
 const { AuthError, NotFoundError, ServerError, ClientError } = errors
@@ -9,7 +11,7 @@ function updateUser(token, nickname, image, hairTexture, interests) {
     validateString(hairTexture, 'hairTexture')
     validateArray(interests)
 
-    return fetch('http://localhost:8080/api/users', {
+    return fetch(`${URL}/users`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
