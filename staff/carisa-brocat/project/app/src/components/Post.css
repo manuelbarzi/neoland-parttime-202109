@@ -67,7 +67,8 @@
 }
 
 .Post__body__image {
-    height: 90%;
+    max-width: 40%;
+   max-height: 90%;
 }
 
 .Post__body__container-description {

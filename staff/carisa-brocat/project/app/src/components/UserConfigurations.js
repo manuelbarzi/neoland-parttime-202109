@@ -72,7 +72,7 @@ function UserConfigurations({ user, handleRefresh }) {
                     <form className="UserConfiguration__form" onSubmit={handleUpdateUser}>
                         <div className='UserConfiguration__upload-userImage'>
                             <div className='UserConfiguration__user-image'>
-                                <img src={user?.image ?? "./images/Profile-image.png"} alt="userImage" />
+                                <img src={userImage ?? "./images/Profile-image.png"} alt="userImage" />
                             </div>
 
                             <label className="UserConfiguration__LabelInputFile">
@@ -85,7 +85,7 @@ function UserConfigurations({ user, handleRefresh }) {
                         <div className="UserConfiguration__container UserConfiguration__container--margin-top">
                             <div className='UserConfiguration__hairTexture'>
                                 <label>Hair Texture: </label>
-                                <select id='hairTexture' name='hairTexture' >
+                                <select id='hairTexture' name='hairTexture' defaultValue={user?.hairTexture}>
                                     <option value='3a'>3a</option>
                                     <option value='3b'>3b</option>
                                     <option value='3c'>3c</option>
