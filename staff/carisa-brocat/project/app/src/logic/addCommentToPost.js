@@ -1,8 +1,7 @@
-require('dotenv').config()
-const { env: { URL } } = process
 import { validators, errors } from 'commons'
-import { validateId, validateString } from 'commons/src/validators'
-
+import config from './config.js'
+const {URL} = config
+const { validateId, validateString } = validators
 const { ServerError, ClientError, NotFoundError, AuthError } = errors
 const { validateToken } = validators
 
