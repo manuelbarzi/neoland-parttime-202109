@@ -10,27 +10,16 @@ export default function ({ content }) {
     const navigate = useNavigate()
     const { setFeedback } = useContext(Context)
     const { vehicleId, viewId } = useParams()
-    const [title, setTitle] = useState()
     const [parts, setParts] = useState()
     const [addPart, setAddPart] = useState()
     const [coordinates, setCoordinates] = useState({ x: 0, y: 0 })
 
     useEffect(() => {
-        if (content.title === 'lead')
-            setTitle('Parte delantera')
-        else if (content.title === 'rear')
-            setTitle('Parte trasera')
-        else if (content.title === 'right')
-            setTitle('Parte derecha')
-        else if (content.title === 'left')
-            setTitle('Parte izquierda')
-    }, [])
-
-    useEffect(() => {
         try {
             retrieveAllParts(sessionStorage.token, vehicleId)
                 .then(items => {
-                    setParts(items)
+                    let parts = items.filter(item => item.side === content.title)
+                    setParts(parts)
                     setAddPart(false)
                 })
                 .catch(error => setFeedback({ level: 'error', message: error.message }))
@@ -48,7 +37,7 @@ export default function ({ content }) {
         setCoordinates({ x: asisX, y: asisY })
         setAddPart(true)
     }
-
+console.log(parts)
     const handleDetailPart = (vehicleId, partId) => navigate(`/vehicle/${vehicleId}/view/${viewId}/part/${partId}`)
 
     return <div>
@@ -57,11 +46,10 @@ export default function ({ content }) {
             :
             <div className="viewItemDetail">
                 <img src={content.image} onClick={handleCreatePart} />
-                <h3>Partes</h3>
+                <h3 className="viewItemDetail__title">Partes</h3>
                 {parts ?
                     <ul>
-                        {parts.filter(part => part.side === content.title).
-                            map(part => <li className="viewItemDetail__li" key={part.id} onClick={() => handleDetailPart(vehicleId, part.id)}>
+                        {parts.map(part => <li className="viewItemDetail__li" key={part.id} onClick={() => handleDetailPart(vehicleId, part.id)}>
                                 <PartItem content={part} />
                             </li>)}
                     </ul>

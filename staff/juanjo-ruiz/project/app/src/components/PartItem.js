@@ -20,6 +20,6 @@ export default function ({ content }) {
             <div className={`partItem partItem--${content.state}`}></div>
             <h4>{title}</h4>
         </div>
-        <p className="partItem__date">{content.newDate}</p>
+        <p className="partItem__date">Fecha de creacción: {content.newDate}</p>
     </div>
 }
