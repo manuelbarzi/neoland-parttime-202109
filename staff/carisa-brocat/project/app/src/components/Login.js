@@ -34,13 +34,13 @@ function Login({ onLoggedIn }) {
     }
 
     return <div className='Login'>
-        <img className='Login__logo' src="./images/App-logo.png" alt='app-logo' />
+        <img className='Login__logo' src="./images/appLogo.png" alt='app-logo' />
 
         <form className='Login__form' onSubmit={login} >
             <input className='Login__form-input' type="email" name="email" placeholder="email" required />
             <div className='Login__form-input Login__form-input--noPadding'>
                 <input className='Login__form-input Login__form-input__password' type={passwordShown ? "text" : "password"} name="password" placeholder="password" required />
-                <img className='Login__image-hide-show-password' onClick={toggleShowPassword} src={passwordShown ? "./images/visibility_on.png" : "./images/visibility_off.png"} />
+                <img className='Login__image-hide-show-password' onClick={toggleShowPassword} src={passwordShown ? "./images/visibilityOn.png" : "./images/visibilityOff.png"} />
             </div>
             <button type='submit' className='Login__form-button'>LogIn</button>
         </form>

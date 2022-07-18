@@ -33,14 +33,14 @@ function Register({ onRegistered }) {
     }
 
     return <div className="Register">
-        <img className='Register__logo' src="./images/App-logo.png" alt='app-logo' />
+        <img className='Register__logo' src="./images/appLogo.png" alt='app-logo' />
 
         <form className='Register__form' onSubmit={register} >
             <input className='Register__form-input' type="text" name="nickname" placeholder="nickname" required />
             <input className='Register__form-input' type="email" name="email" placeholder="email" required />
             <div className='Register__form-input Register__form-input--noPadding'>
                 <input className='Register__form-input Register__form-input__password' type={passwordShown ? "text" : "password"} name="password" placeholder="password" required />
-                <img className='Register__image-hide-show-password' onClick={toggleShowPassword} src={passwordShown ? "./images/visibility_on.png" : "./images/visibility_off.png"} />
+                <img className='Register__image-hide-show-password' onClick={toggleShowPassword} src={passwordShown ? "./images/visibilityOn.png" : "./images/visibilityOff.png"} />
             </div>
             <button className='Register__form-button' type="submit">Register</button>
         </form>

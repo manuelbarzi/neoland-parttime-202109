@@ -79,10 +79,10 @@ export default ({ handleCloseModal, handlePostCreated }) => {
             <input className="NewPost__body__title" type="text" name="title" required placeholder="Write the title of your post here" maxLength="50" minLength="5" />
             <div className=" NewPost__body NewPost__body--row">
                 <div className=" NewPost__body NewPost__body__image">
-                    <img src={imageB64 ?? "./images/Not-Image.png"} />
+                    <img src={imageB64 ?? "./images/notImage.png"} />
                     <label className="NewPost__LabeInputFile">
                         <input className=" NewPost__inputFile" type="file" name="image" onChange={handleUploadImage} />
-                        <img src="./images/Upload-icon.png" />
+                        <img src="./images/uploadIcon.png" />
                     </label>
                 </div>
 

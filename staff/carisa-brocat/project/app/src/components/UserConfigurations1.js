@@ -20,7 +20,7 @@ function UserConfigurations({ user, handleRefresh }) {
     const [onChangePassword, setOnChangePassword] = useState(false)
     const [onChangeEmail, setOnChangeEmail] = useState(false)
     const [imageB64, setImageB64] = useState()
-    let userImage = imageB64 ?? user?.image
+    const userImage = imageB64 ?? user?.image
 
     const handleUploadImage = (event) => {
         uploadImage(event, setImageB64)
@@ -32,12 +32,6 @@ function UserConfigurations({ user, handleRefresh }) {
 
     const handleShowChangeEmail = () => {
         setOnChangeEmail(!onChangeEmail)
-    }
-
-    const handleDeleteImage = () => {
-        // setImageB64('./images/profile.png')
-
-        userImage = null
     }
 
     const handleUpdateUser = event => {
@@ -77,14 +71,14 @@ function UserConfigurations({ user, handleRefresh }) {
                 <div className="UserConfiguration__container">
                     <form className="UserConfiguration__form" onSubmit={handleUpdateUser}>
                         <div className='UserConfiguration__upload-userImage'>
-                            <label>
-                                <input className="UserConfiguration__InputFile" type="file" name="image" onChange={handleUploadImage} />
-                                <div className='UserConfiguration__user-image'>
-                                    <img src={userImage ?? "./images/profile.png"} alt="userImage" />
-                                </div>
-                            </label>
+                            <div className='UserConfiguration__user-image'>
+                                <img src={userImage ?? "./images/profile.png"} alt="userImage" />
+                            </div>
 
-                            <button type='button' className='UserConfiguration__deleteImage-button' onClick={handleDeleteImage}>x</button>
+                            <label className="UserConfiguration__LabelInputFile">
+                                <input className="UserConfiguration__InputFile" type="file" name="image" onChange={handleUploadImage} />
+                                <img src="./images/uploadIcon.png" />
+                            </label>
                         </div>
 
                         <input className="UserConfiguration__Nickname" type="text" name="nickname" defaultValue={userNickname} />
@@ -115,7 +109,7 @@ function UserConfigurations({ user, handleRefresh }) {
                         <button className='UserConfiguration__button' type="submit">Save</button>
                     </form>
                     <div className="UserConfiguration__container__footer">
-                        <button className='UserConfiguration__button UserConfiguration__button--large' onClick={handleShowChangeEmail}>Change Email</button>
+                        <button className='UserConfiguration__button UserConfiguration__button--large'  onClick={handleShowChangeEmail}>Change Email</button>
                         <button className='UserConfiguration__button UserConfiguration__button--large' onClick={handleShowChangePassword}>Change Password</button>
                     </div>
                 </div>

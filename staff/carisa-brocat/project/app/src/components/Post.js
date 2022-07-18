@@ -172,7 +172,7 @@ export default ({ postId, user, handlePostDeleted, handleUnsavePost }) => {
             <div className="Post__header">
                 <div className="Post__header_userInfo">
                     <div className="Post__header_userInfo-image">
-                        <img src={post.userImage ?? "./images/Profile-image.png"} alt="userImage" />
+                        <img src={post.userImage ?? "./images/profile.png"} alt="userImage" />
                     </div>
                     <p>{post.userNickname}</p>
                 </div>
@@ -191,25 +191,25 @@ export default ({ postId, user, handlePostDeleted, handleUnsavePost }) => {
                 </div>
             </div>
             {location.pathname === '/my-posts' && <div className='Post__footer Post__footer--center'>
-                <button className='Post__footer__button' onClick={handleDeletePost}><img src="./images/Delete-Icon.png" alt="userImage" /></button>
+                <button className='Post__footer__button' onClick={handleDeletePost}><img src="./images/deleteIcon.png" alt="userImage" /></button>
             </div>}
             {location.pathname !== '/my-posts' && <div className="Post__footer">
                 <div className="Post__footer Post__footer-container">
                     <div className="Post__footer-feedback">
                         <div className="Post__footer-feedback Post__footer-feedback__likes">
-                            <button className='Post__footer__button' onClick={handleLikes}><img src="./images/Likes-Icon.png" alt="userImage" /></button>
+                            <button className='Post__footer__button' onClick={handleLikes}><img src="./images/likesIcon.png" alt="likes" /></button>
                             {
                                 likes ? <p>({likes})</p> : <p>(0)</p>
                             }
                         </div>
                         <div className="Post__footer-feedback Post__footer-feedback__dislikes">
-                            <button className='Post__footer__button ' onClick={handleDislikes}><img src="./images/Dislikes-Icon.png" alt="userImage" /></button>
+                            <button className='Post__footer__button ' onClick={handleDislikes}><img src="./images/dislikesIcon.png" alt="dislikes" /></button>
                             {
                                 dislikes ? <p>({dislikes})</p> : <p>(0)</p>
                             }
                         </div>
                     </div>
-                    <button className='Post__footer__button Post__footer__button-save' onClick={handleSavePosts}><img src={postSaved ? "./images/Saved-Icon.png" : "./images/Unsaved-Icon.png"} /></button>
+                    <button className='Post__footer__button Post__footer__button-save' onClick={handleSavePosts}><img src={postSaved ? "./images/savedIcon.png" : "./images/unsavedIcon.png"} /></button>
                 </div>
             </div>}
         </div> :

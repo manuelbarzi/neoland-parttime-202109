@@ -120,23 +120,23 @@ function Home({ onLoggedOut }) {
             <div className='Home__header'>
 
                 {location.pathname === '/' && <div className='Home__header__top'>
-                    <img className='Home__logo' src="./images/App-logo.png" alt='app-logo' />
+                    <img className='Home__logo' src="./images/appLogo.png" alt='app-logo' />
                     <h2 className='Home__header__subject-filter-text'>{appliedSubjectText}</h2>
                     <div className="Home__header__top Home__header__top--noBorder">
                         <div className="Home__header__top-user-image">
-                            <img src={user?.image?? "./images/Profile-image.png"} alt="userImage" onClick={handleMyPosts} />
+                            <img src={user?.image?? "./images/profile.png"} alt="userImage" onClick={handleMyPosts} />
                         </div>
-                        <button className="Home__header__top__button" onClick={logOut} ><img src="./images/Logout-img.png" /></button>
+                        <button className="Home__header__top__button" onClick={logOut} ><img src="./images/logoutImg.png" /></button>
                     </div >
                 </div>}
 
                 {location.pathname !== '/' && <div className='Home__header__top Home__header_top-userSection'>
                         <div className="Home__header__top-user-image">
-                            <img src={user?.image?? "./images/Profile-image.png"} alt="userImage" onClick={handleMenu} />
+                            <img src={user?.image?? "./images/profile.png"} alt="userImage" onClick={handleMenu} />
                         </div>
                     {isNotInUnregisterOrConfiguration && <h2 className='Home__header__subject-filter-text'>{appliedSubjectText}</h2>}
                     <div>
-                        <button className="Home__header__top__button Home__header__top__button-comeback" onClick={comeBack}><img src="./images/ComeBack-img.png" /></button>
+                        <button className="Home__header__top__button Home__header__top__button-comeback" onClick={comeBack}><img src="./images/comeBackImg.png" /></button>
                     </div >
                 </div>}
                 {isNotInUnregisterOrConfiguration && <SubjectSelector onSubjectSelected={onSubjectSelected} />}
@@ -152,7 +152,7 @@ function Home({ onLoggedOut }) {
             {isNotInUnregisterOrConfiguration && <div className='Home__footer'>
                 <CategorySelector onCategorySelected={onCategorySelected} />
                 <div className='Home__button-addPost_container'>
-                <button className='Home__button-addPost' onClick={handleOpenModal}>+</button>
+                <button className='Home__button-addPost' onClick={handleOpenModal}><p>+</p></button>
                 </div>       
             </div>}
         </div>}

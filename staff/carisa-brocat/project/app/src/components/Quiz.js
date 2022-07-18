@@ -65,7 +65,7 @@ function Quiz({ onQuizPassed }) {
     }
 
     return <div className='Quiz'>
-        <img className='Quiz__logo' src="./images/App-logo.png" alt='app-logo' />
+        <img className='Quiz__logo' src="./images/appLogo.png" alt='app-logo' />
 
         <form className='Quiz__form' onSubmit={onQuiz}>
             <p className='Quiz__form__text'>Tell us your type of hair and let us help to find what are you looking for quickly</p>

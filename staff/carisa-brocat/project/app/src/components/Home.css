@@ -101,8 +101,8 @@ li {
     align-items: center;
     justify-content: center;
     position: fixed;
-    padding-top: 5px;
-    padding-bottom: 15px;
+    margin-top: 5px;
+    margin-bottom: 15px;
     bottom: 0;
     width: 100%;
     pointer-events: none;
@@ -114,8 +114,14 @@ li {
     height: 45px;
     border-radius: 50%;
     border: none;
+    pointer-events: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Home__button-addPost p{
+    padding: 0px;
     font-size: 35px;
     color: white;
-    pointer-events: auto;
-    align-items: center;
 }

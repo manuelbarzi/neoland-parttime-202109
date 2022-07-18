@@ -26,7 +26,7 @@
 
 .UserConfiguration__upload-userImage {
     display: flex;
-    margin-left: 20px;
+    margin-left: 40px;
 }
 
 
@@ -44,25 +44,27 @@
     height: 100%;
 }
 
+.UserConfiguration__LabelInputFile{
+    width: 25px;
+    height: 25px;
+    border: solid var(--green) 2px;
+    border-radius: 50%;
+    display: inline-flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.UserConfiguration__LabelInputFile img{
+    width: 20px;
+    align-self: center;
+}
+
 .UserConfiguration__InputFile {
     width: 0.1px;
     height: 0.1px;
     opacity: 0;
     overflow: hidden;
 }
-
-.UserConfiguration__deleteImage-button{
-    width: 25px;
-    height: 25px;
-    border: solid var(--green) 2px;
-    border-radius: 50%;
-    background-color: white;
-    position: relative;
-    right: 12px;
-    top: 65px;
-    cursor: pointer;
-}
-
 
 .UserConfiguration__form {
     display: flex;

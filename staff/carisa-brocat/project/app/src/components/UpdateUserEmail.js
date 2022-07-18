@@ -1,5 +1,6 @@
+import './UpdateUserEmail.css'
 import { updateEmail } from '../logic'
-import { useContext } from 'react'
+import { useContext,useState } from 'react'
 import Context from './Context'
 
 import { errors } from 'commons'
@@ -7,6 +8,11 @@ const { AuthError, NotFoundError } = errors
 
 function UpdateUserEmail({ handleShowChangeEmail }) {
     const { setFeedback } = useContext(Context)
+    const [passwordShown, setPasswordShown] = useState(false)
+
+    const toggleShowPassword = () => {
+        setPasswordShown(!passwordShown)
+    }
 
     const goBack = () => {
         handleShowChangeEmail()
@@ -31,13 +37,16 @@ function UpdateUserEmail({ handleShowChangeEmail }) {
         }
     }
 
-    return <form className="updateEmail" onSubmit={handleUpdateEmail}>
-        <h3>Change Email</h3>
-        <input type="text" name="email" placeholder="email" required />
-        <input type="password" name="password" placeholder="password" required />
-        <div>
-            <button onClick={goBack}>Back</button>
-            <button type='submit'>Modify Email</button>
+    return <form className="UpdateEmail" onSubmit={handleUpdateEmail}>
+        <h3 className="UpdateEmail__title">Change Email</h3>
+        <input className='UpdateEmail__input UpdateEmail__input-email' type="text" name="email" placeholder="email" required />
+        <div className='UpdateEmail__input UpdateEmail__input--noPadding'>
+            <input className='UpdateEmail__input UpdateEmail__input__password' type={passwordShown ? "text" : "password"} name="oldPassword" placeholder="current password" required />
+            <img className='UpdateEmail__image-hide-show-password' onClick={toggleShowPassword} src={passwordShown ? "./images/visibilityOn.png" : "./images/visibilityOff.png"} />
+        </div>
+        <div className='UpdateEmail__button-container'>
+            <button className='UpdateEmail__button' type='submit'>Modify Email</button>
+            <button className='UpdateEmail__button UpdateEmail__button--small' onClick={goBack}>Back</button>
         </div>
     </form>
 

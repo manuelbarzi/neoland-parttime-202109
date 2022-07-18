@@ -18,7 +18,7 @@ function Landing() {
     }
 
     return <div className='Landing'>
-        <img className='Landing__logo' src="./images/App-logo.png" />
+        <img className='Landing__logo' src="./images/appLogo.png" />
         <p className='Landing__headerText'>For all that afro hairs out there, searching for a community where find support and answer to all their questions </p>
         <div className='Landing_nav'>
             <button className='Landing_nav-button'><Link to='/register'>Register</Link></button>

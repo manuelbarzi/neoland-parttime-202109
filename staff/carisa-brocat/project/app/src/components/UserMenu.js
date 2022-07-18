@@ -44,7 +44,7 @@ export default ({ handleSavedPosts, menuOpen, handleMenu, handleMyPosts, onLogge
             <button className='UserMenu__close-button' onClick={closeMenu} >x</button>
             <div className='UserMenu__header'>
                 <div className='UserMenu__header__user-image'>
-                    <img src={user?.image ?? "./images/Profile-image.png"} alt="userImage" />
+                    <img src={user?.image ?? "./images/profile.png"} alt="userImage" />
                 </div>
                 <p>{user?.nickname}</p>
             </div>
@@ -54,7 +54,7 @@ export default ({ handleSavedPosts, menuOpen, handleMenu, handleMyPosts, onLogge
             <h2 onClick={handleUnregister}>Unregister</h2>
             <div className='UserMenu__footer'>
                 <h2 >LogOut </h2>
-                <img src="./images/Logout-img.png" alt="userImage" onClick={onLoggedOut}  />
+                <img src="./images/logoutImg.png" alt="userImage" onClick={onLoggedOut}  />
             </div>
 
         </div>

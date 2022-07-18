@@ -19,11 +19,11 @@ export default ({ onCategorySelected }) => {
 
     return <div className='Category'>
         <div className='Category Category__at-left'>
-            <div className={`${selected === 'product' ? 'Category__button  Category__button--selected' : 'Category__button'}`} onClick={() => handleSelected('product')} ><img src="./images/Product-icon.png"/></div>
+            <div className={`${selected === 'product' ? 'Category__button  Category__button--selected' : 'Category__button'}`} onClick={() => handleSelected('product')} ><img src="./images/productIcon.png"/></div>
             <div className={`${selected === 'question' ? 'Category__button Category__button--selected' : 'Category__button'}`} onClick={() => handleSelected('question')} >?</div>
         </div>
         <div className='Category Category__at-rigth'>
-            <div className={`${selected === 'space' ? 'Category__button Category__button--selected' : 'Category__button'}`} onClick={() => handleSelected('space')} ><img src="./images/Space-icon.png"/></div>
+            <div className={`${selected === 'space' ? 'Category__button Category__button--selected' : 'Category__button'}`} onClick={() => handleSelected('space')} ><img src="./images/spaceIcon.png"/></div>
             <div className={`${selected === 'other' ? 'Category__button Category__button--selected' : 'Category__button'}`} onClick={() => handleSelected('other')} >Others</div>
         </div>
     </div>

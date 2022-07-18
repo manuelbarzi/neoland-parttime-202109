@@ -52,7 +52,7 @@
     justify-content: flex-start;
     font-size: 15px;
     color: rgb(179, 179, 179);
-    position: absolute;
+    position: fixed;
     bottom: 25px;
 }
 

@@ -56,7 +56,7 @@ function Unregister({ logOut }) {
         <form className="Unregister__form" onSubmit={handleDeleteUser} >
             <div className='Unregister__form-input Unregister__form-input--noPadding'>
                 <input className='Unregister__form-input Unregister__form-input__password' type={passwordShown ? "text" : "password"} name="password" placeholder="password" required />
-                <img className='Unregister__image-hide-show-password' onClick={toggleShowPassword} src={passwordShown ? "./images/visibility_on.png" : "./images/visibility_off.png"} />
+                <img className='Unregister__image-hide-show-password' onClick={toggleShowPassword} src={passwordShown ? "./images/visibilityOn.png" : "./images/visibilityOff.png"} />
             </div>
             <button onClick={unregisterConfirmation} className="Unregister__form-button">Delete</button>
 
