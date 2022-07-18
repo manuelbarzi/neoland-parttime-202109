@@ -35,7 +35,7 @@ function UserConfigurations({ user, handleRefresh }) {
     }
 
     const handleDeleteImage = () => {
-        // setImageB64('./images/profile.png')
+        setImageB64('./images/profile.png')
 
         userImage = null
     }
